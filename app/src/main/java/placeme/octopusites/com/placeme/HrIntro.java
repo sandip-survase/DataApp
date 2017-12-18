@@ -1,10 +1,8 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,14 +33,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import placeme.octopusites.com.placeme.modal.ModalHrIntro;
 
-import static placeme.octopusites.com.placeme.AES4all.OtoString;
-
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 //import static placeme.octopusites.com.placeme.ProfileRole.plainusername;
 //import static placeme.octopusites.com.placeme.R.id.myprofilemail;
 
@@ -65,7 +59,7 @@ public class HrIntro extends AppCompatActivity {
     String userName, roleValue;
     String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encdesignation;
     HrData hr = new HrData();
-    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,designinputlayout, emailinputlayout, citystaecountryinputlayout;
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout, designinputlayout, emailinputlayout, citystaecountryinputlayout;
     private EditText fname, lname, role, email, designation;
     private String digest1, digest2;
 
@@ -88,6 +82,8 @@ public class HrIntro extends AppCompatActivity {
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
+        buildCityStateCountryList();
+
         fname = (EditText) findViewById(R.id.fname);
         lname = (EditText) findViewById(R.id.lname);
         role = (EditText) findViewById(R.id.role);
@@ -103,7 +99,6 @@ public class HrIntro extends AppCompatActivity {
         citystaecountry.setTypeface(MyConstants.getBold(this));
 
 
-
         fnameTextInputLayout = (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
         lnameTextInputLayout = (TextInputLayout) findViewById(R.id.lnameTextInputLayout);
         roleinputlayout = (TextInputLayout) findViewById(R.id.roleinputlayout);
@@ -112,17 +107,12 @@ public class HrIntro extends AppCompatActivity {
         citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
 
         fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-                 lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-                 roleinputlayout.setTypeface(MyConstants.getLight(this));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        roleinputlayout.setTypeface(MyConstants.getLight(this));
 
-                designinputlayout.setTypeface(MyConstants.getLight(this));
-                emailinputlayout.setTypeface(MyConstants.getLight(this));
-                 citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
-
-
-
-
-
+        designinputlayout.setTypeface(MyConstants.getLight(this));
+        emailinputlayout.setTypeface(MyConstants.getLight(this));
+        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
 
 
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
@@ -132,7 +122,7 @@ public class HrIntro extends AppCompatActivity {
         encUsername = userName;
 
         try {
-            String plainusername=Decrypt(userName,digest1,digest2);
+            String plainusername = Decrypt(userName, digest1, digest2);
             email.setText(plainusername);
         } catch (Exception e) {
         }
@@ -153,53 +143,31 @@ public class HrIntro extends AppCompatActivity {
 
             if (firstname.length() > 1)
                 fname.setText(firstname);
-        }
-        else
-            firstname="";
+        } else
+            firstname = "";
 
         if (lastname != null) {
             if (lastname.length() > 1)
                 lname.setText(lastname);
-        }
-        else
-            lastname="";
+        } else
+            lastname = "";
 
         if (designationValue != null) {
             if (designationValue.length() > 1)
                 designation.setText(designationValue);
-        }
-        else
-            designationValue="";
+        } else
+            designationValue = "";
 
         if (selectedCountry != null && selectedState != null && selectedCity != null) {
-            if(!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
+            if (!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
                 CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
                 citystaecountry.setText(CityStateCountry);
-            }
-            else
+            } else
                 citystaecountry.setText("");
 
-        }
-        else
+        } else
             citystaecountry.setText("");
 
-        try {
-            JSONObject jsonObject = new JSONObject(getJson());
-            JSONArray array = jsonObject.getJSONArray("array");
-            for (int i = 0; i < array.length(); i++) {
-
-                JSONObject object = array.getJSONObject(i);
-                String city = object.getString("city");
-                String state = object.getString("state");
-                String country = object.getString("country");
-
-
-                listAll.add(city + " , " + state + " , " + country);
-
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listAll);
         citystaecountry.setAdapter(adapter);
@@ -279,6 +247,32 @@ public class HrIntro extends AppCompatActivity {
 
 
     }// oncreate
+
+    private void buildCityStateCountryList() {
+
+        new Thread(new Runnable() {
+            public void run() {
+                android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+                try {
+                    JSONObject jsonObject = new JSONObject(getJson());
+                    JSONArray array = jsonObject.getJSONArray("array");
+                    for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject object = array.getJSONObject(i);
+                        String city = object.getString("city");
+                        String state = object.getString("state");
+                        String country = object.getString("country");
+
+                        listAll.add(city + " , " + state + " , " + country);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
 
     public String getJson() {
         String json = null;

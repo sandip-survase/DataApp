@@ -2,12 +2,19 @@ package placeme.octopusites.com.placeme;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +25,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
+import static placeme.octopusites.com.placeme.AES4all.decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 
@@ -32,10 +48,16 @@ public class ViewNotification extends AppCompatActivity {
     Button download;
     String username;
     TextView uploadedbytxt,lastmodifiedtxt;
-    String digest1,digest2;
+
+
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
+
+    JSONParser jParser = new JSONParser();
+    String digest1,digest2;
+    JSONObject json;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,19 +94,19 @@ public class ViewNotification extends AppCompatActivity {
         uploadedbytxt=(TextView)findViewById(R.id.uploadedbytxt);
         lastmodifiedtxt=(TextView)findViewById(R.id.lastmodifiedtxt);
 
-        String uploadedby_enc=getIntent().getStringExtra("uploadedby");
         String uploadedby="";
+        String uploadedby_enc=getIntent().getStringExtra("uploadedby");
+        Log.d("gettingdata", "uploadedby_enc"+uploadedby_enc);
+
         try
         {
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(uploadedby_enc);
 
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-
-            uploadedby=new String(demo1DecryptedBytes1);
+            uploadedby=Decrypt(uploadedby_enc,MySharedPreferencesManager.getDigest1(this),MySharedPreferencesManager.getDigest2(this));
+            Log.d("gettingdata", "uploadedby"+uploadedby);
 
 
         }catch (Exception e){}
@@ -127,12 +149,25 @@ public class ViewNotification extends AppCompatActivity {
 
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/meriweather.ttf");
+        Log.d("gettingdata", "id"+getIntent().getStringExtra("id"));
+
+        Log.d("gettingdata", "titile"+getIntent().getStringExtra("title"));
+        Log.d("gettingdata", "titile"+getIntent().getStringExtra("notification"));
+        Log.d("gettingdata", "file1"+getIntent().getStringExtra("file1"));
+        Log.d("gettingdata", "file2"+getIntent().getStringExtra("file2"));
+        Log.d("gettingdata", "file3"+getIntent().getStringExtra("file3"));
+        Log.d("gettingdata", "file4"+getIntent().getStringExtra("file4"));
+        Log.d("gettingdata", "file5"+getIntent().getStringExtra("file5"));
+
+
+
 
         notificationheadingview=(TextView)findViewById(R.id.notificationheadingview);
         notificationnotificationview=(TextView)findViewById(R.id.notificationnotificationview);
 
         notificationheadingview.setText(getIntent().getStringExtra("title"));
         notificationnotificationview.setText(getIntent().getStringExtra("notification"));
+
 
         notificationheadingview.setTypeface(custom_font);
 
@@ -225,14 +260,19 @@ public class ViewNotification extends AppCompatActivity {
         }
 
 
+
+
+        changeReadStatusNotification(getIntent().getStringExtra("id"));
+
+
     }
 
     void downloadAttachment(String id,String filename)
     {
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
-                .path("AESTest/DownloadAttachment")
+                .encodedAuthority("192.168.100.100:8080")
+                .path("CreateNotificationTemp/DownloadAttachmentFiles")
                 .appendQueryParameter("u", username)
                 .appendQueryParameter("id", id)
                 .appendQueryParameter("f", filename)
@@ -268,6 +308,26 @@ public class ViewNotification extends AppCompatActivity {
 
         return myDrawable1;
     }
+    class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("id", param[0]));       //0
+            json = jParser.makeHttpRequest(MyConstants.url_changenotificationsreadstatus, "GET", params);
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -276,10 +336,37 @@ public class ViewNotification extends AppCompatActivity {
 
                 onBackPressed();
 
+
                 return(true);
         }
 
         return(super.onOptionsItemSelected(item));
     }
+    void changeReadStatusNotification(String id)
+    {
+        new ChangeReadStatusNotification().execute(id);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        //change as per entry
+
+        super.onBackPressed();
+//        Log.d("TAG", "role"+MySharedPreferencesManager.getRole(this));
+//        if(MySharedPreferencesManager.getRole(getBaseContext()).equals("student")){
+//            startActivity(new Intent(getBaseContext(),MainActivity.class));
+//
+//        } else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("alumni")){
+//            startActivity(new Intent(getBaseContext(),AlumniActivity.class));
+//
+//        }
+
+
+    }
+
+
+
 }
 

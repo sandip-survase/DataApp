@@ -64,6 +64,8 @@ import java.util.regex.Pattern;
 import mabbas007.tagsedittext.TagsEditText;
 
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
+import static placeme.octopusites.com.placeme.AES4all.decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -71,11 +73,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
     private static final String LINE_FEED = "\r\n";
-    private static String url_savedata = "http://192.168.100.30/CreateNotificationTemp/UploadAttach1";
-    private static String url_saveUpdated = "http://192.168.100.30/CreateNotificationTemp/ModifyNotification";
-    private static String url_getforwhome = "http://192.168.100.30/CreateNotificationTemp/GetForWhomeNotification";
-    //files variables
-    private static String savefoleonserverURL = "http://192.168.100.30/CreateNotificationTemp/SavefileOnServer";
+
     //hiding ui
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
     ImageView trashnotification;
@@ -83,7 +81,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     TextInputEditText title, notiffication;
     CheckBox stud, allum;
     String stitle = "", snotiffication = "";
-    String username = "", srole = "", plainusername = "", forwhom = "", encRole;
+    String username = "", srole = "", plainusername = "", forwhom = "", encRole = "";
     String encUsername, encTitle, encNotiffication, encforwhom;
     String encfilenameparam1, encfilenameparam2, encfilenameparam3, encfilenameparam4, encfilenameparam5;
     String instname = "";
@@ -122,6 +120,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     String File1index = "", File2index = "", File3index = "", File4index = "", File5index = "";
     String Forwhomefromdb = "";
     Drawable compleatesprogress;
+
     private String charset = "UTF-8";
     private String boundary;
     private HttpURLConnection httpConn;
@@ -140,7 +139,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         setContentView(R.layout.activity_create_notification);
 
         scrollview = ((ScrollView) findViewById(R.id.schroll1));
-
 
 
         TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
@@ -183,8 +181,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         final Context context = this;
 
 
-
-
         a1 = new ArrayList<>();
         prg1 = (ProgressBar) findViewById(R.id.PROGRESS_BAR);
         prg2 = (ProgressBar) findViewById(R.id.PROGRESS_BAR2);
@@ -192,15 +188,16 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         prg4 = (ProgressBar) findViewById(R.id.PROGRESS_BAR4);
         prg5 = (ProgressBar) findViewById(R.id.PROGRESS_BAR5);
 
+
         yearspinner = (RelativeLayout) findViewById(R.id.yearspinner);
         yearspinner.setVisibility(View.INVISIBLE);
         batches = (TextInputLayout) findViewById(R.id.batchesinput);
         batches.setVisibility(View.INVISIBLE);
 
 
-        srole=MySharedPreferencesManager.getRole(this);
-        instname=MySharedPreferencesManager.getInstitute(this);
-        encUsername=MySharedPreferencesManager.getUsername(this);
+        srole = MySharedPreferencesManager.getRole(this);
+        instname = MySharedPreferencesManager.getInstitute(this);
+        encUsername = MySharedPreferencesManager.getUsername(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
@@ -208,11 +205,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         Log.d("Shardpreff", "onCreate: " + instname);
         Log.d("Shardpreff", "SROLR: " + srole);
 
+
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
-
 
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
@@ -229,7 +225,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         allum = (CheckBox) findViewById(R.id.CheckBoxsAlumni);
 
 
-
         //tags
         batchesTags = (TagsEditText) findViewById(R.id.tagsEditText);
         batchesTags.setHint("Enter the Batches");
@@ -241,29 +236,24 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         batchesTags.setTagsTextColor(R.color.blackOlive);
         batchesTags.setFocusable(false);
 
-        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item,  getResources().getStringArray(R.array.fruits))
-        {
+        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
+                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
                 tv.setTypeface(custom_font3);
 
-                if(position == 0){
+                if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(Color.GRAY);
-                }
-                else {
+                } else {
                     tv.setTextColor(Color.parseColor("#eeeeee"));
                 }
                 return view;
             }
         };
-
-
-
 
 
         batchesTags.setOnClickListener(new View.OnClickListener() {
@@ -272,25 +262,23 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                 batchesTags.setAdapter(dataAdapter);
                 batchesTags.setThreshold(1);
-                if(batchesTags.getText().toString().contains("ALL")){
+                if (batchesTags.getText().toString().contains("ALL")) {
                     //dont popullate
-                    Toast.makeText(CreateNotification.this,"Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
-                }else {
-                    ArrayAdapter<String>  dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item,  getResources().getStringArray(R.array.fruits))
-                    {
+                    Toast.makeText(CreateNotification.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
                         @Override
                         public View getDropDownView(int position, View convertView,
                                                     ViewGroup parent) {
                             View view = super.getDropDownView(position, convertView, parent);
                             TextView tv = (TextView) view;
-                            Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
+                            Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
                             tv.setTypeface(custom_font3);
 
-                            if(position == 0){
+                            if (position == 0) {
                                 // Set the hint text color gray
                                 tv.setTextColor(Color.GRAY);
-                            }
-                            else {
+                            } else {
                                 tv.setTextColor(Color.parseColor("#eeeeee"));
                             }
                             return view;
@@ -308,10 +296,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String temp=getResources().getStringArray(R.array.fruits)[position];
-                temp=temp.trim();
+                String temp = getResources().getStringArray(R.array.fruits)[position];
+                temp = temp.trim();
 
-                if(temp.contains("ALL")){
+                if (temp.contains("ALL")) {
                     TagCreateList.clear();
                     TagCreateList.add("ALL");
                     String[] TagCreateArray = new String[TagCreateList.size()];
@@ -319,15 +307,16 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     batchesTags.setText("");
                     batchesTags.setTags(TagCreateArray);
                 }
-                if(TagCreateList.contains(temp));{
-                    int occurance=   TagCreateList.indexOf(temp);
-                    int Lastelement = TagCreateList.size()-1;
-                    Log.d("occurance", "onItemClick:"+occurance);
-                    Log.d("Lastelement", "onItemClick:"+Lastelement);
+                if (TagCreateList.contains(temp)) ;
+                {
+                    int occurance = TagCreateList.indexOf(temp);
+                    int Lastelement = TagCreateList.size() - 1;
+                    Log.d("occurance", "onItemClick:" + occurance);
+                    Log.d("Lastelement", "onItemClick:" + Lastelement);
 
-                    if(occurance!=TagCreateList.size()-1){
+                    if (occurance != TagCreateList.size() - 1) {
                         Log.d("deletethis", "onItemClick:");
-                        TagCreateList.remove(TagCreateList.size()-1);
+                        TagCreateList.remove(TagCreateList.size() - 1);
                         String[] TagCreateArray = new String[TagCreateList.size()];
                         TagCreateArray = TagCreateList.toArray(TagCreateArray);
                         batchesTags.setTags(TagCreateArray);
@@ -344,12 +333,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 TagCreateList.clear();
                 List<String> newList = new ArrayList<String>(batchesTags.getTags());
                 TagCreateList.addAll(newList);
-                Log.d("setTagsListener", "onEditingFinished: "+containsall);
+                Log.d("setTagsListener", "onEditingFinished: " + containsall);
 
-                String temp="" ;
-                temp= batchesTags.getText().toString();
-                Log.d("tag", "onTagsChanged: "+temp);
-                if(temp.equals("")){
+                String temp = "";
+                temp = batchesTags.getText().toString();
+                Log.d("tag", "onTagsChanged: " + temp);
+                if (temp.equals("")) {
                     batchesTags.dismissDropDown();
                     yearspinner.setVisibility(View.GONE);
                 }
@@ -363,9 +352,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             }
         });
-
-
-
 
 
         stud.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -639,123 +625,122 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             case R.id.action_save:
 
+                try {
 
-                stitle = title.getText().toString();
-                snotiffication = notiffication.getText().toString();
-                errorflag = 0;
+                    stitle = title.getText().toString();
+                    snotiffication = notiffication.getText().toString();
+                    errorflag = 0;
 
 
-                ArrayList<String> batchesArraylist2 = new ArrayList<>();
-                String sBatches = batchesTags.getText().toString();
-                Log.d("check", "onOptionsItemSelected: " + sBatches);
-                String batchesArray[] = sBatches.split(" ");
-                for (int i = 0; i < batchesArray.length; i++) {
-                    batchesArraylist2.add(batchesArray[i]);
-                }
-                String sunny = "";
+                    ArrayList<String> batchesArraylist2 = new ArrayList<>();
+                    String sBatches = batchesTags.getText().toString();
+                    Log.d("check", "onOptionsItemSelected: " + sBatches);
+                    String batchesArray[] = sBatches.split(" ");
+                    for (int i = 0; i < batchesArray.length; i++) {
+                        batchesArraylist2.add(batchesArray[i]);
+                    }
+                    String sunny = "";
 //                       sunny=  mTagsEditText.getText().toString();
-                sunny = android.text.TextUtils.join(",", batchesArraylist2);
-                Log.d("sunny", "afterTextChanged3: " + sunny);
+                    sunny = android.text.TextUtils.join(",", batchesArraylist2);
+                    Log.d("sunny", "afterTextChanged3: " + sunny);
 
 
-                if (forstudflag == 1) {
-                    //notification for Student
-                    forwhom = instname + "(ADMIN,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
-                    if (forallumflag == 1) {
-                        //for Stud + alumni
-                        forwhom = forwhom + "," + sunny + ")";
-                        Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
-                    } else {
-                        //only for Stud
-                        forwhom = forwhom + ")";
-                        Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
+                    if (forstudflag == 1) {
+                        //notification for Student
+                        forwhom = instname + "( " + Decrypt(encUsername, digest1, digest2) + " ,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                        if (forallumflag == 1) {
+                            //for Stud + alumni
+                            forwhom = forwhom + "," + sunny + ")";
+                            Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
+                        } else {
+                            //only for Stud
+                            forwhom = forwhom + ")";
+                            Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
-                    }
-                } else {
-                    //notification not for Student
-                    if (forallumflag == 1) {
-                        //for ALLUMNI
-                        forwhom = instname + "(" + sunny + ")";
-                        Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
-
-                    } else {
-                        //NOTIFICATION FOR NONE
-                        forwhom = forwhom + "(NONE)";
-                        Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
-
-                    }
-                }
-
-
-                if (stitle.length() < 2) {
-                    title.setError("Incorrect Title ");
-                    errorflag = 1;
-                } else if (snotiffication.length() < 2) {
-                    notiffication.setError("Incorrect Notiffication ");
-                    errorflag = 1;
-                } else if (instname == null) {
-                    Toast.makeText(this, "Please Fill Institute Name in Your Profile in Order To Create Notification", Toast.LENGTH_LONG).show();
-                    errorflag = 1;
-
-                } else
-                    try {
-                        if (errorflag == 0) {
-                            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                            String sPadding = "ISO10126Padding";
-
-                            byte[] roleBytes = srole.getBytes("UTF-8");
-                            byte[] stitleBytes = stitle.getBytes("UTF-8");
-                            byte[] snotifficationBytes = snotiffication.getBytes("UTF-8");
-                            byte[] forwhomyBytes = forwhom.getBytes("UTF-8");
-
-                            byte[] filenameparam1Bytes = filenameparam1.getBytes("UTF-8");
-                            byte[] filenameparam2Bytes = filenameparam2.getBytes("UTF-8");
-                            byte[] filenameparam3Bytes = filenameparam3.getBytes("UTF-8");
-                            byte[] filenameparam4Bytes = filenameparam4.getBytes("UTF-8");
-                            byte[] filenameparam5Bytes = filenameparam5.getBytes("UTF-8");
-
-                            byte[] roleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, roleBytes);
-                            encRole = new String(SimpleBase64Encoder.encode(roleEncryptedBytes));
-                            byte[] titleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, stitleBytes);
-                            encTitle = new String(SimpleBase64Encoder.encode(titleEncryptedBytes));
-                            byte[] notifficationEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, snotifficationBytes);
-                            encNotiffication = new String(SimpleBase64Encoder.encode(notifficationEncryptedBytes));
-                            byte[] forwhomyEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, forwhomyBytes);
-                            encforwhom = new String(SimpleBase64Encoder.encode(forwhomyEncryptedBytes));
-
-                            byte[] filenameparam1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam1Bytes);
-                            encfilenameparam1 = new String(SimpleBase64Encoder.encode(filenameparam1EncryptedBytes));
-                            byte[] filenameparam2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam2Bytes);
-                            encfilenameparam2 = new String(SimpleBase64Encoder.encode(filenameparam2EncryptedBytes));
-                            byte[] filenameparam3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam3Bytes);
-                            encfilenameparam3 = new String(SimpleBase64Encoder.encode(filenameparam3EncryptedBytes));
-                            byte[] filenameparam4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam4Bytes);
-                            encfilenameparam4 = new String(SimpleBase64Encoder.encode(filenameparam4EncryptedBytes));
-                            byte[] filenameparam5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam5Bytes);
-                            encfilenameparam5 = new String(SimpleBase64Encoder.encode(filenameparam5EncryptedBytes));
-
-                            File1index = map3.get(filenameparam1);
-                            File2index = map3.get(filenameparam2);
-                            File3index = map3.get(filenameparam3);
-                            File4index = map3.get(filenameparam4);
-                            File5index = map3.get(filenameparam5);
-
-                            if (forwhom.length() < 2) {
-                                Toast.makeText(CreateNotification.this, "select Student or Admin", Toast.LENGTH_SHORT).show();
-                                errorflag = 1;
-                            } else if (FLAG.equals("EditNotification")) {
-                                Toast.makeText(this, "flag  :" + FLAG, Toast.LENGTH_SHORT).show();
-                                new Modify().execute();
-                            } else if (FLAG.equals("fromAdminActivity")) {
-                                Log.d("Tag", "here: ");
-                                new SaveData().execute();
-                            }
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    } else {
+                        //notification not for Student
+                        if (forallumflag == 1) {
+                            //for ALLUMNI
+                            forwhom = instname + "( " + Decrypt(encUsername, digest1, digest2) + " ," + sunny + ")";
+                            Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
+
+                        } else {
+                            //NOTIFICATION FOR NONE
+                            forwhom = forwhom + "(NONE)";
+                            Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
+
+                        }
                     }
+
+
+                    if (stitle.length() < 2) {
+                        title.setError("Incorrect Title ");
+                        errorflag = 1;
+                    } else if (snotiffication.length() < 2) {
+                        notiffication.setError("Incorrect Notiffication ");
+                        errorflag = 1;
+                    } else if (instname == null) {
+                        Toast.makeText(this, "Please Fill Institute Name in Your Profile in Order To Create Notification", Toast.LENGTH_LONG).show();
+                        errorflag = 1;
+
+                    } else if (errorflag == 0) {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
+
+                        byte[] roleBytes = srole.getBytes("UTF-8");
+                        byte[] stitleBytes = stitle.getBytes("UTF-8");
+                        byte[] snotifficationBytes = snotiffication.getBytes("UTF-8");
+                        byte[] forwhomyBytes = forwhom.getBytes("UTF-8");
+
+                        byte[] filenameparam1Bytes = filenameparam1.getBytes("UTF-8");
+                        byte[] filenameparam2Bytes = filenameparam2.getBytes("UTF-8");
+                        byte[] filenameparam3Bytes = filenameparam3.getBytes("UTF-8");
+                        byte[] filenameparam4Bytes = filenameparam4.getBytes("UTF-8");
+                        byte[] filenameparam5Bytes = filenameparam5.getBytes("UTF-8");
+
+                        byte[] roleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, roleBytes);
+                        encRole = new String(SimpleBase64Encoder.encode(roleEncryptedBytes));
+                        byte[] titleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, stitleBytes);
+                        encTitle = new String(SimpleBase64Encoder.encode(titleEncryptedBytes));
+                        byte[] notifficationEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, snotifficationBytes);
+                        encNotiffication = new String(SimpleBase64Encoder.encode(notifficationEncryptedBytes));
+                        byte[] forwhomyEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, forwhomyBytes);
+                        encforwhom = new String(SimpleBase64Encoder.encode(forwhomyEncryptedBytes));
+
+                        byte[] filenameparam1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam1Bytes);
+                        encfilenameparam1 = new String(SimpleBase64Encoder.encode(filenameparam1EncryptedBytes));
+                        byte[] filenameparam2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam2Bytes);
+                        encfilenameparam2 = new String(SimpleBase64Encoder.encode(filenameparam2EncryptedBytes));
+                        byte[] filenameparam3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam3Bytes);
+                        encfilenameparam3 = new String(SimpleBase64Encoder.encode(filenameparam3EncryptedBytes));
+                        byte[] filenameparam4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam4Bytes);
+                        encfilenameparam4 = new String(SimpleBase64Encoder.encode(filenameparam4EncryptedBytes));
+                        byte[] filenameparam5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam5Bytes);
+                        encfilenameparam5 = new String(SimpleBase64Encoder.encode(filenameparam5EncryptedBytes));
+
+                        File1index = map3.get(filenameparam1);
+                        File2index = map3.get(filenameparam2);
+                        File3index = map3.get(filenameparam3);
+                        File4index = map3.get(filenameparam4);
+                        File5index = map3.get(filenameparam5);
+
+                        if (forwhom.length() < 2) {
+                            Toast.makeText(CreateNotification.this, "select Student or Admin", Toast.LENGTH_SHORT).show();
+                            errorflag = 1;
+                        } else if (FLAG.equals("EditNotification")) {
+                            Toast.makeText(this, "flag  :" + FLAG, Toast.LENGTH_SHORT).show();
+                            new Modify().execute();
+                        } else if (FLAG.equals("fromAdminActivity")) {
+                            Log.d("Tag", "here: ");
+                            new SaveData().execute();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 break;
             case android.R.id.home:
                 onBackPressed();
@@ -1417,18 +1402,17 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             params.add(new BasicNameValuePair("f", encTitle));       //2
             params.add(new BasicNameValuePair("l", encNotiffication));       //3
             params.add(new BasicNameValuePair("c", encforwhom));     //4
-            Log.d("Params", "encUsername:0 "+encUsername);
-            Log.d("Params", "encRole: 1"+encRole);
-            Log.d("Params", "encTitle:2 "+encTitle);
-            Log.d("Params", "encNotiffication: 3"+encNotiffication);
-            Log.d("Params", "encforwhom: 4"+encforwhom);
-
+            Log.d("Params", "encUsername:0 " + encUsername);
+            Log.d("Params", "encRole: 1" + encRole);
+            Log.d("Params", "encTitle:2 " + encTitle);
+            Log.d("Params", "encNotiffication: 3" + encNotiffication);
+            Log.d("Params", "encforwhom: 4" + encforwhom);
 
 
             if (filenameparam1.length() != 0 || filenameparam1 != "") {
 
                 params.add(new BasicNameValuePair("f1", filenameparam1));  //5
-                Log.d("Params", "filenameparam1: 5"+filenameparam1);
+                Log.d("Params", "filenameparam1: 5" + filenameparam1);
 
             } else {
                 params.add(new BasicNameValuePair("f1", "BLANK"));
@@ -1438,7 +1422,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             if (filenameparam2.length() != 0 || filenameparam2 != "") {
                 params.add(new BasicNameValuePair("f2", filenameparam2));     //6
-                Log.d("Params", "filenameparam2: 6"+filenameparam2);
+                Log.d("Params", "filenameparam2: 6" + filenameparam2);
 
             } else {
                 params.add(new BasicNameValuePair("f2", "BLANK"));
@@ -1448,7 +1432,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
             if (filenameparam3.length() != 0 || filenameparam3 != "") {
                 params.add(new BasicNameValuePair("f3", filenameparam3));     //7
-                Log.d("Params", "filenameparam3: 7"+filenameparam3);
+                Log.d("Params", "filenameparam3: 7" + filenameparam3);
 
             } else {
                 params.add(new BasicNameValuePair("f3", "BLANK"));
@@ -1458,7 +1442,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
             if (filenameparam4.length() != 0 || filenameparam4 != "") {
                 params.add(new BasicNameValuePair("f4", filenameparam4));     //8
-                Log.d("Params", "filenameparam4: 8"+filenameparam4);
+                Log.d("Params", "filenameparam4: 8" + filenameparam4);
 
             } else {
                 params.add(new BasicNameValuePair("f4", "BLANK"));
@@ -1468,7 +1452,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
             if (filenameparam5.length() != 0 || filenameparam5 != "") {
                 params.add(new BasicNameValuePair("f5", filenameparam5));     //9
-                Log.d("Params", "filenameparam5: 9"+filenameparam5);
+                Log.d("Params", "filenameparam5: 9" + filenameparam5);
 
             } else {
                 params.add(new BasicNameValuePair("f5", "BLANK"));
@@ -1476,7 +1460,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             }
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_UploadAttach1, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -1489,8 +1473,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
-            CreateNotification.super.onBackPressed();
+//            Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
+//            CreateNotification.super.onBackPressed();
+
+
 //            if(result.equals("success"))
 //            {
 //                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
@@ -1571,7 +1557,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
             if (filenameparam4.length() != 0 || filenameparam4 != "") {
-                params.add(new BasicNameValuePair("f4", encfilenameparam3));  //12
+                params.add(new BasicNameValuePair("f4", encfilenameparam4));  //12
             } else {
                 params.add(new BasicNameValuePair("f4", "BLANK"));
             }
@@ -1604,7 +1590,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
 
 
-            json = jParser.makeHttpRequest(url_saveUpdated, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ModifyNotification, "GET", params);
             try {
                 r = json.getString("info");
             } catch (Exception e) {
@@ -1616,9 +1602,9 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(CreateNotification.this, "ugh" + result, Toast.LENGTH_SHORT).show();
-//            AdminActivity.getNotifications();
-            CreateNotification.super.onBackPressed();
+//            Toast.makeText(CreateNotification.this, "ugh" + result, Toast.LENGTH_SHORT).show();
+////            AdminActivity.getNotifications();
+//            CreateNotification.super.onBackPressed();
 //            if(result.equals("success"))
 //            {
 //                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
@@ -1656,7 +1642,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -1844,7 +1830,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2009,7 +1995,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2173,7 +2159,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2334,7 +2320,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2485,7 +2471,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", ssnotificationid)); //0
 
-            json = jParser.makeHttpRequest(url_getforwhome, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetForWhomeNotification, "GET", params);
             try {
                 Forwhomefromdb = json.getString("forwhom");
 
@@ -2509,14 +2495,26 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     Log.d("Forwhomefromdb", "onPostExecute: " + Forwhomefromdb);
                 }
 
+                String tempu = Decrypt(encUsername, digest1, digest2);
+                Log.d("Forwhomefromdb", "tempu: " + tempu);
+
+
+                if (Forwhomefromdb.contains(tempu)) {
+
+                    Forwhomefromdb = Forwhomefromdb.replace(tempu, "");
+
+                }
+                Log.d("Forwhomefromdb", "after: " + Forwhomefromdb);
+
+
                 if (Forwhomefromdb.contains("ALL")) {
                     allum.setChecked(true);
                     batchesTags.setText("ALL");
                 }
-                if (Forwhomefromdb.contains("ADMIN"))          //CHANGE IT TO sTUDENT
-                {
+                if (Forwhomefromdb.contains("STUDENT")) {
                     stud.setChecked(true);
                 }
+
 
                 int index1 = Forwhomefromdb.indexOf("(");
                 int index2 = Forwhomefromdb.indexOf(")");

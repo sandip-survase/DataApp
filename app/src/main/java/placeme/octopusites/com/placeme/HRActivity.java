@@ -1,5 +1,6 @@
 package placeme.octopusites.com.placeme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,9 +12,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -42,6 +45,8 @@ import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.soundcloud.android.crop.Crop;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -55,52 +60,63 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class HRActivity extends AppCompatActivity implements ImagePickerCallback {
 
     public static final int HR_DATA_CHANGE_RESULT_CODE = 444;
 
-    private String username = "";
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Username = "nameKey";
+    public static final String Password = "passKey";
+    public static final String Intro = "intro";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     int notificationorplacementflag = 0;
-    private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerItemAdapter mAdapter;
     int count = 0, id[], pcount = 0;
     String heading[], notification[];
     JSONParser jParser = new JSONParser();
     JSONObject json;
     FrameLayout mainfragment;
+    //  our coding here
     Handler handler = new Handler();
-    private MaterialSearchView searchView;
     RelativeLayout createnotificationrl, editnotificationrl;
     int notificationplacementflag = 0;
-
-    public static final String Intro = "intro";
     int navMenuFlag = 0, oldNavMenuFlag = 0;
     int selectedMenuFlag = 1;
-
-    //  our coding here
-    private ImageView resultView;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
-    private String finalPath;
     int crop_flag = 0;
     String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
-    private String plainusername;
     String filepath = "", filename = "";
     String directory;
     List<String> response;
-    private RecyclerView recyclerView, recyclerViewPlacemetsHr;
 
+    //
+    ArrayList<ArrayList<RecyclerItemUsers>> registeredallListsfromserver = new ArrayList<>();
+    ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
+    ArrayList<ArrayList<RecyclerItemUsers>> placedallListsfromserver = new ArrayList<>();
+    int placemntscount;
+    Toolbar toolbar;
+    SwipeRefreshLayout tswipe_refresh_layout;
+    TextView createnotificationtxt, editnotificationtxt;
+    private String username = "";
+    private List<RecyclerItem> itemList = new ArrayList<>();
+    private RecyclerItemAdapter mAdapter;
+    private MaterialSearchView searchView;
+    //  our coding here
+    private ImageView resultView;
+    private String finalPath;
+    private String plainusername;
+    private RecyclerView recyclerView, recyclerViewPlacemetsHr;
     private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
-    Toolbar toolbar;
     private TextView toolbar_title;
 
     //
@@ -131,11 +147,15 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         } catch (Exception e) {
             e.printStackTrace();
         }
+        username = getIntent().getStringExtra("username");
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
 
+
+        createnotificationtxt = (TextView) findViewById(R.id.createnotificationtxt);
+        editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
@@ -177,8 +197,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         });
 
 
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
@@ -197,13 +215,23 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
+                        getSupportActionBar().setTitle("My Profile");
+
                     } else if (navMenuFlag == 2) {
 
                         notificationorplacementflag = 1;
 
+                        notificationorplacementflag = 1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
+                        getSupportActionBar().setTitle("Notifications");
+
+                        createnotificationtxt.setText("Create Notification");
+                        editnotificationtxt.setText("Edit Notification");
+
                         mainfragment.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
@@ -222,9 +250,34 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                         addTempPlacements();
+                        getSupportActionBar().setTitle("Placements");
+
+                        createnotificationtxt.setText("Create Placements");
+                        editnotificationtxt.setText("Edit Placements");
+
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
+
+                        RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
+                        rl.setVisibility(View.VISIBLE);
+//                        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                        fab.setVisibility(View.VISIBLE);
+
+//                        initializerecyclerViewPlacements();
+                        getplacementbyhr();
+                    } else if (navMenuFlag == 4) {
+                        crop_layout.setVisibility(View.GONE);
+                        MessagesFragment fragment = new MessagesFragment();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                                getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.mainfragment, fragment);
+                        fragmentTransaction.commit();
+
+                        mainfragment.setVisibility(View.VISIBLE);
+                        getSupportActionBar().setTitle("Messages");
+//                        tswipe_refresh_layout.setVisibility(View.GONE);
+
                     } else if (navMenuFlag == 5) {
                         crop_layout.setVisibility(View.GONE);
                         SettingsFragment fragment = new SettingsFragment();
@@ -279,6 +332,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         final View hView = navigationView.getHeaderView(0);
         profile = (CircleImageView) hView.findViewById(R.id.profile_image);
+
 //        new GetProfileImage().execute();
 
         final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
@@ -675,7 +729,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
 
         mAdapter = new RecyclerItemAdapter(itemList);
-
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -683,14 +736,15 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+
         mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
         recyclerViewPlacemetsHr.setHasFixedSize(true);
-
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(this);
         recyclerViewPlacemetsHr.setLayoutManager(mLayoutManager2);
         recyclerViewPlacemetsHr.addItemDecoration(new DividerItemDecorationHrPlacements(this, LinearLayoutManager.VERTICAL));
         recyclerViewPlacemetsHr.setItemAnimator(new DefaultItemAnimator());
         recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+
 
         //temp work remove after
         addNotificationdatatoAdapter();
@@ -718,18 +772,37 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacemetsHr, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                RecyclerItemHrPlacement item = itemList2.get(position);
+                try {
+                    RecyclerItemHrPlacement item = itemList2.get(position);
 
 
-                Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+                    ArrayList<RecyclerItemUsers> RegisteredItemlistTemp = registeredallListsfromserver.get(position);
+                    ArrayList<RecyclerItemUsers> ShortlistedListsfromservertemp = ShortlistedListsfromserver.get(position);
+                    ArrayList<RecyclerItemUsers> placedItemlistTemp = placedallListsfromserver.get(position);
 
-                i1.putExtra("id", item.getId());
-                i1.putExtra("companyname", item.getCompanyname());
-                i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
-                i1.putExtra("registerednumber", item.getRegisterednumber());
-                i1.putExtra("placednumber", item.getPlacednumber());
-                i1.putExtra("lastdateofreg", item.getLastdateofreg());
-                startActivity(i1);
+
+                    String sRegisteredItemlistTemp = OtoString(RegisteredItemlistTemp, digest1, digest2);
+                    String sShortlistedListsfromservertemp = OtoString(ShortlistedListsfromservertemp, digest1, digest2);
+                    String splacedItemlistTemp = OtoString(placedItemlistTemp, digest1, digest2);
+
+
+                    Log.d("TAG", "position  " + position);
+                    Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+                    i1.putExtra("id", item.getId());
+                    Log.d("Tag", "id: " + item.getId());
+                    i1.putExtra("sRegisteredItemlistTemp", sRegisteredItemlistTemp);
+                    i1.putExtra("sShortlistedListsfromservertemp", sShortlistedListsfromservertemp);
+                    i1.putExtra("splacedItemlistTemp", splacedItemlistTemp);
+                    i1.putExtra("companyname", item.getCompanyname());
+                    i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
+                    i1.putExtra("registerednumber", item.getRegisterednumber());
+                    i1.putExtra("placednumber", item.getPlacednumber());
+                    i1.putExtra("lastdateofreg", item.getLastdateofreg());
+                    startActivity(i1);
+                } catch (Exception e) {
+                    Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
@@ -749,7 +822,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
                     //CreateNotification
-                    Intent i1 = new Intent(HRActivity.this, CreateNotification.class);
+                    Intent i1 = new Intent(HRActivity.this, CreateNotificationHR.class);
                     i1.putExtra("flag", "HrActivity");
                     startActivity(i1);
 
@@ -761,7 +834,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     String Tag = "HrActivity";
                     PlacementEditData settag = new PlacementEditData();
                     settag.setActivityFromtag(Tag);
-                    startActivity(new Intent(HRActivity.this, CreatePlacement.class));
+                    startActivity(new Intent(HRActivity.this, CreatePlacementHr.class));
 
                 }
             }
@@ -772,12 +845,20 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
                     //EditNotification
+                    String Tag = "HrActivity";
+                    PlacementEditData settag = new PlacementEditData();
+                    settag.setActivityFromtag(Tag);
                     startActivity(new Intent(HRActivity.this, EditNotification.class));
                 } else if (notificationorplacementflag == 2) {
                     //EditPlacement
-                    startActivity(new Intent(HRActivity.this, EditPlacement.class));
+
+                    String Tag = "HrActivityEdit";
+                    PlacementEditData settag = new PlacementEditData();
+                    settag.setActivityFromtag(Tag);
+                    startActivity(new Intent(HRActivity.this, EditPlacementHr.class));
 
                 }
+
             }
         });
 
@@ -798,7 +879,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             String hash = md5(data + MySharedPreferencesManager.getDigest3(HRActivity.this));
 
 //           loginFirebase(plainusername,hash);
-            new LoginFirebaseTask().execute(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername, hash);
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -816,7 +897,44 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         imagePicker.shouldGenerateThumbnails(false); // Default is true
         requestProfileImage();  //  update thumbanail first time activity Load
 
+
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                getplacementbyhr();
+
+//                if (selectedMenuFlag == 1)
+//                    getNotifications();
+//                else if (selectedMenuFlag == 2)
+//                    getPlacements();
+
+
+            }
+        });
+
+        tswipe_refresh_layout.setRefreshing(true);
+
+
     }
+
+    void setserverlisttoadapter(List<RecyclerItemHrPlacement> itemlist) {
+
+        itemList2.clear();
+        itemList2.addAll(itemlist);
+//        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+//        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+        mAdapter2.notifyDataSetChanged();
+
+
+    }
+
+    void getplacementbyhr() {
+//        initializerecyclerViewPlacements();
+        new Getplacementbyhr().execute();
+    }
+
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
         if (navigationView != null) {
@@ -1013,6 +1131,45 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         });
     }
 
+    private void downloadImage() {
+
+        String t = String.valueOf(System.currentTimeMillis());
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/GetImage")
+                .appendQueryParameter("u", username)
+                .build();
+
+        GlideApp.with(this)
+                .load(uri)
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .into(profile);
+
+
+    }
+
+    public void requestProfileImage() {
+        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
+//        new GetProfileImage().execute();
+        downloadImage();
+
+    }
+
+    void addTempPlacements() {
+
+        Log.d("tag", "addTempPlacements:Accessed ");
+        for (int i = 0; i < 10; i++) {
+            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
+            itemList2.add(item2);
+
+
+        }
+    }
+
+    // thumbanail
+
     class UploadProfile extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             try {
@@ -1043,7 +1200,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
             if (response.get(0).contains("success")) {
 
-                MySharedPreferencesManager.save(HRActivity.this,"crop", "no");
+                MySharedPreferencesManager.save(HRActivity.this, "crop", "no");
                 Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
@@ -1069,35 +1226,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
 
     }
-
-    private void downloadImage() {
-
-        String t = String.valueOf(System.currentTimeMillis());
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority("192.168.100.100")
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
-
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profile);
-
-
-    }
-
-    public void requestProfileImage() {
-        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
-//        new GetProfileImage().execute();
-        downloadImage();
-
-    }
-
-    // thumbanail
-
 
     public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
         @Override
@@ -1161,63 +1289,102 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     }
 
-    void addTempPlacements() {
-
-        Log.d("tag", "addTempPlacements:Accessed ");
-        for (int i = 0; i < 10; i++) {
-            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
-            itemList2.add(item2);
-        }
-        mAdapter2.notifyDataSetChanged();
-    }
-
-    void loginFirebase(String username,String hash)
-    {
-        Log.d("TAG", "loginFirebase: input "+username+"    "+hash);
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username,hash)
-                .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(HRActivity.this, "Successfully logged in to Firebase from HRActivity", Toast.LENGTH_SHORT).show();
-                            Log.d("TAG", "Fire onComplete: logged in");
-
-                        } else {
-                            Toast.makeText(HRActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                            Log.d("TAG", "Fire onComplete: NOT logged in");
-                        }
-                    }
-                });
-    }
-
-        class LoginFirebaseTask extends AsyncTask<String, String, String> {
-            protected String doInBackground(String... param) {
-                String user=param[0];
-                String hash=param[1];
-                FirebaseAuth.getInstance()
-                        .signInWithEmailAndPassword(user,hash)
-                        .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    MySharedPreferencesManager.save(HRActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
-                                } else {
-                                    MySharedPreferencesManager.save(HRActivity.this,"fireLoginStatus","Failed to login to Firebase");
-                                }
+    class LoginFirebaseTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String user = param[0];
+            String hash = param[1];
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(user, hash)
+                    .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MySharedPreferencesManager.save(HRActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
+                            } else {
+                                MySharedPreferencesManager.save(HRActivity.this, "fireLoginStatus", "Failed to login to Firebase");
                             }
-                        });
-                return null;
-            }
-            @Override
-            protected void onPostExecute(String result) {
-                String status=MySharedPreferencesManager.getData(HRActivity.this,"fireLoginStatus");
-                Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
-                // remove value from shared
-                MySharedPreferencesManager.removeKey(HRActivity.this,"fireLoginStatus");
-            }
+                        }
+                    });
+            return null;
         }
 
+        @Override
+        protected void onPostExecute(String result) {
+            String status = MySharedPreferencesManager.getData(HRActivity.this, "fireLoginStatus");
+            Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(HRActivity.this, "fireLoginStatus");
+        }
+    }
+
+
+    class Getplacementbyhr extends AsyncTask<String, String, String> {
+
+        private static final String TAG = "Getplacementbyhr";
+        ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
+        String username1 = MySharedPreferencesManager.getUsername(getBaseContext());
+
+        protected String doInBackground(String... param) {
+            Log.d(TAG, "doInBackground:username1 " + username1);
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", "JPmAnGBeJZXNGflV0GTTdQm/vhd32vqwKhPHylZ77kw="));       //0
+            params.add(new BasicNameValuePair("u", username1));       //0
+
+
+//            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            digest1 = MySharedPreferencesManager.getDigest1(getBaseContext());
+            digest2 = MySharedPreferencesManager.getDigest2(getBaseContext());
+            Log.d("itemlistfromserver", "digest1: " + digest1);
+            Log.d("itemlistfromserver", "digest2: " + digest2);
+
+
+            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsCreatedByHr, "GET", params);
+            try {
+
+                placemntscount = Integer.parseInt(json.getString("count"));
+                Log.d("itemlistfromserver", "doInBackground: " + placemntscount);
+
+                if (placemntscount != 0) {
+                    Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                    Log.d("json1", "jsonRegisteredAllLists " + json.getString("jsonRegisteredAllLists"));
+                    Log.d("json1", "jsonshortlistedallallLists" + json.getString("jsonshortlistedallallLists"));
+                    Log.d("json1", "jsonparamsplacedlistedallLists" + json.getString("jsonparamsplacedlistedallLists"));
+
+                    itemlistfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(json.getString("jsonparamsList"), digest1, digest2);
+                    Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.get(0).getRegisterednumber());
+
+
+                    registeredallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonRegisteredAllLists"), digest1, digest2);
+                    ShortlistedListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonshortlistedallallLists"), digest1, digest2);
+                    placedallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonparamsplacedlistedallLists"), digest1, digest2);
+                    Log.d("itemlistfromserver", "itemlistfromserver size: " + itemlistfromserver.size());
+                    Log.d("itemlistfromserver", "registeredallListsfromserver: " + registeredallListsfromserver.size());
+                    Log.d("itemlistfromserver", "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
+                    Log.d("itemlistfromserver", "placedallListsfromserver: " + placedallListsfromserver.size());
+
+                    Log.d("check", "----------------ci=ontentx of list--------------------------: " + registeredallListsfromserver.get(0).size());
+
+
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            tswipe_refresh_layout.setRefreshing(false);
+
+            setserverlisttoadapter(itemlistfromserver);
+
+        }
+
+
+    }
 }

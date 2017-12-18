@@ -51,6 +51,27 @@ public class PlacementCreateTab3 extends Fragment {
             if (spgcriteria.length() > 0) {
                 pgcriteria.setText(spgcriteria);
             }
+        }else if (activitytag.contains("HrActivityEdit") ){
+            sxcriteria = getdata.getStdx();
+            sxiicriteria = getdata.getStdxiiordiploma();
+            sugcriteria = getdata.getUg();
+            spgcriteria = getdata.getPg();
+
+
+            if (sxcriteria.length() > 0) {
+                xcriteria.setText(sxcriteria);
+            }
+            if (sxiicriteria.length() > 0) {
+                xiicriteria.setText(sxiicriteria);
+            }
+            if (sugcriteria.length() > 0) {
+                ugcriteria.setText(sugcriteria);
+            }
+            if (spgcriteria.length() > 0) {
+                pgcriteria.setText(spgcriteria);
+            }
+
+
         }
 
 

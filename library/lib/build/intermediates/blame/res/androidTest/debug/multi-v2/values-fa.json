@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Git\\PlaceMe2\\PlaceMe\\library\\lib\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fa\\values-fa.xml",
+            "outputFile": "C:\\Git\\PlaceMe\\PlaceMe\\library\\lib\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fa\\values-fa.xml",
             "map": [
                 {
-                    "source": "C:\\Git\\PlaceMe2\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Git\\PlaceMe\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",

@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp">
+    android:padding="16dp"
+    >
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="error_occurred"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-    </ScrollView>
-
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/app_crash_screen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/crashimage"
+        />
+    <TextView
+        android:id="@+id/ohsnapmsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oh Snap !"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_color"
+        android:layout_below="@+id/crashimage"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/ohsnapmsg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Something went wrong. Kindly click on Restart App"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/dark_color"
+        android:layout_below="@+id/ohsnapmsg"
+        android:layout_centerHorizontal="true"
+        />
     <Button
         android:id="@+id/restart_button"
+        android:layout_below="@+id/ohsnapmsg2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_weight="0"
-        android:text="Restart_app" />
-</LinearLayout>
+        android:background="@drawable/textviewborder"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Restart App"
+        android:textSize="12dp"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/while_color"
+        android:elevation="2dp"
+        />
+
+</RelativeLayout>

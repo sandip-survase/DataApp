@@ -63,11 +63,7 @@ public class AdminIntro extends AppCompatActivity {
     TextInputEditText fname,lname,role,email,inst;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    private String username="";
     TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,instinputlayout, emailinputlayout, citystaecountryinputlayout;
-
-
-
     int countrycount=0,statecount=0,citycount=0;
     String firstname="",lastname="",instname="",CityStateCountry="";
     String oldCountry="",oldState="",oldCity="";
@@ -78,13 +74,12 @@ public class AdminIntro extends AppCompatActivity {
     List<String> citieslist = new ArrayList<String>();
     String selectedCountry="",selectedState="",selectedCity="";
     String encUsername,encRole,encFname,encLname,encCountry,encState,encCity,encInst;
-
     //ssss
     AdminData a = new AdminData();
     int edittedFlag=0,isCountrySet=0,isStateSet=0,isCitySet=0;
-
     AdminIntroModal obj;
     String strobj="",encobj="";
+    private String username = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -94,6 +89,7 @@ public class AdminIntro extends AppCompatActivity {
         digest1=MySharedPreferencesManager.getDigest1(this);
         digest2=MySharedPreferencesManager.getDigest2(this);
 
+        buildCityStateCountryList();
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Personal Info");
@@ -187,26 +183,7 @@ public class AdminIntro extends AppCompatActivity {
         else
             citystaecountry.setText("");
 
-        try
-        {
-            JSONObject jsonObject=new JSONObject(getJson());
-            JSONArray array=jsonObject.getJSONArray("array");
-            for(int i=0;i<array.length();i++)
-            {
 
-                JSONObject object=array.getJSONObject(i);
-                String city=object.getString("city");
-                String state=object.getString("state");
-                String country=object.getString("country");
-
-                listAll.add(city+" , "+state+" , "+country);
-
-            }
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,listAll);
         citystaecountry.setAdapter(adapter);
@@ -288,6 +265,33 @@ public class AdminIntro extends AppCompatActivity {
 
 
         edittedFlag=0;
+
+    }
+
+    private void buildCityStateCountryList() {
+
+        new Thread(new Runnable() {
+            public void run() {
+                android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(getJson());
+                    JSONArray array = jsonObject.getJSONArray("array");
+                    for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject object = array.getJSONObject(i);
+                        String city = object.getString("city");
+                        String state = object.getString("state");
+                        String country = object.getString("country");
+
+                        listAll.add(city + " , " + state + " , " + country);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 
@@ -473,6 +477,7 @@ public class AdminIntro extends AppCompatActivity {
 
 
         protected String doInBackground(String... param) {
+
 
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();

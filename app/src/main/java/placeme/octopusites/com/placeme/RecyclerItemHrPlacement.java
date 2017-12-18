@@ -1,13 +1,14 @@
 package placeme.octopusites.com.placeme;
 
 
+import java.io.Serializable;
+
 /**
  * Created by Lincoln on 15/01/16.
  */
-public class RecyclerItemHrPlacement {
-    private String companyname,lastmodifiedtime,registerednumber,placednumber,lastdateofreg;
+public class RecyclerItemHrPlacement implements Serializable {
+    private String companyname,lastmodifiedtime,registerednumber="",placednumber="",lastdateofreg;
     int id;
-//    Context context;
     public RecyclerItemHrPlacement() {
     }
 

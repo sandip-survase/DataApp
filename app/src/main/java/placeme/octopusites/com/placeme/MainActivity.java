@@ -142,22 +142,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     JSONObject json;
     FrameLayout mainfragment;
     private MaterialSearchView searchView;
-    String[] blanksuggestionList={""};
-    String[] suggestionList1={"A","AA","AAA","AAAA","AAAAA","AAAAAA","AAAAAAA"};
-    private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
-    private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
-
-    private static String url_getnotificationsmetadata= "http://192.168.100.30/CreateNotificationTemp/GetNotificationsMetaData";
-    private static String url_getnotificationsreadstatus= "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfNotifications";
-    private static String url_getnotifications= "http://192.168.100.30/CreateNotificationTemp/GetNotifications";
-    private static String url_changenotificationsreadstatus= "http://192.168.100.30/CreateNotificationTemp/ChangeNotificationReadStatus";
-
-    private static String url_getplacementsmetadata= "http://192.168.100.30/CreateNotificationTemp/GetPlacementsMetaData";
-    private static String url_changeplacementsreadstatus= "http://192.168.100.30/CreateNotificationTemp/ChangePlacementReadStatus";
-    private static String url_getplacements= "http://192.168.100.30/CreateNotificationTemp/GetPlacements";
-    private static String url_getplacementsreadstatus= "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacements";
-
-    private static String url_getlastupdated= "http://192.168.100.100/AESTest/GetLastUpdated";
     int navMenuFlag=0,oldNavMenuFlag=0;
     FrameLayout crop_layout;
     private ImageView resultView;
@@ -374,20 +358,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-
-
-                if(selectedMenuFlag==1)
-                {
-                    searchView.setSuggestions(blanksuggestionList);
-                    searchView.setSuggestions(null);
-                }
-                else if(selectedMenuFlag==2)
-                {
-                    searchView.setSuggestions(blanksuggestionList);
-                    searchView.setSuggestions(null);
-                }
-
-
                 final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
                 upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 searchView.setBackIcon(upArrow);
@@ -1144,17 +1114,19 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 crop_flag=1;
                 Intent i1 = new Intent(MainActivity.this, ViewNotification.class);
-                i1.putExtra("id",item.getId());
-                i1.putExtra("title",item.getTitle());
-                i1.putExtra("notification",item.getNotification());
-                i1.putExtra("file1",item.getFilename1());
-                i1.putExtra("file2",item.getFilename2());
-                i1.putExtra("file3",item.getFilename3());
-                i1.putExtra("file4",item.getFilename4());
-                i1.putExtra("file5",item.getFilename5());
-                i1.putExtra("uploadedby",item.getUploadedby());
-                i1.putExtra("uploadtime",item.getUploadtime());
-                i1.putExtra("lastmodified",item.getLastmodified());
+                i1.putExtra("id", item.getId());
+                i1.putExtra("title", item.getTitle());
+                i1.putExtra("notification", item.getNotification());
+                i1.putExtra("file1", item.getFilename1());
+                i1.putExtra("file2", item.getFilename2());
+                i1.putExtra("file3", item.getFilename3());
+                i1.putExtra("file4", item.getFilename4());
+                i1.putExtra("file5", item.getFilename5());
+                i1.putExtra("uploadedby", item.getUploadedby());
+                i1.putExtra("uploadtime", item.getUploadtime());
+                i1.putExtra("lastmodified", item.getLastmodified());
+                Log.d("putextra", "uploadedby: " + item.getUploadedby());
+                Log.d("putextra", "lastmodified: " + item.getLastmodified());
 
                 startActivity(i1);
 
@@ -1209,30 +1181,30 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 crop_flag=1;
 
                 Intent i1 = new Intent(MainActivity.this, ViewPlacement.class);
-                i1.putExtra("id",item.getId());
-                i1.putExtra("companyname",item.getCompanyname());
-                i1.putExtra("package",item.getCpackage());
-                i1.putExtra("post",item.getPost());
-                i1.putExtra("forwhichcourse",item.getForwhichcourse());
-                i1.putExtra("forwhichstream",item.getForwhichstream());
-                i1.putExtra("vacancies",item.getVacancies());
-                i1.putExtra("lastdateofregistration",item.getLastdateofregistration());
-                i1.putExtra("dateofarrival",item.getDateofarrival());
-                i1.putExtra("bond",item.getBond());
-                i1.putExtra("noofapti",item.getNoofapti());
-                i1.putExtra("nooftechtest",item.getNooftechtest());
-                i1.putExtra("noofgd",item.getNoofgd());
-                i1.putExtra("noofti",item.getNoofti());
-                i1.putExtra("noofhri",item.getNoofhri());
-                i1.putExtra("stdx",item.getStdx());
-                i1.putExtra("stdxiiordiploma",item.getStdxiiordiploma());
-                i1.putExtra("ug",item.getUg());
-                i1.putExtra("pg",item.getPg());
-                i1.putExtra("uploadtime",item.getUploadtime());
-                i1.putExtra("lastmodified",item.getLastmodified());
-                i1.putExtra("uploadedby",item.getUploadedby());
-                i1.putExtra("noofallowedliveatkt",item.getNoofallowedliveatkt());
-                i1.putExtra("noofalloweddeadatkt",item.getNoofalloweddeadatkt());
+                i1.putExtra("id", item.getId());
+                i1.putExtra("companyname", item.getCompanyname());
+                i1.putExtra("package", item.getCpackage());
+                i1.putExtra("post", item.getPost());
+                i1.putExtra("forwhichcourse", item.getForwhichcourse());
+                i1.putExtra("forwhichstream", item.getForwhichstream());
+                i1.putExtra("vacancies", item.getVacancies());
+                i1.putExtra("lastdateofregistration", item.getLastdateofregistration());
+                i1.putExtra("dateofarrival", item.getDateofarrival());
+                i1.putExtra("bond", item.getBond());
+                i1.putExtra("noofapti", item.getNoofapti());
+                i1.putExtra("nooftechtest", item.getNooftechtest());
+                i1.putExtra("noofgd", item.getNoofgd());
+                i1.putExtra("noofti", item.getNoofti());
+                i1.putExtra("noofhri", item.getNoofhri());
+                i1.putExtra("stdx", item.getStdx());
+                i1.putExtra("stdxiiordiploma", item.getStdxiiordiploma());
+                i1.putExtra("ug", item.getUg());
+                i1.putExtra("pg", item.getPg());
+                i1.putExtra("uploadtime", item.getUploadtime());
+                i1.putExtra("lastmodified", item.getLastmodified());
+                i1.putExtra("uploadedby", item.getUploadedby());
+                i1.putExtra("noofallowedliveatkt", item.getNoofallowedliveatkt());
+                i1.putExtra("noofalloweddeadatkt", item.getNoofalloweddeadatkt());
                 startActivity(i1);
             }
 
@@ -1272,8 +1244,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         });
 
 //        tswipe_refresh_layout.setRefreshing(true);
-        new GetUnreadCountOfNotificationAndPlacement().execute();
-        new GetUnreadMessagesCount().execute();
+//
+//        new GetUnreadCountOfNotificationAndPlacement().execute();
+//        new GetUnreadMessagesCount().execute();
 
 
         getNotifications();
@@ -1501,9 +1474,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getnotificationsmetadata, "GET", params);
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getplacementsmetadata, "GET", params);
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
@@ -1546,6 +1519,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
     void getPlacements()
     {
+        Log.d("pbacktrack", "getPlacements: accessed ");
+
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
@@ -1574,7 +1549,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_getnotifications, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1615,7 +1590,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
                             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+                            json = jParser.makeHttpRequest(MyConstants.url_getnotifications, "GET", params);
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1738,11 +1713,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
     private void simulateLoadingPlacement() {
         new AsyncTask<Void, Void, Void>() {
-            @Override protected void onPreExecute() {
+            @Override
+            protected void onPreExecute() {
                 tswipe_refresh_layout.setRefreshing(true);
             }
 
-            @Override protected Void doInBackground(Void... param) {
+            @Override
+            protected Void doInBackground(Void... param) {
 
                 try {
                     if (page_to_call_placement < placementpages)
@@ -1753,36 +1730,36 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));
                         params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                        json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_getplacements, "GET", params);
 
                         placementcount = Integer.parseInt(json.getString("count"));
-                        placementids=new String[placementcount];
-                        placementcompanyname=new String[placementcount];
-                        placementcpackage=new String[placementcount];
-                        placementpost=new String[placementcount];
-                        placementforwhichcourse=new String[placementcount];
-                        placementforwhichstream=new String[placementcount];
-                        placementvacancies=new String[placementcount];
-                        placementlastdateofregistration=new String[placementcount];
-                        placementdateofarrival=new String[placementcount];
-                        placementbond=new String[placementcount];
-                        placementnoofapti=new String[placementcount];
-                        placementnooftechtest=new String[placementcount];
-                        placementnoofgd=new String[placementcount];
-                        placementnoofti=new String[placementcount];
-                        placementnoofhri=new String[placementcount];
-                        placementstdx=new String[placementcount];
-                        placementstdxiiordiploma=new String[placementcount];
-                        placementug=new String[placementcount];
-                        placementpg=new String[placementcount];
-                        placementuploadtime=new String[placementcount];
-                        placementlastmodified=new String[placementcount];
-                        placementuploadedby=new String[placementcount];
-                        placementuploadedbyplain=new String[placementcount];
-                        placementnoofallowedliveatkt=new String[placementcount];
-                        placementnoofalloweddeadatkt=new String[placementcount];
+                        placementids = new String[placementcount];
+                        placementcompanyname = new String[placementcount];
+                        placementcpackage = new String[placementcount];
+                        placementpost = new String[placementcount];
+                        placementforwhichcourse = new String[placementcount];
+                        placementforwhichstream = new String[placementcount];
+                        placementvacancies = new String[placementcount];
+                        placementlastdateofregistration = new String[placementcount];
+                        placementdateofarrival = new String[placementcount];
+                        placementbond = new String[placementcount];
+                        placementnoofapti = new String[placementcount];
+                        placementnooftechtest = new String[placementcount];
+                        placementnoofgd = new String[placementcount];
+                        placementnoofti = new String[placementcount];
+                        placementnoofhri = new String[placementcount];
+                        placementstdx = new String[placementcount];
+                        placementstdxiiordiploma = new String[placementcount];
+                        placementug = new String[placementcount];
+                        placementpg = new String[placementcount];
+                        placementuploadtime = new String[placementcount];
+                        placementlastmodified = new String[placementcount];
+                        placementuploadedby = new String[placementcount];
+                        placementuploadedbyplain = new String[placementcount];
+                        placementnoofallowedliveatkt = new String[placementcount];
+                        placementnoofalloweddeadatkt = new String[placementcount];
 
-                        for(int i=0;i<placementcount;i++) {
+                        for (int i = 0; i < placementcount; i++) {
 
                             placementids[i] = json.getString("id" + i);
                             placementcompanyname[i] = json.getString("companyname" + i);
@@ -1810,47 +1787,45 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             placementnoofalloweddeadatkt[i] = json.getString("noofalloweddeadatkt" + i);
                         }
 
-                    }
-                    else
-                    {
-                        if(!isLastPageLoadedPlacement) {
+                    } else {
+                        if (!isLastPageLoadedPlacement) {
 
                             lastPageFlagPlacement = 1;
 
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));
                             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+                            json = jParser.makeHttpRequest(MyConstants.url_getplacements, "GET", params);
 
                             placementcount = Integer.parseInt(json.getString("count"));
 
-                            placementids=new String[placementcount];
-                            placementcompanyname=new String[placementcount];
-                            placementcpackage=new String[placementcount];
-                            placementpost=new String[placementcount];
-                            placementforwhichcourse=new String[placementcount];
-                            placementforwhichstream=new String[placementcount];
-                            placementvacancies=new String[placementcount];
-                            placementlastdateofregistration=new String[placementcount];
-                            placementdateofarrival=new String[placementcount];
-                            placementbond=new String[placementcount];
-                            placementnoofapti=new String[placementcount];
-                            placementnooftechtest=new String[placementcount];
-                            placementnoofgd=new String[placementcount];
-                            placementnoofti=new String[placementcount];
-                            placementnoofhri=new String[placementcount];
-                            placementstdx=new String[placementcount];
-                            placementstdxiiordiploma=new String[placementcount];
-                            placementug=new String[placementcount];
-                            placementpg=new String[placementcount];
-                            placementuploadtime=new String[placementcount];
-                            placementlastmodified=new String[placementcount];
-                            placementuploadedby=new String[placementcount];
-                            placementuploadedbyplain=new String[placementcount];
-                            placementnoofallowedliveatkt=new String[placementcount];
-                            placementnoofalloweddeadatkt=new String[placementcount];
+                            placementids = new String[placementcount];
+                            placementcompanyname = new String[placementcount];
+                            placementcpackage = new String[placementcount];
+                            placementpost = new String[placementcount];
+                            placementforwhichcourse = new String[placementcount];
+                            placementforwhichstream = new String[placementcount];
+                            placementvacancies = new String[placementcount];
+                            placementlastdateofregistration = new String[placementcount];
+                            placementdateofarrival = new String[placementcount];
+                            placementbond = new String[placementcount];
+                            placementnoofapti = new String[placementcount];
+                            placementnooftechtest = new String[placementcount];
+                            placementnoofgd = new String[placementcount];
+                            placementnoofti = new String[placementcount];
+                            placementnoofhri = new String[placementcount];
+                            placementstdx = new String[placementcount];
+                            placementstdxiiordiploma = new String[placementcount];
+                            placementug = new String[placementcount];
+                            placementpg = new String[placementcount];
+                            placementuploadtime = new String[placementcount];
+                            placementlastmodified = new String[placementcount];
+                            placementuploadedby = new String[placementcount];
+                            placementuploadedbyplain = new String[placementcount];
+                            placementnoofallowedliveatkt = new String[placementcount];
+                            placementnoofalloweddeadatkt = new String[placementcount];
 
-                            for(int i=0;i<placementcount;i++) {
+                            for (int i = 0; i < placementcount; i++) {
 
                                 placementids[i] = json.getString("id" + i);
                                 placementcompanyname[i] = json.getString("companyname" + i);
@@ -1879,160 +1854,138 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             }
                         }
                     }
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
                 return null;
             }
 
-            @Override protected void onPostExecute(Void param) {
+            @Override
+            protected void onPostExecute(Void param) {
 
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(false);
-                if(!isLastPageLoadedPlacement)
-                    for(int i=0;i<placementcount;i++)
-                        try
-                        {
-                            if(placementcompanyname[i]!=null)
-                            {
-                                byte[] placementcompanynameEncryptedBytes=SimpleBase64Encoder.decode(placementcompanyname[i]);
-                                byte[] placementcompanynameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcompanynameEncryptedBytes);
-                                placementcompanyname[i]=new String(placementcompanynameDecryptedBytes);
-
-                            }
-                            if(placementcpackage[i]!=null)
-                            {
-                                byte[] placementcpackageEncryptedBytes=SimpleBase64Encoder.decode(placementcpackage[i]);
-                                byte[] placementcpackageDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcpackageEncryptedBytes);
-                                placementcpackage[i]=new String(placementcpackageDecryptedBytes);
-                            }
-                            if(placementpost[i]!=null)
-                            {
-                                byte[] placementpostEncryptedBytes=SimpleBase64Encoder.decode(placementpost[i]);
-                                byte[] placementpostDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpostEncryptedBytes);
-                                placementpost[i]=new String(placementpostDecryptedBytes);
-                            }
-                            if(placementforwhichcourse[i]!=null)
-                            {
-                                byte[] placementforwhichcourseEncryptedBytes=SimpleBase64Encoder.decode(placementforwhichcourse[i]);
-                                byte[] placementforwhichcourseDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichcourseEncryptedBytes);
-                                placementforwhichcourse[i]=new String(placementforwhichcourseDecryptedBytes);
-                            }
-                            if(placementforwhichstream[i]!=null)
-                            {
-                                byte[] placementforwhichstreamEncryptedBytes=SimpleBase64Encoder.decode(placementforwhichstream[i]);
-                                byte[] placementforwhichstreamDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichstreamEncryptedBytes);
-                                placementforwhichstream[i]=new String(placementforwhichstreamDecryptedBytes);
-                            }
-                            if(placementvacancies[i]!=null)
-                            {
-                                byte[] placementvacanciesEncryptedBytes=SimpleBase64Encoder.decode(placementvacancies[i]);
-                                byte[] placementvacanciesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementvacanciesEncryptedBytes);
-                                placementvacancies[i]=new String(placementvacanciesDecryptedBytes);
-                            }
-                            if(placementlastdateofregistration[i]!=null)
-                            {
-                                byte[] placementlastdateofregistrationEncryptedBytes=SimpleBase64Encoder.decode(placementlastdateofregistration[i]);
-                                byte[] placementlastdateofregistrationDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastdateofregistrationEncryptedBytes);
-                                placementlastdateofregistration[i]=new String(placementlastdateofregistrationDecryptedBytes);
-                            }
-                            if(placementdateofarrival[i]!=null)
-                            {
-                                byte[] placementdateofarrivalEncryptedBytes=SimpleBase64Encoder.decode(placementdateofarrival[i]);
-                                byte[] placementdateofarrivalDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementdateofarrivalEncryptedBytes);
-                                placementdateofarrival[i]=new String(placementdateofarrivalDecryptedBytes);
-                            }
-                            if(placementbond[i]!=null)
-                            {
-                                byte[] placementbondEncryptedBytes=SimpleBase64Encoder.decode(placementbond[i]);
-                                byte[] placementbondDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementbondEncryptedBytes);
-                                placementbond[i]=new String(placementbondDecryptedBytes);
-                            }
-                            if(placementnoofapti[i]!=null)
-                            {
-                                byte[] placementnoofaptiEncryptedBytes=SimpleBase64Encoder.decode(placementnoofapti[i]);
-                                byte[] placementnoofaptiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofaptiEncryptedBytes);
-                                placementnoofapti[i]=new String(placementnoofaptiDecryptedBytes);
-                            }
-                            if(placementnooftechtest[i]!=null)
-                            {
-                                byte[] placementnooftechtestEncryptedBytes=SimpleBase64Encoder.decode(placementnooftechtest[i]);
-                                byte[] placementnooftechtestDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftechtestEncryptedBytes);
-                                placementnooftechtest[i]=new String(placementnooftechtestDecryptedBytes);
-                            }
-                            if(placementnoofgd[i]!=null)
-                            {
-                                byte[] placementnoofgdEncryptedBytes=SimpleBase64Encoder.decode(placementnoofgd[i]);
-                                byte[] placementnoofgdDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofgdEncryptedBytes);
-                                placementnoofgd[i]=new String(placementnoofgdDecryptedBytes);
-                            }
-                            if(placementnoofti[i]!=null)
-                            {
-                                byte[] placementnooftiEncryptedBytes=SimpleBase64Encoder.decode(placementnoofti[i]);
-                                byte[] placementnooftiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftiEncryptedBytes);
-                                placementnoofti[i]=new String(placementnooftiDecryptedBytes);
-                            }
-                            if(placementnoofhri[i]!=null)
-                            {
-                                byte[] placementnoofhriEncryptedBytes=SimpleBase64Encoder.decode(placementnoofhri[i]);
-                                byte[] placementnoofhriDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofhriEncryptedBytes);
-                                placementnoofhri[i]=new String(placementnoofhriDecryptedBytes);
-                            }
-                            if(placementstdx[i]!=null)
-                            {
-                                byte[] placementstdxEncryptedBytes=SimpleBase64Encoder.decode(placementstdx[i]);
-                                byte[] placementstdxDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxEncryptedBytes);
-                                placementstdx[i]=new String(placementstdxDecryptedBytes);
-                            }
-                            if(placementstdxiiordiploma[i]!=null)
-                            {
-                                byte[] placementstdxiiordiplomaEncryptedBytes=SimpleBase64Encoder.decode(placementstdxiiordiploma[i]);
-                                byte[] placementstdxiiordiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxiiordiplomaEncryptedBytes);
-                                placementstdxiiordiploma[i]=new String(placementstdxiiordiplomaDecryptedBytes);
-                            }
-                            if(placementug[i]!=null)
-                            {
-                                byte[] placementugEncryptedBytes=SimpleBase64Encoder.decode(placementug[i]);
-                                byte[] placementugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementugEncryptedBytes);
-                                placementug[i]=new String(placementugDecryptedBytes);
-                            }
-                            if(placementpg[i]!=null)
-                            {
-                                byte[] placementpgEncryptedBytes=SimpleBase64Encoder.decode(placementpg[i]);
-                                byte[] placementpgDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpgEncryptedBytes);
-                                placementpg[i]=new String(placementpgDecryptedBytes);
-                            }
-                            if(placementuploadtime[i]!=null)
-                            {
-                                byte[] placementuploadtimeEncryptedBytes=SimpleBase64Encoder.decode(placementuploadtime[i]);
-                                byte[] placementuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadtimeEncryptedBytes);
-                                placementuploadtime[i]=new String(placementuploadtimeDecryptedBytes);
-                            }
-                            if(placementlastmodified[i]!=null)
-                            {
-                                byte[] placementlastmodifiedEncryptedBytes=SimpleBase64Encoder.decode(placementlastmodified[i]);
-                                byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
-                                placementlastmodified[i]=new String(placementlastmodifiedDecryptedBytes);
-                            }
-                            if(placementuploadedby[i]!=null)
-                            {
-                                byte[] placementuploadedbyEncryptedBytes=SimpleBase64Encoder.decode(placementuploadedby[i]);
+                if (!isLastPageLoadedPlacement)
+                    for (int i = 0; i < placementcount; i++)
+                        try {
+//                            if (placementcompanyname[i] != null) {
+//                                byte[] placementcompanynameEncryptedBytes = SimpleBase64Encoder.decode(placementcompanyname[i]);
+//                                byte[] placementcompanynameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcompanynameEncryptedBytes);
+//                                placementcompanyname[i] = new String(placementcompanynameDecryptedBytes);
+//
+//                            }
+//                            if (placementcpackage[i] != null) {
+//                                byte[] placementcpackageEncryptedBytes = SimpleBase64Encoder.decode(placementcpackage[i]);
+//                                byte[] placementcpackageDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcpackageEncryptedBytes);
+//                                placementcpackage[i] = new String(placementcpackageDecryptedBytes);
+//                            }
+//                            if (placementpost[i] != null) {
+//                                byte[] placementpostEncryptedBytes = SimpleBase64Encoder.decode(placementpost[i]);
+//                                byte[] placementpostDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpostEncryptedBytes);
+//                                placementpost[i] = new String(placementpostDecryptedBytes);
+//                            }
+//                            if (placementforwhichcourse[i] != null) {
+//                                byte[] placementforwhichcourseEncryptedBytes = SimpleBase64Encoder.decode(placementforwhichcourse[i]);
+//                                byte[] placementforwhichcourseDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichcourseEncryptedBytes);
+//                                placementforwhichcourse[i] = new String(placementforwhichcourseDecryptedBytes);
+//                            }
+//                            if (placementforwhichstream[i] != null) {
+//                                byte[] placementforwhichstreamEncryptedBytes = SimpleBase64Encoder.decode(placementforwhichstream[i]);
+//                                byte[] placementforwhichstreamDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichstreamEncryptedBytes);
+//                                placementforwhichstream[i] = new String(placementforwhichstreamDecryptedBytes);
+//                            }
+//                            if (placementvacancies[i] != null) {
+//                                byte[] placementvacanciesEncryptedBytes = SimpleBase64Encoder.decode(placementvacancies[i]);
+//                                byte[] placementvacanciesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementvacanciesEncryptedBytes);
+//                                placementvacancies[i] = new String(placementvacanciesDecryptedBytes);
+//                            }
+//                            if (placementlastdateofregistration[i] != null) {
+//                                byte[] placementlastdateofregistrationEncryptedBytes = SimpleBase64Encoder.decode(placementlastdateofregistration[i]);
+//                                byte[] placementlastdateofregistrationDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastdateofregistrationEncryptedBytes);
+//                                placementlastdateofregistration[i] = new String(placementlastdateofregistrationDecryptedBytes);
+//                            }
+//                            if (placementdateofarrival[i] != null) {
+//                                byte[] placementdateofarrivalEncryptedBytes = SimpleBase64Encoder.decode(placementdateofarrival[i]);
+//                                byte[] placementdateofarrivalDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementdateofarrivalEncryptedBytes);
+//                                placementdateofarrival[i] = new String(placementdateofarrivalDecryptedBytes);
+//                            }
+//                            if (placementbond[i] != null) {
+//                                byte[] placementbondEncryptedBytes = SimpleBase64Encoder.decode(placementbond[i]);
+//                                byte[] placementbondDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementbondEncryptedBytes);
+//                                placementbond[i] = new String(placementbondDecryptedBytes);
+//                            }
+//                            if (placementnoofapti[i] != null) {
+//                                byte[] placementnoofaptiEncryptedBytes = SimpleBase64Encoder.decode(placementnoofapti[i]);
+//                                byte[] placementnoofaptiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofaptiEncryptedBytes);
+//                                placementnoofapti[i] = new String(placementnoofaptiDecryptedBytes);
+//                            }
+//                            if (placementnooftechtest[i] != null) {
+//                                byte[] placementnooftechtestEncryptedBytes = SimpleBase64Encoder.decode(placementnooftechtest[i]);
+//                                byte[] placementnooftechtestDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftechtestEncryptedBytes);
+//                                placementnooftechtest[i] = new String(placementnooftechtestDecryptedBytes);
+//                            }
+//                            if (placementnoofgd[i] != null) {
+//                                byte[] placementnoofgdEncryptedBytes = SimpleBase64Encoder.decode(placementnoofgd[i]);
+//                                byte[] placementnoofgdDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofgdEncryptedBytes);
+//                                placementnoofgd[i] = new String(placementnoofgdDecryptedBytes);
+//                            }
+//                            if (placementnoofti[i] != null) {
+//                                byte[] placementnooftiEncryptedBytes = SimpleBase64Encoder.decode(placementnoofti[i]);
+//                                byte[] placementnooftiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftiEncryptedBytes);
+//                                placementnoofti[i] = new String(placementnooftiDecryptedBytes);
+//                            }
+//                            if (placementnoofhri[i] != null) {
+//                                byte[] placementnoofhriEncryptedBytes = SimpleBase64Encoder.decode(placementnoofhri[i]);
+//                                byte[] placementnoofhriDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofhriEncryptedBytes);
+//                                placementnoofhri[i] = new String(placementnoofhriDecryptedBytes);
+//                            }
+//                            if (placementstdx[i] != null) {
+//                                byte[] placementstdxEncryptedBytes = SimpleBase64Encoder.decode(placementstdx[i]);
+//                                byte[] placementstdxDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxEncryptedBytes);
+//                                placementstdx[i] = new String(placementstdxDecryptedBytes);
+//                            }
+//                            if (placementstdxiiordiploma[i] != null) {
+//                                byte[] placementstdxiiordiplomaEncryptedBytes = SimpleBase64Encoder.decode(placementstdxiiordiploma[i]);
+//                                byte[] placementstdxiiordiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxiiordiplomaEncryptedBytes);
+//                                placementstdxiiordiploma[i] = new String(placementstdxiiordiplomaDecryptedBytes);
+//                            }
+//                            if (placementug[i] != null) {
+//                                byte[] placementugEncryptedBytes = SimpleBase64Encoder.decode(placementug[i]);
+//                                byte[] placementugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementugEncryptedBytes);
+//                                placementug[i] = new String(placementugDecryptedBytes);
+//                            }
+//                            if (placementpg[i] != null) {
+//                                byte[] placementpgEncryptedBytes = SimpleBase64Encoder.decode(placementpg[i]);
+//                                byte[] placementpgDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpgEncryptedBytes);
+//                                placementpg[i] = new String(placementpgDecryptedBytes);
+//                            }
+//                            if (placementuploadtime[i] != null) {
+//                                byte[] placementuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(placementuploadtime[i]);
+//                                byte[] placementuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadtimeEncryptedBytes);
+//                                placementuploadtime[i] = new String(placementuploadtimeDecryptedBytes);
+//                            }
+//                            if (placementlastmodified[i] != null) {
+//                                byte[] placementlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(placementlastmodified[i]);
+//                                byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
+//                                placementlastmodified[i] = new String(placementlastmodifiedDecryptedBytes);
+//                            }
+                            if (placementuploadedby[i] != null) {
+                                byte[] placementuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(placementuploadedby[i]);
                                 byte[] placementuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadedbyEncryptedBytes);
-                                placementuploadedbyplain[i]=new String(placementuploadedbyDecryptedBytes);
+                                placementuploadedbyplain[i] = new String(placementuploadedbyDecryptedBytes);
                             }
-                            if(placementnoofallowedliveatkt[i]!=null)
-                            {
-                                byte[] placementnoofallowedliveatktEncryptedBytes=SimpleBase64Encoder.decode(placementnoofallowedliveatkt[i]);
-                                byte[] placementnoofallowedliveatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofallowedliveatktEncryptedBytes);
-                                placementnoofallowedliveatkt[i]=new String(placementnoofallowedliveatktDecryptedBytes);
-                            }
-                            if(placementnoofalloweddeadatkt[i]!=null)
-                            {
-                                byte[] placementnoofalloweddeadatktEncryptedBytes=SimpleBase64Encoder.decode(placementnoofalloweddeadatkt[i]);
-                                byte[] placementnoofalloweddeadatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofalloweddeadatktEncryptedBytes);
-                                placementnoofalloweddeadatkt[i]=new String(placementnoofalloweddeadatktDecryptedBytes);
-                            }
+//                            if (placementnoofallowedliveatkt[i] != null) {
+//                                byte[] placementnoofallowedliveatktEncryptedBytes = SimpleBase64Encoder.decode(placementnoofallowedliveatkt[i]);
+//                                byte[] placementnoofallowedliveatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofallowedliveatktEncryptedBytes);
+//                                placementnoofallowedliveatkt[i] = new String(placementnoofallowedliveatktDecryptedBytes);
+//                            }
+//                            if (placementnoofalloweddeadatkt[i] != null) {
+//                                byte[] placementnoofalloweddeadatktEncryptedBytes = SimpleBase64Encoder.decode(placementnoofalloweddeadatkt[i]);
+//                                byte[] placementnoofalloweddeadatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofalloweddeadatktEncryptedBytes);
+//                                placementnoofalloweddeadatkt[i] = new String(placementnoofalloweddeadatktDecryptedBytes);
+//                            }
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 new GetLastUpdatedPlacement().execute();
@@ -2124,22 +2077,32 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
+            Log.d("backtrack", "username:: " + username);
+
 
             try {
 
-                json = jParser.makeHttpRequest(url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getnotificationsmetadata, "GET", params);
+
                 notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification=new int[notificationpages];
+                called_pages_notification = new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
+                Log.d("backtrack", "**count** in GetNotificationsReadStatus:: " + total_no_of_notifications);
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+                Log.d("backtrack", "**unread** count in GetNotificationsReadStatus:: " + unreadcountNotification);
 
-                json = jParser.makeHttpRequest(url_getnotificationsreadstatus, "GET", params);
 
-                readstatuscountNotification  = Integer.parseInt(json.getString("count"));
-                notificationreadstatus=new String[readstatuscountNotification ];
-                for(int i=0;i<readstatuscountNotification ;i++)
-                {
-                    notificationreadstatus[i]=json.getString("s"+i);
+                json = jParser.makeHttpRequest(MyConstants.url_getnotificationsreadstatus, "GET", params);
+
+                readstatuscountNotification = Integer.parseInt(json.getString("count"));
+                Log.d("backtrack", "readstatuscountNotification:--- " + readstatuscountNotification);
+
+
+                notificationreadstatus = new String[readstatuscountNotification];
+                for (int i = 0; i < readstatuscountNotification; i++) {
+                    notificationreadstatus[i] = json.getString("s" + i);
+                    Log.d("backtrack", "notificationreadstatus: " + notificationreadstatus[i]);
+
                 }
 
             } catch (Exception e) {
@@ -2152,9 +2115,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         protected void onPostExecute(String result) {
 
             notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification+"");
-            if(unreadcountNotification==0)
-            {
+            notificationcounttxt.setText(unreadcountNotification + "");
+            if (unreadcountNotification == 0) {
                 notificationcountrl.setVisibility(View.GONE);
             }
             new GetNotifications().execute();
@@ -2172,18 +2134,26 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getplacementsmetadata, "GET", params);
                 placementpages = Integer.parseInt(json.getString("pages"));
-                called_pages_placement=new int[placementpages];
+                called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
+                Log.d("pbacktrack", "count1: " + total_no_of_placements);
+
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(url_getplacementsreadstatus, "GET", params);
+
+
+                json = jParser.makeHttpRequest(MyConstants.url_getplacementsreadstatus, "GET", params);
                 readstatuscountPlacement = Integer.parseInt(json.getString("count"));
-                placementreadstatus=new String[readstatuscountPlacement];
-                for(int i=0;i<readstatuscountPlacement;i++)
-                {
-                    placementreadstatus[i]=json.getString("s"+i);
+                Log.d("pbacktrack", "count2: " + total_no_of_placements);
+
+
+                placementreadstatus = new String[readstatuscountPlacement];
+                for (int i = 0; i < readstatuscountPlacement; i++) {
+                    placementreadstatus[i] = json.getString("s" + i);
+                    Log.d("pbacktrack", "placementreadstatus: {" + i + "]" + placementreadstatus[i]);
                 }
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2194,9 +2164,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
             placementcountrl.setVisibility(View.VISIBLE);
-            placementcounttxt.setText(unreadcountPlacement+"");
-            if(unreadcountPlacement==0)
-            {
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
                 placementcountrl.setVisibility(View.GONE);
             }
 
@@ -2209,45 +2178,45 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         protected String doInBackground(String... param) {
 
-            String r=null;
+            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",username));       //0
-            params.add(new BasicNameValuePair("p",page_to_call_notification+""));
-            json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            json = jParser.makeHttpRequest(MyConstants.url_getnotifications, "GET", params);
             try {
                 notificationcount = Integer.parseInt(json.getString("count"));
 
-                notificationids=new String[notificationcount];
-                notificationtitles=new String[notificationcount];
-                notificationnotifications=new String[notificationcount];
-                notificationfilename1=new String[notificationcount];
-                notificationfilename2=new String[notificationcount];
-                notificationfilename3=new String[notificationcount];
-                notificationfilename4=new String[notificationcount];
-                notificationfilename5=new String[notificationcount];
-                notificationuploadtime=new String[notificationcount];
-                notificationlastmodified=new String[notificationcount];
-                notificationuploadedby=new String[notificationcount];
-                notificationuploadedbyplain=new String[notificationcount];
-                for(int i=0;i<notificationcount;i++)
-                {
-                    notificationids[i]=json.getString("id"+i);
-                    notificationtitles[i]=json.getString("title"+i);
-                    notificationnotifications[i]=json.getString("notification"+i);
-                    notificationfilename1[i]=json.getString("filename1"+i);
-                    notificationfilename2[i]=json.getString("filename2"+i);
-                    notificationfilename3[i]=json.getString("filename3"+i);
-                    notificationfilename4[i]=json.getString("filename4"+i);
-                    notificationfilename5[i]=json.getString("filename5"+i);
-                    notificationuploadtime[i]=json.getString("uploadtime"+i);
-                    notificationlastmodified[i]=json.getString("lastmodified"+i);
-                    notificationuploadedby[i]=json.getString("uploadedby"+i);
+                notificationids = new String[notificationcount];
+                notificationtitles = new String[notificationcount];
+                notificationnotifications = new String[notificationcount];
+                notificationfilename1 = new String[notificationcount];
+                notificationfilename2 = new String[notificationcount];
+                notificationfilename3 = new String[notificationcount];
+                notificationfilename4 = new String[notificationcount];
+                notificationfilename5 = new String[notificationcount];
+                notificationuploadtime = new String[notificationcount];
+                notificationlastmodified = new String[notificationcount];
+                notificationuploadedby = new String[notificationcount];
+                notificationuploadedbyplain = new String[notificationcount];
+                for (int i = 0; i < notificationcount; i++) {
+                    notificationids[i] = json.getString("id" + i);
+                    notificationtitles[i] = json.getString("title" + i);
+                    notificationnotifications[i] = json.getString("notification" + i);
+                    notificationfilename1[i] = json.getString("filename1" + i);
+                    notificationfilename2[i] = json.getString("filename2" + i);
+                    notificationfilename3[i] = json.getString("filename3" + i);
+                    notificationfilename4[i] = json.getString("filename4" + i);
+                    notificationfilename5[i] = json.getString("filename5" + i);
+                    notificationuploadtime[i] = json.getString("uploadtime" + i);
+                    notificationlastmodified[i] = json.getString("lastmodified" + i);
+                    notificationuploadedby[i] = json.getString("uploadedby" + i);
 
                 }
 
 
-
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return r;
         }
 
@@ -2258,90 +2227,83 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             tswipe_refresh_layout.setRefreshing(false);
 
 
-            for(int i=0;i<notificationcount;i++)
-                try
-                {
+            for (int i = 0; i < notificationcount; i++)
+                try {
 
-                    if(notificationtitles[i]!=null)
-                    {
-                        byte[] notificationtitlesEncryptedBytes=SimpleBase64Encoder.decode(notificationtitles[i]);
+                    if (notificationtitles[i] != null) {
+                        byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
                         byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                        notificationtitles[i]=new String(notificationtitlesDecryptedBytes);
+                        notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
+                        Log.d("backtrack", "notificationtitles["+i+"]:" + notificationtitles[i]);
                     }
-                    if(notificationnotifications[i]!=null)
-                    {
-                        byte[] notificationnotificationsEncryptedBytes=SimpleBase64Encoder.decode(notificationnotifications[i]);
+                    if (notificationnotifications[i] != null) {
+                        byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
                         byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                        notificationnotifications[i]=new String(notificationnotificationsDecryptedBytes);
+                        notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
                     }
-                    if(notificationfilename1[i]!=null)
-                    {
-                        if(!notificationfilename1[i].equals("null")) {
+                    if (notificationfilename1[i] != null) {
+                        if (!notificationfilename1[i].equals("null")) {
                             byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
                             byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
                             notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
                         }
                     }
-                    if(notificationfilename2[i]!=null)
-                    {
-                        if(!notificationfilename2[i].equals("null")) {
+                    if (notificationfilename2[i] != null) {
+                        if (!notificationfilename2[i].equals("null")) {
                             byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
                             byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
                             notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
                         }
                     }
-                    if(notificationfilename3[i]!=null)
-                    {
-                        if(!notificationfilename3[i].equals("null")) {
+                    if (notificationfilename3[i] != null) {
+                        if (!notificationfilename3[i].equals("null")) {
                             byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
                             byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
                             notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
                         }
                     }
-                    if(notificationfilename4[i]!=null)
-                    {
-                        if(!notificationfilename4[i].equals("null")) {
+                    if (notificationfilename4[i] != null) {
+                        if (!notificationfilename4[i].equals("null")) {
                             byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
                             byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
                             notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
                         }
                     }
-                    if(notificationfilename5[i]!=null)
-                    {
-                        if(!notificationfilename5[i].equals("null")) {
+                    if (notificationfilename5[i] != null) {
+                        if (!notificationfilename5[i].equals("null")) {
                             byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
                             byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
                             notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
                         }
                     }
-                    if(notificationuploadtime[i]!=null)
-                    {
-                        byte[] notificationuploadtimeEncryptedBytes=SimpleBase64Encoder.decode(notificationuploadtime[i]);
+                    if (notificationuploadtime[i] != null) {
+                        byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
                         byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                        notificationuploadtime[i]=new String(notificationuploadtimeDecryptedBytes);
+                        notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
                     }
-                    if(notificationlastmodified[i]!=null)
-                    {
-                        byte[] notificationlastmodifiedEncryptedBytes=SimpleBase64Encoder.decode(notificationlastmodified[i]);
+                    if (notificationlastmodified[i] != null) {
+                        byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
                         byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                        notificationlastmodified[i]=new String(notificationlastmodifiedDecryptedBytes);
+                        notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
                     }
-                    if(notificationuploadedby[i]!=null)
-                    {
-                        byte[] notificationuploadedbyEncryptedBytes=SimpleBase64Encoder.decode(notificationuploadedby[i]);
+                    if (notificationuploadedby[i] != null) {
+                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
                         byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                        notificationuploadedbyplain[i]=new String(notificationuploadedbyDecryptedBytes);
+                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
+                        Log.d("backtrack", "notificationtitles["+i+"]:" + notificationtitles[i]);
+
                     }
 
 
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    Log.d("backtrack", "error" + e.getMessage());
 
-                }catch (Exception e){
-                    //Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+
                 }
 
 
-
-//            new GetLastUpdatedNotification().execute();
+            new GetLastUpdatedNotification().execute();
 
         }
     }
@@ -2349,43 +2311,44 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
         protected String doInBackground(String... param) {
-            String r=null;
+            String r = null;
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",username));       //0
-            params.add(new BasicNameValuePair("p",page_to_call_placement+""));
-            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
-            try
-            {
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+            json = jParser.makeHttpRequest(MyConstants.url_getplacements, "GET", params);
+            try {
                 placementcount = Integer.parseInt(json.getString("count"));
+                Log.d("pbacktrack", "=======placementcount=======: " + placementcount);
 
-                placementids=new String[placementcount];
-                placementcompanyname=new String[placementcount];
-                placementcpackage=new String[placementcount];
-                placementpost=new String[placementcount];
-                placementforwhichcourse=new String[placementcount];
-                placementforwhichstream=new String[placementcount];
-                placementvacancies=new String[placementcount];
-                placementlastdateofregistration=new String[placementcount];
-                placementdateofarrival=new String[placementcount];
-                placementbond=new String[placementcount];
-                placementnoofapti=new String[placementcount];
-                placementnooftechtest=new String[placementcount];
-                placementnoofgd=new String[placementcount];
-                placementnoofti=new String[placementcount];
-                placementnoofhri=new String[placementcount];
-                placementstdx=new String[placementcount];
-                placementstdxiiordiploma=new String[placementcount];
-                placementug=new String[placementcount];
-                placementpg=new String[placementcount];
-                placementuploadtime=new String[placementcount];
-                placementlastmodified=new String[placementcount];
-                placementuploadedby=new String[placementcount];
-                placementuploadedbyplain=new String[placementcount];
-                placementnoofallowedliveatkt=new String[placementcount];
-                placementnoofalloweddeadatkt=new String[placementcount];
 
-                for(int i=0;i<placementcount;i++) {
+                placementids = new String[placementcount];
+                placementcompanyname = new String[placementcount];
+                placementcpackage = new String[placementcount];
+                placementpost = new String[placementcount];
+                placementforwhichcourse = new String[placementcount];
+                placementforwhichstream = new String[placementcount];
+                placementvacancies = new String[placementcount];
+                placementlastdateofregistration = new String[placementcount];
+                placementdateofarrival = new String[placementcount];
+                placementbond = new String[placementcount];
+                placementnoofapti = new String[placementcount];
+                placementnooftechtest = new String[placementcount];
+                placementnoofgd = new String[placementcount];
+                placementnoofti = new String[placementcount];
+                placementnoofhri = new String[placementcount];
+                placementstdx = new String[placementcount];
+                placementstdxiiordiploma = new String[placementcount];
+                placementug = new String[placementcount];
+                placementpg = new String[placementcount];
+                placementuploadtime = new String[placementcount];
+                placementlastmodified = new String[placementcount];
+                placementuploadedby = new String[placementcount];
+                placementuploadedbyplain = new String[placementcount];
+                placementnoofallowedliveatkt = new String[placementcount];
+                placementnoofalloweddeadatkt = new String[placementcount];
+
+                for (int i = 0; i < placementcount; i++) {
 
                     placementids[i] = json.getString("id" + i);
                     placementcompanyname[i] = json.getString("companyname" + i);
@@ -2411,10 +2374,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     placementuploadedby[i] = json.getString("uploadedby" + i);
                     placementnoofallowedliveatkt[i] = json.getString("noofallowedliveatkt" + i);
                     placementnoofalloweddeadatkt[i] = json.getString("noofalloweddeadatkt" + i);
+
+
                 }
 
 
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
 
             return r;
         }
@@ -2423,10 +2389,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         protected void onPostExecute(String result) {
             tswipe_refresh_layout.setVisibility(View.VISIBLE);
             tswipe_refresh_layout.setRefreshing(false);
+            Log.d("pbacktrack", "=========cf=====:" + placementcount);
+            for (int i = 0; i < placementcount; i++)
+                try {
 
-            for(int i=0;i<placementcount;i++)
-                try
-                {
 //                    if(placementcompanyname[i]!=null)
 //                    {
 //                        byte[] placementcompanynameEncryptedBytes=SimpleBase64Encoder.decode(placementcompanyname[i]);
@@ -2548,11 +2514,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                        byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
 //                        placementlastmodified[i]=new String(placementlastmodifiedDecryptedBytes);
 //                    }
-                    if(placementuploadedby[i]!=null)
-                    {
-                        byte[] placementuploadedbyEncryptedBytes=SimpleBase64Encoder.decode(placementuploadedby[i]);
+                    if (placementuploadedby[i] != null) {
+                        byte[] placementuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(placementuploadedby[i]);
                         byte[] placementuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadedbyEncryptedBytes);
-                        placementuploadedbyplain[i]=new String(placementuploadedbyDecryptedBytes);
+                        placementuploadedbyplain[i] = new String(placementuploadedbyDecryptedBytes);
+                        Log.d("pbacktrack", "placementuploadedby: [" + i + "]" + placementuploadedbyplain[i]);
                     }
 //                    if(placementnoofallowedliveatkt[i]!=null)
 //                    {
@@ -2567,53 +2533,51 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                        placementnoofalloweddeadatkt[i]=new String(placementnoofalloweddeadatktDecryptedBytes);
 //                    }
 
-                }catch (Exception e){
-                    //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             new GetLastUpdatedPlacement().execute();
         }
     }
+
+
     class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
-            String r=null;
+            String r = null;
 
 
             Set<String> uniqKeys = new TreeSet<String>();
             uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
 
-            uniqueUploadersNotification  = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification =new String[uniqueUploadersNotification .length];
-            lastupdatedNotification =new String[uniqueUploadersNotification .length];
-            for(int j=0;j<uniqueUploadersNotification .length;j++)
-            {
-                for(int i=0;i<notificationcount;i++) {
+            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
+            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
+            lastupdatedNotification = new String[uniqueUploadersNotification.length];
+            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
+                for (int i = 0; i < notificationcount; i++) {
 
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [j]))
-                    {
-                        uniqueUploadersEncNotification [j]=notificationuploadedby[i];
+                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
+                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
                     }
                 }
             }
-            for(int i=0;i<uniqueUploadersNotification .length;i++) {
+            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
                 // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u",uniqueUploadersEncNotification [i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
-                    if(s.equals("noupdate"))
-                    {
+                    if (s.equals("noupdate")) {
                         // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        lastupdatedNotification [i]=s;
+                    } else {
+                        lastupdatedNotification[i] = s;
                         // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
                     }
 
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
             return r;
         }
@@ -2632,7 +2596,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                }
 //            }
 
-            if(!isLastPageLoadedNotification)
+            if (!isLastPageLoadedNotification)
                 addNotificationdatatoAdapter();
 
         }
@@ -2642,42 +2606,38 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
         protected String doInBackground(String... param) {
-            String r=null;
+            String r = null;
 
             Set<String> uniqKeys = new TreeSet<String>();
             uniqKeys.addAll(Arrays.asList(placementuploadedbyplain));
 
-            uniqueUploadersPlacement= uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncPlacement=new String[uniqueUploadersPlacement.length];
-            lastupdatedPlacement=new String[uniqueUploadersPlacement.length];
+            uniqueUploadersPlacement = uniqKeys.toArray(new String[uniqKeys.size()]);
+            uniqueUploadersEncPlacement = new String[uniqueUploadersPlacement.length];
+            lastupdatedPlacement = new String[uniqueUploadersPlacement.length];
 
-            for(int j=0;j<uniqueUploadersPlacement.length;j++)
-            {
-                for(int i=0;i<placementcount;i++) {
+            for (int j = 0; j < uniqueUploadersPlacement.length; j++) {
+                for (int i = 0; i < placementcount; i++) {
 
-                    if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[j]))
-                    {
-                        uniqueUploadersEncPlacement[j]=placementuploadedby[i];
+                    if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[j])) {
+                        uniqueUploadersEncPlacement[j] = placementuploadedby[i];
                     }
                 }
             }
 
-            for(int i=0;i<uniqueUploadersPlacement.length;i++) {
+            for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u",uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
-                    if(s.equals("noupdate"))
-                    {
-                    }
-                    else
-                    {
-                        lastupdatedPlacement[i]=s;
+                    if (s.equals("noupdate")) {
+                    } else {
+                        lastupdatedPlacement[i] = s;
 
                     }
 
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
 
 
@@ -2687,7 +2647,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
 
-            if(!isLastPageLoadedPlacement)
+            if (!isLastPageLoadedPlacement)
                 addPlacementdatatoAdapter();
 
         }
@@ -2876,16 +2836,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    void addPlacementdatatoAdapter()
-    {
+    void addPlacementdatatoAdapter() {
         if (isFirstRunPlacement) {
             itemListPlacement.clear();
             mAdapterPlacement.notifyDataSetChanged();
             isFirstRunPlacement = false;
         }
-        selectedMenuFlag=2;
-        if(!isLastPageLoadedPlacement)
-        {
+        selectedMenuFlag = 2;
+        if (!isLastPageLoadedPlacement) {
             for (int i = 0; i < placementcount; i++) {
 
                 String companynametoshow = "";
@@ -2912,25 +2870,22 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                                 if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
                                     if (lastupdatedPlacement[k] == null) {
                                         if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,MainActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,MainActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         itemListPlacement.add(item);
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,MainActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,MainActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         itemListPlacement.add(item);
                                     }
                                 }
 
                             }
                         }
-                    }
-                    else if (idnstatus.contains("R")) {
+                    } else if (idnstatus.contains("R")) {
                         for (int k = 0; k < idnstatus.length() - 1; k++) {
                             sid += idnstatus.charAt(k);
                         }
@@ -2939,17 +2894,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                                 if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
                                     if (lastupdatedPlacement[k] == null) {
                                         if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,MainActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,MainActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         itemListPlacement.add(item);
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,MainActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,MainActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
                                         itemListPlacement.add(item);
                                     }
                                 }
@@ -2964,8 +2917,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             }
         }
 
-        if(lastPageFlagPlacement==1)
-            isLastPageLoadedPlacement=true;
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
         mAdapterPlacement.notifyDataSetChanged();
 
     }
@@ -3022,7 +2975,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(url_changenotificationsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_changenotificationsreadstatus, "GET", params);
             return r;
         }
 
@@ -3040,7 +2993,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(url_changeplacementsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_changeplacementsreadstatus, "GET", params);
             return r;
         }
 
@@ -3264,7 +3217,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
 
-                MultipartUtility multipart = new MultipartUtility(upload_profile, "UTF-8");
+                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
 
                 multipart.addFormField("u", username);
 

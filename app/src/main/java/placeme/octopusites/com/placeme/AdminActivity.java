@@ -78,23 +78,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE =111;
 
-    private static String url = "http://192.168.100.100/AESTest/GetImage";
-    private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
-    private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
-
-    //placement urls
-    private static String url_getplacementsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdminMetaData";
-    private static String url_getplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    private static String url_getplacements = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdmin";
-    private static String url_changeplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/ChangePlacementReadStatusAdmin";
-    //notiffurl
-    private static String url_getnotificationsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetNotificationsAdminMetaData";
-    private static String url_getnotificationsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    private static String url_getnotifications = "http://192.168.100.30/CreateNotificationTemp/GetNotificationsAdmin";
-    private static String url_changenotificationsreadstatus = "http://192.168.100.30/CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
-    public static String url_getlastupdated = "http://192.168.100.30/CreateNotificationTemp/GetLastUpdatedAdmin";
-
-
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     JSONParser jParser = new JSONParser();
@@ -1292,7 +1275,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAdmin , "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1330,7 +1313,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
                             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+                            json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAdmin, "GET", params);
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1874,7 +1857,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //        }
 //    }
 
-    void addPlacementdatatoAdapter() {
+    void addPlacementdatatoAdapter()
+    {
         if (isFirstRunPlacement) {
             itemListPlacement.clear();
             mAdapterPlacement.notifyDataSetChanged();
@@ -1985,7 +1969,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));
                         params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                        json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAdmin, "GET", params);
 
                         placementcount = Integer.parseInt(json.getString("count"));
                         placementids = new String[placementcount];
@@ -2050,7 +2034,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));
                             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+                            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAdmin, "GET", params);
 
                             placementcount = Integer.parseInt(json.getString("count"));
 
@@ -2306,11 +2290,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             try {
 
 
-                json = jParser.makeHttpRequest(url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAdminAdminMetaData, "GET", params);
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
 
-//                json = jParser.makeHttpRequest(url_getplacementsmetadata, "GET", params);
+//                json = jParser.makeHttpRequest(url_GetPlacementsAdminAdminMetaData, "GET", params);
 //                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
@@ -2353,13 +2337,13 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
             try {
 
-                json = jParser.makeHttpRequest(url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAdminAdminMetaData, "GET", params);
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
-                json = jParser.makeHttpRequest(url_getnotificationsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetReadStatusOfNotificationsAdmin, "GET", params);
 
                 readstatuscountNotification = Integer.parseInt(json.getString("count"));
                 Log.d("TAGAdmin", "readstatuscountNotification: " + readstatuscountNotification);
@@ -2419,7 +2403,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(url_changenotificationsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ChangeNotificationReadStatusAdmin, "GET", params);
             return r;
         }
 
@@ -2452,6 +2436,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     previousTotalNotification = totalItemCountNotification;
                 }
             }
+
             if (!loadingNotification && (totalItemCountNotification - visibleItemCountNotification)
                     <= (firstVisibleItemNotification + visibleThresholdNotification)) {
                 // End has been reached
@@ -2477,7 +2462,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAdmin, "GET", params);
             try {
                 notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -2631,7 +2616,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             for (int i = 0; i < uniqueUploadersNotification.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {
@@ -2683,7 +2668,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
-            map = downloadImage(load_student_image);
+            map = downloadImage(MyConstants.load_student_image);
             return map;
         }
 
@@ -2752,7 +2737,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 File sourceFile = new File(filepath);
 
 
-                MultipartUtility multipart = new MultipartUtility(upload_profile, "UTF-8");
+                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
 
                 multipart.addFormField("u", username);
 
@@ -2805,7 +2790,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
     }
-
     class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -2816,14 +2800,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             params.add(new BasicNameValuePair("u", username));       //0
 
             try {
-                json = jParser.makeHttpRequest(url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAdminAdminMetaData, "GET", params);
                 placementpages = Integer.parseInt(json.getString("pages"));
                 called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
-                json = jParser.makeHttpRequest(url_getplacementsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetReadStatusOfPlacementsForAdmin, "GET", params);
                 readstatuscountPlacement = Integer.parseInt(json.getString("count"));
                 placementreadstatus = new String[readstatuscountPlacement];
 
@@ -2868,7 +2852,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
 
 
-            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAdmin, "GET", params);
             try {
                 placementcount = Integer.parseInt(json.getString("count"));
 
@@ -3110,7 +3094,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             new GetLastUpdatedPlacement().execute();
         }
     }
-
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
 
@@ -3136,7 +3119,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {
@@ -3212,7 +3195,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
 
-            json = jParser.makeHttpRequest(url_changeplacementsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ChangePlacementReadStatusAdmin, "GET", params);
             return r;
         }
 

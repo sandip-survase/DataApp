@@ -67,13 +67,21 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
         holder.name.setText(item.getName());
         holder.email.setText(item.getEmail());
 
+
+        if(item.isSelected())
+            holder.checkboxs.setChecked(true);
+        else
+            holder.checkboxs.setChecked(false);
+
         if(flag==3)
             holder.checkboxs.setVisibility(View.GONE);
+
+
 
         holder.resumeSelectioview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((UserSelection) mContext).showResume(item.getId());
+                ((UserSelection) mContext).showResume(item.getEmail());
 
             }
         });

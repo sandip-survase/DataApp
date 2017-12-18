@@ -76,6 +76,7 @@ public class MyProfileIntro extends AppCompatActivity {
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
+        buildCityStateCountryList();
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Personal Info");
@@ -155,25 +156,6 @@ public class MyProfileIntro extends AppCompatActivity {
         Log.d("TAG", "encUsername: " + encUsername);
 
 
-        try {
-            JSONObject jsonObject = new JSONObject(getJson());
-            JSONArray array = jsonObject.getJSONArray("array");
-            for (int i = 0; i < array.length(); i++) {
-
-                JSONObject object = array.getJSONObject(i);
-                String city = object.getString("city");
-                String state = object.getString("state");
-                String country = object.getString("country");
-
-
-                listAll.add(city + " , " + state + " , " + country);
-
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listAll);
         citystaecountry.setAdapter(adapter);
 
@@ -238,6 +220,33 @@ public class MyProfileIntro extends AppCompatActivity {
         });
 
         edittedFlag = 0;
+
+    }
+
+    private void buildCityStateCountryList() {
+
+        new Thread(new Runnable() {
+            public void run() {
+                android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(getJson());
+                    JSONArray array = jsonObject.getJSONArray("array");
+                    for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject object = array.getJSONObject(i);
+                        String city = object.getString("city");
+                        String state = object.getString("state");
+                        String country = object.getString("country");
+
+                        listAll.add(city + " , " + state + " , " + country);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 

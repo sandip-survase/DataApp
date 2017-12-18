@@ -38,11 +38,12 @@ import java.util.List;
 
 import mabbas007.tagsedittext.TagsEditText;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 
 public class CreatePlacement extends AppCompatActivity {
 
-    private static String url_savedata = "http://192.168.100.30/CreateNotificationTemp/CreatePlacements";
+
     String role;
     ViewPagerAdapter adapter;
     CheckBox CheckBoxstudent, CheckBoxsAlumni;
@@ -79,6 +80,8 @@ public class CreatePlacement extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Create Placement");
+
+
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -280,7 +283,7 @@ public class CreatePlacement extends AppCompatActivity {
 
             if (srole.equals("hr")) {
 //                forwhom = Encrypt("PLACEME", digest1, digest2);
-                forwhom="PLACEME";
+                forwhom="PLACEME()";
                 Log.d("Forwhome", "validate: " + encforwhom);
 //                encrypt();
             } else {
@@ -303,7 +306,7 @@ public class CreatePlacement extends AppCompatActivity {
 
                     if (forstudflag == 1) {
                         //notification for Student
-                        forwhom = instname + "(ADMIN,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                        forwhom = instname + "("+Decrypt(encUsername,digest1,digest2)+",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                         if (forallumflag == 1) {
                             //for Stud + alumni
                             forwhom = forwhom + "," + selectedBatchesForWhome + ")";
@@ -318,7 +321,7 @@ public class CreatePlacement extends AppCompatActivity {
                         //notification not for Student
                         if (forallumflag == 1) {
                             //for ALLUMNI
-                            forwhom = instname + "(" + selectedBatchesForWhome + ")";
+                            forwhom = instname + "("+Decrypt(encUsername,digest1,digest2)+" ," + selectedBatchesForWhome + ")";
                             Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                         } else {
@@ -558,8 +561,11 @@ public class CreatePlacement extends AppCompatActivity {
     }
 
     class save extends AsyncTask<String, String, String> {
+       String sbatchesTags="", sexptaTags="";
         @Override
         protected String doInBackground(String... param) {
+            Log.d("gettingtabData", "encUsername: " + encUsername);
+
 
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -583,9 +589,11 @@ public class CreatePlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("q", xiicriteria));     //17
             params.add(new BasicNameValuePair("r", ugcriteria));     //18
             params.add(new BasicNameValuePair("s", pgcriteria));     //19
+            params.add(new BasicNameValuePair("t", sbatchesTags));     //20
+            params.add(new BasicNameValuePair("v", sexptaTags));     //21
 
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_CreatePlacements, "GET", params);
             try {
                 r = json.getString("info1");
 
@@ -598,9 +606,9 @@ public class CreatePlacement extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
 
-            CreatePlacement.super.onBackPressed();
+//            CreatePlacement.super.onBackPressed();
 
 //            if(result.equals("success"))
 //            {
