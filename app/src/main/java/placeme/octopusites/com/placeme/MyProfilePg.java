@@ -289,8 +289,304 @@ public class MyProfilePg extends AppCompatActivity {
         TextView pgtxt=(TextView)findViewById(R.id.pgtxt);
         pgtxt.setTypeface(MyConstants.getBold(this));
 
-        new GetCourses().execute();
-        new GetUniversities().execute();
+//        new GetCourses().execute();
+//        new GetUniversities().execute();
+
+
+//        *************
+        coursecount = getResources().getStringArray(R.array.pgcourses).length;
+        courses = new String[coursecount];
+        courses = getResources().getStringArray(R.array.pgcourses);
+
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, courses) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
+                }
+                return view;
+            }
+        };
+
+
+        pgsemcourse.setAdapter(adapter4);
+        pgyearcourse.setAdapter(adapter4);
+
+        streamcount = getResources().getStringArray(R.array.pgstreams).length;
+        streams = new String[streamcount];
+        streams = getResources().getStringArray(R.array.pgstreams);
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, streams) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
+                }
+                return view;
+            }
+        };
+
+
+        pgsemstream.setAdapter(adapter3);
+        pgyearstream.setAdapter(adapter3);
+
+        universitycount = getResources().getStringArray(R.array.pguniversity).length;
+        universities= new String[streamcount];
+        universities = getResources().getStringArray(R.array.pguniversity);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, universities) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
+                }
+                return view;
+            }
+        };
+
+
+        pgsemuniversity.setAdapter(adapter2);
+        pgyearuniversity.setAdapter(adapter2);
+
+
+//        *****************
+
+        pgsemcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCoursepgsem = (String) parent.getItemAtPosition(position);
+                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othersemcourseinput);
+                if(selectedCoursepgsem.equals("Other")) {
+
+                    otherboardinput.setVisibility(View.VISIBLE);
+                }
+                else {
+//                    new GetStreamsSem().execute();
+                    otherboardinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        pgyearcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCoursepgyear= (String) parent.getItemAtPosition(position);
+                TextInputLayout otheryearcourseinput=(TextInputLayout)findViewById(R.id.otheryearcourseinput);
+                if(selectedCoursepgyear.equals("Other")) {
+
+                    otheryearcourseinput.setVisibility(View.VISIBLE);
+                }
+                else {
+//                    new GetStreamsYear().execute();
+                    otheryearcourseinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        pgsemuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedUniversitypgsem= (String) parent.getItemAtPosition(position);
+
+                TextInputLayout otheruniversityinput=(TextInputLayout)findViewById(R.id.othersemuniversityinput);
+                if(selectedUniversitypgsem.equals("Other")) {
+
+                    otheruniversityinput.setVisibility(View.VISIBLE);
+
+                }
+                else {
+                    otheruniversityinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        pgyearuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedUniversitypgyear= (String) parent.getItemAtPosition(position);
+                TextInputLayout otheryearuniversityinput=(TextInputLayout)findViewById(R.id.otheryearuniversityinput);
+                if(selectedUniversitypgyear.equals("Other")) {
+
+                    otheryearuniversityinput.setVisibility(View.VISIBLE);
+
+                }
+                else {
+                    otheryearuniversityinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        pgsemstream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedStreampgsem= (String) parent.getItemAtPosition(position);
+                Log.d(alumniLog, "onItemSelected: "+selectedStreampgsem);
+
+                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
+
+                TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.othersemstreaminput);
+                if(selectedStreampgsem.equals("Other")) {
+
+                    othersemstreaminput.setVisibility(View.VISIBLE);
+                }
+                else {
+
+                    othersemstreaminput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        pgyearstream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedStreampgyear= (String) parent.getItemAtPosition(position);
+                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - "+selectedStreampgyear);
+                TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.otheryearstreaminput);
+                if(selectedStreampgyear.equals("Other")) {
+                    Log.d("TAG", " setOnItemSelectedListener Other - "+selectedStreampgyear);
+                    othersemstreaminput.setVisibility(View.VISIBLE);
+                }
+                else {
+
+                    othersemstreaminput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
 
         pmarkssem1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1425,6 +1721,7 @@ public class MyProfilePg extends AppCompatActivity {
                 }
             }
         });
+
         ScrollView myprofileintroscrollview=(ScrollView)findViewById(R.id.myprofilepg);
         disableScrollbars(myprofileintroscrollview);
 
@@ -1457,8 +1754,6 @@ public class MyProfilePg extends AppCompatActivity {
         schoolnamepgsemester=s.getCollegenamepgsem();
         monthandyearofpassingpgsem=s.getYearofpassingpgsem();
 
-
-
         marksyear1=s.getMarksyear1pgyear();
         outofyear1=s.getOutofyear1pgyear();
         percentyear1=s.getPercentageyear1pgyear();
@@ -1471,14 +1766,14 @@ public class MyProfilePg extends AppCompatActivity {
         aggregatepgyear=s.getAggregatepgyear();
         selectedCoursepgyear=s.getCoursepgyear();
         if(selectedCoursepgyear==null){
-            selectedCoursepgyear="- Select Course -";
+            selectedCoursepgyear="";
         }
 
         selectedStreampgyear=s.getStreampgyear();
 
 
         if(selectedStreampgyear==null){
-            selectedStreampgyear="Select Stream/Specialization -";
+            selectedStreampgyear="";
         }
 
 
@@ -1567,6 +1862,181 @@ public class MyProfilePg extends AppCompatActivity {
         if(monthandyearofpassingpgyear!=null)
             yearofpassingpgyear.setText(monthandyearofpassingpgyear);
 
+
+
+
+        if (selectedCoursepgsem != null) {
+            int foundboard = 0;
+            for (int i = 1; i < courses.length - 1; i++)
+                if (selectedCoursepgsem.equals(courses[i])) {
+                    foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                    break;
+                }
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedCoursepgsem);
+            if (foundboard == 1)
+                pgsemcourse.setSelection(adapter4.getPosition(selectedCoursepgsem));
+            else {
+
+                if (selectedCoursepgsem.equals("")) {
+                    pgsemcourse.setSelection(adapter4.getPosition("- Select Course -"));
+                    othersemcourse.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                } else {
+                    pgsemcourse.setSelection(adapter4.getPosition("Other"));
+                    othersemcourse.setVisibility(View.VISIBLE);
+                    othersemcourse.setText(selectedCoursepgsem);
+                }
+            }
+
+        } else
+            selectedCoursepgsem = "- Select Course -";
+
+
+
+        if (selectedCoursepgyear != null) {
+            int foundboard = 0;
+            for (int i = 1; i < courses.length - 1; i++)
+                if (selectedCoursepgyear.equals(courses[i])) {
+                    foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                    break;
+                }
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedCoursepgyear);
+            if (foundboard == 1)
+                pgyearcourse.setSelection(adapter4.getPosition(selectedCoursepgyear));
+            else {
+
+                if (selectedCoursepgyear.equals("")) {
+                    pgyearcourse.setSelection(adapter4.getPosition("- Select Course -"));
+                    otheryearcourse.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                } else {
+                    pgyearcourse.setSelection(adapter4.getPosition("Other"));
+                    otheryearcourse.setVisibility(View.VISIBLE);
+                    otheryearcourse.setText(selectedCoursepgyear);
+                }
+            }
+
+        } else
+            selectedCoursepgyear = "- Select Course -";
+
+
+        if (selectedStreampgsem != null) {
+            int foundboard = 0;
+            for (int i = 1; i < streams.length - 1; i++)
+                if (selectedStreampgsem.equals(streams[i])) {
+                    foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                    break;
+                }
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedStreampgsem);
+            if (foundboard == 1)
+                pgsemstream.setSelection(adapter4.getPosition(selectedStreampgsem));
+            else {
+
+                if (selectedStreampgsem.equals("")) {
+                    pgsemstream.setSelection(adapter4.getPosition("- Select Stream -"));
+                    othersemstream.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                } else {
+                    pgsemstream.setSelection(adapter4.getPosition("Other"));
+                    othersemstream.setVisibility(View.VISIBLE);
+                    othersemstream.setText(selectedStreampgsem);
+                }
+            }
+
+        } else
+            selectedStreampgsem = "- Select Stream -";
+
+
+
+        if (selectedStreampgyear != null) {
+            int foundboard = 0;
+            for (int i = 1; i < streams.length - 1; i++)
+                if (selectedStreampgyear.equals(streams[i])) {
+                    foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                    break;
+                }
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedStreampgyear);
+            if (foundboard == 1)
+                pgyearstream.setSelection(adapter4.getPosition(selectedStreampgyear));
+            else {
+
+                if (selectedStreampgyear.equals("")) {
+                    pgyearstream.setSelection(adapter4.getPosition("- Select Stream -"));
+                    otheryearstream.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                } else {
+                    pgyearstream.setSelection(adapter4.getPosition("Other"));
+                    otheryearstream.setVisibility(View.VISIBLE);
+                    otheryearstream.setText(selectedStreampgyear);
+                }
+            }
+
+        } else
+            selectedStreampgyear = "- Select Stream -";
+
+
+
+        if (selectedUniversitypgsem != null) {
+            int foundboard = 0;
+            for (int i = 1; i < universities.length - 1; i++)
+                if (selectedUniversitypgsem.equals(universities[i])) {
+                    foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                    break;
+                }
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgsem);
+            if (foundboard == 1)
+                pgsemuniversity.setSelection(adapter4.getPosition(selectedUniversitypgsem));
+            else {
+
+                if (selectedUniversitypgsem.equals("")) {
+                    pgsemuniversity.setSelection(adapter4.getPosition("- Select Stream -"));
+                    othersemuniversity.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                } else {
+                    pgsemuniversity.setSelection(adapter4.getPosition("Other"));
+                    othersemuniversity.setVisibility(View.VISIBLE);
+                    othersemuniversity.setText(selectedUniversitypgsem);
+                }
+            }
+
+        } else
+            selectedUniversitypgsem = "- Select University -";
+
+
+        if (selectedUniversitypgyear != null) {
+            int foundboard = 0;
+            for (int i = 1; i < universities.length - 1; i++)
+                if (selectedUniversitypgyear.equals(universities[i])) {
+                    foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                    break;
+                }
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgyear);
+            if (foundboard == 1)
+                pgyearuniversity.setSelection(adapter4.getPosition(selectedUniversitypgyear));
+            else {
+
+                if (selectedUniversitypgyear.equals("")) {
+                    pgyearuniversity.setSelection(adapter4.getPosition("- Select Stream -"));
+                    otheryearuniversity.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                } else {
+                    pgyearuniversity.setSelection(adapter4.getPosition("Other"));
+                    otheryearuniversity.setVisibility(View.VISIBLE);
+                    otheryearuniversity.setText(selectedUniversitypgyear);
+                }
+            }
+
+        } else
+            selectedUniversitypgyear = "- Select University -";
+
+
+
         edittedFlag=0;
 
     }
@@ -1577,6 +2047,7 @@ public class MyProfilePg extends AppCompatActivity {
 
         }
     }
+
     class GetCourses extends AsyncTask<String, String, String> {
 
 
@@ -1611,6 +2082,8 @@ public class MyProfilePg extends AppCompatActivity {
             courseslist.add("Other");
         }
     }
+
+
 
     void populateCourses()
     {
@@ -1656,56 +2129,11 @@ public class MyProfilePg extends AppCompatActivity {
                 }
                 return view;
             }
-        };;
+        };
         pgsemcourse.setAdapter(dataAdapter);
         pgyearcourse.setAdapter(dataAdapter);
 
-        pgsemcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCoursepgsem = (String) parent.getItemAtPosition(position);
-                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othersemcourseinput);
-                if(selectedCoursepgsem.equals("Other")) {
 
-                    otherboardinput.setVisibility(View.VISIBLE);
-                }
-                else {
-                    new GetStreamsSem().execute();
-                    otherboardinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        pgyearcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCoursepgyear= (String) parent.getItemAtPosition(position);
-                TextInputLayout otheryearcourseinput=(TextInputLayout)findViewById(R.id.otheryearcourseinput);
-                if(selectedCoursepgyear.equals("Other")) {
-
-                    otheryearcourseinput.setVisibility(View.VISIBLE);
-                }
-                else {
-                    new GetStreamsYear().execute();
-                    otheryearcourseinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         if(isCourseSetsem==0) {
             isCourseSetsem=1;
             if(s.getCoursepgsem()!=null) {
@@ -1819,33 +2247,7 @@ public class MyProfilePg extends AppCompatActivity {
 
         pgsemstream.setAdapter(dataAdapter);
 
-        pgsemstream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedStreampgsem= (String) parent.getItemAtPosition(position);
-                Log.d(alumniLog, "onItemSelected: "+selectedStreampgsem);
 
-                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
-
-                TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.othersemstreaminput);
-                if(selectedStreampgsem.equals("Other")) {
-
-                    othersemstreaminput.setVisibility(View.VISIBLE);
-                }
-                else {
-
-                    othersemstreaminput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         if(isStreamSetsem==0) {
             isStreamSetsem=1;
             if(s.getStreampgsem()!=null) {
@@ -1944,30 +2346,6 @@ public class MyProfilePg extends AppCompatActivity {
         };;
         pgyearstream.setAdapter(dataAdapter);
 
-        pgyearstream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedStreampgyear= (String) parent.getItemAtPosition(position);
-                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - "+selectedStreampgyear);
-                TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.otheryearstreaminput);
-                if(selectedStreampgyear.equals("Other")) {
-                    Log.d("TAG", " setOnItemSelectedListener Other - "+selectedStreampgyear);
-                    othersemstreaminput.setVisibility(View.VISIBLE);
-                }
-                else {
-
-                    othersemstreaminput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
         if(isStreamSetyear==0) {
@@ -2070,53 +2448,6 @@ public class MyProfilePg extends AppCompatActivity {
         pgsemuniversity.setAdapter(dataAdapter);
         pgyearuniversity.setAdapter(dataAdapter);
 
-        pgsemuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedUniversitypgsem= (String) parent.getItemAtPosition(position);
-
-                TextInputLayout otheruniversityinput=(TextInputLayout)findViewById(R.id.othersemuniversityinput);
-                if(selectedUniversitypgsem.equals("Other")) {
-
-                    otheruniversityinput.setVisibility(View.VISIBLE);
-
-                }
-                else {
-                    otheruniversityinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        pgyearuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedUniversitypgyear= (String) parent.getItemAtPosition(position);
-                TextInputLayout otheryearuniversityinput=(TextInputLayout)findViewById(R.id.otheryearuniversityinput);
-                if(selectedUniversitypgyear.equals("Other")) {
-
-                    otheryearuniversityinput.setVisibility(View.VISIBLE);
-
-                }
-                else {
-                    otheryearuniversityinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         if(isUniversitySetsem==0) {
             isUniversitySetsem=1;
@@ -2774,13 +3105,15 @@ public class MyProfilePg extends AppCompatActivity {
         percentsem6="";
         aggregatepgsem="";
 
-        selectedCoursepgsem="- Select Course -";
-        selectedStreampgsem="- Select Stream/Specialization -";
-        selectedUniversitypgsem="- Select University -";
+        selectedCoursepgsem="";
+        selectedStreampgsem="";
+        selectedUniversitypgsem="";
 
         schoolnamepgsemester="";
         monthandyearofpassingpgsem="";
 
+        pgsemcourse.setSelection(0);
+        pgsemstream.setSelection(0);
 
     }
 
@@ -2825,13 +3158,16 @@ public class MyProfilePg extends AppCompatActivity {
         outofyear3="";
         percentyear3="";
         aggregatepgyear="";
-        selectedCoursepgyear="- Select Course -";
-        selectedStreampgyear="- Select Stream/Specialization -";
-        selectedUniversitypgyear="- Select University -";
+        selectedCoursepgyear="";
+        selectedStreampgyear="";
+        selectedUniversitypgyear="";
         oldUniversityyear="";
         schoolnamepgyears="";
         monthandyearofpassingpgyear="";
 
+        pgyearcourse.setSelection(0);
+        pgyearstream.setSelection(0);
+//        dcourse.setSelection(adapter4.getPosition("- Select Course -"));
     }
 
 

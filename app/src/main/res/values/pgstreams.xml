@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pgstreams">
+        <item>- Select Stream -</item>
+       <item>Aeronautical Engineering</item>
+    Info:   <item>Aerospace Engineering</item>
+    Info:   <item>Aerospace Engineering</item>
+    Info:   <item>Agricultural Engineering</item>
+    Info:   <item>Agricultural Engineering</item>
+    Info:   <item>Automobile Engineering</item>
+    Info:   <item>Automobile Engineering</item>
+    Info:   <item>Automotive engineering</item>
+    Info:   <item>Bio Chemical Engineering</item>
+    Info:   <item>Bio Medical Engineering</item>
+    Info:   <item>Bio-Technology</item>
+    Info:   <item>Biochemical Engineering</item>
+    Info:   <item>Biotechnology</item>
+    Info:   <item>Chemical Engineering</item>
+    Info:   <item>Chemical Engineering</item>
+    Info:   <item>Civil Engineering</item>
+    Info:   <item>Civil Engineering</item>
+    Info:   <item>Computer Engineering</item>
+    Info:   <item>Computer Science and Engineering</item>
+    Info:   <item>Electrical and Electronics Engineering</item>
+    Info:   <item>Electrical Controls Engineering</item>
+    Info:   <item>Electrical Engineering</item>
+    Info:   <item>Electronics  Engineering</item>
+    Info:   <item>Electronics and Communication Engineering</item>
+    Info:   <item>Electronics and Communication Engineering</item>
+    Info:   <item>Electronics and Instrumentation Engineering</item>
+    Info:   <item>Electronics and Telecomm Engineering</item>
+    Info:   <item>Electronics Instrumentation and Control</item>
+    Info:   <item>Engineering Management</item>
+    Info:   <item>Environmental Engineering</item>
+    Info:   <item>Fire Protection Engineering</item>
+    Info:   <item>Food Technology</item>
+    Info:   <item>Industrial Engineering</item>
+    Info:   <item>Industrial Production Engg.</item>
+    Info:   <item>Information Technology</item>
+    Info:   <item>Information Technology</item>
+    Info:   <item>Instrumentation and Control</item>
+    Info:   <item>Integrated Engineering</item>
+    Info:   <item>Leather Technology</item>
+    Info:   <item>Man Made Fiber Technology</item>
+    Info:   <item>Manufacturing Engineering</item>
+    Info:   <item>Manufacturing Engineering</item>
+    Info:   <item>Marine Engineering</item>
+    Info:   <item>Material Engineering</item>
+    Info:   <item>Materials Engineering</item>
+    Info:   <item>Mechanical Engineering</item>
+    Info:   <item>Mechanical Engineering</item>
+    Info:   <item>Mechatronics Engineering</item>
+    Info:   <item>Mechatronics Engineering</item>
+    Info:   <item>Metallurgical Engineering</item>
+    Info:   <item>Mining Engineering</item>
+    Info:   <item>Mining Engineering</item>
+    Info:   <item>Nuclear Engineering</item>
+    Info:   <item>Ocean and Marine Engineering</item>
+    Info:   <item>Oil Technology</item>
+    Info:   <item>Paint Technology</item>
+    Info:   <item>Petroleum Engineering</item>
+    Info:   <item>Plastics Engineering</item>
+    Info:   <item>Production Engineering</item>
+    Info:   <item>Robotics and Automation Engineering</item>
+    Info:   <item>Structural Engineering</item>
+    Info:   <item>Systems Science</item>
+    Info:   <item>Textile Engineering</item>
+    Info:   <item>Textile Engineering</item>
+</array>
+
+    </resources>
