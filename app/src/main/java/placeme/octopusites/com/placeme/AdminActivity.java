@@ -409,6 +409,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
+
                     } else if (navMenuFlag == 2) {
 
                         notificationorplacementflag = 1;
