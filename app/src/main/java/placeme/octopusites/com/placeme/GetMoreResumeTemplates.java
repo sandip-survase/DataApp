@@ -101,7 +101,7 @@ public class GetMoreResumeTemplates extends AppCompatActivity {
 
             for(int i=0;i<count;i++)
             {
-                ResumeTemplateItem item=new ResumeTemplateItem(resumeIds[i],"http://192.168.100.100/AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],resumeDownloadStatus[i]);
+                ResumeTemplateItem item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],resumeDownloadStatus[i]);
                 itemList.add(item);
             }
             adapter.notifyDataSetChanged();

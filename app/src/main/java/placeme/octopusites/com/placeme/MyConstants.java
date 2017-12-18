@@ -120,6 +120,7 @@ public class MyConstants {
     //**************************************   AESTest   *****************************************
 
     public static final String url_Welcome = IP + "AESTest/Welcome";
+
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
 
@@ -129,6 +130,7 @@ public class MyConstants {
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
 
+    public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
     public static final String url_verifyotp = IP + "AESTest/VerifyOTP";

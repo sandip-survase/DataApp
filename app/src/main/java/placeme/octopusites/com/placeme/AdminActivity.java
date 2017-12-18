@@ -2680,7 +2680,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         private Bitmap downloadImage(String url) {
             Uri uri = new Uri.Builder()
                     .scheme("http")
-                    .authority("192.168.100.100")
+                    .authority(MyConstants.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();

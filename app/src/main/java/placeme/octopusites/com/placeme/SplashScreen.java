@@ -354,7 +354,7 @@ public class SplashScreen extends Activity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://192.168.100.100/").openConnection();
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(MyConstants.IP).openConnection();
             localHttpURLConnection.setConnectTimeout(1000);
             localHttpURLConnection.connect();
             return true;

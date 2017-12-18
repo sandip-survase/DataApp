@@ -153,7 +153,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encemailorphone));
 //            params.add(new BasicNameValuePair("aid", android_id));
-            json = jParser.makeHttpRequest("http://192.168.100.100/AESTest/ForgotPassword", "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ForgotPassword, "GET", params);
             Log.d("TAG", "forgot password json: "+json);
             try {
                 resultofop = json.getString("info");
