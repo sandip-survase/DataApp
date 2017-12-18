@@ -121,7 +121,6 @@ public class MyConstants {
     //**************************************   AESTest   *****************************************
 
     public static final String url_Welcome = IP + "AESTest/Welcome";
-
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
 

@@ -1528,7 +1528,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
 
-            new GetLastUpdatedNotification().execute();
+//            new GetLastUpdatedNotification().execute();
 
         }
     }
@@ -2278,7 +2278,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
                 tswipe_refresh_layout.setRefreshing(false);
-                new GetLastUpdatedNotification().execute();
+//                new GetLastUpdatedNotification().execute();
             }
         }.execute();
     }
