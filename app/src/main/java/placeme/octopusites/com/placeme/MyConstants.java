@@ -23,72 +23,72 @@ public class MyConstants {
 
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
-    public static String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
-    public static String url_getnotificationsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfNotifications";
-    public static String url_getnotifications = IP + "CreateNotificationTemp/GetNotifications";
-    public static String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
-    public static String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";
-    public static String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
-    public static String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
-    public static String url_getplacements = IP + "CreateNotificationTemp/GetPlacements";
+    public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
+    public static final String url_getnotificationsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfNotifications";
+    public static final String url_getnotifications = IP + "CreateNotificationTemp/GetNotifications";
+    public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static final String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";
+    public static final String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
+    public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_getplacements = IP + "CreateNotificationTemp/GetPlacements";
     //                           --------------------alumniActivity(alumni)-----------------
-    public static String url_GetNotificationsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
-    public static String url_GetReadStatusOfNotificationsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
-    public static String url_GetNotificationsAlumni = IP + "CreateNotificationTemp/GetNotificationsAlumni";
-    public static String url_ChangeNotificationReadStatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
-    public static String url_GetPlacementsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetPlacementsAlumniMetaData";
-    public static String url_GetReadStatusOfPlacementsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
-    public static String url_GetPlacementsAlumni = IP + "CreateNotificationTemp/GetPlacementsAlumni";
-    public static String url_ChangePlacementReadStatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_GetNotificationsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
+    public static final String url_GetReadStatusOfNotificationsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
+    public static final String url_GetNotificationsAlumni = IP + "CreateNotificationTemp/GetNotificationsAlumni";
+    public static final String url_ChangeNotificationReadStatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static final String url_GetPlacementsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetPlacementsAlumniMetaData";
+    public static final String url_GetReadStatusOfPlacementsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
+    public static final String url_GetPlacementsAlumni = IP + "CreateNotificationTemp/GetPlacementsAlumni";
+    public static final String url_ChangePlacementReadStatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
     //                                --------------------adminActivity)-----------------
 //placement urls
-    public static String url_GetPlacementsAdminAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsAdminMetaData";
-    public static String url_GetReadStatusOfPlacementsForAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    public static String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
-    public static String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+    public static final String url_GetPlacementsAdminAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsAdminMetaData";
+    public static final String url_GetReadStatusOfPlacementsForAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
+    public static final String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
+    public static final String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
-    public static String url_GetNotificationsAdminAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsAdminMetaData";
-    public static String url_GetReadStatusOfNotificationsAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    public static String url_GetNotificationsAdmin = IP + "CreateNotificationTemp/GetNotificationsAdmin";
-    public static String url_ChangeNotificationReadStatusAdmin = IP + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+    public static final String url_GetNotificationsAdminAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
+    public static final String url_GetNotificationsAdmin = IP + "CreateNotificationTemp/GetNotificationsAdmin";
+    public static final String url_ChangeNotificationReadStatusAdmin = IP + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     //    -------------------------------EditNotification-----------------------------------
-    public static String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
-    public static String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
-    public static String url_GetNotificationsSentByAdmin = IP + "CreateNotificationTemp/GetNotificationsSentByAdmin";
-    public static String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
+    public static final String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
+    public static final String url_GetNotificationsSentByAdmin = IP + "CreateNotificationTemp/GetNotificationsSentByAdmin";
+    public static final String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
-    public static String url_GetPlacementSentByAdminByAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
-    public static String url_GetReadStatusOfPlacementsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
-    public static String url_GetPlacementSentByAdmin = IP + "CreateNotificationTemp/GetPlacementSentByAdmin";
-    public static String url_Delete_Placements = IP + "CreateNotificationTemp/DeletePlacement";
+    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
+    public static final String url_GetReadStatusOfPlacementsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
+    public static final String url_GetPlacementSentByAdmin = IP + "CreateNotificationTemp/GetPlacementSentByAdmin";
+    public static final String url_Delete_Placements = IP + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
-    public static String url_GetPlacementsCreatedByHr = IP + "CreateNotificationTemp/GetPlacementsCreatedByHr";
+    public static final String url_GetPlacementsCreatedByHr = IP + "CreateNotificationTemp/GetPlacementsCreatedByHr";
     //    -------------------------------EditPlacementHr -----------------------------------
-    public static String url_GetPlacementSentByHr = IP + "CreateNotificationTemp/GetPlacementSentByHr";
+    public static final String url_GetPlacementSentByHr = IP + "CreateNotificationTemp/GetPlacementSentByHr";
     //    -------------------------------EditPlacementMainHr -----------------------------------
-    public static String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
+    public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
-    public static String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
-    public static String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
-    public static String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
+    public static final String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
+    public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
     //    -------------------------------CreatePlacement -----------------------------------
-    public static String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
-    public static String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
+    public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
-    public static String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
+    public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
-    public static String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
-    public static String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
+    public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
+    public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
     //    -------------------------------ViewPlacement -----------------------------------
-    public static String url_RegisterForPlacement = IP + "AESTest/RegisterForPlacement";
-    public static String url_GetStudentMarksInfo = IP + "AESTest/GetStudentMarksInfo";
-    public static String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
+    public static final String url_RegisterForPlacement = IP + "AESTest/RegisterForPlacement";
+    public static final String url_GetStudentMarksInfo = IP + "AESTest/GetStudentMarksInfo";
+    public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
     //    -------------------------------EditPlacementMain -----------------------------------
-    public static String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
-    public static String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
-    public static String url_SaveRegistereduserStatus = IP + "CreateNotificationTemp/SaveRegistereduserStatus";
+    public static final String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
+    public static final String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
+    public static final String url_SaveRegistereduserStatus = IP + "CreateNotificationTemp/SaveRegistereduserStatus";
 //    ----------------------------------/sunny---------------------------------------------------------------
 
 
@@ -102,11 +102,11 @@ public class MyConstants {
     public static final String url_create_firebase = IP + "PlaceMe/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase = IP + "PlaceMe/ChangeUsername";
-    public static String url_get_chatrooms = IP + "PlaceMe/GetChatRooms";
-    public static String url_getmessagesreadstatus = IP + "PlaceMe/GetReadStatusOfMessages";
-    public static String url_changepass = IP + "PlaceMe/ChangePass";
-    public static String load_news = IP + "PlaceMe/GetNews";
-    public static String load_videos = IP + "PlaceMe/GetVideos";
+    public static final String url_get_chatrooms = IP + "PlaceMe/GetChatRooms";
+    public static final String url_getmessagesreadstatus = IP + "PlaceMe/GetReadStatusOfMessages";
+    public static final String url_changepass = IP + "PlaceMe/ChangePass";
+    public static final String load_news = IP + "PlaceMe/GetNews";
+    public static final String load_videos = IP + "PlaceMe/GetVideos";
 
     // Messages -----------------------------------------
 
@@ -123,22 +123,22 @@ public class MyConstants {
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
 
-    public static String url_getsession = IP + "AESTest/GetSessionDetails";
-    public static String load_resume_ids = IP + "AESTest/GetResumeIds";
-    public static String url_editemail = IP + "AESTest/EditEmail";
-    public static String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
+    public static final String url_getsession = IP + "AESTest/GetSessionDetails";
+    public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
+    public static final String url_editemail = IP + "AESTest/EditEmail";
+    public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
 
-    public static String url_save_bug = IP + "ProfileObjects/Save_Bug";
-    public static String url_resendotp = IP + "AESTest/ResendOTP";
-    public static String url_verifyotp = IP + "AESTest/VerifyOTP";
-    public static String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";
-    public static String url_savepreferences = IP + "AESTest/SavePreferences";
-    public static String url_report = IP + "AESTest/ReportBug";
-    public static String download_resume_template = IP + "AESTest/DownloadResumeTemplate";
-    public static String url_savesessiondetails = IP + "AESTest/SaveSessionDetails";
-    public static String load_resume_pages = IP + "AESTest/GetAvailableResumePages";
-    public static String load_resume_page = IP + "AESTest/GetResumePage";
+    public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
+    public static final String url_resendotp = IP + "AESTest/ResendOTP";
+    public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
+    public static final String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";
+    public static final String url_savepreferences = IP + "AESTest/SavePreferences";
+    public static final String url_report = IP + "AESTest/ReportBug";
+    public static final String download_resume_template = IP + "AESTest/DownloadResumeTemplate";
+    public static final String url_savesessiondetails = IP + "AESTest/SaveSessionDetails";
+    public static final String load_resume_pages = IP + "AESTest/GetAvailableResumePages";
+    public static final String load_resume_page = IP + "AESTest/GetResumePage";
 
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
@@ -146,7 +146,7 @@ public class MyConstants {
 //    --------------------------------------Load fragment data-------------------------------------
 
     public static final String load_HR_data = IP + "ProfileObjects/GetHrData";
-    public static String url_load_alumni_data = IP + "ProfileObjects/GetAlumniData";
+    public static final String url_load_alumni_data = IP + "ProfileObjects/GetAlumniData";
     public static final String load_student_data = IP + "ProfileObjects/GetStudentData";
     public static final String load_Admin_data = IP + "ProfileObjects/GetAdminData";
 
@@ -154,7 +154,7 @@ public class MyConstants {
 
     public static final String url_SaveIntro = IP + "ProfileObjects/SaveIntro";
     public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
-    public static String url_SaveAdminIntro = IP + "ProfileObjects/SaveAdminIntro";
+    public static final String url_SaveAdminIntro = IP + "ProfileObjects/SaveAdminIntro";
 
 //    --------------------------------------project-------------------------------------
 
@@ -165,9 +165,9 @@ public class MyConstants {
     public static final String url_SaveTenth = IP + "ProfileObjects/SaveTenth";
     public static final String url_savedata_twelth = IP + "ProfileObjects/SaveTwelth";
     public static final String url_savedata_diploma = IP + "ProfileObjects/SaveDiploma";
-    public static String url_savedata_ug = IP + "ProfileObjects/SaveUg";
-    public static String url_savedata_pg_sem = IP + "ProfileObjects/SavePgSem";
-    public static String url_savedata_pg_year = IP + "ProfileObjects/SavePgYear";
+    public static final String url_savedata_ug = IP + "ProfileObjects/SaveUg";
+    public static final String url_savedata_pg_sem = IP + "ProfileObjects/SavePgSem";
+    public static final String url_savedata_pg_year = IP + "ProfileObjects/SavePgYear";
 
 //    ----------------------------------------Accomplishments-----------------------------
 
@@ -198,7 +198,7 @@ public class MyConstants {
 
 //  --------------------------------------------Tabfragment---------------------------------
 
-    public static String savepersonalinfo = IP + "ProfileObjects/SavePersonalInfo";
+    public static final String savepersonalinfo = IP + "ProfileObjects/SavePersonalInfo";
     public static final String url_SaveAdminPersonal = IP + "ProfileObjects/SaveAdminPersonal";
 
 //    ------------------------------------------company details---------------------------------
@@ -211,13 +211,13 @@ public class MyConstants {
 
 //    ------------------------------------------Education details---------------------------------
 
-    public static String url_getcourses = IP + "AESTest/GetDiplomaCourses";
-    public static String url_getugcourses = IP + "AESTest/GetUGCourses";
-    public static String url_getstreams = IP + "AESTest/GetUGStreams";
-    public static String url_getuniversities = IP + "AESTest/GetUGUniversities";
-    public static String url_getpgcourses = IP + "AESTest/GetPGCourses";
-    public static String url_getpgstreams = IP + "AESTest/GetPGStreams";
-    public static String url_getpguniversities = IP + "AESTest/GetPGUniversities";
+    public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
+    public static final String url_getugcourses = IP + "AESTest/GetUGCourses";
+    public static final String url_getstreams = IP + "AESTest/GetUGStreams";
+    public static final String url_getuniversities = IP + "AESTest/GetUGUniversities";
+    public static final String url_getpgcourses = IP + "AESTest/GetPGCourses";
+    public static final String url_getpgstreams = IP + "AESTest/GetPGStreams";
+    public static final String url_getpguniversities = IP + "AESTest/GetPGUniversities";
 
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
@@ -242,7 +242,7 @@ public class MyConstants {
 
     public static final String url_SaveStudentFnameLnameMobile = IP + "AESTest/SaveStudentFnameLnameMobile";
 
-    //    public static String url = IP+"HandleMobileRequests/getimg.jsp?username=";
+    //    public static final String url = IP+"HandleMobileRequests/getimg.jsp?username=";
     public static final String url_SendActivationCode = IP + "AESTest/SendActivationCode";
     public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
