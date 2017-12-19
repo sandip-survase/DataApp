@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+
 /**
  * Created by admin on 9/27/2017.
  */
@@ -21,6 +24,7 @@ public class Z {
     private static final String IP_20 = "http://192.168.100.20/";
     private static final String IP_30 = "http://192.168.100.30/";
 
+    public static String digest1=null,digest2=null;
 
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
@@ -407,6 +411,47 @@ public class Z {
                         R.anim.bottom_up_box4);
         view.startAnimation(animation1);
 
+    }
+    public static String getDigest1(Context context)
+    {
+        if(digest1!=null)
+            return digest1;
+        else
+        {
+            digest1=MySharedPreferencesManager.getDigest1(context);
+        }
+        return digest1;
+    }
+    public static String getDigest2(Context context)
+    {
+        if(digest2!=null)
+            return digest2;
+        else
+        {
+            digest2=MySharedPreferencesManager.getDigest2(context);
+        }
+        return digest2;
+    }
+    public static String Encrypt(String string,Context context) throws Exception
+    {
+        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
+        String sPadding = "ISO10126Padding";
+
+        byte[] objBytes = string.getBytes("UTF-8");
+        byte[] objEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, objBytes);
+
+        return new String(SimpleBase64Encoder.encode(objEncryptedBytes));
+    }
+    public static String Decrypt(String string,Context context) throws Exception
+    {
+        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
+        String sPadding = "ISO10126Padding";
+
+        byte[] EncryptedBytes = SimpleBase64Encoder.decode(string);
+        byte[] DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, EncryptedBytes);
+        return new String(DecryptedBytes);
     }
 
 

@@ -324,18 +324,17 @@ public class EditPlacement extends AppCompatActivity {
 
             }
         });
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
+
 
         TextView editnotitxt = (TextView) findViewById(R.id.editnotitxt);
         TextView editnotinotitxt = (TextView) findViewById(R.id.editnotinotitxt);
-        editnotitxt.setTypeface(custom_font);
-        editnotinotitxt.setTypeface(custom_font2);
-        deletenotitxt.setTypeface(custom_font);
+        editnotitxt.setTypeface(Z.getBold(this));
+        editnotinotitxt.setTypeface(Z.getLight(this));
+        deletenotitxt.setTypeface(Z.getBold(this));
 
 
         //seting data to adapter
-        getPlacements();
+//        getPlacements();
 
     }
 
@@ -511,7 +510,7 @@ public class EditPlacement extends AppCompatActivity {
         Log.d("PlacmentTesting", "lastPageFlagPlacement: " + lastPageFlagPlacement);
 //        new GetPlacementsReadStatus().execute();
 
-        new GetPlacements().execute();
+//        new GetPlacements().execute();
 
     }
 

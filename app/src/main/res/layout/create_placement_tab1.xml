@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -29,8 +29,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Company/Organization Name"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="100"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -41,8 +42,7 @@
             android:layout_below="@+id/companynameinput"
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+            app:errorEnabled="true">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/cpackage"
@@ -51,8 +51,9 @@
                 android:hint="Package (in LPA)"
                 android:inputType="numberDecimal"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="5" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -72,8 +73,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Post Opened"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="100" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -84,7 +86,8 @@
             android:layout_below="@+id/postinput"
             android:layout_marginTop="5dp"
             android:text="Choose for which courses you want to enable this placement."
-            android:textColor="#bbb" />
+            android:textSize="12dp"
+            android:textColor="@color/dark_color" />
 
         <RelativeLayout
             android:id="@+id/courseselector"
@@ -96,37 +99,32 @@
             android:layout_weight="28"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/dummy2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:text=""
+                android:textColor="@color/dark_color" />
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/CoursecInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:maxLines="1"
+                android:layout_below="@+id/loctxt"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
-
-                <TextView
-                    android:id="@+id/dummy2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="0dp"
-                    android:text=""
-                    android:textColor="#bbb" />
-
-                <AutoCompleteTextView
+            <AutoCompleteTextView
                     android:id="@+id/courses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@android:color/transparent"
-                    android:hint="select Course"
+                    android:hint="Select Course"
                     android:maxLines="1"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="15dp" />
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -136,7 +134,7 @@
                 android:layout_below="@+id/tagsEditText"
                 android:layout_marginTop="0dp"
                 android:text=""
-                android:textColor="#bbb" />
+                android:textColor="@color/dark_color" />
 
         </RelativeLayout>
 
@@ -157,6 +155,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
+                android:id="@+id/streaminput"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
 
@@ -164,14 +163,12 @@
                     android:id="@+id/streams"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@android:color/transparent"
-                    android:hint="select Streams"
+                    android:hint="Select Streams"
                     android:maxLines="1"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="15dp" />
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -186,7 +183,8 @@
             android:layout_marginTop="20dp"
             android:layout_weight="28"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
 
             <mabbas007.tagsedittext.TagsEditText
                 android:id="@+id/selected"
@@ -195,17 +193,18 @@
                 android:layout_toRightOf="@+id/spinnerimg1"
                 android:background="@android:color/transparent"
                 android:editable="false"
-                android:hint="Selected Course And  Streams"
-                android:maxLines="1"
-                android:popupBackground="#001111"
-                android:singleLine="true"
-                android:textColor="#eee"
-                android:textColorHint="#eee"
-                android:textSize="16dp"
+                android:hint="Selected Courses And Streams"
+                android:popupBackground="@color/while_color"
+                android:textColor="@color/dark_color"
                 TagsEditText:allowSpaceInTag="true"
+                android:textColorHint="@color/dark_color"
+                TagsEditText:tagsTextSize="12dp"
                 TagsEditText:tagsBackground="@drawable/square_default"
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                TagsEditText:tagsTextColor="#282f35" />
+                TagsEditText:tagsTextColor="@color/while_color"
+                TagsEditText:tagsPaddingRight="10dp"
+
+                />
 
         </RelativeLayout>
 
@@ -226,8 +225,9 @@
                 android:hint="Vacancies"
                 android:inputType="number"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="5" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -248,8 +248,8 @@
                 android:focusable="false"
                 android:hint="Last Date of Registration"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -270,8 +270,8 @@
                 android:focusable="false"
                 android:hint="Date of Arrival"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -291,8 +291,10 @@
                 android:layout_height="wrap_content"
                 android:hint="Bond (in Months)"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:inputType="number"
+                android:textSize="16dp"
+                android:maxLength="5" />
 
         </android.support.design.widget.TextInputLayout>
 

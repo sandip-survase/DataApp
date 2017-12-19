@@ -426,7 +426,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         recyclerViewPlacement.setVisibility(View.GONE);
 //                      createPlacementOrNotification=(TextView)findViewById(R.id.createnotificationtxt) ;
 //                      editPlacementOrNotification
-                        getNotifications();
+//                        getNotifications();
 //                      recyclerViewNotification.setVisibility(View.VISIBLE);
 //                      recyclerViewPlacement.setVisibility(View.GONE);
 
@@ -444,7 +444,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                         recyclerViewNotification.setVisibility(View.GONE);
                         recyclerViewPlacement.setVisibility(View.VISIBLE);
-                        getPlacements();
+//                        getPlacements();
 //                     recyclerViewNotification.setVisibility(View.GONE);
 //                     recyclerViewPlacement.setVisibility(View.VISIBLE);
 
@@ -1209,18 +1209,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             public void onRefresh() {
 
 
-                if (selectedMenuFlag == 1)
-                    getNotifications();
-                else if (selectedMenuFlag == 2)
-                    getPlacements();
-
+                if (selectedMenuFlag == 1) {
+//                    getNotifications();
+                }
+                else if (selectedMenuFlag == 2) {
+//                    getPlacements();
+                }
 
             }
         });
 
-        tswipe_refresh_layout.setRefreshing(true);
-
-        new GetUnreadCountOfNotificationAndPlacement().execute();
+//        tswipe_refresh_layout.setRefreshing(true);
+//
+//        new GetUnreadCountOfNotificationAndPlacement().execute();
 //        new GetUnreadMessagesCount().execute();
 
 
@@ -2269,13 +2270,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     @Override
     protected void onRestart() {
-        super.onRestart();
-        if (navMenuFlag == 2) {
+//        super.onRestart();
 
-            getNotifications();
-        } else if (navMenuFlag == 3) {
-            getPlacements();
-        }
+//        if (navMenuFlag == 2) {
+//
+//            getNotifications();
+//        } else if (navMenuFlag == 3) {
+//            getPlacements();
+//        }
 
     }
 
@@ -2322,7 +2324,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 notificationcountrl.setVisibility(View.GONE);
             }
 
-            getNotifications();
+//            getNotifications();
 
         }
     }

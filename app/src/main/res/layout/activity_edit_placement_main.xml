@@ -7,7 +7,7 @@
     android:id="@+id/activity_create_placement"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:focusableInTouchMode="true"
 
     tools:context="placeme.octopusites.com.placeme.EditPlacementMain">
@@ -26,8 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Placement/Internship"
-        android:textSize="18dp"
-        android:textColor="#eee"
+        android:textSize="16dp"
+        android:textColor="@color/dark_color"
         android:id="@+id/createnotitxt"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
@@ -39,7 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/createnotitxt"
-        android:textColor="#bbb"
+        android:textColor="@color/dark_color"
+        android:textSize="14dp"
         android:text="Choose to whom you want to send this modified Placement."
         android:layout_marginTop="10dp"
         android:id="@+id/createnotinotitxt"
@@ -56,7 +57,7 @@
         android:text="Students"
         android:layout_marginTop="10dp"
         android:theme="@style/MyCheckBox"
-        android:textColor="#eee"
+        android:textColor="@color/dark_color"
         android:layout_marginLeft="14dp"
         />
     <CheckBox
@@ -68,7 +69,7 @@
         android:text="Alumni"
         android:layout_marginTop="10dp"
         android:theme="@style/MyCheckBox"
-        android:textColor="#eee"
+        android:textColor="@color/dark_color"
         android:layout_marginLeft="20dp"
         />
     <RelativeLayout
@@ -106,18 +107,18 @@
                 android:id="@+id/batchesTags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                TagsEditText:tagsTextColor="#282f35"
+                TagsEditText:tagsTextColor="@color/while_color"
                 TagsEditText:allowSpaceInTag="true"
                 android:editable="false"
                 TagsEditText:tagsBackground="@drawable/square_default"
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="24dp"
                 android:singleLine = "true"
                 android:maxLines="1"
                 android:background="@color/colorPrimaryDark"
                 android:layout_marginLeft="5dp"
-                android:popupBackground="#001111"
+                android:popupBackground="@color/while_color"
                 android:layout_below="@+id/dummy2"/>
 
             <TextView
