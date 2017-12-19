@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.MyProfileAlumniFragment.alumniLog;
 
 public class MyProfilePg extends AppCompatActivity {
-    RelativeLayout layouttoshow,layouttohide;
+    RelativeLayout layouttoshow,layouttohide,pgsemstreamspinner,pgyearstreamspinner;
     RadioGroup radioGroupPg;
     RadioButton radioButtonPgSem,radioButtonPgYear;
     String pattern="sem";
@@ -71,10 +72,15 @@ public class MyProfilePg extends AppCompatActivity {
     String encmarksyear1,encoutofyear1,encpercentyear1,encmarksyear2,encoutofyear2,encpercentyear2,encmarksyear3,encoutofyear3,encpercentyear3,encaggregatepgyear,encschoolnamepgyear,encmonthandyearofpassingpgyear,encselectedcoursepgyear,encselectedstreampgyear,encselecteduniversitypgyear;
     int coursecount=0,streamcount=0,universitycount=0;
 
+    ArrayList<String> tosettoStreamslist=new ArrayList<>();
     String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
+    ArrayAdapter<String> dataAdapter2;
+    ArrayAdapter<String> streamlistadapter;
+    String[] CourseListWithIds,CourseList;
+    String[] StramsListWithIds,StramsList,tempStramsList;
 
     List<String> courseslist = new ArrayList<String>();
     List<String> streamlist = new ArrayList<String>();
@@ -194,6 +200,11 @@ public class MyProfilePg extends AppCompatActivity {
         yearofpassingpgyearinput= (TextInputLayout) findViewById(R.id.yearofpassingpgyearinput);
         poutofsem1input= (TextInputLayout) findViewById(R.id.poutofsem1input);
 
+         pgsemstreamspinner=(RelativeLayout)findViewById(R.id.pgsemstreamspinner);
+        pgyearstreamspinner=(RelativeLayout)findViewById(R.id.pgyearstreamspinner);
+
+        pgsemstreamspinner.setVisibility(View.GONE);
+        pgyearstreamspinner.setVisibility(View.GONE);
 
         pmarkssem1.setTypeface(Z.getBold(this));
         poutofsem1.setTypeface(Z.getBold(this));
@@ -284,16 +295,79 @@ public class MyProfilePg extends AppCompatActivity {
         TextView pgtxt=(TextView)findViewById(R.id.pgtxt);
         pgtxt.setTypeface(Z.getBold(this));
 
-//        new GetCourses().execute();
-//        new GetUniversities().execute();
+        CourseListWithIds = getResources().getStringArray(R.array.pgcourses);
+        CourseList = new String[CourseListWithIds.length];
+
+        Log.d("TAG", "Course without ID: " + CourseListWithIds[2]);
+
+        for (int i = 0; i < CourseListWithIds.length; i++) {
+            Log.d("TAG", "Course without ID: " + CourseList[i]);
+            String temp[] = CourseListWithIds[i].split(",");
+            CourseList[i] = temp[1];
+
+        }
 
 
-//        *************
-        coursecount = getResources().getStringArray(R.array.pgcourses).length;
-        courses = new String[coursecount];
-        courses = getResources().getStringArray(R.array.pgcourses);
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, courses) {
+
+        StramsListWithIds = getResources().getStringArray(R.array.pgstreams);
+        StramsList = new String[StramsListWithIds.length];
+        for (int i = 0; i < StramsListWithIds.length; i++) {
+            String temp[] = StramsListWithIds[i].split(",");
+            StramsList[i] = temp[1];
+            Log.d("TAG", "streams without ID: " + StramsList[i]);
+
+        }
+
+        pgsemstream.setAdapter(streamlistadapter);
+
+        pgsemcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCoursepgsem= (String) parent.getItemAtPosition(position);
+                Log.d(alumniLog, "onItemSelected: "+selectedCoursepgsem);
+
+                String toCompare = selectedCoursepgsem;
+
+                int index = 0;
+                for (int i = 0; i < CourseList.length; i++) {
+                    if (CourseList[i].equals(toCompare))
+                        index = i;
+
+                }
+
+                toCompare = CourseListWithIds[index];
+                Log.d("TAG", "toCompare : " + toCompare);
+                tosettoStreamslist.clear();
+
+                setStreamAdapter(toCompare);
+//                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
+
+                TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.othersemstreaminput);
+
+                if(selectedStreampgsem.equals("Other")) {
+
+                    othersemstreaminput.setVisibility(View.VISIBLE);
+                }
+                else {
+
+                    othersemstreaminput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, CourseList) {
             @Override
             public boolean isEnabled(int position) {
 
@@ -335,51 +409,6 @@ public class MyProfilePg extends AppCompatActivity {
         pgsemcourse.setAdapter(adapter4);
         pgyearcourse.setAdapter(adapter4);
 
-        streamcount = getResources().getStringArray(R.array.pgstreams).length;
-        streams = new String[streamcount];
-        streams = getResources().getStringArray(R.array.pgstreams);
-
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, streams) {
-            @Override
-            public boolean isEnabled(int position) {
-
-                if (position == 0) {
-
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                } else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };
-
-
-        pgsemstream.setAdapter(adapter3);
-        pgyearstream.setAdapter(adapter3);
 
         universitycount = getResources().getStringArray(R.array.pguniversity).length;
         universities= new String[streamcount];
@@ -430,53 +459,30 @@ public class MyProfilePg extends AppCompatActivity {
 
 //        *****************
 
-        pgsemcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCoursepgsem = (String) parent.getItemAtPosition(position);
-                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othersemcourseinput);
-                if(selectedCoursepgsem.equals("Other")) {
+//        pgsemcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                selectedCoursepgsem = (String) parent.getItemAtPosition(position);
+//                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othersemcourseinput);
+//                if(selectedCoursepgsem.equals("Other")) {
+//
+//                    otherboardinput.setVisibility(View.VISIBLE);
+//                }
+//                else {
+////                    new GetStreamsSem().execute();
+//                    otherboardinput.setVisibility(View.GONE);
+//                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
-                    otherboardinput.setVisibility(View.VISIBLE);
-                }
-                else {
-//                    new GetStreamsSem().execute();
-                    otherboardinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        pgyearcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCoursepgyear= (String) parent.getItemAtPosition(position);
-                TextInputLayout otheryearcourseinput=(TextInputLayout)findViewById(R.id.otheryearcourseinput);
-                if(selectedCoursepgyear.equals("Other")) {
-
-                    otheryearcourseinput.setVisibility(View.VISIBLE);
-                }
-                else {
-//                    new GetStreamsYear().execute();
-                    otheryearcourseinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         pgsemuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -502,6 +508,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
         pgyearuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -525,18 +532,61 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+//
+
+
+        pgyearcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCoursepgyear= (String) parent.getItemAtPosition(position);
+                TextInputLayout otheryearcourseinput=(TextInputLayout)findViewById(R.id.otheryearcourseinput);
+
+
+                String toCompare = selectedCoursepgyear;
+
+                int index = 0;
+                for (int i = 0; i < CourseList.length; i++) {
+                    if (CourseList[i].equals(toCompare))
+                        index = i;
+
+                }
+
+                toCompare = CourseListWithIds[index];
+                Log.d("TAG", "toCompare : " + toCompare);
+                tosettoStreamslist.clear();
+
+                setStreamyearAdapter(toCompare);
+
+
+
+                if(selectedCoursepgyear.equals("Other")) {
+
+                    otheryearcourseinput.setVisibility(View.VISIBLE);
+                }
+                else {
+//                    new GetStreamsYear().execute();
+                    otheryearcourseinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         pgsemstream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStreampgsem= (String) parent.getItemAtPosition(position);
-                Log.d(alumniLog, "onItemSelected: "+selectedStreampgsem);
-
-                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
-
+                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - "+selectedStreampgsem);
                 TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.othersemstreaminput);
                 if(selectedStreampgsem.equals("Other")) {
-
+                    Log.d("TAG", " selectedStreampgsem Other - "+selectedStreampgsem);
                     othersemstreaminput.setVisibility(View.VISIBLE);
                 }
                 else {
@@ -553,7 +603,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
-
 
         pgyearstream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1862,8 +1911,8 @@ public class MyProfilePg extends AppCompatActivity {
 
         if (selectedCoursepgsem != null) {
             int foundboard = 0;
-            for (int i = 1; i < courses.length - 1; i++)
-                if (selectedCoursepgsem.equals(courses[i])) {
+            for (int i = 1; i < CourseList.length - 1; i++)
+                if (selectedCoursepgsem.equals(CourseList[i])) {
                     foundboard = 1;
                     Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                     break;
@@ -1891,13 +1940,11 @@ public class MyProfilePg extends AppCompatActivity {
 
         if (selectedCoursepgyear != null) {
             int foundboard = 0;
-            for (int i = 1; i < courses.length - 1; i++)
-                if (selectedCoursepgyear.equals(courses[i])) {
+            for (int i = 1; i < CourseList.length - 1; i++)
+                if (selectedCoursepgyear.equals(CourseList[i])) {
                     foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                     break;
                 }
-            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedCoursepgyear);
             if (foundboard == 1)
                 pgyearcourse.setSelection(adapter4.getPosition(selectedCoursepgyear));
             else {
@@ -1905,7 +1952,6 @@ public class MyProfilePg extends AppCompatActivity {
                 if (selectedCoursepgyear.equals("")) {
                     pgyearcourse.setSelection(adapter4.getPosition("- Select Course -"));
                     otheryearcourse.setVisibility(View.GONE);
-//                    otherboardd.setText(selectedBoarddiploma);
                 } else {
                     pgyearcourse.setSelection(adapter4.getPosition("Other"));
                     otheryearcourse.setVisibility(View.VISIBLE);
@@ -1918,28 +1964,32 @@ public class MyProfilePg extends AppCompatActivity {
 
 
         if (selectedStreampgsem != null) {
-            int foundboard = 0;
-            for (int i = 1; i < streams.length - 1; i++)
-                if (selectedStreampgsem.equals(streams[i])) {
-                    foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
-                    break;
-                }
-            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedStreampgsem);
-            if (foundboard == 1)
-                pgsemstream.setSelection(adapter4.getPosition(selectedStreampgsem));
-            else {
-
-                if (selectedStreampgsem.equals("")) {
-                    pgsemstream.setSelection(adapter4.getPosition("- Select Stream -"));
-                    othersemstream.setVisibility(View.GONE);
-//                    otherboardd.setText(selectedBoarddiploma);
-                } else {
-                    pgsemstream.setSelection(adapter4.getPosition("Other"));
-                    othersemstream.setVisibility(View.VISIBLE);
-                    othersemstream.setText(selectedStreampgsem);
-                }
+            if(!selectedStreampgsem.equals("- Select Stream -") && !selectedStreampgsem.equals("") ) {
+                int foundboard = 0;
+                for (int i = 1; i < StramsList.length - 1; i++)
+                    if (selectedStreampgsem.equals(StramsList[i])) {
+                        foundboard = 1;
+                        Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                        break;
+                    }
+                Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedStreampgsem);
+                if (foundboard == 1)
+                    pgsemstream.setSelection(streamlistadapter.getPosition(selectedStreampgsem));
+//                else {
+//
+//                    if (selectedStreampgsem.equals("")) {
+//                        pgsemstream.setSelection(dataAdapter2.getPosition("- Select Stream -"));
+//                        othersemstream.setVisibility(View.GONE);
+////                    otherboardd.setText(selectedBoarddiploma);
+//                    } else {
+//                        pgsemstream.setSelection(dataAdapter2.getPosition("Other"));
+//                        othersemstream.setVisibility(View.VISIBLE);
+//                        othersemstream.setText(selectedStreampgsem);
+//                    }
+//                }
             }
+            else
+                selectedStreampgsem = "- Select Stream -";
 
         } else
             selectedStreampgsem = "- Select Stream -";
@@ -1947,57 +1997,65 @@ public class MyProfilePg extends AppCompatActivity {
 
 
         if (selectedStreampgyear != null) {
-            int foundboard = 0;
-            for (int i = 1; i < streams.length - 1; i++)
-                if (selectedStreampgyear.equals(streams[i])) {
-                    foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
-                    break;
-                }
-            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedStreampgyear);
-            if (foundboard == 1)
-                pgyearstream.setSelection(adapter4.getPosition(selectedStreampgyear));
-            else {
+            if(!selectedStreampgyear.equals("") && !selectedStreampgyear.equals("") ) {
+                int foundboard = 0;
+                for (int i = 1; i < StramsList.length - 1; i++)
+                    if (selectedStreampgyear.equals(StramsList[i])) {
+                        foundboard = 1;
+                        Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                        break;
+                    }
+                Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedStreampgyear);
+                if (foundboard == 1)
+                    pgyearstream.setSelection(dataAdapter2.getPosition(selectedStreampgyear));
+                else {
 
-                if (selectedStreampgyear.equals("")) {
-                    pgyearstream.setSelection(adapter4.getPosition("- Select Stream -"));
-                    otheryearstream.setVisibility(View.GONE);
+                    if (selectedStreampgyear.equals("")) {
+                        pgyearstream.setSelection(dataAdapter2.getPosition("- Select Stream -"));
+                        otheryearstream.setVisibility(View.GONE);
 //                    otherboardd.setText(selectedBoarddiploma);
-                } else {
-                    pgyearstream.setSelection(adapter4.getPosition("Other"));
-                    otheryearstream.setVisibility(View.VISIBLE);
-                    otheryearstream.setText(selectedStreampgyear);
+                    } else {
+                        pgyearstream.setSelection(dataAdapter2.getPosition("Other"));
+                        otheryearstream.setVisibility(View.VISIBLE);
+                        otheryearstream.setText(selectedStreampgyear);
+                    }
                 }
             }
-
+            else
+                selectedStreampgyear = "- Select Stream -";
         } else
             selectedStreampgyear = "- Select Stream -";
 
 
 
         if (selectedUniversitypgsem != null) {
-            int foundboard = 0;
-            for (int i = 1; i < universities.length - 1; i++)
-                if (selectedUniversitypgsem.equals(universities[i])) {
-                    foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
-                    break;
-                }
-            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgsem);
-            if (foundboard == 1)
-                pgsemuniversity.setSelection(adapter4.getPosition(selectedUniversitypgsem));
-            else {
+            if(!selectedUniversitypgsem.equals("")) {
 
-                if (selectedUniversitypgsem.equals("")) {
-                    pgsemuniversity.setSelection(adapter4.getPosition("- Select Stream -"));
-                    othersemuniversity.setVisibility(View.GONE);
+                int foundboard = 0;
+                for (int i = 1; i < universities.length - 1; i++)
+                    if (selectedUniversitypgsem.equals(universities[i])) {
+                        foundboard = 1;
+                        Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                        break;
+                    }
+                Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgsem);
+                if (foundboard == 1)
+                    pgsemuniversity.setSelection(adapter2.getPosition(selectedUniversitypgsem));
+                else {
+
+                    if (selectedUniversitypgsem.equals("")) {
+                        pgsemuniversity.setSelection(adapter2.getPosition("- Select University -"));
+                        othersemuniversity.setVisibility(View.GONE);
 //                    otherboardd.setText(selectedBoarddiploma);
-                } else {
-                    pgsemuniversity.setSelection(adapter4.getPosition("Other"));
-                    othersemuniversity.setVisibility(View.VISIBLE);
-                    othersemuniversity.setText(selectedUniversitypgsem);
+                    } else {
+                        pgsemuniversity.setSelection(adapter2.getPosition("Other"));
+                        othersemuniversity.setVisibility(View.VISIBLE);
+                        othersemuniversity.setText(selectedUniversitypgsem);
+                    }
                 }
             }
+            else
+                selectedUniversitypgsem = "- Select University -";
 
         } else
             selectedUniversitypgsem = "- Select University -";
@@ -2013,15 +2071,15 @@ public class MyProfilePg extends AppCompatActivity {
                 }
             Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgyear);
             if (foundboard == 1)
-                pgyearuniversity.setSelection(adapter4.getPosition(selectedUniversitypgyear));
+                pgyearuniversity.setSelection(adapter2.getPosition(selectedUniversitypgyear));
             else {
 
                 if (selectedUniversitypgyear.equals("")) {
-                    pgyearuniversity.setSelection(adapter4.getPosition("- Select Stream -"));
+                    pgyearuniversity.setSelection(adapter2.getPosition("- Select University -"));
                     otheryearuniversity.setVisibility(View.GONE);
 //                    otherboardd.setText(selectedBoarddiploma);
                 } else {
-                    pgyearuniversity.setSelection(adapter4.getPosition("Other"));
+                    pgyearuniversity.setSelection(adapter2.getPosition("Other"));
                     otheryearuniversity.setVisibility(View.VISIBLE);
                     otheryearuniversity.setText(selectedUniversitypgyear);
                 }
@@ -2035,6 +2093,161 @@ public class MyProfilePg extends AppCompatActivity {
         edittedFlag=0;
 
     }
+//********************************************
+    String setStreamAdapter(String a) {
+        try {
+
+            String courseArray[] = a.split(",");
+            int courseIndex = Integer.parseInt(courseArray[0]);
+            Log.d("TAG", "courseIndex: "+courseIndex);
+
+            int index = 0;
+            tosettoStreamslist.add("- Select Stream -");
+            for (int i = 0; i < StramsListWithIds.length; i++) {
+                if (StramsListWithIds[i].contains(""+courseIndex)) {
+                    String splitedStream[] =StramsListWithIds[i].split(",");
+                    if (splitedStream[0].equals(""+courseIndex)) {
+
+                        tosettoStreamslist.add(splitedStream[1]);
+                        splitedStream = null;
+                    }
+                }
+            }
+
+            tempStramsList = tosettoStreamslist.toArray(new String[0]);
+            if (tempStramsList != null && tempStramsList.length > 0) {
+                dataAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, tempStramsList)
+                {
+                    @Override
+                    public boolean isEnabled(int position) {
+
+                        if (position == 0) {
+
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        tv.setTypeface(Z.getBold(MyProfilePg.this));
+                        return view;
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView,
+                                                ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        tv.setTypeface(Z.getBold(MyProfilePg.this));
+
+                        if (position == 0) {
+                            // Set the hint text color gray
+                            tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                        } else {
+                            tv.setTextColor(getResources().getColor(R.color.dark_color));
+                        }
+                        return view;
+                    }
+                };
+
+                if(tempStramsList.length > 1) {
+                    pgsemstream.setAdapter(dataAdapter2);
+                    pgsemstreamspinner.setVisibility(View.VISIBLE);
+                }
+
+            }else {
+                tosettoStreamslist.clear();
+                pgsemstreamspinner.setVisibility(View.GONE);
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+
+    }
+
+
+    String setStreamyearAdapter(String a) {
+        try {
+
+            String courseArray[] = a.split(",");
+            int courseIndex = Integer.parseInt(courseArray[0]);
+            Log.d("TAG", "courseIndex: "+courseIndex);
+
+            int index = 0;
+            tosettoStreamslist.add("- Select Stream -");
+            for (int i = 0; i < StramsListWithIds.length; i++) {
+                if (StramsListWithIds[i].contains(""+courseIndex)) {
+                    String splitedStream[] =StramsListWithIds[i].split(",");
+                    if (splitedStream[0].equals(""+courseIndex)) {
+                        tosettoStreamslist.add(splitedStream[1]);
+                        splitedStream = null;
+                    }
+                }
+            }
+            tempStramsList = tosettoStreamslist.toArray(new String[0]);
+            if (tempStramsList != null && tempStramsList.length > 0) {
+                 dataAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, tempStramsList)
+                {
+                    @Override
+                    public boolean isEnabled(int position) {
+
+                        if (position == 0) {
+
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        tv.setTypeface(Z.getBold(MyProfilePg.this));
+                        return view;
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView,
+                                                ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        tv.setTypeface(Z.getBold(MyProfilePg.this));
+
+                        if (position == 0) {
+                            // Set the hint text color gray
+                            tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                        } else {
+                            tv.setTextColor(getResources().getColor(R.color.dark_color));
+                        }
+                        return view;
+                    }
+                };
+                if(tempStramsList.length > 1) {
+                    pgyearstream.setAdapter(dataAdapter2);
+                    pgyearstreamspinner.setVisibility(View.VISIBLE);
+                }
+
+            }else {
+                tosettoStreamslist.clear();
+                pgyearstreamspinner.setVisibility(View.GONE);
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+
+    }
+
+//    ******************************************
+
     private void disableScrollbars(ScrollView scrollView) {
         if (scrollView != null) {
 
@@ -2042,433 +2255,6 @@ public class MyProfilePg extends AppCompatActivity {
 
         }
     }
-
-    class GetCourses extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(Z.url_getpgcourses, "GET", params);
-            try {
-                String s = json.getString("count");
-                coursecount=Integer.parseInt(s);
-                courses=new String[coursecount];
-                for(int i=0;i<coursecount;i++)
-                {
-                    courses[i]=json.getString("course"+i);
-                }
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            courseslist.clear();
-            courseslist.add("- Select Course -");
-            for(int i=0;i<coursecount;i++)
-            {
-                courseslist.add(courses[i]);
-            }
-            populateCourses();
-            courseslist.add("Other");
-        }
-    }
-
-
-
-    void populateCourses()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, courseslist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };
-        pgsemcourse.setAdapter(dataAdapter);
-        pgyearcourse.setAdapter(dataAdapter);
-
-
-        if(isCourseSetsem==0) {
-            isCourseSetsem=1;
-            if(s.getCoursepgsem()!=null) {
-                pgsemcourse.setSelection(dataAdapter.getPosition(s.getCoursepgsem()));
-                selectedCoursepgsem = s.getCoursepgsem();
-                oldCoursesem = s.getCoursepgsem();
-            }
-            else
-                oldCoursesem = "- Select Course -";
-        }
-        if(isCourseSetyear==0) {
-            isCourseSetyear=1;
-            if(s.getCoursepgyear()!=null) {
-                pgyearcourse.setSelection(dataAdapter.getPosition(s.getCoursepgyear()));
-                selectedCoursepgyear = s.getCoursepgyear();
-                oldCourseyear = s.getCoursepgyear();
-            }
-            else
-                oldCourseyear ="- Select Course -" ;
-        }
-
-
-    }
-
-    class GetStreamsSem extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("c",selectedCoursepgsem));
-            json = jParser.makeHttpRequest(Z.url_getpgstreams, "GET", params);
-            try {
-                String s = json.getString("count");
-                streamcount=Integer.parseInt(s);
-                streams=new String[streamcount];
-                for(int i=0;i<streamcount;i++)
-                {
-                    streams[i]=json.getString("stream"+i);
-                }
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            streamlist.clear();
-            streamlist.add("- Select Stream/Specialization -");
-            if(streamcount==0)
-            {
-                RelativeLayout pgsemstreamspinner=(RelativeLayout)findViewById(R.id.pgsemstreamspinner);
-                pgsemstreamspinner.setVisibility(View.GONE);
-            }
-            else{
-                RelativeLayout pgsemstreamspinner=(RelativeLayout)findViewById(R.id.pgsemstreamspinner);
-                pgsemstreamspinner.setVisibility(View.VISIBLE);
-                for (int i = 0; i < streamcount; i++) {
-                    streamlist.add(streams[i]);
-                }
-                populateStreamsSem();
-                streamlist.add("Other");
-            }
-        }
-    }
-    void populateStreamsSem()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, streamlist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-
-                if(position == 0){
-                    // Set the hint text color sky_blue_color
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };;
-
-        pgsemstream.setAdapter(dataAdapter);
-
-
-        if(isStreamSetsem==0) {
-            isStreamSetsem=1;
-            if(s.getStreampgsem()!=null) {
-                pgsemstream.setSelection(dataAdapter.getPosition(s.getStreampgsem()));
-                selectedStreampgsem = s.getStreampgsem();
-                oldStreamsem = s.getStreampgsem();
-            }
-            else
-                oldStreamsem = "- Select Stream/Specialization -";
-        }
-    }
-    class GetStreamsYear extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("c",selectedCoursepgyear));
-            json = jParser.makeHttpRequest(Z.url_getpgstreams, "GET", params);
-            try {
-                String s = json.getString("count");
-                streamcount=Integer.parseInt(s);
-                streams=new String[streamcount];
-                for(int i=0;i<streamcount;i++)
-                {
-                    streams[i]=json.getString("stream"+i);
-                }
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            streamlist.clear();
-            streamlist.add("- Select Stream/Specialization -");
-            if(streamcount==0)
-            {
-                RelativeLayout pgyearstreamspinner=(RelativeLayout)findViewById(R.id.pgyearstreamspinner);
-                pgyearstreamspinner.setVisibility(View.GONE);
-            }
-            else{
-                RelativeLayout pgyearstreamspinner=(RelativeLayout)findViewById(R.id.pgyearstreamspinner);
-                pgyearstreamspinner.setVisibility(View.VISIBLE);
-                for (int i = 0; i < streamcount; i++) {
-                    streamlist.add(streams[i]);
-                }
-                populateStreamsYear();
-                streamlist.add("Other");
-            }
-        }
-    }
-    void populateStreamsYear()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, streamlist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };;
-        pgyearstream.setAdapter(dataAdapter);
-
-
-
-        if(isStreamSetyear==0) {
-            isStreamSetyear=1;
-            if(s.getStreampgyear()!=null) {
-                pgyearstream.setSelection(dataAdapter.getPosition(s.getStreampgyear()));
-                selectedStreampgyear = s.getStreampgyear();
-                oldStreamyear = s.getStreampgyear();
-            }
-            else
-                oldStreamyear = "- Select Stream/Specialization -";
-        }
-
-
-    }
-
-
-
-    class GetUniversities extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(Z.url_getpguniversities, "GET", params);
-            try {
-                String s = json.getString("count");
-                universitycount=Integer.parseInt(s);
-                universities=new String[universitycount];
-                for(int i=0;i<universitycount;i++)
-                {
-                    universities[i]=json.getString("university"+i);
-                }
-
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            universitieslist.clear();
-            universitieslist.add("- Select University -");
-            for(int i=0;i<universitycount;i++)
-            {
-                universitieslist.add(universities[i]);
-            }
-            populateUniversities();
-            universitieslist.add("Other");
-        }
-    }
-
-    void populateUniversities()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, universitieslist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfilePg.this));
-
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };;
-        pgsemuniversity.setAdapter(dataAdapter);
-        pgyearuniversity.setAdapter(dataAdapter);
-
-
-        if(isUniversitySetsem==0) {
-            isUniversitySetsem=1;
-            if(s.getUniversitypgsem()!=null) {
-                pgsemuniversity.setSelection(dataAdapter.getPosition(s.getUniversitypgsem()));
-                selectedUniversitypgsem = s.getUniversitypgsem();
-                oldUniversitysem = s.getUniversitypgsem();
-            }
-            else
-                oldUniversitysem="- Select University -";
-        }
-        if(isUniversitySetyear==0) {
-            isUniversitySetyear=1;
-            if(s.getUniversitypgyear()!=null) {
-                pgyearuniversity.setSelection(dataAdapter.getPosition(s.getUniversitypgyear()));
-                selectedUniversitypgyear = s.getUniversitypgyear();
-                oldUniversityyear = s.getUniversitypgyear();
-            }
-            else
-                oldUniversityyear="- Select University -";
-        }
-
-
-    }
-
-
 
     void setMonthYear(String tod,String selectedMonth,String selectedYear)
     {
@@ -2921,7 +2707,10 @@ public class MyProfilePg extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));    //0
             params.add(new BasicNameValuePair("d",param[0]));    //1
 
+            Log.d("TAG", "doInBackground: username ="+username);
+            Log.d("TAG", "doInBackground: username ="+param[0]);
             json = jParser.makeHttpRequest(Z.url_savedata_pg_sem, "GET", params);
+            Log.d("TAG", "doInBackground: json ="+json);
             try {
                 r = json.getString("info");
 
@@ -2932,9 +2721,10 @@ public class MyProfilePg extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("TAG", "onPostExecute: SaveDataPgSem result - "+result);
             if(result.equals("success"))
             {
+
                 if(!markssem1.equals(""))
                 Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
@@ -2986,6 +2776,8 @@ public class MyProfilePg extends AppCompatActivity {
 
                 MyProfilePg.super.onBackPressed();
             }
+//            else
+//                Toast.makeText(MyProfilePg.this,"Try again!",Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -3000,8 +2792,6 @@ public class MyProfilePg extends AppCompatActivity {
             params.add(new BasicNameValuePair("d",param[0]));    //0
 
             Log.d("TAG", "doInBackground: "+param[0]);
-
-
             json = jParser.makeHttpRequest(Z.url_savedata_pg_year, "GET", params);
             try {
                 r = json.getString("info");
@@ -3013,19 +2803,20 @@ public class MyProfilePg extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("TAG", "onPostExecute: SaveDataPgYear result - "+result);
             if(result.equals("success"))
             {
                 if(!marksyear1.equals(""))
                     Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
                 MyProfilePg.super.onBackPressed();
             }
-//            Toast.makeText(MyProfilePg.this,result,Toast.LENGTH_SHORT).show();
+//             else
+//            Toast.makeText(MyProfilePg.this,"Try again!",Toast.LENGTH_SHORT).show();
 
         }
     }
