@@ -2,7 +2,10 @@ package placeme.octopusites.com.placeme;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +16,7 @@ import android.widget.EditText;
 
 
 public class PlacementCreateTab3 extends Fragment {
-
+    TextInputLayout xinput,xiiinput,uginput,pginput;
     EditText xcriteria ,xiicriteria,ugcriteria,pgcriteria;
     String sxcriteria="" ,sxiicriteria="",sugcriteria="",spgcriteria="",sforwhome="";
     int  Erroflag=0;
@@ -22,10 +25,91 @@ public class PlacementCreateTab3 extends Fragment {
 
         View rootView = inflater.inflate(R.layout.create_placement_tab3, container, false);
 
+        xinput=(TextInputLayout)rootView.findViewById(R.id.xinput);
+        xiiinput=(TextInputLayout)rootView.findViewById(R.id.xiiinput);
+        uginput=(TextInputLayout)rootView.findViewById(R.id.uginput);
+        pginput=(TextInputLayout)rootView.findViewById(R.id.pginput);
+
+        xinput.setTypeface(Z.getLight(getActivity()));
+        xiiinput.setTypeface(Z.getLight(getActivity()));
+        uginput.setTypeface(Z.getLight(getActivity()));
+        pginput.setTypeface(Z.getLight(getActivity()));
+
         xcriteria=(EditText)rootView.findViewById(R.id.xcriteria);
         xiicriteria=(EditText)rootView.findViewById(R.id.xiicriteria);
         ugcriteria=(EditText)rootView.findViewById(R.id.ugcriteria);
         pgcriteria=(EditText)rootView.findViewById(R.id.pgcriteria);
+        xcriteria.setTypeface(Z.getBold(getActivity()));
+        xiicriteria.setTypeface(Z.getBold(getActivity()));
+        ugcriteria.setTypeface(Z.getBold(getActivity()));
+        pgcriteria.setTypeface(Z.getBold(getActivity()));
+
+        xcriteria.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                xinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        xiicriteria.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                xiiinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        ugcriteria.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                uginput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        pgcriteria.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                pginput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 
 
 
@@ -89,19 +173,19 @@ public class PlacementCreateTab3 extends Fragment {
         Erroflag=0;
 
         if(sxcriteria.length()<2){
-            xcriteria.setError("Invalid Company Name");
+            xinput.setError("Kindly enter valid percentage");
             Erroflag=1;
 
         } else if(sxiicriteria.length()<2){
-            xiicriteria.setError("Enter Valid Package");
+            xiiinput.setError("Kindly enter valid percentage");
             Erroflag=1;
 
         }else if(sugcriteria.length()<2){
-            ugcriteria.setError("Enter Valid Post");
+            uginput.setError("Kindly enter valid percentage");
             Erroflag=1;
 
         } else if(spgcriteria.length()<2){
-            pgcriteria.setError("Enter Valid Vacancies");
+            pginput.setError("Kindly enter valid percentage");
             Erroflag=1;
         }
 
