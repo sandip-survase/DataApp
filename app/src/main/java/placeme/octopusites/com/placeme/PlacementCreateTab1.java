@@ -45,7 +45,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
     AutoCompleteTextView courses,streams;
     TagsEditText selected;
     ArrayList<String> listAll=new ArrayList<String>();
-    TextInputLayout CoursecInput,streamsinput;
+    TextInputLayout companynameinput,packageinput,postinput,vacanciesinput,ldrinput,dorinput,bondinput,CoursecInput,streaminput;
 
     ArrayList<String> tosettoStreamslist=new ArrayList<>();
     ArrayList<String> tosettoCourseslist=new ArrayList<>();
@@ -73,10 +73,27 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.create_placement_tab1, container, false);
 
+        companynameinput=(TextInputLayout)rootView.findViewById(R.id.companynameinput);
+        packageinput=(TextInputLayout)rootView.findViewById(R.id.packageinput);
+        postinput=(TextInputLayout)rootView.findViewById(R.id.postinput);
+        vacanciesinput=(TextInputLayout)rootView.findViewById(R.id.vacanciesinput);
+        ldrinput=(TextInputLayout)rootView.findViewById(R.id.ldrinput);
+        dorinput=(TextInputLayout)rootView.findViewById(R.id.dorinput);
+        bondinput=(TextInputLayout)rootView.findViewById(R.id.bondinput);
+        CoursecInput=(TextInputLayout)rootView.findViewById(R.id.CoursecInput);
+        streaminput=(TextInputLayout)rootView.findViewById(R.id.streaminput);
+        companynameinput.setTypeface(Z.getLight(getActivity()));
+        packageinput.setTypeface(Z.getLight(getActivity()));
+        postinput.setTypeface(Z.getLight(getActivity()));
+        vacanciesinput.setTypeface(Z.getLight(getActivity()));
+        ldrinput.setTypeface(Z.getLight(getActivity()));
+        dorinput.setTypeface(Z.getLight(getActivity()));
+        bondinput.setTypeface(Z.getLight(getActivity()));
+        CoursecInput.setTypeface(Z.getLight(getActivity()));
+        streaminput.setTypeface(Z.getLight(getActivity()));
 
-        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/maven.ttf");
         TextView choosetxt = (TextView) rootView.findViewById(R.id.choosetxt);
-        choosetxt.setTypeface(custom_font2);
+        choosetxt.setTypeface(Z.getBold(getActivity()));
         inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
@@ -96,6 +113,127 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         lastdateofrr = (EditText) rootView.findViewById(R.id.ldr);   //date picker
         dateofarrival = (EditText) rootView.findViewById(R.id.dor);      //date picker
         bond = (EditText) rootView.findViewById(R.id.bond);
+        companyname.setTypeface(Z.getBold(getActivity()));
+        cpackage.setTypeface(Z.getBold(getActivity()));
+        post.setTypeface(Z.getBold(getActivity()));
+        vacancies.setTypeface(Z.getBold(getActivity()));
+        lastdateofrr.setTypeface(Z.getBold(getActivity()));
+        dateofarrival.setTypeface(Z.getBold(getActivity()));
+        bond.setTypeface(Z.getBold(getActivity()));
+
+        companyname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                companynameinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        cpackage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                packageinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        post.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                postinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        vacancies.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                vacanciesinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        lastdateofrr.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ldrinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        dateofarrival.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dorinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        bond.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                bondinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         CourseListWithIds = getResources().getStringArray(R.array.courses);
         CourseList = new String[CourseListWithIds.length];
@@ -148,7 +286,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         courses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                courses.showDropDown();
+//                courses.showDropDown();
             }
         });
 
@@ -513,42 +651,55 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         sdateofarrival= dateofarrival.getText().toString();
         sbond= bond.getText().toString();
         sselected= selected.getText().toString();
+        Log.d("TAG", "scompanyname:"+scompanyname);
+        Log.d("TAG", "scpackage:"+scpackage);
+        Log.d("TAG", "spost:"+spost);
+        Log.d("TAG", "svacancies:"+svacancies);
+        Log.d("TAG", "slastdateofrr:"+slastdateofrr);
+        Log.d("TAG", "sdateofarrival:"+sdateofarrival);
+        Log.d("TAG", "sbond:"+sbond);
+        Log.d("TAG", "sselected:"+sselected);
+
+
+
+
 
         Erroflag=0;
 
         if(scompanyname.length()<2){
-            companyname.setError("Invalid Company Name");
+            companynameinput.setError("Kindly enter valid company name");
             Erroflag=1;
 
-        } else if(scpackage.length()<0){
-            cpackage.setError("Enter Valid Package");
+        } else if(scpackage.length()<1){
+            packageinput.setError("Kindly enter valid package");
+            Log.d("TAG", "This block is executed");
             Erroflag=1;
 
         }else if(spost.length()<2){
-            post.setError("Enter Valid Post");
+            postinput.setError("Kindly enter valid post");
             Erroflag=1;
 
-        } else if(svacancies.length()<0){
-            vacancies.setError("Enter Valid Vacancies");
-            Erroflag=1;
-
-        }
-        else if(sselected.length()<2){
-            selected.setError("Enter Course And Streams ");
+        } else if(svacancies.length()<1){
+            vacanciesinput.setError("Kindly enter number of vacancies");
             Erroflag=1;
 
         }
-        else if(slastdateofrr.length()<0){
-            lastdateofrr.setError("Enter Valid Date Of Registration");
-            Erroflag=1;
-
-        }else if(sdateofarrival.length()<0){
-            dateofarrival.setError("Enter Valid Date Of Arrival");
+        else if(sselected.length()<1){
+            selected.setError("Kindly enter course and stream");
             Erroflag=1;
 
         }
-        else if(sbond.length()<0){
-            bond.setError("Enter Bond");
+        else if(slastdateofrr.length()<1){
+            ldrinput.setError("Kindly enter valid last date of registration");
+            Erroflag=1;
+
+        }else if(sdateofarrival.length()<1){
+            dorinput.setError("Kindly enter valid date of arrival");
+            Erroflag=1;
+
+        }
+        else if(sbond.length()<1){
+            bondinput.setError("Kindly enter bond in months");
             Erroflag=1;
 
         }

@@ -95,18 +95,21 @@ public class CreatePlacement extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
+
 
         TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
         TextView createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
-        createnotitxt.setTypeface(custom_font);
-        createnotinotitxt.setTypeface(custom_font2);
+        createnotitxt.setTypeface(Z.getBold(this));
+        createnotinotitxt.setTypeface(Z.getLight(this));
 
         CheckBoxstudent = (CheckBox) findViewById(R.id.CheckBoxstudent);
         CheckBoxsAlumni = (CheckBox) findViewById(R.id.CheckBoxsAlumni);
+        CheckBoxstudent.setTypeface(Z.getBold(this));
+        CheckBoxsAlumni.setTypeface(Z.getBold(this));
+
         allumiselector = (RelativeLayout) findViewById(R.id.allumiselector);
         batchesTags = (TagsEditText) findViewById(R.id.batchesTags);
+        batchesTags.setHint("Enter the Batches");
         batchesTags.setFocusable(false);
 
         dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {

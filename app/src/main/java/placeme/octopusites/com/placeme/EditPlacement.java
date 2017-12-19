@@ -335,7 +335,7 @@ public class EditPlacement extends AppCompatActivity {
 
 
         //seting data to adapter
-        getPlacements();
+//        getPlacements();
 
     }
 
@@ -511,7 +511,7 @@ public class EditPlacement extends AppCompatActivity {
         Log.d("PlacmentTesting", "lastPageFlagPlacement: " + lastPageFlagPlacement);
 //        new GetPlacementsReadStatus().execute();
 
-        new GetPlacements().execute();
+//        new GetPlacements().execute();
 
     }
 

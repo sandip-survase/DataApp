@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -25,11 +25,12 @@
                 android:id="@+id/xcriteria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Std X criteria"
+                android:hint="Std X criteria (%)"
                 android:inputType="numberDecimal"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="5"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -47,11 +48,12 @@
                 android:id="@+id/xiicriteria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Std XII/Diploma criteria"
+                android:hint="Std XII/Diploma criteria (%)"
                 android:inputType="numberDecimal"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="5"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -69,11 +71,12 @@
                 android:id="@+id/ugcriteria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="UG criteria"
+                android:hint="UG criteria (%)"
                 android:inputType="numberDecimal"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:maxLength="5"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -91,11 +94,11 @@
                 android:id="@+id/pgcriteria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="PG criteria"
+                android:hint="PG criteria (%)"
                 android:inputType="numberDecimal"
                 android:singleLine="true"
-                android:textColor="#eee"
-                android:textSize="15dp" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
