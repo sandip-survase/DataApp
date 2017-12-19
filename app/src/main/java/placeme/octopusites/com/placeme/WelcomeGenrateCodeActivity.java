@@ -787,7 +787,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             }
                         }
                         if (errorFlagInstitute == false) {
-                            Toast.makeText(WelcomeGenrateCodeActivity.this, "valid", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(WelcomeGenrateCodeActivity.this, "valid", Toast.LENGTH_SHORT).show();
                             new SaveInstititeData().execute();
 
                         }
@@ -864,7 +864,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             }
                         }
                         if (errorFlagCompany == false) {
-                            Toast.makeText(WelcomeGenrateCodeActivity.this, "valid", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(WelcomeGenrateCodeActivity.this, "valid", Toast.LENGTH_SHORT).show();
                             new SaveCompanyData().execute();
 
                         }
@@ -1147,7 +1147,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
 
                 new CreateFirebaseUser(encUsername,encPassword).execute();
 
@@ -1290,7 +1290,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                 new CreateFirebaseUser(encUsername,encPassword).execute();
 
-                Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
