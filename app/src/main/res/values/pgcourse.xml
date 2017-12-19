@@ -2,146 +2,147 @@
 <resources>
 
     <array name="pgcourses">
-    <item>- Select Course -</item>
+    <item>0,- Select Course -</item>
 
-    <item>Doctor of Medicine Unani(Mahir e Tibb)</item>
-       <item>Doctor of Medicine(M.D)</item>
-       <item>Executive Fellow Program In Management(E.F.P.M)</item>
-       <item>Executive Management Programme(E.M.P)</item>
-       <item>Fellow Programme in Management(F.P.M)</item>
-       <item>MA / MSc Mathematics</item>
-       <item>MA Adult and Continuing Education</item>
-       <item>MA Ancient History and Archeology</item>
-       <item>MA Anthropology</item>
-       <item>MA Applied Economics</item>
-       <item>MA Dance</item>
-       <item>MA Economics</item>
-       <item>MA English</item>
-       <item>MA Hindi</item>
-       <item>MA History</item>
-       <item>MA Human Rights and Duties</item>
-       <item>MA Music</item>
-       <item>MA Philosophy</item>
-       <item>MA Political Science</item>
-       <item>MA Psychology</item>
-       <item>MA Public Administration</item>
-       <item>MA Sanskrit</item>
-       <item>MA Social Work</item>
-       <item>MA Sociology</item>
-       <item>Management Development Programme(M.D.P)</item>
-       <item>Master of Architecture(M.Arch)</item>
-       <item>Master of Arts in Management(M.A.M)</item>
-       <item>Master of Arts in Personal Management(M.A.P.M)</item>
-       <item>Master of Arts in Theatre and Television(M.A.T.T)</item>
-       <item>Master of Arts(M.A)</item>
-       <item>Master of Audiology and Speech Language Pathology(M.A.S.L.P)</item>
-       <item>Master of Business Administration(M.B.A)</item>
-       <item>Master of Business Economics(M.B.E)</item>
-       <item>Master of Business Laws(M.B.L)</item>
-       <item>Master of Business Management(M.B.M)</item>
-       <item>Master of Business Studies(M.B.S)</item>
-       <item>Master of Chirurgical(M.Ch)</item>
-       <item>Master of Commerce(M.Com)</item>
-       <item>Master of Communication and Journalism(M.C.J)</item>
-       <item>Master of Comparative Laws(M.C.L)</item>
-       <item>Master of Computer Applications(M.C.A)</item>
-       <item>Master of Computer Management(M.C.M)</item>
-       <item>Master of Corporate Secretaryship(M.C.S)</item>
-       <item>Master of Dental Surgery(M.D.S)</item>
-       <item>Master of education in Artificial Intelligence(M.Ed AI)</item>
-       <item>Master of Education(M.Ed)</item>
-       <item>Master of Engineering(M.E)</item>
-       <item>Master of Film Management(M.F.M)</item>
-       <item>Master of Finance and Control(M.F.C)</item>
-       <item>Master of Financial Services(M.F.S)</item>
-       <item>Master of Fine Arts(M.F.A)</item>
-       <item>Master of Fishery Sciences(M.F.Sc)</item>
-       <item>Master of Foreign Trade(M.F.T)</item>
-       <item>Master Of Health Science(M.H.Sc)</item>
-       <item>Master of Hospital Administration(M.H.A)</item>
-       <item>Master of Hospitality and Hotel Management(M.H.H.M)</item>
-       <item>Master of Hospitality Management(M.H.M)</item>
-       <item>Master of Human Resource Management(M.H.R.M)</item>
-       <item>Master of Industrial Relation and Personal Management(MIR and PM)</item>
-       <item>Master of Information Management(M.I.M)</item>
-       <item>Master of International Business(M.I.B)</item>
-       <item>Master of Journalism(M.J)</item>
-       <item>Master of Labour Management(M.L.M)</item>
-       <item>Master of Law(LL.M)</item>
-       <item>Master of Laws(M.L)</item>
-       <item>Master of Library and Information Science(M.L.I.Sc)</item>
-       <item>Master of Library Science(M.L.Sc)</item>
-       <item>Master of Management Program(M.M.P)</item>
-       <item>Master of Management Studies(M.M.S)</item>
-       <item>Master of Marketing Management(M.M.M)</item>
-       <item>Master of Occupational Theraphy(M.O.T)</item>
-       <item>Master of Performance Management(M.P.M)</item>
-       <item>Master of Performing Arts(M.P.A)</item>
-       <item>Master of Personal Management and Industrial Relation(MPM and IR)</item>
-       <item>Master of Personnel Management(MPM)</item>
-       <item>Master of Pharmacy(M.Pharma)</item>
-       <item>Master of Philosophy(M.Phil)</item>
-       <item>Master Of Physical Education(M.P.Ed)</item>
-       <item>Master of Physiotheraphy(M.P.T)</item>
-       <item>Master of Psychiatric Epidemiology(M.P.E)</item>
-       <item>Master of Public Health(M.P.H)</item>
-       <item>Master of Science(BOTANY)</item>
-       <item>Master of Science(M.S)</item>
-       <item>Master of Science(M.Sc)</item>
-       <item>Master of Social Dynamics(M.S.D)</item>
-       <item>Master of Social Work(M.S.W)</item>
-       <item>Master of Technology(M.Tech)</item>
-       <item>Master of Tourism Administrations(M.T.A)</item>
-       <item>Master of Tourism Management(M.T.M)</item>
-       <item>Master of Veterinary Science(M.V.Sc)</item>
-       <item>Masters of Hospitality and Tourism Management(M.H.T.M)</item>
-       <item>Masters of Public Systems Management(M.P.S.M)</item>
-       <item>Masters Programme in International Business(M.P.I.B)</item>
-       <item>Masters Programme In Sports Physiotheraphy(M.S.P.T)</item>
-       <item>MSc Agricultural Biotechnology</item>
-       <item>MSc Analysis of Foods, Drugs and Water</item>
-       <item>MSc Analytical Chemistry</item>
-       <item>MSc Anthropology</item>
-       <item>MSc Applied Chemistry</item>
-       <item>MSc Applied Mathematics</item>
-       <item>MSc Bio-Inorganic Chemistry</item>
-       <item>MSc Biochemistry</item>
-       <item>MSc Biotechnology</item>
-       <item>MSc Botany</item>
-       <item>MSc Coastal Aquaculture and Marine Biotechnology</item>
-       <item>MSc Computer Science</item>
-       <item>MSc Computer Science and Statistics</item>
-       <item>MSc Electronics and Instrumentation</item>
-       <item>MSc Environmental Chemistry</item>
-       <item>MSc Environmental Sciences</item>
-       <item>MSc Fishery Science</item>
-       <item>MSc Food, Nutrition Drugs and Water</item>
-       <item>MSc Foods, Nutrition and Dietetics</item>
-       <item>MSc Geography - B.A(Stream)</item>
-       <item>MSc Geography - B.Sc.(Stream)</item>
-       <item>MSc Geology</item>
-       <item>MSc Geophysics</item>
-       <item>MSc Horticulture and Landscape Management</item>
-       <item>MSc Human Genetics</item>
-       <item>MSc Hydrology</item>
-       <item>MSc Inorganic Chemistry</item>
-       <item>MSc Marine Biology and Fisheries</item>
-       <item>MSc Marine Biotechnology</item>
-       <item>MSc Marine Chemistry</item>
-       <item>MSc Marine Geology</item>
-       <item>MSc Marine Geophysics</item>
-       <item>MSc Meteorology</item>
-       <item>MSc Microbiology</item>
-       <item>MSc Nuclear Chemistry</item>
-       <item>MSc Nuclear Physics</item>
-       <item>MSc Organic Chemistry</item>
-       <item>MSc Physical Chemistry</item>
-       <item>MSc Physical Oceanography</item>
-       <item>MSc Physics</item>
-       <item>MSc Space Physics</item>
-       <item>MSc Statistics</item>
-       <item>MSc VLSI Design, DSP and ESD</item>
-       <item>MSc Zoology</item>
+          <item>1,Doctor of Medicine Unani(Mahir e Tibb)</item>
+          <item>2,Doctor of Medicine(M.D)</item>
+          <item>3,Executive Fellow Program In Management(E.F.P.M)</item>
+          <item>4,Executive Management Programme(E.M.P)</item>
+          <item>5,Fellow Programme in Management(F.P.M)</item>
+          <item>6,MA / MSc Mathematics</item>
+          <item>7,MA Adult and Continuing Education</item>
+          <item>8,MA Ancient History and Archeology</item>
+          <item>9,MA Anthropology</item>
+          <item>10,MA Applied Economics</item>
+          <item>11,MA Dance</item>
+          <item>12,MA Economics</item>
+          <item>13,MA English</item>
+          <item>14,MA Hindi</item>
+          <item>15,MA History</item>
+          <item>16,MA Human Rights and Duties</item>
+          <item>17,MA Music</item>
+          <item>18,MA Philosophy</item>
+          <item>19,MA Political Science</item>
+          <item>20,MA Psychology</item>
+          <item>21,MA Public Administration</item>
+          <item>22,MA Sanskrit</item>
+          <item>23,MA Social Work</item>
+          <item>24,MA Sociology</item>
+          <item>25,Management Development Programme(M.D.P)</item>
+          <item>26,Master of Architecture(M.Arch)</item>
+          <item>27,Master of Arts in Management(M.A.M)</item>
+          <item>28,Master of Arts in Personal Management(M.A.P.M)</item>
+          <item>29,Master of Arts in Theatre and Television(M.A.T.T)</item>
+          <item>30,Master of Arts(M.A)</item>
+          <item>31,Master of Audiology and Speech Language Pathology(M.A.S.L.P)</item>
+          <item>32,Master of Business Administration(M.B.A)</item>
+          <item>33,Master of Business Economics(M.B.E)</item>
+          <item>34,Master of Business Laws(M.B.L)</item>
+          <item>35,Master of Business Management(M.B.M)</item>
+          <item>36,Master of Business Studies(M.B.S)</item>
+          <item>37,Master of Chirurgical(M.Ch)</item>
+          <item>38,Master of Commerce(M.Com)</item>
+          <item>39,Master of Communication and Journalism(M.C.J)</item>
+          <item>40,Master of Comparative Laws(M.C.L)</item>
+          <item>41,Master of Computer Applications(M.C.A)</item>
+          <item>42,Master of Computer Management(M.C.M)</item>
+          <item>43,Master of Corporate Secretaryship(M.C.S)</item>
+          <item>44,Master of Dental Surgery(M.D.S)</item>
+          <item>45,Master of education in Artificial Intelligence(M.Ed AI)</item>
+          <item>46,Master of Education(M.Ed)</item>
+          <item>47,Master of Engineering(M.E)</item>
+          <item>48,Master of Film Management(M.F.M)</item>
+          <item>49,Master of Finance and Control(M.F.C)</item>
+          <item>50,Master of Financial Services(M.F.S)</item>
+          <item>51,Master of Fine Arts(M.F.A)</item>
+          <item>52,Master of Fishery Sciences(M.F.Sc)</item>
+          <item>53,Master of Foreign Trade(M.F.T)</item>
+          <item>54,Master Of Health Science(M.H.Sc)</item>
+          <item>55,Master of Hospital Administration(M.H.A)</item>
+          <item>56,Master of Hospitality and Hotel Management(M.H.H.M)</item>
+          <item>57,Master of Hospitality Management(M.H.M)</item>
+          <item>58,Master of Human Resource Management(M.H.R.M)</item>
+          <item>59,Master of Industrial Relation and Personal Management(MIR and PM)</item>
+          <item>60,Master of Information Management(M.I.M)</item>
+          <item>61,Master of International Business(M.I.B)</item>
+          <item>62,Master of Journalism(M.J)</item>
+          <item>63,Master of Labour Management(M.L.M)</item>
+          <item>64,Master of Law(LL.M)</item>
+          <item>65,Master of Laws(M.L)</item>
+          <item>66,Master of Library and Information Science(M.L.I.Sc)</item>
+          <item>67,Master of Library Science(M.L.Sc)</item>
+          <item>68,Master of Management Program(M.M.P)</item>
+          <item>69,Master of Management Studies(M.M.S)</item>
+          <item>70,Master of Marketing Management(M.M.M)</item>
+          <item>71,Master of Occupational Theraphy(M.O.T)</item>
+          <item>72,Master of Performance Management(M.P.M)</item>
+          <item>73,Master of Performing Arts(M.P.A)</item>
+          <item>74,Master of Personal Management and Industrial Relation(MPM and IR)</item>
+          <item>75,Master of Personnel Management(MPM)</item>
+          <item>76,Master of Pharmacy(M.Pharma)</item>
+          <item>77,Master of Philosophy(M.Phil)</item>
+          <item>78,Master Of Physical Education(M.P.Ed)</item>
+          <item>79,Master of Physiotheraphy(M.P.T)</item>
+          <item>80,Master of Psychiatric Epidemiology(M.P.E)</item>
+          <item>81,Master of Public Health(M.P.H)</item>
+          <item>82,Master of Science(BOTANY)</item>
+          <item>83,Master of Science(M.S)</item>
+          <item>84,Master of Science(M.Sc)</item>
+          <item>85,Master of Social Dynamics(M.S.D)</item>
+          <item>86,Master of Social Work(M.S.W)</item>
+          <item>87,Master of Technology(M.Tech)</item>
+          <item>88,Master of Tourism Administrations(M.T.A)</item>
+          <item>89,Master of Tourism Management(M.T.M)</item>
+          <item>90,Master of Veterinary Science(M.V.Sc)</item>
+          <item>91,Masters of Hospitality and Tourism Management(M.H.T.M)</item>
+          <item>92,Masters of Public Systems Management(M.P.S.M)</item>
+          <item>93,Masters Programme in International Business(M.P.I.B)</item>
+          <item>94,Masters Programme In Sports Physiotheraphy(M.S.P.T)</item>
+          <item>95,MSc Agricultural Biotechnology</item>
+          <item>96,MSc Analysis of Foods, Drugs and Water</item>
+          <item>97,MSc Analytical Chemistry</item>
+          <item>98,MSc Anthropology</item>
+          <item>99,MSc Applied Chemistry</item>
+          <item>100,MSc Applied Mathematics</item>
+          <item>101,MSc Bio-Inorganic Chemistry</item>
+          <item>102,MSc Biochemistry</item>
+          <item>103,MSc Biotechnology</item>
+          <item>104,MSc Botany</item>
+          <item>105,MSc Coastal Aquaculture and Marine Biotechnology</item>
+          <item>106,MSc Computer Science</item>
+          <item>107,MSc Computer Science and Statistics</item>
+          <item>108,MSc Electronics and Instrumentation</item>
+          <item>109,MSc Environmental Chemistry</item>
+          <item>110,MSc Environmental Sciences</item>
+          <item>111,MSc Fishery Science</item>
+          <item>112,MSc Food, Nutrition Drugs and Water</item>
+          <item>113,MSc Foods, Nutrition and Dietetics</item>
+          <item>114,MSc Geography - B.A(Stream)</item>
+          <item>115,MSc Geography - B.Sc.(Stream)</item>
+          <item>116,MSc Geology</item>
+          <item>117,MSc Geophysics</item>
+          <item>118,MSc Horticulture and Landscape Management</item>
+          <item>119,MSc Human Genetics</item>
+          <item>120,MSc Hydrology</item>
+          <item>121,MSc Inorganic Chemistry</item>
+          <item>122,MSc Marine Biology and Fisheries</item>
+          <item>123,MSc Marine Biotechnology</item>
+          <item>124,MSc Marine Chemistry</item>
+          <item>125,MSc Marine Geology</item>
+          <item>126,MSc Marine Geophysics</item>
+          <item>127,MSc Meteorology</item>
+          <item>128,MSc Microbiology</item>
+          <item>129,MSc Nuclear Chemistry</item>
+          <item>130,MSc Nuclear Physics</item>
+          <item>131,MSc Organic Chemistry</item>
+          <item>132,MSc Physical Chemistry</item>
+          <item>133,MSc Physical Oceanography</item>
+          <item>134,MSc Physics</item>
+          <item>135,MSc Space Physics</item>
+          <item>136,MSc Statistics</item>
+          <item>137,MSc VLSI Design, DSP and ESD</item>
+          <item>138,MSc Zoology</item>
+          <item>139,Other</item>
     </array>
 
 </resources>

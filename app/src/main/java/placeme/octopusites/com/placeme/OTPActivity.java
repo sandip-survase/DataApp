@@ -88,9 +88,10 @@ public class OTPActivity extends AppCompatActivity {
         if (activationMessage != null && activationMessage.equals("yes")) {
             activationMessageflag = true;
             entertxt.setText("Enter Activation Code");
+            otplayout.setHint("Activation Code");
             otpedittext.setHint("Activation Code");
             otptxt.setText("Enter Activation code sent on your professional email..!");
-            resend.setText("Resend");
+            resend.setText("Resend Code");
         }
         Log.d("TAG", "onCreate : activationMessageflag " + activationMessageflag);
 
@@ -139,24 +140,29 @@ public class OTPActivity extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verify.setVisibility(View.GONE);
-                otpprogress.setVisibility(View.VISIBLE);
+
                 enteredOTP = otpedittext.getText().toString();
+                if(enteredOTP.length()<6)
+                    otplayout.setError("Kindly enter valid OTP");
+                else {
+                    verify.setVisibility(View.GONE);
+                    otpprogress.setVisibility(View.VISIBLE);
 
-                try {
-                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                    String sPadding = "ISO10126Padding";
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
 
-                    byte[] otpBytes = enteredOTP.getBytes("UTF-8");
+                        byte[] otpBytes = enteredOTP.getBytes("UTF-8");
 
-                    byte[] otpEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, otpBytes);
-                    encOTP = new String(SimpleBase64Encoder.encode(otpEncryptedBytes));
+                        byte[] otpEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, otpBytes);
+                        encOTP = new String(SimpleBase64Encoder.encode(otpEncryptedBytes));
 
-                } catch (Exception e) {
+                    } catch (Exception e) {
+                    }
+
+                    new VerifyOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
-
-                new VerifyOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         });
     }
@@ -243,8 +249,9 @@ public class OTPActivity extends AppCompatActivity {
                     Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
                 else if (resultofop.equals("already")) {
 
-                } else
-                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
+                }
+//                else
+//                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
             }
             if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);
@@ -281,11 +288,11 @@ public class OTPActivity extends AppCompatActivity {
 
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
 
                         } else {
-                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
