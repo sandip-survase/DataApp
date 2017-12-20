@@ -25,7 +25,7 @@ public class Z {
     public static final String IP = "http://104.237.4.236/";
 
 
-    public static final String IP_kunal = "http://104.237.4.236:8081/";
+    public static final String IP_8081 = "http://104.237.4.236:8081/";
 
     public static final String IP_8080 = "http://104.237.4.236:8080/";
     private static final String IP_100 = "http://192.168.100.100/";
@@ -112,7 +112,7 @@ public class Z {
 
     //#############################   PlaceMe   ######################################
 
-    public static final String url_create_firebase = IP + "PlaceMe/RegisterFirebaseUser";
+        public static final String url_create_firebase = IP_8081 + "Firbase/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase = IP + "PlaceMe/ChangeUsername";
     public static final String url_get_chatrooms = IP + "PlaceMe/GetChatRooms";
@@ -240,7 +240,7 @@ public class Z {
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
-    public static final String upload_profile = IP + "AESTest/UploadProfile";
+    public static final String upload_profile = IP_8081 + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
 
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";

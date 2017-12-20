@@ -104,6 +104,9 @@ public class SplashScreen extends Activity {
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
 
+        new GetDigest().execute();
+
+
 //        CaocConfig.Builder.create().backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
 //                //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
 ////                .showErrorDetails(false) //default: true
@@ -115,28 +118,26 @@ public class SplashScreen extends Activity {
 //                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
 //                .apply();
 
-        try {
-            if (!Z.CheckInternet()) {
-                Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(this, NoInternet.class);
-                i.putExtra("splash",true);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(i);
-
-            } else {
-
-                mainWork();
-
-            }
-        } catch (Exception e) {
-
-        }
+//        try {
+//            if (!Z.CheckInternet()) {
+//                Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
+//                Intent i = new Intent(this, NoInternet.class);
+//                i.putExtra("splash", true);
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+//                startActivity(i);
+//
+//            } else {
+//
+//                mainWork();
+//
+//            }
+//        } catch (Exception e) {
+//
+//        }
     }
 
 
-
-
-    public void mainWork(){
+    public void mainWork() {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -169,8 +170,6 @@ public class SplashScreen extends Activity {
                     device_id = telephonyManager.getDeviceId();
                 } catch (Exception e) {
                 }
-
-                new GetDigest().execute();
 
 
                 String i = sharedpreferences.getString(Intro, null);
@@ -460,11 +459,11 @@ public class SplashScreen extends Activity {
         }
     }
 
-    class GetDigest extends AsyncTask<String, String, String> {
+    class GetDigest extends AsyncTask<String, String, Boolean> {
 
         String info = null;
 
-        protected String doInBackground(String... param) {
+        protected Boolean doInBackground(String... param) {
 
             String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
 
@@ -477,40 +476,55 @@ public class SplashScreen extends Activity {
             params.add(new BasicNameValuePair("did", device_id));
             params.add(new BasicNameValuePair("u", username));
 
-            json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
             Log.d("TAG", "GetDigest: json -------  GetDigest ------------ " + json);
-            try {
-                info = json.getString("info");
 
-                if (info != null && info.equals("success")) {
+            if (json != null) {
 
-                    digest1 = json.getString("digest1");
-                    digest2 = json.getString("digest2");
-                    digest3 = json.getString("digest3");
+                try {
+                    info = json.getString("info");
 
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    if (info != null && info.equals("success")) {
 
-                    editor.putString("digest1", digest1);
-                    editor.putString("digest2", digest2);
-                    editor.putString("digest3", digest3);
-                    editor.commit();
+                        digest1 = json.getString("digest1");
+                        digest2 = json.getString("digest2");
+                        digest3 = json.getString("digest3");
+
+                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                        editor.putString("digest1", digest1);
+                        editor.putString("digest2", digest2);
+                        editor.putString("digest3", digest3);
+                        editor.commit();
+                    }
+
+                } catch (Exception e) {
+                    Log.d("TAG", "doInBackground: exception in splashsreen" + e.getMessage());
+                    e.printStackTrace();
                 }
+            } else
+                return false;
 
-            } catch (Exception e) {
-                Log.d("TAG", "doInBackground: exception in splashsreen" + e.getMessage());
-                e.printStackTrace();
-            }
-            return info;
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            if (info != null && !info.equals("success")) {
-                Toast.makeText(SplashScreen.this, info, Toast.LENGTH_SHORT).show();
-                new UpdateFirebaseToken().execute();
-                //TODO remove comment from servlet checking aid,did is not null from getDigest
+        protected void onPostExecute(Boolean result) {
+
+            if (result) {
+                if (info != null && info.equals("success")) {
+
+                    new UpdateFirebaseToken().execute();
+                    mainWork();
+                }
+            } else {
+                Intent i = new Intent(SplashScreen.this, NoInternet.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                i.putExtra("splash", true);
+                startActivity(i);
             }
+
         }
     }
 

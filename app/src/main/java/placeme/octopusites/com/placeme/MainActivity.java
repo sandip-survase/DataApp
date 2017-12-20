@@ -3210,13 +3210,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-
                 File sourceFile = new File(filepath);
-
-
-
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-
+                Log.d("***", "doInBackground: input username "+username);
                 multipart.addFormField("u", username);
 
                 if(filename!="") {
