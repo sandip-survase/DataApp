@@ -84,20 +84,20 @@ public class SplashScreen extends Activity {
         return phrase.toString();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isOnline()) {
-            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, NoInternet.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(i);
-
-        } else {
-
-            mainWork();
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (!isOnline()) {
+//            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(this, NoInternet.class);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+//            startActivity(i);
+//
+//        } else {
+//
+//            mainWork();
+//        }
+//    }
 
     protected void onCreate(Bundle paramBundle) {
 
@@ -115,18 +115,24 @@ public class SplashScreen extends Activity {
 //                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
 //                .apply();
 
-        if (!isOnline()) {
-            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, NoInternet.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(i);
+        try {
+            if (!Z.CheckInternet()) {
+                Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, NoInternet.class);
+                i.putExtra("splash",true);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(i);
 
-        } else {
+            } else {
 
-            mainWork();
+                mainWork();
+
+            }
+        } catch (Exception e) {
 
         }
     }
+
 
 
 
@@ -354,7 +360,7 @@ public class SplashScreen extends Activity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://104.237.4.236").openConnection();
             localHttpURLConnection.setConnectTimeout(1000);
             localHttpURLConnection.connect();
             return true;
@@ -379,7 +385,7 @@ public class SplashScreen extends Activity {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
-                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
+//                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                     String s = null;
 
@@ -488,7 +494,6 @@ public class SplashScreen extends Activity {
             Log.d("  ***", "doInBackground: json -" + json);
             try {
                 info = json.getString("info");
-
 
                 if (info != null && info.equals("success")) {
 

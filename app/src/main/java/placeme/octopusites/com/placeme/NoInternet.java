@@ -20,6 +20,8 @@ public class NoInternet extends AppCompatActivity {
     Button refreshButton;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     TextView msg,msg2;
+    Context mainContext;
+    Boolean fromSplashScreen=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +35,12 @@ public class NoInternet extends AppCompatActivity {
         msg2.setTypeface(Z.getLight(this));
         refreshButton.setTypeface(Z.getBold(this));
 
-
+        fromSplashScreen=getIntent().getBooleanExtra("splash",false);
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                mainContext=context;
 
                 Log.d("TAG", "onReceive: ========  inside NoInternet activity");
                 if (intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE")) {
@@ -73,8 +76,16 @@ public class NoInternet extends AppCompatActivity {
 
     public void check() {
         if (isOnline()) {
-            super.onBackPressed();
-            Toast.makeText(this, "lets go..!", Toast.LENGTH_SHORT).show();
+//            super.onBackPressed();
+//            Toast.makeText(this, "lets go..!", Toast.LENGTH_SHORT).show();
+            if(fromSplashScreen==true && mainContext!=null){
+                Toast.makeText(mainContext, "from splash", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mainContext,SplashScreen.class));
+                finish();
+            }else {
+                Toast.makeText(mainContext, "back", Toast.LENGTH_SHORT).show();
+                super.onBackPressed();
+            }
         }
     }
 

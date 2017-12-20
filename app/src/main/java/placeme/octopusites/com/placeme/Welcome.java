@@ -1124,7 +1124,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 Log.d("TAG", "doInBackground: fname " + fname);
                 Log.d("TAG", "doInBackground: lname " + lname);
                 Log.d("TAG", "doInBackground: mobile " + mobile);
-                Log.d("TAG", "doInBackground: passwordstr " + passwordstr);
+                Log.d("TAG", "doInBackground: passwordstr " + confrimpass);
                 Log.d("TAG", "doInBackground: instOrEmailstr " + instOrEmailstr);
                 Log.d("TAG", "doInBackground: plainUsername " + plainUsername);
                 Log.d("TAG", "doInBackground: plainUsername " + plainUsername);

@@ -3,17 +3,29 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-/**
- * Created by admin on 9/27/2017.
- */
+import org.apache.http.NameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 
 public class Z {
     public static final String VPS_IP = "104.237.4.236";   // for authority
     public static final String IP = "http://104.237.4.236/";
+
+
+    public static final String IP_kunal = "http://104.237.4.236:8081/";
 
     public static final String IP_8080 = "http://104.237.4.236:8080/";
     private static final String IP_100 = "http://192.168.100.100/";
@@ -407,6 +419,49 @@ public class Z {
                         R.anim.bottom_up_box4);
         view.startAnimation(animation1);
 
+    }
+
+
+    static Boolean internetStatus = false;
+
+    public static boolean CheckInternet() {
+        internetStatus = false;
+        try {
+            new CheckInternetTask().execute().get(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            return false;
+        } catch (ExecutionException e) {
+            return false;
+        } catch (TimeoutException e) {
+            return false;
+        }
+        Log.d("TAG", "CheckInternet: " + internetStatus);
+        return internetStatus;
+    }
+
+    private static class CheckInternetTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            JSONParser jParser = new JSONParser();
+            JSONObject json = jParser.makeHttpRequest("http://104.237.4.236/AESTest/CheckInternet", "GET", params);
+
+            if (json != null) {
+                try {
+                    String info = json.getString("info");
+
+                    if (info.equals("y")) {
+                        internetStatus = true;
+                        Log.d("TAG", "CheckInternetTask: json " + json);
+                    } else
+                        internetStatus = false;
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
     }
 
 
