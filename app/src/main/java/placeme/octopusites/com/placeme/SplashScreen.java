@@ -481,9 +481,9 @@ public class SplashScreen extends Activity {
 
             String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
 
-            Log.d("***", "doInBackground: user " + username);
-            Log.d("***", "doInBackground: aid " + android_id);
-            Log.d("***", "doInBackground: did " + device_id);
+            Log.d("TAG", "doInBackground: user " + username);
+            Log.d("TAG", "doInBackground: aid " + android_id);
+            Log.d("TAG", "doInBackground: did " + device_id);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
@@ -491,7 +491,7 @@ public class SplashScreen extends Activity {
             params.add(new BasicNameValuePair("u", username));
 
             json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
-            Log.d("  ***", "doInBackground: json -" + json);
+            Log.d("TAG", "GetDigest: json -------  GetDigest ------------ " + json);
             try {
                 info = json.getString("info");
 

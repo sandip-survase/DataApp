@@ -240,7 +240,7 @@ public class Z {
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
-    public static final String upload_profile = IP_8080 + "AESTest/UploadProfile";
+    public static final String upload_profile = IP + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
 
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";

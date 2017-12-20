@@ -236,7 +236,6 @@ public class LoginActivity extends AppCompatActivity {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
-//                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                     Log.d("TAG", "loginActivity json : "+json);
                     String s = null;

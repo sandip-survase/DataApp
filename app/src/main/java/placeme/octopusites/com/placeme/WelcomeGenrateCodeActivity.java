@@ -1133,7 +1133,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: save comp data "+json);
+                Log.d("TAG", "SaveInstititeData json : "+json);
                 if (r.equals("success")) {
                     CODE = json.getString("ucode");
                 }
@@ -1271,12 +1271,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateCompanyCode, "GET", params);
+            Log.d("TAG", "SaveCompanyData json : "+json);
             try {
                 r = json.getString("info");
                 if(r.equals("success")){
                     CODE=json.getString("ucode");
                 }
-                Log.d("TAG", "doInBackground: "+json);
             } catch (Exception e) {
                 Log.d("TAG", "doInBackground: comp asynk"+e.getMessage());
             }

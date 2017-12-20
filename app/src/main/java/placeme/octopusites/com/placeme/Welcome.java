@@ -1132,7 +1132,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("u", inputUcode));       //0
 
             json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
-            Log.d("TAG", "checkUcode result: " + json);
+            Log.d("TAG", "checkUcode json : " + json);
             try {
                 r = json.getString("info");
             } catch (Exception e) {
@@ -1611,6 +1611,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     Log.d("TAG", "UserLoginTask user input : " + mEmail + " \t pass : " + mPassword);
 //                params.add(new BasicNameValuePair("t", new SharedPrefUtil(Welcome.this.getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                    Log.d("TAG", "UserLoginTask json" + json);
                     String s = null;
 
                     s = json.getString("info");
@@ -1659,7 +1660,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                         String throughAdmin = json.getString("throughAdmin");
                         Log.d("TAG, ", "------------------------------------------  user throughAdmin = " + throughAdmin);
-                        Log.d("TAG", "json" + json);
+
 
                         if (throughAdmin != null && throughAdmin.equals("yes")) {
                             throughAdminFlag = true;

@@ -230,16 +230,14 @@ public class OTPActivity extends AppCompatActivity {
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
                     } else if (role.equals("admin")) {
-                        new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
                         new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
                     } else if (role.equals("hr")) {
-
-
                         startActivity(new Intent(OTPActivity.this, HRActivity.class));
                         finish();
                     }
@@ -354,6 +352,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encUsername));
 
             json = jParser.makeHttpRequest(Z.url_AddStudentUnderAdmin, "GET", params);
+            Log.d("TAG", "AddStudentUnderAdmin json : "+json);
             try {
                 resultofop = json.getString("info");
 
@@ -396,7 +395,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
             json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-            Log.d("TAG", "Firebase: "+json);
+            Log.d("TAG", "CreateFirebaseUser json : "+json);
             try {
                 resultofop = json.getString("info");
 

@@ -184,7 +184,7 @@ public class EditEmail extends AppCompatActivity {
 
             json = jParser.makeHttpRequest(Z.url_VerifyOTPEditEmail, "GET", params);
 
-            Log.d("TAG", "doInBackground: verifyotp username json : "+json);
+            Log.d("TAG", "verifyotp json : "+json);
             try {
                 r = json.getString("info");
 
