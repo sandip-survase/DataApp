@@ -713,8 +713,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_welcome);
+        Log.d("TAG", "onCreate: Welcome called");
 
         fa = Typeface.createFromAsset(this.getAssets(),  "fonts/fa.ttf");
         bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");

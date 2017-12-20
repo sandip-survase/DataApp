@@ -642,6 +642,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_genrate_code);
+        Log.d("TAG", "onCreate:WelcomeGenrateCodeActivity called");
 
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
@@ -1161,7 +1162,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     genratedCode.setText(CODE);
                     headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
                 }
-                catch (Exception e){}
+                catch (Exception e){
+                    Log.d("TAG", "onPostExecute: exp in setting msg code : "+e.getMessage());
+                }
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 

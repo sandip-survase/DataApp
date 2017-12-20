@@ -276,9 +276,6 @@ public class SplashScreen extends Activity {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "student");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("student");
-//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
                                 finish();
                             }
@@ -292,9 +289,6 @@ public class SplashScreen extends Activity {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "admin");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("admin");
-//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, AdminActivity.class));
                                 finish();
                             }
@@ -308,9 +302,6 @@ public class SplashScreen extends Activity {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "hr");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("hr");
-//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, HRActivity.class));
                                 finish();
                             }
@@ -322,10 +313,6 @@ public class SplashScreen extends Activity {
                             public void run() {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "alumni");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
-
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("alumni");
-//                                r.setUsername(EmailCred);
 
                                 startActivity(new Intent(SplashScreen.this, AlumniActivity.class));
                                 finish();
