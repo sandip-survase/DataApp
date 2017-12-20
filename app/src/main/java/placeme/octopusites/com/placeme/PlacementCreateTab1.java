@@ -237,12 +237,17 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
         CourseListWithIds = getResources().getStringArray(R.array.courses);
         CourseList = new String[CourseListWithIds.length];
+
+
         for (int i = 0; i < CourseListWithIds.length; i++) {
             String temp[] = CourseListWithIds[i].split(",");
             CourseList[i] = temp[1];
             Log.d("TAG", "Course without ID: " + CourseList[i]);
 
         }
+
+
+
         StramsListWithIds = getResources().getStringArray(R.array.streams);
         StramsList = new String[StramsListWithIds.length];
         for (int i = 0; i < StramsListWithIds.length; i++) {

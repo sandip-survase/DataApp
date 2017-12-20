@@ -72,6 +72,7 @@ import placeme.octopusites.com.placeme.modal.Projects;
 import placeme.octopusites.com.placeme.modal.Publications;
 import placeme.octopusites.com.placeme.modal.Skills;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 
@@ -570,21 +571,24 @@ public class MyProfileFragment extends Fragment {
                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
 
                 String s = "";
-                Log.d("TAG", "doInBackround: after " + username);
 
                 resultofop = json.getString("info");
 
                 Log.d("TAG", "info1 " + resultofop);
 
                 if (resultofop.equals("found")) {
+
                     ucode = json.getString("ucode");
-                    phone = json.getString("phone");
+                    String phoneenc = json.getString("phone");
+                    phone = Decrypt(phoneenc,digest1,digest2);
 
                     s = json.getString("intro");
                     Log.d("TAG", "json :-" + s);
+
+
                     if (s.equals("found")) {
                         found_box1 = 1;
-                        Log.d("TAG", "found_box1===:-" + found_box1);
+                        Log.d("TAG", " dataload found_box1 :-" + found_box1);
                         dataobject = json.getString("introObj");
 
                         Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -622,8 +626,7 @@ public class MyProfileFragment extends Fragment {
                     s = json.getString("strengths");
                     if (s.equals("found")) {
                         found_strengths = 1;
-
-
+                        Log.d("TAG", " dataload found_strengths :-" + found_strengths);
                         strengthdataobject = json.getString("strengthsobj");
 
                         MyProfileStrengthsModal obj2 = (MyProfileStrengthsModal) fromString(strengthdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -671,7 +674,7 @@ public class MyProfileFragment extends Fragment {
                     if (s.equals("found")) {
                         found_weaknesses = 1;
 
-
+                        Log.d("TAG", " dataload found_weaknesses :-" + found_weaknesses);
                         weaknessesdataobject = json.getString("weaknessesobj");
 
                         MyProfileWeaknessesModal obj2 = (MyProfileWeaknessesModal) fromString(weaknessesdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -726,7 +729,7 @@ public class MyProfileFragment extends Fragment {
                     s = json.getString("locationpreferences");
                     if (s.equals("found")) {
                         found_locationpreferences = 1;
-
+                        Log.d("TAG", " dataload found_locationpreferences :-" + found_locationpreferences);
                         locationpreferencesdataobject = json.getString("locationpreferencesobj");
 
                         MyProfileLocationModal obj2 = (MyProfileLocationModal) fromString(locationpreferencesdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -752,7 +755,7 @@ public class MyProfileFragment extends Fragment {
                     s = json.getString("tenth");
                     if (s.equals("found")) {
                         found_tenth = 1;
-
+                        Log.d("TAG", "dataload found_tenth:-" + found_tenth);
                         tenthdataobject = json.getString("tenthobj");
 
                         MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(tenthdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -777,7 +780,7 @@ public class MyProfileFragment extends Fragment {
 
                     if (s.equals("found")) {
                         found_ug = 1;
-                        Log.d("TAG", "found_ug===:-" + found_ug);
+                        Log.d("TAG", "dataload found_ug:-" + found_ug);
 
                         ugdataobject = json.getString("ugobj");
 
@@ -828,7 +831,7 @@ public class MyProfileFragment extends Fragment {
                     }
                     s = json.getString("twelth");
                     if (s.equals("found")) {
-
+                        Log.d("TAG", "dataload found_twelth:-" + found_twelth);
                         found_twelth = 1;
 
                         Log.d("TAG", "twelth data found_twelth===:-" + found_twelth);
@@ -854,14 +857,12 @@ public class MyProfileFragment extends Fragment {
                         Log.d("TAG", " twelthdataobject schoolname12===: " + schoolname12);
                         Log.d("TAG", " twelthdataobject board12===: " + board12);
 
-
-
                     }
 
                     s = json.getString("diploma");
                     if (s.equals("found")) {
                         found_diploma = 1;
-                        Log.d("TAG", "found_diploma===:-" + found_diploma);
+                        Log.d("TAG", "dataload found_diploma:-" + found_diploma);
 
                         diplomadataobject = json.getString("diplomaobj");
 
@@ -903,7 +904,7 @@ public class MyProfileFragment extends Fragment {
                     s = json.getString("pgsem");
                     if (s.equals("found")) {
                         found_pgsem=1;
-
+                        Log.d("TAG", "dataload found_pgsem:-" + found_pgsem);
                         PgSem obj=(PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         markssem1pgsem=obj.getMarkssem1();
@@ -966,7 +967,7 @@ public class MyProfileFragment extends Fragment {
                     s = json.getString("pgyear");
                     if (s.equals("found")) {
                         found_pgyear=1;
-
+                        Log.d("TAG", "dataload found_pgyear:-" + found_pgyear);
                         PgYear obj=(PgYear) fromString(json.getString("pgyeardata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         marksyear1pgyear=obj.getMarksyear1();
@@ -1013,7 +1014,7 @@ public class MyProfileFragment extends Fragment {
 
                     if(s.equals("found")) {
                         found_projects=1;
-
+                        Log.d("TAG", " dataload found_projects :-" + found_projects);
                         ArrayList<Projects> projectsList=(ArrayList<Projects>)fromString(json.getString("projectsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Projects obj1=projectsList.get(0);
@@ -1162,7 +1163,7 @@ public class MyProfileFragment extends Fragment {
 
                     if(s.equals("found")) {
                         found_lang=1;
-
+                        Log.d("TAG", " dataload found_lang :-" + found_lang);
                         ArrayList<KnownLangs> knownLangsList=(ArrayList<KnownLangs>)fromString(json.getString("knownlangdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         KnownLangs obj1=knownLangsList.get(0);
@@ -1237,7 +1238,7 @@ public class MyProfileFragment extends Fragment {
                     s=json.getString("certificates");
                     if(s.equals("found")) {
                         found_certificates=1;
-
+                        Log.d("TAG", " dataload found_certificates :-" + found_certificates);
                         ArrayList<Certificates> certificatesList=(ArrayList<Certificates>)fromString(json.getString("certificatesdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Certificates obj1=certificatesList.get(0);
@@ -1406,7 +1407,7 @@ public class MyProfileFragment extends Fragment {
                     Log.d("TAG", "doInBackground: course1 -"+s);
                     if(s.equals("found")) {
                         found_courses=1;
-
+                        Log.d("TAG", " dataload found_courses :-" + found_courses);
                         ArrayList<Courses> coursesList=(ArrayList<Courses>)fromString(json.getString("coursesdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Courses obj1=coursesList.get(0);
@@ -1543,7 +1544,7 @@ public class MyProfileFragment extends Fragment {
                     s=json.getString("skills");
                     if(s.equals("found")) {
                         found_skills=1;
-
+                        Log.d("TAG", " dataload found_skills :-" + found_skills);
                         ArrayList<Skills> skillsList=(ArrayList<Skills>)fromString(json.getString("skillsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Skills obj1=skillsList.get(0);
@@ -1724,7 +1725,7 @@ public class MyProfileFragment extends Fragment {
                     s=json.getString("honors");
                     if(s.equals("found")) {
                         found_honors=1;
-
+                        Log.d("TAG", " dataload found_honors :-" + found_honors);
                         ArrayList<Honors> honorsList=(ArrayList<Honors>)fromString(json.getString("honorsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Honors obj1=honorsList.get(0);
@@ -1852,7 +1853,7 @@ public class MyProfileFragment extends Fragment {
                     s=json.getString("patents");
                     if(s.equals("found")) {
                         found_patents=1;
-
+                        Log.d("TAG", " dataload found_patents :-" + found_patents);
                         ArrayList<Patents> patentsList=(ArrayList<Patents>)fromString(json.getString("patentsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Patents obj1=patentsList.get(0);
@@ -2077,7 +2078,7 @@ public class MyProfileFragment extends Fragment {
                     s=json.getString("publications");
                     if(s.equals("found")) {
                         found_publications=1;
-
+                        Log.d("TAG", " dataload found_publications :-" + found_publications);
                         ArrayList<Publications> publicationsList=(ArrayList<Publications>)fromString(json.getString("publicationsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Publications obj1=publicationsList.get(0);
@@ -2247,7 +2248,7 @@ public class MyProfileFragment extends Fragment {
                     s = json.getString("personal");
                     if (s.equals("found")) {
                         found_personal = 1;
-                        Log.d("TAG", "found_personal===:-" + found_personal);
+                        Log.d("TAG", "dataload found_personal===:-" + found_personal);
 
                         personaldataobject = json.getString("personalobj");
 
@@ -2285,6 +2286,9 @@ public class MyProfileFragment extends Fragment {
 
                         Log.d("TAG", "doInBackground: personal - "+fname);
                         Log.d("TAG", "doInBackground: personal - "+lname);
+
+
+
                         studentData.setFname(fname);
                         studentData.setMname(mname);
                         studentData.setLname(lname);
@@ -2323,11 +2327,13 @@ public class MyProfileFragment extends Fragment {
                         studentData.setSports(sports);
                         studentData.setDefenceex(defenceex);
 
+
+
                     }
                     s = json.getString("contact_details");
                     if (s.equals("found")) {
                         found_contact_details = 1;
-
+                        Log.d("TAG", "dataload found_contact_details===:-" + found_contact_details);
                         contact_details_dataobject = json.getString("contact_detailsdata");
 
                         AdminContactDetailsModal obj2 = (AdminContactDetailsModal) fromString(contact_details_dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -2402,10 +2408,16 @@ public class MyProfileFragment extends Fragment {
 
     void populateData() {
         Log.d("TAG", "populateData: welcome to populate");
+        if (resultofop.equals("found")) {
+            if (!ucode.equals(""))
+                myprofilepreview.setText(ucode);
 
-        if(!ucode.equals(""))
-            myprofilepreview.setText(ucode);
-
+            if (phone != null) {
+                if (!phone.equals("")) {
+                    contactmobile.setText(phone);
+                }
+            }
+        }
 
         if (found_contact_details == 1) {
             if (!addressline1.equals("")) {
@@ -2768,87 +2780,110 @@ public class MyProfileFragment extends Fragment {
             percentProfile++;
             if (!proj1.equals("")) {
 
-                myprofileproj1.setText(proj1);
-                myprofiledomain1.setText(domain1);
-                myprofileduration1.setText(duration1 + " Months");
+                if (!proj1.equals("")) {
 
-                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                    myprofileproj1.setText(proj1);
+                    myprofiledomain1.setText(domain1);
+                    myprofileduration1.setText(duration1 + " Months");
 
-                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
 
-                gear2.setVisibility(View.GONE);
-                projtab2.setVisibility(View.GONE);
+                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
-                gear3.setVisibility(View.GONE);
-                projtab3.setVisibility(View.GONE);
+                    gear2.setVisibility(View.GONE);
+                    projtab2.setVisibility(View.GONE);
 
-                noprojtab.setVisibility(View.GONE);
-                projtab1.setVisibility(View.VISIBLE);
+                    gear3.setVisibility(View.GONE);
+                    projtab3.setVisibility(View.GONE);
+
+                    noprojtab.setVisibility(View.GONE);
+                    projtab1.setVisibility(View.VISIBLE);
 
 
-            }
-
-            if (!proj2.equals("")) {
-                myprofileproj2.setText(proj2);
-                myprofiledomain2.setText(domain2);
-                myprofileduration2.setText(duration2 + " Months");
-
-                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                gear2.setVisibility(View.VISIBLE);
-                projtab2.setVisibility(View.VISIBLE);
-                gear3.setVisibility(View.GONE);
-                projtab3.setVisibility(View.GONE);
-
-                noprojtab.setVisibility(View.GONE);
-            }
-            if (!proj3.equals("")) {
-                myprofileproj3.setText(proj3);
-                myprofiledomain3.setText(domain3);
-                myprofileduration3.setText(duration3 + " Months");
-
-                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                gear2.setVisibility(View.VISIBLE);
-                projtab2.setVisibility(View.VISIBLE);
-
-                gear3.setVisibility(View.VISIBLE);
-                projtab3.setVisibility(View.VISIBLE);
-
-                noprojtab.setVisibility(View.GONE);
-
-                if(!proj4.equals(""))
-                {
-                    extraprojectscount.setVisibility(View.VISIBLE);
-                    extraprojectscount.setText("and "+ proj_count +" more");
                 }
+
+                if (!proj2.equals("")) {
+                    myprofileproj2.setText(proj2);
+                    myprofiledomain2.setText(domain2);
+                    myprofileduration2.setText(duration2 + " Months");
+
+                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                    gear2.setVisibility(View.VISIBLE);
+                    projtab2.setVisibility(View.VISIBLE);
+                    gear3.setVisibility(View.GONE);
+                    projtab3.setVisibility(View.GONE);
+
+                    noprojtab.setVisibility(View.GONE);
+                }
+                if (!proj3.equals("")) {
+                    myprofileproj3.setText(proj3);
+                    myprofiledomain3.setText(domain3);
+                    myprofileduration3.setText(duration3 + " Months");
+
+                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                    gear2.setVisibility(View.VISIBLE);
+                    projtab2.setVisibility(View.VISIBLE);
+
+                    gear3.setVisibility(View.VISIBLE);
+                    projtab3.setVisibility(View.VISIBLE);
+
+                    noprojtab.setVisibility(View.GONE);
+
+                    if (!proj4.equals("")) {
+                        extraprojectscount.setVisibility(View.VISIBLE);
+                        extraprojectscount.setText("and " + proj_count + " more");
+                    }
+                }
+            }
+            else
+            {
+                noprojtab.setVisibility(View.VISIBLE);
+                projtab1.setVisibility(View.GONE);
+                projtab2.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+                extraprojectscount.setVisibility(View.GONE);
             }
         }
 
         if (found_lang == 1) {
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                acc1txttxt.setText(lang1);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -")) {
-                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
-                Log.d("TAG", "populateData: lang_count - "+lang_count);
+
+            if(!lang1.equals("- Select Language -")) {
+                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1);
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2);
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -")) {
+                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and " + lang_count + " more");
+                    Log.d("TAG", "populateData: lang_count - " + lang_count);
+                }
+
+                percentProfile++;
             }
-
-            percentProfile++;
-
+            else
+            {
+                acc1txttxt.setText("No known languages filled.");
+            }
         }
         if (found_certificates == 1) {
+
+            if (!title1.equals("")){
+
+
             if (!title1.equals(""))
                 acc2txttxt.setText(title1);
             if (!title1.equals("") && !title2.equals(""))
@@ -2858,9 +2893,16 @@ public class MyProfileFragment extends Fragment {
             if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
                 acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " and "+ cert_count +" more");
             Log.d("TAG", "populateData: certcount - "+cert_count);
+            }
+            else
+            {
+                acc2txttxt.setText("No certifications filled.");
+            }
         }
         if (found_courses == 1) {
-            if (!course1.equals(""))
+            if (!title1.equals("")){
+
+                if (!course1.equals(""))
                 acc3txttxt.setText(course1);
             if (!course1.equals("") && !course2.equals(""))
                 acc3txttxt.setText(course1 + ", " + course2);
@@ -2870,31 +2912,56 @@ public class MyProfileFragment extends Fragment {
                 acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and "+ courses_count +" more");
             Log.d("TAG", "populateData: course - "+courses_count);
 
+            }
+            else
+            {
+                acc3txttxt.setText("No skills filled.");
+            }
         }
         if (found_skills == 1) {
-            if (!skill1.equals(""))
-                acc4txttxt.setText(skill1);
-            if (!skill1.equals("") && !skill2.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2);
-            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and "+ skills_count +" more");
-            Log.d("TAG", "populateData: skills_count - "+skills_count);
-            percentProfile++;
+
+
+                if(!skill1.equals("")) {
+
+
+                if (!skill1.equals(""))
+                    acc4txttxt.setText(skill1);
+                if (!skill1.equals("") && !skill2.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2);
+                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
+                Log.d("TAG", "populateData: skills_count - " + skills_count);
+                percentProfile++;
+            }
+            else {
+                acc4txttxt.setText("No skills filled.");
+                percentProfile--;
+            }
         }
         if (found_honors == 1) {
-            if (!htitle1.equals(""))
-                acc5txttxt.setText(htitle1);
-            if (!htitle1.equals("") && !htitle2.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2);
-            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and "+ honor_count +" more");
-            Log.d("TAG", "populateData: honor_count - "+honor_count);
+
+            if(!htitle1.equals("")) {
+                if (!htitle1.equals(""))
+                    acc5txttxt.setText(htitle1);
+                if (!htitle1.equals("") && !htitle2.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2);
+                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and " + honor_count + " more");
+                Log.d("TAG", "populateData: honor_count - " + honor_count);
+            }
+            else {
+                acc5txttxt.setText("No awards filled.");
+                percentProfile--;
+            }
+
         }
         if (found_patents == 1) {
+            if(!ptitle1.equals("")) {
+
             if (!ptitle1.equals(""))
                 acc6txttxt.setText(ptitle1);
             if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -2903,9 +2970,17 @@ public class MyProfileFragment extends Fragment {
                 acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
             if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
                 acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and "+ patent_count +" more");
+            }
+            else {
+                acc6txttxt.setText("No patents filled.");
+                percentProfile--;
+            }
+
         }
         if (found_publications == 1) {
-            if (!pubtitle1.equals(""))
+            if(!pubtitle1.equals("")) {
+
+                if (!pubtitle1.equals(""))
                 acc7txttxt.setText(pubtitle1);
             if (!pubtitle1.equals("") && !pubtitle2.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
@@ -2913,6 +2988,12 @@ public class MyProfileFragment extends Fragment {
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
             if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ public_count +" more");
+            }
+            else {
+                acc7txttxt.setText("No publications filled.");
+                percentProfile--;
+            }
+
         }
 
 
@@ -2922,6 +3003,7 @@ public class MyProfileFragment extends Fragment {
             percentProfile++;
         }
         if (found_strengths == 1) {
+            if(!strength1.equals("")) {
             if (!strength1.equals(""))
                 strengthstxt.setText(strength1);
             if (!strength1.equals("") && !strength2.equals(""))
@@ -2931,9 +3013,18 @@ public class MyProfileFragment extends Fragment {
             if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
                 strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " and "+ strength_count +" more");
             percentProfile++;
+            }
+            else {
+                strengthstxt.setText("No Strengths filled.");
+                percentProfile--;
+            }
+
         }
         if (found_weaknesses == 1) {
-            if (!weak1.equals(""))
+
+            if(!weak1.equals("")) {
+
+                if (!weak1.equals(""))
                 weaknessestxt.setText(weak1);
             if (!weak1.equals("") && !weak2.equals(""))
                 weaknessestxt.setText(weak1 + ", " + weak2);
@@ -2942,9 +3033,18 @@ public class MyProfileFragment extends Fragment {
             if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
                 weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " and "+ weakness_count +" more");
             percentProfile++;
+
+            }
+            else {
+                weaknessestxt.setText("No Weaknesses filled.");
+                percentProfile--;
+            }
+
         }
         if (found_locationpreferences == 1) {
-            if (!location1.equals(""))
+            if(!location1.equals("")) {
+
+                if (!location1.equals(""))
                 locationpreferences.setText(location1);
             if (!location1.equals("") && !location2.equals(""))
                 locationpreferences.setText(location1 + ", " + location2);
@@ -2953,6 +3053,12 @@ public class MyProfileFragment extends Fragment {
             if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
                 locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " and "+ location_count +" more");
             percentProfile++;
+            }
+            else {
+                locationpreferences.setText("No location preferences filled.");
+                percentProfile--;
+            }
+
         }
 
         if (found_pgyear == 1) {

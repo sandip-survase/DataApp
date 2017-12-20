@@ -410,7 +410,6 @@ public class MyProfileIntro extends AppCompatActivity {
             try {
                 r = json.getString("info");
                 Log.d("TAG", "doInBackground: r -" + r);
-//                Log.d("TAG", "doInBackground: r -"+r);
             } catch (Exception e) {
                 e.printStackTrace();
             }

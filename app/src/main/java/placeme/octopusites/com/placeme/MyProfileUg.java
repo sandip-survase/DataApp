@@ -54,7 +54,7 @@ public class MyProfileUg extends AppCompatActivity {
     TextInputLayout umarksusem1input,uoutofsem1input,upercentsem1input,umarksusem2input,uoutofsem2input,upercentsem2input,umarksusem3input,uoutofsem3input,upercentsem3input,umarksusem4input,uoutofsem4input,upercentsem4input,umarksusem5input,uoutofsem5input,upercentsem5input,umarksusem6input,uoutofsem6input,upercentsem6input,umarksusem7input,uoutofsem7input,upercentsem7input,umarksusem8input,uoutofsem8input,upercentsem8input,uaggregateinput,othercourseinput,otherstreaminput,otheruniversityinput,schoolnameuinput,yearofpassinguinput;
     Spinner ucourse,ustream,uuniversity;
     EditText othercourse,otherstream,otheruniversity,schoolnameu,yearofpassingu;
-    String markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,markssem7,outofsem7,percentsem7,markssem8,outofsem8,percentsem8,aggregate,schoolname,monthandyearofpassing,otherspecifiedcourse,otherspecifiedstream,otherspecifieduniversity;
+    String markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,markssem7,outofsem7,percentsem7,markssem8,outofsem8,percentsem8,aggregate,schoolname,monthandyearofpassing,otherspecifiedcourse="",otherspecifiedstream="",otherspecifieduniversity="";
     String selectedCourse="",selectedStream="",selectedUniversity="";
     String encmarkssem1,encoutofsem1,encpercentsem1,encmarkssem2,encoutofsem2,encpercentsem2,encmarkssem3,encoutofsem3,encpercentsem3,encmarkssem4,encoutofsem4,encpercentsem4,encmarkssem5,encoutofsem5,encpercentsem5,encmarkssem6,encoutofsem6,encpercentsem6,encmarkssem7,encoutofsem7,encpercentsem7,encmarkssem8,encoutofsem8,encpercentsem8,encaggregate,encschoolname,encmonthandyearofpassing;
     String encselectedcourse,encselectedstream,encselecteduniversity;
@@ -76,7 +76,7 @@ public class MyProfileUg extends AppCompatActivity {
     int edittedFlag=0,isCourseSet=0,isStreamSet=0;
     String[] CourseListWithIds, CourseList;
     String[] StramsListWithIds, StramsList, tempStramsList;
-    String courseug = null, streamug = null, universityug = null;
+    String courseug = "", streamug = "", universityug = "",tempcourse="",tempuniversity="";
 
     int  checkstream = 0;
     @Override
@@ -259,8 +259,12 @@ public class MyProfileUg extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCourse = (String) parent.getItemAtPosition(position);
                 Log.d("tag", "onItemSelected: " + selectedCourse);
+                Log.d("TAG", "onItemSelected: ucourse edittedFlag -"+edittedFlag);
 
                 String toCompare = selectedCourse;
+                tempcourse = toCompare;
+
+                Log.d("tag", "toCompare: " + toCompare);
 
                 int index = 0;
                 for (int i = 0; i < CourseList.length; i++) {
@@ -272,7 +276,6 @@ public class MyProfileUg extends AppCompatActivity {
                 tosettoStreamslist.clear();
 
                 setStreamAdapter(toCompare);
-//                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
 
                 TextInputLayout othercourseinput = (TextInputLayout) findViewById(R.id.othercourseinput);
 
@@ -341,6 +344,7 @@ public class MyProfileUg extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStream= (String) parent.getItemAtPosition(position);
                 TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.otherstreaminput);
+                Log.d("TAG", "onItemSelected: ustream edittedFlag -"+edittedFlag);
                 if(selectedStream.equals("Other")) {
 
                     otherboardinput.setVisibility(View.VISIBLE);
@@ -410,10 +414,12 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedUniversity = (String) parent.getItemAtPosition(position);
+                Log.d("TAG", "onItemSelected: uuniversity edittedFlag -"+edittedFlag);
+                tempuniversity =selectedUniversity;
+
 
                 TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.otheruniversityinput);
                 if (selectedUniversity.equals("Other")) {
-
                     otheruniversityinput.setVisibility(View.VISIBLE);
 
                 } else {
@@ -431,6 +437,7 @@ public class MyProfileUg extends AppCompatActivity {
         });
 
 
+
         umarkssem1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -441,6 +448,7 @@ public class MyProfileUg extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 umarksusem1input.setError(null);
                 edittedFlag=1;
+
             }
 
             @Override
@@ -1386,8 +1394,18 @@ public class MyProfileUg extends AppCompatActivity {
         schoolname=s.getCollegenameug();
         monthandyearofpassing=s.getYearofpassingug();
         selectedCourse= s.getCourseug();
+
         selectedUniversity=s.getUniversityug();
         selectedStream=s.getStreamug();
+
+        if(selectedStream==null){
+        selectedStream="";
+        }
+
+        oldStream=selectedStream;
+        oldUniversity=selectedUniversity;
+        oldCourse=selectedCourse;
+
         setStreamAdapter(selectedCourse);
 
 
@@ -1586,370 +1604,27 @@ public class MyProfileUg extends AppCompatActivity {
 
                 if (!selectedStream.equals("- Select Stream -") && !selectedStream.equals(""))
                     ustream.setSelection(dataAdapter2.getPosition(selectedStream));
+                else
+                    selectedStream="";
 
-            } else {
+
+
+            }
+            else {
+                selectedStream="";
                 tosettoStreamslist.clear();
                 ustreamspinner.setVisibility(View.GONE);
                 checkstream = 0;
             }
 
         } catch (Exception e) {
+            Log.d("TAG", "setStreamAdapter: "+e.getMessage());
+
         }
         return null;
 
     }
 
-
-
-    class GetCourses extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(Z.url_getugcourses, "GET", params);
-            try {
-                String s = json.getString("count");
-                coursecount=Integer.parseInt(s);
-                courses=new String[coursecount];
-                for(int i=0;i<coursecount;i++)
-                {
-                    courses[i]=json.getString("course"+i);
-                }
-
-
-
-
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            courseslist.clear();
-            courseslist.add("- Select Course -");
-            for(int i=0;i<coursecount;i++)
-            {
-                courseslist.add(courses[i]);
-            }
-            populateCourses();
-            courseslist.add("Other");
-        }
-    }
-
-
-    class GetStreams extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("c",selectedCourse));
-            json = jParser.makeHttpRequest(Z.url_getstreams, "GET", params);
-            try {
-                String s = json.getString("count");
-                streamcount=Integer.parseInt(s);
-                streams=new String[streamcount];
-                for(int i=0;i<streamcount;i++)
-                {
-                    streams[i]=json.getString("stream"+i);
-                }
-
-
-
-
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            streamlist.clear();
-            streamlist.add("- Select Stream/Specialization -");
-            if(streamcount==0)
-            {
-                RelativeLayout ustreamspinner=(RelativeLayout)findViewById(R.id.ustreamspinner);
-                ustreamspinner.setVisibility(View.GONE);
-            }
-            else{
-                RelativeLayout ustreamspinner=(RelativeLayout)findViewById(R.id.ustreamspinner);
-                ustreamspinner.setVisibility(View.VISIBLE);
-                for (int i = 0; i < streamcount; i++) {
-                    streamlist.add(streams[i]);
-                }
-                populateStreams();
-                streamlist.add("Other");
-            }
-        }
-    }
-
-    class GetUniversities extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(Z.url_getuniversities, "GET", params);
-            try {
-                String s = json.getString("count");
-                universitycount=Integer.parseInt(s);
-                universities=new String[universitycount];
-                for(int i=0;i<universitycount;i++)
-                {
-                    universities[i]=json.getString("university"+i);
-                }
-
-
-
-
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            universitieslist.clear();
-            universitieslist.add("- Select University -");
-            for(int i=0;i<universitycount;i++)
-            {
-                universitieslist.add(universities[i]);
-            }
-            populateUniversities();
-            universitieslist.add("Other");
-        }
-    }
-    void populateCourses()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, courseslist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                tv.setTypeface(Z.getBold(MyProfileUg.this));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfileUg.this));
-
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };;
-        ucourse.setAdapter(dataAdapter);
-
-        ucourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCourse = (String) parent.getItemAtPosition(position);
-                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othercourseinput);
-                if(selectedCourse.equals("Other")) {
-                    otherboardinput.setVisibility(View.VISIBLE);
-                }
-                else {
-                    new GetStreams().execute();
-                    otherboardinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
-        if(isCourseSet==0) {
-            isCourseSet=1;
-            if(s.getCourseug()!=null) {
-                ucourse.setSelection(dataAdapter.getPosition(s.getCourseug()));
-                selectedCourse = s.getCourseug();
-                oldCourse = s.getCourseug();
-            }
-            else
-                oldCourse = "- Select Course -";
-        }
-
-
-    }
-    void populateStreams()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, streamlist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfileUg.this));
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfileUg.this));
-
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };;
-        ustream.setAdapter(dataAdapter);
-
-
-        if(isStreamSet==0) {
-            isStreamSet=1;
-            if(s.getStreamug()!=null) {
-                ustream.setSelection(dataAdapter.getPosition(s.getStreamug()));
-                selectedStream = s.getStreamug();
-                oldStream = s.getStreamug();
-            }
-            else
-                oldStream = "- Select Stream/Specialization -" ;
-        }
-
-
-    }
-    void populateUniversities()
-    {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, universitieslist)
-        {
-            @Override
-            public boolean isEnabled(int position){
-
-                if(position == 0)
-                {
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfileUg.this));
-                tv.setTextColor(getResources().getColor(R.color.dark_color));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(Z.getBold(MyProfileUg.this));
-
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                }
-                else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };;
-        uuniversity.setAdapter(dataAdapter);
-
-        uuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedUniversity= (String) parent.getItemAtPosition(position);
-                TextInputLayout otheruniversityinput=(TextInputLayout)findViewById(R.id.otheruniversityinput);
-                if(selectedUniversity.equals("Other")) {
-
-                    otheruniversityinput.setVisibility(View.VISIBLE);
-
-                }
-                else {
-                    otheruniversityinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        selectedUniversity=s.getUniversityug();
-        if(selectedUniversity!=null)
-        {
-            uuniversity.setSelection(dataAdapter.getPosition(selectedUniversity));
-            oldUniversity=selectedUniversity;
-        }
-        else
-            oldUniversity="- Select University -";
-    }
     void setMonthYear(String selectedMonth,String selectedYear)
     {
         yearofpassingu.setText(selectedMonth+", "+selectedYear);
@@ -2235,7 +1910,8 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                                         if (schoolname.length() < 3) {
                                                                                                                             errorflag4 = 1;
                                                                                                                             schoolnameuinput.setError("Kindly enter valid college name");
-                                                                                                                        } else if (selectedUniversity.equals("Other")) {
+                                                                                                                        }
+                                                                                                                        else if (selectedUniversity.equals("Other")) {
                                                                                                                             otherspecifieduniversity = otheruniversity.getText().toString();
 
                                                                                                                             if (otherspecifieduniversity.length() < 3) {
@@ -2283,7 +1959,9 @@ public class MyProfileUg extends AppCompatActivity {
         }
         if(errorflag1==0&&errorflag2==0&&errorflag3==0&&errorflag4==0&&errorflag5==0)
         {
+            Log.d("TAG", "validateandSave: all flag 0");
             try {
+
                 if (selectedStream.equals("Other"))
                     streamug = otherspecifiedstream;
                 else
@@ -2295,9 +1973,7 @@ public class MyProfileUg extends AppCompatActivity {
                 }
                 else {
                     courseug = selectedCourse;
-
                 }
-
                 if (selectedUniversity.equals("Other"))
                     universityug = otherspecifieduniversity;
                 else
@@ -2312,7 +1988,7 @@ public class MyProfileUg extends AppCompatActivity {
                 new SaveDataUg().execute();
 
             }catch (Exception e){
-
+                Log.d("TAG", "validateandSave: exce - "+e.getMessage());
             }
         }
 
@@ -2323,39 +1999,11 @@ public class MyProfileUg extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
+            Log.d("TAG", "doInBackground: in dobackground");
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));    //0
-            params.add(new BasicNameValuePair("m1",encobj));        //1
-//            params.add(new BasicNameValuePair("o1",encoutofsem1));       //2
-//            params.add(new BasicNameValuePair("p1",encpercentsem1));     //3
-//            params.add(new BasicNameValuePair("m2",encmarkssem2));        //4
-//            params.add(new BasicNameValuePair("o2",encoutofsem2));       //5
-//            params.add(new BasicNameValuePair("p2",encpercentsem2));    //6
-//            params.add(new BasicNameValuePair("m3",encmarkssem3));        //7
-//            params.add(new BasicNameValuePair("o3",encoutofsem3));       //8
-//            params.add(new BasicNameValuePair("p3",encpercentsem3));    //9
-//            params.add(new BasicNameValuePair("m4",encmarkssem4));        //10
-//            params.add(new BasicNameValuePair("o4",encoutofsem4));       //11
-//            params.add(new BasicNameValuePair("p4",encpercentsem4));    //12
-//            params.add(new BasicNameValuePair("m5",encmarkssem5));        //13
-//            params.add(new BasicNameValuePair("o5",encoutofsem5));       //14
-//            params.add(new BasicNameValuePair("p5",encpercentsem5));    //15
-//            params.add(new BasicNameValuePair("m6",encmarkssem6));        //16
-//            params.add(new BasicNameValuePair("o6",encoutofsem6));       //17
-//            params.add(new BasicNameValuePair("p6",encpercentsem6));    //18
-//            params.add(new BasicNameValuePair("m7",encmarkssem7));        //19
-//            params.add(new BasicNameValuePair("o7",encoutofsem7));       //20
-//            params.add(new BasicNameValuePair("p7",encpercentsem7));    //21
-//            params.add(new BasicNameValuePair("m8",encmarkssem8));        //22
-//            params.add(new BasicNameValuePair("o8",encoutofsem8));       //23
-//            params.add(new BasicNameValuePair("p8",encpercentsem8));    //24
-//            params.add(new BasicNameValuePair("a",encaggregate));        //25
-//            params.add(new BasicNameValuePair("c",encselectedcourse));  //26
-//            params.add(new BasicNameValuePair("s1",encselectedstream)); //27
-//            params.add(new BasicNameValuePair("u1",encselecteduniversity));       //28
-//            params.add(new BasicNameValuePair("s",encschoolname));     //29
-//            params.add(new BasicNameValuePair("y",encmonthandyearofpassing));       //30
+            params.add(new BasicNameValuePair("m1",encobj));        //1     //30
             json = jParser.makeHttpRequest(Z.url_savedata_ug, "GET", params);
             try {
                 r = json.getString("info");
@@ -2371,6 +2019,7 @@ public class MyProfileUg extends AppCompatActivity {
             if(result.equals("success"))
             {
                 Toast.makeText(MyProfileUg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "doInBackground: in dobackground");
 
 
                 if(role.equals("student"))
@@ -2408,13 +2057,21 @@ public class MyProfileUg extends AppCompatActivity {
 
                 MyProfileUg.super.onBackPressed();
             }
-
+            else {
+                Log.d("TAG", "doInBackground: in dobackground");
+                Toast.makeText(MyProfileUg.this, "try again", Toast.LENGTH_SHORT).show();
+            }
         }
     }
     @Override
     public void onBackPressed() {
 
-        if(!oldCourse.equals(selectedCourse)||!oldStream.equals(selectedStream)||!oldUniversity.equals(selectedUniversity)||edittedFlag==1)
+        Log.d("TAG", "onBackPressed: tempcourse -"+tempcourse);
+        Log.d("TAG", "onBackPressed: universityug -"+tempuniversity);
+        Log.d("TAG", "onBackPressed: "+oldCourse);
+        Log.d("TAG", "onBackPressed: "+oldUniversity);
+
+        if(edittedFlag==1 || !oldCourse.equals(tempcourse)|| !oldUniversity.equals(oldUniversity))
         {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 

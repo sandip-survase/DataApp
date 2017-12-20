@@ -1222,7 +1222,28 @@ public class PersonalProfileTabFragment extends Fragment  {
                 paddrline3.setClickable(false);
 
             }
+            else {
+
+                if (addrline1p != null) {
+                    if (!addrline1p.equals(""))
+                        paddrline1.setText(addrline1p);
+                }
+                if (addrline2p != null) {
+                    if (!addrline2p.equals(""))
+                        paddrline2.setText(addrline2p);
+                }
+                if (addrline3p != null) {
+                    if (!addrline3p.equals(""))
+                        paddrline3.setText(addrline3p);
+                }
+            }
         }
+
+
+
+
+
+
         if (handicapped != null) {
             if (handicapped.equals("notapplicable"))
                 radioButtonHandicappedNo.setChecked(true);
@@ -1608,26 +1629,25 @@ public class PersonalProfileTabFragment extends Fragment  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "";
+            return resultofop;
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-            if (resultofop.equals("success")) {
-                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "onPostExecute: role before- "+role);
+            if (result.equals("success")) {
+//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (role.equals("student")) {
                     Log.d("TAG", "onPostExecute: role - "+role);
-                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+//                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 }
                 else {
                     Log.d("TAG", "onPostExecute: role - "+role);
-                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+//                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 }
                 edittedFlag = 0;
             } else {
-                Toast.makeText(getContext(), "Try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Try again", Toast.LENGTH_SHORT).show();
             }
 
 //            save.setVisibility(View.VISIBLE);
