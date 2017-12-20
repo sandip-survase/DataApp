@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".EditNotification"
     tools:showIn="@layout/activity_edit_notification"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:focusableInTouchMode="true"
     >
 
@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Notification"
-            android:textSize="18dp"
-            android:textColor="#eee"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
             android:id="@+id/editnotitxt"
             />
 
@@ -33,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editnotitxt"
-            android:textColor="#bbb"
+            android:textColor="@color/dark_color"
+            android:textSize="12dp"
             android:text="Below is the list of notifications uploaded by you."
             android:layout_marginTop="10dp"
             android:id="@+id/editnotinotitxt"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="DELETE NOTIFICATIONS"
             android:layout_alignParentRight="true"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@color/sky_blue_color"
             android:layout_marginTop="5dp"
             android:layout_below="@+id/editnotinotitxt"
             android:id="@+id/deletenotitxt"

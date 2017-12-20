@@ -329,18 +329,17 @@ public class EditNotification extends AppCompatActivity {
             }
         });
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
+
 
         TextView editnotitxt = (TextView) findViewById(R.id.editnotitxt);
         TextView editnotinotitxt = (TextView) findViewById(R.id.editnotinotitxt);
-        editnotitxt.setTypeface(custom_font);
-        editnotinotitxt.setTypeface(custom_font2);
-        deletenotitxt.setTypeface(custom_font);
+        editnotitxt.setTypeface(Z.getBold(this));
+        editnotinotitxt.setTypeface(Z.getLight(this));
+        deletenotitxt.setTypeface(Z.getBold(this));
 
 
 //        addPlacementdatatoAdapter();
-        getNotifications();
+//        getNotifications();
     }
 
     void hideSearchMenu() {
@@ -507,7 +506,7 @@ public class EditNotification extends AppCompatActivity {
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-        new GetNotificationsReadStatus().execute();
+//        new GetNotificationsReadStatus().execute();
 
     }
 

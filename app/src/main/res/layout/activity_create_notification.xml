@@ -5,7 +5,7 @@
     android:id="@+id/activity_create_notification"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:focusableInTouchMode="true"
     tools:context="placeme.octopusites.com.placeme.CreateNotification">
 
@@ -27,14 +27,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create Notification"
-                android:textSize="18dp"
-                android:textColor="#eee"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:id="@+id/createnotitxt"
                 />
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/trash"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/delete_icon"
                 android:layout_alignParentRight="true"
                 android:id="@+id/trashnotification"
                 />
@@ -42,18 +42,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/createnotitxt"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text="Your notification will be broadcasted only to the students and/or alumnis of your institute."
                 android:layout_marginTop="10dp"
+                android:textSize="14dp"
                 android:id="@+id/createnotinotitxt"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/createnotinotitxt"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text="Last modified : 15-Feb-2016, 10:30 AM"
                 android:layout_marginTop="10dp"
+                android:textSize="11dp"
                 android:id="@+id/lastmodifiedtxt"
                 />
 
@@ -71,8 +73,10 @@
                     android:layout_height="wrap_content"
                     android:hint="Title"
                     android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="15dp" />
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp"
+                    android:maxLength="200"
+                    />
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -91,19 +95,22 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/notification"/>
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/notification"
+                    android:maxLength="2500"
+                    />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text="Choose to whom you want to send this notification."
                 android:layout_below="@+id/notificationinput"
                 android:layout_marginTop="5dp"
                 android:id="@+id/choosetxt"
+                android:textSize="12dp"
                 />
 
 
@@ -115,7 +122,7 @@
                 android:text="Students"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 />
             <CheckBox
                 android:id="@+id/CheckBoxsAlumni"
@@ -126,7 +133,7 @@
                 android:text="Alumni"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="20dp"
                 />
 
@@ -169,7 +176,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:textColor="#bbb"
+                        android:textColor="@color/sky_blue_color"
                         android:text=""
                         android:layout_marginTop="0dp"
                         android:id="@+id/dummy2"
@@ -178,24 +185,22 @@
                         android:id="@+id/tagsEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        TagsEditText:tagsTextColor="#282f35"
                         TagsEditText:allowSpaceInTag="true"
                         android:editable="false"
                         TagsEditText:tagsBackground="@drawable/square_default"
                         TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                        android:textColor="#eee"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:singleLine = "true"
                         android:maxLines="1"
                         android:layout_marginLeft="5dp"
-                        android:popupBackground="#001111"
+                        android:popupBackground="@color/while_color"
                         android:layout_below="@+id/dummy2"
                         />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:textColor="#bbb"
+                        android:textColor="@color/sky_blue_color"
                         android:text=""
                         android:layout_below="@+id/tagsEditText"
                         android:layout_marginTop="0dp"
@@ -207,8 +212,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#bbb"
-                android:text="Attachments"
+                android:textColor="@color/dark_color"
+                android:text="attachments"
+                android:textSize="11dp"
                 android:layout_below="@+id/yearspinner"
                 android:layout_marginTop="5dp"
                 android:id="@+id/attachmentstxt"
@@ -221,7 +227,7 @@
                 android:layout_marginTop="30dp"
                 android:id="@+id/file1"
                 android:background="@drawable/attach_round"
-                android:padding="2dp"
+                android:padding="1dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:visibility="gone"
@@ -243,9 +249,10 @@
                     android:id="@+id/filename"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/while_color"
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
+                    android:layout_alignParentLeft="true"
                     android:textSize="12dp"
                     android:layout_marginRight="28dp"
                     />
@@ -255,7 +262,7 @@
                     android:id="@+id/delfile1"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/close"
+                    android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
@@ -290,7 +297,7 @@
                     android:id="@+id/filename2"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/while_color"
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
@@ -302,7 +309,7 @@
                     android:id="@+id/delfile2"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/close"
+                    android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
@@ -338,7 +345,7 @@
                     android:id="@+id/filename3"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/while_color"
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
@@ -351,7 +358,7 @@
                     android:id="@+id/delfile3"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/close"
+                    android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
@@ -387,7 +394,7 @@
                     android:id="@+id/filename4"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/while_color"
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
@@ -399,7 +406,7 @@
                     android:id="@+id/delfile4"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/close"
+                    android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
@@ -434,7 +441,7 @@
                     android:id="@+id/filename5"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/while_color"
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
@@ -445,7 +452,7 @@
                     android:id="@+id/delfile5"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/close"
+                    android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
@@ -464,8 +471,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/attachnoti"
-        app:backgroundTint="#fff"
+        app:srcCompat="@drawable/attachment_white_icon"
+        app:backgroundTint="@color/dark_color"
+        android:elevation="6dp"
         />
 
 </RelativeLayout>

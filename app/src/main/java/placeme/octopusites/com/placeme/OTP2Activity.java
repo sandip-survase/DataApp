@@ -79,23 +79,29 @@ public class OTP2Activity extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verify.setVisibility(View.GONE);
-                otpprogress.setVisibility(View.VISIBLE);
+
                 enteredOTP=otpedittext.getText().toString();
+                if(enteredOTP.length()<6)
+                    otplayout.setError("Kindly enter valid OTP");
+                else {
+                    verify.setVisibility(View.GONE);
+                    otpprogress.setVisibility(View.VISIBLE);
 
-                try {
-                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                    String sPadding = "ISO10126Padding";
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
 
-                    byte[] otpBytes = enteredOTP.getBytes("UTF-8");
+                        byte[] otpBytes = enteredOTP.getBytes("UTF-8");
 
-                    byte[] otpEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, otpBytes);
-                    encOTP=new String(SimpleBase64Encoder.encode(otpEncryptedBytes));
+                        byte[] otpEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, otpBytes);
+                        encOTP = new String(SimpleBase64Encoder.encode(otpEncryptedBytes));
 
-                }catch (Exception e){}
+                    } catch (Exception e) {
+                    }
 
-                new VerifyOTP().execute();
+                    new VerifyOTP().execute();
+                }
             }
         });
     }

@@ -2,7 +2,10 @@ package placeme.octopusites.com.placeme;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.EditText;
 
 
 public class PlacementCreateTab2 extends Fragment {
+    TextInputLayout aptiinput,techtestinput,gdinput,techinterviewinput,hrinterviewinput;
     EditText apti,techtest,groupdisc,techinterview,Hrinterview;
     String sapti="",stechtest="",sgroupdisc="",stechinterview="",sHrinterview="";
 
@@ -25,11 +29,110 @@ public class PlacementCreateTab2 extends Fragment {
 
         View rootView = inflater.inflate(R.layout.create_placement_tab2, container, false);
 
+        aptiinput=(TextInputLayout)rootView.findViewById(R.id.aptiinput);
+        techtestinput=(TextInputLayout)rootView.findViewById(R.id.techtestinput);
+        gdinput=(TextInputLayout)rootView.findViewById(R.id.gdinput);
+        techinterviewinput=(TextInputLayout)rootView.findViewById(R.id.techinterviewinput);
+        hrinterviewinput=(TextInputLayout)rootView.findViewById(R.id.hrinterviewinput);
+
+        aptiinput.setTypeface(Z.getLight(getActivity()));
+        techtestinput.setTypeface(Z.getLight(getActivity()));
+        gdinput.setTypeface(Z.getLight(getActivity()));
+        techinterviewinput.setTypeface(Z.getLight(getActivity()));
+        hrinterviewinput.setTypeface(Z.getLight(getActivity()));
+
         apti=(EditText)rootView.findViewById(R.id.apti);
         techtest=(EditText)rootView.findViewById(R.id.techtest);
         groupdisc=(EditText)rootView.findViewById(R.id.gd);
         techinterview=(EditText)rootView.findViewById(R.id.techinterview);
         Hrinterview=(EditText)rootView.findViewById(R.id.hrinterview);
+
+        apti.setTypeface(Z.getBold(getActivity()));
+        techtest.setTypeface(Z.getBold(getActivity()));
+        groupdisc.setTypeface(Z.getBold(getActivity()));
+        techinterview.setTypeface(Z.getBold(getActivity()));
+        Hrinterview.setTypeface(Z.getBold(getActivity()));
+
+        apti.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                aptiinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        techtest.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                techtestinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        groupdisc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                gdinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        techinterview.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                techinterviewinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        Hrinterview.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                hrinterviewinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         PlacementEditData getdata=new  PlacementEditData();
         String activitytag = getdata.getActivityFromtag();
@@ -104,24 +207,24 @@ public class PlacementCreateTab2 extends Fragment {
         Erroflag=0;
 
         if(sapti.length()<1){
-            apti.setError("Enter Valid no of Aptitude tests");
+            aptiinput.setError("Kindly enter valid input");
             Erroflag=1;
 
         } else if(stechtest.length()<1){
-            techtest.setError("Enter Valid no of technical tests");
+            techtestinput.setError("Kindly enter valid input");
             Erroflag=1;
 
         }else if(sgroupdisc.length()<1){
-            groupdisc.setError("Enter Valid no of GD Rounds");
+            gdinput.setError("Kindly enter valid input");
             Erroflag=1;
 
         } else if(stechinterview.length()<1){
-            techinterview.setError("Enter Valid no of technical interviews");
+            techinterviewinput.setError("Kindly enter valid input");
             Erroflag=1;
 
         }
         else if(sHrinterview.length()<1){
-            Hrinterview.setError("Enter Valid no of HR interviews ");
+            hrinterviewinput.setError("Kindly enter valid input");
             Erroflag=1;
 
         }

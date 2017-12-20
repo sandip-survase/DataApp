@@ -2485,7 +2485,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-                MyProfileTwelthOrDiploma.super.onBackPressed();
+//                MyProfileTwelthOrDiploma.super.onBackPressed();
 
 
                 s.setMarkssem1diploma(markssem1);

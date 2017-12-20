@@ -13,9 +13,8 @@
         android:id="@+id/uploadedbyprofile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/profile_icon"
+        android:src="@drawable/profile_image_icon"
         android:layout_centerVertical="true"
-        app:border_color="#FF000000"
         />
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,7 +30,7 @@
 
     <TextView
         android:id="@+id/title"
-        android:textColor="@color/heading"
+        android:textColor="@color/sky_blue_color"
         android:textSize="16dp"
         android:textStyle="bold"
         android:layout_toRightOf="@+id/uploadedbyprofile"
@@ -43,7 +42,7 @@
         android:id="@+id/notification"
         android:layout_below="@id/title"
         android:layout_width="match_parent"
-        android:textColor="@color/notification"
+        android:textColor="@color/dark_color"
         android:layout_toRightOf="@+id/uploadedbyprofile"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
@@ -51,7 +50,7 @@
 
     <TextView
         android:id="@+id/uploadtime"
-        android:textColor="@color/attachment"
+        android:textColor="@color/dark_color"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:textSize="10dp"
@@ -63,6 +62,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
+        android:src="@drawable/attachment_icon"
   />
 
 

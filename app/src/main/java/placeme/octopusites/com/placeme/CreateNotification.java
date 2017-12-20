@@ -86,7 +86,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     int attachmentcount = 0;
     int attach1 = 0, attach2 = 0, attach3 = 0, attach4 = 0, attach5 = 0;
     int forstudflag = 0, forallumflag = 0;
-    TextInputLayout batches;
+    TextInputLayout batches,titleinput,notificationinput;
     RelativeLayout yearspinner;
     RelativeLayout attchrl1, attchrl2, attchrl3, attchrl4, attchrl5;
     JSONObject json;
@@ -136,13 +136,25 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         scrollview = ((ScrollView) findViewById(R.id.schroll1));
 
+        titleinput=(TextInputLayout)findViewById(R.id.titleinput);
+        notificationinput=(TextInputLayout)findViewById(R.id.notificationinput);
+        titleinput.setTypeface(Z.getLight(this));
+        notificationinput.setTypeface(Z.getLight(this));
 
-        TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
-        TextView createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
-        TextView lastmodifiedtxt = (TextView) findViewById(R.id.lastmodifiedtxt);
+
+
+         createnotitxt = (TextView) findViewById(R.id.createnotitxt);
+         createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
+         lastmodifiedtxt = (TextView) findViewById(R.id.lastmodifiedtxt);
+        createnotitxt.setTypeface(Z.getBold(this));
+        createnotinotitxt.setTypeface(Z.getLight(this));
+        lastmodifiedtxt.setTypeface(Z.getLight(this));
+
         trashnotification = (ImageView) findViewById(R.id.trashnotification);
         TextView choosetxt = (TextView) findViewById(R.id.choosetxt);
+        choosetxt.setTypeface(Z.getBold(this));
         TextView attachmentstxt = (TextView) findViewById(R.id.attachmentstxt);
+        attachmentstxt.setTypeface(Z.getLight(this));
 
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -207,18 +219,17 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
 
-        createnotitxt.setTypeface(custom_font);
-        createnotinotitxt.setTypeface(custom_font2);
-        choosetxt.setTypeface(custom_font2);
-        attachmentstxt.setTypeface(custom_font2);
 
         title = (TextInputEditText) findViewById(R.id.title);
         notiffication = (TextInputEditText) findViewById(R.id.notification);
+        title.setTypeface(Z.getBold(this));
+        notiffication.setTypeface(Z.getBold(this));
+
         stud = (CheckBox) findViewById(R.id.CheckBoxstudent);
         allum = (CheckBox) findViewById(R.id.CheckBoxsAlumni);
+        stud.setTypeface(Z.getBold(this));
+        allum.setTypeface(Z.getBold(this));
 
 
         //tags
@@ -394,7 +405,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title.setError(null);
+                titleinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -411,7 +422,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                notiffication.setError(null);
+                notificationinput.setError(null);
                 edittedFlag = 1;
 
             }
@@ -671,10 +682,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
                     if (stitle.length() < 2) {
-                        title.setError("Incorrect Title ");
+                        titleinput.setError("Kindly enter notification title ");
                         errorflag = 1;
                     } else if (snotiffication.length() < 2) {
-                        notiffication.setError("Incorrect Notiffication ");
+                        notificationinput.setError("Kindly enter some message");
                         errorflag = 1;
                     } else if (instname == null) {
                         Toast.makeText(this, "Please Fill Institute Name in Your Profile in Order To Create Notification", Toast.LENGTH_LONG).show();

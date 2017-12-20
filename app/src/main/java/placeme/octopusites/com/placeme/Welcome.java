@@ -708,79 +708,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         });
 
 
-//        studentBlock = WelcomeRoleView.findViewById(R.id.studentBlock);
-//        alumniBlock = WelcomeRoleView.findViewById(R.id.alumniBlock);
-//        adminBlock = WelcomeRoleView.findViewById(R.id.adminBlock);
-//        hrBlock = WelcomeRoleView.findViewById(R.id.hrBlock);
-//        instOrEmail = (EditText) WelcomeRoleView.findViewById(R.id.instOrEmail);
-
-//        studentBlock.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                alumniBlock.setBackgroundResource(R.color.colorPrimary);
-//                adminBlock.setBackgroundResource(R.color.colorPrimary);
-//                hrBlock.setBackgroundResource(R.color.colorPrimary);
-//                studentBlock.setBackgroundResource(R.color.timestamp);
-//                SELECTED_ROLE = "student";
-//                instOrEmail.setHint("Institute code");
-//                // max length 8
-//                InputFilter[] fArray = new InputFilter[1];
-//                fArray[0] = new InputFilter.LengthFilter(8);
-//                instOrEmail.setFilters(fArray);
-//
-//            }
-//        });
-//
-//        alumniBlock.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                adminBlock.setBackgroundResource(R.color.colorPrimary);
-//                studentBlock.setBackgroundResource(R.color.colorPrimary);
-//                hrBlock.setBackgroundResource(R.color.colorPrimary);
-//                alumniBlock.setBackgroundResource(R.color.timestamp);
-//                SELECTED_ROLE = "alumni";
-//                instOrEmail.setHint("Institute code");
-//                // max length 8
-//                InputFilter[] fArray = new InputFilter[1];
-//                fArray[0] = new InputFilter.LengthFilter(8);
-//                instOrEmail.setFilters(fArray);
-//            }
-//        });
-//
-//        adminBlock.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                alumniBlock.setBackgroundResource(R.color.colorPrimary);
-//                studentBlock.setBackgroundResource(R.color.colorPrimary);
-//                hrBlock.setBackgroundResource(R.color.colorPrimary);
-//                adminBlock.setBackgroundResource(R.color.timestamp);
-//                SELECTED_ROLE = "admin";
-//                instOrEmail.setHint("professional Email");
-//                // max length 100
-//                InputFilter[] fArray = new InputFilter[1];
-//                fArray[0] = new InputFilter.LengthFilter(100);
-//                instOrEmail.setFilters(fArray);
-//
-//            }
-//        });
-//
-//        hrBlock.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                alumniBlock.setBackgroundResource(R.color.colorPrimary);
-//                adminBlock.setBackgroundResource(R.color.colorPrimary);
-//                studentBlock.setBackgroundResource(R.color.colorPrimary);
-//                hrBlock.setBackgroundResource(R.color.timestamp);
-//                SELECTED_ROLE = "hr";
-//                instOrEmail.setHint("professional Email");
-//                // max length 100
-//                InputFilter[] fArray = new InputFilter[1];
-//                fArray[0] = new InputFilter.LengthFilter(100);
-//                instOrEmail.setFilters(fArray);
-//            }
-//        });
-
     }
 
     @Override
@@ -816,25 +743,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             }
         });
 
-
-        // layouts of all welcome sliders
-        // add few more layouts if you want
-
-
-        // adding bottom dots
-
-        // making notification bar transparent
-
-//        setupViewPagerNewUser(viewPager);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
-
-//        viewPager.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return true;
-//            }
-//        });
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -1020,7 +929,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
                         if (errorFlagThroughAdminIntro == false) {
-//                            Toast.makeText(Welcome.this, "path 3", Toast.LENGTH_SHORT).show();
                             new SaveDataUserCreatedThroughAdmin().execute();
                         }
                     }

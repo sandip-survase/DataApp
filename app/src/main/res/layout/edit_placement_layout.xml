@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".EditNotification"
     tools:showIn="@layout/activity_edit_placement"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:focusableInTouchMode="true"
     >
 
@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Placement/Internship"
-            android:textSize="18dp"
-            android:textColor="#eee"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
             android:id="@+id/editnotitxt"
             />
 
@@ -33,18 +33,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editnotitxt"
-            android:textColor="#bbb"
+            android:textColor="@color/dark_color"
             android:text="Below is the list of placements uploaded by you."
             android:layout_marginTop="10dp"
+            android:textSize="14dp"
             android:id="@+id/editnotinotitxt"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DELETE placement"
+            android:text="DELETE PLACEMENTS"
             android:layout_alignParentRight="true"
             android:textColor="@android:color/holo_blue_bright"
             android:layout_marginTop="5dp"
+            android:textSize="14dp"
             android:layout_below="@+id/editnotinotitxt"
             android:id="@+id/deletenotitxt"
             />
