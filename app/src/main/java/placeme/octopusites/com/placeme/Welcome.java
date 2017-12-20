@@ -713,8 +713,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_welcome);
+        Log.d("TAG", "onCreate: Welcome called");
 
         fa = Typeface.createFromAsset(this.getAssets(),  "fonts/fa.ttf");
         bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
@@ -1032,7 +1032,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 Log.d("TAG", "doInBackground: fname " + fname);
                 Log.d("TAG", "doInBackground: lname " + lname);
                 Log.d("TAG", "doInBackground: mobile " + mobile);
-                Log.d("TAG", "doInBackground: passwordstr " + passwordstr);
+                Log.d("TAG", "doInBackground: passwordstr " + confrimpass);
                 Log.d("TAG", "doInBackground: instOrEmailstr " + instOrEmailstr);
                 Log.d("TAG", "doInBackground: plainUsername " + plainUsername);
                 Log.d("TAG", "doInBackground: plainUsername " + plainUsername);
@@ -1132,7 +1132,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("u", inputUcode));       //0
 
             json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
-            Log.d("TAG", "checkUcode result: " + json);
+            Log.d("TAG", "checkUcode json : " + json);
             try {
                 r = json.getString("info");
             } catch (Exception e) {
@@ -1611,6 +1611,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     Log.d("TAG", "UserLoginTask user input : " + mEmail + " \t pass : " + mPassword);
 //                params.add(new BasicNameValuePair("t", new SharedPrefUtil(Welcome.this.getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                    Log.d("TAG", "UserLoginTask json" + json);
                     String s = null;
 
                     s = json.getString("info");
@@ -1659,7 +1660,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                         String throughAdmin = json.getString("throughAdmin");
                         Log.d("TAG, ", "------------------------------------------  user throughAdmin = " + throughAdmin);
-                        Log.d("TAG", "json" + json);
+
 
                         if (throughAdmin != null && throughAdmin.equals("yes")) {
                             throughAdminFlag = true;

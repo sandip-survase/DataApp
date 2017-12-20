@@ -642,6 +642,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_genrate_code);
+        Log.d("TAG", "onCreate:WelcomeGenrateCodeActivity called");
 
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
@@ -1133,7 +1134,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: save comp data "+json);
+                Log.d("TAG", "SaveInstititeData json : "+json);
                 if (r.equals("success")) {
                     CODE = json.getString("ucode");
                 }
@@ -1161,7 +1162,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     genratedCode.setText(CODE);
                     headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
                 }
-                catch (Exception e){}
+                catch (Exception e){
+                    Log.d("TAG", "onPostExecute: exp in setting msg code : "+e.getMessage());
+                }
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 
@@ -1271,12 +1274,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateCompanyCode, "GET", params);
+            Log.d("TAG", "SaveCompanyData json : "+json);
             try {
                 r = json.getString("info");
                 if(r.equals("success")){
                     CODE=json.getString("ucode");
                 }
-                Log.d("TAG", "doInBackground: "+json);
             } catch (Exception e) {
                 Log.d("TAG", "doInBackground: comp asynk"+e.getMessage());
             }

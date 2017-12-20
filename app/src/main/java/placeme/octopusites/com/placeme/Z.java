@@ -3,20 +3,29 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+import org.apache.http.NameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * Created by admin on 9/27/2017.
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 
 public class Z {
     public static final String VPS_IP = "104.237.4.236";   // for authority
     public static final String IP = "http://104.237.4.236/";
+
+
+    public static final String IP_kunal = "http://104.237.4.236:8081/";
 
     public static final String IP_8080 = "http://104.237.4.236:8080/";
     private static final String IP_100 = "http://192.168.100.100/";
@@ -24,7 +33,6 @@ public class Z {
     private static final String IP_20 = "http://192.168.100.20/";
     private static final String IP_30 = "http://192.168.100.30/";
 
-    public static String digest1=null,digest2=null;
 
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
@@ -232,7 +240,7 @@ public class Z {
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
-    public static final String upload_profile = IP_8080 + "AESTest/UploadProfile";
+    public static final String upload_profile = IP + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
 
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
@@ -412,46 +420,48 @@ public class Z {
         view.startAnimation(animation1);
 
     }
-    public static String getDigest1(Context context)
-    {
-        if(digest1!=null)
-            return digest1;
-        else
-        {
-            digest1=MySharedPreferencesManager.getDigest1(context);
+
+
+    static Boolean internetStatus = false;
+
+    public static boolean CheckInternet() {
+        internetStatus = false;
+        try {
+            new CheckInternetTask().execute().get(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            return false;
+        } catch (ExecutionException e) {
+            return false;
+        } catch (TimeoutException e) {
+            return false;
         }
-        return digest1;
+        Log.d("TAG", "CheckInternet: " + internetStatus);
+        return internetStatus;
     }
-    public static String getDigest2(Context context)
-    {
-        if(digest2!=null)
-            return digest2;
-        else
-        {
-            digest2=MySharedPreferencesManager.getDigest2(context);
+
+    private static class CheckInternetTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            JSONParser jParser = new JSONParser();
+            JSONObject json = jParser.makeHttpRequest("http://104.237.4.236/AESTest/CheckInternet", "GET", params);
+
+            if (json != null) {
+                try {
+                    String info = json.getString("info");
+
+                    if (info.equals("y")) {
+                        internetStatus = true;
+                        Log.d("TAG", "CheckInternetTask: json " + json);
+                    } else
+                        internetStatus = false;
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
         }
-        return digest2;
-    }
-    public static String Encrypt(String string,Context context) throws Exception
-    {
-        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
-        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
-        String sPadding = "ISO10126Padding";
-
-        byte[] objBytes = string.getBytes("UTF-8");
-        byte[] objEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, objBytes);
-
-        return new String(SimpleBase64Encoder.encode(objEncryptedBytes));
-    }
-    public static String Decrypt(String string,Context context) throws Exception
-    {
-        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
-        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
-        String sPadding = "ISO10126Padding";
-
-        byte[] EncryptedBytes = SimpleBase64Encoder.decode(string);
-        byte[] DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, EncryptedBytes);
-        return new String(DecryptedBytes);
     }
 
 

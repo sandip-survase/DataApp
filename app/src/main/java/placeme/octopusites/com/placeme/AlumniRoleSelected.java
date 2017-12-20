@@ -174,7 +174,7 @@ public class AlumniRoleSelected extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", inputUcode));       //0
 
             json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
-            Log.d("TAG", "checkUcode result: " + json);
+            Log.d("TAG", "checkUcode json : " + json);
             try {
                 r = json.getString("info");
             } catch (Exception e) {

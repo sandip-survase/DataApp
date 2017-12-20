@@ -84,20 +84,20 @@ public class SplashScreen extends Activity {
         return phrase.toString();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isOnline()) {
-            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, NoInternet.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(i);
-
-        } else {
-
-            mainWork();
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (!isOnline()) {
+//            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(this, NoInternet.class);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+//            startActivity(i);
+//
+//        } else {
+//
+//            mainWork();
+//        }
+//    }
 
     protected void onCreate(Bundle paramBundle) {
 
@@ -115,18 +115,24 @@ public class SplashScreen extends Activity {
 //                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
 //                .apply();
 
-        if (!isOnline()) {
-            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, NoInternet.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(i);
+        try {
+            if (!Z.CheckInternet()) {
+                Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, NoInternet.class);
+                i.putExtra("splash",true);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(i);
 
-        } else {
+            } else {
 
-            mainWork();
+                mainWork();
+
+            }
+        } catch (Exception e) {
 
         }
     }
+
 
 
 
@@ -270,9 +276,6 @@ public class SplashScreen extends Activity {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "student");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("student");
-//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
                                 finish();
                             }
@@ -286,9 +289,6 @@ public class SplashScreen extends Activity {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "admin");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("admin");
-//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, AdminActivity.class));
                                 finish();
                             }
@@ -302,9 +302,6 @@ public class SplashScreen extends Activity {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "hr");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("hr");
-//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, HRActivity.class));
                                 finish();
                             }
@@ -316,10 +313,6 @@ public class SplashScreen extends Activity {
                             public void run() {
                                 MySharedPreferencesManager.save(SplashScreen.this, "role", "alumni");
                                 MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
-
-//                                ProfileRole r = new ProfileRole();
-//                                r.setRole("alumni");
-//                                r.setUsername(EmailCred);
 
                                 startActivity(new Intent(SplashScreen.this, AlumniActivity.class));
                                 finish();
@@ -354,7 +347,7 @@ public class SplashScreen extends Activity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://104.237.4.236").openConnection();
             localHttpURLConnection.setConnectTimeout(1000);
             localHttpURLConnection.connect();
             return true;
@@ -379,7 +372,7 @@ public class SplashScreen extends Activity {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
-                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
+//                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                     String s = null;
 
@@ -475,9 +468,9 @@ public class SplashScreen extends Activity {
 
             String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
 
-            Log.d("***", "doInBackground: user " + username);
-            Log.d("***", "doInBackground: aid " + android_id);
-            Log.d("***", "doInBackground: did " + device_id);
+            Log.d("TAG", "doInBackground: user " + username);
+            Log.d("TAG", "doInBackground: aid " + android_id);
+            Log.d("TAG", "doInBackground: did " + device_id);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
@@ -485,10 +478,9 @@ public class SplashScreen extends Activity {
             params.add(new BasicNameValuePair("u", username));
 
             json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
-            Log.d("  ***", "doInBackground: json -" + json);
+            Log.d("TAG", "GetDigest: json -------  GetDigest ------------ " + json);
             try {
                 info = json.getString("info");
-
 
                 if (info != null && info.equals("success")) {
 
