@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="courses">
+<item>0,- Select Course -</item>
 <item>1,Bachelor Hotel Management and Catering Technology(B.H.M.C.T)</item>
 <item>2,Bachelor Library Science(B.L.Sc)</item>
 <item>3,Bachelor of Applied Sciences(B.A.S)</item>
@@ -71,5 +72,6 @@
 <item>68,Under Graduate Basic Training(U.G.B.T)</item>
 <item>69,Under Graduate Teacher Training(U.G.T.T)</item>
 <item>70,Under Graduate Training(U.G.T)</item>
+        <item>71,Other</item>
     </array>
 </resources>
