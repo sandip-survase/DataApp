@@ -1171,7 +1171,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     class UploadProfile extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             try {
+                username=MySharedPreferencesManager.getUsername(HRActivity.this);
                 File sourceFile = new File(filepath);
+                Log.d("***", "doInBackground: input username "+username);
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
                 multipart.addFormField("u", username);
                 if (filename != "") {

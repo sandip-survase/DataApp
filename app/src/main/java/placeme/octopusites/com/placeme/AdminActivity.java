@@ -1830,8 +1830,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     @Override
     public void onPause() {
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
+        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+
     }
 
     void getPlacements() {
@@ -2736,12 +2737,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
             try {
 
-
                 File sourceFile = new File(filepath);
-
-
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-
+                Log.d("***", "doInBackground: input username "+username);
                 multipart.addFormField("u", username);
 
                 if (filename != "") {
