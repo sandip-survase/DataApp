@@ -1720,6 +1720,7 @@ public class MyProfilePg extends AppCompatActivity {
         percentyear3 = s.getPercentageyear3pgyear();
         aggregatepgyear = s.getAggregatepgyear();
         selectedCoursepgyear = s.getCoursepgyear();
+
         if (selectedCoursepgyear == null) {
             selectedCoursepgyear = "";
         }
@@ -2391,15 +2392,19 @@ public class MyProfilePg extends AppCompatActivity {
             if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
 
                 try {
-                    if (selectedCoursepgsem.equals("Other"))
-                        courseSem = otherspecifiedcoursepgsem;
-                    else
-                        courseSem = selectedCoursepgsem;
-
                     if (selectedStreampgsem.equals("Other"))
                         streamSem = otherspecifiedstreampgsem;
                     else
                         streamSem = selectedStreampgsem;
+
+                    if (selectedCoursepgsem.equals("Other")) {
+                        courseSem = otherspecifiedcoursepgsem;
+                        streamSem ="";
+
+                    }
+                    else {
+                        courseSem = selectedCoursepgsem;
+                    }
 
                     if (selectedUniversitypgsem.equals("Other"))
                         universitySem = otherspecifieduniversitypgsem;
@@ -2426,18 +2431,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             setBlankSem();
             Log.d("TAG", "validateandSave: after blank sem");
-//            pmarksyear1.setError(null);
-//            poutofyear1.setError(null);
-//            ppercentyear1.setError(null);
-//            pmarksyear2.setError(null);
-//            poutofyear2.setError(null);
-//            ppercentyear2.setError(null);
-//            pmarksyear3.setError(null);
-//            poutofyear3.setError(null);
-//            ppercentyear3.setError(null);
-//            pgyearaggregate.setError(null);
-//            schoolnamepgyear.setError(null);
-//            yearofpassingpgyear.setError(null);
 
             marksyear1 = pmarksyear1.getText().toString();
             outofyear1 = poutofyear1.getText().toString();
@@ -2593,15 +2586,20 @@ public class MyProfilePg extends AppCompatActivity {
 
                 try {
 
-                    if (selectedCoursepgyear.equals("Other"))
-                        courseYear = otherspecifiedcoursepgyear;
-                    else
-                        courseYear = selectedCoursepgyear;
-
                     if (selectedStreampgyear.equals("Other"))
                         streamYear = otherspecifiedstreampgyear;
                     else
                         streamYear = selectedStreampgyear;
+
+
+                    if (selectedCoursepgyear.equals("Other")) {
+                        courseYear = otherspecifiedcoursepgyear;
+                        streamYear="";
+                    }
+                    else {
+                        courseYear = selectedCoursepgyear;
+
+                    }
 
                     if (selectedUniversitypgyear.equals("Other"))
                         universityYear = otherspecifieduniversitypgyear;

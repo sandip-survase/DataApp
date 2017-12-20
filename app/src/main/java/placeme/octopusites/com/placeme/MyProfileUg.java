@@ -62,7 +62,10 @@ public class MyProfileUg extends AppCompatActivity {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
+    ArrayAdapter<String> dataAdapter2;
+    RelativeLayout ustreamspinner;
 
+    ArrayList<String> tosettoStreamslist = new ArrayList<>();
     int coursecount=0,streamcount=0,universitycount=0;
     List<String> courseslist = new ArrayList<String>();
     List<String> streamlist = new ArrayList<String>();
@@ -71,8 +74,11 @@ public class MyProfileUg extends AppCompatActivity {
     StudentData s=new StudentData();
     String oldCourse="",oldStream="",oldUniversity="",encobj="";
     int edittedFlag=0,isCourseSet=0,isStreamSet=0;
+    String[] CourseListWithIds, CourseList;
+    String[] StramsListWithIds, StramsList, tempStramsList;
+    String courseug = null, streamug = null, universityug = null;
 
-
+    int  checkstream = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +130,11 @@ public class MyProfileUg extends AppCompatActivity {
         otherstream=(EditText)findViewById(R.id.otherstream);
         otheruniversity=(EditText)findViewById(R.id.otheruniversity);
 
+        ustreamspinner = (RelativeLayout) findViewById(R.id.ustreamspinner);
+
+        ucourse=(Spinner)findViewById(R.id.ucourse);
+        ustream=(Spinner)findViewById(R.id.ustream);
+        uuniversity=(Spinner)findViewById(R.id.uuniversity);
 
         uoutofsem1input= (TextInputLayout) findViewById(R.id.uoutofsem1input);
         upercentsem1input= (TextInputLayout) findViewById(R.id.upercentsem1input);
@@ -219,6 +230,205 @@ public class MyProfileUg extends AppCompatActivity {
         TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
         ugtxt.setTypeface(Z.getBold(this));
 
+
+        CourseListWithIds = getResources().getStringArray(R.array.courses);
+        CourseList = new String[CourseListWithIds.length];
+
+        Log.d("TAG", "Course without ID: " + CourseListWithIds[2]);
+
+        for (int i = 0; i < CourseListWithIds.length; i++) {
+            Log.d("TAG", "Course without ID: " + CourseList[i]);
+            String temp[] = CourseListWithIds[i].split(",");
+            CourseList[i] = temp[1];
+
+        }
+
+        StramsListWithIds = getResources().getStringArray(R.array.streams);
+
+        StramsList = new String[StramsListWithIds.length];
+        for (int i = 0; i < StramsListWithIds.length; i++) {
+            String temp[] = StramsListWithIds[i].split(",");
+            StramsList[i] = temp[1];
+            Log.d("TAG", "streams without ID: " + StramsList[i]);
+
+        }
+
+
+        ucourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCourse = (String) parent.getItemAtPosition(position);
+                Log.d("tag", "onItemSelected: " + selectedCourse);
+
+                String toCompare = selectedCourse;
+
+                int index = 0;
+                for (int i = 0; i < CourseList.length; i++) {
+                    if (CourseList[i].equals(toCompare))
+                        index = i;
+                }
+                toCompare = CourseListWithIds[index];
+                Log.d("TAG", "toCompare : " + toCompare);
+                tosettoStreamslist.clear();
+
+                setStreamAdapter(toCompare);
+//                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
+
+                TextInputLayout othercourseinput = (TextInputLayout) findViewById(R.id.othercourseinput);
+
+                if (selectedCourse.equals("Other")) {
+                    othercourseinput.setVisibility(View.VISIBLE);
+                } else {
+
+                    othercourseinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, CourseList) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
+                }
+                return view;
+            }
+        };
+
+
+        ucourse.setAdapter(adapter4);
+
+        ustream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedStream= (String) parent.getItemAtPosition(position);
+                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.otherstreaminput);
+                if(selectedStream.equals("Other")) {
+
+                    otherboardinput.setVisibility(View.VISIBLE);
+                }
+                else {
+
+                    otherboardinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        universitycount = getResources().getStringArray(R.array.pguniversity).length;
+        universities = new String[universitycount];
+        universities = getResources().getStringArray(R.array.pguniversity);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, universities) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
+                }
+                return view;
+            }
+        };
+
+
+        uuniversity.setAdapter(adapter2);
+
+        uuniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedUniversity = (String) parent.getItemAtPosition(position);
+
+                TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.otheruniversityinput);
+                if (selectedUniversity.equals("Other")) {
+
+                    otheruniversityinput.setVisibility(View.VISIBLE);
+
+                } else {
+                    otheruniversityinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         umarkssem1.addTextChangedListener(new TextWatcher() {
@@ -1016,12 +1226,48 @@ public class MyProfileUg extends AppCompatActivity {
 
             }
         });
-        ucourse=(Spinner)findViewById(R.id.ucourse);
-        ustream=(Spinner)findViewById(R.id.ustream);
-        uuniversity=(Spinner)findViewById(R.id.uuniversity);
 
-        new GetCourses().execute();
-        new GetUniversities().execute();
+        othercourse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                othercourseinput.setError(null);
+                edittedFlag=1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        otheruniversity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otheruniversityinput.setError(null);
+                edittedFlag=1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+
+//        new GetCourses().execute();
+//        new GetUniversities().execute();
 
         yearofpassingu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1139,8 +1385,13 @@ public class MyProfileUg extends AppCompatActivity {
         aggregate=s.getAggregateug();
         schoolname=s.getCollegenameug();
         monthandyearofpassing=s.getYearofpassingug();
+        selectedCourse= s.getCourseug();
+        selectedUniversity=s.getUniversityug();
+        selectedStream=s.getStreamug();
+        setStreamAdapter(selectedCourse);
 
-        // Toast.makeText(MyProfileUg.this,s.getUniversityug()+s.getCollegenameug(),Toast.LENGTH_LONG).show();
+
+
         if(markssem1!=null)
             umarkssem1.setText(markssem1);
         if(outofsem1!=null)
@@ -1196,10 +1447,160 @@ public class MyProfileUg extends AppCompatActivity {
         if(monthandyearofpassing!=null)
             yearofpassingu.setText(monthandyearofpassing);
 
+
+        if (selectedCourse != null) {
+            int foundboard = 0;
+            for (int i = 1; i < CourseList.length - 1; i++)
+                if (selectedCourse.equals(CourseList[i])) {
+                    foundboard = 1;
+                    break;
+                }
+            if (foundboard == 1)
+                ucourse.setSelection(adapter4.getPosition(selectedCourse));
+            else {
+
+                if (selectedCourse.equals("")) {
+                    ucourse.setSelection(adapter4.getPosition("- Select Course -"));
+                    othercourse.setVisibility(View.GONE);
+                } else {
+                    ucourse.setSelection(adapter4.getPosition("Other"));
+                    othercourse.setVisibility(View.VISIBLE);
+                    othercourse.setText(selectedCourse);
+                }
+            }
+
+        } else
+            selectedCourse = "- Select Course -";
+
+        if (selectedUniversity != null) {
+            if (!selectedUniversity.equals("")) {
+
+                int foundboard = 0;
+                for (int i = 1; i < universities.length - 1; i++)
+                    if (selectedUniversity.equals(universities[i])) {
+                        foundboard = 1;
+                        Log.d("TAG", "onCreate:  foundboard-" + foundboard);
+                        break;
+                    }
+                Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversity);
+                if (foundboard == 1)
+                    uuniversity.setSelection(adapter2.getPosition(selectedUniversity));
+                else {
+
+                    if (selectedUniversity.equals("")) {
+                        uuniversity.setSelection(adapter2.getPosition("- Select University -"));
+                        otheruniversity.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                    } else {
+                        uuniversity.setSelection(adapter2.getPosition("Other"));
+                        otheruniversity.setVisibility(View.VISIBLE);
+                        otheruniversity.setText(selectedUniversity);
+                    }
+                }
+            } else
+                selectedUniversity = "- Select University -";
+
+        } else
+            selectedUniversity = "- Select University -";
+
+
+
+
         edittedFlag=0;
 
 
     }
+
+
+
+    String setStreamAdapter(String a) {
+        try {
+
+            String courseArray[] = a.split(",");
+            int courseIndex = Integer.parseInt(courseArray[0]);
+            Log.d("TAG", "courseIndex: " + courseIndex);
+
+            int index = 0;
+            tosettoStreamslist.add("- Select Stream -");
+            for (int i = 0; i < StramsListWithIds.length; i++) {
+                if (StramsListWithIds[i].contains("" + courseIndex)) {
+                    String splitedStream[] = StramsListWithIds[i].split(",");
+                    if (splitedStream[0].equals("" + courseIndex)) {
+
+                        tosettoStreamslist.add(splitedStream[1]);
+                        splitedStream = null;
+                    }
+                }
+            }
+
+            tempStramsList = tosettoStreamslist.toArray(new String[0]);
+
+            if (tempStramsList != null && tempStramsList.length > 1) {
+                dataAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, tempStramsList) {
+                    @Override
+                    public boolean isEnabled(int position) {
+
+                        if (position == 0) {
+
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        tv.setTypeface(Z.getBold(MyProfileUg.this));
+                        return view;
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView,
+                                                ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        tv.setTypeface(Z.getBold(MyProfileUg.this));
+
+                        if (position == 0) {
+                            // Set the hint text color gray
+                            tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                        } else {
+                            tv.setTextColor(getResources().getColor(R.color.dark_color));
+                        }
+                        return view;
+                    }
+                };
+
+                if (tempStramsList.length > 1) {
+
+                    ustream.setAdapter(dataAdapter2);
+                    ustreamspinner.setVisibility(View.VISIBLE);
+                    checkstream = 1;
+                    ustream.setSelection(dataAdapter2.getPosition("- Select Stream -"));
+
+                }
+
+
+                if (!selectedStream.equals("- Select Stream -") && !selectedStream.equals(""))
+                    ustream.setSelection(dataAdapter2.getPosition(selectedStream));
+
+            } else {
+                tosettoStreamslist.clear();
+                ustreamspinner.setVisibility(View.GONE);
+                checkstream = 0;
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+
+    }
+
+
+
     class GetCourses extends AsyncTask<String, String, String> {
 
 
@@ -1238,6 +1639,8 @@ public class MyProfileUg extends AppCompatActivity {
             courseslist.add("Other");
         }
     }
+
+
     class GetStreams extends AsyncTask<String, String, String> {
 
 
@@ -1391,6 +1794,9 @@ public class MyProfileUg extends AppCompatActivity {
 
             }
         });
+
+
+
         if(isCourseSet==0) {
             isCourseSet=1;
             if(s.getCourseug()!=null) {
@@ -1451,29 +1857,7 @@ public class MyProfileUg extends AppCompatActivity {
         };;
         ustream.setAdapter(dataAdapter);
 
-        ustream.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedStream= (String) parent.getItemAtPosition(position);
-                TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.otherstreaminput);
-                if(selectedStream.equals("Other")) {
 
-                    otherboardinput.setVisibility(View.VISIBLE);
-                }
-                else {
-
-                    otherboardinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         if(isStreamSet==0) {
             isStreamSet=1;
             if(s.getStreamug()!=null) {
@@ -1797,9 +2181,6 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                             uaggregateinput.setError("Kindly enter valid Aggregate");
                                                                                                         }
 
-
-
-
                                                                                                         else {
                                                                                                             errorflag1 = 0;
                                                                                                             if (selectedCourse.equals("- Select Course -")) {
@@ -1814,31 +2195,60 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                                     }
                                                                                                                 }
 
+                                                                                                                if (checkstream == 1) {
 
-                                                                                                                if (selectedUniversity.equals("- Select University -")) {
-                                                                                                                    errorflag3 = 1;
-                                                                                                                    Toast.makeText(MyProfileUg.this, "Select University", Toast.LENGTH_LONG).show();
-                                                                                                                }
-                                                                                                                else {
-                                                                                                                    if(schoolname.length()<3)
-                                                                                                                    {
-                                                                                                                        errorflag4=1;
-                                                                                                                        schoolnameuinput.setError("Kindly enter valid college name");
+                                                                                                                    if (selectedStream.equals("- Select Stream -")) {
+                                                                                                                        errorflag1 = 1;
+                                                                                                                        Toast.makeText(MyProfileUg.this, "Select Stream", Toast.LENGTH_LONG).show();
                                                                                                                     }
-                                                                                                                    else if (selectedUniversity.equals("Other")) {
-                                                                                                                        otherspecifieduniversity = otheruniversity.getText().toString();
 
-                                                                                                                        if (otherspecifieduniversity.length() < 3) {
-                                                                                                                            errorflag4 = 1;
+                                                                                                                    else {
+                                                                                                                        if (selectedUniversity.equals("- Select University -")) {
+                                                                                                                            errorflag3 = 1;
+                                                                                                                            Toast.makeText(MyProfileUg.this, "Select University", Toast.LENGTH_LONG).show();
+                                                                                                                        } else {
+                                                                                                                            if (schoolname.length() < 3) {
+                                                                                                                                errorflag4 = 1;
+                                                                                                                                schoolnameuinput.setError("Kindly enter valid college name");
+                                                                                                                            } else if (selectedUniversity.equals("Other")) {
+                                                                                                                                otherspecifieduniversity = otheruniversity.getText().toString();
 
-                                                                                                                            otheruniversityinput.setError("Kindly enter vali University");
+                                                                                                                                if (otherspecifieduniversity.length() < 3) {
+                                                                                                                                    errorflag4 = 1;
+
+                                                                                                                                    otheruniversityinput.setError("Kindly enter vali University");
+                                                                                                                                }
+                                                                                                                            } else if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
+                                                                                                                                errorflag5 = 1;
+                                                                                                                                yearofpassinguinput.setError("Kindly select valid Month,Year");
+                                                                                                                            }
                                                                                                                         }
                                                                                                                     }
 
-                                                                                                                    else if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
-                                                                                                                        errorflag5 = 1;
-                                                                                                                        yearofpassinguinput.setError("Kindly select valid Month,Year");
+                                                                                                                }
+                                                                                                                else
+                                                                                                                {
+                                                                                                                    if (selectedUniversity.equals("- Select University -")) {
+                                                                                                                        errorflag3 = 1;
+                                                                                                                        Toast.makeText(MyProfileUg.this, "Select University", Toast.LENGTH_LONG).show();
+                                                                                                                    } else {
+                                                                                                                        if (schoolname.length() < 3) {
+                                                                                                                            errorflag4 = 1;
+                                                                                                                            schoolnameuinput.setError("Kindly enter valid college name");
+                                                                                                                        } else if (selectedUniversity.equals("Other")) {
+                                                                                                                            otherspecifieduniversity = otheruniversity.getText().toString();
+
+                                                                                                                            if (otherspecifieduniversity.length() < 3) {
+                                                                                                                                errorflag4 = 1;
+
+                                                                                                                                otheruniversityinput.setError("Kindly enter vali University");
+                                                                                                                            }
+                                                                                                                        } else if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
+                                                                                                                            errorflag5 = 1;
+                                                                                                                            yearofpassinguinput.setError("Kindly select valid Month,Year");
+                                                                                                                        }
                                                                                                                     }
+
                                                                                                                 }
                                                                                                             }
                                                                                                         }
@@ -1874,117 +2284,30 @@ public class MyProfileUg extends AppCompatActivity {
         if(errorflag1==0&&errorflag2==0&&errorflag3==0&&errorflag4==0&&errorflag5==0)
         {
             try {
+                if (selectedStream.equals("Other"))
+                    streamug = otherspecifiedstream;
+                else
+                    streamug = selectedStream;
+
+                if (selectedCourse.equals("Other")) {
+                    courseug = otherspecifiedcourse;
+                    streamug="";
+                }
+                else {
+                    courseug = selectedCourse;
+
+                }
+
+                if (selectedUniversity.equals("Other"))
+                    universityug = otherspecifieduniversity;
+                else
+                    universityug = selectedUniversity;
+
                 MyProfileUgModal obj2 = new MyProfileUgModal(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6, percentsem6,markssem7,outofsem7,percentsem7,markssem8,outofsem8,percentsem8,aggregate,schoolname,monthandyearofpassing
-                        ,selectedCourse,selectedStream,selectedUniversity);
+                        ,courseug,streamug,universityug);
 
                 encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileUg.this),MySharedPreferencesManager.getDigest2(MyProfileUg.this));
                 Log.d("TAG", "validateandSave: encobj - "+encobj);
-
-//                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//                String sPadding = "ISO10126Padding";
-//
-//                byte[] markssem1Bytes = markssem1.getBytes("UTF-8");
-//                byte[] outofsem1Bytes = outofsem1.getBytes("UTF-8");
-//                byte[] percentsem1Bytes = percentsem1.getBytes("UTF-8");
-//                byte[] markssem2Bytes = markssem2.getBytes("UTF-8");
-//                byte[] outofsem2Bytes = outofsem2.getBytes("UTF-8");
-//                byte[] percentsem2Bytes = percentsem2.getBytes("UTF-8");
-//                byte[] markssem3Bytes = markssem3.getBytes("UTF-8");
-//                byte[] outofsem3Bytes = outofsem3.getBytes("UTF-8");
-//                byte[] percentsem3Bytes = percentsem3.getBytes("UTF-8");
-//                byte[] markssem4Bytes = markssem4.getBytes("UTF-8");
-//                byte[] outofsem4Bytes = outofsem4.getBytes("UTF-8");
-//                byte[] percentsem4Bytes = percentsem4.getBytes("UTF-8");
-//                byte[] markssem5Bytes = markssem5.getBytes("UTF-8");
-//                byte[] outofsem5Bytes = outofsem5.getBytes("UTF-8");
-//                byte[] percentsem5Bytes = percentsem5.getBytes("UTF-8");
-//                byte[] markssem6Bytes = markssem6.getBytes("UTF-8");
-//                byte[] outofsem6Bytes = outofsem6.getBytes("UTF-8");
-//                byte[] percentsem6Bytes = percentsem6.getBytes("UTF-8");
-//                byte[] markssem7Bytes = markssem7.getBytes("UTF-8");
-//                byte[] outofsem7Bytes = outofsem7.getBytes("UTF-8");
-//                byte[] percentsem7Bytes = percentsem7.getBytes("UTF-8");
-//                byte[] markssem8Bytes = markssem8.getBytes("UTF-8");
-//                byte[] outofsem8Bytes = outofsem8.getBytes("UTF-8");
-//                byte[] percentsem8Bytes = percentsem8.getBytes("UTF-8");
-//                byte[] aggregateBytes = aggregate.getBytes("UTF-8");
-//                byte[] schoolnameBytes = schoolname.getBytes("UTF-8");
-//                byte[] monthandyearofpassingBytes = monthandyearofpassing.getBytes("UTF-8");
-//                byte[] selectedcourseBytes=null,selectedstreamBytes=null,selecteduniversityBytes=null;
-//                if(selectedCourse.equals("Other"))
-//                    selectedcourseBytes=otherspecifiedcourse.getBytes("UTF-8");
-//                else
-//                    selectedcourseBytes=selectedCourse.getBytes("UTF-8");
-//                if(selectedStream.equals("Other"))
-//                    selectedstreamBytes=otherspecifiedstream.getBytes("UTF-8");
-//                else
-//                    selectedstreamBytes=selectedStream.getBytes("UTF-8");
-//                if(selectedUniversity.equals("Other"))
-//                    selecteduniversityBytes=otherspecifieduniversity.getBytes("UTF-8");
-//                else
-//                    selecteduniversityBytes=selectedUniversity.getBytes("UTF-8");
-//
-//                byte[] markssem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1Bytes);
-//                encmarkssem1=new String(SimpleBase64Encoder.encode(markssem1EncryptedBytes));
-//                byte[] markssem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2Bytes);
-//                encmarkssem2=new String(SimpleBase64Encoder.encode(markssem2EncryptedBytes));
-//                byte[] markssem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3Bytes);
-//                encmarkssem3=new String(SimpleBase64Encoder.encode(markssem3EncryptedBytes));
-//                byte[] markssem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4Bytes);
-//                encmarkssem4=new String(SimpleBase64Encoder.encode(markssem4EncryptedBytes));
-//                byte[] markssem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5Bytes);
-//                encmarkssem5=new String(SimpleBase64Encoder.encode(markssem5EncryptedBytes));
-//                byte[] markssem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6Bytes);
-//                encmarkssem6=new String(SimpleBase64Encoder.encode(markssem6EncryptedBytes));
-//                byte[] markssem7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem7Bytes);
-//                encmarkssem7=new String(SimpleBase64Encoder.encode(markssem7EncryptedBytes));
-//                byte[] markssem8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem8Bytes);
-//                encmarkssem8=new String(SimpleBase64Encoder.encode(markssem8EncryptedBytes));
-//                byte[] outofsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1Bytes);
-//                encoutofsem1=new String(SimpleBase64Encoder.encode(outofsem1EncryptedBytes));
-//                byte[] outofsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2Bytes);
-//                encoutofsem2=new String(SimpleBase64Encoder.encode(outofsem2EncryptedBytes));
-//                byte[] outofsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3Bytes);
-//                encoutofsem3=new String(SimpleBase64Encoder.encode(outofsem3EncryptedBytes));
-//                byte[] outofsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4Bytes);
-//                encoutofsem4=new String(SimpleBase64Encoder.encode(outofsem4EncryptedBytes));
-//                byte[] outofsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5Bytes);
-//                encoutofsem5=new String(SimpleBase64Encoder.encode(outofsem5EncryptedBytes));
-//                byte[] outofsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6Bytes);
-//                encoutofsem6=new String(SimpleBase64Encoder.encode(outofsem6EncryptedBytes));
-//                byte[] outofsem7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem7Bytes);
-//                encoutofsem7=new String(SimpleBase64Encoder.encode(outofsem7EncryptedBytes));
-//                byte[] outofsem8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem8Bytes);
-//                encoutofsem8=new String(SimpleBase64Encoder.encode(outofsem8EncryptedBytes));
-//                byte[] percentsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem1Bytes);
-//                encpercentsem1=new String(SimpleBase64Encoder.encode(percentsem1EncryptedBytes));
-//                byte[] percentsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem2Bytes);
-//                encpercentsem2=new String(SimpleBase64Encoder.encode(percentsem2EncryptedBytes));
-//                byte[] percentsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem3Bytes);
-//                encpercentsem3=new String(SimpleBase64Encoder.encode(percentsem3EncryptedBytes));
-//                byte[] percentsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem4Bytes);
-//                encpercentsem4=new String(SimpleBase64Encoder.encode(percentsem4EncryptedBytes));
-//                byte[] percentsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem5Bytes);
-//                encpercentsem5=new String(SimpleBase64Encoder.encode(percentsem5EncryptedBytes));
-//                byte[] percentsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem6Bytes);
-//                encpercentsem6=new String(SimpleBase64Encoder.encode(percentsem6EncryptedBytes));
-//                byte[] percentsem7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem7Bytes);
-//                encpercentsem7=new String(SimpleBase64Encoder.encode(percentsem7EncryptedBytes));
-//                byte[] percentsem8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem8Bytes);
-//                encpercentsem8=new String(SimpleBase64Encoder.encode(percentsem8EncryptedBytes));
-//                byte[] aggregateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateBytes);
-//                encaggregate=new String(SimpleBase64Encoder.encode(aggregateEncryptedBytes));
-//                byte[] schoolnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, schoolnameBytes);
-//                encschoolname=new String(SimpleBase64Encoder.encode(schoolnameEncryptedBytes));
-//                byte[] monthandyearofpassingEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, monthandyearofpassingBytes);
-//                encmonthandyearofpassing=new String(SimpleBase64Encoder.encode(monthandyearofpassingEncryptedBytes));
-//                byte[] selectedcourseEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedcourseBytes);
-//                encselectedcourse=new String(SimpleBase64Encoder.encode(selectedcourseEncryptedBytes));
-//                byte[] selectedstreamEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedstreamBytes);
-//                encselectedstream=new String(SimpleBase64Encoder.encode(selectedstreamEncryptedBytes));
-//                byte[] selecteduniversityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selecteduniversityBytes);
-//                encselecteduniversity=new String(SimpleBase64Encoder.encode(selecteduniversityEncryptedBytes));
 
                 new SaveDataUg().execute();
 
