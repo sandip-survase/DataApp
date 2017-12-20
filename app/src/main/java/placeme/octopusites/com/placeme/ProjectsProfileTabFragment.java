@@ -3908,8 +3908,11 @@ public class ProjectsProfileTabFragment extends Fragment {
             duration9.setText(sduration9);
 
             sproj1 = proj1.getText().toString();
+            sdomain1 = domain1.getText().toString();
+            steam1 = team1.getText().toString();
+            sduration1 = duration1.getText().toString();
 
-            if(sproj1.equals("")){
+            if(sproj1.equals("") && sdomain1.equals("") && steam1.equals("") && sduration1.equals("")){
                 Log.d("TAG", "deleteLang: strength1 1");
                 editproj =1;
             }

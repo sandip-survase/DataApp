@@ -36,7 +36,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileProjects extends AppCompatActivity implements TextWatcher {
 
-    int projectscount=0;
+    int projectscount=0,editproj=0;;
     View addmoreproject;
     String username,role;
     String digest1,digest2;
@@ -1034,6 +1034,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         addmoreproject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editproj=0;
                 if(projectscount==0)
                 {
                     if(proj1.getText().toString()!=null && domain1.getText().toString()!=null && team1.getText().toString()!=null && duration1.getText().toString()!=null) {
@@ -2239,41 +2240,46 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
         if(errorflag==0)
         {
-            try
-            {
-
-                Projects obj1=new Projects(sproj1,sdomain1,steam1,sduration1);
-                Projects obj2=new Projects(sproj2,sdomain2,steam2,sduration2);
-                Projects obj3=new Projects(sproj3,sdomain3,steam3,sduration3);
-                Projects obj4=new Projects(sproj4,sdomain4,steam4,sduration4);
-                Projects obj5=new Projects(sproj5,sdomain5,steam5,sduration5);
-                Projects obj6=new Projects(sproj6,sdomain6,steam6,sduration6);
-                Projects obj7=new Projects(sproj7,sdomain7,steam7,sduration7);
-                Projects obj8=new Projects(sproj8,sdomain8,steam8,sduration8);
-                Projects obj9=new Projects(sproj9,sdomain9,steam9,sduration9);
-                Projects obj10=new Projects(sproj10,sdomain10,steam10,sduration10);
-
-                Log.d("TAG", "objects created");
-
-                projectsList.add(obj1);
-                projectsList.add(obj2);
-                projectsList.add(obj3);
-                projectsList.add(obj4);
-                projectsList.add(obj5);
-                projectsList.add(obj6);
-                projectsList.add(obj7);
-                projectsList.add(obj8);
-                projectsList.add(obj9);
-                projectsList.add(obj10);
-
-                Log.d("TAG", "objects added in arraylist");
-
-                String encObjString=OtoString(projectsList,MySharedPreferencesManager.getDigest1(MyProfileProjects.this),MySharedPreferencesManager.getDigest2(MyProfileProjects.this));
-
-                new SaveProjects().execute(encObjString);
-            }catch (Exception e){Toast.makeText(MyProfileProjects.this,"error:-"+e.getMessage(),Toast.LENGTH_LONG).show();}
-
+           save();
         }
+    }
+
+    public void save()
+    {
+        try
+        {
+
+            Projects obj1=new Projects(sproj1,sdomain1,steam1,sduration1);
+            Projects obj2=new Projects(sproj2,sdomain2,steam2,sduration2);
+            Projects obj3=new Projects(sproj3,sdomain3,steam3,sduration3);
+            Projects obj4=new Projects(sproj4,sdomain4,steam4,sduration4);
+            Projects obj5=new Projects(sproj5,sdomain5,steam5,sduration5);
+            Projects obj6=new Projects(sproj6,sdomain6,steam6,sduration6);
+            Projects obj7=new Projects(sproj7,sdomain7,steam7,sduration7);
+            Projects obj8=new Projects(sproj8,sdomain8,steam8,sduration8);
+            Projects obj9=new Projects(sproj9,sdomain9,steam9,sduration9);
+            Projects obj10=new Projects(sproj10,sdomain10,steam10,sduration10);
+
+            Log.d("TAG", "objects created");
+
+            projectsList.add(obj1);
+            projectsList.add(obj2);
+            projectsList.add(obj3);
+            projectsList.add(obj4);
+            projectsList.add(obj5);
+            projectsList.add(obj6);
+            projectsList.add(obj7);
+            projectsList.add(obj8);
+            projectsList.add(obj9);
+            projectsList.add(obj10);
+
+            Log.d("TAG", "objects added in arraylist");
+
+            String encObjString=OtoString(projectsList,MySharedPreferencesManager.getDigest1(MyProfileProjects.this),MySharedPreferencesManager.getDigest2(MyProfileProjects.this));
+
+            new SaveProjects().execute(encObjString);
+        }catch (Exception e){Toast.makeText(MyProfileProjects.this,"error:-"+e.getMessage(),Toast.LENGTH_LONG).show();}
+
     }
 
     class SaveProjects extends AsyncTask<String, String, String> {
@@ -3435,6 +3441,21 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             domain9.setText(sdomain9);
             team9.setText(steam9);
             duration9.setText(sduration9);
+
+            sproj1 = proj1.getText().toString();
+            sdomain1 = domain1.getText().toString();
+            steam1 = team1.getText().toString();
+            sduration1 = duration1.getText().toString();
+
+            if(sproj1.equals("") && sdomain1.equals("") && steam1.equals("") && sduration1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editproj =1;
+            }
+
+            if(editproj==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editproj);
+                save();
+            }
 
         }
 

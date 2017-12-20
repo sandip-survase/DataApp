@@ -533,6 +533,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textAllCaps="true"
+                    android:maxLength="20"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>

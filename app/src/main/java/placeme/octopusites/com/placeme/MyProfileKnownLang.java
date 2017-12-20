@@ -2441,6 +2441,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("admin"))
                     setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+                Log.d("TAG", "onPostExecute: after set result");
 
                 s.setLang1(sknownlang1);
                 s.setProficiency1(sproficiency1);

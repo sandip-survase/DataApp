@@ -291,6 +291,7 @@ public class EditProfile extends AppCompatActivity {
                                     if (personal_success && project_success) {
                                         Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                                         setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+
                                         EditProfile.super.onBackPressed();
                                     }
 
