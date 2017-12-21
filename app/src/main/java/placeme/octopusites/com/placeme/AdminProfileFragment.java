@@ -448,7 +448,7 @@ public class AdminProfileFragment extends Fragment {
         });
 
 
-        myprofilrole.setText(role.toUpperCase());
+        myprofilrole.setText("TPO");
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
