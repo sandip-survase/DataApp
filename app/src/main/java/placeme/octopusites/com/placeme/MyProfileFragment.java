@@ -2438,10 +2438,6 @@ public class MyProfileFragment extends Fragment {
                 percentProfile++;
             }
 
-            if (!fname.equals("") && lname.equals("")) {
-                myprofilename.setText(fname);
-                percentProfile++;
-            }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
                 percentProfile++;
@@ -2777,9 +2773,9 @@ public class MyProfileFragment extends Fragment {
         }
 
         if (found_projects == 1) {
-            percentProfile++;
-            if (!proj1.equals("")) {
 
+            if (!proj1.equals("")) {
+                percentProfile++;
                 if (!proj1.equals("")) {
 
                     myprofileproj1.setText(proj1);
@@ -2882,7 +2878,7 @@ public class MyProfileFragment extends Fragment {
         if (found_certificates == 1) {
 
             if (!title1.equals("")){
-
+                percentProfile++;
 
             if (!title1.equals(""))
                 acc2txttxt.setText(title1);
@@ -2901,7 +2897,7 @@ public class MyProfileFragment extends Fragment {
         }
         if (found_courses == 1) {
             if (!title1.equals("")){
-
+                percentProfile++;
                 if (!course1.equals(""))
                 acc3txttxt.setText(course1);
             if (!course1.equals("") && !course2.equals(""))
@@ -2923,7 +2919,7 @@ public class MyProfileFragment extends Fragment {
 
                 if(!skill1.equals("")) {
 
-
+                    percentProfile++;
                 if (!skill1.equals(""))
                     acc4txttxt.setText(skill1);
                 if (!skill1.equals("") && !skill2.equals(""))
@@ -2937,11 +2933,10 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 acc4txttxt.setText("No skills filled.");
-                percentProfile--;
             }
         }
         if (found_honors == 1) {
-
+            percentProfile++;
             if(!htitle1.equals("")) {
                 if (!htitle1.equals(""))
                     acc5txttxt.setText(htitle1);
@@ -2955,13 +2950,12 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 acc5txttxt.setText("No awards filled.");
-                percentProfile--;
             }
 
         }
         if (found_patents == 1) {
             if(!ptitle1.equals("")) {
-
+                percentProfile++;
             if (!ptitle1.equals(""))
                 acc6txttxt.setText(ptitle1);
             if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -2973,13 +2967,12 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 acc6txttxt.setText("No patents filled.");
-                percentProfile--;
             }
 
         }
         if (found_publications == 1) {
             if(!pubtitle1.equals("")) {
-
+                percentProfile++;
                 if (!pubtitle1.equals(""))
                 acc7txttxt.setText(pubtitle1);
             if (!pubtitle1.equals("") && !pubtitle2.equals(""))
@@ -2991,7 +2984,6 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 acc7txttxt.setText("No publications filled.");
-                percentProfile--;
             }
 
         }
@@ -3016,7 +3008,6 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 strengthstxt.setText("No Strengths filled.");
-                percentProfile--;
             }
 
         }
@@ -3037,7 +3028,6 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 weaknessestxt.setText("No Weaknesses filled.");
-                percentProfile--;
             }
 
         }
@@ -3056,7 +3046,6 @@ public class MyProfileFragment extends Fragment {
             }
             else {
                 locationpreferences.setText("No location preferences filled.");
-                percentProfile--;
             }
 
         }
