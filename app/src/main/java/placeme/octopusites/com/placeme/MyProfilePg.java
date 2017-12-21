@@ -1454,6 +1454,23 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+        otheryearcourse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otheryearcourseinput.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         schoolnamepgyear.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -2296,7 +2313,7 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                         aggg = Float.parseFloat(aggregatepgsem);
                                                                                     if (aggg <= 0 || aggg >= 100) {
                                                                                         errorflag1 = 1;
-                                                                                        pgsemaggregateinput.setError("Incorrect Aggregate");
+                                                                                        pgsemaggregateinput.setError("Kindly enter valid  Aggregate.");
                                                                                     } else {
                                                                                         errorflag1 = 0;
                                                                                         if (selectedCoursepgsem.equals("- Select Course -")) {
@@ -2463,7 +2480,7 @@ public class MyProfilePg extends AppCompatActivity {
                         errorflag1 = 0;
                         if (marksyear2.length() < 1) {
                             errorflag1 = 1;
-                            pmarksusem2input.setError("Kindly enter valid marks");
+                            pmarksuyear2input.setError("Kindly enter valid marks");
                         } else {
                             errorflag1 = 0;
                             if (outofyear2.length() < 1) {
@@ -2478,7 +2495,7 @@ public class MyProfilePg extends AppCompatActivity {
                                     errorflag1 = 0;
                                     if (marksyear3.length() < 1) {
                                         errorflag1 = 1;
-                                        pmarksusem3input.setError("Kindly enter valid marks");
+                                        pmarksuyear3input.setError("Kindly enter valid marks");
                                     } else {
                                         errorflag1 = 0;
                                         if (outofyear3.length() < 1) {
@@ -2497,7 +2514,7 @@ public class MyProfilePg extends AppCompatActivity {
                                                     aggg = Float.parseFloat(aggregatepgyear);
                                                 if (aggg <= 0 || aggg >= 100) {
                                                     errorflag1 = 1;
-                                                    pgyearaggregateinput.setError("Incorrect Aggregate");
+                                                    pgyearaggregateinput.setError("Kindly enter valid  Aggregate.");
                                                 } else {
                                                     errorflag1 = 0;
                                                     if (selectedCoursepgyear.equals("- Select Course -")) {
@@ -2548,11 +2565,7 @@ public class MyProfilePg extends AppCompatActivity {
                                                                 errorflag3 = 1;
                                                                 Toast.makeText(MyProfilePg.this, "Select University", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (schoolnamepgyears.length() < 3) {
-                                                                    errorflag4 = 1;
 
-                                                                    schoolnamepgyearinput.setError("Kindly enter valid college name");
-                                                                }
                                                                 if (selectedUniversitypgyear.equals("Other")) {
                                                                     otherspecifieduniversitypgyear = otheryearuniversity.getText().toString();
 
@@ -2562,10 +2575,16 @@ public class MyProfilePg extends AppCompatActivity {
                                                                         otheryearuniversityinput.setError("Kindly enter valid university");
                                                                     }
                                                                 }
+                                                                if (schoolnamepgyears.length() < 3) {
+                                                                    errorflag4 = 1;
 
-                                                                if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
-                                                                    errorflag5 = 1;
-                                                                    yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
+                                                                    schoolnamepgyearinput.setError("Kindly enter valid college name");
+                                                                } else {
+
+                                                                    if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
+                                                                        errorflag5 = 1;
+                                                                        yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
+                                                                    }
                                                                 }
                                                             }
                                                         }

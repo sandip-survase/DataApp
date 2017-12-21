@@ -62,7 +62,7 @@ public class MyProfileTenth extends AppCompatActivity {
     JSONObject json;
     String selectedBoard = "";
     int edittedFlag = 0;
-    String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "", encobj = "";
+    String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "", encobj = "",selectboard="";
     String oldBoard = "";
     StudentData s = new StudentData();
 
@@ -532,9 +532,22 @@ public class MyProfileTenth extends AppCompatActivity {
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
 
-                Log.d("TAG", "validateandSave: before objstr" + marksobtained + " " + outofmarks + " " + percentage + " " + schoolname + " " + monthandyearofpassing + " " + selectedBoard);
+                if (selectedBoard.equals("Other")) {
+                    selectboard = otherspecifiedboard;
+                }
+                else {
+                    selectboard = selectedBoard;
 
-                MyProfileTenthModal obj2 = new MyProfileTenthModal(marksobtained, outofmarks, percentage, schoolname, monthandyearofpassing, selectedBoard);
+                }
+
+
+
+
+
+
+                Log.d("TAG", "validateandSave: before objstr" + marksobtained + " " + outofmarks + " " + percentage + " " + schoolname + " " + monthandyearofpassing + " " + selectboard);
+
+                MyProfileTenthModal obj2 = new MyProfileTenthModal(marksobtained, outofmarks, percentage, schoolname, monthandyearofpassing, selectboard);
 
                 Log.d("TAG", "validateandSave: " + obj2.marksobtained + " " + obj2.outofmarks + " " + obj2.percentage + " " + obj2.schoolname + " " + obj2.monthandyearofpassing + " " + obj2.selectedBoard);
 //                Log.d("TAG", "validateandSave: "+obj2.marksobtained+" "+);
