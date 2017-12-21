@@ -1087,7 +1087,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 encLastName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "lname");
                 encAdminPhone = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "phone");
                 encrole = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
-                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "ProMail");
+                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "proEmail");
 
                 Log.d("TAG", "encUsername:              " + encUsername);
                 Log.d("TAG", "encFirstName:             " + encFirstName);
@@ -1234,7 +1234,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 encFirstName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "fname");
                 encLastName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "lname");
                 encAdminPhone = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "phone");
-                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "ProMail");
+                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "proEmail");
 
                 Log.d("TAG", "shared encUsername:          " + encUsername);
                 Log.d("TAG", "shared encFirstName:         " + encPassword);
