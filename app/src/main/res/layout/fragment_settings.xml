@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_below="@+id/pushselectionview"
-                    android:layout_above="@+id/proicon"
+                    android:layout_above="@+id/lastloginicon"
 
                     />
 
