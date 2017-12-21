@@ -26,6 +26,15 @@ public class Z {
 
 
 
+    public static final String IP_8086 = "http://104.237.4.236:8086/";
+
+    public static final String IP_30_8080 = "http://192.168.100.30:8080/";
+
+
+
+
+
+
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
     public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
@@ -73,10 +82,12 @@ public class Z {
     //    -------------------------------EditPlacementMainHr -----------------------------------
     public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static final String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
-    public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
-    public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
+    public static final String url_UploadAttach1 = IP_30_8080 + "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification = IP_30_8080 + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_GetForWhomeNotification = IP_30_8080 + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
+    public static final String url_SavefileOnServer = IP_30_8080 + "CreateNotificationTemp/SavefileOnServer";
+
+
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
@@ -119,7 +130,6 @@ public class Z {
     // Messages -----------------------------------------
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
-    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
@@ -211,7 +221,7 @@ public class Z {
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
-    public static final String upload_profile = IP + "AESTest/UploadProfile";
+    public static final String upload_profile = IP_8081 + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";

@@ -2623,139 +2623,139 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 }
 
                 RecyclerItem item = null;
-                for (int j = 0; j < readstatuscountNotification ; j++) {
-                    String idnstatus = notificationreadstatus[j];
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
-                                    if (lastupdatedNotification [k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i],notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i],outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i] ,notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
-
-
-                                    if (lastupdatedNotification [k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
+//                for (int j = 0; j < readstatuscountNotification ; j++) {
+//                    String idnstatus = notificationreadstatus[j];
+//                    String sid = "";
+//                    if (idnstatus.contains("U")) {
+//
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(notificationids[i])) {
+//                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
+//
+//                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
+//                                    if (lastupdatedNotification [k] == null) {
+//
+//                                        if (notificationfilename1[i].equals("null")) {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i],notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i],outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i] ,notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    } else {
+//                                        if (notificationfilename1[i].equals("null")) {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    } else if (idnstatus.contains("R")) {
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(notificationids[i])) {
+//                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
+//
+//                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
+//
+//
+//                                    if (lastupdatedNotification [k] == null) {
+//
+//                                        if (notificationfilename1[i].equals("null")) {
+//
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    } else {
+//                                        if (notificationfilename1[i].equals("null")) {
+//
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    }
+//
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
             }
         }
 

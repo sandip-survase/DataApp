@@ -36,7 +36,9 @@
         android:layout_toRightOf="@+id/uploadedbyprofile"
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:maxLines="1"/>
 
     <TextView
         android:id="@+id/notification"
@@ -46,7 +48,9 @@
         android:layout_toRightOf="@+id/uploadedbyprofile"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:maxLines="1"/>
 
     <TextView
         android:id="@+id/uploadtime"
@@ -55,7 +59,9 @@
         android:layout_alignParentRight="true"
         android:textSize="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:maxLines="1"/>
 
     <ImageView
         android:id="@+id/attachment"

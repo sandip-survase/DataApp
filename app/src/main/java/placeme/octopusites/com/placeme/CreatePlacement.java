@@ -288,18 +288,9 @@ public class CreatePlacement extends AppCompatActivity {
 //                forwhom = Encrypt("PLACEME", digest1, digest2);
                 forwhom="PLACEME()";
                 Log.d("Forwhome", "validate: " + encforwhom);
-//                encrypt();
             } else {
-
-
                 String selectedBatchesForWhome = android.text.TextUtils.join(",", TagCreateList);
                 Log.d("Forwhome", "validate: " + selectedBatchesForWhome);
-
-//        if (batchesTags.length() < 2){
-////            a.setInstitute(instname);
-//            Toast.makeText(CreatePlacement.this, "Select Student Or Alumni to send This Placement ", Toast.LENGTH_SHORT).show();
-//            errorflag = 1;
-//        }
 
                 if (forstudflag == 0 && forallumflag == 0) {
                     Toast.makeText(CreatePlacement.this, "Select Student Or Alumni to send This Placement ", Toast.LENGTH_SHORT).show();

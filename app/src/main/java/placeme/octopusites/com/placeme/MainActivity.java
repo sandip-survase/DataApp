@@ -410,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         mainfragment.setVisibility(View.GONE);
                         tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                        getNotifications();
+                        getNotifications();
                         recyclerViewNotification.setVisibility(View.VISIBLE);
                         recyclerViewPlacement.setVisibility(View.GONE);
                         mViewPager.setVisibility(View.GONE);
@@ -427,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         mainfragment.setVisibility(View.GONE);
                         tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                        getPlacements();
+                        getPlacements();
                         recyclerViewNotification.setVisibility(View.GONE);
                         recyclerViewPlacement.setVisibility(View.VISIBLE);
                         mViewPager.setVisibility(View.GONE);
@@ -2301,7 +2301,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 }
 
 
-//            new GetLastUpdatedNotification().execute();
+            new GetLastUpdatedNotification().execute();
 
         }
     }

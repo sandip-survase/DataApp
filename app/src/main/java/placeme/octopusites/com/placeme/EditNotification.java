@@ -48,9 +48,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class EditNotification extends AppCompatActivity {
 
+    public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
@@ -87,10 +89,6 @@ public class EditNotification extends AppCompatActivity {
     String notificationreadstatus[];
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
     //notification deletion
-    ArrayList<String> notificationdeleteArraylist = new ArrayList<>();
-    private List<RecyclerItemAdminEdit> itemList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private RecyclerItemAdminEditAdapter mAdapter;
     private MaterialSearchView searchView;
     //edit part
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
@@ -99,9 +97,17 @@ public class EditNotification extends AppCompatActivity {
     private int page_to_call_notification = 1;
     private int current_page_notification = 1;
     private String plainusername, username = "", fname = "", mname = "", sname = "";
-    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
+
     private List<RecyclerItem> itemListNotification = new ArrayList<>();
     private RecyclerItemAdapter mAdapterNotification;
+    ArrayList<String> notificationdeleteArraylist = new ArrayList<>();
+
+
+    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
+    private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
+    private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,20 +146,33 @@ public class EditNotification extends AppCompatActivity {
         } catch (Exception e) {
         }
 
+
+
+
+//        recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
+//        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
+//        recyclerViewNotification.setHasFixedSize(true);
+//        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
+//        recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
+//        recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
+//        recyclerViewNotification.setAdapter(mAdapterNotification);
+
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
+        mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew,EditNotification.this);
         recyclerViewNotification.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
         recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
         recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewNotification.setAdapter(mAdapterNotification);
+        recyclerViewNotification.setAdapter(mAdapterNotificationEdit);
+
 
 
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                RecyclerItem item = itemListNotification.get(position);
+                RecyclerItemEdit item = itemListNotificationNew.get(position);
 
 
                 if (deleteflag == 1) {
@@ -273,7 +292,7 @@ public class EditNotification extends AppCompatActivity {
             public void onLoadMore(int current_page) {
 
                 if (total_no_of_notifications > 20) {
-                    simulateLoadingNotification();
+//                    simulateLoadingNotification();
                 }
 
             }
@@ -340,6 +359,8 @@ public class EditNotification extends AppCompatActivity {
 
 //        addPlacementdatatoAdapter();
 //        getNotifications();
+        getNotifications2();
+
     }
 
     void hideSearchMenu() {
@@ -506,7 +527,7 @@ public class EditNotification extends AppCompatActivity {
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-//        new GetNotificationsReadStatus().execute();
+        new GetNotificationsReadStatus().execute();
 
     }
 
@@ -929,7 +950,6 @@ public class EditNotification extends AppCompatActivity {
             }
 
 
-
             new GetNotifications().execute();
 
         }
@@ -1049,10 +1069,10 @@ public class EditNotification extends AppCompatActivity {
                         notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
                     }
                     if (notificationuploadedby[i] != null) {
-//                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-//                        byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                        notificationuploadedbyplain[i] = Decrypt(notificationuploadedby[i],MySharedPreferencesManager.getDigest1(EditNotification.this),MySharedPreferencesManager.getDigest2(EditNotification.this));
-                        Log.d("notificationuploadedby", "notificationuploadedby" + "[" + i + "] " +  notificationuploadedbyplain[i] );
+                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
+                        byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
+                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
+                        Log.d("notificationuploadedby", "notificationuploadedby" + "[" + i + "] " + notificationuploadedby[i]);
 
                     }
 
@@ -1068,6 +1088,7 @@ public class EditNotification extends AppCompatActivity {
 
         }
     }
+
 
     class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
 
@@ -1225,6 +1246,67 @@ public class EditNotification extends AppCompatActivity {
         }
 
         public abstract void onLoadMore(int current_page);
+    }
+
+
+    void getNotifications2() {
+
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+
+        new Getplacementbyhr().execute();
+
+    }
+
+    class Getplacementbyhr extends AsyncTask<String, String, String> {
+
+        private static final String TAG = "Getplacementbyhr";
+        ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", "sunny"));       //0
+            Log.d("class", "accessed");
+            json = jParser.makeHttpRequest(url_GetPlacementsCreatedByHr, "GET", params);
+            try {
+                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                Log.d("itemlistfromserver", "filename1=======================" + itemlistfromserver.get(0).getNotification());
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            setserverlisttoadapter(itemlistfromserver);
+
+        }
+
+        void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
+
+            itemListNotificationNew.clear();
+            itemListNotificationNew.addAll(itemlist);
+//        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+//        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+            mAdapterNotificationEdit.notifyDataSetChanged();
+
+
+        }
+
+
     }
 
 }

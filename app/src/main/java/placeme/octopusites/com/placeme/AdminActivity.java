@@ -69,6 +69,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
@@ -76,7 +77,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    public static final int ADMIN_DATA_CHANGE_RESULT_CODE =111;
+    public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
+
+    public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+
 
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
@@ -101,7 +106,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     Handler handler = new Handler();
     RelativeLayout createnotificationrl, editnotificationrl;
     int searchNotificationFlag = 0, searchPlacementFlag = 0;
-    List<RecyclerItem> tempListNotification;
+    ArrayList<RecyclerItemEdit> tempListNotification;
     int unreadcountNotification = 0;
     RelativeLayout notificationcountrl;
     TextView notificationcounttxt;
@@ -141,6 +146,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String lastupdatedPlacement[];
     TextView createPlacementOrNotification, editPlacementOrNotification;
     PlacementEditData settag = new PlacementEditData();
+    Toolbar toolbar;
+    TextView bluePanelTv;
     private ImageView resultView;
     private int chooserType;
     private String mediaPath;
@@ -150,12 +157,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private MaterialSearchView searchView;
     //notification
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private RecyclerItemAdapter mAdapter;
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
-    private RecyclerItemAdapter mAdapterNotification;
-    private List<RecyclerItem> itemListNotification = new ArrayList<>();
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
     private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
@@ -170,8 +172,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
     private TextView toolbar_title;
-    Toolbar toolbar;
-    TextView bluePanelTv;
+
+
+    //new
+    private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
+    private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
 
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
@@ -199,15 +204,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(AdminActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
 
 
-
-        String encUsername=MySharedPreferencesManager.getUsername(this);
+        String encUsername = MySharedPreferencesManager.getUsername(this);
         Log.d("Shardpreff", "encUsername=======================: " + encUsername);
         //sss
         imagePicker = new ImagePicker(this);
@@ -221,32 +225,31 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
 
-
         username = MySharedPreferencesManager.getUsername(this);
-        String pass=MySharedPreferencesManager.getPassword(this);
+        String pass = MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
 
 
-        MySharedPreferencesManager.save(AdminActivity.this,"intro","yes");
-        MySharedPreferencesManager.save(AdminActivity.this,"otp","no");
-        MySharedPreferencesManager.save(AdminActivity.this,"activationMessage","no");
-        MySharedPreferencesManager.save(AdminActivity.this,"activatedCode","no");
+        MySharedPreferencesManager.save(AdminActivity.this, "intro", "yes");
+        MySharedPreferencesManager.save(AdminActivity.this, "otp", "no");
+        MySharedPreferencesManager.save(AdminActivity.this, "activationMessage", "no");
+        MySharedPreferencesManager.save(AdminActivity.this, "activatedCode", "no");
 
         try {
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            String plainusername=Decrypt(username,digest1,digest2);
+            String plainusername = Decrypt(username, digest1, digest2);
 
-            byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
+            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
-            String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + MySharedPreferencesManager.getDigest3(this));
+            String data = new String(demo2DecryptedBytes1);
+            String hash = md5(data + MySharedPreferencesManager.getDigest3(this));
 
-            new LoginFirebaseTask().execute(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername, hash);
 
 
         } catch (Exception e) {
@@ -374,7 +377,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         });
 
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -383,11 +385,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         });
 
-        RelativeLayout bottompanel=(RelativeLayout)findViewById(R.id.bottompanel);
+        RelativeLayout bottompanel = (RelativeLayout) findViewById(R.id.bottompanel);
         bottompanel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminActivity.this,ShowUsers.class));
+                startActivity(new Intent(AdminActivity.this, ShowUsers.class));
             }
         });
 
@@ -426,7 +428,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         recyclerViewPlacement.setVisibility(View.GONE);
 //                      createPlacementOrNotification=(TextView)findViewById(R.id.createnotificationtxt) ;
 //                      editPlacementOrNotification
+
 //                        getNotifications();
+                        getNotifications2();
+
 //                      recyclerViewNotification.setVisibility(View.VISIBLE);
 //                      recyclerViewPlacement.setVisibility(View.GONE);
 
@@ -546,54 +551,54 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getBold(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -614,53 +619,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getBold(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -680,53 +685,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getBold(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -745,53 +750,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon_selected);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getBold(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -822,53 +827,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getBold(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -887,53 +892,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getBold(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -952,53 +957,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AdminActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AdminActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AdminActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AdminActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AdminActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AdminActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
@@ -1012,46 +1017,55 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         Drawable myDrawable = getResources().getDrawable(R.drawable.notification_icon_selected);
         notificationi.setImageDrawable(myDrawable);
 
-        TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
+        TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
         pt.setTypeface(Z.getBold(AdminActivity.this));
         pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-        TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+        TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
         pt1.setTypeface(Z.getLight(AdminActivity.this));
         pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+        TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
         pt3.setTypeface(Z.getLight(AdminActivity.this));
         pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+        TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
         pt8.setTypeface(Z.getLight(AdminActivity.this));
         pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+        TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
         pt4.setTypeface(Z.getLight(AdminActivity.this));
         pt4.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+        TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
         pt5.setTypeface(Z.getLight(AdminActivity.this));
         pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+        TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
         pt6.setTypeface(Z.getLight(AdminActivity.this));
         pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+        TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
         pt7.setTypeface(Z.getLight(AdminActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
 
 
-        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
+//
+//        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
+//        recyclerViewNotification.setHasFixedSize(true);
+//        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
+//        recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
+//        recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
+//        recyclerViewNotification.setAdapter(mAdapterNotification);
+
+        mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew, AdminActivity.this);
         recyclerViewNotification.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
         recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
         recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewNotification.setAdapter(mAdapterNotification);
+        recyclerViewNotification.setAdapter(mAdapterNotificationEdit);
 
         //placements
 
@@ -1063,18 +1077,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewPlacement.setItemAnimator(new DefaultItemAnimator());
         recyclerViewPlacement.setAdapter(mAdapterPlacement);
 
+//        ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
 
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
 
-                RecyclerItem itemN = null;
+                RecyclerItemEdit itemN = null;
                 if (searchNotificationFlag == 1)
                     itemN = tempListNotification.get(position);
                 else
-                    itemN = itemListNotification.get(position);
-                if (!itemN.getisRead()) {
-                    itemN.setisRead(true);
+                    itemN = itemListNotificationNew.get(position);
+                if (!itemN.isIsread()) {
+                    itemN.setIsread(true);
                     unreadcountNotification--;
                     notificationcountrl.setVisibility(View.VISIBLE);
                     notificationcounttxt.setText(unreadcountNotification + "");
@@ -1084,7 +1099,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 }
 
-                mAdapterNotification.notifyDataSetChanged();
+                mAdapterNotificationEdit.notifyDataSetChanged();
 
                 changeReadStatusNotification(itemN.getId());
 
@@ -1103,6 +1118,18 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 i1.putExtra("uploadtime", itemN.getUploadtime());
                 i1.putExtra("lastmodified", itemN.getLastmodified());
 
+                Log.d("addOnItemTouch", "id: " + itemN.getId());
+                Log.d("addOnItemTouch", "title" + itemN.getTitle());
+                Log.d("addOnItemTouch", "notification" + itemN.getNotification());
+                Log.d("addOnItemTouch", "file1" + itemN.getFilename1());
+                Log.d("addOnItemTouch", "file2" + itemN.getFilename2());
+                Log.d("addOnItemTouch", "file3" + itemN.getFilename3());
+                Log.d("addOnItemTouch", "file4" + itemN.getFilename4());
+                Log.d("addOnItemTouch", "file5" + itemN.getFilename5());
+                Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                Log.d("addOnItemTouch", "uploadtime" + itemN.getUploadtime());
+                Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                Log.d("addOnItemTouch", "lastmodified" + itemN.getLastmodified());
                 startActivity(i1);
 
             }
@@ -1117,8 +1144,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewNotification.setOnScrollListener(new EndlessRecyclerOnScrollListenerNotification(linearLayoutManagerNotification) {
             @Override
             public void onLoadMore(int current_page) {
-
+                Log.d("TAG", "HERE BEFORE");
                 if (total_no_of_notifications > 20) {
+                    Log.d("TAG", "HERE INSIDE");
+
                     simulateLoadingNotification();
                 }
 
@@ -1208,49 +1237,34 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onRefresh() {
 
-
+                itemListNotificationNew.clear();
                 if (selectedMenuFlag == 1) {
 //                    getNotifications();
-                }
-                else if (selectedMenuFlag == 2) {
-//                    getPlacements();
+                    getNotifications2();
+                } else if (selectedMenuFlag == 2) {
+                    getPlacements();
                 }
 
             }
         });
 
-//        tswipe_refresh_layout.setRefreshing(true);
-//
-//        new GetUnreadCountOfNotificationAndPlacement().execute();
-//        new GetUnreadMessagesCount().execute();
+
+        getNotifications2();
 
 
     }
 
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();
-        for (RecyclerItem d : itemListNotification) {
+        for (RecyclerItemEdit d : itemListNotificationNew) {
 
             if (containsIgnoreCase(d.getTitle(), text)) {
                 tempListNotification.add(d);
             }
         }
-        mAdapterNotification.updateList(tempListNotification, text);
+        mAdapterNotificationEdit.updateList(tempListNotification, text);
     }
 
-    public void getNotifications() {
-        tswipe_refresh_layout.setRefreshing(true);
-        previousTotalNotification = 0;
-        loadingNotification = true;
-        page_to_call_notification = 1;
-        isFirstRunNotification = true;
-        isLastPageLoadedNotification = false;
-        lastPageFlagNotification = 0;
-        new GetNotificationsReadStatus().execute();
-        Log.d("Ad.getNotifications", ":total_no_of_notifications::" + total_no_of_notifications);
-        Log.d("Ad.getNotifications", ":notificationpages::" + notificationpages);
-        Log.d("Ad.getNotifications", ": readcountNotification::" + unreadcountNotification);
-    }
 
     void changeReadStatusNotification(String id) {
         new ChangeReadStatusNotification().execute(id);
@@ -1269,6 +1283,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 try {
 
 
+                    Log.d("TAG", "simulateLoadingNotification: accessed");
+                    Log.d("TAG", "page_to_call_notification:"+page_to_call_notification);
+                    Log.d("TAG", "notificationpages:"+notificationpages);
+
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
 
@@ -1277,36 +1295,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin , "GET", params);
+                        json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
-                        notificationids = new String[notificationcount];
-                        notificationtitles = new String[notificationcount];
-                        notificationnotifications = new String[notificationcount];
-                        notificationfilename1 = new String[notificationcount];
-                        notificationfilename2 = new String[notificationcount];
-                        notificationfilename3 = new String[notificationcount];
-                        notificationfilename4 = new String[notificationcount];
-                        notificationfilename5 = new String[notificationcount];
-                        notificationuploadtime = new String[notificationcount];
-                        notificationlastmodified = new String[notificationcount];
-                        notificationuploadedby = new String[notificationcount];
-                        notificationuploadedbyplain = new String[notificationcount];
-                        for (int i = 0; i < notificationcount; i++) {
-                            notificationids[i] = json.getString("id" + i);
-                            notificationtitles[i] = json.getString("title" + i);
-                            notificationnotifications[i] = json.getString("notification" + i);
-                            notificationfilename1[i] = json.getString("filename1" + i);
-                            notificationfilename2[i] = json.getString("filename2" + i);
-                            notificationfilename3[i] = json.getString("filename3" + i);
-                            notificationfilename4[i] = json.getString("filename4" + i);
-                            notificationfilename5[i] = json.getString("filename5" + i);
-                            notificationuploadtime[i] = json.getString("uploadtime" + i);
-                            notificationlastmodified[i] = json.getString("lastmodified" + i);
-                            notificationuploadedby[i] = json.getString("uploadedby" + i);
+                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
 
-                        }
+
                     } else {
                         if (!isLastPageLoadedNotification) {
 
@@ -1319,32 +1316,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
-                            notificationids = new String[notificationcount];
-                            notificationtitles = new String[notificationcount];
-                            notificationnotifications = new String[notificationcount];
-                            notificationfilename1 = new String[notificationcount];
-                            notificationfilename2 = new String[notificationcount];
-                            notificationfilename3 = new String[notificationcount];
-                            notificationfilename4 = new String[notificationcount];
-                            notificationfilename5 = new String[notificationcount];
-                            notificationuploadtime = new String[notificationcount];
-                            notificationlastmodified = new String[notificationcount];
-                            notificationuploadedby = new String[notificationcount];
-                            notificationuploadedbyplain = new String[notificationcount];
-                            for (int i = 0; i < notificationcount; i++) {
-                                notificationids[i] = json.getString("id" + i);
-                                notificationtitles[i] = json.getString("title" + i);
-                                notificationnotifications[i] = json.getString("notification" + i);
-                                notificationfilename1[i] = json.getString("filename1" + i);
-                                notificationfilename2[i] = json.getString("filename2" + i);
-                                notificationfilename3[i] = json.getString("filename3" + i);
-                                notificationfilename4[i] = json.getString("filename4" + i);
-                                notificationfilename5[i] = json.getString("filename5" + i);
-                                notificationuploadtime[i] = json.getString("uploadtime" + i);
-                                notificationlastmodified[i] = json.getString("lastmodified" + i);
-                                notificationuploadedby[i] = json.getString("uploadedby" + i);
-
-                            }
+                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
                         }
 
                     }
@@ -1360,79 +1334,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 if (!isLastPageLoadedNotification) {
 
-                    for (int i = 0; i < notificationcount; i++)
-                        try {
-
-                            if (notificationtitles[i] != null) {
-                                byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
-                                byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                                notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-                            }
-                            if (notificationnotifications[i] != null) {
-                                byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
-                                byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                                notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
-                            }
-                            if (notificationfilename1[i] != null) {
-                                if (!notificationfilename1[i].equals("null")) {
-                                    byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
-                                    byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
-                                    notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename2[i] != null) {
-                                if (!notificationfilename2[i].equals("null")) {
-                                    byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
-                                    byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
-                                    notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename3[i] != null) {
-                                if (!notificationfilename3[i].equals("null")) {
-                                    byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
-                                    byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
-                                    notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename4[i] != null) {
-                                if (!notificationfilename4[i].equals("null")) {
-                                    byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
-                                    byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
-                                    notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename5[i] != null) {
-                                if (!notificationfilename5[i].equals("null")) {
-                                    byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
-                                    byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
-                                    notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
-                                }
-                            }
-                            if (notificationuploadtime[i] != null) {
-                                byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
-                                byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                                notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
-                            }
-                            if (notificationlastmodified[i] != null) {
-                                byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
-                                byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                                notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
-                            }
-                            if (notificationuploadedby[i] != null) {
-                                byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-                                byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                                notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                            }
+                    setserverlisttoadapter(itemlistfromserver);
 
 
-                        } catch (Exception e) {
-                            //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
                 }
 
 
                 tswipe_refresh_layout.setRefreshing(false);
-                new GetLastUpdatedNotification().execute();
+//                new GetLastUpdatedNotification().execute();
             }
         }.execute();
     }
@@ -1469,7 +1378,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public void requestCropImage() {
         resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(AdminActivity.this,"crop", "yes");
+        MySharedPreferencesManager.save(AdminActivity.this, "crop", "yes");
         chooseImage();
 
     }
@@ -1632,193 +1541,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         return super.onOptionsItemSelected(item);
     }
 
-    void addNotificationdatatoAdapter() {
-
-        if (isFirstRunNotification) {
-            itemListNotification.clear();
-            mAdapterNotification.notifyDataSetChanged();
-            isFirstRunNotification = false;
-
-        }
-
-        if (!isLastPageLoadedNotification) {
-
-            for (int i = 0; i < notificationcount; i++) {
-
-                String headingtoshow = "", notificationtoshow = "";
-                int largeheadingflag = 0, largenotificationflag = 0;
-
-                if (notificationtitles[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        headingtoshow += notificationtitles[i].charAt(j);
-                    largeheadingflag = 1;
-                    headingtoshow += "...";
-                }
-                if (notificationnotifications[i].length() > 25) {
-                    for (int j = 0; j < 25; j++)
-                        notificationtoshow += notificationnotifications[i].charAt(j);
-                    largenotificationflag = 1;
-                    notificationtoshow += "...";
-                }
-                DateFormat inputFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
-                DateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
-                String outputDate = "";
-                try {
-                    Date date = inputFormat.parse(notificationuploadtime[i]);
-                    outputDate = outputFormat.format(date);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                RecyclerItem item = null;
-//                            Toast.makeText(this, "read status count Notification:-"+readstatuscountNotification, Toast.LENGTH_LONG).show();
-//                            Toast.makeText(this, "notification read status here:-"+notificationreadstatus, Toast.LENGTH_LONG).show();
-
-                for (int j = 0; j < readstatuscountNotification; j++) {
-                    String idnstatus = notificationreadstatus[j];
-                    Log.d("TAGAdmin", "idnstatus: " + idnstatus);
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                            Log.d("TAGAdmin", "sid: " + sid);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-
-
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "cplaceme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
-
-        mAdapterNotification.notifyDataSetChanged();
-    }
 
     @Override
     public void onResume() {
@@ -1860,8 +1582,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //        }
 //    }
 
-    void addPlacementdatatoAdapter()
-    {
+    void addPlacementdatatoAdapter() {
         if (isFirstRunPlacement) {
             itemListPlacement.clear();
             mAdapterPlacement.notifyDataSetChanged();
@@ -2271,7 +1992,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     @Override
     protected void onRestart() {
-//        super.onRestart();
+        super.onRestart();
 
 //        if (navMenuFlag == 2) {
 //
@@ -2279,6 +2000,58 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //        } else if (navMenuFlag == 3) {
 //            getPlacements();
 //        }
+
+    }
+
+    public void refreshUserCount() {
+        new GetCountOfUsersUnderAdmin().execute();
+        Log.d("kun", "refreshUserCount: ");
+    }
+
+    void getNotifications2() {
+
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+//metadata read count and read status
+
+        new GetNotificationsReadStatus().execute();
+
+
+//        new Getplacementbyhr().execute();
+
+
+    }
+
+
+
+//placements methods and classes
+
+    void getPlacements2() {
+        tswipe_refresh_layout.setRefreshing(true);
+        previousTotalPlacement = 0;
+        loadingPlacement = true;
+        page_to_call_placement = 1;
+        isFirstRunPlacement = true;
+        isLastPageLoadedPlacement = false;
+        lastPageFlagPlacement = 0;
+
+        new GetPlacementsReadStatus().execute();
+    }
+
+    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
+
+        itemListNotificationNew.addAll(itemlist);
+
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
+
+        mAdapterNotificationEdit.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
 
     }
 
@@ -2342,22 +2115,17 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             try {
 
                 json = jParser.makeHttpRequest(Z.url_GetNotificationsAdminAdminMetaData, "GET", params);
+
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
-                json = jParser.makeHttpRequest(Z.url_GetReadStatusOfNotificationsAdmin, "GET", params);
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
 
-                readstatuscountNotification = Integer.parseInt(json.getString("count"));
-                Log.d("TAGAdmin", "readstatuscountNotification: " + readstatuscountNotification);
-
-                notificationreadstatus = new String[readstatuscountNotification];
-                for (int i = 0; i < readstatuscountNotification; i++) {
-                    notificationreadstatus[i] = json.getString("s" + i);
-                    Log.d("TAGAdmin", "getReadStatus " + notificationreadstatus[i]);
-                }
-
+//
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2367,18 +2135,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
             try {
-//              Toast.makeText(AdminActivity.this, "total_no_of_notifications"+total_no_of_notifications, Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "total pagess  "+notificationpages, Toast.LENGTH_LONG).show();
-//
-//              Toast.makeText(AdminActivity.this, "UNRead count:-"+unreadcountNotification, Toast.LENGTH_LONG).show();
-//
-//              Toast.makeText(AdminActivity.this, "Read count:-"+readstatuscountNotification, Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 0 :-"+notificationreadstatus[0], Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 1:-"+notificationreadstatus[1], Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 2 :-"+notificationreadstatus[2], Toast.LENGTH_LONG).show();
-                Log.d("GetReadStatus", ":total_no_of_notifications::" + total_no_of_notifications);
-                Log.d("GetReadStatus", ":notificationpages::" + notificationpages);
-                Log.d("GetReadStatus", ": readcountNotification::" + unreadcountNotification);
+                notificationcountrl.setVisibility(View.VISIBLE);
+                notificationcounttxt.setText(unreadcountNotification + "");
+                if (unreadcountNotification == 0) {
+                    notificationcountrl.setVisibility(View.GONE);
+                }
+
+
+                new GetNotifications2().execute();
 
 
             } catch (Exception e) {
@@ -2386,17 +2150,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
 
 
-            notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification + "");
-            if (unreadcountNotification == 0) {
-                notificationcountrl.setVisibility(View.GONE);
-            }
-            new GetNotifications().execute();
-
         }
     }
-
-//placements methods and classes
 
     class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
 
@@ -2455,217 +2210,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
         public abstract void onLoadMore(int current_page);
-    }
-
-    class GetNotifications extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
-            try {
-                notificationcount = Integer.parseInt(json.getString("count"));
-
-                notificationids = new String[notificationcount];
-                notificationtitles = new String[notificationcount];
-                notificationnotifications = new String[notificationcount];
-                notificationfilename1 = new String[notificationcount];
-                notificationfilename2 = new String[notificationcount];
-                notificationfilename3 = new String[notificationcount];
-                notificationfilename4 = new String[notificationcount];
-                notificationfilename5 = new String[notificationcount];
-                notificationuploadtime = new String[notificationcount];
-                notificationlastmodified = new String[notificationcount];
-                notificationuploadedby = new String[notificationcount];
-                notificationuploadedbyplain = new String[notificationcount];
-                for (int i = 0; i < notificationcount; i++) {
-                    notificationids[i] = json.getString("id" + i);
-                    notificationtitles[i] = json.getString("title" + i);
-                    notificationnotifications[i] = json.getString("notification" + i);
-                    notificationfilename1[i] = json.getString("filename1" + i);
-                    notificationfilename2[i] = json.getString("filename2" + i);
-                    notificationfilename3[i] = json.getString("filename3" + i);
-                    notificationfilename4[i] = json.getString("filename4" + i);
-                    notificationfilename5[i] = json.getString("filename5" + i);
-                    notificationuploadtime[i] = json.getString("uploadtime" + i);
-                    notificationlastmodified[i] = json.getString("lastmodified" + i);
-                    notificationuploadedby[i] = json.getString("uploadedby" + i);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-            tswipe_refresh_layout.setVisibility(View.VISIBLE);
-            tswipe_refresh_layout.setRefreshing(false);
-
-            for (int i = 0; i < notificationcount; i++)
-                try {
-
-
-                    if (notificationtitles[i] != null) {
-                        byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
-                        byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                        notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-//                        Toast.makeText(AdminActivity.this, "title"+notificationtitles[i], Toast.LENGTH_SHORT).show();
-                        Log.d("notificationdecripted", "notificationtitles" + "[" + i + "] " + notificationtitles[i]);
-
-                    }
-                    if (notificationnotifications[i] != null) {
-                        byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
-                        byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                        notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
-//                        Toast.makeText(AdminActivity.this, "notification"+notificationnotifications[i], Toast.LENGTH_SHORT).show();
-
-                    }
-                    if (notificationfilename1[i] != null) {
-                        if (!notificationfilename1[i].equals("null")) {
-                            byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
-                            byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
-                            notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename2[i] != null) {
-                        if (!notificationfilename2[i].equals("null")) {
-                            byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
-                            byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
-                            notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename3[i] != null) {
-                        if (!notificationfilename3[i].equals("null")) {
-                            byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
-                            byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
-                            notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename4[i] != null) {
-                        if (!notificationfilename4[i].equals("null")) {
-                            byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
-                            byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
-                            notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename5[i] != null) {
-                        if (!notificationfilename5[i].equals("null")) {
-                            byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
-                            byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
-                            notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
-                        }
-                    }
-                    if (notificationuploadtime[i] != null) {
-                        byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
-                        byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                        notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
-                    }
-                    if (notificationlastmodified[i] != null) {
-                        byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
-                        byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                        notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
-                    }
-                    if (notificationuploadedby[i] != null) {
-                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-                        byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                        Log.d("notificationuploadedby", "notificationuploadedby" + "[" + i + "] " + notificationuploadedby[i]);
-
-                    }
-
-
-                } catch (Exception e) {
-                    //Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                }
-
-
-            new GetLastUpdatedNotification().execute();
-//            addNotificationdatatoAdapter();
-
-
-        }
-    }
-
-    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
-
-        String s = "";
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-
-            Set<String> uniqKeys = new TreeSet<String>();
-            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
-
-
-            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
-            lastupdatedNotification = new String[uniqueUploadersNotification.length];
-            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
-                for (int i = 0; i < notificationcount; i++) {
-
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
-                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
-                    }
-                }
-            }
-            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-                try {
-                    s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    } else {
-                        lastupdatedNotification[i] = s;
-//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                }
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-//            Toast.makeText(AdminActivity.this,"uniqueUploadersNotification:- \n"+uniqueUploadersNotification[0] , Toast.LENGTH_LONG).show();
-//
-//            Toast.makeText(AdminActivity.this,notificationuploadedbyplain[0]+"\n"+notificationuploadedby[0] , Toast.LENGTH_LONG).show();
-
-
-//            for(int i=0;i<lastupdated.length;i++)
-//            {
-//                if(lastupdated[i]==null) {
-//                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(AdminActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
-//
-//
-//                }
-//            }
-            if (s.equals("noupdate")) {
-                Toast.makeText(AdminActivity.this, "no update", Toast.LENGTH_SHORT).show();
-            } else {
-//                lastupdatedNotification [i]=s;
-            }
-
-            if (!isLastPageLoadedNotification) {
-            }
-            addNotificationdatatoAdapter();
-
-        }
-
     }
 
     public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
@@ -2765,7 +2309,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             mainfragment.setVisibility(View.VISIBLE);
 
             if (response.get(0).contains("success")) {
-                MySharedPreferencesManager.save(AdminActivity.this,"crop", "no");
+                MySharedPreferencesManager.save(AdminActivity.this, "crop", "no");
                 Toast.makeText(AdminActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
@@ -2791,6 +2335,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
     }
+
     class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -2802,21 +2347,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
             try {
                 json = jParser.makeHttpRequest(Z.url_GetPlacementsAdminAdminMetaData, "GET", params);
+
+
                 placementpages = Integer.parseInt(json.getString("pages"));
                 called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
-                json = jParser.makeHttpRequest(Z.url_GetReadStatusOfPlacementsForAdmin, "GET", params);
-                readstatuscountPlacement = Integer.parseInt(json.getString("count"));
-                placementreadstatus = new String[readstatuscountPlacement];
 
-
-                for (int i = 0; i < readstatuscountPlacement; i++) {
-                    placementreadstatus[i] = json.getString("s" + i);
-//                    Log.d("PlacmentTesting", "total_no_of_placements: "+placementreadstatus[i]);
-                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2827,17 +2366,16 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
             placementcountrl.setVisibility(View.VISIBLE);
+
             placementcounttxt.setText(unreadcountPlacement + "");
             if (unreadcountPlacement == 0) {
                 placementcountrl.setVisibility(View.GONE);
             }
-            Log.d("PlacmentTesting", "total_no_of_placements: " + total_no_of_placements);
-            Log.d("PlacmentTesting", "unreadcountPlacement: " + unreadcountPlacement);
-            for (int i = 0; i < readstatuscountPlacement; i++) {
-                Log.d("PlacmentTesting", "placementreadstatus1: " + placementreadstatus[i]);
-            }
+
 
             new GetPlacements().execute();
+            new GetPlacements2().execute();
+
 
         }
     }
@@ -3095,6 +2633,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             new GetLastUpdatedPlacement().execute();
         }
     }
+
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
 
@@ -3208,35 +2747,30 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     class LoginFirebaseTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-            String user=param[0];
-            String hash=param[1];
+            String user = param[0];
+            String hash = param[1];
             FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(user,hash)
+                    .signInWithEmailAndPassword(user, hash)
                     .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
                             } else {
-                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Failed to login to Firebase");
                             }
                         }
                     });
             return null;
         }
+
         @Override
         protected void onPostExecute(String result) {
-            String status=MySharedPreferencesManager.getData(AdminActivity.this,"fireLoginStatus");
+            String status = MySharedPreferencesManager.getData(AdminActivity.this, "fireLoginStatus");
             Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
-            MySharedPreferencesManager.removeKey(AdminActivity.this,"fireLoginStatus");
+            MySharedPreferencesManager.removeKey(AdminActivity.this, "fireLoginStatus");
         }
-    }
-
-
-    public void refreshUserCount() {
-        new GetCountOfUsersUnderAdmin().execute();
-        Log.d("kun", "refreshUserCount: ");
     }
 
     class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {
@@ -3266,5 +2800,250 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         }
     }
+
+    class GetNotifications2 extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            Log.d("class", "accessed");
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
+            try {
+
+                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            setserverlisttoadapter(itemlistfromserver);
+
+        }
+
+
+    }
+
+    class GetPlacements2 extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+            String r = null;
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+
+            json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
+            try {
+
+                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+
+
+
+            } catch (Exception e) {
+            }
+
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            tswipe_refresh_layout.setRefreshing(false);
+
+            Log.d("Getplacement", "onPostExecute:  im here");
+            for (int i = 0; i < placementcount; i++)
+                try {
+//                    if(placementcompanyname[i]!=null)
+//                    {
+//                        byte[] placementcompanynameEncryptedBytes=SimpleBase64Encoder.decode(placementcompanyname[i]);
+//                        byte[] placementcompanynameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcompanynameEncryptedBytes);
+//                        placementcompanyname[i]=new String(placementcompanynameDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementcompanyname"+"["+i+"] "+placementcompanyname[i]);
+//
+//                    }
+//                    if(placementcpackage[i]!=null)
+//                    {
+//                        byte[] placementcpackageEncryptedBytes=SimpleBase64Encoder.decode(placementcpackage[i]);
+//                        byte[] placementcpackageDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcpackageEncryptedBytes);
+//                        placementcpackage[i]=new String(placementcpackageDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementcpackage"+"["+i+"] "+placementcpackage[i]);
+//
+//                    }
+//                    if(placementpost[i]!=null)
+//                    {
+//                        byte[] placementpostEncryptedBytes=SimpleBase64Encoder.decode(placementpost[i]);
+//                        byte[] placementpostDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpostEncryptedBytes);
+//                        placementpost[i]=new String(placementpostDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementpost"+"["+i+"] "+placementpost[i]);
+//
+//                    }
+//                    if(placementforwhichcourse[i]!=null)
+//                    {
+//                        byte[] placementforwhichcourseEncryptedBytes=SimpleBase64Encoder.decode(placementforwhichcourse[i]);
+//                        byte[] placementforwhichcourseDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichcourseEncryptedBytes);
+//                        placementforwhichcourse[i]=new String(placementforwhichcourseDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementforwhichcourse"+"["+i+"] "+placementforwhichcourse[i]);
+//
+//                    }
+//                    if(placementforwhichstream[i]!=null)
+//                    {
+//                        byte[] placementforwhichstreamEncryptedBytes=SimpleBase64Encoder.decode(placementforwhichstream[i]);
+//                        byte[] placementforwhichstreamDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichstreamEncryptedBytes);
+//                        placementforwhichstream[i]=new String(placementforwhichstreamDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementforwhichstream"+"["+i+"] "+placementforwhichstream[i]);
+//
+//                    }
+//                    if(placementvacancies[i]!=null)
+//                    {
+//                        byte[] placementvacanciesEncryptedBytes=SimpleBase64Encoder.decode(placementvacancies[i]);
+//                        byte[] placementvacanciesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementvacanciesEncryptedBytes);
+//                        placementvacancies[i]=new String(placementvacanciesDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementvacancies"+"["+i+"] "+placementvacancies[i]);
+//
+//                    }
+//                    if(placementlastdateofregistration[i]!=null)
+//                    {
+//                        byte[] placementlastdateofregistrationEncryptedBytes=SimpleBase64Encoder.decode(placementlastdateofregistration[i]);
+//                        byte[] placementlastdateofregistrationDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastdateofregistrationEncryptedBytes);
+//                        placementlastdateofregistration[i]=new String(placementlastdateofregistrationDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementlastdateofregistration"+"["+i+"] "+placementlastdateofregistration[i]);
+//
+//                    }
+//                    if(placementdateofarrival[i]!=null)
+//                    {
+//                        byte[] placementdateofarrivalEncryptedBytes=SimpleBase64Encoder.decode(placementdateofarrival[i]);
+//                        byte[] placementdateofarrivalDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementdateofarrivalEncryptedBytes);
+//                        placementdateofarrival[i]=new String(placementdateofarrivalDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementdateofarrival"+"["+i+"] "+placementdateofarrival[i]);
+//
+//                    }
+//                    if(placementbond[i]!=null)
+//                    {
+//                        byte[] placementbondEncryptedBytes=SimpleBase64Encoder.decode(placementbond[i]);
+//                        byte[] placementbondDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementbondEncryptedBytes);
+//                        placementbond[i]=new String(placementbondDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementbond"+"["+i+"] "+placementbond[i]);
+//
+//                    }
+//                    if(placementnoofapti[i]!=null)
+//                    {
+//                        byte[] placementnoofaptiEncryptedBytes=SimpleBase64Encoder.decode(placementnoofapti[i]);
+//                        byte[] placementnoofaptiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofaptiEncryptedBytes);
+//                        placementnoofapti[i]=new String(placementnoofaptiDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementnoofapti"+"["+i+"] "+placementnoofapti[i]);
+//
+//                    }
+//                    if(placementnooftechtest[i]!=null)
+//                    {
+//                        byte[] placementnooftechtestEncryptedBytes=SimpleBase64Encoder.decode(placementnooftechtest[i]);
+//                        byte[] placementnooftechtestDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftechtestEncryptedBytes);
+//                        placementnooftechtest[i]=new String(placementnooftechtestDecryptedBytes);
+//                    }
+//                    if(placementnoofgd[i]!=null)
+//                    {
+//                        byte[] placementnoofgdEncryptedBytes=SimpleBase64Encoder.decode(placementnoofgd[i]);
+//                        byte[] placementnoofgdDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofgdEncryptedBytes);
+//                        placementnoofgd[i]=new String(placementnoofgdDecryptedBytes);
+//                    }
+//                    if(placementnoofti[i]!=null)
+//                    {
+//                        byte[] placementnooftiEncryptedBytes=SimpleBase64Encoder.decode(placementnoofti[i]);
+//                        byte[] placementnooftiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftiEncryptedBytes);
+//                        placementnoofti[i]=new String(placementnooftiDecryptedBytes);
+//                    }
+//                    if(placementnoofhri[i]!=null)
+//                    {
+//                        byte[] placementnoofhriEncryptedBytes=SimpleBase64Encoder.decode(placementnoofhri[i]);
+//                        byte[] placementnoofhriDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofhriEncryptedBytes);
+//                        placementnoofhri[i]=new String(placementnoofhriDecryptedBytes);
+//                    }
+//                    if(placementstdx[i]!=null)
+//                    {
+//                        byte[] placementstdxEncryptedBytes=SimpleBase64Encoder.decode(placementstdx[i]);
+//                        byte[] placementstdxDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxEncryptedBytes);
+//                        placementstdx[i]=new String(placementstdxDecryptedBytes);
+//                    }
+//                    if(placementstdxiiordiploma[i]!=null)
+//                    {
+//                        byte[] placementstdxiiordiplomaEncryptedBytes=SimpleBase64Encoder.decode(placementstdxiiordiploma[i]);
+//                        byte[] placementstdxiiordiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxiiordiplomaEncryptedBytes);
+//                        placementstdxiiordiploma[i]=new String(placementstdxiiordiplomaDecryptedBytes);
+//                    }
+//                    if(placementug[i]!=null)
+//                    {
+//                        byte[] placementugEncryptedBytes=SimpleBase64Encoder.decode(placementug[i]);
+//                        byte[] placementugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementugEncryptedBytes);
+//                        placementug[i]=new String(placementugDecryptedBytes);
+//                    }
+//                    if(placementpg[i]!=null)
+//                    {
+//                        byte[] placementpgEncryptedBytes=SimpleBase64Encoder.decode(placementpg[i]);
+//                        byte[] placementpgDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpgEncryptedBytes);
+//                        placementpg[i]=new String(placementpgDecryptedBytes);
+//                    }
+//                    if(placementuploadtime[i]!=null)
+//                    {
+//                        byte[] placementuploadtimeEncryptedBytes=SimpleBase64Encoder.decode(placementuploadtime[i]);
+//                        byte[] placementuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadtimeEncryptedBytes);
+//                        placementuploadtime[i]=new String(placementuploadtimeDecryptedBytes);
+//                    }
+//                    if(placementlastmodified[i]!=null)
+//                    {
+//                        byte[] placementlastmodifiedEncryptedBytes=SimpleBase64Encoder.decode(placementlastmodified[i]);
+//                        byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
+//                        placementlastmodified[i]=new String(placementlastmodifiedDecryptedBytes);
+//                    }
+                    if (placementuploadedby[i] != null) {
+                        byte[] placementuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(placementuploadedby[i]);
+                        byte[] placementuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadedbyEncryptedBytes);
+                        placementuploadedbyplain[i] = new String(placementuploadedbyDecryptedBytes);
+                        Log.d("PlacmentTesting", "placementuploadedbyplain" + "[" + i + "] " + placementuploadedbyplain[i]);
+
+                    }
+//                    if(placementnoofallowedliveatkt[i]!=null)
+//                    {
+//                        byte[] placementnoofallowedliveatktEncryptedBytes=SimpleBase64Encoder.decode(placementnoofallowedliveatkt[i]);
+//                        byte[] placementnoofallowedliveatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofallowedliveatktEncryptedBytes);
+//                        placementnoofallowedliveatkt[i]=new String(placementnoofallowedliveatktDecryptedBytes);
+//                        Log.d("PlacmentTesting", "placementnoofallowedliveatkt"+"["+i+"] "+placementnoofallowedliveatkt[i]);
+//
+//                    }
+//                    if(placementnoofalloweddeadatkt[i]!=null)
+//                    {
+//                        byte[] placementnoofalloweddeadatktEncryptedBytes=SimpleBase64Encoder.decode(placementnoofalloweddeadatkt[i]);
+//                        byte[] placementnoofalloweddeadatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofalloweddeadatktEncryptedBytes);
+//                        placementnoofalloweddeadatkt[i]=new String(placementnoofalloweddeadatktDecryptedBytes);
+//                    }
+
+                } catch (Exception e) {
+                    //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            new GetLastUpdatedPlacement().execute();
+        }
+    }
+
+
+
+
 
 }
