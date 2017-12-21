@@ -826,7 +826,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     }
 
                     if (usernameflag == false) {
+                        nextProgress.setVisibility(View.VISIBLE);
+                        btnNext.setVisibility(View.GONE);
                         new ValidateUser().execute();
+
                     }
 
                 } else if (currentPosition == 1)                             //---------------------------------  1
@@ -1121,6 +1124,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     class checkUcode extends AsyncTask<String, String, Boolean> {
         String result;
+
         protected Boolean doInBackground(String... param) {
 
             String inputUcode = param[0];
@@ -1493,6 +1497,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     class ValidateUser extends AsyncTask<String, String, Boolean> {
 
         String result = null;
+
         protected Boolean doInBackground(String... param) {
             try {
 
@@ -1519,7 +1524,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             JSONObject json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
 
-            if (json != null) {
+            if (json != null ) {
                 try {
 
                     result = json.getString("info");
@@ -1540,6 +1545,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         @Override
         protected void onPostExecute(Boolean notNull) {
+            nextProgress.setVisibility(View.GONE);
+            btnNext.setVisibility(View.VISIBLE);
 
             if (notNull) {
 
@@ -1864,27 +1871,32 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         return false;
     }
 
-    class SaveSessionDetails extends AsyncTask<String, String, String> {
+    class SaveSessionDetails extends AsyncTask<String, String, Boolean> {
 
 
-        protected String doInBackground(String... param) {
+        protected Boolean doInBackground(String... param) {
 
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
-            try {
-                r = json.getString("info");
+            JSONObject json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
+            if (json != null) {
+                try {
+                    r = json.getString("info");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
+            Log.d("TAG", "SaveSessionDetails json null: ");
         }
     }
 
@@ -2054,10 +2066,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     multipart.addFormField("f", "null");
                 response = multipart.finish();
 
-                Log.d("TAG", "UploadProfile : response1 "+response);
+                Log.d("TAG", "UploadProfile : response1 " + response);
 
             } catch (Exception ex) {
-                Log.d("TAG", "doInBackground: exp : "+ex.getMessage() );
+                Log.d("TAG", "doInBackground: exp : " + ex.getMessage());
             }
 
             return "";
@@ -2068,8 +2080,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             crop_layout.setVisibility(View.GONE);
             updateProgress.setVisibility(View.GONE);
-            Log.d("TAG", "UploadProfile : response2 "+response);
-            if (response!=null && response.get(0).contains("success")) {
+            Log.d("TAG", "UploadProfile : response2 " + response);
+            if (response != null && response.get(0).contains("success")) {
 
                 MySharedPreferencesManager.save(Welcome.this, "crop", "no");
 
@@ -2077,10 +2089,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 requestProfileImage();
                 refreshContent();
                 DeleteRecursive(new File(directory));
-            } else if (response!=null && response.get(0).contains("null")) {
+            } else if (response != null && response.get(0).contains("null")) {
                 requestProfileImage();
                 Toast.makeText(Welcome.this, "Upload failed, please try again !", Toast.LENGTH_SHORT).show();
-            }else
+            } else
                 Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }

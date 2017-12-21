@@ -642,7 +642,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_genrate_code);
-        Log.d("TAG", "onCreate:WelcomeGenrateCodeActivity called");
 
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
@@ -1087,7 +1086,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 encLastName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "lname");
                 encAdminPhone = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "phone");
                 encrole = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
-                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "ProMail");
+                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "proEmail");
 
                 Log.d("TAG", "encUsername:              " + encUsername);
                 Log.d("TAG", "encFirstName:             " + encFirstName);
@@ -1134,7 +1133,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "SaveInstititeData json : "+json);
+                Log.d("TAG", "doInBackground: save comp data "+json);
                 if (r.equals("success")) {
                     CODE = json.getString("ucode");
                 }
@@ -1152,21 +1151,19 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                 new CreateFirebaseUser(encUsername,encPassword).execute();
 
-                Log.d("TAG", "admin code ===============================   " + CODE);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
-                viewPager.setCurrentItem(1);
-                addBottomDots(1, 2);
-                try {
-                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
-                    genratedCode.setText(CODE);
-                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
-                }
-                catch (Exception e){
-                    Log.d("TAG", "onPostExecute: exp in setting msg code : "+e.getMessage());
-                }
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+//                Log.d("TAG", "admin code ===============================   " + CODE);
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
+//                viewPager.setCurrentItem(1);
+//                addBottomDots(1, 2);
+//                try {
+//                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
+//                    genratedCode.setText(CODE);
+//                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
+//                }
+//                catch (Exception e){}
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 
             }
         }
@@ -1234,7 +1231,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 encFirstName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "fname");
                 encLastName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "lname");
                 encAdminPhone = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "phone");
-                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "ProMail");
+                encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "proEmail");
 
                 Log.d("TAG", "shared encUsername:          " + encUsername);
                 Log.d("TAG", "shared encFirstName:         " + encPassword);
@@ -1274,12 +1271,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateCompanyCode, "GET", params);
-            Log.d("TAG", "SaveCompanyData json : "+json);
             try {
                 r = json.getString("info");
                 if(r.equals("success")){
                     CODE=json.getString("ucode");
                 }
+                Log.d("TAG", "doInBackground: "+json);
             } catch (Exception e) {
                 Log.d("TAG", "doInBackground: comp asynk"+e.getMessage());
             }
