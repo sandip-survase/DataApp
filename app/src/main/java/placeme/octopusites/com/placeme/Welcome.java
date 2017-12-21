@@ -1005,11 +1005,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     }//onc
 
 
-    class SaveData extends AsyncTask<String, String, String> {
+    class SaveData extends AsyncTask<String, String, Boolean> {
 
-        protected String doInBackground(String... param) {
+        String result;
+
+        protected Boolean doInBackground(String... param) {
             try {
-
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
@@ -1075,113 +1076,133 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 e.printStackTrace();
             }
 
+            JSONObject json = jParser.makeHttpRequest(Z.url_SaveWelcomeIntroData, "GET", params);
+            if (json != null) {
+                try {
+                    result = json.getString("info");
 
-            json = jParser.makeHttpRequest(Z.url_SaveWelcomeIntroData, "GET", params);
-            try {
-                r = json.getString("info");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else
+                return false;
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean notNull) {
 
-            if (result.equals("success")) {
-                Toast.makeText(Welcome.this, "Thank you for submitting your information !", Toast.LENGTH_SHORT).show();
+            if (notNull) {
 
-                Log.d("TAG", "onPostExecute: SaveData role " + SELECTED_ROLE);
+                if (result.equals("success")) {
+                    Toast.makeText(Welcome.this, "Thank you for submitting your information !", Toast.LENGTH_SHORT).show();
 
-                MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);       //0
-                MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);     //1
-                MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);      //2
-                MySharedPreferencesManager.save(Welcome.this, "fname", encfname);           //3
-                MySharedPreferencesManager.save(Welcome.this, "lname", enclname);            //4
-                nextProgress.setVisibility(View.GONE);
-                Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
-                loginintent.putExtra("showOTP", "yes");
-                loginintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(loginintent);
-            }
+                    Log.d("TAG", "onPostExecute: SaveData role " + SELECTED_ROLE);
+
+                    MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);       //0
+                    MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);     //1
+                    MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);      //2
+                    MySharedPreferencesManager.save(Welcome.this, "fname", encfname);           //3
+                    MySharedPreferencesManager.save(Welcome.this, "lname", enclname);            //4
+                    nextProgress.setVisibility(View.GONE);
+                    Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
+                    loginintent.putExtra("showOTP", "yes");
+                    loginintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(loginintent);
+                }
+            } else
+                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
         }
     }
 
-    class checkUcode extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
+    class checkUcode extends AsyncTask<String, String, Boolean> {
+        String result;
+        protected Boolean doInBackground(String... param) {
 
             String inputUcode = param[0];
             Log.d("TAG", "checkUcode: " + inputUcode);
-            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", inputUcode));       //0
 
-            json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
             Log.d("TAG", "checkUcode json : " + json);
-            try {
-                r = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
+
+            if (json != null) {
+                try {
+                    result = json.getString("info");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean notNull) {
 
-            if (result != null && result.equals("found")) {
-                viewPager.setCurrentItem(3);
-                addBottomDots(3, 4);
-            } else {
+            if (notNull) {
+                if (result != null && result.equals("found")) {
+                    viewPager.setCurrentItem(3);
+                    addBottomDots(3, 4);
+                } else {
 //                Toast.makeText(Welcome.this, "Invalid Institute Code\nplease contact your TPO", Toast.LENGTH_LONG).show();
-                instOrEmail.setError("Invalid Institute Code. Please contact your Training and placement officer");
-            }
+                    instOrEmail.setError("Invalid Institute Code. Please contact your Training and placement officer");
+                }
+
+            } else
+                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
         }
     }
 
-    class SaveDataUserCreatedThroughAdmin extends AsyncTask<String, String, String> {
+    class SaveDataUserCreatedThroughAdmin extends AsyncTask<String, String, Boolean> {
 
+        String result = null;
 
-        protected String doInBackground(String... param) {
+        protected Boolean doInBackground(String... param) {
 
-
-            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));       //0
             params.add(new BasicNameValuePair("f", encfname));           //1
             params.add(new BasicNameValuePair("l", enclname));           //2
             params.add(new BasicNameValuePair("m", encmobile));          //3
 
-
             Log.d("TAG", "doInBackground: enc role ========================  " + encrole);
 
+            JSONObject json = jParser.makeHttpRequest(Z.url_SaveStudentFnameLnameMobile, "GET", params);
+            if (json != null) {
+                try {
+                    result = json.getString("info");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else
+                return false;
 
-            json = jParser.makeHttpRequest(Z.url_SaveStudentFnameLnameMobile, "GET", params);
-            try {
-                r = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean notNull) {
 
-            if (result.equals("success")) {
-                MySharedPreferencesManager.save(Welcome.this, "role", "student");
-                MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
+            if (notNull) {
+                if (result.equals("success")) {
+                    MySharedPreferencesManager.save(Welcome.this, "role", "student");
+                    MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
-                new CreateFirebaseUser(encUsersName, encPassword).execute();
+                    new CreateFirebaseUser(encUsersName, encPassword).execute();
 
-                startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 //                Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
 //                loginintent.putExtra("newUser", "yes");
 //                startActivity(loginintent);
 
 
-            }
+                }
+            } else
+                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -1391,11 +1412,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     }
 
 
-    class SendActivationCode extends AsyncTask<String, String, String> {
+    class SendActivationCode extends AsyncTask<String, String, Boolean> {
 
-        protected String doInBackground(String... param) {
-            String s = null;
+        String result = null;
 
+        protected Boolean doInBackground(String... param) {
             try {
 
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -1417,59 +1438,59 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("f", encfname));                  //1
             params.add(new BasicNameValuePair("l", enclname));                  //2
 
-            json = jParser.makeHttpRequest(Z.url_SendActivationCode, "GET", params);
-            try {
-                s = json.getString("info");
-                Log.d("TAG2", "SendActivationCode json: " + json);
+            JSONObject json = jParser.makeHttpRequest(Z.url_SendActivationCode, "GET", params);
 
-            } catch (Exception e) {
-                Log.d("TAG", "doInBackground: 2 " + e.getMessage());
-            }
+            if (json != null) {
+                try {
+                    result = json.getString("info");
+                    Log.d("TAG2", "SendActivationCode json: " + json);
 
-            return s;
+                } catch (Exception e) {
+                    Log.d("TAG", "doInBackground: 2 " + e.getMessage());
+                }
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean notNull) {
 
-            Log.d("TAG", result);
-            if (result.equals("success")) {
+            if (notNull) {
+                if (result.equals("success")) {
 //                Toast.makeText(Welcome.this, "send activation code", Toast.LENGTH_SHORT).show();
-                MySharedPreferencesManager.save(Welcome.this, "activationMessage", "yes");
-                MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
-                startActivity(new Intent(Welcome.this, OTPActivity.class));
+                    MySharedPreferencesManager.save(Welcome.this, "activationMessage", "yes");
+                    MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
+                    startActivity(new Intent(Welcome.this, OTPActivity.class));
 
-            } else if (result.equals("exist")) {
-                Toast.makeText(Welcome.this, "Account already exists on PlaceMe", Toast.LENGTH_SHORT).show();
-            } else {
-                if (instOrEmail != null) {
-                    instOrEmail.setError("Incorrect Professional Email");
-                } else
-                    Toast.makeText(Welcome.this, "Incorrect Professional Email", Toast.LENGTH_SHORT).show();
+                } else if (result.equals("exist")) {
+                    Toast.makeText(Welcome.this, "Account already exists on PlaceMe", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (instOrEmail != null) {
+                        instOrEmail.setError("Incorrect Professional Email");
+                    } else
+                        Toast.makeText(Welcome.this, "Incorrect Professional Email", Toast.LENGTH_SHORT).show();
 
-                String enterpass = enterPassword.getText().toString();
-                confrimpass = confirmPassword.getText().toString();
+                    String enterpass = enterPassword.getText().toString();
+                    confrimpass = confirmPassword.getText().toString();
 
-                if (enterPassword != null && confirmPassword != null) {
-                    enterPassword.setText("");
-                    confirmPassword.setText("");
+                    if (enterPassword != null && confirmPassword != null) {
+                        enterPassword.setText("");
+                        confirmPassword.setText("");
+                    }
+                    onBackPressed();
                 }
 
-                onBackPressed();
-
-
-            }
-
+            } else
+                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
         }
     }
 
     class ValidateUser extends AsyncTask<String, String, Boolean> {
 
         String result = null;
-
         protected Boolean doInBackground(String... param) {
-
-
             try {
 
                 Log.d("TAG", "digest1: " + digest1);
@@ -1570,7 +1591,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 }
 
             } else
-                Toast.makeText(Welcome.this, "Fail to process your request!\nPlease try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -2019,6 +2040,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         protected String doInBackground(String... param) {
             try {
+                Log.d("TAG", " inside UploadProfile");
                 File sourceFile = new File(filepath);
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
                 multipart.addFormField("u", encUsersName);
@@ -2029,9 +2051,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     multipart.addFormField("f", "null");
                 response = multipart.finish();
 
+                Log.d("TAG", "UploadProfile : response1 "+response);
 
             } catch (Exception ex) {
-
+                Log.d("TAG", "doInBackground: exp : "+ex.getMessage() );
             }
 
             return "";
@@ -2042,7 +2065,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             crop_layout.setVisibility(View.GONE);
             updateProgress.setVisibility(View.GONE);
-            if (response.get(0).contains("success")) {
+            Log.d("TAG", "UploadProfile : response2 "+response);
+            if (response!=null && response.get(0).contains("success")) {
 
                 MySharedPreferencesManager.save(Welcome.this, "crop", "no");
 
@@ -2050,10 +2074,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 requestProfileImage();
                 refreshContent();
                 DeleteRecursive(new File(directory));
-            } else if (response.get(0).contains("null")) {
+            } else if (response!=null && response.get(0).contains("null")) {
                 requestProfileImage();
                 Toast.makeText(Welcome.this, "Upload failed, please try again !", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -2147,7 +2172,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     break;
                 }
             }
-
 
         } else
             super.onBackPressed();
