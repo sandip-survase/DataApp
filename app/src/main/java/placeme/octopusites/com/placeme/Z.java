@@ -16,8 +16,16 @@ public class Z {
     public static final String IP = "http://104.237.4.236/";
 
     public static final String IP_8081 = "http://104.237.4.236:8081/";
+    public static final String IP_8086 = "http://104.237.4.236:8086/";
 
     public static final String IP_8080 = "http://104.237.4.236:8080/";
+
+
+    public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
+
+
+
+
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
     public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
@@ -111,7 +119,8 @@ public class Z {
     // Messages -----------------------------------------
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
-    public static final String url_getdigest = IP + "AESTest/GetDigest";
+    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
+    public static final String url_getdigest = IP_8086 + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP + "AESTest/EditEmail";
@@ -202,7 +211,7 @@ public class Z {
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
-    public static final String upload_profile = IP_8081 + "AESTest/UploadProfile";
+    public static final String upload_profile = IP + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";

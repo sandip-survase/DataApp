@@ -84,25 +84,15 @@ public class SplashScreen extends Activity {
         return phrase.toString();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if (!isOnline()) {
-//            Toast.makeText(this, "no Internet", Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(this, NoInternet.class);
-//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-//            startActivity(i);
-//
-//        } else {
-//
-//            mainWork();
-//        }
-//    }
-
     protected void onCreate(Bundle paramBundle) {
 
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
+        TextView poweredbyid = (TextView) findViewById(R.id.poweredbyid);
+        TextView companynamesplash = (TextView) findViewById(R.id.companynamesplash);
+
+        poweredbyid.setTypeface(Z.getLight(this));
+        companynamesplash.setTypeface(Z.getBold(this));
 
         new GetDigest().execute();
 
@@ -141,11 +131,6 @@ public class SplashScreen extends Activity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        TextView poweredbyid = (TextView) findViewById(R.id.poweredbyid);
-        TextView companynamesplash = (TextView) findViewById(R.id.companynamesplash);
-
-        poweredbyid.setTypeface(Z.getLight(this));
-        companynamesplash.setTypeface(Z.getBold(this));
 
 // my code
 //        CaocConfig.Builder.create()
@@ -358,6 +343,7 @@ public class SplashScreen extends Activity {
 
         private final String mEmail;
         private final String mPassword;
+        String s,resultofop;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -371,8 +357,8 @@ public class SplashScreen extends Activity {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
-//                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                    JSONObject json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+
                     String s = null;
 
                     s = json.getString("info");
