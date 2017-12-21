@@ -6,7 +6,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -945,11 +945,15 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
+                    Log.d("TAG", "onCheckedChanged: switch1 -"+switch1.isChecked());
                     certienddate1.setVisibility(View.GONE);
+                    enddate1.setVisibility(View.GONE);
                     enddate1.setText("");
-                } else
+                } else {
+                    Log.d("TAG", "onCheckedChanged: switch1 -"+switch1.isChecked());
                     certienddate1.setVisibility(View.VISIBLE);
-
+                    enddate1.setVisibility(View.VISIBLE);
+                }
             }
         });
         switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -959,10 +963,15 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
+                    Log.d("TAG", "onCheckedChanged: switch2 -"+switch2.isChecked());
                     certienddate2.setVisibility(View.GONE);
+                    enddate2.setVisibility(View.GONE);
                     enddate2.setText("");
-                } else
+                } else {
+                    Log.d("TAG", "onCheckedChanged: switch2 -"+switch2.isChecked());
                     certienddate2.setVisibility(View.VISIBLE);
+                    enddate2.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -975,8 +984,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                 if (isChecked) {
                     certienddate3.setVisibility(View.GONE);
                     enddate3.setText("");
+                    enddate3.setVisibility(View.GONE);
                 } else
                     certienddate3.setVisibility(View.VISIBLE);
+                enddate3.setVisibility(View.VISIBLE);
 
             }
         });
@@ -988,9 +999,12 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate4.setVisibility(View.GONE);
+                    enddate4.setVisibility(View.GONE);
                     enddate4.setText("");
                 } else
                     certienddate4.setVisibility(View.VISIBLE);
+                enddate4.setVisibility(View.VISIBLE);
+
 
             }
         });
@@ -1002,9 +1016,11 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate5.setVisibility(View.GONE);
+                    enddate5.setVisibility(View.GONE);
                     enddate5.setText("");
                 } else
                     certienddate5.setVisibility(View.VISIBLE);
+                enddate5.setVisibility(View.VISIBLE);
 
             }
         });
@@ -1016,9 +1032,11 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate6.setVisibility(View.GONE);
+                    enddate6.setVisibility(View.GONE);
                     enddate6.setText("");
                 } else
                     certienddate6.setVisibility(View.VISIBLE);
+                enddate6.setVisibility(View.VISIBLE);
 
             }
         });
@@ -1030,9 +1048,11 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate7.setVisibility(View.GONE);
+                    enddate7.setVisibility(View.GONE);
                     enddate7.setText("");
                 } else
                     certienddate7.setVisibility(View.VISIBLE);
+                enddate7.setVisibility(View.VISIBLE);
 
             }
         });
@@ -1044,9 +1064,11 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate8.setVisibility(View.GONE);
+                    enddate8.setVisibility(View.GONE);
                     enddate8.setText("");
                 } else
                     certienddate8.setVisibility(View.VISIBLE);
+                enddate8.setVisibility(View.VISIBLE);
 
             }
         });
@@ -1058,9 +1080,11 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate9.setVisibility(View.GONE);
+                    enddate9.setVisibility(View.GONE);
                     enddate9.setText("");
                 } else
                     certienddate9.setVisibility(View.VISIBLE);
+                enddate9.setVisibility(View.VISIBLE);
 
             }
         });
@@ -1072,9 +1096,11 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate10.setVisibility(View.GONE);
+                    enddate10.setVisibility(View.GONE);
                     enddate10.setText("");
                 } else
                     certienddate10.setVisibility(View.VISIBLE);
+                enddate10.setVisibility(View.VISIBLE);
 
             }
         });
@@ -1758,10 +1784,9 @@ public class MyProfileCertifications extends AppCompatActivity {
 
                 editcertfi = 0;
 
-
                 if (certicount == 0) {
-                    if (title1.getText().toString() != null && issuer1.getText().toString() != null && startdate1.getText().toString() != null && enddate1.getText().toString() != null) {
-                        if (!title1.getText().toString().equals("") && !issuer1.getText().toString().equals("") && !startdate1.getText().toString().equals("") && !enddate1.getText().toString().equals("")) {
+                    if (title1.getText().toString() != null && issuer1.getText().toString() != null && startdate1.getText().toString() != null &&(enddate1.getText().toString() != null || switch1.isChecked())) {
+                        if (!title1.getText().toString().equals("") && !issuer1.getText().toString().equals("") && !startdate1.getText().toString().equals("") && (!enddate1.getText().toString().equals("") || switch1.isChecked())) {
 
                             View v = (View) findViewById(R.id.certiline1);
                             v.setVisibility(View.VISIBLE);
@@ -1776,8 +1801,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 1) {
-                    if (title2.getText().toString() != null && issuer2.getText().toString() != null && startdate2.getText().toString() != null && enddate2.getText().toString() != null) {
-                        if (!title2.getText().toString().equals("") && !issuer2.getText().toString().equals("") && !startdate2.getText().toString().equals("") && !enddate2.getText().toString().equals("")) {
+                    if (title2.getText().toString() != null && issuer2.getText().toString() != null && startdate2.getText().toString() != null &&(enddate2.getText().toString() != null || switch2.isChecked())) {
+                        if (!title2.getText().toString().equals("") && !issuer2.getText().toString().equals("") && !startdate2.getText().toString().equals("") && (!enddate2.getText().toString().equals("") || switch2.isChecked())) {
 
                             View v = (View) findViewById(R.id.certiline2);
                             v.setVisibility(View.VISIBLE);
@@ -1792,8 +1817,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 2) {
-                    if (title3.getText().toString() != null && issuer3.getText().toString() != null && startdate3.getText().toString() != null && enddate3.getText().toString() != null) {
-                        if (!title3.getText().toString().equals("") && !issuer3.getText().toString().equals("") && !startdate3.getText().toString().equals("") && !enddate3.getText().toString().equals("")) {
+                    if (title3.getText().toString() != null && issuer3.getText().toString() != null && startdate3.getText().toString() != null && (enddate3.getText().toString() != null || switch3.isChecked())) {
+                        if (!title3.getText().toString().equals("") && !issuer3.getText().toString().equals("") && !startdate3.getText().toString().equals("") && (!enddate3.getText().toString().equals("") || switch3.isChecked())) {
                             View v = (View) findViewById(R.id.certiline3);
                             v.setVisibility(View.VISIBLE);
 
@@ -1807,8 +1832,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 3) {
-                    if (title4.getText().toString() != null && issuer4.getText().toString() != null && startdate4.getText().toString() != null && enddate4.getText().toString() != null) {
-                        if (!title4.getText().toString().equals("") && !issuer4.getText().toString().equals("") && !startdate4.getText().toString().equals("") && !enddate4.getText().toString().equals("")) {
+                    if (title4.getText().toString() != null && issuer4.getText().toString() != null && startdate4.getText().toString() != null && (enddate4.getText().toString() != null || switch4.isChecked())) {
+                        if (!title4.getText().toString().equals("") && !issuer4.getText().toString().equals("") && !startdate4.getText().toString().equals("") && (!enddate4.getText().toString().equals("") || switch4.isChecked())) {
                             View v = (View) findViewById(R.id.certiline4);
                             v.setVisibility(View.VISIBLE);
 
@@ -1822,8 +1847,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 4) {
-                    if (title5.getText().toString() != null && issuer5.getText().toString() != null && startdate5.getText().toString() != null && enddate5.getText().toString() != null) {
-                        if (!title5.getText().toString().equals("") && !issuer5.getText().toString().equals("") && !startdate5.getText().toString().equals("") && !enddate5.getText().toString().equals("")) {
+                    if (title5.getText().toString() != null && issuer5.getText().toString() != null && startdate5.getText().toString() != null && (enddate5.getText().toString() != null || switch5.isChecked())) {
+                        if (!title5.getText().toString().equals("") && !issuer5.getText().toString().equals("") && !startdate5.getText().toString().equals("") && (!enddate5.getText().toString().equals("") || switch5.isChecked())) {
                             View v = (View) findViewById(R.id.certiline5);
                             v.setVisibility(View.VISIBLE);
 
@@ -1838,8 +1863,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
                 } else if (certicount == 5) {
 
-                    if (title6.getText().toString() != null && issuer6.getText().toString() != null && startdate6.getText().toString() != null && enddate6.getText().toString() != null) {
-                        if (!title6.getText().toString().equals("") && !issuer6.getText().toString().equals("") && !startdate6.getText().toString().equals("") && !enddate6.getText().toString().equals("")) {
+                    if (title6.getText().toString() != null && issuer6.getText().toString() != null && startdate6.getText().toString() != null && (enddate6.getText().toString() != null || switch6.isChecked())) {
+                        if (!title6.getText().toString().equals("") && !issuer6.getText().toString().equals("") && !startdate6.getText().toString().equals("") && (!enddate6.getText().toString().equals("") || switch6.isChecked())) {
                             View v = (View) findViewById(R.id.certiline6);
                             v.setVisibility(View.VISIBLE);
 
@@ -1853,8 +1878,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 6) {
-                    if (title7.getText().toString() != null && issuer7.getText().toString() != null && startdate7.getText().toString() != null && enddate7.getText().toString() != null) {
-                        if (!title7.getText().toString().equals("") && !issuer7.getText().toString().equals("") && !startdate7.getText().toString().equals("") && !enddate7.getText().toString().equals("")) {
+                    if (title7.getText().toString() != null && issuer7.getText().toString() != null && startdate7.getText().toString() != null && (enddate7.getText().toString() != null || switch7.isChecked())) {
+                        if (!title7.getText().toString().equals("") && !issuer7.getText().toString().equals("") && !startdate7.getText().toString().equals("") && (!enddate7.getText().toString().equals("") || switch7.isChecked())) {
                             View v = (View) findViewById(R.id.certiline7);
                             v.setVisibility(View.VISIBLE);
 
@@ -1868,8 +1893,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 7) {
-                    if (title8.getText().toString() != null && issuer8.getText().toString() != null && startdate8.getText().toString() != null && enddate8.getText().toString() != null) {
-                        if (!title8.getText().toString().equals("") && !issuer8.getText().toString().equals("") && !startdate8.getText().toString().equals("") && !enddate8.getText().toString().equals("")) {
+                    if (title8.getText().toString() != null && issuer8.getText().toString() != null && startdate8.getText().toString() != null && (enddate8.getText().toString() != null || switch8.isChecked())) {
+                        if (!title8.getText().toString().equals("") && !issuer8.getText().toString().equals("") && !startdate8.getText().toString().equals("") && (!enddate8.getText().toString().equals("") || switch8.isChecked())) {
                             View v = (View) findViewById(R.id.certiline8);
                             v.setVisibility(View.VISIBLE);
 
@@ -1883,8 +1908,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                 } else if (certicount == 8) {
-                    if (title9.getText().toString() != null && issuer9.getText().toString() != null && startdate9.getText().toString() != null && enddate9.getText().toString() != null) {
-                        if (!title9.getText().toString().equals("") && !issuer9.getText().toString().equals("") && !startdate9.getText().toString().equals("") && !enddate9.getText().toString().equals("")) {
+                    if (title9.getText().toString() != null && issuer9.getText().toString() != null && startdate9.getText().toString() != null && (enddate9.getText().toString() != null || switch9.isChecked())) {
+                        if (!title9.getText().toString().equals("") && !issuer9.getText().toString().equals("") && !startdate9.getText().toString().equals("") && (!enddate9.getText().toString().equals("") || switch9.isChecked())) {
                             View v = (View) findViewById(R.id.certiline9);
                             v.setVisibility(View.VISIBLE);
 
@@ -5193,6 +5218,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             enddate9.setText(senddate9);
             switch9.setChecked(blnswitch10);
         } else if (d == 1) {
+
             stitle10 = title10.getText().toString();
             sissuer10 = issuer10.getText().toString();
             slicense10 = license10.getText().toString();
@@ -5275,7 +5301,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             license1.setText(slicense1);
             startdate1.setText(sstartdate1);
             enddate1.setText(senddate1);
-            switch2.setChecked(blnswitch1);
+            switch1.setChecked(blnswitch2);
 
             stitle2 = stitle3;
             sissuer2 = sissuer3;

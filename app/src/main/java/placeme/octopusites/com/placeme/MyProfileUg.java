@@ -76,7 +76,7 @@ public class MyProfileUg extends AppCompatActivity {
     int edittedFlag=0,isCourseSet=0,isStreamSet=0;
     String[] CourseListWithIds, CourseList;
     String[] StramsListWithIds, StramsList, tempStramsList;
-    String courseug = "", streamug = "", universityug = "",tempcourse="",tempuniversity="";
+    String courseug = "", streamug = "", universityug = "",tempcourse="",tempuniversity="",tempstream="";
 
     int  checkstream = 0;
     @Override
@@ -343,6 +343,9 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStream= (String) parent.getItemAtPosition(position);
+
+                tempstream=selectedStream;
+
                 TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.otherstreaminput);
                 Log.d("TAG", "onItemSelected: ustream edittedFlag -"+edittedFlag);
                 if(selectedStream.equals("Other")) {
@@ -1406,6 +1409,19 @@ public class MyProfileUg extends AppCompatActivity {
         oldUniversity=selectedUniversity;
         oldCourse=selectedCourse;
 
+        if(oldCourse==null){
+            oldCourse="- Select Course -";
+        }
+
+
+        if(oldStream==null){
+            oldStream="- Select Stream -";
+        }
+
+        if(oldUniversity==null){
+            oldUniversity="- Select University -";
+        }
+
         setStreamAdapter(selectedCourse);
 
 
@@ -2071,7 +2087,7 @@ public class MyProfileUg extends AppCompatActivity {
         Log.d("TAG", "onBackPressed: "+oldCourse);
         Log.d("TAG", "onBackPressed: "+oldUniversity);
 
-        if(edittedFlag==1 || !oldCourse.equals(tempcourse)|| !oldUniversity.equals(oldUniversity))
+        if(edittedFlag==1 || !oldCourse.equals(tempcourse)|| !oldUniversity.equals(tempuniversity) || !oldStream.equals(tempstream))
         {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
