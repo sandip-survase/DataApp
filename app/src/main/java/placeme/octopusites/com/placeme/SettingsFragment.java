@@ -60,7 +60,7 @@ public class SettingsFragment extends Fragment {
         TextView emailemailtxt=(TextView)rootView.findViewById(R.id.emailemailtxt);
         TextView notifnotiftxt=(TextView)rootView.findViewById(R.id.notifnotiftxt);
         TextView passpasstxt=(TextView)rootView.findViewById(R.id.passpasstxt);
-        TextView proprotxt=(TextView)rootView.findViewById(R.id.proprotxt);
+
         TextView reportreporttxt=(TextView)rootView.findViewById(R.id.reportreporttxt);
         TextView loginlogintxt=(TextView)rootView.findViewById(R.id.loginlogintxt);
 
@@ -73,18 +73,10 @@ public class SettingsFragment extends Fragment {
         TextView signouttxt=(TextView)rootView.findViewById(R.id.signouttxt);
 
 
-        TextView trytxt=(TextView)rootView.findViewById(R.id.trytxt);
+
 //
         role=MySharedPreferencesManager.getRole(getActivity());
 
-        if(role.equals("hr"))
-        {
-            proselectionview.setVisibility(View.GONE);
-            trytxt.setVisibility(View.GONE);
-            proprotxt.setVisibility(View.GONE);
-            View settingsline4=(View)rootView.findViewById(R.id.settingsline4);
-            settingsline4.setVisibility(View.GONE);
-        }
 
 
         emailtxt.setTypeface(Z.getBold(getActivity()));
@@ -93,8 +85,8 @@ public class SettingsFragment extends Fragment {
         notifnotiftxt.setTypeface(Z.getLight(getActivity()));
         passtxt.setTypeface(Z.getBold(getActivity()));
         passpasstxt.setTypeface(Z.getLight(getActivity()));
-        trytxt.setTypeface(Z.getBold(getActivity()));
-        proprotxt.setTypeface(Z.getLight(getActivity()));
+
+
         logintxt.setTypeface(Z.getBold(getActivity()));
         loginlogintxt.setTypeface(Z.getLight(getActivity()));
         reporttxt.setTypeface(Z.getBold(getActivity()));
@@ -106,13 +98,6 @@ public class SettingsFragment extends Fragment {
         agreementtxt.setTypeface(Z.getBold(getActivity()));
         signouttxt.setTypeface(Z.getBold(getActivity()));
 
-        proselectionview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(getActivity(),ProSplashScreen.class));
-            }
-        });
 
         pushselectionview.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -291,9 +291,7 @@ public class AdminProfileFragment extends Fragment {
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
-        TextView trytxt;
-        trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-        trytxt.setTypeface(Z.getBold(getActivity()));
+
 
 
 
@@ -438,14 +436,7 @@ public class AdminProfileFragment extends Fragment {
             }
         });
 
-        View proselectionview = (View) rootView.findViewById(R.id.proselectionview);
-        proselectionview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ProSplashScreen.class));
 
-            }
-        });
 
         swipe_refresh_layout.setRefreshing(true);
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
