@@ -243,6 +243,7 @@ public class MyProfileAlumniFragment extends Fragment {
         acc5txt = (TextView) rootView.findViewById(R.id.acc5txt);
         acc6txt = (TextView) rootView.findViewById(R.id.acc6txt);
         acc7txt = (TextView) rootView.findViewById(R.id.acc7txt);
+        TextView noexptxt= (TextView) rootView.findViewById(R.id.acc7txt);
         acc1txttxt = (TextView) rootView.findViewById(R.id.acc1txttxt);
         acc2txttxt = (TextView) rootView.findViewById(R.id.acc2txttxt);
         acc3txttxt = (TextView) rootView.findViewById(R.id.acc3txttxt);
@@ -380,6 +381,7 @@ public class MyProfileAlumniFragment extends Fragment {
         nametxt.setTypeface(Z.getBold(getActivity()));
         mobiletxt.setTypeface(Z.getLight(getActivity()));
         emailtxt.setTypeface(Z.getLight(getActivity()));
+        noexptxt.setTypeface(Z.getLight(getActivity()));
 
         extraexpcount.setTypeface(Z.getLight(getActivity()));
         extraprojectscount.setTypeface(Z.getLight(getActivity()));

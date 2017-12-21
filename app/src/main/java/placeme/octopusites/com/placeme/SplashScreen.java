@@ -540,13 +540,12 @@ public class SplashScreen extends Activity {
             try {
 
                 String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
-//                String token = MySharedPreferencesManager.getData(SplashScreen.this, "firebaseToken");
                 String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
                 Log.d("TAG", "splashScreen token\n" + token);
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));       //0
-                params.add(new BasicNameValuePair("t", ""));             //1
+                params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
 
 

@@ -1,5 +1,7 @@
 package placeme.octopusites.com.placeme;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -11,6 +13,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
 
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d("TAG", "Firebase token: ");
 
         sendRegistrationToServer(refreshedToken);
     }
@@ -26,6 +29,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      */
     private void sendRegistrationToServer(final String token) {
 
+        MySharedPreferencesManager.save(getApplicationContext(),"firebaseToken", token);
         new SharedPrefUtil(getApplicationContext()).saveString("firebaseToken", token);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
