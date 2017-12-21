@@ -3,37 +3,21 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class Z {
     public static final String VPS_IP = "104.237.4.236";   // for authority
     public static final String IP = "http://104.237.4.236/";
 
-
     public static final String IP_8081 = "http://104.237.4.236:8081/";
 
     public static final String IP_8080 = "http://104.237.4.236:8080/";
-    private static final String IP_100 = "http://192.168.100.100/";
-    private static final String IP_10 = "http://192.168.100.10/";
-    private static final String IP_20 = "http://192.168.100.20/";
-    private static final String IP_30 = "http://192.168.100.30/";
-
-
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
     public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
@@ -102,27 +86,21 @@ public class Z {
     public static final String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
     public static final String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
     public static final String url_SaveRegistereduserStatus = IP + "CreateNotificationTemp/SaveRegistereduserStatus";
-//    ----------------------------------/sunny---------------------------------------------------------------
-
-
     public static final int USER_DATA_CHANGE_RESULT_CODE = 888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
-
-    //#############################   PlaceMe   ######################################
-
-        public static final String url_create_firebase = IP_8081 + "Firbase/RegisterFirebaseUser";
+    public static final String url_create_firebase = IP_8081 + "Firbase/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
+//    ----------------------------------/sunny---------------------------------------------------------------
     public static final String url_ChangeUsernameFireBase = IP + "PlaceMe/ChangeUsername";
     public static final String url_get_chatrooms = IP + "PlaceMe/GetChatRooms";
     public static final String url_getmessagesreadstatus = IP + "PlaceMe/GetReadStatusOfMessages";
     public static final String url_changepass = IP + "PlaceMe/ChangePass";
+
+    //#############################   PlaceMe   ######################################
     public static final String load_news = IP + "PlaceMe/GetNews";
     public static final String load_videos = IP + "PlaceMe/GetVideos";
-
-    // Messages -----------------------------------------
-
     public static final String url_savechat = IP + "PlaceMe/SaveChat";
     public static final String url_loadchat = IP + "PlaceMe/LoadChat";
     public static final String url_SendPushNotification = IP + "PlaceMe/SendPushNotification";
@@ -130,18 +108,17 @@ public class Z {
     public static final String url_GetLastPushedMessage = IP + "PlaceMe/GetLastPushedMessage";
     public static final String url_ChangeMessageReadStatus = IP + "PlaceMe/ChangeMessageReadStatus";
 
-    //**************************************   AESTest   *****************************************
-
+    // Messages -----------------------------------------
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
-
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP + "AESTest/EditEmail";
+
+    //**************************************   AESTest   *****************************************
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
-
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
@@ -153,96 +130,80 @@ public class Z {
     public static final String url_savesessiondetails = IP + "AESTest/SaveSessionDetails";
     public static final String load_resume_pages = IP + "AESTest/GetAvailableResumePages";
     public static final String load_resume_page = IP + "AESTest/GetResumePage";
+    public static final String load_HR_data = IP + "ProfileObjects/GetHrData";
+    public static final String url_load_alumni_data = IP + "ProfileObjects/GetAlumniData";
+    public static final String load_student_data = IP + "ProfileObjects/GetStudentData";
+    public static final String load_Admin_data = IP + "ProfileObjects/GetAdminData";
+    public static final String url_SaveIntro = IP + "ProfileObjects/SaveIntro";
+    public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
 
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
 
 //    --------------------------------------Load fragment data-------------------------------------
-
-    public static final String load_HR_data = IP + "ProfileObjects/GetHrData";
-    public static final String url_load_alumni_data = IP + "ProfileObjects/GetAlumniData";
-    public static final String load_student_data = IP + "ProfileObjects/GetStudentData";
-    public static final String load_Admin_data = IP + "ProfileObjects/GetAdminData";
-
-//    --------------------------------------Intro-------------------------------------
-
-    public static final String url_SaveIntro = IP + "ProfileObjects/SaveIntro";
-    public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
     public static final String url_SaveAdminIntro = IP + "ProfileObjects/SaveAdminIntro";
-
-//    --------------------------------------project-------------------------------------
-
     public static final String url_saveprojects = IP + "ProfileObjects/SaveProjects";
-
-//    -----------------------------------Education details--------------------------
-
     public static final String url_SaveTenth = IP + "ProfileObjects/SaveTenth";
     public static final String url_savedata_twelth = IP + "ProfileObjects/SaveTwelth";
+
+//    --------------------------------------Intro-------------------------------------
     public static final String url_savedata_diploma = IP + "ProfileObjects/SaveDiploma";
     public static final String url_savedata_ug = IP + "ProfileObjects/SaveUg";
     public static final String url_savedata_pg_sem = IP + "ProfileObjects/SavePgSem";
+
+//    --------------------------------------project-------------------------------------
     public static final String url_savedata_pg_year = IP + "ProfileObjects/SavePgYear";
 
-//    ----------------------------------------Accomplishments-----------------------------
-
+//    -----------------------------------Education details--------------------------
     public static final String url_savelanguages = IP + "ProfileObjects/SaveLanguages";
     public static final String url_savecertifications = IP + "ProfileObjects/SaveCertificates";
     public static final String url_savecourses = IP + "ProfileObjects/SaveCourses";
     public static final String url_saveskills = IP + "ProfileObjects/SaveSkills";
     public static final String url_savehonors = IP + "ProfileObjects/SaveHonors";
     public static final String url_savepatents = IP + "ProfileObjects/SavePatents";
+
+//    ----------------------------------------Accomplishments-----------------------------
     public static final String url_savepublications = IP + "ProfileObjects/SavePublications";
-
-//    -----------------------------------------MyProfileCareerDetails---------------------------------
-
     public static final String url_savecareerobj = IP + "ProfileObjects/SaveCareerObj";
     public static final String url_savestrengths = IP + "ProfileObjects/SaveStrengths";
     public static final String url_saveweaknesses = IP + "ProfileObjects/SaveWeaknesses";
     public static final String url_savelocationpreferences = IP + "ProfileObjects/SaveLocationPreferences";
-
-//    --------------------------------------------MyProfileContact---------------------------------
-
     public static final String url_SaveStdalmContact = IP + "ProfileObjects/SaveStdAlmContact";
     public static final String url_SaveAdminContact = IP + "ProfileObjects/SaveAdminContact";
+
+//    -----------------------------------------MyProfileCareerDetails---------------------------------
     public static final String url_SaveHrContact = IP + "ProfileObjects/SaveHrContact";
-
-//   --------------------------------------------Experience---------------------------------
-
     public static final String url_SaveExperiences = IP + "ProfileObjects/SaveExperiences";
-
-//  --------------------------------------------Tabfragment---------------------------------
-
     public static final String savepersonalinfo = IP + "ProfileObjects/SavePersonalInfo";
     public static final String url_SaveAdminPersonal = IP + "ProfileObjects/SaveAdminPersonal";
 
-//    ------------------------------------------company details---------------------------------
-
+//    --------------------------------------------MyProfileContact---------------------------------
     public static final String url_SaveHrCompany = IP + "ProfileObjects/SaveHrCompany";
-
-//    ------------------------------------------Institute details---------------------------------
-
     public static final String url_SaveAdminInstituteData = IP + "ProfileObjects/SaveAdminInstituteData";
-
-//    ------------------------------------------Education details---------------------------------
-
     public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
+
+//   --------------------------------------------Experience---------------------------------
     public static final String url_getugcourses = IP + "AESTest/GetUGCourses";
+
+//  --------------------------------------------Tabfragment---------------------------------
     public static final String url_getstreams = IP + "AESTest/GetUGStreams";
     public static final String url_getuniversities = IP + "AESTest/GetUGUniversities";
-    public static final String url_getpgcourses = IP + "AESTest/GetPGCourses";
-    public static final String url_getpgstreams = IP + "AESTest/GetPGStreams";
-    public static final String url_getpguniversities = IP + "AESTest/GetPGUniversities";
 
+//    ------------------------------------------company details---------------------------------
+    public static final String url_getpgcourses = IP + "AESTest/GetPGCourses";
+
+//    ------------------------------------------Institute details---------------------------------
+    public static final String url_getpgstreams = IP + "AESTest/GetPGStreams";
+
+//    ------------------------------------------Education details---------------------------------
+    public static final String url_getpguniversities = IP + "AESTest/GetPGUniversities";
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
-
-
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
     public static final String upload_profile = IP_8081 + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
-
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";
     public static final String url_delete_file = IP + "AESTest/DeleteFile";
@@ -253,96 +214,140 @@ public class Z {
     public static final String url_GetPlacedDebarInfo = IP + "AESTest/GetPlacedDebarInfo";
     public static final String url_DeleteNonActiveUser = IP + "AESTest/DeleteNonActiveUser";
     public static final String url_SaveWelcomeIntroData = IP + "AESTest/SaveNewUserWelcomeIntroData";
-
     public static final String url_SaveStudentFnameLnameMobile = IP + "AESTest/SaveStudentFnameLnameMobile";
-
     //    public static final String url = IP+"HandleMobileRequests/getimg.jsp?username=";
     public static final String url_SendActivationCode = IP + "AESTest/SendActivationCode";
     public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
-
-
     public static final String url_checkUcode = IP + "AESTest/checkUcode";
     public static final String url_ClearOTP = IP + "AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = IP + "AESTest/AddStudentUnderAdmin";
     public static final String url_GetCountOfUsersUnderAdmin = IP + "AESTest/GetCountOfUsersUnderAdmin";
+    private static final String IP_100 = "http://192.168.100.100/";
+    private static final String IP_10 = "http://192.168.100.10/";
+    private static final String IP_20 = "http://192.168.100.20/";
+    private static final String IP_30 = "http://192.168.100.30/";
 
+    private static Typeface FA = null, Bold = null, Light = null, Italic = null, BoldItalic = null, Righteous = null;
+    private static Animation fadeAnimation = null, fadeandmovedownAnimation = null, slideoutleft2Animation = null, fadeoutAnimation = null, slideinleft1Animation = null, slideinleft2Animation = null, scaledownAnimation = null, bottomupbox1Animation = null, bottomupbox2Animation = null, bottomupbox3Animation = null, bottomupbox4Animation = null;
+    public static String digest1=null,digest2=null;
 //    --------------------------------- function --------------------------------------------------------------
 
     public static Typeface getFA(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/fa.ttf");
+        if (FA != null)
+            return FA;
+        else
+            FA = Typeface.createFromAsset(context.getAssets(), "fonts/fa.ttf");
+        return FA;
     }
 
     public static Typeface getBold(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/nunitobold.ttf");
+        if (Bold != null)
+            return Bold;
+        else
+            Bold = Typeface.createFromAsset(context.getAssets(), "fonts/nunitobold.ttf");
+        return Bold;
     }
 
     public static Typeface getLight(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/nunitolight.ttf");
+        if (Light != null)
+            return Light;
+        else
+            Light = Typeface.createFromAsset(context.getAssets(), "fonts/nunitolight.ttf");
+        return Light;
+
     }
 
     public static Typeface getItalic(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/nunitoitalic.ttf");
+        if (Italic != null)
+            return Italic;
+        else
+            Italic = Typeface.createFromAsset(context.getAssets(), "fonts/nunitoitalic.ttf");
+        return Italic;
+
     }
 
     public static Typeface getBoldItalic(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/nunitobolditalic.ttf");
+        if (BoldItalic != null)
+            return BoldItalic;
+        else
+            BoldItalic = Typeface.createFromAsset(context.getAssets(), "fonts/nunitobolditalic.ttf");
+        return BoldItalic;
+
     }
 
     public static Typeface getRighteous(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/righteous.ttf");
+        if (Righteous != null)
+            return Righteous;
+        else
+            Righteous = Typeface.createFromAsset(context.getAssets(), "fonts/righteous.ttf");
+        return Righteous;
+
     }
 
     public static void fade(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.fadein);
-        view.startAnimation(animation1);
+        if (fadeAnimation != null)
+            view.startAnimation(fadeAnimation);
+        else {
+            fadeAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadein);
+            view.startAnimation(fadeAnimation);
+        }
+
     }
 
     public static void fadeandmovedown(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.fadeinmove);
-        view.startAnimation(animation1);
+        if (fadeandmovedownAnimation != null)
+            view.startAnimation(fadeandmovedownAnimation);
+        else {
+            fadeandmovedownAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadeinmove);
+            view.startAnimation(fadeandmovedownAnimation);
+        }
     }
 
     public static void slideoutleft2(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.slideoutleft2);
-        view.startAnimation(animation1);
-
+        if (slideoutleft2Animation != null)
+            view.startAnimation(slideoutleft2Animation);
+        else {
+            slideoutleft2Animation =AnimationUtils.loadAnimation(activity,R.anim.slideoutleft2);
+            view.startAnimation(slideoutleft2Animation);
+        }
 
     }
 
     public static void fadeout(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.fadeout);
-        view.startAnimation(animation1);
-
+        if (fadeoutAnimation != null)
+            view.startAnimation(fadeoutAnimation);
+        else {
+            fadeoutAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadeout);
+            view.startAnimation(fadeoutAnimation);
+        }
 
     }
 
     public static void slideinleft1(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.slideinleft1);
-        view.startAnimation(animation1);
+        if (slideinleft1Animation != null)
+            view.startAnimation(slideinleft1Animation);
+        else {
+            slideinleft1Animation =AnimationUtils.loadAnimation(activity,R.anim.slideinleft1);
+            view.startAnimation(slideinleft1Animation);
+        }
+
     }
 
     public static void slideinleft2(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.slideinleft2);
-        view.startAnimation(animation1);
+        if (slideinleft2Animation != null)
+            view.startAnimation(slideinleft2Animation);
+        else {
+            slideinleft2Animation =AnimationUtils.loadAnimation(activity,R.anim.slideinleft2);
+            view.startAnimation(slideinleft2Animation);
+        }
+
     }
 
     public static void scale1(Activity activity, View view) {
@@ -378,90 +383,97 @@ public class Z {
 
     public static void scaledown(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.scaledown);
-        view.startAnimation(animation1);
+        if (scaledownAnimation != null)
+            view.startAnimation(scaledownAnimation);
+        else {
+            scaledownAnimation =AnimationUtils.loadAnimation(activity,R.anim.scaledown);
+            view.startAnimation(scaledownAnimation);
+        }
 
     }
 
     public static void bottomupbox1(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.bottom_up_box1);
-        view.startAnimation(animation1);
+        if (bottomupbox1Animation != null)
+            view.startAnimation(bottomupbox1Animation);
+        else {
+            bottomupbox1Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box1);
+            view.startAnimation(bottomupbox1Animation);
+        }
 
     }
 
     public static void bottomupbox2(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.bottom_up_box2);
-        view.startAnimation(animation1);
+        if (bottomupbox2Animation != null)
+            view.startAnimation(bottomupbox2Animation);
+        else {
+            bottomupbox2Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box2);
+            view.startAnimation(bottomupbox2Animation);
+        }
 
     }
 
     public static void bottomupbox3(Activity activity, View view) {
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.bottom_up_box3);
-        view.startAnimation(animation1);
+        if (bottomupbox3Animation != null)
+            view.startAnimation(bottomupbox3Animation);
+        else {
+            bottomupbox3Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box3);
+            view.startAnimation(bottomupbox3Animation);
+        }
 
     }
 
     public static void bottomupbox4(Activity activity, View view) {
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(activity,
-                        R.anim.bottom_up_box4);
-        view.startAnimation(animation1);
+        if (bottomupbox4Animation != null)
+            view.startAnimation(bottomupbox4Animation);
+        else {
+            bottomupbox4Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box4);
+            view.startAnimation(bottomupbox4Animation);
+        }
 
     }
-
-
-    static Boolean internetStatus = false;
-
-    public static boolean CheckInternet() {
-        internetStatus = false;
-        try {
-            new CheckInternetTask().execute().get(3, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            return false;
-        } catch (ExecutionException e) {
-            return false;
-        } catch (TimeoutException e) {
-            return false;
+    public static String getDigest1(Context context)
+    {
+        if(digest1!=null)
+            return digest1;
+        else
+        {
+            digest1=MySharedPreferencesManager.getDigest1(context);
         }
-        Log.d("TAG", "CheckInternet: " + internetStatus);
-        return internetStatus;
+        return digest1;
     }
-
-    private static class CheckInternetTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            JSONParser jParser = new JSONParser();
-            JSONObject json = jParser.makeHttpRequest("http://104.237.4.236/AESTest/CheckInternet", "GET", params);
-
-            if (json != null) {
-                try {
-                    String info = json.getString("info");
-
-                    if (info.equals("y")) {
-                        internetStatus = true;
-                        Log.d("TAG", "CheckInternetTask: json " + json);
-                    } else
-                        internetStatus = false;
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
+    public static String getDigest2(Context context)
+    {
+        if(digest2!=null)
+            return digest2;
+        else
+        {
+            digest2=MySharedPreferencesManager.getDigest2(context);
         }
+        return digest2;
+    }
+    public static String Encrypt(String string,Context context) throws Exception
+    {
+        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
+        String sPadding = "ISO10126Padding";
+
+        byte[] objBytes = string.getBytes("UTF-8");
+        byte[] objEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, objBytes);
+
+        return new String(SimpleBase64Encoder.encode(objEncryptedBytes));
+    }
+    public static String Decrypt(String string,Context context) throws Exception
+    {
+        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
+        String sPadding = "ISO10126Padding";
+
+        byte[] EncryptedBytes = SimpleBase64Encoder.decode(string);
+        byte[] DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, EncryptedBytes);
+        return new String(DecryptedBytes);
     }
 
 
