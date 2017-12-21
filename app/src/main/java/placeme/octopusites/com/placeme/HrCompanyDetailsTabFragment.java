@@ -43,14 +43,14 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     public static String HRlog = "HRlog";
     public int pos;
     String digest1, digest2;
-    String ComName = "", ComMail = "", ComWeb = "", ComPhone = "", ComAlterPhone = "", ComCIIN = "", ComAdd1 = "", ComAdd2 = "", ComAdd3 = "";
+    String ComName = "", ComMail = "",sOtherNature="", ComWeb = "", ComPhone = "", ComAlterPhone = "", ComCIIN = "", ComAdd1 = "", ComAdd2 = "", ComAdd3 = "";
     String CompanyType, encobj = "";
     String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
-    TextInputEditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
-    TextInputLayout instnameinput, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
+    TextInputEditText CompanyName,otherNature, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
+    TextInputLayout instnameinput,ocompanytherNatureTextInputLayout, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
     Spinner Company_Nature;
     String encComName, encUsername, encComMail, encComWeb, encComPhone, encComAlterPhone, encComCIIN, encComType, encComAddL1, encComAddL2, encComAddL3;
-    String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc"};
+    String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc","Other"};
     JSONParser jsonParser = new JSONParser();
     JSONObject json;
     TextView loctxt;
@@ -88,7 +88,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         CompanyAddressLine1 = (TextInputEditText) rootView.findViewById(R.id.compaddressline1);
         CompanyAddressLine2 = (TextInputEditText) rootView.findViewById(R.id.compaddressline2);
         CompanyAddressLine3 = (TextInputEditText) rootView.findViewById(R.id.compaddressline3);
-
+        otherNature = (TextInputEditText)rootView.findViewById(R.id.otherNature);
         CompanyName = (TextInputEditText)rootView.findViewById(R.id.instname);
         CompanyEmail = (TextInputEditText)rootView.findViewById(R.id.instemail);
         CompanyWebsite = (TextInputEditText)rootView.findViewById(R.id.instweb);
@@ -103,7 +103,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 //        personalprogress = (ProgressBar)rootView.findViewById(R.id.personalprogress);
         Company_Nature = (Spinner) rootView.findViewById(R.id.board10);
 
-
+        ocompanytherNatureTextInputLayout= (TextInputLayout) rootView.findViewById(R.id.otherNatureTextInputLayout);
         instnameinput = (TextInputLayout) rootView.findViewById(R.id.instnameinput);
         addressline1input = (TextInputLayout) rootView.findViewById(R.id.addressline1input);
         addressline2input = (TextInputLayout) rootView.findViewById(R.id.addressline2input);
@@ -124,7 +124,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         CompanyAddressLine1.setTypeface(Z.getBold(getActivity()));
         CompanyAddressLine2.setTypeface(Z.getBold(getActivity()));
         CompanyAddressLine3.setTypeface(Z.getBold(getActivity()));
-
+        otherNature.setTypeface(Z.getBold(getActivity()));
 
         instnameinput.setTypeface(Z.getLight(getActivity()));
         addressline1input.setTypeface(Z.getLight(getActivity()));
@@ -135,7 +135,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         instphoneinput.setTypeface(Z.getLight(getActivity()));
         instphoneainput.setTypeface(Z.getLight(getActivity()));
         instreginput.setTypeface(Z.getLight(getActivity()));
-
+        ocompanytherNatureTextInputLayout.setTypeface(Z.getLight(getActivity()));
 
 
 
@@ -205,6 +205,13 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                     }
                 }
 
+                if (CompanyType.equals("Other")) {
+                    ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
+                    otherNature.setVisibility(View.VISIBLE);
+                } else
+                    ocompanytherNatureTextInputLayout.setVisibility(View.GONE);
+
+
             }
 
 
@@ -261,11 +268,55 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
         }
 
+//        if (CompanyNaturestr != null) {
+//            if (!CompanyNaturestr.equals("")) {
+//                Company_Nature.setSelection(dataAdapter.getPosition(CompanyNaturestr));
+//            }
+//        }
+
+
         if (CompanyNaturestr != null) {
-            if (!CompanyNaturestr.equals("")) {
+            int foundboard = 0;
+            for (int i = 1; i <Nature.length - 1; i++)
+                if (CompanyNaturestr.equals(Nature[i])) {
+                    foundboard = 1;
+                    break;
+                }
+            if (foundboard == 1)
                 Company_Nature.setSelection(dataAdapter.getPosition(CompanyNaturestr));
+            else {
+
+                if (CompanyNaturestr.equals("")) {
+                    Company_Nature.setSelection(dataAdapter.getPosition("- Select Course -"));
+                    otherNature.setVisibility(View.GONE);
+                } else {
+                    Company_Nature.setSelection(dataAdapter.getPosition("Other"));
+                    otherNature.setVisibility(View.VISIBLE);
+                    otherNature.setText(CompanyNaturestr);
+                }
             }
-        }
+
+        } else
+            CompanyNaturestr = "- Select Course -";
+
+
+
+        otherNature.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ocompanytherNatureTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         CompanyName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -444,7 +495,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         ComPhone = CompanyPhone.getText().toString();
         ComAlterPhone = CompanyAlternatePhone.getText().toString();
         ComCIIN = CompanyCIN.getText().toString();
-
+        sOtherNature = otherNature.getText().toString();
         ComAdd1 = CompanyAddressLine1.getText().toString();
         ComAdd2 = CompanyAddressLine2.getText().toString();
         ComAdd3 = CompanyAddressLine3.getText().toString();
@@ -480,6 +531,17 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             Toast.makeText(getActivity(), "Select Valid Company Type ", Toast.LENGTH_SHORT).show();
             errorflag1 = 1;
         }
+        if (CompanyType != null && !CompanyType.equals("")) {
+            if (CompanyType.equals("Other")) {
+                if (sOtherNature.length() < 2) {
+                    errorflag1 = 1;
+                    ocompanytherNatureTextInputLayout.setError("Kindly provide valid company nature");
+                } else
+                    CompanyType = sOtherNature;
+            }
+        }
+
+
         if (errorflag1 == 0) {
             return true;
         } else

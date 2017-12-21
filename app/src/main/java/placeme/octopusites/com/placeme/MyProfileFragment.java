@@ -2408,6 +2408,7 @@ public class MyProfileFragment extends Fragment {
 
     void populateData() {
         Log.d("TAG", "populateData: welcome to populate");
+
         if (resultofop.equals("found")) {
             if (!ucode.equals(""))
                 myprofilepreview.setText(ucode);

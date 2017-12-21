@@ -122,6 +122,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         regNumber = (TextInputEditText) WelComeInstituteView.findViewById(R.id.regNumber);
         countryAutoBox = (AutoCompleteTextView) WelComeInstituteView.findViewById(R.id.countryAutoBox);
 
+
+
         instituteName.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -354,6 +356,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         companyAlternatephone = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyAlternatephone);
         CIN = (TextInputEditText) WelComeCompanyView.findViewById(R.id.CIN);
         otherNature = (TextInputEditText) WelComeCompanyView.findViewById(R.id.otherNature);
+        countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
+
+
 
         companyName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -484,7 +489,27 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             }
         });
 
-        countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
+        countryAutoBoxCompany.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                companycountryinputlayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+
 
         countrycount = getResources().getStringArray(R.array.countries_array).length;
         countries = new String[countrycount];

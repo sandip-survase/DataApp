@@ -82,8 +82,8 @@ public class MyProfileAlumniFragment extends Fragment {
     public static final String Username = "nameKey";
     public static final String alumniLog = "alumniLog";
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
-    public String role = "",ucode="";
-    ImageView insti4, exp2, exp3,exp1;
+    public String role = "", ucode = "";
+    ImageView insti4, exp2, exp3, exp1;
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, expedit, careeredit, contactedit;
@@ -104,19 +104,19 @@ public class MyProfileAlumniFragment extends Fragment {
     int found_exp = 0, found_personal = 0;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0;
     int found_intro_box = 0, found_tenth_box = 0;
-    int proj_count=0,exps_count=0,lang_count=0,cert_count=0,courses_count=0,skills_count=0,patent_count=0,public_count=0,honor_count=0,strength_count=0,weakness_count=0,location_count=0;
+    int proj_count = 0, exps_count = 0, lang_count = 0, cert_count = 0, courses_count = 0, skills_count = 0, patent_count = 0, public_count = 0, honor_count = 0, strength_count = 0, weakness_count = 0, location_count = 0;
     int percentProfile = 0;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3;
     TextView myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3;
-    TextView  extraprojectscount,extraexpcount;
+    TextView extraprojectscount, noexptxt,extraexpcount;
 
     JSONParser jParser = new JSONParser();
     JSONParser jParserlang = new JSONParser();
     JSONObject json, jsonlang;
-    RelativeLayout edutab4,edutab1,edutab2,edutab3,noedutab;
-    RelativeLayout box1,editprofilerl, exptab2, exptab3,exptab1;
-    RelativeLayout  noprojtab,projtab1,noexptab;
+    RelativeLayout edutab4, edutab1, edutab2, edutab3, noedutab;
+    RelativeLayout box1, editprofilerl, exptab2, exptab3, exptab1;
+    RelativeLayout noprojtab, projtab1, noexptab,projtab2,projtab3;
     View rootView;
     SwipeRefreshLayout swipe_refresh_layout;
     byte[] demoKeyBytes;
@@ -144,10 +144,10 @@ public class MyProfileAlumniFragment extends Fragment {
     String course1 = "", inst1 = "", fromdate1 = "", todate1 = "", course2 = "", inst2 = "", fromdate2 = "", todate2 = "", course3 = "", inst3 = "", fromdate3 = "", todate3 = "", course4 = "", inst4 = "", fromdate4 = "", todate4 = "", course5 = "", inst5 = "", fromdate5 = "", todate5 = "", course6 = "", inst6 = "", fromdate6 = "", todate6 = "", course7 = "", inst7 = "", fromdate7 = "", todate7 = "", course8 = "", inst8 = "", fromdate8 = "", todate8 = "", course9 = "", inst9 = "", fromdate9 = "", todate9 = "", course10 = "", inst10 = "", fromdate10 = "", todate10 = "";
     int found_contact_details = 0, found_projects = 0;
     int found_certificates = 0, found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
+    View box2;
     private String signature = "";
     private String mname = "";
-    View box2;
-    private ProgressBar profileprogress,updateProgress;
+    private ProgressBar profileprogress, updateProgress;
 
     public MyProfileAlumniFragment() {
 
@@ -169,7 +169,8 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         return null;
     }
-    public void bottomupbox2(Activity activity, View view){
+
+    public void bottomupbox2(Activity activity, View view) {
 
         Animation animation1 =
                 AnimationUtils.loadAnimation(activity,
@@ -184,7 +185,7 @@ public class MyProfileAlumniFragment extends Fragment {
             @Override
             public void onAnimationEnd(Animation animation) {
                 profileprogress.setVisibility(View.VISIBLE);
-                View box2section=rootView.findViewById(R.id.box2section);
+                View box2section = rootView.findViewById(R.id.box2section);
                 box2section.setVisibility(View.VISIBLE);
                 editprofiletxt.setVisibility(View.VISIBLE);
             }
@@ -196,17 +197,18 @@ public class MyProfileAlumniFragment extends Fragment {
         });
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_my_profile_alumni, container, false);
 
-        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
-        box2=rootView.findViewById(R.id.box2);
-        ImageView box2pencil=(ImageView) rootView.findViewById(R.id.box2pencil);
+        box1 = (RelativeLayout) rootView.findViewById(R.id.box1);
+        box2 = rootView.findViewById(R.id.box2);
+        ImageView box2pencil = (ImageView) rootView.findViewById(R.id.box2pencil);
 
         username = MySharedPreferencesManager.getUsername(getActivity());
-        String pass=MySharedPreferencesManager.getPassword(getActivity());
+        String pass = MySharedPreferencesManager.getPassword(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         role = MySharedPreferencesManager.getRole(getActivity());
@@ -216,7 +218,7 @@ public class MyProfileAlumniFragment extends Fragment {
         TextView extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
-        iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
+        iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
@@ -280,17 +282,17 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
         extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
-        extraexpcount= (TextView) rootView.findViewById(R.id.extraexpcount);
-
+        extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
+        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
         insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-        edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
-        edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
-        noedutab=(RelativeLayout)rootView.findViewById(R.id.noedutab);
-        edutab3=(RelativeLayout)rootView.findViewById(R.id.edutab3);
-        edutab4=(RelativeLayout)rootView.findViewById(R.id.edutab4);
-        projtab1=(RelativeLayout)rootView.findViewById(R.id.projtab1);
-        noprojtab=(RelativeLayout)rootView.findViewById(R.id.noprojtab);
-        noexptab= (RelativeLayout) rootView.findViewById(R.id.noexptab);
+        edutab2 = (RelativeLayout) rootView.findViewById(R.id.edutab2);
+        edutab1 = (RelativeLayout) rootView.findViewById(R.id.edutab1);
+        noedutab = (RelativeLayout) rootView.findViewById(R.id.noedutab);
+        edutab3 = (RelativeLayout) rootView.findViewById(R.id.edutab3);
+        edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+        projtab1 = (RelativeLayout) rootView.findViewById(R.id.projtab1);
+        noprojtab = (RelativeLayout) rootView.findViewById(R.id.noprojtab);
+        noexptab = (RelativeLayout) rootView.findViewById(R.id.noexptab);
 
 
         exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
@@ -306,7 +308,6 @@ public class MyProfileAlumniFragment extends Fragment {
         TextView trytxt;
 
         trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-
 
 
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
@@ -331,7 +332,7 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileclgname4 = (TextView) rootView.findViewById(R.id.myprofileclgname4);
         myprofileclgyearofpassing4 = (TextView) rootView.findViewById(R.id.myprofileclgyearofpassing4);
 
-
+        noexptxt.setTypeface(Z.getBold(getActivity()));
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto.setTypeface(Z.getLight(getActivity()));
@@ -431,22 +432,19 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
 
 
-        if(!ShouldAnimateProfile.shouldAnimate)
-        {
-            Z.bottomupbox1(getActivity(),box1);
-            bottomupbox2(getActivity(),box2);
-            Z.bottomupbox4(getActivity(),edutab4);
-            Z.fade(getActivity(),myprofileimg);
-            Z.fade(getActivity(),iv_camera);
-            Z.bottomupbox3(getActivity(),eduboxtxt);
-            Z.bottomupbox3(getActivity(),box2pencil);
-            Z.fadeandmovedown(getActivity(),myprofilepreview);
-            ShouldAnimateProfile.shouldAnimate=true;
-        }
-        else
-        {
+        if (!ShouldAnimateProfile.shouldAnimate) {
+            Z.bottomupbox1(getActivity(), box1);
+            bottomupbox2(getActivity(), box2);
+            Z.bottomupbox4(getActivity(), edutab4);
+            Z.fade(getActivity(), myprofileimg);
+            Z.fade(getActivity(), iv_camera);
+            Z.bottomupbox3(getActivity(), eduboxtxt);
+            Z.bottomupbox3(getActivity(), box2pencil);
+            Z.fadeandmovedown(getActivity(), myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate = true;
+        } else {
             profileprogress.setVisibility(View.VISIBLE);
-            View box2section=rootView.findViewById(R.id.box2section);
+            View box2section = rootView.findViewById(R.id.box2section);
             box2section.setVisibility(View.VISIBLE);
             editprofiletxt.setVisibility(View.VISIBLE);
         }
@@ -599,12 +597,12 @@ public class MyProfileAlumniFragment extends Fragment {
 
 //        Log.d(HRlog, "exp count " + exp_count);
 
-        if(exp_count>3){
+        if (exp_count > 3) {
             extraexpcount.setVisibility(View.VISIBLE);
-            extraexpcount.setText("and "+ exps_count +" more");
+            extraexpcount.setText("and " + exps_count + " more");
         }
 
-        if (!fromdates1.equals("")){
+        if (!fromdates1.equals("")) {
 
             exptab1.setVisibility(View.VISIBLE);
             exp1.setVisibility(View.VISIBLE);
@@ -616,9 +614,21 @@ public class MyProfileAlumniFragment extends Fragment {
             exp3.setVisibility(View.GONE);
 
         }
+        else {
+            exptab1.setVisibility(View.GONE);
+            exp1.setVisibility(View.GONE);
+            noexptab.setVisibility(View.VISIBLE);
 
-        if (!fromdates2.equals(""))
-        {
+            exptab2.setVisibility(View.GONE);
+            exp2.setVisibility(View.GONE);
+
+            exptab3.setVisibility(View.GONE);
+            exp3.setVisibility(View.GONE);
+
+        }
+
+
+        if (!fromdates2.equals("")) {
             exptab2.setVisibility(View.VISIBLE);
             exp2.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
@@ -627,7 +637,7 @@ public class MyProfileAlumniFragment extends Fragment {
             exp3.setVisibility(View.GONE);
         }
 
-        if (!fromdates3.equals("")){
+        if (!fromdates3.equals("")) {
 
             exptab3.setVisibility(View.VISIBLE);
             exp3.setVisibility(View.VISIBLE);
@@ -635,24 +645,6 @@ public class MyProfileAlumniFragment extends Fragment {
 
         }
 
-//        exptab2.setVisibility(View.VISIBLE);
-//        exp2.setVisibility(View.VISIBLE);
-//
-//        exptab3.setVisibility(View.VISIBLE);
-//        exp3.setVisibility(View.VISIBLE);
-//
-//        if (exp_count == 1 || exp_count == 0) {
-//
-//            exptab2.setVisibility(View.GONE);
-//            exp2.setVisibility(View.GONE);
-//
-//            exptab3.setVisibility(View.GONE);
-//            exp3.setVisibility(View.GONE);
-//        }
-//        if (exp_count == 2) {
-//            exptab3.setVisibility(View.GONE);
-//            exp3.setVisibility(View.GONE);
-//        }
     }
 
 
@@ -660,9 +652,16 @@ public class MyProfileAlumniFragment extends Fragment {
         setVisibilityExpbox();
 
         percentProfile = 0;
-        if(!ucode.equals(""))
-        myprofilepreview.setText(ucode);
+        if (ucode != null) {
+            if (!ucode.equals(""))
+                myprofilepreview.setText(ucode);
+        }
 
+        if (phone != null) {
+            if (!phone.equals("")) {
+                contactmobile.setText(phone);
+            }
+        }
 
         if (found_box1 == 1) {
             percentProfile++;
@@ -673,10 +672,10 @@ public class MyProfileAlumniFragment extends Fragment {
                 nametxt.setText(fname + " " + lname);
 
             }
-            if (!fname.equals("") && lname.equals("")) {
-                myprofilename.setText(fname);
-
-            }
+//            if (!fname.equals("") && lname.equals("")) {
+//                myprofilename.setText(fname);
+//
+//            }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
 
@@ -687,6 +686,7 @@ public class MyProfileAlumniFragment extends Fragment {
         if (found_tenth == 1) {
             if (!board10.equals("")) {
 //                noedutab
+
                 noedutab.setVisibility(View.GONE);
                 edutab3.setVisibility(View.VISIBLE);
 
@@ -1087,11 +1087,7 @@ public class MyProfileAlumniFragment extends Fragment {
                 contactaddr1.setText(addressline1 + ", " + addressline2 + ", " + addressline3);
                 percentProfile++;
             }
-            if (phone != null) {
-                if (!phone.equals("")) {
-                    contactmobile.setText(phone);
-                }
-            }
+
             // setting email and phone from intro box
         }
 
@@ -1106,9 +1102,9 @@ public class MyProfileAlumniFragment extends Fragment {
                 myprofileduration1.setText(duration1 + " Months");
 
                 ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                 projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
                 ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                 projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
                 gear2.setVisibility(View.GONE);
                 projtab2.setVisibility(View.GONE);
@@ -1120,15 +1116,25 @@ public class MyProfileAlumniFragment extends Fragment {
                 projtab1.setVisibility(View.VISIBLE);
 
             }
+            else
+            {
+                noprojtab.setVisibility(View.VISIBLE);
+                projtab1.setVisibility(View.GONE);
+                projtab2.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+                extraprojectscount.setVisibility(View.GONE);
+            }
+
+
             if (!proj2.equals("")) {
                 myprofileproj2.setText(proj2);
                 myprofiledomain2.setText(domain2);
                 myprofileduration2.setText(duration2 + " Months");
 
                 ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                 projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
                 ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                 projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
@@ -1143,9 +1149,9 @@ public class MyProfileAlumniFragment extends Fragment {
                 myprofileduration3.setText(duration3 + " Months");
 
                 ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                 projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
                 ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                 projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
@@ -1154,10 +1160,9 @@ public class MyProfileAlumniFragment extends Fragment {
                 projtab3.setVisibility(View.VISIBLE);
 
                 noprojtab.setVisibility(View.GONE);
-                if(!proj4.equals(""))
-                {
+                if (!proj4.equals("")) {
                     extraprojectscount.setVisibility(View.VISIBLE);
-                    extraprojectscount.setText("and "+ proj_count +" more");
+                    extraprojectscount.setText("and " + proj_count + " more");
                 }
 
             }
@@ -1167,18 +1172,24 @@ public class MyProfileAlumniFragment extends Fragment {
 
 
         if (found_lang == 1) {
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                acc1txttxt.setText(lang1);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
-            percentProfile++;
+            if (!lang1.equals("- Select Language -")) {
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1);
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2);
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and " + lang_count + " more");
+                percentProfile++;
+            } else {
+                acc1txttxt.setText("No known languages filled.");
+            }
         }
 
         if (found_certificates == 1) {
+            if (!title1.equals("")){
             if (!title1.equals(""))
                 acc2txttxt.setText(title1);
             if (!title1.equals("") && !title2.equals(""))
@@ -1186,21 +1197,36 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
                 acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
             if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " and "+ cert_count +" more");
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " and " + cert_count + " more");
             percentProfile++;
         }
+            else
+            {
+                acc2txttxt.setText("No certifications filled.");
+            }
+        }
+
+
         if (found_courses == 1) {
-            if (!course1.equals(""))
+            if (!title1.equals("")){
+
+                if (!course1.equals(""))
                 acc3txttxt.setText(course1);
             if (!course1.equals("") && !course2.equals(""))
                 acc3txttxt.setText(course1 + ", " + course2);
             if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
                 acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
             if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and "+ courses_count +" more");
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and " + courses_count + " more");
             percentProfile++;
         }
+            else
+            {
+                acc3txttxt.setText("No skills filled.");
+            }
+        }
         if (found_skills == 1) {
+            if(!skill1.equals("")) {
             if (!skill1.equals(""))
                 acc4txttxt.setText(skill1);
             if (!skill1.equals("") && !skill2.equals(""))
@@ -1208,11 +1234,16 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
                 acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
             if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and "+ skills_count +" more");
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
 
             percentProfile++;
         }
+            else {
+                acc4txttxt.setText("No skills filled.");
+            }
+        }
         if (found_honors == 1) {
+            if(!htitle1.equals("")) {
             if (!htitle1.equals(""))
                 acc5txttxt.setText(htitle1);
             if (!htitle1.equals("") && !htitle2.equals(""))
@@ -1220,10 +1251,16 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
                 acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
             if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and "+ honor_count +" more");
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and " + honor_count + " more");
             percentProfile++;
         }
+            else {
+                acc5txttxt.setText("No awards filled.");
+            }
+
+        }
         if (found_patents == 1) {
+            if(!ptitle1.equals("")) {
             if (!ptitle1.equals(""))
                 acc6txttxt.setText(ptitle1);
             if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -1231,26 +1268,40 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
                 acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
             if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and "+ patent_count +" more");
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and " + patent_count + " more");
             percentProfile++;
+            }
+            else {
+                acc6txttxt.setText("No patents filled.");
+            }
+
         }
         if (found_publications == 1) {
-            if (!pubtitle1.equals(""))
+            if(!pubtitle1.equals("")) {
+
+                if (!pubtitle1.equals(""))
                 acc7txttxt.setText(pubtitle1);
             if (!pubtitle1.equals("") && !pubtitle2.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
             if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
             if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ public_count +" more");
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and " + public_count + " more");
             percentProfile++;
+
         }
+        else {
+            acc7txttxt.setText("No publications filled.");
+        }
+
+    }
         if (found_careerobj == 1) {
             if (!careerobj.equals(""))
                 careerobjtxttxt.setText(careerobj);
             percentProfile++;
         }
         if (found_strengths == 1) {
+            if(!strength1.equals("")) {
             if (!strength1.equals(""))
                 strengthstxt.setText(strength1);
             if (!strength1.equals("") && !strength2.equals(""))
@@ -1258,31 +1309,51 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
                 strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
             if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
-                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " and "+ strength_count +" more");
+                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " and " + strength_count + " more");
             percentProfile++;
+            }
+            else {
+                strengthstxt.setText("No Strengths filled.");
+            }
+
         }
         if (found_weaknesses == 1) {
-            if (!weak1.equals(""))
+            if(!weak1.equals("")) {
+
+                if (!weak1.equals(""))
                 weaknessestxt.setText(weak1);
             if (!weak1.equals("") && !weak2.equals(""))
                 weaknessestxt.setText(weak1 + ", " + weak2);
             if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
                 weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
             if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
-                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " and "+ weakness_count +" more");
+                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " and " + weakness_count + " more");
             percentProfile++;
+            }
+            else {
+                weaknessestxt.setText("No Weaknesses filled.");
+            }
+
         }
         if (found_locationpreferences == 1) {
-            if (!location1.equals(""))
+            if(!location1.equals("")) {
+
+                if (!location1.equals(""))
                 locationpreferences.setText(location1);
             if (!location1.equals("") && !location2.equals(""))
                 locationpreferences.setText(location1 + ", " + location2);
             if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
                 locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
             if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
-                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " and "+ location_count +" more");
+                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " and " + location_count + " more");
             percentProfile++;
+            }
+            else {
+                locationpreferences.setText("No location preferences filled.");
+            }
+
         }
+
         populateHrInfo();
 
 
@@ -1373,17 +1444,17 @@ public class MyProfileAlumniFragment extends Fragment {
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
 
-        Log.d(alumniLog, "populateHrInfo: post - "+posts1);
-        Log.d(alumniLog, "populateHrInfo: inst - "+inst1);
-        Log.d(alumniLog, "populateHrInfo: from date - "+fromdate1);
-        Log.d(alumniLog, "populateHrInfo: todate - "+todate1);
+        Log.d(alumniLog, "populateHrInfo: post - " + posts1);
+        Log.d(alumniLog, "populateHrInfo: inst - " + inst1);
+        Log.d(alumniLog, "populateHrInfo: from date - " + fromdate1);
+        Log.d(alumniLog, "populateHrInfo: todate - " + todate1);
 
 //        boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
 
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
-        Log.d("TAG", "populateHrInfo: before todates1  :- "+todates1 +" & fromdates1 :-"+fromdates1);
+        Log.d("TAG", "populateHrInfo: before todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
         int fulltodate1 = 0, fulltodate2 = 0, fulltodate3 = 0, fulltodate4 = 0, fulltodate5 = 0, fulltodate6 = 0, fulltodate7 = 0, fulltodate8 = 0, fulltodate9 = 0, fulltodate10 = 0;
 
         String MONTH = "";
@@ -1440,7 +1511,7 @@ public class MyProfileAlumniFragment extends Fragment {
             continuseWork.put(fulltodate10, 10);
         }
 
-        Log.d("TAG", "populateHrInfo: after todates1  :- "+todates1 +" & fromdates1 :-"+fromdates1);
+        Log.d("TAG", "populateHrInfo: after todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
 
         //for continuous working
         for (Map.Entry<Integer, Integer> entry : continuseWork.entrySet()) {
@@ -2762,6 +2833,7 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress.setVisibility(View.VISIBLE);
 
     }
+
     public void showUpdateProgress() {
         updateProgress.setVisibility(View.VISIBLE);
     }
@@ -2852,7 +2924,7 @@ public class MyProfileAlumniFragment extends Fragment {
                 .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(myprofileimg);
 
-        Log.d("TAG", "downloadImage: called from fragment "+username);
+        Log.d("TAG", "downloadImage: called from fragment " + username);
 
     }
 
@@ -2923,7 +2995,9 @@ public class MyProfileAlumniFragment extends Fragment {
 
                 if (resultofop.equals("found")) {
                     ucode = json.getString("ucode");
-                    phone = json.getString("phone");
+                    String encphone = json.getString("phone");
+
+                    phone=Z.Decrypt(encphone,getContext());
 
                     s = json.getString("intro");
                     if (s.equals("found")) {
@@ -2994,20 +3068,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setStrength9(strength9);
                         studentData.setStrength10(strength10);
 
-                        if(!strength4.equals(""))
-                            strength_count=1;
-                        if(!strength5.equals(""))
-                            strength_count=2;
-                        if(!strength6.equals(""))
-                            strength_count=3;
-                        if(!strength7.equals(""))
-                            strength_count=4;
-                        if(!strength8.equals(""))
-                            strength_count=5;
-                        if(!strength9.equals(""))
-                            strength_count=6;
-                        if(!strength10.equals(""))
-                            strength_count=7;
+                        if (!strength4.equals(""))
+                            strength_count = 1;
+                        if (!strength5.equals(""))
+                            strength_count = 2;
+                        if (!strength6.equals(""))
+                            strength_count = 3;
+                        if (!strength7.equals(""))
+                            strength_count = 4;
+                        if (!strength8.equals(""))
+                            strength_count = 5;
+                        if (!strength9.equals(""))
+                            strength_count = 6;
+                        if (!strength10.equals(""))
+                            strength_count = 7;
 
                     }
                     s = json.getString("weaknesses");
@@ -3043,23 +3117,23 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setWeak9(weak9);
                         studentData.setWeak10(weak10);
 
-                        if(!weak5.equals(""))
-                            weakness_count=2;
+                        if (!weak5.equals(""))
+                            weakness_count = 2;
 
-                        if(!weak6.equals(""))
-                            weakness_count=3;
+                        if (!weak6.equals(""))
+                            weakness_count = 3;
 
-                        if(!weak7.equals(""))
-                            weakness_count=4;
+                        if (!weak7.equals(""))
+                            weakness_count = 4;
 
-                        if(!weak8.equals(""))
-                            weakness_count=5;
+                        if (!weak8.equals(""))
+                            weakness_count = 5;
 
-                        if(!weak9.equals(""))
-                            weakness_count=6;
+                        if (!weak9.equals(""))
+                            weakness_count = 6;
 
-                        if(!weak10.equals(""))
-                            weakness_count=7;
+                        if (!weak10.equals(""))
+                            weakness_count = 7;
 
                     }
 
@@ -3082,11 +3156,11 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setLocation4(location4);
                         studentData.setLocation5(location5);
 
-                        if(!location4.equals(""))
-                            location_count=1;
+                        if (!location4.equals(""))
+                            location_count = 1;
 
-                        if(!location5.equals(""))
-                            location_count=2;
+                        if (!location5.equals(""))
+                            location_count = 2;
 
                     }
 
@@ -3458,20 +3532,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setTeam10(team10);
                         studentData.setDuration10(duration10);
 
-                        if(!proj4.equals(""))
-                            proj_count=1;
-                        if(!proj5.equals(""))
-                            proj_count=2;
-                        if(!proj6.equals(""))
-                            proj_count=3;
-                        if(!proj7.equals(""))
-                            proj_count=4;
-                        if(!proj8.equals(""))
-                            proj_count=5;
-                        if(!proj9.equals(""))
-                            proj_count=6;
-                        if(!proj10.equals(""))
-                            proj_count=7;
+                        if (!proj4.equals(""))
+                            proj_count = 1;
+                        if (!proj5.equals(""))
+                            proj_count = 2;
+                        if (!proj6.equals(""))
+                            proj_count = 3;
+                        if (!proj7.equals(""))
+                            proj_count = 4;
+                        if (!proj8.equals(""))
+                            proj_count = 5;
+                        if (!proj9.equals(""))
+                            proj_count = 6;
+                        if (!proj10.equals(""))
+                            proj_count = 7;
 
                     }
                     s = json.getString("knownlang");
@@ -3535,20 +3609,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setProficiency10(proficiency10);
 
 
-                        if(!lang4.equals("") && !lang4.equals("- Select Language -"))
-                            lang_count =1;
-                        if(!lang5.equals("") && !lang5.equals("- Select Language -"))
-                            lang_count=2;
-                        if(!lang6.equals("") && !lang6.equals("- Select Language -"))
-                            lang_count=3;
-                        if(!lang7.equals("") && !lang7.equals("- Select Language -"))
-                            lang_count=4;
-                        if(!lang8.equals("") && !lang8.equals("- Select Language -"))
-                            lang_count=5;
-                        if(!lang9.equals("") && !lang9.equals("- Select Language -"))
-                            lang_count=6;
-                        if(!lang10.equals("") && !lang10.equals("- Select Language -"))
-                            lang_count=7;
+                        if (!lang4.equals("") && !lang4.equals("- Select Language -"))
+                            lang_count = 1;
+                        if (!lang5.equals("") && !lang5.equals("- Select Language -"))
+                            lang_count = 2;
+                        if (!lang6.equals("") && !lang6.equals("- Select Language -"))
+                            lang_count = 3;
+                        if (!lang7.equals("") && !lang7.equals("- Select Language -"))
+                            lang_count = 4;
+                        if (!lang8.equals("") && !lang8.equals("- Select Language -"))
+                            lang_count = 5;
+                        if (!lang9.equals("") && !lang9.equals("- Select Language -"))
+                            lang_count = 6;
+                        if (!lang10.equals("") && !lang10.equals("- Select Language -"))
+                            lang_count = 7;
 
 
                     }
@@ -3700,20 +3774,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setEnddate10certificate(enddate10certificate);
                         studentData.setWillexpire10certificate(willexpire10certificate);
 
-                        if(!title4.equals(""))
-                            cert_count=1;
-                        if(!title5.equals(""))
-                            cert_count=2;
-                        if(!title6.equals(""))
-                            cert_count=3;
-                        if(!title7.equals(""))
-                            cert_count=4;
-                        if(!title8.equals(""))
-                            cert_count=5;
-                        if(!title9.equals(""))
-                            cert_count=6;
-                        if(!title10.equals(""))
-                            cert_count=7;
+                        if (!title4.equals(""))
+                            cert_count = 1;
+                        if (!title5.equals(""))
+                            cert_count = 2;
+                        if (!title6.equals(""))
+                            cert_count = 3;
+                        if (!title7.equals(""))
+                            cert_count = 4;
+                        if (!title8.equals(""))
+                            cert_count = 5;
+                        if (!title9.equals(""))
+                            cert_count = 6;
+                        if (!title10.equals(""))
+                            cert_count = 7;
 
                     }
                     s = json.getString("courses");
@@ -3824,26 +3898,26 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setFromdate10(fromdate10);
                         studentData.setTodate10(todate10);
 
-                        if(!course4.equals(""))
-                            courses_count=1;
+                        if (!course4.equals(""))
+                            courses_count = 1;
 
-                        if(!course5.equals(""))
-                            courses_count=2;
+                        if (!course5.equals(""))
+                            courses_count = 2;
 
-                        if(!course6.equals(""))
-                            courses_count=3;
+                        if (!course6.equals(""))
+                            courses_count = 3;
 
-                        if(!course7.equals(""))
-                            courses_count=4;
+                        if (!course7.equals(""))
+                            courses_count = 4;
 
-                        if(!course8.equals(""))
-                            courses_count=5;
+                        if (!course8.equals(""))
+                            courses_count = 5;
 
-                        if(!course9.equals(""))
-                            courses_count=6;
+                        if (!course9.equals(""))
+                            courses_count = 6;
 
-                        if(!course10.equals(""))
-                            courses_count=7;
+                        if (!course10.equals(""))
+                            courses_count = 7;
                     }
                     s = json.getString("skills");
                     if (s.equals("found")) {
@@ -3973,56 +4047,56 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setSkill20(skill20);
                         studentData.setSproficiency20(sproficiency20);
 
-                        if(!skill4.equals(""))
-                            skills_count=1;
+                        if (!skill4.equals(""))
+                            skills_count = 1;
 
-                        if(!skill5.equals(""))
-                            skills_count=2;
+                        if (!skill5.equals(""))
+                            skills_count = 2;
 
-                        if(!skill6.equals(""))
-                            skills_count=3;
+                        if (!skill6.equals(""))
+                            skills_count = 3;
 
-                        if(!skill7.equals(""))
-                            skills_count=4;
+                        if (!skill7.equals(""))
+                            skills_count = 4;
 
-                        if(!skill8.equals(""))
-                            skills_count=5;
+                        if (!skill8.equals(""))
+                            skills_count = 5;
 
-                        if(!skill9.equals(""))
-                            skills_count=6;
+                        if (!skill9.equals(""))
+                            skills_count = 6;
 
-                        if(!skill10.equals(""))
-                            skills_count=7;
+                        if (!skill10.equals(""))
+                            skills_count = 7;
 
-                        if(!skill11.equals(""))
-                            skills_count=8;
+                        if (!skill11.equals(""))
+                            skills_count = 8;
 
-                        if(!skill12.equals(""))
-                            skills_count=9;
+                        if (!skill12.equals(""))
+                            skills_count = 9;
 
-                        if(!skill13.equals(""))
-                            skills_count=10;
+                        if (!skill13.equals(""))
+                            skills_count = 10;
 
-                        if(!skill14.equals(""))
-                            skills_count=11;
+                        if (!skill14.equals(""))
+                            skills_count = 11;
 
-                        if(!skill15.equals(""))
-                            skills_count=12;
+                        if (!skill15.equals(""))
+                            skills_count = 12;
 
-                        if(!skill16.equals(""))
-                            skills_count=13;
+                        if (!skill16.equals(""))
+                            skills_count = 13;
 
-                        if(!skill17.equals(""))
-                            skills_count=14;
+                        if (!skill17.equals(""))
+                            skills_count = 14;
 
-                        if(!skill18.equals(""))
-                            skills_count=15;
+                        if (!skill18.equals(""))
+                            skills_count = 15;
 
-                        if(!skill19.equals(""))
-                            skills_count=16;
+                        if (!skill19.equals(""))
+                            skills_count = 16;
 
-                        if(!skill20.equals(""))
-                            skills_count=17;
+                        if (!skill20.equals(""))
+                            skills_count = 17;
 
                     }
                     s = json.getString("honors");
@@ -4133,21 +4207,21 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setHdescription10(hdescription10);
                         studentData.setYearofhonor10(yearofhonor10);
 
-                        if(!htitle4.equals(""))
-                            honor_count=1;
+                        if (!htitle4.equals(""))
+                            honor_count = 1;
 
-                        if(!htitle5.equals(""))
-                            honor_count=2;
-                        if(!htitle6.equals(""))
-                            honor_count=3;
-                        if(!htitle7.equals(""))
-                            honor_count=4;
-                        if(!htitle8.equals(""))
-                            honor_count=5;
-                        if(!htitle9.equals(""))
-                            honor_count=6;
-                        if(!htitle10.equals(""))
-                            honor_count=7;
+                        if (!htitle5.equals(""))
+                            honor_count = 2;
+                        if (!htitle6.equals(""))
+                            honor_count = 3;
+                        if (!htitle7.equals(""))
+                            honor_count = 4;
+                        if (!htitle8.equals(""))
+                            honor_count = 5;
+                        if (!htitle9.equals(""))
+                            honor_count = 6;
+                        if (!htitle10.equals(""))
+                            honor_count = 7;
 
 
                     }
@@ -4360,21 +4434,21 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setPselectedcountry10(pselectedcountry10);
                         studentData.setIssuedorpending10(issuedorpending10);
 
-                        if(!ptitle4.equals(""))
-                            patent_count=1;
+                        if (!ptitle4.equals(""))
+                            patent_count = 1;
 
-                        if(!ptitle5.equals(""))
-                            patent_count=2;
-                        if(!ptitle6.equals(""))
-                            patent_count=3;
-                        if(!ptitle7.equals(""))
-                            patent_count=4;
-                        if(!ptitle8.equals(""))
-                            patent_count=5;
-                        if(!ptitle9.equals(""))
-                            patent_count=6;
-                        if(!ptitle10.equals(""))
-                            patent_count=7;
+                        if (!ptitle5.equals(""))
+                            patent_count = 2;
+                        if (!ptitle6.equals(""))
+                            patent_count = 3;
+                        if (!ptitle7.equals(""))
+                            patent_count = 4;
+                        if (!ptitle8.equals(""))
+                            patent_count = 5;
+                        if (!ptitle9.equals(""))
+                            patent_count = 6;
+                        if (!ptitle10.equals(""))
+                            patent_count = 7;
 
                     }
                     s = json.getString("publications");
@@ -4525,20 +4599,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setPubdescription10(pubdescription10);
 
 
-                        if(!pubtitle4.equals(""))
-                            public_count=1;
-                        if(!pubtitle5.equals(""))
-                            public_count=2;
-                        if(!pubtitle6.equals(""))
-                            public_count=3;
-                        if(!pubtitle7.equals(""))
-                            public_count=4;
-                        if(!pubtitle8.equals(""))
-                            public_count=5;
-                        if(!pubtitle9.equals(""))
-                            public_count=6;
-                        if(!pubtitle10.equals(""))
-                            public_count=7;
+                        if (!pubtitle4.equals(""))
+                            public_count = 1;
+                        if (!pubtitle5.equals(""))
+                            public_count = 2;
+                        if (!pubtitle6.equals(""))
+                            public_count = 3;
+                        if (!pubtitle7.equals(""))
+                            public_count = 4;
+                        if (!pubtitle8.equals(""))
+                            public_count = 5;
+                        if (!pubtitle9.equals(""))
+                            public_count = 6;
+                        if (!pubtitle10.equals(""))
+                            public_count = 7;
 
                     }
                     s = json.getString("personal");
@@ -4660,7 +4734,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     }
                     s = json.getString("experiences");
                     if (s.equals("found")) {
-                        found_exp=1;
+                        found_exp = 1;
                         experiencesataobject = json.getString("experiencesdata");
                         Log.d("TAG", "doInBackground:  experiencesataobject- " + experiencesataobject);
 
@@ -4727,7 +4801,7 @@ public class MyProfileAlumniFragment extends Fragment {
                         fromdates10 = obj10.getFromdate();
                         todates10 = obj10.getTodate();
 
-                        Log.d("TAG", "doInbackground:  todates1  :- "+todates1 +" & fromdates1 :-"+fromdates1);
+                        Log.d("TAG", "doInbackground:  todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
 
                         a.setPost1e(posts1);
                         a.setInst1e(inst1s1);
@@ -4780,26 +4854,26 @@ public class MyProfileAlumniFragment extends Fragment {
                         a.setTodate10e(todates10);
 
 
-                        if(!posts4.equals(""))
-                            exps_count=1;
+                        if (!posts4.equals(""))
+                            exps_count = 1;
 
-                        if(!posts5.equals(""))
-                            exps_count=2;
+                        if (!posts5.equals(""))
+                            exps_count = 2;
 
-                        if(!posts6.equals(""))
-                            exps_count=3;
+                        if (!posts6.equals(""))
+                            exps_count = 3;
 
-                        if(!posts7.equals(""))
-                            exps_count=4;
+                        if (!posts7.equals(""))
+                            exps_count = 4;
 
-                        if(!posts8.equals(""))
-                            exps_count=5;
+                        if (!posts8.equals(""))
+                            exps_count = 5;
 
-                        if(!posts9.equals(""))
-                            exps_count=6;
+                        if (!posts9.equals(""))
+                            exps_count = 6;
 
-                        if(!posts10.equals(""))
-                            exps_count=7;
+                        if (!posts10.equals(""))
+                            exps_count = 7;
 
                     }
 
