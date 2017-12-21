@@ -103,7 +103,7 @@ public class NoInternet extends AppCompatActivity {
 
             params.add(new BasicNameValuePair("e", echo_number));
             JSONParser jParser = new JSONParser();
-            JSONObject json = jParser.makeHttpRequest("http://104.237.4.236:8086/AESTest/CheckInternet", "GET", params);
+            JSONObject json = jParser.makeHttpRequest(Z.url_CheckInternet, "GET", params);
 
             if (json != null) {
                 try {
