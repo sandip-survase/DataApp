@@ -88,13 +88,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     private MyAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
-    private Button btnNext,btnPrev;
+    private Button btnNext, btnPrev;
     ProgressBar nextProgress;
     Boolean errorFlagIntro = false, genrateCodeFlag = false;
-    View WelcomeEmailView, WelcomePasswordView, WelComeIntroView, WelcomeRoleView, WelcomeCreatePasswordView, WelComeIntroThroughAdminView,StudentRoleSelectedView;
+    View WelcomeEmailView, WelcomePasswordView, WelComeIntroView, WelcomeRoleView, WelcomeCreatePasswordView, WelComeIntroThroughAdminView, StudentRoleSelectedView;
     EditText passwordedittext;
     TextInputEditText usernameedittext;
-    TextInputLayout usernameTextInputLayout,fnameTextInputLayout,lnameTextInputLayout,mobileTextInputLayout;
+    TextInputLayout usernameTextInputLayout, fnameTextInputLayout, lnameTextInputLayout, mobileTextInputLayout;
     ImageView enteremailimage;
     EditText fnameEditText, lnameEditText, mobileEditText, instOrEmail;
     CircleImageView profilePicture;
@@ -111,7 +111,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     boolean instoremailerror = false;
     private static String android_id, device_id;
     String adminInstitute, adminfname, adminlname;
-    Typeface fa,bold,light;
+    Typeface fa, bold, light;
 
 
     //animation related stuff
@@ -124,13 +124,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     CardView hrrl;
     ImageView cancel;
     ImageView enterpasswordimage;
-    TextView createpasswordwelcometextviewcontext1,createpasswordwelcometextviewcontext2;
-    TextInputLayout passwordTextInputLayout,confirmPasswordTextInputLayout;
+    TextView createpasswordwelcometextviewcontext1, createpasswordwelcometextviewcontext2;
+    TextInputLayout passwordTextInputLayout, confirmPasswordTextInputLayout;
 
     String foundFname;
 
     TextInputLayout welcomepasswordTextInputLayout;
-    TextView welcomepasswordwelcometextviewcontext1,welcomepasswordwelcometextviewcontext2;
+    TextView welcomepasswordwelcometextviewcontext1, welcomepasswordwelcometextviewcontext2;
     ImageView welcomepasswordenterpasswordimage;
     ProgressBar updateProgress;
 
@@ -138,17 +138,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         WelcomeEmailView = v;
         usernameedittext = (TextInputEditText) WelcomeEmailView.findViewById(R.id.welcomeusername);
         usernameTextInputLayout = (TextInputLayout) WelcomeEmailView.findViewById(R.id.usernameTextInputLayout);
-        TextView welcometextviewcontext1=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext1);
-        TextView welcometextviewcontext2=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext2);
-        enteremailimage=(ImageView) WelcomeEmailView.findViewById(R.id.enteremailimage);
+        TextView welcometextviewcontext1 = (TextView) WelcomeEmailView.findViewById(R.id.welcometextviewcontext1);
+        TextView welcometextviewcontext2 = (TextView) WelcomeEmailView.findViewById(R.id.welcometextviewcontext2);
+        enteremailimage = (ImageView) WelcomeEmailView.findViewById(R.id.enteremailimage);
         usernameTextInputLayout.setTypeface(light);
         usernameedittext.setTypeface(bold);
         welcometextviewcontext1.setTypeface(bold);
         welcometextviewcontext2.setTypeface(light);
-        Z.fade(this,enteremailimage);
-        Z.fadeandmovedown(this,usernameTextInputLayout);
-        Z.slideinleft1(this,welcometextviewcontext1);
-        Z.slideinleft2(this,welcometextviewcontext2);
+        Z.fade(this, enteremailimage);
+        Z.fadeandmovedown(this, usernameTextInputLayout);
+        Z.slideinleft1(this, welcometextviewcontext1);
+        Z.slideinleft2(this, welcometextviewcontext2);
         usernameedittext.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -168,21 +168,21 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     }
 
-    void animateAllViews()
-    {
+    void animateAllViews() {
         studentrl.setVisibility(View.VISIBLE);
         alumnirl.setVisibility(View.VISIBLE);
         tporl.setVisibility(View.VISIBLE);
         hrrl.setVisibility(View.VISIBLE);
-        Z.slideinleft1(this,rolewelcometextviewcontext1);
-        Z.slideinleft2(this,rolewelcometextviewcontext2);
-        Z.fade(this,rolewelcometextviewcontext3);
-        Z.scale1(this,studentrl);
-        Z.scale2(this,alumnirl);
-        Z.scale3(this,tporl);
-        Z.scale4(this,hrrl);
+        Z.slideinleft1(this, rolewelcometextviewcontext1);
+        Z.slideinleft2(this, rolewelcometextviewcontext2);
+        Z.fade(this, rolewelcometextviewcontext3);
+        Z.scale1(this, studentrl);
+        Z.scale2(this, alumnirl);
+        Z.scale3(this, tporl);
+        Z.scale4(this, hrrl);
     }
-    public void animateStudentRl(){
+
+    public void animateStudentRl() {
 
         Intent intent = new Intent(Welcome.this, StudentRoleSelected.class);
 
@@ -194,12 +194,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 );
 
         // start transition
-        EasyTransition.startActivityForResult(intent,1111, options);
+        EasyTransition.startActivityForResult(intent, 1111, options);
 
 
     }
-    void animateAlumniRl()
-    {
+
+    void animateAlumniRl() {
         Intent intent = new Intent(Welcome.this, AlumniRoleSelected.class);
 
         EasyTransitionOptions options =
@@ -210,10 +210,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 );
 
         // start transition
-        EasyTransition.startActivityForResult(intent,2222, options);
+        EasyTransition.startActivityForResult(intent, 2222, options);
     }
-    void animateTPORl()
-    {
+
+    void animateTPORl() {
         Intent intent = new Intent(Welcome.this, TPORoleSelected.class);
 
         EasyTransitionOptions options =
@@ -224,10 +224,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 );
 
         // start transition
-        EasyTransition.startActivityForResult(intent,3333, options);
+        EasyTransition.startActivityForResult(intent, 3333, options);
     }
-    void animateHRRl()
-    {
+
+    void animateHRRl() {
         Intent intent = new Intent(Welcome.this, HRRoleSelected.class);
 
         EasyTransitionOptions options =
@@ -238,9 +238,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 );
 
         // start transition
-        EasyTransition.startActivityForResult(intent,4444, options);
+        EasyTransition.startActivityForResult(intent, 4444, options);
     }
-
 
 
     public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
@@ -301,10 +300,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             }
         });
-        welcomepasswordwelcometextviewcontext1=(TextView)WelcomePasswordView.findViewById(R.id.welcometextviewcontext1);
-        welcomepasswordwelcometextviewcontext2=(TextView)WelcomePasswordView.findViewById(R.id.welcometextviewcontext2);
-        welcomepasswordenterpasswordimage=(ImageView)WelcomePasswordView.findViewById(R.id.enterpasswordimage);
-        welcomepasswordTextInputLayout=(TextInputLayout)WelcomePasswordView.findViewById(R.id.passwordTextInputLayout);
+        welcomepasswordwelcometextviewcontext1 = (TextView) WelcomePasswordView.findViewById(R.id.welcometextviewcontext1);
+        welcomepasswordwelcometextviewcontext2 = (TextView) WelcomePasswordView.findViewById(R.id.welcometextviewcontext2);
+        welcomepasswordenterpasswordimage = (ImageView) WelcomePasswordView.findViewById(R.id.enterpasswordimage);
+        welcomepasswordTextInputLayout = (TextInputLayout) WelcomePasswordView.findViewById(R.id.passwordTextInputLayout);
 
         welcomepasswordwelcometextviewcontext1.setTypeface(bold);
         welcomepasswordwelcometextviewcontext2.setTypeface(light);
@@ -312,16 +311,16 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         welcomepasswordTextInputLayout.setTypeface(Z.getLight(this));
 
         try {
-            welcomepasswordwelcometextviewcontext1.setText("Welcome back "+Decrypt(foundFname,digest1,digest2)+" !");
+            welcomepasswordwelcometextviewcontext1.setText("Welcome back " + Decrypt(foundFname, digest1, digest2) + " !");
         } catch (Exception e) {
-            Log.d("TAG", "fname: "+e.getMessage());
+            Log.d("TAG", "fname: " + e.getMessage());
         }
 
 
-        Z.fade(this,welcomepasswordenterpasswordimage);
-        Z.fadeandmovedown(this,welcomepasswordTextInputLayout);
-        Z.slideinleft1(this,welcomepasswordwelcometextviewcontext1);
-        Z.slideinleft2(this,welcomepasswordwelcometextviewcontext2);
+        Z.fade(this, welcomepasswordenterpasswordimage);
+        Z.fadeandmovedown(this, welcomepasswordTextInputLayout);
+        Z.slideinleft1(this, welcomepasswordwelcometextviewcontext1);
+        Z.slideinleft2(this, welcomepasswordwelcometextviewcontext2);
     }
 
     public void setWelComeCreatePasswordView(View v) {
@@ -365,10 +364,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             }
         });
 
-        createpasswordwelcometextviewcontext1=(TextView)WelcomeCreatePasswordView.findViewById(R.id.welcometextviewcontext1);
-        createpasswordwelcometextviewcontext2=(TextView)WelcomeCreatePasswordView.findViewById(R.id.welcometextviewcontext2);
-        passwordTextInputLayout=(TextInputLayout)WelcomeCreatePasswordView.findViewById(R.id.passwordTextInputLayout);
-        confirmPasswordTextInputLayout=(TextInputLayout)WelcomeCreatePasswordView.findViewById(R.id.confirmPasswordTextInputLayout);
+        createpasswordwelcometextviewcontext1 = (TextView) WelcomeCreatePasswordView.findViewById(R.id.welcometextviewcontext1);
+        createpasswordwelcometextviewcontext2 = (TextView) WelcomeCreatePasswordView.findViewById(R.id.welcometextviewcontext2);
+        passwordTextInputLayout = (TextInputLayout) WelcomeCreatePasswordView.findViewById(R.id.passwordTextInputLayout);
+        confirmPasswordTextInputLayout = (TextInputLayout) WelcomeCreatePasswordView.findViewById(R.id.confirmPasswordTextInputLayout);
 
         passwordTextInputLayout.setTypeface(light);
         confirmPasswordTextInputLayout.setTypeface(light);
@@ -377,7 +376,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         createpasswordwelcometextviewcontext1.setTypeface(Z.getBold(this));
         createpasswordwelcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
 
-        enterpasswordimage=(ImageView) WelcomeCreatePasswordView.findViewById(R.id.enterpasswordimage);
+        enterpasswordimage = (ImageView) WelcomeCreatePasswordView.findViewById(R.id.enterpasswordimage);
 
     }
 
@@ -388,30 +387,30 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameEditText = (EditText) WelComeIntroView.findViewById(R.id.lname);
         mobileEditText = (EditText) WelComeIntroView.findViewById(R.id.mobile);
         profilePicture = (CircleImageView) WelComeIntroView.findViewById(R.id.profilePic);
-        updateProgress = (ProgressBar)  WelComeIntroView.findViewById(R.id.updateProgress);
+        updateProgress = (ProgressBar) WelComeIntroView.findViewById(R.id.updateProgress);
         ImageButton iv_camera = (ImageButton) WelComeIntroView.findViewById(R.id.iv_camera);
 
         fnameEditText.setTypeface(Z.getBold(this));
         lnameEditText.setTypeface(Z.getBold(this));
         mobileEditText.setTypeface(Z.getBold(this));
 
-        TextView getProfilePictureMsg=(TextView)WelComeIntroView.findViewById(R.id.getProfilePictureMsg);
-        TextView welcometextviewcontext2=(TextView)WelComeIntroView.findViewById(R.id.welcometextviewcontext2);
-        TextView welcometextviewcontext3=(TextView)WelComeIntroView.findViewById(R.id.welcometextviewcontext3);
+        TextView getProfilePictureMsg = (TextView) WelComeIntroView.findViewById(R.id.getProfilePictureMsg);
+        TextView welcometextviewcontext2 = (TextView) WelComeIntroView.findViewById(R.id.welcometextviewcontext2);
+        TextView welcometextviewcontext3 = (TextView) WelComeIntroView.findViewById(R.id.welcometextviewcontext3);
 
-        fnameTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.fnameTextInputLayout);
-        lnameTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.lnameTextInputLayout);
-        mobileTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.mobileTextInputLayout);
+        fnameTextInputLayout = (TextInputLayout) WelComeIntroView.findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout) WelComeIntroView.findViewById(R.id.lnameTextInputLayout);
+        mobileTextInputLayout = (TextInputLayout) WelComeIntroView.findViewById(R.id.mobileTextInputLayout);
 
-        Z.slideinleft1(this,getProfilePictureMsg);
-        Z.slideinleft2(this,welcometextviewcontext2);
+        Z.slideinleft1(this, getProfilePictureMsg);
+        Z.slideinleft2(this, welcometextviewcontext2);
 
-        Z.fade(this,welcometextviewcontext3);
-        Z.fade(this,profilePicture);
-        Z.fade(this,iv_camera);
-        Z.fadeandmovedown(this,fnameTextInputLayout);
-        Z.fadeandmovedown(this,lnameTextInputLayout);
-        Z.fadeandmovedown(this,mobileTextInputLayout);
+        Z.fade(this, welcometextviewcontext3);
+        Z.fade(this, profilePicture);
+        Z.fade(this, iv_camera);
+        Z.fadeandmovedown(this, fnameTextInputLayout);
+        Z.fadeandmovedown(this, lnameTextInputLayout);
+        Z.fadeandmovedown(this, mobileTextInputLayout);
 
         Log.d("TAG", "role: animation called page 2");
 
@@ -489,32 +488,32 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.lname);
         mobileEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.mobile);
         profilePicture = (CircleImageView) WelComeIntroThroughAdminView.findViewById(R.id.profilePic);
-        updateProgress = (ProgressBar)  WelComeIntroThroughAdminView.findViewById(R.id.updateProgress);
+        updateProgress = (ProgressBar) WelComeIntroThroughAdminView.findViewById(R.id.updateProgress);
         ImageButton iv_camera = (ImageButton) WelComeIntroThroughAdminView.findViewById(R.id.iv_camera);
 
         fnameEditText.setTypeface(Z.getBold(this));
         lnameEditText.setTypeface(Z.getBold(this));
         mobileEditText.setTypeface(Z.getBold(this));
 
-        TextView getProfilePictureMsg=(TextView)WelComeIntroThroughAdminView.findViewById(R.id.getProfilePictureMsg);
+        TextView getProfilePictureMsg = (TextView) WelComeIntroThroughAdminView.findViewById(R.id.getProfilePictureMsg);
         adminInfo = (TextView) WelComeIntroThroughAdminView.findViewById(R.id.adminInfo);
-        TextView welcometextviewcontext3=(TextView)WelComeIntroThroughAdminView.findViewById(R.id.welcometextviewcontext3);
+        TextView welcometextviewcontext3 = (TextView) WelComeIntroThroughAdminView.findViewById(R.id.welcometextviewcontext3);
 
         getProfilePictureMsg.setTypeface(Z.getBold(this));
         adminInfo.setTypeface(Z.getBoldItalic(this));
 
-        fnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.fnameTextInputLayout);
-        lnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
-        mobileTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
+        fnameTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
+        mobileTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
 
-        Z.slideinleft1(this,getProfilePictureMsg);
-        Z.slideinleft2(this,adminInfo);
-        Z.fade(this,welcometextviewcontext3);
-        Z.fade(this,profilePicture);
-        Z.fade(this,iv_camera);
-        Z.fadeandmovedown(this,fnameTextInputLayout);
-        Z.fadeandmovedown(this,lnameTextInputLayout);
-        Z.fadeandmovedown(this,mobileTextInputLayout);
+        Z.slideinleft1(this, getProfilePictureMsg);
+        Z.slideinleft2(this, adminInfo);
+        Z.fade(this, welcometextviewcontext3);
+        Z.fade(this, profilePicture);
+        Z.fade(this, iv_camera);
+        Z.fadeandmovedown(this, fnameTextInputLayout);
+        Z.fadeandmovedown(this, lnameTextInputLayout);
+        Z.fadeandmovedown(this, mobileTextInputLayout);
 
         fnameTextInputLayout.setTypeface(Z.getLight(this));
         lnameTextInputLayout.setTypeface(Z.getLight(this));
@@ -581,16 +580,16 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         WelcomeRoleView = v;
 
-        AnimationModal animationModal=new AnimationModal();
+        AnimationModal animationModal = new AnimationModal();
         animationModal.setRoleView(WelcomeRoleView);
 
-        rolewelcometextviewcontext1=(TextView)WelcomeRoleView.findViewById(R.id.welcometextviewcontext1);
-        rolewelcometextviewcontext2=(TextView)WelcomeRoleView.findViewById(R.id.welcometextviewcontext2);
-        rolewelcometextviewcontext3=(TextView)WelcomeRoleView.findViewById(R.id.welcometextviewcontext3);
-        TextView studentrole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_student);
-        TextView alumnirole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_alumni);
-        TextView tporole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_tpo);
-        TextView hrrole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_hr);
+        rolewelcometextviewcontext1 = (TextView) WelcomeRoleView.findViewById(R.id.welcometextviewcontext1);
+        rolewelcometextviewcontext2 = (TextView) WelcomeRoleView.findViewById(R.id.welcometextviewcontext2);
+        rolewelcometextviewcontext3 = (TextView) WelcomeRoleView.findViewById(R.id.welcometextviewcontext3);
+        TextView studentrole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_student);
+        TextView alumnirole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_alumni);
+        TextView tporole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_tpo);
+        TextView hrrole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_hr);
 
         rolewelcometextviewcontext2.setText("\"There are many roles you can play in life, but you know there is one role you must play: TO BE YOURSELF !\"");
 
@@ -603,23 +602,23 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         hrrole.setTypeface(Z.getBold(this));
 
 
-        studentrl=(CardView)WelcomeRoleView.findViewById(R.id.studentrl);
-        alumnirl=(CardView)WelcomeRoleView.findViewById(R.id.alumnirl);
-        tporl=(CardView)WelcomeRoleView.findViewById(R.id.tporl);
-        hrrl=(CardView)WelcomeRoleView.findViewById(R.id.hrrl);
+        studentrl = (CardView) WelcomeRoleView.findViewById(R.id.studentrl);
+        alumnirl = (CardView) WelcomeRoleView.findViewById(R.id.alumnirl);
+        tporl = (CardView) WelcomeRoleView.findViewById(R.id.tporl);
+        hrrl = (CardView) WelcomeRoleView.findViewById(R.id.hrrl);
 
-        final RelativeLayout student_rl=(RelativeLayout)WelcomeRoleView.findViewById(R.id.student_rl);
-        RelativeLayout alumni_rl=(RelativeLayout)WelcomeRoleView.findViewById(R.id.alumni_rl);
-        RelativeLayout tpo_rl=(RelativeLayout)WelcomeRoleView.findViewById(R.id.tpo_rl);
-        RelativeLayout hr_rl=(RelativeLayout)WelcomeRoleView.findViewById(R.id.hr_rl);
+        final RelativeLayout student_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.student_rl);
+        RelativeLayout alumni_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.alumni_rl);
+        RelativeLayout tpo_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.tpo_rl);
+        RelativeLayout hr_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.hr_rl);
 
         student_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                SELECTED_ROLE="student";
+                SELECTED_ROLE = "student";
 
-                WelcomeRoleModal obj=new WelcomeRoleModal();
+                WelcomeRoleModal obj = new WelcomeRoleModal();
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.GONE);
@@ -627,11 +626,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                Z.scaledown(Welcome.this,alumnirl);
-                Z.scaledown(Welcome.this,tporl);
-                Z.scaledown(Welcome.this,hrrl);
-                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this, alumnirl);
+                Z.scaledown(Welcome.this, tporl);
+                Z.scaledown(Welcome.this, hrrl);
+                Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
                 animateStudentRl();
 
             }
@@ -641,9 +640,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             @Override
             public void onClick(View view) {
 
-                SELECTED_ROLE="alumni";
+                SELECTED_ROLE = "alumni";
 
-                WelcomeRoleModal obj=new WelcomeRoleModal();
+                WelcomeRoleModal obj = new WelcomeRoleModal();
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.VISIBLE);
@@ -651,11 +650,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                Z.scaledown(Welcome.this,studentrl);
-                Z.scaledown(Welcome.this,tporl);
-                Z.scaledown(Welcome.this,hrrl);
-                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this, studentrl);
+                Z.scaledown(Welcome.this, tporl);
+                Z.scaledown(Welcome.this, hrrl);
+                Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
                 animateAlumniRl();
 
             }
@@ -664,9 +663,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             @Override
             public void onClick(View view) {
 
-                SELECTED_ROLE="admin";
+                SELECTED_ROLE = "admin";
 
-                WelcomeRoleModal obj=new WelcomeRoleModal();
+                WelcomeRoleModal obj = new WelcomeRoleModal();
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.VISIBLE);
@@ -674,11 +673,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.GONE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                Z.scaledown(Welcome.this,studentrl);
-                Z.scaledown(Welcome.this,alumnirl);
-                Z.scaledown(Welcome.this,hrrl);
-                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this, studentrl);
+                Z.scaledown(Welcome.this, alumnirl);
+                Z.scaledown(Welcome.this, hrrl);
+                Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
                 animateTPORl();
 
             }
@@ -687,9 +686,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             @Override
             public void onClick(View view) {
 
-                SELECTED_ROLE="hr";
+                SELECTED_ROLE = "hr";
 
-                WelcomeRoleModal obj=new WelcomeRoleModal();
+                WelcomeRoleModal obj = new WelcomeRoleModal();
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.VISIBLE);
@@ -697,11 +696,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.GONE);
 
-                Z.scaledown(Welcome.this,studentrl);
-                Z.scaledown(Welcome.this,alumnirl);
-                Z.scaledown(Welcome.this,tporl);
-                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this, studentrl);
+                Z.scaledown(Welcome.this, alumnirl);
+                Z.scaledown(Welcome.this, tporl);
+                Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
                 animateHRRl();
 
             }
@@ -716,9 +715,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         setContentView(R.layout.activity_welcome);
         Log.d("TAG", "onCreate: Welcome called");
 
-        fa = Typeface.createFromAsset(this.getAssets(),  "fonts/fa.ttf");
-        bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
-        light = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitolight.ttf");
+        fa = Typeface.createFromAsset(this.getAssets(), "fonts/fa.ttf");
+        bold = Typeface.createFromAsset(this.getAssets(), "fonts/nunitobold.ttf");
+        light = Typeface.createFromAsset(this.getAssets(), "fonts/nunitolight.ttf");
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -756,22 +755,20 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             public void onPageSelected(int position) {
                 currentPosition = position;
 
-                if(currentPosition==0)
+                if (currentPosition == 0)
                     btnPrev.setVisibility(View.GONE);
                 else
                     btnPrev.setVisibility(View.VISIBLE);
 
-                if(currentPosition==2&&path==2)
-                {
+                if (currentPosition == 2 && path == 2) {
                     animateAllViews();
                 }
-                if(currentPosition==3&&path==2)
-                {
-                    Z.fade(Welcome.this,enterpasswordimage);
-                    Z.slideinleft1(Welcome.this,createpasswordwelcometextviewcontext1);
-                    Z.slideinleft2(Welcome.this,createpasswordwelcometextviewcontext2);
-                    Z.fadeandmovedown(Welcome.this,passwordTextInputLayout);
-                    Z.fadeandmovedown(Welcome.this,confirmPasswordTextInputLayout);
+                if (currentPosition == 3 && path == 2) {
+                    Z.fade(Welcome.this, enterpasswordimage);
+                    Z.slideinleft1(Welcome.this, createpasswordwelcometextviewcontext1);
+                    Z.slideinleft2(Welcome.this, createpasswordwelcometextviewcontext2);
+                    Z.fadeandmovedown(Welcome.this, passwordTextInputLayout);
+                    Z.fadeandmovedown(Welcome.this, confirmPasswordTextInputLayout);
                 }
             }
 
@@ -786,7 +783,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.setCurrentItem(0);
         addBottomDots(0, 2);
-
 
 
         try {
@@ -813,7 +809,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 if (currentPosition == 0) {                       //---------------------------------  0
                     plainUsername = usernameedittext.getText().toString().trim();
 
-                    Log.d("TAG", "plainUsername: "+plainUsername);
+                    Log.d("TAG", "plainUsername: " + plainUsername);
                     boolean usernameflag = false;
                     if (plainUsername.equals("")) {
                         usernameflag = true;
@@ -830,8 +826,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         new ValidateUser().execute();
                     }
 
-                }
-                else if(currentPosition==1)                             //---------------------------------  1
+                } else if (currentPosition == 1)                             //---------------------------------  1
                 {
                     if (path == 1)     // existing user
                     {
@@ -860,8 +855,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 Log.d("TAG", "onClick: pass exp " + e.getMessage());
                             }
                         }
-                    }
-                    else if (path == 2)        // new user
+                    } else if (path == 2)        // new user
                     {
                         mobileTextInputLayout.setError(null);
                         fnameTextInputLayout.setError(null);
@@ -889,9 +883,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             try {
 
 
-                                encfname=Encrypt(fname,digest1,digest2);
-                                enclname=Encrypt(lname,digest1,digest2);
-                                encmobile=Encrypt(mobile,digest1,digest2);
+                                encfname = Encrypt(fname, digest1, digest2);
+                                enclname = Encrypt(lname, digest1, digest2);
+                                encmobile = Encrypt(mobile, digest1, digest2);
 
                                 viewPager.setCurrentItem(2);
                                 addBottomDots(2, 4);
@@ -901,11 +895,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             }
                         }
                     }
-                }
-                else if(currentPosition==2)                                 //---------------------------------  2
+                } else if (currentPosition == 2)                                 //---------------------------------  2
                 {
-                    if(path==2)
-                    {
+                    if (path == 2) {
                         Toast.makeText(Welcome.this, "Please select your role !", Toast.LENGTH_SHORT).show();
                     }
 
@@ -932,11 +924,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             new SaveDataUserCreatedThroughAdmin().execute();
                         }
                     }
-                }
-                else if(currentPosition==3)                                     //---------------------------------  3
+                } else if (currentPosition == 3)                                     //---------------------------------  3
                 {
-                    if(path==2)
-                    {
+                    if (path == 2) {
                         passwordTextInputLayout.setError(null);
                         confirmPasswordTextInputLayout.setError(null);
 
@@ -944,12 +934,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         String enterpass = enterPassword.getText().toString();
                         confrimpass = confirmPassword.getText().toString();
 
-                        if(enterpass.length() < 6 ) {
+                        if (enterpass.length() < 6) {
                             errorflag = true;
                             passwordTextInputLayout.setError("Password must be at least 6 characters long");
-                        }
-                        else if(!enterpass.equals(confrimpass))
-                        {
+                        } else if (!enterpass.equals(confrimpass)) {
                             errorflag = true;
                             confirmPasswordTextInputLayout.setError("Passwords did not match");
                         }
@@ -997,7 +985,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 }
 
 
-
             }
 
         });
@@ -1019,9 +1006,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
     class SaveData extends AsyncTask<String, String, String> {
+
         protected String doInBackground(String... param) {
-
-
             try {
 
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -1082,9 +1068,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
             try {
-                Log.d("TAG", "sending fname" + Decrypt(encfname,digest1,digest2));
-                Log.d("TAG", "sending lname" + Decrypt(enclname,digest1,digest2));
-                Log.d("TAG", "sending mobile" + Decrypt(encmobile,digest1,digest2));
+                Log.d("TAG", "sending fname" + Decrypt(encfname, digest1, digest2));
+                Log.d("TAG", "sending lname" + Decrypt(enclname, digest1, digest2));
+                Log.d("TAG", "sending mobile" + Decrypt(encmobile, digest1, digest2));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1266,7 +1252,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         dots = new TextView[totalPages];
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(5,5,5,5);
+        params.setMargins(5, 5, 5, 5);
 
 
         int colorsActive = getResources().getColor(R.color.array_dot_active);
@@ -1477,15 +1463,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-    class ValidateUser extends AsyncTask<String, String, String> {
+    class ValidateUser extends AsyncTask<String, String, Boolean> {
 
-        protected String doInBackground(String... param) {
-            String s = null;
+        String result = null;
+
+        protected Boolean doInBackground(String... param) {
+
 
             try {
 
-                Log.d("TAG", "digest1: "+digest1);
-                Log.d("TAG", "digest2: "+digest2);
+                Log.d("TAG", "digest1: " + digest1);
+                Log.d("TAG", "digest2: " + digest2);
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
@@ -1505,75 +1493,85 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));       //0
 
-            json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
-            try {
+            JSONObject json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
 
-                s = json.getString("info");
-                if(s!=null)
-                    if(s.equals("found"))
-                        foundFname=json.getString("fname");
+            if (json != null) {
+                try {
 
-                Log.d("TAG", "ValidateUser json: " + json);
+                    result = json.getString("info");
+                    if (result != null)
+                        if (result.equals("found"))
+                            foundFname = json.getString("fname");
 
-            } catch (Exception e) {
-                Log.d("TAG", "ValidateUser json  exp :  " + e.getMessage());
-            }
+                    Log.d("TAG", "ValidateUser json: " + json);
 
-            return s;
+                } catch (Exception e) {
+                    Log.d("TAG", "ValidateUser json  exp :  " + e.getMessage());
+                }
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean notNull) {
 
-            if (result.equals("found")) {
+            if (notNull) {
 
-                path = 1;
+                if (result.equals("found")) {
+
+                    path = 1;
 //                setupViewPagerExistingActivatedUser(viewPager);
 
-                if (myViewPagerAdapter.getCount() > 1) {
+                    if (myViewPagerAdapter.getCount() > 1) {
 
 
-                    myViewPagerAdapter.clear();
-                    myViewPagerAdapter.addFrag(new WelcomeEmailFragment());
-                    myViewPagerAdapter.addFrag(new WelcomePasswordFragment());
-                    myViewPagerAdapter.notifyDataSetChanged();
-                    viewPager.setCurrentItem(1);
-                    addBottomDots(1, 2);
+                        myViewPagerAdapter.clear();
+                        myViewPagerAdapter.addFrag(new WelcomeEmailFragment());
+                        myViewPagerAdapter.addFrag(new WelcomePasswordFragment());
+                        myViewPagerAdapter.notifyDataSetChanged();
+                        viewPager.setCurrentItem(1);
+                        addBottomDots(1, 2);
 
-                } else {
+                    } else {
 
-                    myViewPagerAdapter.addFrag(new WelcomePasswordFragment());
-                    myViewPagerAdapter.notifyDataSetChanged();
-                    Log.d("TAG", "onPostExecute: pasword frag added");
-                    viewPager.setCurrentItem(1);
-                    addBottomDots(1, 2);
+                        myViewPagerAdapter.addFrag(new WelcomePasswordFragment());
+                        myViewPagerAdapter.notifyDataSetChanged();
+                        Log.d("TAG", "onPostExecute: pasword frag added");
+                        viewPager.setCurrentItem(1);
+                        addBottomDots(1, 2);
+                    }
+
+                } else if (result.equals("notfound")) {
+
+                    path = 2;
+                    if (myViewPagerAdapter.getCount() > 1) {
+                        //clear the adapter first and then add all the fragments
+                        myViewPagerAdapter.clear();
+                        myViewPagerAdapter.addFrag(new WelcomeEmailFragment());
+                        myViewPagerAdapter.addFrag(new WelcomeIntroFragment());
+                        myViewPagerAdapter.addFrag(new WelcomeRoleFragment());
+                        myViewPagerAdapter.addFrag(new WelcomeCreatePasswordFragment());
+                        myViewPagerAdapter.notifyDataSetChanged();
+                        viewPager.setCurrentItem(1);
+                        addBottomDots(1, 4);
+
+
+                    } else {
+                        myViewPagerAdapter.addFrag(new WelcomeIntroFragment());
+                        myViewPagerAdapter.addFrag(new WelcomeRoleFragment());
+                        myViewPagerAdapter.addFrag(new WelcomeCreatePasswordFragment());
+                        myViewPagerAdapter.notifyDataSetChanged();
+                        viewPager.setCurrentItem(1);
+                        addBottomDots(1, 4);
+                    }
+
                 }
 
-            } else if (result.equals("notfound")) {
+            } else
+                Toast.makeText(Welcome.this, "Fail to process your request!\nPlease try again", Toast.LENGTH_SHORT).show();
 
-                path = 2;
-                if (myViewPagerAdapter.getCount() > 1) {
-                    //clear the adapter first and then add all the fragments
-                    myViewPagerAdapter.clear();
-                    myViewPagerAdapter.addFrag(new WelcomeEmailFragment());
-                    myViewPagerAdapter.addFrag(new WelcomeIntroFragment());
-                    myViewPagerAdapter.addFrag(new WelcomeRoleFragment());
-                    myViewPagerAdapter.addFrag(new WelcomeCreatePasswordFragment());
-                    myViewPagerAdapter.notifyDataSetChanged();
-                    viewPager.setCurrentItem(1);
-                    addBottomDots(1, 4);
-
-
-                } else {
-                    myViewPagerAdapter.addFrag(new WelcomeIntroFragment());
-                    myViewPagerAdapter.addFrag(new WelcomeRoleFragment());
-                    myViewPagerAdapter.addFrag(new WelcomeCreatePasswordFragment());
-                    myViewPagerAdapter.notifyDataSetChanged();
-                    viewPager.setCurrentItem(1);
-                    addBottomDots(1, 4);
-                }
-
-            }
         }
     }
 
@@ -1737,7 +1735,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             } else if (success == 7) { // through admin
                 path = 3;
 
-                String MSG = "Your account has already been created by "+adminfname + " " + adminlname + " from " + adminInstitute;
+                String MSG = "Your account has already been created by " + adminfname + " " + adminlname + " from " + adminInstitute;
 
                 if (myViewPagerAdapter.getCount() > 2) {
                     //clear the adapter first and then add all the fragments
@@ -1904,49 +1902,37 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         Log.d("TAG", "onActivityResult: hr activity " + resultCode);
 
-        if(requestCode==1111)
-        {
-            WelcomeRoleModal obj=new WelcomeRoleModal();
-            instOrEmailstr=obj.getCode();
-            if(resultCode==1111&&instOrEmailstr!=null)
-            {
+        if (requestCode == 1111) {
+            WelcomeRoleModal obj = new WelcomeRoleModal();
+            instOrEmailstr = obj.getCode();
+            if (resultCode == 1111 && instOrEmailstr != null) {
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
             }
-        }
-        else if(requestCode==2222)
-        {
-            WelcomeRoleModal obj=new WelcomeRoleModal();
-            instOrEmailstr=obj.getCode();
-            if(resultCode==2222&&instOrEmailstr!=null)
-            {
+        } else if (requestCode == 2222) {
+            WelcomeRoleModal obj = new WelcomeRoleModal();
+            instOrEmailstr = obj.getCode();
+            if (resultCode == 2222 && instOrEmailstr != null) {
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
             }
-        }
-        else if(requestCode==3333)
-        {
-            WelcomeRoleModal obj=new WelcomeRoleModal();
-            instOrEmailstr=obj.getCode();
-            if(resultCode==3333&&instOrEmailstr!=null)
-            {
+        } else if (requestCode == 3333) {
+            WelcomeRoleModal obj = new WelcomeRoleModal();
+            instOrEmailstr = obj.getCode();
+            if (resultCode == 3333 && instOrEmailstr != null) {
                 genrateCodeFlag = true;
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
             }
-        }
-        else if(requestCode==4444)
-        {
-            WelcomeRoleModal obj=new WelcomeRoleModal();
-            instOrEmailstr=obj.getCode();
-            if(resultCode==4444&&instOrEmailstr!=null)
-            {
+        } else if (requestCode == 4444) {
+            WelcomeRoleModal obj = new WelcomeRoleModal();
+            instOrEmailstr = obj.getCode();
+            if (resultCode == 4444 && instOrEmailstr != null) {
                 genrateCodeFlag = true;
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
             }
-        }
-        else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+        } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {
 
@@ -2116,8 +2102,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     @Override
     public void onBackPressed() {
 
-        if(path==2&&currentPosition==3)
-        {
+        if (path == 2 && currentPosition == 3) {
             enterPassword.setText("");
             confirmPassword.setText("");
             enterPassword.setError(null);
