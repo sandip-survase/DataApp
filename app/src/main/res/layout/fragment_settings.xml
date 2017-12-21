@@ -39,23 +39,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_below="@+id/pushselectionview"
-                    android:layout_above="@+id/proicon"
-
-                    />
-
-                <View
-                    android:id="@+id/proselectionview"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/changepassselectionview"
                     android:layout_above="@+id/lastloginicon"
 
                     />
+
+
                 <View
                     android:id="@+id/lastloginselectionview"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_below="@+id/proselectionview"
+                    android:layout_below="@+id/changepassselectionview"
                     android:layout_above="@+id/reporticon"
                     />
                 <View
@@ -199,52 +192,9 @@
                     android:id="@+id/settingsline3"
                     />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/pro_settings_icon"
-                    android:id="@+id/proicon"
-                    android:layout_below="@+id/settingsline3"
-
-                    />
-
-                <TextView
-                    android:id="@+id/trytxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/dark_color"
-                    android:textSize="16dp"
-                    android:text="Try Place Me Pro for Free"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/proicon"
-                    android:layout_below="@+id/settingsline3"
-                    />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Explore what place me pro can do for you"
-                    android:layout_below="@+id/trytxt"
-                    android:id="@+id/proprotxt"
-                    android:textColor="@color/dark_color"
-                    android:textSize="12dp"
-                    android:paddingTop="3dp"
-                    android:layout_toRightOf="@+id/emailicon"
-                    />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/sky_blue_color"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/proprotxt"
-                    android:id="@+id/settingsline4"
-                    />
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -253,7 +203,7 @@
                     android:layout_marginRight="16dp"
                     android:src="@drawable/login_session_icon"
                     android:id="@+id/lastloginicon"
-                    android:layout_below="@+id/settingsline4"
+                    android:layout_below="@+id/settingsline3"
 
                     />
 
@@ -266,7 +216,7 @@
                     android:id="@+id/logintxt"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@+id/passicon"
-                    android:layout_below="@+id/settingsline4"
+                    android:layout_below="@+id/settingsline3"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -277,7 +227,7 @@
                     android:textColor="@color/dark_color"
                     android:paddingTop="3dp"
                     android:textSize="12dp"
-                    android:layout_toRightOf="@+id/emailicon"
+                    android:layout_toRightOf="@+id/lastloginicon"
                     />
 
                 <View
