@@ -56,8 +56,8 @@ public class ReportBug extends AppCompatActivity {
 
         TextView createreporttxt=(TextView)findViewById(R.id.createreporttxt);
         TextView reportsenstxt=(TextView)findViewById(R.id.reportsenstxt);
-        TextInputLayout titleinput=(TextInputLayout)findViewById(R.id.titleinput);
-        TextInputLayout commentsinput=(TextInputLayout)findViewById(R.id.commentsinput);
+        final TextInputLayout titleinput=(TextInputLayout)findViewById(R.id.titleinput);
+        final TextInputLayout commentsinput=(TextInputLayout)findViewById(R.id.commentsinput);
         reportbug_button=(Button)findViewById(R.id.reportbug_button);
         title=(TextInputEditText)findViewById(R.id.title);
         comments=(TextInputEditText)findViewById(R.id.comments);
@@ -80,7 +80,7 @@ public class ReportBug extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title.setError(null);
+                titleinput.setError(null);
             }
 
             @Override
@@ -96,7 +96,7 @@ public class ReportBug extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                comments.setError(null);
+                commentsinput.setError(null);
             }
 
             @Override
@@ -118,7 +118,7 @@ public class ReportBug extends AppCompatActivity {
                 if(title.length()<3)
                 {
                     errorflag=1;
-                    title.setError("Invalid Title");
+                    titleinput.setError("Kindly enter valid title");
                 }
 
                 if(errorflag==0)
