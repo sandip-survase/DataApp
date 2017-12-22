@@ -2269,8 +2269,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         mAdapterPlacement.updateList(tempListPlacement, text);
     }
 
-    @Override
-    protected void onRestart() {
+//    @Override
+//    protected void onRestart() {
 //        super.onRestart();
 
 //        if (navMenuFlag == 2) {
@@ -2280,7 +2280,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //            getPlacements();
 //        }
 
-    }
+//    }
 
     class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
 

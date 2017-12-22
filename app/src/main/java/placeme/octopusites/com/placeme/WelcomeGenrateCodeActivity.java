@@ -1176,19 +1176,19 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                 new CreateFirebaseUser(encUsername,encPassword).execute();
 
-//                Log.d("TAG", "admin code ===============================   " + CODE);
-//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
-//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
-//                viewPager.setCurrentItem(1);
-//                addBottomDots(1, 2);
-//                try {
-//                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
-//                    genratedCode.setText(CODE);
-//                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
-//                }
-//                catch (Exception e){}
-//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
-//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+                Log.d("TAG", "admin code ===============================   " + CODE);
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
+                viewPager.setCurrentItem(1);
+                addBottomDots(1, 2);
+                try {
+                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
+                    genratedCode.setText(CODE);
+                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
+                }
+                catch (Exception e){}
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 
             }
         }

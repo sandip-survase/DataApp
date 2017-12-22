@@ -14,6 +14,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,7 @@ public class HrExperiencesTabFragment extends Fragment {
     View rootView;
     TextInputLayout postinput1,instinput1,fromdateinput1,todateinput1,postinput2,instinput2,fromdateinput2,todateinput2,postinput3,instinput3,fromdateinput3,todateinput3,postinput4,instinput4,fromdateinput4,todateinput4,postinput5,instinput5,fromdateinput5,todateinput5;
     TextInputLayout postinput6,instinput6,fromdateinput6,todateinput6,postinput7,instinput7,fromdateinput7,todateinput7,postinput8,instinput8,fromdateinput8,todateinput8,postinput9,instinput9,fromdateinput9,todateinput9,postinput10,instinput10,fromdateinput10,todateinput10;
+
 
 
 
@@ -2295,12 +2297,8 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post1.getText().toString().equals("") && !inst11.getText().toString().equals("") && !fromdate1.getText().toString().equals("") )
                         {
                             if(!switch1.isChecked() && todate1.getText().toString().equals("") ) {
-                                Toast.makeText(getActivity(), "Please fill the first experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
-
-
-
                             if (!switch1.isChecked()) {
 
                                 if (todate1.getText().toString() != null) {
@@ -2845,38 +2843,10 @@ public class HrExperiencesTabFragment extends Fragment {
                 alertDialog.cancel();
             }
         });
-
         alertDialog.show();
-
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
-
-        double ratio = (double) height / (double) width;
-        double bestDelta = Double.MAX_VALUE;
-        int bestI = 0;
-        int bestJ = 0;
-
-        for (int i = 1; i < 100; i++) {
-            for (int j = 1; j < 100; j++) {
-                double newDelta = Math.abs((double) i / (double) j - ratio);
-                if (newDelta < bestDelta) {
-                    bestDelta = newDelta;
-                    bestI = i;
-                    bestJ = j;
-                }
-            }
-        }
-        if (bestI == 16 && bestJ == 9) {
-            alertDialog.getWindow().setLayout(width / 2, height / 3);
-        } else if (bestI == 98 && bestJ == 59) {
-            alertDialog.getWindow().setLayout(width / 2, height / 3);
-        } else if (bestI == 5 && bestJ == 3) {
-            int newh = Math.round(height / 2.5f);
-            int neww = Math.round(height / 2.3f);
-            alertDialog.getWindow().setLayout(neww, newh);
-        }
+        int w = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
+        int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
+        alertDialog.getWindow().setLayout(w, h);
 
     }
     boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
@@ -2918,8 +2888,10 @@ public class HrExperiencesTabFragment extends Fragment {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(getActivity()));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(getActivity()));
             }
         });
 

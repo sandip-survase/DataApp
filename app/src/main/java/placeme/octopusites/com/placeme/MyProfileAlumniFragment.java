@@ -19,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -245,7 +246,6 @@ public class MyProfileAlumniFragment extends Fragment {
         acc5txt = (TextView) rootView.findViewById(R.id.acc5txt);
         acc6txt = (TextView) rootView.findViewById(R.id.acc6txt);
         acc7txt = (TextView) rootView.findViewById(R.id.acc7txt);
-        TextView noexptxt= (TextView) rootView.findViewById(R.id.acc7txt);
         acc1txttxt = (TextView) rootView.findViewById(R.id.acc1txttxt);
         acc2txttxt = (TextView) rootView.findViewById(R.id.acc2txttxt);
         acc3txttxt = (TextView) rootView.findViewById(R.id.acc3txttxt);
@@ -334,6 +334,7 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileclgyearofpassing4 = (TextView) rootView.findViewById(R.id.myprofileclgyearofpassing4);
 
         noexptxt.setTypeface(Z.getBold(getActivity()));
+
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto.setTypeface(Z.getLight(getActivity()));
@@ -345,7 +346,6 @@ public class MyProfileAlumniFragment extends Fragment {
         exp3txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp3name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto3.setTypeface(Z.getLight(getActivity()));
-
 
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
@@ -382,7 +382,6 @@ public class MyProfileAlumniFragment extends Fragment {
         nametxt.setTypeface(Z.getBold(getActivity()));
         mobiletxt.setTypeface(Z.getLight(getActivity()));
         emailtxt.setTypeface(Z.getLight(getActivity()));
-        noexptxt.setTypeface(Z.getLight(getActivity()));
 
         extraexpcount.setTypeface(Z.getLight(getActivity()));
         extraprojectscount.setTypeface(Z.getLight(getActivity()));
@@ -573,6 +572,22 @@ public class MyProfileAlumniFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
+
     public void setVisibilityExpbox() {
         int exp_count = 0;
 
@@ -603,6 +618,9 @@ public class MyProfileAlumniFragment extends Fragment {
             extraexpcount.setVisibility(View.VISIBLE);
             extraexpcount.setText("and " + exps_count + " more");
         }
+        else
+            extraexpcount.setVisibility(View.GONE);
+
 
         if (!fromdates1.equals("")) {
 

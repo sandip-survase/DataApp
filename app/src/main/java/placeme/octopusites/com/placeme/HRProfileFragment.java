@@ -21,6 +21,7 @@ import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -274,13 +275,13 @@ public class HRProfileFragment extends Fragment {
         contactpersonalemail = (TextView) rootView.findViewById(R.id.contactpersonalemail);
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
-        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
+//        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
         contactaddr1 = (TextView) rootView.findViewById(R.id.contactaddr);
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
 
-        noexptxt.setTypeface(Z.getBold(getActivity()));
+//        noexptxt.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
@@ -487,6 +488,24 @@ public class HRProfileFragment extends Fragment {
         return rootView;
     }
 
+
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
+
+
     public String GetCountryZipCode() {
         String CountryID = "";
         String CountryZipCode = "";
@@ -579,6 +598,8 @@ public class HRProfileFragment extends Fragment {
             extraexpcount.setVisibility(View.VISIBLE);
             extraexpcount.setText("and " + exps_count + " more");
         }
+        else
+            extraexpcount.setVisibility(View.GONE);
 
         if (!fromdates1.equals("")) {
 

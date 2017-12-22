@@ -2644,95 +2644,398 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editexp=0;
-                if(expcount==0)
-                {
-                    View v=(View)findViewById(R.id.expline1);
-                    v.setVisibility(View.VISIBLE);
+                if (expcount == 0) {
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl2);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+                    if(post1.getText().toString()!=null && inst1.getText().toString()!=null && fromdate1.getText().toString()!=null )
+                    {
+                        if(!post1.getText().toString().equals("") && !inst1.getText().toString().equals("") && !fromdate1.getText().toString().equals("") )
+                        {
+                            if(!expsw1.isChecked() && todate1.getText().toString().equals("") ) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
+                            if (!expsw1.isChecked()) {
+
+                                if (todate1.getText().toString() != null) {
+
+                                    if (!todate1.getText().toString().equals("")) {
+
+                                        View v = (View) findViewById(R.id.expline1);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl2);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline1);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl2);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+                        else
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
                 }
-                else if(expcount==1)
-                {
-                    View v=(View)findViewById(R.id.expline2);
-                    v.setVisibility(View.VISIBLE);
+                else if (expcount == 1) {
+                    if(post2.getText().toString()!=null && inst2.getText().toString()!=null && fromdate2.getText().toString()!=null ) {
+                        if (!post2.getText().toString().equals("") && !inst2.getText().toString().equals("") && !fromdate2.getText().toString().equals("")) {
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl3);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+                            if (!expsw2.isChecked() && todate2.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
+
+                            if (!expsw2.isChecked()) {
+
+                                if (todate2.getText().toString() != null) {
+
+                                    if (!todate2.getText().toString().equals("")) {
+
+                                        View v = (View) findViewById(R.id.expline2);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl3);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline2);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl3);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
+
+
                 }
-                else if(expcount==2)
-                {
-                    View v=(View)findViewById(R.id.expline3);
-                    v.setVisibility(View.VISIBLE);
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl4);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+
+                else if (expcount == 2) {
+
+                    if(post3.getText().toString()!=null && inst3.getText().toString()!=null && fromdate3.getText().toString()!=null )
+                    {
+                        if(!post3.getText().toString().equals("") && !inst3.getText().toString().equals("") && !fromdate3.getText().toString().equals("") )
+                        {
+                            if (!expsw3.isChecked() && todate3.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
+
+                            if (!expsw3.isChecked()) {
+                                if (todate3.getText().toString() != null) {
+                                    if (!todate3.getText().toString().equals("")) {
+                                        View v = (View) findViewById(R.id.expline3);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl4);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+
+                                    }
+                                }
+                            } else {
+
+                                View v = (View) findViewById(R.id.expline3);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl4);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+                        else
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
                 }
-                else  if(expcount==3)
-                {
-                    View v=(View)findViewById(R.id.expline4);
-                    v.setVisibility(View.VISIBLE);
+                else if (expcount == 3) {
+                    if(post4.getText().toString()!=null && inst4.getText().toString()!=null && fromdate4.getText().toString()!=null )
+                    {
+                        if(!post4.getText().toString().equals("") && !inst4.getText().toString().equals("") && !fromdate4.getText().toString().equals("") )
+                        {
+                            if (!expsw4.isChecked() && todate4.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl5);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+                            if (!expsw4.isChecked()) {
+
+                                if (todate4.getText().toString() != null) {
+
+                                    if (!todate4.getText().toString().equals("")) {
+
+                                        View v = (View) findViewById(R.id.expline4);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl5);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline4);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl5);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
+
                 }
-                else if(expcount==4)
-                {
-                    View v=(View)findViewById(R.id.expline5);
-                    v.setVisibility(View.VISIBLE);
+                else if (expcount == 4) {
+                    if(post5.getText().toString()!=null && inst5.getText().toString()!=null && fromdate5.getText().toString()!=null )
+                    {
+                        if(!post5.getText().toString().equals("") && !inst5.getText().toString().equals("") && !fromdate5.getText().toString().equals("") )
+                        {
+                            if (!expsw5.isChecked() && todate5.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl6);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+                            if (!expsw5.isChecked()) {
+
+                                if (todate5.getText().toString() != null) {
+
+                                    if (!todate5.getText().toString().equals("")) {
+                                        View v = (View) findViewById(R.id.expline5);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl6);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline5);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl6);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
                 }
-                else if(expcount==5)
-                {
-                    View v=(View)findViewById(R.id.expline6);
-                    v.setVisibility(View.VISIBLE);
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl7);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+                else if (expcount == 5) {
+
+                    if(post6.getText().toString()!=null && inst6.getText().toString()!=null && fromdate6.getText().toString()!=null )
+                    {
+                        if(!post6.getText().toString().equals("") && !inst6.getText().toString().equals("") && !fromdate6.getText().toString().equals("") )
+                        {
+                            if (!expsw6.isChecked() && todate6.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+                            if (!expsw6.isChecked()) {
+
+                                if (todate6.getText().toString() != null) {
+
+                                    if (!todate6.getText().toString().equals("")) {
+                                        View v = (View) findViewById(R.id.expline6);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl7);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline6);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl7);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
                 }
-                else if(expcount==6)
-                {
-                    View v=(View)findViewById(R.id.expline7);
-                    v.setVisibility(View.VISIBLE);
+                else if (expcount == 6) {
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl8);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
+                    if(post7.getText().toString()!=null && inst7.getText().toString()!=null && fromdate7.getText().toString()!=null )
+                    {
+                        if(!post7.getText().toString().equals("") && !inst7.getText().toString().equals("") && !fromdate7.getText().toString().equals("") )
+                        {
+                            if (!expsw7.isChecked() && todate7.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
+                            if (!expsw7.isChecked()) {
+                                if (todate7.getText().toString() != null) {
+                                    if (!todate7.getText().toString().equals("")) {
+                                        View v = (View) findViewById(R.id.expline7);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl8);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline7);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl8);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
+
+                } else if (expcount == 7) {
+
+                    if(post8.getText().toString()!=null && inst8.getText().toString()!=null && fromdate8.getText().toString()!=null )
+                    {
+                        if(!post8.getText().toString().equals("") && !inst8.getText().toString().equals("") && !fromdate8.getText().toString().equals("") )
+                        {
+                            if (!expsw8.isChecked() && todate8.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
+
+                            if (!expsw8.isChecked()) {
+
+                                if (todate8.getText().toString() != null) {
+
+                                    if (!todate8.getText().toString().equals("")) {
+                                        View v = (View) findViewById(R.id.expline8);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl9);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline8);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl9);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
                 }
-                else if(expcount==7)
-                {
-                    View v=(View)findViewById(R.id.expline8);
-                    v.setVisibility(View.VISIBLE);
+                else if (expcount == 8) {
+                    if(post9.getText().toString()!=null && inst9.getText().toString()!=null && fromdate9.getText().toString()!=null )
+                    {
+                        if(!post9.getText().toString().equals("") && !inst9.getText().toString().equals("") && !fromdate9.getText().toString().equals("") )
+                        {
+                            if (!expsw9.isChecked() && todate9.getText().toString().equals("")) {
+                                Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                            }
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl9);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    expcount++;
-                }
-                else if(expcount==8)
-                {
-                    View v=(View)findViewById(R.id.expline9);
-                    v.setVisibility(View.VISIBLE);
+                            if (!expsw9.isChecked()) {
 
-                    RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.exprl10);
-                    relativeLayout1.setVisibility(View.VISIBLE);
-                    TextView t=(TextView)findViewById(R.id.addmoreexptxt);
-                    ImageView i=(ImageView)findViewById(R.id.addmoreexpimg);
-                    addmoreexp.setVisibility(View.GONE);
-                    t.setVisibility(View.GONE);
-                    i.setVisibility(View.GONE);
+                                if (todate9.getText().toString() != null) {
+
+                                    if (!todate9.getText().toString().equals("")) {
+                                        View v = (View) findViewById(R.id.expline9);
+                                        v.setVisibility(View.VISIBLE);
+
+                                        RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl10);
+                                        relativeLayout1.setVisibility(View.VISIBLE);
+                                        expcount++;
+                                        TextView t = (TextView) findViewById(R.id.addmoreexptxt);
+                                        ImageView i = (ImageView) findViewById(R.id.addmoreexpimg);
+
+                                        View line10 = (View) findViewById(R.id.expline10);
+                                        line10.setVisibility(View.GONE);
+                                        addmoreexp.setVisibility(View.GONE);
+
+                                        t.setVisibility(View.GONE);
+                                        i.setVisibility(View.GONE);
+                                    }
+                                }
+                            } else {
+                                View v = (View) findViewById(R.id.expline9);
+                                v.setVisibility(View.VISIBLE);
+
+                                RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.exprl10);
+                                relativeLayout1.setVisibility(View.VISIBLE);
+                                expcount++;
+                                TextView t = (TextView) findViewById(R.id.addmoreexptxt);
+                                ImageView i = (ImageView) findViewById(R.id.addmoreexpimg);
+
+                                View line10 = (View) findViewById(R.id.expline10);
+                                line10.setVisibility(View.GONE);
+                                addmoreexp.setVisibility(View.GONE);
+
+                                t.setVisibility(View.GONE);
+                                i.setVisibility(View.GONE);
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(AdminExperiences.this, "Please fill the empty experience", Toast.LENGTH_SHORT).show();
+
 
                 }
 
             }
         });
+
         //delete exp
         trash1selectionview=(View)findViewById(R.id.trashexp1);
         trash2selectionview=(View)findViewById(R.id.trashexp2);
