@@ -386,11 +386,19 @@ public class LoginActivity extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
+            String encUsername=null;
+            try {
+                encUsername=Z.Encrypt(username,LoginActivity.this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Log.d("TAG", "SaveSessionDetails called : **********************"+encUsername);
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));    //0
+            params.add(new BasicNameValuePair("u", encUsername));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
             json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
+            Log.d("TAG", "SaveSessionDetails json : "+json);
             try {
                 r = json.getString("info");
 
