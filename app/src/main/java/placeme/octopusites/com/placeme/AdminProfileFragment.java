@@ -17,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -73,7 +74,7 @@ public class AdminProfileFragment extends Fragment {
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     CircleImageView myprofileimg;
     ImageButton iv_camera;
-    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
+    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt,noexptxt;
     RelativeLayout editprofilerl;
     RelativeLayout box1,exptab1,exptab2, exptab3,noexptab;
     View box2;
@@ -264,7 +265,6 @@ public class AdminProfileFragment extends Fragment {
         acc6txttxt = (TextView) rootView.findViewById(R.id.acc6txttxt);
         acc7txttxt = (TextView) rootView.findViewById(R.id.acc7txttxt);
 
-
         exp1txt = (TextView) rootView.findViewById(R.id.exp1txt);
         myprofileexp1name = (TextView) rootView.findViewById(R.id.myprofileexp1name);
         myprofileexpfromto = (TextView) rootView.findViewById(R.id.myprofileexpfromto);
@@ -291,10 +291,11 @@ public class AdminProfileFragment extends Fragment {
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
+//        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
 
 
 
-
+//        noexptxt.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
@@ -467,6 +468,23 @@ public class AdminProfileFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
+
+
     public void refreshContent() {
         new GetAdminData().execute();
         ((AdminActivity) getActivity()).requestProfileImage();
@@ -591,7 +609,7 @@ public class AdminProfileFragment extends Fragment {
         if (found_contact_details == 1) {
             if (!addressline1.equals("")) {
                 contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
-
+            }
                 if (!email2.equals("")) {
                     contactprofesionalemail.setText(email2);
                 }
@@ -603,7 +621,7 @@ public class AdminProfileFragment extends Fragment {
                 }
 //                contactpersonalemail.setText(plainusername);
                 percentProfile++;
-            }
+
         }
 
 
@@ -741,6 +759,8 @@ public class AdminProfileFragment extends Fragment {
             extraexpcount.setVisibility(View.VISIBLE);
             extraexpcount.setText("and "+ exps_count +" more");
         }
+        else
+            extraexpcount.setVisibility(View.GONE);
 
         Log.d(HRlog, "exp count " + exp_count);
 
