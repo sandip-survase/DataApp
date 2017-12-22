@@ -3,8 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -35,6 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -51,11 +50,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -513,7 +507,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         final View hView = navigationView.getHeaderView(0);
         profile = (CircleImageView) hView.findViewById(R.id.profile_image);
-        new GetProfileImage().execute();
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
         final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
         final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
@@ -1463,7 +1457,44 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     public void requestProfileImage() {
-        new GetProfileImage().execute();
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(AdminActivity.this)
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(profile);
+
+        }
     }
 
     public void requestCropImage() {
@@ -1560,7 +1591,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             mainfragment.setVisibility(View.VISIBLE);
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().execute();
+            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -2668,67 +2699,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
-            map = downloadImage(Z.load_student_image);
-            return map;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap result) {
-            profile.setImageBitmap(result);
-        }
-
-        private Bitmap downloadImage(String url) {
-            Uri uri = new Uri.Builder()
-                    .scheme("http")
-                    .authority(Z.VPS_IP)
-                    .path("AESTest/GetImage")
-                    .appendQueryParameter("u", username)
-                    .build();
-
-            url = uri.toString();
-
-            Bitmap bitmap = null;
-            InputStream stream = null;
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bmOptions.inSampleSize = 1;
-
-            try {
-                stream = getHttpConnection(url);
-                bitmap = BitmapFactory.
-                        decodeStream(stream, null, bmOptions);
-                stream.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            return bitmap;
-        }
-
-        // Makes HttpURLConnection and returns InputStream
-        private InputStream getHttpConnection(String urlString)
-                throws IOException {
-            InputStream stream = null;
-            URL url = new URL(urlString);
-            URLConnection connection = url.openConnection();
-
-            try {
-                HttpURLConnection httpConnection = (HttpURLConnection) connection;
-                httpConnection.setRequestMethod("GET");
-                httpConnection.connect();
-
-                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    stream = httpConnection.getInputStream();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return stream;
-        }
-
-    }
 
     class UploadProfile extends AsyncTask<String, String, String> {
 
@@ -2764,19 +2734,20 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if (response.get(0).contains("success")) {
+            if (response != null && response.get(0).contains("success")) {
                 MySharedPreferencesManager.save(AdminActivity.this,"crop", "no");
                 Toast.makeText(AdminActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
+                fragment.downloadImage();
                 DeleteRecursive(new File(directory));
-            } else if (response.get(0).contains("null")) {
+            } else if (response != null && response.get(0).contains("null")) {
                 requestProfileImage();
                 AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                 fragment.refreshContent();
                 Toast.makeText(AdminActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(AdminActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
 
