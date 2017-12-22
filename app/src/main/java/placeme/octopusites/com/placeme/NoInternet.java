@@ -128,7 +128,6 @@ public class NoInternet extends AppCompatActivity {
             if (aVoid) {
                 Toast.makeText(NoInternet.this, "system online", Toast.LENGTH_SHORT).show();
                 if (fromSplashScreen == true && mainContext != null) {
-                    Toast.makeText(mainContext, "from splash", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(mainContext, SplashScreen.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);       // cleat stack histry new fresh call
                     LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
