@@ -2783,6 +2783,10 @@ public class MyProfilePg extends AppCompatActivity {
         schoolnamepgsemester = "";
         monthandyearofpassingpgsem = "";
 
+        courseSem="";
+        streamSem="";
+        universitySem="";
+
         pgsemcourse.setSelection(0);
         pgsemstream.setSelection(0);
 
@@ -2835,6 +2839,9 @@ public class MyProfilePg extends AppCompatActivity {
         oldUniversityyear = "";
         schoolnamepgyears = "";
         monthandyearofpassingpgyear = "";
+        courseYear= "";
+                streamYear= "";
+        universityYear= "";
 
         pgyearcourse.setSelection(0);
         pgyearstream.setSelection(0);

@@ -84,7 +84,7 @@ public class MyProfileAlumniFragment extends Fragment {
     public static final String alumniLog = "alumniLog";
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     public String role = "", ucode = "";
-    ImageView insti4, exp2, exp3, exp1;
+    ImageView insti4, exp2, exp3, exp1 , gear2,gear3;
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, expedit, careeredit, contactedit;

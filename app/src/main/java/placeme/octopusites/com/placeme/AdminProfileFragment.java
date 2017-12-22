@@ -232,7 +232,7 @@ public class AdminProfileFragment extends Fragment {
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
 
-        TextView noedudetailstxt=(TextView)rootView.findViewById(R.id.noedudetailstxt);
+//        TextView noedudetailstxt=(TextView)rootView.findViewById(R.id.noedudetailstxt);
 
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
@@ -291,11 +291,10 @@ public class AdminProfileFragment extends Fragment {
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
-//        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
+        noexptxt = (TextView) rootView.findViewById(R.id.noexptxt);
 
+        noexptxt.setTypeface(Z.getBold(getActivity()));
 
-
-//        noexptxt.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
@@ -334,7 +333,7 @@ public class AdminProfileFragment extends Fragment {
         acc6txttxt.setTypeface(Z.getBold(getActivity()));
         acc7txttxt.setTypeface(Z.getBold(getActivity()));
 
-        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
+//        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
 
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
@@ -569,11 +568,9 @@ public class AdminProfileFragment extends Fragment {
             }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
-                percentProfile++;
             }
             if (!inst.equals("")) {
                 myprofiledu.setText(inst);
-                percentProfile++;
             }
         }
         if (found_institute == 1) {
@@ -587,17 +584,14 @@ public class AdminProfileFragment extends Fragment {
             if (!instemail.equals("")) {
                 instcontactemail.setText(instemail);
 //                contactpersonalemail.setText(instemail);
-                percentProfile++;
             }
 
             if (!instweb.equals("")) {
                 instwebsite.setText(instweb);
-                //  percentProfile++;
             }
 
             if (!instphone.equals("")) {
                 insttelephone.setText(instphone);
-                percentProfile++;
             }
 
             if (!instcaddrline1.equals("")) {
@@ -721,11 +715,11 @@ public class AdminProfileFragment extends Fragment {
         if (hrinfobox1 == true)
             percentProfile++;
 
-        if (hrinfobox2 == true)
-            percentProfile++;
-
-        if (hrinfobox3 == true)
-            percentProfile++;
+//        if (hrinfobox2 == true)
+//            percentProfile++;
+//
+//        if (hrinfobox3 == true)
+//            percentProfile++;
 
     }
 
@@ -3446,7 +3440,7 @@ public class AdminProfileFragment extends Fragment {
                 populateData();
                 myprofileimg.setImageBitmap(result);
                 //show progress
-                float R = (1000 - 0) / (16 - 0);
+                float R = (1000 - 0) / (9 - 0);
                 float y = (percentProfile - 0) * R + 0;
                 val1 = Math.round(y);
 

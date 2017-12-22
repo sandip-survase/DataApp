@@ -301,6 +301,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                         } else {
                                             personalflag = 0;
                                             fragment.save();
+                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     if(projFrag.edittedFlag==1){
@@ -310,10 +311,12 @@ public class EditProfileAlumni extends AppCompatActivity {
                                                 mViewPager.setCurrentItem(2);
                                                 projFrag.myvalidate();
                                                 projectflag = 1;
+
                                             }
                                         } else {
                                             projFrag.save();
                                             projectflag = 0;
+                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     if(expFrag.edittedFlag==1){
@@ -326,6 +329,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                             }
                                         } else {
                                             expFrag.save();
+                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                             expflag = 0;
                                         }
                                     }

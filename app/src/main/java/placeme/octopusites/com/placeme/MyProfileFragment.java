@@ -2441,7 +2441,6 @@ public class MyProfileFragment extends Fragment {
 
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
-                percentProfile++;
             }
         }
         if (found_tenth == 1) {
@@ -2576,7 +2575,7 @@ public class MyProfileFragment extends Fragment {
         if (found_diploma == 1) {
             Log.d("TAG", "populateData: welcome to diploma");
             if (!collegenamediploma.equals("")) {
-
+                percentProfile++;
                 noedutab.setVisibility(View.GONE);
                 edutab2.setVisibility(View.VISIBLE);
 
@@ -2634,7 +2633,7 @@ public class MyProfileFragment extends Fragment {
                 if (!yearofpassingdiploma.equals(""))
                     myprofileclgyearofpassing2.setText(yearofpassingdiploma);
             }
-            percentProfile++;
+
         }
 
         if (found_ug == 1) {
@@ -2708,7 +2707,7 @@ public class MyProfileFragment extends Fragment {
         if (found_pgsem == 1) {
             Log.d("TAG", "populateData: universitypgsem"+universitypgsem);
             if (!collegenamepgsem.equals("")) {
-
+                percentProfile++;
                 noedutab.setVisibility(View.GONE);
                 edutab4.setVisibility(View.VISIBLE);
 
@@ -2930,15 +2929,15 @@ public class MyProfileFragment extends Fragment {
                 if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
                     acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
                 Log.d("TAG", "populateData: skills_count - " + skills_count);
-                percentProfile++;
             }
             else {
                 acc4txttxt.setText("No skills filled.");
             }
         }
         if (found_honors == 1) {
-            percentProfile++;
+
             if(!htitle1.equals("")) {
+                percentProfile++;
                 if (!htitle1.equals(""))
                     acc5txttxt.setText(htitle1);
                 if (!htitle1.equals("") && !htitle2.equals(""))
@@ -3054,7 +3053,7 @@ public class MyProfileFragment extends Fragment {
         if (found_pgyear == 1) {
             Log.d("TAG", "populateData: universitypgyear"+universitypgyear);
             if (!collegenamepgyear.equals("")) {
-
+                percentProfile++;
                 noedutab.setVisibility(View.GONE);
                 edutab4.setVisibility(View.VISIBLE);
 
@@ -3123,7 +3122,7 @@ public class MyProfileFragment extends Fragment {
             myprofiledu.setVisibility(View.VISIBLE);
 
 
-        float R = (1000 - 0) / (15 - 0);
+        float R = (1000 - 0) / (18 - 0);
         float y = (percentProfile - 0) * R + 0;
         int val = Math.round(y);
 
