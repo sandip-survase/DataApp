@@ -216,7 +216,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
         TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
         TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
-        TextView extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
+
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
@@ -561,7 +561,7 @@ public class MyProfileAlumniFragment extends Fragment {
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetAlumniData().execute();
+                new GetAlumniData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 ((AlumniActivity) getActivity()).requestProfileImage();
             }
         });
@@ -2849,7 +2849,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
     public void refreshContent() {
 
-        new GetAlumniData().execute();
+        new GetAlumniData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((AlumniActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
 
@@ -2873,7 +2873,7 @@ public class MyProfileAlumniFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    new DeleteProfile().execute();
+                                    new DeleteProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -2929,26 +2929,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
     private void downloadImage() {
 
-
-//        new Getsingnature().execute();
-//        String t = String.valueOf(System.currentTimeMillis());
-
-        Log.d("TAG", "downloadImage: GetImage username "+username);
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
-
-
-        GlideApp.with(getContext())
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(myprofileimg);
-
-        Log.d("TAG", "downloadImage: called from fragment " + username);
-
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public static class FireMissilesDialogFragment extends DialogFragment {
@@ -4969,21 +4950,30 @@ public class MyProfileAlumniFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json "+json);
             try {
-
                 signature = json.getString("lastupdated");
-
-
-            } catch (Exception ex) {
-
-            }
+            } catch (Exception ex) {}
             return signature;
         }
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d("TAG", "downloadImage signature : "+signature);
+//        String t = String.valueOf(System.currentTimeMillis());
 
+            Log.d("TAG", "downloadImage: GetImage username "+username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
 
+            GlideApp.with(getContext())
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(myprofileimg);
         }
     }
 }

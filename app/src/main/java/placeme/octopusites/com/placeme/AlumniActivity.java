@@ -70,9 +70,6 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback
 {
     //
-
-
-    
 //placement variable
 
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
@@ -3087,21 +3084,43 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     private void downloadImage() {
 
+        new Getsingnature().execute();
 
+    }
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
+    class Getsingnature extends AsyncTask<String, String, String> {
 
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profile);
+        String signature="";
+        protected String doInBackground(String... param) {
 
-        Log.d("TAG", "downloadImage: called from activity "+username);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json "+json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {}
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("TAG", "downloadImage signature : "+signature);
+//        String t = String.valueOf(System.currentTimeMillis());
+
+            Log.d("TAG", "downloadImage: GetImage username "+username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(AlumniActivity.this)
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(profile);
+        }
     }
 
 
