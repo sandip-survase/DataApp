@@ -84,7 +84,7 @@ public class MyProfileAlumniFragment extends Fragment {
     public static final String alumniLog = "alumniLog";
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     public String role = "", ucode = "";
-    ImageView insti4, exp2, exp3, exp1;
+    ImageView insti4, exp2, exp3, exp1 , gear2,gear3;
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, expedit, careeredit, contactedit;
@@ -208,6 +208,9 @@ public class MyProfileAlumniFragment extends Fragment {
         box2 = rootView.findViewById(R.id.box2);
         ImageView box2pencil = (ImageView) rootView.findViewById(R.id.box2pencil);
 
+
+
+
         username = MySharedPreferencesManager.getUsername(getActivity());
         String pass = MySharedPreferencesManager.getPassword(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
@@ -216,7 +219,6 @@ public class MyProfileAlumniFragment extends Fragment {
 
         TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
         TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
-        TextView extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
@@ -285,6 +287,8 @@ public class MyProfileAlumniFragment extends Fragment {
         extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
         extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
         noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
+
+
         insti4 = (ImageView) rootView.findViewById(R.id.insti4);
         edutab2 = (RelativeLayout) rootView.findViewById(R.id.edutab2);
         edutab1 = (RelativeLayout) rootView.findViewById(R.id.edutab1);
@@ -299,6 +303,13 @@ public class MyProfileAlumniFragment extends Fragment {
         exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
         exptab2 = (RelativeLayout) rootView.findViewById(R.id.exptab2);
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
+
+         gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+        projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+         gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+        projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+
 
         exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exp2 = (ImageView) rootView.findViewById(R.id.exp2);
@@ -677,6 +688,7 @@ public class MyProfileAlumniFragment extends Fragment {
                 myprofilepreview.setText(ucode);
         }
 
+        Log.d("TAG", "populateData: phone -" +phone);
         if (phone != null) {
             if (!phone.equals("")) {
                 contactmobile.setText(phone);
@@ -692,10 +704,7 @@ public class MyProfileAlumniFragment extends Fragment {
                 nametxt.setText(fname + " " + lname);
 
             }
-//            if (!fname.equals("") && lname.equals("")) {
-//                myprofilename.setText(fname);
 //
-//            }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
 
@@ -967,7 +976,7 @@ public class MyProfileAlumniFragment extends Fragment {
         if (found_pgsem == 1) {
             Log.d("TAG", "populateData: universitypgsem" + universitypgsem);
             if (!collegenamepgsem.equals("")) {
-
+                percentProfile++;
                 noedutab.setVisibility(View.GONE);
                 edutab4.setVisibility(View.VISIBLE);
 
@@ -1034,7 +1043,7 @@ public class MyProfileAlumniFragment extends Fragment {
         if (found_pgyear == 1) {
             Log.d("TAG", "populateData: universitypgyear" + universitypgyear);
             if (!collegenamepgyear.equals("")) {
-
+                percentProfile++;
 
                 noedutab.setVisibility(View.GONE);
                 edutab4.setVisibility(View.VISIBLE);
@@ -1102,7 +1111,6 @@ public class MyProfileAlumniFragment extends Fragment {
 
         if (found_contact_details == 1) {
 
-            percentProfile++;
             if (!addressline1.equals("") && !addressline2.equals("") && !addressline3.equals("")) {
                 contactaddr1.setText(addressline1 + ", " + addressline2 + ", " + addressline3);
                 percentProfile++;
@@ -1114,17 +1122,13 @@ public class MyProfileAlumniFragment extends Fragment {
         // projects
 
         if (found_projects == 1) {
-            percentProfile++;
-            if (!proj1.equals("")) {
 
+            if (!proj1.equals("")) {
+                percentProfile++;
                 myprofileproj1.setText(proj1);
                 myprofiledomain1.setText(domain1);
                 myprofileduration1.setText(duration1 + " Months");
 
-                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                 projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                 projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
                 gear2.setVisibility(View.GONE);
                 projtab2.setVisibility(View.GONE);
@@ -1138,6 +1142,8 @@ public class MyProfileAlumniFragment extends Fragment {
             }
             else
             {
+
+
                 noprojtab.setVisibility(View.VISIBLE);
                 projtab1.setVisibility(View.GONE);
                 projtab2.setVisibility(View.GONE);
@@ -1151,10 +1157,6 @@ public class MyProfileAlumniFragment extends Fragment {
                 myprofiledomain2.setText(domain2);
                 myprofileduration2.setText(duration2 + " Months");
 
-                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                 projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                 projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
@@ -1168,10 +1170,6 @@ public class MyProfileAlumniFragment extends Fragment {
                 myprofiledomain3.setText(domain3);
                 myprofileduration3.setText(duration3 + " Months");
 
-                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                 projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                 projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
 
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
@@ -1381,14 +1379,14 @@ public class MyProfileAlumniFragment extends Fragment {
         if (hrinfobox1 == true)
             percentProfile++;
 
-        if (hrinfobox2 == true)
-            percentProfile++;
+//        if (hrinfobox2 == true)
+//            percentProfile++;
+//
+//        if (hrinfobox3 == true)
+//            percentProfile++;
 
-        if (hrinfobox3 == true)
-            percentProfile++;
 
-
-        float R = (1000 - 0) / (24 - 0);
+        float R = (1000 - 0) / (19 - 0);
         float y = (percentProfile - 0) * R + 0;
         int val = Math.round(y);
 
@@ -3019,6 +3017,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     String encphone = json.getString("phone");
 
                     phone=Z.Decrypt(encphone,getContext());
+                    Log.d("TAG", "phone:-" + phone);
 
                     s = json.getString("intro");
                     if (s.equals("found")) {

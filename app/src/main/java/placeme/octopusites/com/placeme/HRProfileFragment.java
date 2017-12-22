@@ -263,7 +263,7 @@ public class HRProfileFragment extends Fragment {
         myprofileexp3name = (TextView) rootView.findViewById(R.id.myprofileexp3name);
         myprofileexpfromto3 = (TextView) rootView.findViewById(R.id.myprofileexpfromto2);
 
-        TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
+//        TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
 
 
         nametxt = (TextView) rootView.findViewById(R.id.nametxt);
@@ -275,18 +275,19 @@ public class HRProfileFragment extends Fragment {
         contactpersonalemail = (TextView) rootView.findViewById(R.id.contactpersonalemail);
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
-//        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
         contactaddr1 = (TextView) rootView.findViewById(R.id.contactaddr);
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
+        noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
 
 
-//        noexptxt.setTypeface(Z.getBold(getActivity()));
+        noexptxt.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
 
-        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
+//        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
+
         myprofiledu.setTypeface(Z.getBold(getActivity()));
         myprofilloc.setTypeface(Z.getLight(getActivity()));
         myprofilemail.setTypeface(Z.getLight(getActivity()));
@@ -3316,18 +3317,13 @@ public class HRProfileFragment extends Fragment {
                     nametxt.setText(fname + " " + lname);
                     percentProfile++;
                 }
-                if (!fname.equals("") && lname.equals("")) {
-                    myprofilename.setText(fname);
-                    percentProfile++;
-                }
+
                 if (!country.equals("null") && !state.equals("null") && !city.equals("null") && !country.equals("") && !state.equals("") && !city.equals("")) {
                     myprofilloc.setText(city + ", " + state + ", " + country);
-                    percentProfile++;
                 }
                 if (!designation.equals("null") && !designation.equals("")) {
                     Log.d("TAG", "populateData: designation " + designation);
                     myprofiledu.setText(designation);
-                    percentProfile++;
                 }
             }
             if (found_lang == 1) {
@@ -3355,7 +3351,6 @@ public class HRProfileFragment extends Fragment {
                 }
                 if (!email2.equals("")) {
                     contactprofesionalemail.setText(email2);
-                    percentProfile++;
                 }
 
                 if (phone != null) {
@@ -3462,14 +3457,14 @@ public class HRProfileFragment extends Fragment {
             if (hrinfobox1 == true)
                 percentProfile++;
 
-            if (hrinfobox2 == true)
-                percentProfile++;
+//            if (hrinfobox2 == true)
+//                percentProfile++;
+//
+//            if (hrinfobox3 == true)
+//                percentProfile++;
+//
 
-            if (hrinfobox3 == true)
-                percentProfile++;
-
-
-            float R = (1000 - 0) / (15 - 0);
+            float R = (1000 - 0) / (9 - 0);
             float y = (percentProfile - 0) * R + 0;
             int val = Math.round(y);
 
