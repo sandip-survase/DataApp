@@ -427,9 +427,10 @@ public class SplashScreen extends Activity {
         protected String doInBackground(String... param) {
 
             String r = null;
+            String platform="Android ("+getDeviceName()+")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
-            params.add(new BasicNameValuePair("m", getDeviceName()));      //1
+            params.add(new BasicNameValuePair("m", platform));      //1
             json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
