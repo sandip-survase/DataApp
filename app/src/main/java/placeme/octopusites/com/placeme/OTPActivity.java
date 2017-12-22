@@ -218,7 +218,7 @@ public class OTPActivity extends AppCompatActivity {
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-//                    new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                     Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
@@ -248,18 +248,18 @@ public class OTPActivity extends AppCompatActivity {
                 else if (resultofop.equals("already")) {
 
                 }
-//                else
-//                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
             }
             if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 Log.d("TAG", "OTP onPostExecute: sahrd role ^^^^ "+role);
 
-//                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
-//                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
-//
-//                new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
+
+                new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
@@ -286,11 +286,11 @@ public class OTPActivity extends AppCompatActivity {
 
 
                         if (task.isSuccessful()) {
-//                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
 
                         } else {
-//                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

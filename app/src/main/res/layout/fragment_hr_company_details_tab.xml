@@ -286,7 +286,34 @@
                     android:background="@color/dark_color" />
 
             </RelativeLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/otherNatureTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/board10spinner"
+                android:theme="@style/TextLabelNew"
+                app:errorEnabled="true"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/otherNature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter nature of company"
+                    android:singleLine="true"
+                    android:textColor="#03353e"
+                    android:maxLength="100"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionDone"
+                    android:textSize="16dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
         </RelativeLayout>
-        >
+
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

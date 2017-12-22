@@ -122,6 +122,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         regNumber = (TextInputEditText) WelComeInstituteView.findViewById(R.id.regNumber);
         countryAutoBox = (AutoCompleteTextView) WelComeInstituteView.findViewById(R.id.countryAutoBox);
 
+
+
         instituteName.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -354,6 +356,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         companyAlternatephone = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyAlternatephone);
         CIN = (TextInputEditText) WelComeCompanyView.findViewById(R.id.CIN);
         otherNature = (TextInputEditText) WelComeCompanyView.findViewById(R.id.otherNature);
+        countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
+
+
 
         companyName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -484,7 +489,27 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             }
         });
 
-        countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
+        countryAutoBoxCompany.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                companycountryinputlayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+
 
         countrycount = getResources().getStringArray(R.array.countries_array).length;
         countries = new String[countrycount];
@@ -642,7 +667,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_genrate_code);
-        Log.d("TAG", "onCreate:WelcomeGenrateCodeActivity called");
 
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
@@ -1134,7 +1158,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "SaveInstititeData json : "+json);
+                Log.d("TAG", "doInBackground: save comp data "+json);
                 if (r.equals("success")) {
                     CODE = json.getString("ucode");
                 }
@@ -1152,21 +1176,19 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                 new CreateFirebaseUser(encUsername,encPassword).execute();
 
-                Log.d("TAG", "admin code ===============================   " + CODE);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
-                viewPager.setCurrentItem(1);
-                addBottomDots(1, 2);
-                try {
-                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
-                    genratedCode.setText(CODE);
-                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
-                }
-                catch (Exception e){
-                    Log.d("TAG", "onPostExecute: exp in setting msg code : "+e.getMessage());
-                }
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+//                Log.d("TAG", "admin code ===============================   " + CODE);
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
+//                viewPager.setCurrentItem(1);
+//                addBottomDots(1, 2);
+//                try {
+//                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
+//                    genratedCode.setText(CODE);
+//                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
+//                }
+//                catch (Exception e){}
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+//                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 
             }
         }
@@ -1274,12 +1296,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateCompanyCode, "GET", params);
-            Log.d("TAG", "SaveCompanyData json : "+json);
             try {
                 r = json.getString("info");
                 if(r.equals("success")){
                     CODE=json.getString("ucode");
                 }
+                Log.d("TAG", "doInBackground: "+json);
             } catch (Exception e) {
                 Log.d("TAG", "doInBackground: comp asynk"+e.getMessage());
             }

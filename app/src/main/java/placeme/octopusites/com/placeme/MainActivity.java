@@ -292,14 +292,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
             plainusername=new String(demo1DecryptedBytes1);
-//            r.setPlainusername(plainusername);
 
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
             String data=new String(demo2DecryptedBytes1);
             String hash=md5(data + MySharedPreferencesManager.getDigest3(MainActivity.this));
 
-            new LoginFirebaseTask().execute(plainusername,hash);
+//            new LoginFirebaseTask().execute(plainusername,hash);
+            loginFirebase(plainusername, hash);
 
         }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
@@ -1250,7 +1250,25 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         getNotifications();
 
     }
+    void loginFirebase(String username, String hash) {
 
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
     void filterNotifications(String text)
     {
         tempListNotification = new ArrayList();
