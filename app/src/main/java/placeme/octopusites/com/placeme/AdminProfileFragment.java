@@ -537,20 +537,16 @@ public class AdminProfileFragment extends Fragment {
     void populateData() {
         setVisibilityExpbox();
 
-        if(!ucode.equals(""))
-            myprofilepreview.setText(ucode);
 
+        if(ucode!=null) {
+            if (!ucode.equals(""))
+                myprofilepreview.setText(ucode);
+        }
 
         if (found_AdminIntro == 1) {
             if (!fname.equals("") && !lname.equals("")) {
                 myprofilename.setText(fname + " " + lname);
                 nametxt.setText(fname + " " + lname);
-
-                percentProfile++;
-            }
-
-            if (!fname.equals("") && lname.equals("")) {
-                myprofilename.setText(fname);
                 percentProfile++;
             }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
@@ -612,7 +608,9 @@ public class AdminProfileFragment extends Fragment {
 
 
         if (found_lang == 1) {
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+            if (!lang1.equals("- Select Language -")) {
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
                 acc2txttxt.setText(lang1);
             if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
                 acc2txttxt.setText(lang1 + ", " + lang2);
@@ -622,7 +620,13 @@ public class AdminProfileFragment extends Fragment {
                 acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
             percentProfile++;
         }
+            else {
+                acc2txttxt.setText("No known languages filled.");
+            }
+        }
+
         if (found_skills == 1) {
+            if(!skill1.equals("")) {
             if (!skill1.equals(""))
                 acc4txttxt.setText(skill1);
             if (!skill1.equals("") && !skill2.equals(""))
@@ -633,7 +637,13 @@ public class AdminProfileFragment extends Fragment {
                 acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and "+ skills_count +" more");
             percentProfile++;
         }
+            else {
+                acc4txttxt.setText("No skills filled.");
+            }
+        }
+
         if (found_honors == 1) {
+            if(!htitle1.equals("")) {
             if (!htitle1.equals(""))
                 acc5txttxt.setText(htitle1);
             if (!htitle1.equals("") && !htitle2.equals(""))
@@ -645,7 +655,13 @@ public class AdminProfileFragment extends Fragment {
             percentProfile++;
 
         }
+            else {
+                acc5txttxt.setText("No awards filled.");
+            }
+
+        }
         if (found_patents == 1) {
+            if(!ptitle1.equals("")) {
             if (!ptitle1.equals(""))
                 acc6txttxt.setText(ptitle1);
             if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -657,9 +673,15 @@ public class AdminProfileFragment extends Fragment {
             percentProfile++;
 
         }
+            else {
+                acc6txttxt.setText("No patents filled.");
+            }
 
+        }
         if (found_publications == 1) {
-            if (!pubtitle1.equals(""))
+            if(!pubtitle1.equals("")) {
+
+                if (!pubtitle1.equals(""))
                 acc7txttxt.setText(pubtitle1);
             if (!pubtitle1.equals("") && !pubtitle2.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
@@ -668,6 +690,11 @@ public class AdminProfileFragment extends Fragment {
             if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ public_count +" more");
             percentProfile++;
+
+        }
+            else {
+                acc7txttxt.setText("No publications filled.");
+            }
 
         }
 
@@ -725,6 +752,18 @@ public class AdminProfileFragment extends Fragment {
 
             exptab2.setVisibility(View.GONE);
             exp2.setVisibility(View.GONE);
+            exptab3.setVisibility(View.GONE);
+            exp3.setVisibility(View.GONE);
+
+        }
+        else {
+            exptab1.setVisibility(View.GONE);
+            exp1.setVisibility(View.GONE);
+            noexptab.setVisibility(View.VISIBLE);
+
+            exptab2.setVisibility(View.GONE);
+            exp2.setVisibility(View.GONE);
+
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
 

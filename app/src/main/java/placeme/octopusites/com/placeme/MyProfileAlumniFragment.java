@@ -1185,7 +1185,8 @@ public class MyProfileAlumniFragment extends Fragment {
                 if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
                     acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and " + lang_count + " more");
                 percentProfile++;
-            } else {
+            }
+            else {
                 acc1txttxt.setText("No known languages filled.");
             }
         }
