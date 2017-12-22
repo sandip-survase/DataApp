@@ -208,6 +208,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         tabLayout.setupWithViewPager(mViewPager);
 
         username = MySharedPreferencesManager.getUsername(this);
+        Log.d("***", "onCreate: username"+username);
         pass=MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -242,7 +243,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 }
         );
 
-        username=getIntent().getStringExtra("username");
+//        username=getIntent().getStringExtra("username");
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
@@ -3023,6 +3024,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             try {
                 File sourceFile = new File(filepath);
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                Log.d("***", "UploadProfile : input  username "+username);
                 multipart.addFormField("u", username);
                 if(filename!="") {
                     multipart.addFormField("f", filename);
@@ -3053,7 +3055,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-//                fragment.refreshContent();
+                fragment.refreshContent();
                 DeleteRecursive(new File(directory));
             }
             else if(response.get(0).contains("null"))
