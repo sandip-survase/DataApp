@@ -215,7 +215,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
-                        getSupportActionBar().setTitle("My Profile");
+
 
                     } else if (navMenuFlag == 2) {
 
