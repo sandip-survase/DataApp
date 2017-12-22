@@ -2963,7 +2963,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             mainfragment.setVisibility(View.VISIBLE);
             MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
 //            fragment.showUpdateProgress();
-            new UploadProfile().execute();
+            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -3046,22 +3046,23 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             //           tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if(response.get(0).contains("success")) {
+            if(response != null && response.get(0).contains("success")) {
 
                 MySharedPreferencesManager.save(AlumniActivity.this,"crop", "no");
-                Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
+                fragment.downloadImage();
+                Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 DeleteRecursive(new File(directory));
             }
-            else if(response.get(0).contains("null"))
+            else if(response != null && response.get(0).contains("null"))
             {
                 requestProfileImage();
                 MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
 //                fragment.refreshContent();
                 Toast.makeText(AlumniActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(AlumniActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
         void DeleteRecursive(File fileOrDirectory) {
@@ -3084,7 +3085,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     private void downloadImage() {
 
-        new Getsingnature().execute();
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     }
 

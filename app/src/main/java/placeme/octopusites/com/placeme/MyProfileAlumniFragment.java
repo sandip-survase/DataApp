@@ -2927,7 +2927,7 @@ public class MyProfileAlumniFragment extends Fragment {
         return animation;
     }
 
-    private void downloadImage() {
+    public void downloadImage() {
 
         new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }

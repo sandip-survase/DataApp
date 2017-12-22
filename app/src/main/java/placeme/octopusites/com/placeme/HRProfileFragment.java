@@ -477,13 +477,13 @@ public class HRProfileFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                new GetHRData().execute();
+                new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 //  ((MainActivity)getActivity()).requestProfileImage();
             }
         });
 
 
-//        new GetHRData().execute();
+//        new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         refreshContent();
 
         return rootView;
@@ -523,7 +523,7 @@ public class HRProfileFragment extends Fragment {
     }
 
     public void refreshContent() {
-        new GetHRData().execute();
+        new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((HRActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
 //        profileprogress.setVisibility(View.VISIBLE);
@@ -549,7 +549,7 @@ public class HRProfileFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    new DeleteProfile().execute();
+                                    new DeleteProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -2125,40 +2125,57 @@ public class HRProfileFragment extends Fragment {
         }
     }
 
-    private void downloadImage() {
+    public void downloadImage() {
 
-        new Getsingnature().execute();
-        String t = String.valueOf(System.currentTimeMillis());
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
-
-        GlideApp.with(getContext())
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        updateProgress.setVisibility(View.GONE);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        updateProgress.setVisibility(View.GONE);
-                        return false;
-                    }
-
-                })
-                .into(myprofileimg)
-
-        ;
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
 
 
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(getContext())
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            updateProgress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            updateProgress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                    })
+                    .into(myprofileimg);
+        }
     }
 
     public static class FireMissilesDialogFragment extends DialogFragment {
@@ -3517,31 +3534,5 @@ public class HRProfileFragment extends Fragment {
         }
     }
 
-    // our code here
-    class Getsingnature extends AsyncTask<String, String, String> {
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            try {
-
-                signature = json.getString("lastupdated");
-                Log.d(HRlog, "signature-: " + signature);
-
-
-            } catch (Exception ex) {
-
-            }
-            return signature;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-        }
-    }
 
 }

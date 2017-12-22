@@ -442,7 +442,7 @@ public class AdminProfileFragment extends Fragment {
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetAdminData().execute();
+                new GetAdminData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 ((AdminActivity) getActivity()).requestProfileImage();
             }
         });
@@ -485,7 +485,7 @@ public class AdminProfileFragment extends Fragment {
 
 
     public void refreshContent() {
-        new GetAdminData().execute();
+        new GetAdminData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((AdminActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
 
@@ -530,7 +530,7 @@ public class AdminProfileFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    new DeleteProfile().execute();
+                                    new DeleteProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -2261,25 +2261,43 @@ public class AdminProfileFragment extends Fragment {
 
 
 
-    private void downloadImage() {
-//        new Getsingnature().execute();
+    public void downloadImage() {
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    class Getsingnature extends AsyncTask<String, String, String> {
+    String signature="";
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json "+json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {}
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("TAG", "downloadImage signature : "+signature);
 //        String t = String.valueOf(System.currentTimeMillis());
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
+            Log.d("TAG", "downloadImage: GetImage username "+username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
 
-
-        GlideApp.with(getContext())
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(myprofileimg);
-
-        Log.d("TAG", "downloadImage: called from fragment "+username);
-
+            GlideApp.with(getContext())
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(myprofileimg);
+        }
     }
 
     //ssss
@@ -3448,7 +3466,7 @@ public class AdminProfileFragment extends Fragment {
                 progressAnimator.setDuration(1000);
                 progressAnimator.setInterpolator(new LinearInterpolator());
                 progressAnimator.start();
-//                new GetImage().execute();
+//                new GetImage().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 downloadImage();
 
             } catch (Exception e) {

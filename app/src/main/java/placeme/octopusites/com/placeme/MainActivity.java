@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -77,10 +76,9 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
 
-public class MainActivity extends AppCompatActivity implements ImagePickerCallback
-{
+public class MainActivity extends AppCompatActivity implements ImagePickerCallback {
 
-    final public static int  STUDENT_DATA_CHANGE_RESULT_CODE =333;
+    final public static int STUDENT_DATA_CHANGE_RESULT_CODE = 333;
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
     private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
@@ -89,19 +87,19 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     private int current_page_notification = 1;
     int total_no_of_notifications;
     int[] called_pages_notification;
-    boolean isFirstRunNotification=true,isLastPageLoadedNotification=false;
-    int lastPageFlagNotification=0;
-    int unreadcountNotification=0;
-    int notificationcount=0;
-    int readstatuscountNotification=0;
+    boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
+    int lastPageFlagNotification = 0;
+    int unreadcountNotification = 0;
+    int notificationcount = 0;
+    int readstatuscountNotification = 0;
     RelativeLayout notificationcountrl;
     TextView notificationcounttxt;
     String lastupdatedNotification[];
     String[] uniqueUploadersNotification;
     String[] uniqueUploadersEncNotification;
-    String notificationids[],notificationtitles[],notificationnotifications[],notificationfilename1[],notificationfilename2[],notificationfilename3[],notificationfilename4[],notificationfilename5[],notificationuploadtime[],notificationlastmodified[],notificationuploadedby[],notificationuploadedbyplain[];
+    String notificationids[], notificationtitles[], notificationnotifications[], notificationfilename1[], notificationfilename2[], notificationfilename3[], notificationfilename4[], notificationfilename5[], notificationuploadtime[], notificationlastmodified[], notificationuploadedby[], notificationuploadedbyplain[];
     String notificationreadstatus[];
-    int notificationpages=0;
+    int notificationpages = 0;
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
@@ -110,57 +108,57 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     private int current_page_placement = 1;
     int total_no_of_placements;
     int[] called_pages_placement;
-    boolean isFirstRunPlacement=true,isLastPageLoadedPlacement=false;
-    int lastPageFlagPlacement=0;
-    int unreadcountPlacement=0;
-    int placementcount=0;
-    int readstatuscountPlacement=0;
-    RelativeLayout placementcountrl,messagecountrl;
-    TextView placementcounttxt,messagecount;
+    boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
+    int lastPageFlagPlacement = 0;
+    int unreadcountPlacement = 0;
+    int placementcount = 0;
+    int readstatuscountPlacement = 0;
+    RelativeLayout placementcountrl, messagecountrl;
+    TextView placementcounttxt, messagecount;
     String lastupdatedPlacement[];
     String[] uniqueUploadersPlacement;
     String[] uniqueUploadersEncPlacement;
-    String placementids[],placementcompanyname[],placementcpackage[],placementpost[],placementforwhichcourse[],placementforwhichstream[],placementvacancies[],placementlastdateofregistration[],placementdateofarrival[],placementbond[],placementnoofapti[],placementnooftechtest[],placementnoofgd[],placementnoofti[],placementnoofhri[],placementstdx[],placementstdxiiordiploma[],placementug[],placementpg[],placementuploadtime[],placementlastmodified[],placementuploadedby[],placementuploadedbyplain[],placementnoofallowedliveatkt[],placementnoofalloweddeadatkt[];
+    String placementids[], placementcompanyname[], placementcpackage[], placementpost[], placementforwhichcourse[], placementforwhichstream[], placementvacancies[], placementlastdateofregistration[], placementdateofarrival[], placementbond[], placementnoofapti[], placementnooftechtest[], placementnoofgd[], placementnoofti[], placementnoofhri[], placementstdx[], placementstdxiiordiploma[], placementug[], placementpg[], placementuploadtime[], placementlastmodified[], placementuploadedby[], placementuploadedbyplain[], placementnoofallowedliveatkt[], placementnoofalloweddeadatkt[];
     String placementreadstatus[];
-    int placementpages=0;
+    int placementpages = 0;
     Menu menu;
     public static final String MyPREFERENCES = "MyPrefs";
-    private String plainusername,username="",fname="",mname="",sname="";
+    private String plainusername, username = "", fname = "", mname = "", sname = "";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
-    int selectedMenuFlag=1;
+    int selectedMenuFlag = 1;
     private List<RecyclerItem> itemListNotification = new ArrayList<>();
     private List<RecyclerItemPlacement> itemListPlacement = new ArrayList<>();
     List<RecyclerItem> tempListNotification;
     List<RecyclerItemPlacement> tempListPlacement;
     private RecyclerItemAdapter mAdapterNotification;
-    int searchNotificationFlag=0,searchPlacementFlag=0;
+    int searchNotificationFlag = 0, searchPlacementFlag = 0;
     private RecyclerItemAdapterPlacement mAdapterPlacement;
-    private RecyclerView recyclerViewNotification,recyclerViewPlacement;
+    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
     JSONParser jParser = new JSONParser();
-    String digest1,digest2;
+    String digest1, digest2;
     JSONObject json;
     FrameLayout mainfragment;
     private MaterialSearchView searchView;
-    int navMenuFlag=0,oldNavMenuFlag=0;
+    int navMenuFlag = 0, oldNavMenuFlag = 0;
     FrameLayout crop_layout;
     private ImageView resultView;
     ImagePicker imagePicker;
     private int chooserType;
     private String mediaPath;
     private String finalPath;
-    String filepath="",filename="";
+    String filepath = "", filename = "";
     private String thumbPath;
     String directory;
     List<String> response;
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
     SwipeRefreshLayout tswipe_refresh_layout;
-    int crop_flag=0;
-    String reciever_username[],reciever_uid[];
+    int crop_flag = 0;
+    String reciever_username[], reciever_uid[];
     String unread_count[];
     int count;
-    int unreadMessageCount=0;
+    int unreadMessageCount = 0;
     String sender_uid;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     byte[] demoKeyBytes;
@@ -191,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(MainActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -199,15 +197,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
-        String pass=MySharedPreferencesManager.getPassword(this);
+        username = MySharedPreferencesManager.getUsername(this);
+        String role = MySharedPreferencesManager.getRole(this);
+        String pass = MySharedPreferencesManager.getPassword(this);
 
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
         tabLayout = (TabLayout) findViewById(R.id.blogtabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        MySharedPreferencesManager.save(MainActivity.this,"intro","yes");
+        MySharedPreferencesManager.save(MainActivity.this, "intro", "yes");
 
         setupViewPager(mViewPager);
         setupTabIcons();
@@ -265,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                    }
                     new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
-                    MessagesFragment fragment = (MessagesFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                    MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     fragment.addMessages();
                 }
             }
@@ -279,31 +277,32 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         imagePicker.shouldGenerateThumbnails(false); // Default is true
 
 
-        crop_layout=(FrameLayout)findViewById(R.id.crop_layout);
+        crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
         resultView = (ImageView) findViewById(R.id.result_image);
 
-        try
-        {
+        try {
 
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
+            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            plainusername=new String(demo1DecryptedBytes1);
+            plainusername = new String(demo1DecryptedBytes1);
 
-            byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
+            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
-            String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + MySharedPreferencesManager.getDigest3(MainActivity.this));
+            String data = new String(demo2DecryptedBytes1);
+            String hash = md5(data + MySharedPreferencesManager.getDigest3(MainActivity.this));
 
 //            new LoginFirebaseTask().execute(plainusername,hash);
             loginFirebase(plainusername, hash);
 
-        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
-        MySharedPreferencesManager.save(MainActivity.this,"otp", "no");
+        MySharedPreferencesManager.save(MainActivity.this, "otp", "no");
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
@@ -319,34 +318,21 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if(selectedMenuFlag==0)
-                {
+                if (selectedMenuFlag == 0) {
 
-                }
-                else if(selectedMenuFlag==1)
-                {
-                    searchNotificationFlag=1;
+                } else if (selectedMenuFlag == 1) {
+                    searchNotificationFlag = 1;
                     filterNotifications(newText);
-                }
-                else if(selectedMenuFlag==2)
-                {
-                    searchPlacementFlag=1;
+                } else if (selectedMenuFlag == 2) {
+                    searchPlacementFlag = 1;
                     filterPlacements(newText);
-                }
-                else if(selectedMenuFlag==3)
-                {
+                } else if (selectedMenuFlag == 3) {
 
-                }
-                else if(selectedMenuFlag==4)
-                {
+                } else if (selectedMenuFlag == 4) {
 
-                }
-                else if(selectedMenuFlag==5)
-                {
+                } else if (selectedMenuFlag == 5) {
 
-                }
-                else if(selectedMenuFlag==6)
-                {
+                } else if (selectedMenuFlag == 6) {
 
                 }
 
@@ -360,6 +346,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 searchView.setBackIcon(upArrow);
             }
+
             @Override
             public void onSearchViewClosed() {
             }
@@ -367,17 +354,16 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        {
+        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             //scrolling toolbar gone problem solve blog
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
 
-                if(oldNavMenuFlag!=navMenuFlag) {
+                if (oldNavMenuFlag != navMenuFlag) {
                     if (navMenuFlag == 1) {
-                        selectedMenuFlag=0;
+                        selectedMenuFlag = 0;
 
                         //scroll
                         params.setScrollFlags(0);
@@ -403,7 +389,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                         params.setScrollFlags(0);
 
-                        selectedMenuFlag=1;
+                        selectedMenuFlag = 1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
@@ -418,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     } else if (navMenuFlag == 3) {
 
-                        selectedMenuFlag=2;
+                        selectedMenuFlag = 2;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -435,7 +421,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     } else if (navMenuFlag == 4) {
 
-                        selectedMenuFlag=3;
+                        selectedMenuFlag = 3;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -454,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     } else if (navMenuFlag == 5) {
 
-                        selectedMenuFlag=4;
+                        selectedMenuFlag = 4;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -472,7 +458,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     } else if (navMenuFlag == 6) {
 
-                        selectedMenuFlag=5;
+                        selectedMenuFlag = 5;
                         params.setScrollFlags(5);           // enable scrolling
 
 //                        Toast.makeText(MainActivity.this, ""+params.getScrollFlags(), Toast.LENGTH_SHORT).show();
@@ -487,7 +473,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     } else if (navMenuFlag == 7) {
 
-                        selectedMenuFlag=6;
+                        selectedMenuFlag = 6;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -511,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
 
-                oldNavMenuFlag=navMenuFlag;
+                oldNavMenuFlag = navMenuFlag;
 
             }
         };
@@ -522,101 +508,103 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        final View hView =  navigationView.getHeaderView(0);
+        final View hView = navigationView.getHeaderView(0);
 
-        profile = (CircleImageView)hView.findViewById(R.id.profile_image);
-        new GetProfileImage().execute();
-        final ImageView profilei=(ImageView)hView.findViewById(R.id.profile);
-        final ImageView notificationi=(ImageView)hView.findViewById(R.id.notification);
-        final ImageView placementi=(ImageView)hView.findViewById(R.id.placement);
-        final ImageView proi=(ImageView)hView.findViewById(R.id.pro);
-        final ImageView settingsi=(ImageView)hView.findViewById(R.id.settings);
-        final ImageView newsi=(ImageView)hView.findViewById(R.id.blog);
-        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
+        profile = (CircleImageView) hView.findViewById(R.id.profile_image);
 
-        notificationcounttxt=(TextView)hView.findViewById(R.id.notificationcount);
-        notificationcountrl=(RelativeLayout)hView.findViewById(R.id.notificationcountrl);
+//        new GetProfileImage().execute();
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-        placementcounttxt=(TextView)hView.findViewById(R.id.placementcount);
-        placementcountrl=(RelativeLayout)hView.findViewById(R.id.placementcountrl);
+        final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
+        final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
+        final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
+        final ImageView proi = (ImageView) hView.findViewById(R.id.pro);
+        final ImageView settingsi = (ImageView) hView.findViewById(R.id.settings);
+        final ImageView newsi = (ImageView) hView.findViewById(R.id.blog);
+        final ImageView chati = (ImageView) hView.findViewById(R.id.chat);
 
-        messagecount=(TextView)hView.findViewById(R.id.messagecount);
-        messagecountrl=(RelativeLayout)hView.findViewById(R.id.messagecountrl);
+        notificationcounttxt = (TextView) hView.findViewById(R.id.notificationcount);
+        notificationcountrl = (RelativeLayout) hView.findViewById(R.id.notificationcountrl);
 
-        View v1=(View)hView.findViewById(R.id.prifileselectionview);
-        View v2=(View)hView.findViewById(R.id.notificationselectionview);
-        View v3=(View)hView.findViewById(R.id.placementselectionview);
-        View v4=(View)hView.findViewById(R.id.proselectionview);
-        View v5=(View)hView.findViewById(R.id.settingselectionview);
-        View v6=(View)hView.findViewById(R.id.blogselectionview);
-        View v7=(View)hView.findViewById(R.id.abtselectionview);
-        View v8=(View)hView.findViewById(R.id.chatselectionview);
+        placementcounttxt = (TextView) hView.findViewById(R.id.placementcount);
+        placementcountrl = (RelativeLayout) hView.findViewById(R.id.placementcountrl);
 
-        mainfragment=(FrameLayout)findViewById(R.id.mainfragment);
+        messagecount = (TextView) hView.findViewById(R.id.messagecount);
+        messagecountrl = (RelativeLayout) hView.findViewById(R.id.messagecountrl);
+
+        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
+        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
+        View v3 = (View) hView.findViewById(R.id.placementselectionview);
+        View v4 = (View) hView.findViewById(R.id.proselectionview);
+        View v5 = (View) hView.findViewById(R.id.settingselectionview);
+        View v6 = (View) hView.findViewById(R.id.blogselectionview);
+        View v7 = (View) hView.findViewById(R.id.abtselectionview);
+        View v8 = (View) hView.findViewById(R.id.chatselectionview);
+
+        mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=1;
+                navMenuFlag = 1;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getBold(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
 
 
             }
@@ -625,60 +613,60 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=2;
+                navMenuFlag = 2;
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getBold(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -691,60 +679,60 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=3;
+                navMenuFlag = 3;
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getBold(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -758,58 +746,58 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=4;
+                navMenuFlag = 4;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon_selected);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getBold(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -822,8 +810,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                crop_flag=1;
-                startActivity(new Intent(MainActivity.this,ProSplashScreen.class));
+                crop_flag = 1;
+                startActivity(new Intent(MainActivity.this, ProSplashScreen.class));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -835,59 +823,59 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=5;
+                navMenuFlag = 5;
 //                Toast.makeText(MainActivity.this, "settings", Toast.LENGTH_SHORT).show();
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getBold(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -900,65 +888,63 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=6;
+                navMenuFlag = 6;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getBold(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
-
 
 
             }
@@ -967,58 +953,58 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=7;
+                navMenuFlag = 7;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
@@ -1033,35 +1019,35 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         Drawable myDrawable = getResources().getDrawable(R.drawable.notification_icon_selected);
         notificationi.setImageDrawable(myDrawable);
 
-        TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
+        TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
         pt.setTypeface(Z.getBold(MainActivity.this));
         pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-        TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+        TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
         pt1.setTypeface(Z.getLight(MainActivity.this));
         pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+        TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
         pt3.setTypeface(Z.getLight(MainActivity.this));
         pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+        TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
         pt8.setTypeface(Z.getLight(MainActivity.this));
         pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+        TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
         pt4.setTypeface(Z.getLight(MainActivity.this));
         pt4.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+        TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
         pt5.setTypeface(Z.getLight(MainActivity.this));
         pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+        TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
         pt6.setTypeface(Z.getLight(MainActivity.this));
         pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+        TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
         pt7.setTypeface(Z.getLight(MainActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -1088,19 +1074,17 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view, int position) {
 
-                RecyclerItem item=null;
-                if(searchNotificationFlag==1)
+                RecyclerItem item = null;
+                if (searchNotificationFlag == 1)
                     item = tempListNotification.get(position);
                 else
                     item = itemListNotification.get(position);
-                if(!item.getisRead())
-                {
+                if (!item.getisRead()) {
                     item.setisRead(true);
                     unreadcountNotification--;
                     notificationcountrl.setVisibility(View.VISIBLE);
-                    notificationcounttxt.setText(unreadcountNotification+"");
-                    if(unreadcountNotification==0)
-                    {
+                    notificationcounttxt.setText(unreadcountNotification + "");
+                    if (unreadcountNotification == 0) {
                         notificationcountrl.setVisibility(View.GONE);
                     }
 
@@ -1110,7 +1094,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 changeReadStatusNotification(item.getId());
 
-                crop_flag=1;
+                crop_flag = 1;
                 Intent i1 = new Intent(MainActivity.this, ViewNotification.class);
                 i1.putExtra("id", item.getId());
                 i1.putExtra("title", item.getTitle());
@@ -1141,7 +1125,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onLoadMore(int current_page) {
 
-                if(total_no_of_notifications>20) {
+                if (total_no_of_notifications > 20) {
                     simulateLoadingNotification();
                 }
 
@@ -1152,21 +1136,19 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onClick(View view, int position) {
 
-                RecyclerItemPlacement item=null;
-                if(searchPlacementFlag==1)
+                RecyclerItemPlacement item = null;
+                if (searchPlacementFlag == 1)
                     item = tempListPlacement.get(position);
                 else
                     item = itemListPlacement.get(position);
 
 
-                if(!item.getisRead())
-                {
+                if (!item.getisRead()) {
                     item.setisRead(true);
                     unreadcountPlacement--;
                     placementcountrl.setVisibility(View.VISIBLE);
-                    placementcounttxt.setText(unreadcountPlacement+"");
-                    if(unreadcountPlacement==0)
-                    {
+                    placementcounttxt.setText(unreadcountPlacement + "");
+                    if (unreadcountPlacement == 0) {
                         placementcountrl.setVisibility(View.GONE);
                     }
 
@@ -1176,7 +1158,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 changeReadStatusPlacement(item.getId());
 
-                crop_flag=1;
+                crop_flag = 1;
 
                 Intent i1 = new Intent(MainActivity.this, ViewPlacement.class);
                 i1.putExtra("id", item.getId());
@@ -1215,7 +1197,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onLoadMore(int current_page) {
 
-                if(total_no_of_placements>20) {
+                if (total_no_of_placements > 20) {
                     simulateLoadingPlacement();
                 }
 
@@ -1225,16 +1207,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         disableNavigationViewScrollbars(navigationView);
 
 
-        tswipe_refresh_layout=(SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
 
-                if(selectedMenuFlag==1) {
+                if (selectedMenuFlag == 1) {
                     getNotifications();
-                }
-                else if(selectedMenuFlag==2) {
+                } else if (selectedMenuFlag == 2) {
                     getPlacements();
                 }
 
@@ -1250,6 +1231,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         getNotifications();
 
     }
+
     void loginFirebase(String username, String hash) {
 
         FirebaseAuth.getInstance()
@@ -1269,28 +1251,29 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     }
                 });
     }
-    void filterNotifications(String text)
-    {
-        tempListNotification = new ArrayList();
-        for(RecyclerItem d: itemListNotification){
 
-            if(containsIgnoreCase(d.getTitle(),text)){
+    void filterNotifications(String text) {
+        tempListNotification = new ArrayList();
+        for (RecyclerItem d : itemListNotification) {
+
+            if (containsIgnoreCase(d.getTitle(), text)) {
                 tempListNotification.add(d);
             }
         }
-        mAdapterNotification.updateList(tempListNotification,text);
+        mAdapterNotification.updateList(tempListNotification, text);
     }
-    void filterPlacements(String text)
-    {
-        tempListPlacement = new ArrayList();
-        for(RecyclerItemPlacement d: itemListPlacement){
 
-            if(containsIgnoreCase(d.getCompanyname(),text)){
+    void filterPlacements(String text) {
+        tempListPlacement = new ArrayList();
+        for (RecyclerItemPlacement d : itemListPlacement) {
+
+            if (containsIgnoreCase(d.getCompanyname(), text)) {
                 tempListPlacement.add(d);
             }
         }
-        mAdapterPlacement.updateList(tempListPlacement,text);
+        mAdapterPlacement.updateList(tempListPlacement, text);
     }
+
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
@@ -1299,6 +1282,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         tabLayout.getTabAt(4).setIcon(tabIcons[4]);
         tabLayout.getTabAt(5).setIcon(tabIcons[5]);
     }
+
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new NewsFeedFragment(), "News Feed");
@@ -1338,8 +1322,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             return mFragmentTitleList.get(position);
         }
     }
-    public static boolean containsIgnoreCase(String str, String searchStr)     {
-        if(str == null || searchStr == null) return false;
+
+    public static boolean containsIgnoreCase(String str, String searchStr) {
+        if (str == null || searchStr == null) return false;
 
         final int length = searchStr.length();
         if (length == 0)
@@ -1352,16 +1337,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         return false;
     }
 
-    public void updateUnreadMessageCount(int readCount)
-    {
-        unreadMessageCount-=readCount;
+    public void updateUnreadMessageCount(int readCount) {
+        unreadMessageCount -= readCount;
         messagecountrl.setVisibility(View.VISIBLE);
-        messagecount.setText(unreadMessageCount+"");
-        if(unreadMessageCount<=0)
-        {
+        messagecount.setText(unreadMessageCount + "");
+        if (unreadMessageCount <= 0) {
             messagecountrl.setVisibility(View.GONE);
         }
     }
+
     class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
 
 
@@ -1376,15 +1360,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 count = Integer.parseInt(json.getString("count"));
                 sender_uid = json.getString("uid");
 
-                reciever_username=new String[count];
-                reciever_uid=new String[count];
-                unread_count=new String[count];
+                reciever_username = new String[count];
+                reciever_uid = new String[count];
+                unread_count = new String[count];
 
-                for(int i=0;i<count;i++)
-                {
-                    unread_count[i]="0";
-                    reciever_username[i]=json.getString("username"+i);
-                    reciever_uid[i]=json.getString("uid"+i);
+                for (int i = 0; i < count; i++) {
+                    unread_count[i] = "0";
+                    reciever_username[i] = json.getString("username" + i);
+                    reciever_uid[i] = json.getString("uid" + i);
                 }
 
             } catch (Exception ex) {
@@ -1413,8 +1396,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
 
 
-
-
                     } catch (Exception e) {
                     }
 
@@ -1426,6 +1407,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
     class GetMessagesReadStatus extends AsyncTask<String, String, String> {
 
         String sender, reciever, senderuid, recieveruid;
@@ -1467,18 +1449,18 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 for (int i = 0; i < count; i++) {
 
-                    unreadMessageCount+=Integer.parseInt(unread_count[i]);
+                    unreadMessageCount += Integer.parseInt(unread_count[i]);
 
                 }
                 messagecountrl.setVisibility(View.VISIBLE);
-                messagecount.setText(unreadMessageCount+"");
-                if(unreadMessageCount==0)
-                {
+                messagecount.setText(unreadMessageCount + "");
+                if (unreadMessageCount == 0) {
                     messagecountrl.setVisibility(View.GONE);
                 }
             }
         }
     }
+
     class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
 
 
@@ -1505,15 +1487,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
             placementcountrl.setVisibility(View.VISIBLE);
-            placementcounttxt.setText(unreadcountPlacement+"");
-            if(unreadcountPlacement==0)
-            {
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
                 placementcountrl.setVisibility(View.GONE);
             }
             notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification+"");
-            if(unreadcountNotification==0)
-            {
+            notificationcounttxt.setText(unreadcountNotification + "");
+            if (unreadcountNotification == 0) {
                 notificationcountrl.setVisibility(View.GONE);
             }
 
@@ -1522,46 +1502,47 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-    void getNotifications()
-    {
+    void getNotifications() {
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
         loadingNotification = true;
-        page_to_call_notification=1;
-        isFirstRunNotification=true;
-        isLastPageLoadedNotification=false;
-        lastPageFlagNotification=0;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
         new GetNotificationsReadStatus().execute();
     }
-    void getPlacements()
-    {
+
+    void getPlacements() {
         Log.d("pbacktrack", "getPlacements: accessed ");
 
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
-        page_to_call_placement=1;
-        isFirstRunPlacement=true;
-        isLastPageLoadedPlacement=false;
-        lastPageFlagPlacement=0;
+        page_to_call_placement = 1;
+        isFirstRunPlacement = true;
+        isLastPageLoadedPlacement = false;
+        lastPageFlagPlacement = 0;
         new GetPlacementsReadStatus().execute();
     }
+
     private void simulateLoadingNotification() {
         new AsyncTask<Void, Void, Void>() {
-            @Override protected void onPreExecute() {
+            @Override
+            protected void onPreExecute() {
                 tswipe_refresh_layout.setRefreshing(true);
             }
 
-            @Override protected Void doInBackground(Void... param) {
+            @Override
+            protected Void doInBackground(Void... param) {
                 try {
 
 
-                    if(page_to_call_notification<notificationpages)
+                    if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
 
 
-
-                    if(page_to_call_notification!=notificationpages) {
+                    if (page_to_call_notification != notificationpages) {
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
@@ -1595,13 +1576,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             notificationuploadedby[i] = json.getString("uploadedby" + i);
 
                         }
-                    }
-                    else
-                    {
-                        if(!isLastPageLoadedNotification)
-                        {
+                    } else {
+                        if (!isLastPageLoadedNotification) {
 
-                            lastPageFlagNotification=1;
+                            lastPageFlagNotification = 1;
 
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
@@ -1646,10 +1624,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 return null;
             }
 
-            @Override protected void onPostExecute(Void param) {
+            @Override
+            protected void onPostExecute(Void param) {
 
 
-                if(!isLastPageLoadedNotification) {
+                if (!isLastPageLoadedNotification) {
 
                     for (int i = 0; i < notificationcount; i++)
                         try {
@@ -1727,6 +1706,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             }
         }.execute();
     }
+
     private void simulateLoadingPlacement() {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -2047,6 +2027,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         public abstract void onLoadMore(int current_page);
     }
+
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 
@@ -2085,6 +2066,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         public abstract void onLoadMore(int current_page);
     }
+
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -2139,6 +2121,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
     class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -2189,6 +2172,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
     class GetNotifications extends AsyncTask<String, String, String> {
 
 
@@ -2250,7 +2234,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
                         byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
                         notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-                        Log.d("backtrack", "notificationtitles["+i+"]:" + notificationtitles[i]);
+                        Log.d("backtrack", "notificationtitles[" + i + "]:" + notificationtitles[i]);
                     }
                     if (notificationnotifications[i] != null) {
                         byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
@@ -2306,13 +2290,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
                         byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
                         notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                        Log.d("backtrack", "notificationtitles["+i+"]:" + notificationtitles[i]);
+                        Log.d("backtrack", "notificationtitles[" + i + "]:" + notificationtitles[i]);
 
                     }
 
 
                 } catch (Exception e) {
-                    Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     Log.d("backtrack", "error" + e.getMessage());
 
 
@@ -2323,6 +2307,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
     class GetPlacements extends AsyncTask<String, String, String> {
 
 
@@ -2618,6 +2603,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
 
     }
+
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
 
@@ -2678,8 +2664,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             isFirstRunNotification = false;
         }
 
-        if(!isLastPageLoadedNotification)
-        {
+        if (!isLastPageLoadedNotification) {
 
             for (int i = 0; i < notificationcount; i++) {
 
@@ -2708,7 +2693,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     e.printStackTrace();
                 }
                 RecyclerItem item = null;
-                for (int j = 0; j < readstatuscountNotification ; j++) {
+                for (int j = 0; j < readstatuscountNotification; j++) {
                     String idnstatus = notificationreadstatus[j];
                     String sid = "";
                     if (idnstatus.contains("U")) {
@@ -2717,55 +2702,55 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             sid += idnstatus.charAt(k);
                         }
                         if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
+                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
 
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
-                                    if (lastupdatedNotification [k] == null) {
+                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
+                                    if (lastupdatedNotification[k] == null) {
 
                                         if (notificationfilename1[i].equals("null")) {
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i],notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i],outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i] ,notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, "placeme");
 
                                             itemListNotification.add(item);
                                         } else {
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, "placeme");
 
                                             itemListNotification.add(item);
                                         }
                                     } else {
                                         if (notificationfilename1[i].equals("null")) {
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
 
                                             itemListNotification.add(item);
                                         } else {
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
 
                                             itemListNotification.add(item);
                                         }
@@ -2778,34 +2763,34 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             sid += idnstatus.charAt(k);
                         }
                         if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
+                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
 
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
+                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
 
 
-                                    if (lastupdatedNotification [k] == null) {
+                                    if (lastupdatedNotification[k] == null) {
 
                                         if (notificationfilename1[i].equals("null")) {
 
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, "placeme");
 
                                             itemListNotification.add(item);
                                         } else {
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, "placeme");
 
                                             itemListNotification.add(item);
                                         }
@@ -2813,24 +2798,24 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                                         if (notificationfilename1[i].equals("null")) {
 
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
 
                                             itemListNotification.add(item);
                                         } else {
                                             if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
                                             else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification [k]);
+                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], MainActivity.this, lastupdatedNotification[k]);
 
                                             itemListNotification.add(item);
                                         }
@@ -2845,8 +2830,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
 
 
-        if(lastPageFlagNotification==1)
-            isLastPageLoadedNotification=true;
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
 
         mAdapterNotification.notifyDataSetChanged();
 
@@ -2946,20 +2931,20 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
-    void changeReadStatusNotification(String id)
-    {
+
+    void changeReadStatusNotification(String id) {
         new ChangeReadStatusNotification().execute(id);
 
     }
-    void changeReadStatusPlacement(String id)
-    {
+
+    void changeReadStatusPlacement(String id) {
         new ChangeReadStatusPlacement().execute(id);
 
     }
 
     @Override
     public void onImagesChosen(List<ChosenImage> list) {
-        final ChosenImage file=list.get(0);
+        final ChosenImage file = list.get(0);
 
         runOnUiThread(new Runnable() {
 
@@ -3000,6 +2985,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
     class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
 
 
@@ -3018,6 +3004,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
         if (navigationView != null) {
             NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
@@ -3048,7 +3035,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     @Override
                     public void run() {
-                        doubleBackToExitPressedOnce=false;
+                        doubleBackToExitPressedOnce = false;
                     }
                 }, 2000);
             }
@@ -3082,29 +3069,32 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         return super.onOptionsItemSelected(item);
     }
 
-    public void requestProfileImage()
-    {
-        new GetProfileImage().execute();
+    public void requestProfileImage() {
+//        new GetProfileImage().execute();
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
     }
 
-    public void requestCropImage()
-    {
+    public void requestCropImage() {
         resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(MainActivity.this,"crop", "yes");
+        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
         chooseImage();
 
 
     }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
-        if(requestCode== Picker.PICK_IMAGE_DEVICE) {
+        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {
 
@@ -3116,7 +3106,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 crop_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.GONE);
-                crop_flag=1;
+                crop_flag = 1;
                 beginCrop(result.getData());
                 // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
@@ -3124,23 +3114,19 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.VISIBLE);
             }
-        }
-        else if(resultCode==RESULT_CANCELED)
-        {
+        } else if (resultCode == RESULT_CANCELED) {
             crop_layout.setVisibility(View.GONE);
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
-            crop_flag=0;
-        }
-        else if (requestCode == Crop.REQUEST_CROP) {
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
             handleCrop(resultCode, result);
         }
 
-        if(resultCode==STUDENT_DATA_CHANGE_RESULT_CODE)
-        {
+        if (resultCode == STUDENT_DATA_CHANGE_RESULT_CODE) {
             Log.d("TAG", "onActivityResult: personal save");
-            MyProfileFragment fragment = (MyProfileFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
         }
     }
@@ -3153,24 +3139,24 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
-            File f=new File(getCacheDir(), "cropped");
-            filepath=f.getAbsolutePath();
+            File f = new File(getCacheDir(), "cropped");
+            filepath = f.getAbsolutePath();
 
-            filename="";
-            int index=filepath.lastIndexOf("/");
-            directory="";
-            for(int i=0;i<index;i++)
-                directory+=filepath.charAt(i);
+            filename = "";
+            int index = filepath.lastIndexOf("/");
+            directory = "";
+            for (int i = 0; i < index; i++)
+                directory += filepath.charAt(i);
 
-            for(int i=index+1;i<filepath.length();i++)
-                filename+=filepath.charAt(i);
+            for (int i = index + 1; i < filepath.length(); i++)
+                filename += filepath.charAt(i);
 
             crop_layout.setVisibility(View.GONE);
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
             MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().execute();
+            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -3187,40 +3173,58 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
 
+//    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
+//        @Override
+//        protected Bitmap doInBackground(String... urls) {
+//            Bitmap map = null;
+//
+//            return map;
+//        }
+//        @Override
+//        protected void onPostExecute(Bitmap result) {
+//
+//            downloadImage();
+//        }
+//
+//    }
 
-    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
 
-            return map;
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
         }
+
         @Override
-        protected void onPostExecute(Bitmap result) {
+        protected void onPostExecute(String result) {
 
-            downloadImage();
+            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(MainActivity.this)
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(profile);
+
         }
-
-
-
     }
-    private void downloadImage() {
 
-        String t = String.valueOf(System.currentTimeMillis());
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
-
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profile);
-
-    }
     class UploadProfile extends AsyncTask<String, String, String> {
 
 
@@ -3230,14 +3234,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 File sourceFile = new File(filepath);
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                Log.d("***", "doInBackground: input username "+username);
+                Log.d("***", "doInBackground: input username " + username);
                 multipart.addFormField("u", username);
 
-                if(filename!="") {
+                if (filename != "") {
                     multipart.addFormField("f", filename);
                     multipart.addFilePart("uf", sourceFile);
-                }
-                else
+                } else
                     multipart.addFormField("f", "null");
                 response = multipart.finish();
 
@@ -3256,23 +3259,23 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if(response.get(0).contains("success")) {
-                MySharedPreferencesManager.save(MainActivity.this,"crop", "no");
-                Toast.makeText(MainActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+            if (response != null && response.get(0).contains("success")) {
+                MySharedPreferencesManager.save(MainActivity.this, "crop", "no");
                 requestProfileImage();
                 MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
+                fragment.downloadImage();
+                Toast.makeText(MainActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 DeleteRecursive(new File(directory));
-            }
-            else if(response.get(0).contains("null"))
-            {
+            } else if (response != null && response.get(0).contains("null")) {
                 requestProfileImage();
                 MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                 fragment.refreshContent();
                 Toast.makeText(MainActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(MainActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
+
         void DeleteRecursive(File fileOrDirectory) {
 
             if (fileOrDirectory.isDirectory())
@@ -3287,37 +3290,39 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     class LoginFirebaseTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-            String user=param[0];
-            String hash=param[1];
+            String user = param[0];
+            String hash = param[1];
             FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(user,hash)
+                    .signInWithEmailAndPassword(user, hash)
                     .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                MySharedPreferencesManager.save(MainActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                                MySharedPreferencesManager.save(MainActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
                             } else {
-                                MySharedPreferencesManager.save(MainActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                                MySharedPreferencesManager.save(MainActivity.this, "fireLoginStatus", "Failed to login to Firebase");
                             }
                         }
                     });
             return null;
         }
+
         @Override
         protected void onPostExecute(String result) {
-            String status=MySharedPreferencesManager.getData(MainActivity.this,"fireLoginStatus");
+            String status = MySharedPreferencesManager.getData(MainActivity.this, "fireLoginStatus");
             Toast.makeText(MainActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
-            MySharedPreferencesManager.removeKey(MainActivity.this,"fireLoginStatus");
+            MySharedPreferencesManager.removeKey(MainActivity.this, "fireLoginStatus");
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver,new IntentFilter("pushNotification"));
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
 
     }
+
     @Override
     public void onPause() {
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
