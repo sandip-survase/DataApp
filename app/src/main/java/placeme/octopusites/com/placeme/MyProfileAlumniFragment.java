@@ -2930,6 +2930,8 @@ public class MyProfileAlumniFragment extends Fragment {
 
 //        new Getsingnature().execute();
 //        String t = String.valueOf(System.currentTimeMillis());
+
+        Log.d("TAG", "downloadImage: GetImage username "+username);
         Uri uri = new Uri.Builder()
                 .scheme("http")
                 .authority(Z.VPS_IP)
