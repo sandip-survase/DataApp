@@ -1036,7 +1036,7 @@ public class MyProfileFragment extends Fragment {
             }
         }
         if (found_courses == 1) {
-            if (!title1.equals("")) {
+            if (!course1.equals("")) {
                 percentProfile++;
                 if (!course1.equals(""))
                     acc3txttxt.setText(course1);
@@ -1053,8 +1053,6 @@ public class MyProfileFragment extends Fragment {
             }
         }
         if (found_skills == 1) {
-
-
             if (!skill1.equals("")) {
 
                 percentProfile++;
