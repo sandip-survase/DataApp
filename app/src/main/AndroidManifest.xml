@@ -432,7 +432,7 @@
         <meta-data
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
             android:value="598.0dip" />
-            android:label="@string/title_activity_user_selection" />
+        android:label="@string/title_activity_user_selection" />
         <activity
             android:name=".CreatePlacementHr"
             android:screenOrientation="portrait"

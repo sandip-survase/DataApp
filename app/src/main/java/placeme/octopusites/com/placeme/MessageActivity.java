@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -313,7 +314,7 @@ public class MessageActivity extends AppCompatActivity {
     void sendMessage()
     {
         String message = mETxtMessage.getText().toString();
-
+        Log.d("TAG", "sending: "+message);
         if(message.length()>0) {
             String sender = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             String senderUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -325,6 +326,7 @@ public class MessageActivity extends AppCompatActivity {
             message += "pLACEmeMsGTime" + currenttime;
            // Toast.makeText(this, sender + " \n" + senderUID, Toast.LENGTH_LONG).show();
             Chat chat = new Chat(sender, receiver, senderUid, receiverUid, message, System.currentTimeMillis());
+            Log.d("TAG", "chat object created: "+sender+" "+receiver+" "+senderUid+" "+receiverUid+" "+message+" "+System.currentTimeMillis());
             sendMessageToFirebaseUser(chat);
         }
     }
@@ -332,19 +334,21 @@ public class MessageActivity extends AppCompatActivity {
         final String room_type_1 = chat.senderUid + "_" + chat.receiverUid;
         final String room_type_2 = chat.receiverUid + "_" + chat.senderUid;
 
+        Log.d("TAG", "send to firebase called: ");
+
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.child("chat_rooms").getRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(room_type_1)) {
-                    // Log.e(TAG, "sendMessageToFirebaseUser: " + room_type_1 + " exists");
+                     Log.d("TAG", "sendMessageToFirebaseUser: " + room_type_1 + " exists");
                     databaseReference.child("chat_rooms").child(room_type_1).child(String.valueOf(chat.timestamp)).setValue(chat);
                 } else if (dataSnapshot.hasChild(room_type_2)) {
-                    // Log.e(TAG, "sendMessageToFirebaseUser: " + room_type_2 + " exists");
+                     Log.d("TAG", "sendMessageToFirebaseUser: " + room_type_2 + " exists");
                     databaseReference.child("chat_rooms").child(room_type_2).child(String.valueOf(chat.timestamp)).setValue(chat);
                 } else {
-                    // Log.e(TAG, "sendMessageToFirebaseUser: success");
+                     Log.d("TAG", "sendMessageToFirebaseUser: success");
                     databaseReference.child("chat_rooms").child(room_type_1).child(String.valueOf(chat.timestamp)).setValue(chat);
                     getMessageFromFirebaseUser(chat.senderUid, chat.receiverUid);
                 }
@@ -353,7 +357,7 @@ public class MessageActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-               // Toast.makeText(MessageActivity.this, "Unable to send message: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MessageActivity.this, "Unable to send message: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -383,11 +387,11 @@ public class MessageActivity extends AppCompatActivity {
             {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("s", sender));    //0
-                params.add(new BasicNameValuePair("r", receiver));  //1
+                params.add(new BasicNameValuePair("s", Z.Encrypt(sender,MessageActivity.this)));    //0
+                params.add(new BasicNameValuePair("r", Z.Encrypt(receiver,MessageActivity.this)));  //1
                 params.add(new BasicNameValuePair("su", senderUid));//2
                 params.add(new BasicNameValuePair("ru", receiverUid));//3
-                params.add(new BasicNameValuePair("m", message));       //4
+                params.add(new BasicNameValuePair("m", Z.Encrypt(message,MessageActivity.this)));       //4
                 params.add(new BasicNameValuePair("t", String.valueOf(timestamp)));  //5
 
                 if(sender.equals(username)) {
@@ -464,8 +468,8 @@ public class MessageActivity extends AppCompatActivity {
             {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("s", sender));    //0
-                params.add(new BasicNameValuePair("r", receiver));  //1
+                params.add(new BasicNameValuePair("s", Z.Encrypt(sender,MessageActivity.this)));    //0
+                params.add(new BasicNameValuePair("r", Z.Encrypt(receiver,MessageActivity.this)));  //1
                 json = jParser.makeHttpRequest(Z.url_GetLastPushedMessage, "GET", params);
 
                 if(json.getString("info").equals("success"))
@@ -529,8 +533,8 @@ public class MessageActivity extends AppCompatActivity {
             {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("s", sender));
-                params.add(new BasicNameValuePair("r", receiver));
+                params.add(new BasicNameValuePair("s", Z.Encrypt(sender,MessageActivity.this)));    //0
+                params.add(new BasicNameValuePair("r", Z.Encrypt(receiver,MessageActivity.this)));  //1
 
                 json = jParser.makeHttpRequest(Z.url_ChangeMessageReadStatus, "GET", params);
 
@@ -578,10 +582,10 @@ public class MessageActivity extends AppCompatActivity {
             {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("s", sender));
-                params.add(new BasicNameValuePair("r", receiver));
-                params.add(new BasicNameValuePair("m", message));
-                params.add(new BasicNameValuePair("t", timestamp));
+                params.add(new BasicNameValuePair("s", Z.Encrypt(sender,MessageActivity.this)));    //0
+                params.add(new BasicNameValuePair("r", Z.Encrypt(receiver,MessageActivity.this)));  //1
+                params.add(new BasicNameValuePair("m", Z.Encrypt(message,MessageActivity.this)));       //2
+                params.add(new BasicNameValuePair("t", timestamp));                                 //3
                 json = jParser.makeHttpRequest(Z.url_SendPushNotification, "GET", params);
 
                 result = json.getString("info");
@@ -613,15 +617,17 @@ public class MessageActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("s", senderUID));
                 params.add(new BasicNameValuePair("r", recieverUID));
                 json = jParser.makeHttpRequest(Z.url_loadchat, "GET", params);
+                Log.d("TAG", "load chat json: "+json);
                 String s = null;
                 resultofop = json.getString("chatroom");
                 if(resultofop.equals("chatroom1")||resultofop.equals("chatroom2"))
                 {
 
                     chatCount=Integer.parseInt(json.getString("count"));
+                    Log.d("TAG", "chat count from server: "+chatCount);
                     for (int i=0;i<chatCount;i++)
                     {
-                        Chat chat=new Chat(json.getString("sender"+i),json.getString("receiver"+i),json.getString("senderUid"+i),json.getString("receiverUid"+i),json.getString("message"+i),Long.parseLong(json.getString("timestamp"+i)));
+                        Chat chat=new Chat(Z.Decrypt(json.getString("sender"+i),MessageActivity.this),Z.Decrypt(json.getString("receiver"+i),MessageActivity.this),json.getString("senderUid"+i),json.getString("receiverUid"+i),Z.Decrypt(json.getString("message"+i),MessageActivity.this),Long.parseLong(json.getString("timestamp"+i)));
 
                         String message=chat.message;
                         StringBuffer sb=new StringBuffer("");
@@ -633,13 +639,14 @@ public class MessageActivity extends AppCompatActivity {
                         String extractedMessage=sb.toString();
                         Chat chat2=new Chat(chat.sender,chat.receiver,chat.senderUid,chat.receiverUid,extractedMessage,chat.timestamp);
 
-                        helper.createChat(chat2);
+                        if(helper.createChat(chat2));
+                            Log.d("TAG", "chat stored in sqlite"+chat2.message);
                     }
 
                 }
 
 
-            }catch (Exception e){e.printStackTrace();}
+            }catch (Exception e){Log.e("TAG", "exp"+e.getMessage());}
 
             return 0;
         }
@@ -648,6 +655,7 @@ public class MessageActivity extends AppCompatActivity {
 
             tempList.clear();
             tempList=helper.loadChat(username,email);
+            Log.d("TAG", "templist size: "+tempList.size());
             if(tempList.size()>0) {
                 firstMessage = tempList.get(0).message;
                 firstTimestamp = tempList.get(0).timestamp;

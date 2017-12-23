@@ -1596,20 +1596,20 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
-        refreshUserCount();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
-
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
+//        refreshUserCount();
+//
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+//
+//    }
 
 
 //    @Override
@@ -2390,8 +2390,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                Log.d("TAG", "successfully logged in to firebase");
                                 MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
                             } else {
+                                Log.d("TAG", "failed to login to firebase");
                                 MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Failed to login to Firebase");
                             }
                         }

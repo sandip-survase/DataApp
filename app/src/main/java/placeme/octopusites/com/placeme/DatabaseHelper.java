@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -239,6 +240,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             values.put("timestamp", chat.timestamp);
 
             db.insert("chat", null, values);
+            Log.d("TAG", "sender: "+chat.sender+" receiver"+chat.receiver);
             isSuccess=true;
         }
 
@@ -249,6 +251,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public ArrayList<Chat> loadChat(String sender,String receiver)
     {
 
+        Log.d("TAG", "loadchat called with sender "+sender+" receiver "+receiver);
         ArrayList<Chat> chats = new ArrayList<Chat>();
         SQLiteDatabase db = this.getWritableDatabase();
         String selectQuery = "select * from chat where (sender='"+sender+"' or  receiver='"+sender+"') and (sender='"+receiver+"' or  receiver='"+receiver+"')";
@@ -263,6 +266,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
                     Chat chat=new Chat(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),Long.parseLong(cursor.getString(5)));
                     chats.add(chat);
+                    Log.d("TAG", "chat found in db: "+chat.message);
 
                 }
                 while(cursor.moveToNext());
