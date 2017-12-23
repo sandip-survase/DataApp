@@ -18,6 +18,7 @@ public class PlacementTabAdmin3 extends Fragment {
 
 
     TextView tenthview,twelthordiplomaview,ugview,studenttenthview,studenttwelthordiplomaview,studentugview;
+    TextView aptitxt,ugtxt,diplomatxt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +32,22 @@ public class PlacementTabAdmin3 extends Fragment {
         studenttenthview=(TextView)rootView.findViewById(R.id.studenttenthmarksview);
         studenttwelthordiplomaview=(TextView)rootView.findViewById(R.id.studenttwelthordiplomamarksview);
         studentugview=(TextView)rootView.findViewById(R.id.studentugmarksview);
+
+        aptitxt=(TextView)rootView.findViewById(R.id.aptitxt);
+        ugtxt=(TextView)rootView.findViewById(R.id.ugtxt);
+        diplomatxt=(TextView)rootView.findViewById(R.id.diplomatxt);
+
+        aptitxt.setTypeface(Z.getLight(getActivity()));
+        ugtxt.setTypeface(Z.getLight(getActivity()));
+        diplomatxt.setTypeface(Z.getLight(getActivity()));
+
+        tenthview.setTypeface(Z.getBold(getActivity()));
+        twelthordiplomaview.setTypeface(Z.getBold(getActivity()));
+        ugview.setTypeface(Z.getBold(getActivity()));
+        studenttenthview.setTypeface(Z.getBold(getActivity()));
+        studenttwelthordiplomaview.setTypeface(Z.getBold(getActivity()));
+        studentugview.setTypeface(Z.getBold(getActivity()));
+
 
 
 
