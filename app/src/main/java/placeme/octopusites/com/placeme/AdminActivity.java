@@ -142,8 +142,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String lastupdatedPlacement[];
     TextView createPlacementOrNotification, editPlacementOrNotification;
     PlacementEditData settag = new PlacementEditData();
-    Toolbar toolbar;
-    TextView bluePanelTv;
     private ImageView resultView;
     private int chooserType;
     private String mediaPath;
@@ -1498,7 +1496,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
         }
-    }
+
 
     private void beginCrop(Uri source) {
         Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
