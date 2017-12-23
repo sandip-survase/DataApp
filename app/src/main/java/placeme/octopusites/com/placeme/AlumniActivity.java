@@ -70,7 +70,8 @@ import me.shaohui.advancedluban.OnCompressListener;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
-public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback {
+public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback
+{
     //
 //placement variable
     File Imgfile;
@@ -114,19 +115,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     String notificationreadstatus[];
     RelativeLayout notificationcountrl;
     TextView notificationcounttxt;
-    int notificationcount = 0;
-    String notificationids[], notificationtitles[], notificationnotifications[], notificationfilename1[], notificationfilename2[], notificationfilename3[], notificationfilename4[], notificationfilename5[], notificationuploadtime[], notificationlastmodified[], notificationuploadedby[], notificationuploadedbyplain[];
+    int notificationcount=0;
+    String notificationids[],notificationtitles[],notificationnotifications[],notificationfilename1[],notificationfilename2[],notificationfilename3[],notificationfilename4[],notificationfilename5[],notificationuploadtime[],notificationlastmodified[],notificationuploadedby[],notificationuploadedbyplain[];
     String[] uniqueUploadersNotification;
     String[] uniqueUploadersEncNotification;
     String lastupdatedNotification[];
     private RecyclerItemAdapter mAdapterNotification;
     private List<RecyclerItem> itemListNotification = new ArrayList<>();
-    int searchNotificationFlag = 0, searchPlacementFlag = 0;
+    int searchNotificationFlag=0,searchPlacementFlag=0;
     List<RecyclerItem> tempListNotification;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
     private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int current_page_notification = 1;
-    String[] blanksuggestionList = {""};
+    String[] blanksuggestionList={""};
 
 
     //
@@ -134,7 +135,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private String username = "";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
-    int notificationorplacementflag = 0;
+    int notificationorplacementflag=0;
     private List<RecyclerItem> itemList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerItemAdapter mAdapter;
@@ -143,7 +144,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     JSONParser jParser = new JSONParser();
     JSONObject json;
     FrameLayout mainfragment;
-    Handler handler = new Handler();
+    Handler handler=new Handler();
     private MaterialSearchView searchView;
     RelativeLayout createnotificationrl, editnotificationrl;
     int notificationplacementflag = 0;
@@ -162,14 +163,14 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
     private String plainusername;
-    String filepath = "", filename = "";
-    String directory, pass;
+    String filepath="",filename="";
+    String directory,pass;
     List<String> response;
     //
 
     // noti
     SwipeRefreshLayout tswipe_refresh_layout;
-    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
+    private RecyclerView recyclerViewNotification,recyclerViewPlacement;
 
     Toolbar toolbar;
     ViewPager mViewPager;
@@ -197,7 +198,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(AlumniActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -208,8 +209,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         tabLayout.setupWithViewPager(mViewPager);
 
         username = MySharedPreferencesManager.getUsername(this);
-        Log.d("***", "onCreate: username" + username);
-        pass = MySharedPreferencesManager.getPassword(this);
+        Log.d("***", "onCreate: username"+username);
+        pass=MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
@@ -256,7 +257,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(AlumniActivity.this, query, Toast.LENGTH_LONG).show();
+                Toast.makeText(AlumniActivity.this,query,Toast.LENGTH_LONG).show();
 
                 return false;
             }
@@ -265,21 +266,34 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if (selectedMenuFlag == 0) {
+                if(selectedMenuFlag==0)
+                {
 
-                } else if (selectedMenuFlag == 1) {
-                    searchNotificationFlag = 1;
+                }
+                else if(selectedMenuFlag==1)
+                {
+                    searchNotificationFlag=1;
                     filterNotifications(newText);
-                } else if (selectedMenuFlag == 2) {
-                    searchPlacementFlag = 1;
+                }
+                else if(selectedMenuFlag==2)
+                {
+                    searchPlacementFlag=1;
 //                    filterPlacements(newText);
-                } else if (selectedMenuFlag == 3) {
+                }
+                else if(selectedMenuFlag==3)
+                {
 
-                } else if (selectedMenuFlag == 4) {
+                }
+                else if(selectedMenuFlag==4)
+                {
 
-                } else if (selectedMenuFlag == 5) {
+                }
+                else if(selectedMenuFlag==5)
+                {
 
-                } else if (selectedMenuFlag == 6) {
+                }
+                else if(selectedMenuFlag==6)
+                {
 
                 }
 
@@ -293,10 +307,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             public void onSearchViewShown() {
 
 
-                if (selectedMenuFlag == 1) {
+                if(selectedMenuFlag==1)
+                {
                     searchView.setSuggestions(blanksuggestionList);
                     searchView.setSuggestions(null);
-                } else if (selectedMenuFlag == 2) {
+                }
+                else if(selectedMenuFlag==2)
+                {
                     searchView.setSuggestions(blanksuggestionList);
                     searchView.setSuggestions(null);
                 }
@@ -314,16 +331,17 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        {
             //scrolling toolbar gone problem solve blog
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
 
-                if (oldNavMenuFlag != navMenuFlag) {
+                if(oldNavMenuFlag!=navMenuFlag) {
                     if (navMenuFlag == 1) {
-                        selectedMenuFlag = 0;
+                        selectedMenuFlag=0;
 
                         //scroll
                         params.setScrollFlags(0);
@@ -344,7 +362,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                         params.setScrollFlags(0);
 
-                        selectedMenuFlag = 1;
+                        selectedMenuFlag=1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
@@ -359,7 +377,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 3) {
 
-                        selectedMenuFlag = 2;
+                        selectedMenuFlag=2;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -376,7 +394,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 4) {
 
-                        selectedMenuFlag = 3;
+                        selectedMenuFlag=3;
                         params.setScrollFlags(0);
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -394,7 +412,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 5) {
 
-                        selectedMenuFlag = 4;
+                        selectedMenuFlag=4;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -411,7 +429,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         tabLayout.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
 
-                        selectedMenuFlag = 5;
+                        selectedMenuFlag=5;
                         params.setScrollFlags(5);           // enable scrolling
 
 //                        Toast.makeText(MainActivity.this, ""+params.getScrollFlags(), Toast.LENGTH_SHORT).show();
@@ -427,7 +445,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 7) {
 
-                        selectedMenuFlag = 6;
+                        selectedMenuFlag=6;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -451,10 +469,12 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
 
-                oldNavMenuFlag = navMenuFlag;
+                oldNavMenuFlag=navMenuFlag;
 
             }
         };
+
+
 
 
         drawer.setDrawerListener(toggle);
@@ -462,99 +482,99 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        final View hView = navigationView.getHeaderView(0);
-        profile = (CircleImageView) hView.findViewById(R.id.profile_image);
+        final View hView =  navigationView.getHeaderView(0);
+        profile = (CircleImageView)hView.findViewById(R.id.profile_image);
 //        new GetProfileImage().execute();
-        final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
-        final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
-        final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
-        final ImageView proi = (ImageView) hView.findViewById(R.id.pro);
-        final ImageView settingsi = (ImageView) hView.findViewById(R.id.settings);
-        final ImageView newsi = (ImageView) hView.findViewById(R.id.blog);
-        final ImageView chati = (ImageView) hView.findViewById(R.id.chat);
+        final ImageView profilei=(ImageView)hView.findViewById(R.id.profile);
+        final ImageView notificationi=(ImageView)hView.findViewById(R.id.notification);
+        final ImageView placementi=(ImageView)hView.findViewById(R.id.placement);
+        final ImageView proi=(ImageView)hView.findViewById(R.id.pro);
+        final ImageView settingsi=(ImageView)hView.findViewById(R.id.settings);
+        final ImageView newsi=(ImageView)hView.findViewById(R.id.blog);
+        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
 //
 //        notificationcounttxt=(TextView) hView.findViewById(R.id.notificationcount);
 //        notificationcountrl=(RelativeLayout) hView.findViewById(R.id.notificationcountrl);
 //        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
 
-        notificationcounttxt = (TextView) hView.findViewById(R.id.notificationcount);
-        notificationcountrl = (RelativeLayout) hView.findViewById(R.id.notificationcountrl);
+        notificationcounttxt=(TextView)hView.findViewById(R.id.notificationcount);
+        notificationcountrl=(RelativeLayout)hView.findViewById(R.id.notificationcountrl);
 //
-        placementcounttxt = (TextView) hView.findViewById(R.id.placementcount);
-        placementcountrl = (RelativeLayout) hView.findViewById(R.id.placementcountrl);
+        placementcounttxt=(TextView)hView.findViewById(R.id.placementcount);
+        placementcountrl=(RelativeLayout)hView.findViewById(R.id.placementcountrl);
 //
 //        messagecount=(TextView)hView.findViewById(R.id.messagecount);
 //        messagecountrl=(RelativeLayout)hView.findViewById(R.id.messagecountrl);
 
-        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
-        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
-        View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v4 = (View) hView.findViewById(R.id.proselectionview);
-        View v5 = (View) hView.findViewById(R.id.settingselectionview);
-        View v6 = (View) hView.findViewById(R.id.blogselectionview);
-        View v7 = (View) hView.findViewById(R.id.abtselectionview);
-        View v8 = (View) hView.findViewById(R.id.chatselectionview);
+        View v1=(View)hView.findViewById(R.id.prifileselectionview);
+        View v2=(View)hView.findViewById(R.id.notificationselectionview);
+        View v3=(View)hView.findViewById(R.id.placementselectionview);
+        View v4=(View)hView.findViewById(R.id.proselectionview);
+        View v5=(View)hView.findViewById(R.id.settingselectionview);
+        View v6=(View)hView.findViewById(R.id.blogselectionview);
+        View v7=(View)hView.findViewById(R.id.abtselectionview);
+        View v8=(View)hView.findViewById(R.id.chatselectionview);
 
-        mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
+        mainfragment=(FrameLayout)findViewById(R.id.mainfragment);
 
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                navMenuFlag = 1;
+                navMenuFlag=1;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getBold(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -567,7 +587,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag = 2;
+                navMenuFlag=2;
 
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
@@ -575,53 +595,53 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getBold(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -634,65 +654,66 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag = 3;
+                navMenuFlag=3;
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getBold(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
 
 
             }
@@ -701,58 +722,58 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag = 4;
+                navMenuFlag=4;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon_selected);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getBold(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -766,8 +787,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                crop_flag = 1;
-                startActivity(new Intent(AlumniActivity.this, ProSplashScreen.class));
+                crop_flag=1;
+                startActivity(new Intent(AlumniActivity.this,ProSplashScreen.class));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -779,58 +800,58 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag = 5;
+                navMenuFlag=5;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getBold(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -844,63 +865,65 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag = 6;
+                navMenuFlag=6;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getBold(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
+
 
 
             }
@@ -909,58 +932,58 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag = 7;
+                navMenuFlag=7;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
+                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
                 pt4.setTypeface(Z.getLight(AlumniActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
@@ -973,35 +996,35 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         Drawable myDrawable = getResources().getDrawable(R.drawable.notification_icon_selected);
         notificationi.setImageDrawable(myDrawable);
 
-        TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
+        TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
         pt.setTypeface(Z.getBold(AlumniActivity.this));
         pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-        TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+        TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
         pt1.setTypeface(Z.getLight(AlumniActivity.this));
         pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+        TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
         pt3.setTypeface(Z.getLight(AlumniActivity.this));
         pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
+        TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
         pt8.setTypeface(Z.getLight(AlumniActivity.this));
         pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
+        TextView pt4=(TextView)hView.findViewById(R.id.protxt);
         pt4.setTypeface(Z.getLight(AlumniActivity.this));
         pt4.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+        TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
         pt5.setTypeface(Z.getLight(AlumniActivity.this));
         pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+        TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
         pt6.setTypeface(Z.getLight(AlumniActivity.this));
         pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+        TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
         pt7.setTypeface(Z.getLight(AlumniActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
@@ -1031,17 +1054,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view, int position) {
 
-                RecyclerItem item = null;
-                if (searchNotificationFlag == 1)
+                RecyclerItem item=null;
+                if(searchNotificationFlag==1)
                     item = tempListNotification.get(position);
                 else
                     item = itemListNotification.get(position);
-                if (!item.getisRead()) {
+                if(!item.getisRead())
+                {
                     item.setisRead(true);
                     unreadcountNotification--;
                     notificationcountrl.setVisibility(View.VISIBLE);
-                    notificationcounttxt.setText(unreadcountNotification + "");
-                    if (unreadcountNotification <= 0) {
+                    notificationcounttxt.setText(unreadcountNotification+"");
+                    if(unreadcountNotification<=0)
+                    {
                         notificationcountrl.setVisibility(View.GONE);
                     }
 
@@ -1051,20 +1076,20 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 changeReadStatusNotification(item.getId());
 
-                crop_flag = 1;
+                crop_flag=1;
                 Intent i1 = new Intent(AlumniActivity.this, ViewNotification.class);
 
-                i1.putExtra("id", item.getId());
-                i1.putExtra("title", item.getTitle());
-                i1.putExtra("notification", item.getNotification());
-                i1.putExtra("file1", item.getFilename1());
-                i1.putExtra("file2", item.getFilename2());
-                i1.putExtra("file3", item.getFilename3());
-                i1.putExtra("file4", item.getFilename4());
-                i1.putExtra("file5", item.getFilename5());
-                i1.putExtra("uploadedby", item.getUploadedby());
-                i1.putExtra("uploadtime", item.getUploadtime());
-                i1.putExtra("lastmodified", item.getLastmodified());
+                i1.putExtra("id",item.getId());
+                i1.putExtra("title",item.getTitle());
+                i1.putExtra("notification",item.getNotification());
+                i1.putExtra("file1",item.getFilename1());
+                i1.putExtra("file2",item.getFilename2());
+                i1.putExtra("file3",item.getFilename3());
+                i1.putExtra("file4",item.getFilename4());
+                i1.putExtra("file5",item.getFilename5());
+                i1.putExtra("uploadedby",item.getUploadedby());
+                i1.putExtra("uploadtime",item.getUploadtime());
+                i1.putExtra("lastmodified",item.getLastmodified());
 
                 startActivity(i1);
 
@@ -1080,81 +1105,83 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onLoadMore(int current_page) {
 
-                if (total_no_of_notifications > 20) {
+                if(total_no_of_notifications>20) {
                     simulateLoadingNotification();
                 }
 
             }
         });
-        recyclerViewPlacement.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacement, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-
-                RecyclerItemPlacement item = null;
-                if (searchPlacementFlag == 1)
-                    item = tempListPlacement.get(position);
-                else
-                    item = itemListPlacement.get(position);
-
-
-                if (!item.getisRead()) {
-                    item.setisRead(true);
-                    unreadcountPlacement--;
-                    placementcountrl.setVisibility(View.VISIBLE);
-                    placementcounttxt.setText(unreadcountPlacement + "");
-                    if (unreadcountPlacement == 0) {
-                        placementcountrl.setVisibility(View.GONE);
-                    }
-
-                }
-
-                mAdapterPlacement.notifyDataSetChanged();
-
-                changeReadStatusPlacement(item.getId());
-
-                crop_flag = 1;
-
-                Intent i1 = new Intent(AlumniActivity.this, ViewPlacement.class);
-                i1.putExtra("ActivityFrom", "AlumniActivity");
-                i1.putExtra("id", item.getId());
-                i1.putExtra("companyname", item.getCompanyname());
-                i1.putExtra("package", item.getCpackage());
-                i1.putExtra("post", item.getPost());
-                i1.putExtra("forwhichcourse", item.getForwhichcourse());
-                i1.putExtra("forwhichstream", item.getForwhichstream());
-                i1.putExtra("vacancies", item.getVacancies());
-                i1.putExtra("lastdateofregistration", item.getLastdateofregistration());
-                i1.putExtra("dateofarrival", item.getDateofarrival());
-                i1.putExtra("bond", item.getBond());
-                i1.putExtra("noofapti", item.getNoofapti());
-                i1.putExtra("nooftechtest", item.getNooftechtest());
-                i1.putExtra("noofgd", item.getNoofgd());
-                i1.putExtra("noofti", item.getNoofti());
-                i1.putExtra("noofhri", item.getNoofhri());
-                i1.putExtra("stdx", item.getStdx());
-                i1.putExtra("stdxiiordiploma", item.getStdxiiordiploma());
-                i1.putExtra("ug", item.getUg());
-                i1.putExtra("pg", item.getPg());
-                i1.putExtra("uploadtime", item.getUploadtime());
-                i1.putExtra("lastmodified", item.getLastmodified());
-                i1.putExtra("uploadedby", item.getUploadedby());
-                i1.putExtra("noofallowedliveatkt", item.getNoofallowedliveatkt());
-                i1.putExtra("noofalloweddeadatkt", item.getNoofalloweddeadatkt());
-                startActivity(i1);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
+//        recyclerViewPlacement.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacement, new RecyclerTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//
+//                RecyclerItemPlacement item=null;
+//                if(searchPlacementFlag==1)
+//                    item = tempListPlacement.get(position);
+//                else
+//                    item = itemListPlacement.get(position);
+//
+//
+//                if(!item.())
+//                {
+//                    item.setisRead(true);
+//                    unreadcountPlacement--;
+//                    placementcountrl.setVisibility(View.VISIBLE);
+//                    placementcounttxt.setText(unreadcountPlacement+"");
+//                    if(unreadcountPlacement==0)
+//                    {
+//                        placementcountrl.setVisibility(View.GONE);
+//                    }
+//
+//                }
+//
+//                mAdapterPlacement.notifyDataSetChanged();
+//
+//                changeReadStatusPlacement(item.getId());
+//
+//                crop_flag=1;
+//
+//                Intent i1 = new Intent(AlumniActivity.this, ViewPlacement.class);
+//                i1.putExtra("ActivityFrom","AlumniActivity");
+//                i1.putExtra("id",item.getId());
+//                i1.putExtra("companyname",item.getCompanyname());
+//                i1.putExtra("package",item.getCpackage());
+//                i1.putExtra("post",item.getPost());
+//                i1.putExtra("forwhichcourse",item.getForwhichcourse());
+//                i1.putExtra("forwhichstream",item.getForwhichstream());
+//                i1.putExtra("vacancies",item.getVacancies());
+//                i1.putExtra("lastdateofregistration",item.getLastdateofregistration());
+//                i1.putExtra("dateofarrival",item.getDateofarrival());
+//                i1.putExtra("bond",item.getBond());
+//                i1.putExtra("noofapti",item.getNoofapti());
+//                i1.putExtra("nooftechtest",item.getNooftechtest());
+//                i1.putExtra("noofgd",item.getNoofgd());
+//                i1.putExtra("noofti",item.getNoofti());
+//                i1.putExtra("noofhri",item.getNoofhri());
+//                i1.putExtra("stdx",item.getStdx());
+//                i1.putExtra("stdxiiordiploma",item.getStdxiiordiploma());
+//                i1.putExtra("ug",item.getUg());
+//                i1.putExtra("pg",item.getPg());
+//                i1.putExtra("uploadtime",item.getUploadtime());
+//                i1.putExtra("lastmodified",item.getLastmodified());
+//                i1.putExtra("uploadedby",item.getUploadedby());
+//                i1.putExtra("noofallowedliveatkt",item.getNoofallowedliveatkt());
+//                i1.putExtra("noofalloweddeadatkt",item.getNoofalloweddeadatkt());
+//                startActivity(i1);
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//
+//            }
+//        }));
 
 
         recyclerViewPlacement.setOnScrollListener(new EndlessRecyclerOnScrollListenerPlacement(linearLayoutManagerPlacement) {
             @Override
             public void onLoadMore(int current_page) {
 
-                if (total_no_of_placements > 20) {
+                if(total_no_of_placements>20) {
                     simulateLoadingPlacement();
                 }
 
@@ -1165,31 +1192,31 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 // our coding here
 
-        try {
+        try
+        {
 
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
+            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            plainusername = new String(demo1DecryptedBytes1);
+            plainusername=new String(demo1DecryptedBytes1);
 //            ProfileRole
 //            r.setPlainusername(plainusername);
 
-            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
+            byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
-            String data = new String(demo2DecryptedBytes1);
-            String hash = md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
+            String data=new String(demo2DecryptedBytes1);
+            String hash=md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
 
-            new LoginFirebaseTask().execute(plainusername, hash);
+            new LoginFirebaseTask().execute(plainusername,hash);
 
-        } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
 
-        crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
+
+        crop_layout=(FrameLayout)findViewById(R.id.crop_layout);
 
 
         resultView = (ImageView) findViewById(R.id.result_image);
@@ -1201,15 +1228,16 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         requestProfileImage();  //  update thumbanail first time activity Load
 
 
-        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout=(SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
 
-                if (selectedMenuFlag == 1) {
+                if(selectedMenuFlag==1) {
                     getNotifications();
-                } else if (selectedMenuFlag == 2) {
+                }
+                else if(selectedMenuFlag==2) {
                     getPlacements();
                 }
 
@@ -1221,19 +1249,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     }
 
-    void filterNotifications(String text) {
+    void filterNotifications(String text)
+    {
         tempListNotification = new ArrayList();
-        for (RecyclerItem d : itemListNotification) {
+        for(RecyclerItem d: itemListNotification){
 
-            if (containsIgnoreCase(d.getTitle(), text)) {
+            if(containsIgnoreCase(d.getTitle(),text)){
                 tempListNotification.add(d);
             }
         }
-        mAdapterNotification.updateList(tempListNotification, text);
+        mAdapterNotification.updateList(tempListNotification,text);
     }
-
-    public static boolean containsIgnoreCase(String str, String searchStr) {
-        if (str == null || searchStr == null) return false;
+    public static boolean containsIgnoreCase(String str, String searchStr)     {
+        if(str == null || searchStr == null) return false;
 
         final int length = searchStr.length();
         if (length == 0)
@@ -1245,29 +1273,28 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
         return false;
     }
-
-    void getNotifications() {
+    void getNotifications()
+    {
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
         loadingNotification = true;
-        page_to_call_notification = 1;
-        isFirstRunNotification = true;
-        isLastPageLoadedNotification = false;
-        lastPageFlagNotification = 0;
+        page_to_call_notification=1;
+        isFirstRunNotification=true;
+        isLastPageLoadedNotification=false;
+        lastPageFlagNotification=0;
         new GetNotificationsReadStatus().execute();
     }
-
-    void getPlacements() {
+    void getPlacements()
+    {
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
-        page_to_call_placement = 1;
-        isFirstRunPlacement = true;
-        isLastPageLoadedPlacement = false;
-        lastPageFlagPlacement = 0;
+        page_to_call_placement=1;
+        isFirstRunPlacement=true;
+        isLastPageLoadedPlacement=false;
+        lastPageFlagPlacement=0;
         new GetPlacementsReadStatus().execute();
     }
-
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -1281,18 +1308,22 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumniAlumniMetaData, "GET", params);
                 notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification = new int[notificationpages];
+                called_pages_notification=new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
 
                 json = jParser.makeHttpRequest(Z.url_GetReadStatusOfNotificationsAlumni, "GET", params);
 
-                readstatuscountNotification = Integer.parseInt(json.getString("count"));
-                notificationreadstatus = new String[readstatuscountNotification];
-                for (int i = 0; i < readstatuscountNotification; i++) {
-                    notificationreadstatus[i] = json.getString("s" + i);
+                readstatuscountNotification  = Integer.parseInt(json.getString("count"));
+                notificationreadstatus=new String[readstatuscountNotification ];
+                for(int i=0;i<readstatuscountNotification ;i++)
+                {
+                    notificationreadstatus[i]=json.getString("s"+i);
                 }
+
+
+
 
 
             } catch (Exception e) {
@@ -1305,15 +1336,16 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         @Override
         protected void onPostExecute(String result) {
-            try {
-                Log.d("TAG_AllumniActivity", "----------------------------------total_no_of_notifications: " + total_no_of_notifications);
-                notificationcountrl.setVisibility(View.VISIBLE);
-                notificationcounttxt.setText(unreadcountNotification + "");
-                if (unreadcountNotification == 0) {
-                    notificationcountrl.setVisibility(View.GONE);
-                }
-            } catch (Exception e) {
-                Toast.makeText(AlumniActivity.this, "here" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            try{
+            Log.d("TAG_AllumniActivity","----------------------------------total_no_of_notifications: "+total_no_of_notifications);
+            notificationcountrl.setVisibility(View.VISIBLE);
+            notificationcounttxt.setText(unreadcountNotification+"");
+            if(unreadcountNotification==0)
+            {
+                notificationcountrl.setVisibility(View.GONE);
+            }
+            }catch (Exception e ){
+                Toast.makeText(AlumniActivity.this,"here"+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
             new GetNotifications().execute();
 
@@ -1333,14 +1365,15 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumniAlumniMetaData, "GET", params);
                 placementpages = Integer.parseInt(json.getString("pages"));
-                called_pages_placement = new int[placementpages];
+                called_pages_placement=new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
                 json = jParser.makeHttpRequest(Z.url_GetReadStatusOfPlacementsAlumni, "GET", params);
                 readstatuscountPlacement = Integer.parseInt(json.getString("count"));
-                placementreadstatus = new String[readstatuscountPlacement];
-                for (int i = 0; i < readstatuscountPlacement; i++) {
-                    placementreadstatus[i] = json.getString("s" + i);
+                placementreadstatus=new String[readstatuscountPlacement];
+                for(int i=0;i<readstatuscountPlacement;i++)
+                {
+                    placementreadstatus[i]=json.getString("s"+i);
                 }
 
             } catch (Exception e) {
@@ -1352,8 +1385,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         @Override
         protected void onPostExecute(String result) {
             placementcountrl.setVisibility(View.VISIBLE);
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
+            placementcounttxt.setText(unreadcountPlacement+"");
+            if(unreadcountPlacement==0)
+            {
                 placementcountrl.setVisibility(View.GONE);
             }
 
@@ -1361,51 +1395,50 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
-
     class GetNotifications extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
 
-            String r = null;
+            String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            params.add(new BasicNameValuePair("u",username));       //0
+            params.add(new BasicNameValuePair("p",page_to_call_notification+""));
             json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
             try {
                 notificationcount = Integer.parseInt(json.getString("count"));
 
-                notificationids = new String[notificationcount];
-                notificationtitles = new String[notificationcount];
-                notificationnotifications = new String[notificationcount];
-                notificationfilename1 = new String[notificationcount];
-                notificationfilename2 = new String[notificationcount];
-                notificationfilename3 = new String[notificationcount];
-                notificationfilename4 = new String[notificationcount];
-                notificationfilename5 = new String[notificationcount];
-                notificationuploadtime = new String[notificationcount];
-                notificationlastmodified = new String[notificationcount];
-                notificationuploadedby = new String[notificationcount];
-                notificationuploadedbyplain = new String[notificationcount];
-                for (int i = 0; i < notificationcount; i++) {
-                    notificationids[i] = json.getString("id" + i);
-                    notificationtitles[i] = json.getString("title" + i);
-                    notificationnotifications[i] = json.getString("notification" + i);
-                    notificationfilename1[i] = json.getString("filename1" + i);
-                    notificationfilename2[i] = json.getString("filename2" + i);
-                    notificationfilename3[i] = json.getString("filename3" + i);
-                    notificationfilename4[i] = json.getString("filename4" + i);
-                    notificationfilename5[i] = json.getString("filename5" + i);
-                    notificationuploadtime[i] = json.getString("uploadtime" + i);
-                    notificationlastmodified[i] = json.getString("lastmodified" + i);
-                    notificationuploadedby[i] = json.getString("uploadedby" + i);
+                notificationids=new String[notificationcount];
+                notificationtitles=new String[notificationcount];
+                notificationnotifications=new String[notificationcount];
+                notificationfilename1=new String[notificationcount];
+                notificationfilename2=new String[notificationcount];
+                notificationfilename3=new String[notificationcount];
+                notificationfilename4=new String[notificationcount];
+                notificationfilename5=new String[notificationcount];
+                notificationuploadtime=new String[notificationcount];
+                notificationlastmodified=new String[notificationcount];
+                notificationuploadedby=new String[notificationcount];
+                notificationuploadedbyplain=new String[notificationcount];
+                for(int i=0;i<notificationcount;i++)
+                {
+                    notificationids[i]=json.getString("id"+i);
+                    notificationtitles[i]=json.getString("title"+i);
+                    notificationnotifications[i]=json.getString("notification"+i);
+                    notificationfilename1[i]=json.getString("filename1"+i);
+                    notificationfilename2[i]=json.getString("filename2"+i);
+                    notificationfilename3[i]=json.getString("filename3"+i);
+                    notificationfilename4[i]=json.getString("filename4"+i);
+                    notificationfilename5[i]=json.getString("filename5"+i);
+                    notificationuploadtime[i]=json.getString("uploadtime"+i);
+                    notificationlastmodified[i]=json.getString("lastmodified"+i);
+                    notificationuploadedby[i]=json.getString("uploadedby"+i);
 
                 }
 
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            }catch (Exception e){e.printStackTrace();}
             return r;
         }
 
@@ -1414,126 +1447,139 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
             tswipe_refresh_layout.setVisibility(View.VISIBLE);
             tswipe_refresh_layout.setRefreshing(false);
-            Log.d("TAG", "onPostExecute: notificationcount" + notificationcount);
-            for (int i = 0; i < notificationcount; i++)
-                try {
+            Log.d("TAG", "onPostExecute: notificationcount"+notificationcount);
+            for(int i=0;i<notificationcount;i++)
+                try
+                {
 
-                    if (notificationtitles[i] != null) {
-                        byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
+                    if(notificationtitles[i]!=null)
+                    {
+                        byte[] notificationtitlesEncryptedBytes=SimpleBase64Encoder.decode(notificationtitles[i]);
                         byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                        notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
+                        notificationtitles[i]=new String(notificationtitlesDecryptedBytes);
                     }
-                    if (notificationnotifications[i] != null) {
-                        byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
+                    if(notificationnotifications[i]!=null)
+                    {
+                        byte[] notificationnotificationsEncryptedBytes=SimpleBase64Encoder.decode(notificationnotifications[i]);
                         byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                        notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
+                        notificationnotifications[i]=new String(notificationnotificationsDecryptedBytes);
                     }
-                    if (notificationfilename1[i] != null) {
-                        if (!notificationfilename1[i].equals("null")) {
+                    if(notificationfilename1[i]!=null)
+                    {
+                        if(!notificationfilename1[i].equals("null")) {
                             byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
                             byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
                             notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
                         }
                     }
-                    if (notificationfilename2[i] != null) {
-                        if (!notificationfilename2[i].equals("null")) {
+                    if(notificationfilename2[i]!=null)
+                    {
+                        if(!notificationfilename2[i].equals("null")) {
                             byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
                             byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
                             notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
                         }
                     }
-                    if (notificationfilename3[i] != null) {
-                        if (!notificationfilename3[i].equals("null")) {
+                    if(notificationfilename3[i]!=null)
+                    {
+                        if(!notificationfilename3[i].equals("null")) {
                             byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
                             byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
                             notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
                         }
                     }
-                    if (notificationfilename4[i] != null) {
-                        if (!notificationfilename4[i].equals("null")) {
+                    if(notificationfilename4[i]!=null)
+                    {
+                        if(!notificationfilename4[i].equals("null")) {
                             byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
                             byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
                             notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
                         }
                     }
-                    if (notificationfilename5[i] != null) {
-                        if (!notificationfilename5[i].equals("null")) {
+                    if(notificationfilename5[i]!=null)
+                    {
+                        if(!notificationfilename5[i].equals("null")) {
                             byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
                             byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
                             notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
                         }
                     }
-                    if (notificationuploadtime[i] != null) {
-                        byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
+                    if(notificationuploadtime[i]!=null)
+                    {
+                        byte[] notificationuploadtimeEncryptedBytes=SimpleBase64Encoder.decode(notificationuploadtime[i]);
                         byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                        notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
+                        notificationuploadtime[i]=new String(notificationuploadtimeDecryptedBytes);
                     }
-                    if (notificationlastmodified[i] != null) {
-                        byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
+                    if(notificationlastmodified[i]!=null)
+                    {
+                        byte[] notificationlastmodifiedEncryptedBytes=SimpleBase64Encoder.decode(notificationlastmodified[i]);
                         byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                        notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
+                        notificationlastmodified[i]=new String(notificationlastmodifiedDecryptedBytes);
                     }
-                    if (notificationuploadedby[i] != null) {
-                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
+                    if(notificationuploadedby[i]!=null)
+                    {
+                        byte[] notificationuploadedbyEncryptedBytes=SimpleBase64Encoder.decode(notificationuploadedby[i]);
                         byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
+                        notificationuploadedbyplain[i]=new String(notificationuploadedbyDecryptedBytes);
                     }
 
 
-                } catch (Exception e) {
+
+                }catch (Exception e){
                     //Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
                 }
+
 
 
 //            new GetLastUpdatedNotification().execute();
 
         }
     }
-
     class GetPlacements extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
-            String r = null;
+            String r=null;
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+            params.add(new BasicNameValuePair("u",username));       //0
+            params.add(new BasicNameValuePair("p",page_to_call_placement+""));
             json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
-            try {
-
-
+            try
+            {
+                
+                
                 placementcount = Integer.parseInt(json.getString("count"));
 
-                Log.d("Backtrack", "allumnigettplacements " + placementcount);
+                Log.d("Backtrack", "allumnigettplacements "+placementcount);
 
-                placementids = new String[placementcount];
-                placementcompanyname = new String[placementcount];
-                placementcpackage = new String[placementcount];
-                placementpost = new String[placementcount];
-                placementforwhichcourse = new String[placementcount];
-                placementforwhichstream = new String[placementcount];
-                placementvacancies = new String[placementcount];
-                placementlastdateofregistration = new String[placementcount];
-                placementdateofarrival = new String[placementcount];
-                placementbond = new String[placementcount];
-                placementnoofapti = new String[placementcount];
-                placementnooftechtest = new String[placementcount];
-                placementnoofgd = new String[placementcount];
-                placementnoofti = new String[placementcount];
-                placementnoofhri = new String[placementcount];
-                placementstdx = new String[placementcount];
-                placementstdxiiordiploma = new String[placementcount];
-                placementug = new String[placementcount];
-                placementpg = new String[placementcount];
-                placementuploadtime = new String[placementcount];
-                placementlastmodified = new String[placementcount];
-                placementuploadedby = new String[placementcount];
-                placementuploadedbyplain = new String[placementcount];
-                placementnoofallowedliveatkt = new String[placementcount];
-                placementnoofalloweddeadatkt = new String[placementcount];
+                placementids=new String[placementcount];
+                placementcompanyname=new String[placementcount];
+                placementcpackage=new String[placementcount];
+                placementpost=new String[placementcount];
+                placementforwhichcourse=new String[placementcount];
+                placementforwhichstream=new String[placementcount];
+                placementvacancies=new String[placementcount];
+                placementlastdateofregistration=new String[placementcount];
+                placementdateofarrival=new String[placementcount];
+                placementbond=new String[placementcount];
+                placementnoofapti=new String[placementcount];
+                placementnooftechtest=new String[placementcount];
+                placementnoofgd=new String[placementcount];
+                placementnoofti=new String[placementcount];
+                placementnoofhri=new String[placementcount];
+                placementstdx=new String[placementcount];
+                placementstdxiiordiploma=new String[placementcount];
+                placementug=new String[placementcount];
+                placementpg=new String[placementcount];
+                placementuploadtime=new String[placementcount];
+                placementlastmodified=new String[placementcount];
+                placementuploadedby=new String[placementcount];
+                placementuploadedbyplain=new String[placementcount];
+                placementnoofallowedliveatkt=new String[placementcount];
+                placementnoofalloweddeadatkt=new String[placementcount];
 
-                for (int i = 0; i < placementcount; i++) {
+                for(int i=0;i<placementcount;i++) {
 
                     placementids[i] = json.getString("id" + i);
                     placementcompanyname[i] = json.getString("companyname" + i);
@@ -1562,8 +1608,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 }
 
 
-            } catch (Exception e) {
-            }
+            }catch (Exception e){}
 
             return r;
         }
@@ -1573,8 +1618,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             tswipe_refresh_layout.setVisibility(View.VISIBLE);
             tswipe_refresh_layout.setRefreshing(false);
 
-            for (int i = 0; i < placementcount; i++)
-                try {
+            for(int i=0;i<placementcount;i++)
+                try
+                {
 //                    if(placementcompanyname[i]!=null)
 //                    {
 //                        byte[] placementcompanynameEncryptedBytes=SimpleBase64Encoder.decode(placementcompanyname[i]);
@@ -1695,11 +1741,12 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //                        byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
 //                        placementlastmodified[i]=new String(placementlastmodifiedDecryptedBytes);
 //                    }
-                    if (placementuploadedby[i] != null) {
-                        byte[] placementuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(placementuploadedby[i]);
+                    if(placementuploadedby[i]!=null)
+                    {
+                        byte[] placementuploadedbyEncryptedBytes=SimpleBase64Encoder.decode(placementuploadedby[i]);
                         byte[] placementuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadedbyEncryptedBytes);
-                        placementuploadedbyplain[i] = new String(placementuploadedbyDecryptedBytes);
-                        Log.d("Tag", "onPostExecute:placementuploadedbyplain[i] " + placementuploadedbyplain[i]);
+                        placementuploadedbyplain[i]=new String(placementuploadedbyDecryptedBytes);
+                        Log.d("Tag", "onPostExecute:placementuploadedbyplain[i] "+placementuploadedbyplain[i]);
                     }
 //                    if(placementnoofallowedliveatkt[i]!=null)
 //                    {
@@ -1714,50 +1761,53 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //                        placementnoofalloweddeadatkt[i]=new String(placementnoofalloweddeadatktDecryptedBytes);
 //                    }
 
-                } catch (Exception e) {
+                }catch (Exception e){
                     //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             new GetLastUpdatedPlacement().execute();
         }
     }
-
     class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
-            String r = null;
+            String r=null;
 
 
             Set<String> uniqKeys = new TreeSet<String>();
             uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
 
-            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
-            lastupdatedNotification = new String[uniqueUploadersNotification.length];
-            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
-                for (int i = 0; i < notificationcount; i++) {
+            uniqueUploadersNotification  = uniqKeys.toArray(new String[uniqKeys.size()]);
+            uniqueUploadersEncNotification =new String[uniqueUploadersNotification .length];
+            lastupdatedNotification =new String[uniqueUploadersNotification .length];
+            for(int j=0;j<uniqueUploadersNotification .length;j++)
+            {
+                for(int i=0;i<notificationcount;i++) {
 
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
-                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
+                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [j]))
+                    {
+                        uniqueUploadersEncNotification [j]=notificationuploadedby[i];
                     }
                 }
             }
-            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
+            for(int i=0;i<uniqueUploadersNotification .length;i++) {
                 // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
+                params.add(new BasicNameValuePair("u",uniqueUploadersEncNotification [i]));       //0
                 json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
+                    if(s.equals("noupdate"))
+                    {
                         // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    } else {
-                        lastupdatedNotification[i] = s;
+                    }
+                    else
+                    {
+                        lastupdatedNotification [i]=s;
                         // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
                     }
 
-                } catch (Exception e) {
-                }
+                }catch (Exception e){}
             }
             return r;
         }
@@ -1777,49 +1827,52 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //            }
 
 
-            if (!isLastPageLoadedNotification)
+            if(!isLastPageLoadedNotification)
                 addNotificationdatatoAdapter();
 
         }
 
     }
-
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
-            String r = null;
+            String r=null;
 
             Set<String> uniqKeys = new TreeSet<String>();
             uniqKeys.addAll(Arrays.asList(placementuploadedbyplain));
 
-            uniqueUploadersPlacement = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncPlacement = new String[uniqueUploadersPlacement.length];
-            lastupdatedPlacement = new String[uniqueUploadersPlacement.length];
+            uniqueUploadersPlacement= uniqKeys.toArray(new String[uniqKeys.size()]);
+            uniqueUploadersEncPlacement=new String[uniqueUploadersPlacement.length];
+            lastupdatedPlacement=new String[uniqueUploadersPlacement.length];
 
-            for (int j = 0; j < uniqueUploadersPlacement.length; j++) {
-                for (int i = 0; i < placementcount; i++) {
+            for(int j=0;j<uniqueUploadersPlacement.length;j++)
+            {
+                for(int i=0;i<placementcount;i++) {
 
-                    if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[j])) {
-                        uniqueUploadersEncPlacement[j] = placementuploadedby[i];
+                    if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[j]))
+                    {
+                        uniqueUploadersEncPlacement[j]=placementuploadedby[i];
                     }
                 }
             }
 
-            for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
+            for(int i=0;i<uniqueUploadersPlacement.length;i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
+                params.add(new BasicNameValuePair("u",uniqueUploadersEncPlacement[i]));       //0
                 json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-                    } else {
-                        lastupdatedPlacement[i] = s;
+                    if(s.equals("noupdate"))
+                    {
+                    }
+                    else
+                    {
+                        lastupdatedPlacement[i]=s;
 
                     }
 
-                } catch (Exception e) {
-                }
+                }catch (Exception e){}
             }
 
 
@@ -1829,106 +1882,113 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         @Override
         protected void onPostExecute(String result) {
 
-            if (!isLastPageLoadedPlacement)
-                addPlacementdatatoAdapter();
+//            if(!isLastPageLoadedPlacement)
+//                addPlacementdatatoAdapter();
 
         }
 
     }
+//    void addPlacementdatatoAdapter()
+//    {
+//        if (isFirstRunPlacement) {
+//            itemListPlacement.clear();
+//            mAdapterPlacement.notifyDataSetChanged();
+//            isFirstRunPlacement = false;
+//        }
+//        selectedMenuFlag=2;
+//        if(!isLastPageLoadedPlacement)
+//        {
+//            for (int i = 0; i < placementcount; i++) {
+//
+//                String companynametoshow = "";
+//                int largecompanynameflag = 0;
+//
+//                if (placementcompanyname[i].length() > 25) {
+//                    for (int j = 0; j < 20; j++)
+//                        companynametoshow += placementcompanyname[i].charAt(j);
+//                    largecompanynameflag = 1;
+//                    companynametoshow += "...";
+//                }
+//
+//                RecyclerItemPlacement item = null;
+//                for (int j = 0; j < readstatuscountPlacement; j++) {
+//                    String idnstatus = placementreadstatus[j];
+//                    String sid = "";
+//                    if (idnstatus.contains("U")) {
+//
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(placementids[i])) {
+//                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
+//                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
+//                                    if (lastupdatedPlacement[k] == null) {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,AlumniActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,AlumniActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                    else
+//                                    {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,AlumniActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],false,AlumniActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                }
+//
+//                            }
+//                        }
+//                    }
+//                    else if (idnstatus.contains("R")) {
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(placementids[i])) {
+//                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
+//                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
+//                                    if (lastupdatedPlacement[k] == null) {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,AlumniActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,AlumniActivity.this,"placeme",placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                    else
+//                                    {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,AlumniActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i]+" LPA",placementpost[i],placementforwhichcourse[i],placementforwhichstream[i],placementvacancies[i],placementlastdateofregistration[i], placementdateofarrival[i],placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i],placementstdx[i],placementstdxiiordiploma[i],placementug[i],placementpg[i],placementuploadtime[i],placementlastmodified[i],placementuploadedby[i],true,AlumniActivity.this,lastupdatedPlacement[k],placementnoofallowedliveatkt[i],placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                }
+//
+//                            }
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
+//
+//        if(lastPageFlagPlacement==1)
+//            isLastPageLoadedPlacement=true;
+//        mAdapterPlacement.notifyDataSetChanged();
+//
+//    }
 
-    void addPlacementdatatoAdapter() {
-        if (isFirstRunPlacement) {
-            itemListPlacement.clear();
-            mAdapterPlacement.notifyDataSetChanged();
-            isFirstRunPlacement = false;
-        }
-        selectedMenuFlag = 2;
-        if (!isLastPageLoadedPlacement) {
-            for (int i = 0; i < placementcount; i++) {
-
-                String companynametoshow = "";
-                int largecompanynameflag = 0;
-
-                if (placementcompanyname[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        companynametoshow += placementcompanyname[i].charAt(j);
-                    largecompanynameflag = 1;
-                    companynametoshow += "...";
-                }
-
-                RecyclerItemPlacement item = null;
-                for (int j = 0; j < readstatuscountPlacement; j++) {
-                    String idnstatus = placementreadstatus[j];
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AlumniActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AlumniActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AlumniActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AlumniActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AlumniActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AlumniActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AlumniActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AlumniActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-        }
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-        mAdapterPlacement.notifyDataSetChanged();
-
-    }
-
-    void changeReadStatusNotification(String id) {
+    void changeReadStatusNotification(String id)
+    {
         new ChangeReadStatusNotification().execute(id);
 
     }
-
-    void changeReadStatusPlacement(String id) {
+    void changeReadStatusPlacement(String id)
+    {
         new ChangeReadStatusPlacement().execute(id);
 
     }
@@ -1951,7 +2011,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
-
     class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
 
 
@@ -1970,7 +2029,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
-
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
 
 
@@ -2009,7 +2067,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         public abstract void onLoadMore(int current_page);
     }
-
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 
@@ -2048,24 +2105,22 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         public abstract void onLoadMore(int current_page);
     }
-
     private void simulateLoadingNotification() {
         new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
+            @Override protected void onPreExecute() {
                 tswipe_refresh_layout.setRefreshing(true);
             }
 
-            @Override
-            protected Void doInBackground(Void... param) {
+            @Override protected Void doInBackground(Void... param) {
                 try {
 
 
-                    if (page_to_call_notification < notificationpages)
+                    if(page_to_call_notification<notificationpages)
                         page_to_call_notification++;
 
 
-                    if (page_to_call_notification != notificationpages) {
+
+                    if(page_to_call_notification!=notificationpages) {
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
@@ -2099,10 +2154,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             notificationuploadedby[i] = json.getString("uploadedby" + i);
 
                         }
-                    } else {
-                        if (!isLastPageLoadedNotification) {
+                    }
+                    else
+                    {
+                        if(!isLastPageLoadedNotification)
+                        {
 
-                            lastPageFlagNotification = 1;
+                            lastPageFlagNotification=1;
 
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
@@ -2147,10 +2205,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 return null;
             }
 
-            @Override
-            protected void onPostExecute(Void param) {
+            @Override protected void onPostExecute(Void param) {
 
-                if (!isLastPageLoadedNotification) {
+                if(!isLastPageLoadedNotification) {
 
                     for (int i = 0; i < notificationcount; i++)
                         try {
@@ -2228,16 +2285,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             }
         }.execute();
     }
-
     private void simulateLoadingPlacement() {
         new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
+            @Override protected void onPreExecute() {
                 tswipe_refresh_layout.setRefreshing(true);
             }
 
-            @Override
-            protected Void doInBackground(Void... param) {
+            @Override protected Void doInBackground(Void... param) {
 
                 try {
                     if (page_to_call_placement < placementpages)
@@ -2251,33 +2305,33 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
 
                         placementcount = Integer.parseInt(json.getString("count"));
-                        placementids = new String[placementcount];
-                        placementcompanyname = new String[placementcount];
-                        placementcpackage = new String[placementcount];
-                        placementpost = new String[placementcount];
-                        placementforwhichcourse = new String[placementcount];
-                        placementforwhichstream = new String[placementcount];
-                        placementvacancies = new String[placementcount];
-                        placementlastdateofregistration = new String[placementcount];
-                        placementdateofarrival = new String[placementcount];
-                        placementbond = new String[placementcount];
-                        placementnoofapti = new String[placementcount];
-                        placementnooftechtest = new String[placementcount];
-                        placementnoofgd = new String[placementcount];
-                        placementnoofti = new String[placementcount];
-                        placementnoofhri = new String[placementcount];
-                        placementstdx = new String[placementcount];
-                        placementstdxiiordiploma = new String[placementcount];
-                        placementug = new String[placementcount];
-                        placementpg = new String[placementcount];
-                        placementuploadtime = new String[placementcount];
-                        placementlastmodified = new String[placementcount];
-                        placementuploadedby = new String[placementcount];
-                        placementuploadedbyplain = new String[placementcount];
-                        placementnoofallowedliveatkt = new String[placementcount];
-                        placementnoofalloweddeadatkt = new String[placementcount];
+                        placementids=new String[placementcount];
+                        placementcompanyname=new String[placementcount];
+                        placementcpackage=new String[placementcount];
+                        placementpost=new String[placementcount];
+                        placementforwhichcourse=new String[placementcount];
+                        placementforwhichstream=new String[placementcount];
+                        placementvacancies=new String[placementcount];
+                        placementlastdateofregistration=new String[placementcount];
+                        placementdateofarrival=new String[placementcount];
+                        placementbond=new String[placementcount];
+                        placementnoofapti=new String[placementcount];
+                        placementnooftechtest=new String[placementcount];
+                        placementnoofgd=new String[placementcount];
+                        placementnoofti=new String[placementcount];
+                        placementnoofhri=new String[placementcount];
+                        placementstdx=new String[placementcount];
+                        placementstdxiiordiploma=new String[placementcount];
+                        placementug=new String[placementcount];
+                        placementpg=new String[placementcount];
+                        placementuploadtime=new String[placementcount];
+                        placementlastmodified=new String[placementcount];
+                        placementuploadedby=new String[placementcount];
+                        placementuploadedbyplain=new String[placementcount];
+                        placementnoofallowedliveatkt=new String[placementcount];
+                        placementnoofalloweddeadatkt=new String[placementcount];
 
-                        for (int i = 0; i < placementcount; i++) {
+                        for(int i=0;i<placementcount;i++) {
 
                             placementids[i] = json.getString("id" + i);
                             placementcompanyname[i] = json.getString("companyname" + i);
@@ -2305,8 +2359,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             placementnoofalloweddeadatkt[i] = json.getString("noofalloweddeadatkt" + i);
                         }
 
-                    } else {
-                        if (!isLastPageLoadedPlacement) {
+                    }
+                    else
+                    {
+                        if(!isLastPageLoadedPlacement) {
 
                             lastPageFlagPlacement = 1;
 
@@ -2317,33 +2373,33 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                             placementcount = Integer.parseInt(json.getString("count"));
 
-                            placementids = new String[placementcount];
-                            placementcompanyname = new String[placementcount];
-                            placementcpackage = new String[placementcount];
-                            placementpost = new String[placementcount];
-                            placementforwhichcourse = new String[placementcount];
-                            placementforwhichstream = new String[placementcount];
-                            placementvacancies = new String[placementcount];
-                            placementlastdateofregistration = new String[placementcount];
-                            placementdateofarrival = new String[placementcount];
-                            placementbond = new String[placementcount];
-                            placementnoofapti = new String[placementcount];
-                            placementnooftechtest = new String[placementcount];
-                            placementnoofgd = new String[placementcount];
-                            placementnoofti = new String[placementcount];
-                            placementnoofhri = new String[placementcount];
-                            placementstdx = new String[placementcount];
-                            placementstdxiiordiploma = new String[placementcount];
-                            placementug = new String[placementcount];
-                            placementpg = new String[placementcount];
-                            placementuploadtime = new String[placementcount];
-                            placementlastmodified = new String[placementcount];
-                            placementuploadedby = new String[placementcount];
-                            placementuploadedbyplain = new String[placementcount];
-                            placementnoofallowedliveatkt = new String[placementcount];
-                            placementnoofalloweddeadatkt = new String[placementcount];
+                            placementids=new String[placementcount];
+                            placementcompanyname=new String[placementcount];
+                            placementcpackage=new String[placementcount];
+                            placementpost=new String[placementcount];
+                            placementforwhichcourse=new String[placementcount];
+                            placementforwhichstream=new String[placementcount];
+                            placementvacancies=new String[placementcount];
+                            placementlastdateofregistration=new String[placementcount];
+                            placementdateofarrival=new String[placementcount];
+                            placementbond=new String[placementcount];
+                            placementnoofapti=new String[placementcount];
+                            placementnooftechtest=new String[placementcount];
+                            placementnoofgd=new String[placementcount];
+                            placementnoofti=new String[placementcount];
+                            placementnoofhri=new String[placementcount];
+                            placementstdx=new String[placementcount];
+                            placementstdxiiordiploma=new String[placementcount];
+                            placementug=new String[placementcount];
+                            placementpg=new String[placementcount];
+                            placementuploadtime=new String[placementcount];
+                            placementlastmodified=new String[placementcount];
+                            placementuploadedby=new String[placementcount];
+                            placementuploadedbyplain=new String[placementcount];
+                            placementnoofallowedliveatkt=new String[placementcount];
+                            placementnoofalloweddeadatkt=new String[placementcount];
 
-                            for (int i = 0; i < placementcount; i++) {
+                            for(int i=0;i<placementcount;i++) {
 
                                 placementids[i] = json.getString("id" + i);
                                 placementcompanyname[i] = json.getString("companyname" + i);
@@ -2372,20 +2428,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             }
                         }
                     }
-                } catch (Exception e) {
-                }
+                }catch (Exception e){}
                 return null;
             }
 
-            @Override
-            protected void onPostExecute(Void param) {
+            @Override protected void onPostExecute(Void param) {
 
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(false);
-                if (!isLastPageLoadedPlacement)
-                    for (int i = 0; i < placementcount; i++)
-                        try {
+                if(!isLastPageLoadedPlacement)
+                    for(int i=0;i<placementcount;i++)
+                        try
+                        {
 //                            if(placementcompanyname[i]!=null)
 //                            {
 //                                byte[] placementcompanynameEncryptedBytes=SimpleBase64Encoder.decode(placementcompanyname[i]);
@@ -2506,10 +2561,11 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //                                byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
 //                                placementlastmodified[i]=new String(placementlastmodifiedDecryptedBytes);
 //                            }
-                            if (placementuploadedby[i] != null) {
-                                byte[] placementuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(placementuploadedby[i]);
+                            if(placementuploadedby[i]!=null)
+                            {
+                                byte[] placementuploadedbyEncryptedBytes=SimpleBase64Encoder.decode(placementuploadedby[i]);
                                 byte[] placementuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadedbyEncryptedBytes);
-                                placementuploadedbyplain[i] = new String(placementuploadedbyDecryptedBytes);
+                                placementuploadedbyplain[i]=new String(placementuploadedbyDecryptedBytes);
                             }
 //                            if(placementnoofallowedliveatkt[i]!=null)
 //                            {
@@ -2524,7 +2580,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //                                placementnoofalloweddeadatkt[i]=new String(placementnoofalloweddeadatktDecryptedBytes);
 //                            }
 
-                        } catch (Exception e) {
+                        }catch (Exception e){
                             //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 new GetLastUpdatedPlacement().execute();
@@ -2569,149 +2625,158 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 }
 
                 RecyclerItem item = null;
-                for (int j = 0; j < readstatuscountNotification; j++) {
-                    String idnstatus = notificationreadstatus[j];
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-
-
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
+//                for (int j = 0; j < readstatuscountNotification ; j++) {
+//                    String idnstatus = notificationreadstatus[j];
+//                    String sid = "";
+//                    if (idnstatus.contains("U")) {
+//
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(notificationids[i])) {
+//                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
+//
+//                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
+//                                    if (lastupdatedNotification [k] == null) {
+//
+//                                        if (notificationfilename1[i].equals("null")) {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i],notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i],outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i] ,notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    } else {
+//                                        if (notificationfilename1[i].equals("null")) {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, false, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    } else if (idnstatus.contains("R")) {
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(notificationids[i])) {
+//                            for (int k = 0; k < uniqueUploadersNotification .length; k++) {
+//
+//                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification [k])) {
+//
+//
+//                                    if (lastupdatedNotification [k] == null) {
+//
+//                                        if (notificationfilename1[i].equals("null")) {
+//
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, "placeme");
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    } else {
+//                                        if (notificationfilename1[i].equals("null")) {
+//
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], false, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        } else {
+//                                            if (largeheadingflag == 1 && largenotificationflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationtoshow,notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
+//                                                item = new RecyclerItem(notificationids[i], headingtoshow,notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//                                            else
+//                                                item = new RecyclerItem(notificationids[i], notificationtitles[i],notificationtitles[i], notificationnotifications[i],notificationnotifications[i],notificationfilename1[i],notificationfilename2[i],notificationfilename3[i],notificationfilename4[i],notificationfilename5[i], outputDate,notificationlastmodified[i], true, true, notificationuploadedby[i], AlumniActivity.this, lastupdatedNotification [k]);
+//
+//                                            itemListNotification.add(item);
+//                                        }
+//                                    }
+//
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
             }
         }
 
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
+        if(lastPageFlagNotification==1)
+            isLastPageLoadedNotification=true;
 
         mAdapterNotification.notifyDataSetChanged();
 
     }
 //
+
+
+
+
+
+
+
+
+
 
 
     private void setupTabIcons() {
@@ -2722,7 +2787,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         tabLayout.getTabAt(4).setIcon(tabIcons[4]);
         tabLayout.getTabAt(5).setIcon(tabIcons[5]);
     }
-
     private void setupViewPager(ViewPager viewPager) {
         AlumniActivity.ViewPagerAdapter adapter = new AlumniActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new NewsFeedFragment(), "News Feed");
@@ -2733,7 +2797,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
         viewPager.setAdapter(adapter);
     }
-
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -2771,7 +2834,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             }
         }
     }
-
     @Override
     public void onBackPressed() {
         if (searchView.isSearchOpen()) {
@@ -2814,7 +2876,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         return super.onOptionsItemSelected(item);
     }
-
     //    void addNotificationdatatoAdapter()
 //    {
 //        for(int i=0;i<10;i++)
@@ -2884,20 +2945,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //
 //    }
     }
-
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
-            File f = new File(getCacheDir(), "cropped");
-            filepath = f.getAbsolutePath();
+            File f=new File(getCacheDir(), "cropped");
+            filepath=f.getAbsolutePath();
 
-            filename = "";
-            int index = filepath.lastIndexOf("/");
-            directory = "";
-            for (int i = 0; i < index; i++)
-                directory += filepath.charAt(i);
+            filename="";
+            int index=filepath.lastIndexOf("/");
+            directory="";
+            for(int i=0;i<index;i++)
+                directory+=filepath.charAt(i);
 
-            for (int i = index + 1; i < filepath.length(); i++)
-                filename += filepath.charAt(i);
+            for(int i=index+1;i<filepath.length();i++)
+                filename+=filepath.charAt(i);
 
             crop_layout.setVisibility(View.GONE);
 //            tswipe_refresh_layout.setVisibility(View.GONE);
@@ -2923,21 +2983,20 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         Crop.of(source, destination).asSquare().start(this);
     }
 
-    public void requestCropImage() {
+    public void requestCropImage()
+    {
         resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(AlumniActivity.this, "crop", "yes");
+        MySharedPreferencesManager.save(AlumniActivity.this,"crop", "yes");
 
         chooseImage();
 
 
     }
-
     private void chooseImage() {
 
         imagePicker.pickImage();
     }
-
     @Override
     public void onError(String s) {
         crop_layout.setVisibility(View.GONE);
@@ -2946,10 +3005,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         Toast.makeText(AlumniActivity.this, s, Toast.LENGTH_SHORT).show();
 
     }
-
     @Override
     public void onImagesChosen(List<ChosenImage> list) {
-        final ChosenImage file = list.get(0);
+        final ChosenImage file=list.get(0);
 
         runOnUiThread(new Runnable() {
 
@@ -3095,8 +3153,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     class Getsingnature extends AsyncTask<String, String, String> {
 
-        String signature = "";
-
+        String signature="";
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -3112,10 +3169,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage signature : "+signature);
 //        String t = String.valueOf(System.currentTimeMillis());
 
-            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Log.d("TAG", "downloadImage: GetImage username "+username);
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
@@ -3133,29 +3190,65 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     class LoginFirebaseTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-            String user = param[0];
-            String hash = param[1];
+            String user=param[0];
+            String hash=param[1];
             FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(user, hash)
+                    .signInWithEmailAndPassword(user,hash)
                     .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                MySharedPreferencesManager.save(AlumniActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
+                                MySharedPreferencesManager.save(AlumniActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
                             } else {
-                                MySharedPreferencesManager.save(AlumniActivity.this, "fireLoginStatus", "Failed to login to Firebase");
+                                MySharedPreferencesManager.save(AlumniActivity.this,"fireLoginStatus","Failed to login to Firebase");
                             }
                         }
                     });
             return null;
         }
+        @Override
+        protected void onPostExecute(String result) {
+            String status=MySharedPreferencesManager.getData(AlumniActivity.this,"fireLoginStatus");
+            Toast.makeText(AlumniActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(AlumniActivity.this,"fireLoginStatus");
+        }
+    }
+    class UpdateFirebaseToken extends AsyncTask<String, String, String> {
+
+        // TODO move UpdateFirebaseToken code to all base activity
+        // TODO update AID,DID
+        JSONObject json;
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
+                String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
+                Log.d("TAG", "splashScreen token\n" + token);
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                params.add(new BasicNameValuePair("t", token));             //1
+                json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+
+
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
 
         @Override
         protected void onPostExecute(String result) {
-            String status = MySharedPreferencesManager.getData(AlumniActivity.this, "fireLoginStatus");
-            Toast.makeText(AlumniActivity.this, status, Toast.LENGTH_SHORT).show();
-            // remove value from shared
-            MySharedPreferencesManager.removeKey(AlumniActivity.this, "fireLoginStatus");
+//            if (resultofop.equals("success")) {
+//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+//            }
         }
     }
+
 }

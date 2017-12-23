@@ -3,6 +3,8 @@ package placeme.octopusites.com.placeme;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -50,6 +52,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,6 +72,7 @@ import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
@@ -72,7 +80,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    public static final int ADMIN_DATA_CHANGE_RESULT_CODE =111;
+    public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
+
+    public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
+
 
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
@@ -97,7 +108,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     Handler handler = new Handler();
     RelativeLayout createnotificationrl, editnotificationrl;
     int searchNotificationFlag = 0, searchPlacementFlag = 0;
-    List<RecyclerItem> tempListNotification;
+    ArrayList<RecyclerItemEdit> tempListNotification;
     int unreadcountNotification = 0;
     RelativeLayout notificationcountrl;
     TextView notificationcounttxt;
@@ -118,7 +129,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String notificationreadstatus[];
     int selectedMenuFlag = 1;
     String[] blanksuggestionList = {""};
-    List<RecyclerItemPlacement> tempListPlacement;
+    ArrayList<RecyclerItemPlacement> tempListPlacement;
     int unreadcountPlacement = 0;
     int placementcount = 0;
     int readstatuscountPlacement = 0;
@@ -137,6 +148,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String lastupdatedPlacement[];
     TextView createPlacementOrNotification, editPlacementOrNotification;
     PlacementEditData settag = new PlacementEditData();
+
     private ImageView resultView;
     private int chooserType;
     private String mediaPath;
@@ -146,28 +158,32 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private MaterialSearchView searchView;
     //notification
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private RecyclerItemAdapter mAdapter;
-    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
-    private RecyclerItemAdapter mAdapterNotification;
-    private List<RecyclerItem> itemListNotification = new ArrayList<>();
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
     private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int page_to_call_notification = 1;
     private int current_page_notification = 1;
     //placements workdeclair
-    private RecyclerItemAdapterPlacement mAdapterPlacement;
-    private List<RecyclerItemPlacement> itemListPlacement = new ArrayList<>();
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
     private TextView toolbar_title;
-    Toolbar toolbar;
-    TextView bluePanelTv;
+
+
+    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
+
+    //new
+    private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
+    private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+
+
+    private List<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
+    private RecyclerItemAdapterPlacement mAdapterPlacement;
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
+
 
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
@@ -195,7 +211,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(AdminActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -253,15 +269,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
-//        if(notificationorplacementflag==1) {
-//            recyclerViewNotification.setVisibility(View.VISIBLE);
-//            recyclerViewPlacement.setVisibility(View.GONE);
-//
-//           }
-//        else   if(notificationorplacementflag==2) {
-//            recyclerViewNotification.setVisibility(View.GONE);
-//            recyclerViewPlacement.setVisibility(View.VISIBLE);
-//        }
+        if(notificationorplacementflag==1) {
+            recyclerViewNotification.setVisibility(View.VISIBLE);
+            recyclerViewPlacement.setVisibility(View.GONE);
+
+           }
+        else   if(notificationorplacementflag==2) {
+            recyclerViewNotification.setVisibility(View.GONE);
+            recyclerViewPlacement.setVisibility(View.VISIBLE);
+        }
 
         createnotificationrl = (RelativeLayout) findViewById(R.id.createnotificationrl);
         editnotificationrl = (RelativeLayout) findViewById(R.id.editnotificationrl);
@@ -379,11 +395,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         });
 
-        RelativeLayout bottompanel=(RelativeLayout)findViewById(R.id.bottompanel);
+        RelativeLayout bottompanel = (RelativeLayout) findViewById(R.id.bottompanel);
         bottompanel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminActivity.this,ShowUsers.class));
+                startActivity(new Intent(AdminActivity.this, ShowUsers.class));
             }
         });
 
@@ -422,7 +438,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         recyclerViewPlacement.setVisibility(View.GONE);
 //                      createPlacementOrNotification=(TextView)findViewById(R.id.createnotificationtxt) ;
 //                      editPlacementOrNotification
+                        selectedMenuFlag=1;
+
 //                        getNotifications();
+                        getNotifications2();
+
 //                      recyclerViewNotification.setVisibility(View.VISIBLE);
 //                      recyclerViewPlacement.setVisibility(View.GONE);
 
@@ -440,7 +460,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                         recyclerViewNotification.setVisibility(View.GONE);
                         recyclerViewPlacement.setVisibility(View.VISIBLE);
-//                        getPlacements();
+
+                      selectedMenuFlag=2;
+
+                        getPlacements2();
+
 //                     recyclerViewNotification.setVisibility(View.GONE);
 //                     recyclerViewPlacement.setVisibility(View.VISIBLE);
 
@@ -542,14 +566,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getBold(AdminActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AdminActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -1041,17 +1065,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         pt7.setTextColor(getResources().getColor(R.color.while_color));
 
 
-        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
-        recyclerViewNotification.setHasFixedSize(true);
-        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
-        recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
-        recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewNotification.setAdapter(mAdapterNotification);
+//
+//        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
+//        recyclerViewNotification.setHasFixedSize(true);
+//        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
+//        recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
+//        recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
+//        recyclerViewNotification.setAdapter(mAdapterNotification);
+
 
         //placements
 
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
+        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacementnew , AdminActivity.this);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -1060,17 +1086,29 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewPlacement.setAdapter(mAdapterPlacement);
 
 
+        mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew, AdminActivity.this);
+        recyclerViewNotification.setHasFixedSize(true);
+        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
+        recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
+        recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewNotification.setAdapter(mAdapterNotificationEdit);
+
+
+
+//        ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
 
-                RecyclerItem itemN = null;
+                RecyclerItemEdit itemN = null;
                 if (searchNotificationFlag == 1)
                     itemN = tempListNotification.get(position);
                 else
-                    itemN = itemListNotification.get(position);
-                if (!itemN.getisRead()) {
-                    itemN.setisRead(true);
+                    itemN = itemListNotificationNew.get(position);
+                if (!itemN.isIsread()) {
+                    itemN.setIsread(true);
                     unreadcountNotification--;
                     notificationcountrl.setVisibility(View.VISIBLE);
                     notificationcounttxt.setText(unreadcountNotification + "");
@@ -1080,7 +1118,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 }
 
-                mAdapterNotification.notifyDataSetChanged();
+                mAdapterNotificationEdit.notifyDataSetChanged();
 
                 changeReadStatusNotification(itemN.getId());
 
@@ -1099,6 +1137,18 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 i1.putExtra("uploadtime", itemN.getUploadtime());
                 i1.putExtra("lastmodified", itemN.getLastmodified());
 
+                Log.d("addOnItemTouch", "id: " + itemN.getId());
+                Log.d("addOnItemTouch", "title" + itemN.getTitle());
+                Log.d("addOnItemTouch", "notification" + itemN.getNotification());
+                Log.d("addOnItemTouch", "file1" + itemN.getFilename1());
+                Log.d("addOnItemTouch", "file2" + itemN.getFilename2());
+                Log.d("addOnItemTouch", "file3" + itemN.getFilename3());
+                Log.d("addOnItemTouch", "file4" + itemN.getFilename4());
+                Log.d("addOnItemTouch", "file5" + itemN.getFilename5());
+                Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                Log.d("addOnItemTouch", "uploadtime" + itemN.getUploadtime());
+                Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                Log.d("addOnItemTouch", "lastmodified" + itemN.getLastmodified());
                 startActivity(i1);
 
             }
@@ -1113,8 +1163,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewNotification.setOnScrollListener(new EndlessRecyclerOnScrollListenerNotification(linearLayoutManagerNotification) {
             @Override
             public void onLoadMore(int current_page) {
-
+                Log.d("TAG", "HERE BEFORE");
                 if (total_no_of_notifications > 20) {
+                    Log.d("TAG", "HERE INSIDE");
+
                     simulateLoadingNotification();
                 }
 
@@ -1130,11 +1182,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 if (searchPlacementFlag == 1)
                     item = tempListPlacement.get(position);
                 else
-                    item = itemListPlacement.get(position);
+                    item = itemListPlacementnew.get(position);
 
 
-                if (!item.getisRead()) {
-                    item.setisRead(true);
+                if (!item.isIsread()) {
+                    item.setIsread(true);
                     unreadcountPlacement--;
                     placementcountrl.setVisibility(View.VISIBLE);
                     placementcounttxt.setText(unreadcountPlacement + "");
@@ -1175,8 +1227,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 i1.putExtra("uploadtime", item.getUploadtime());
                 i1.putExtra("lastmodified", item.getLastmodified());
                 i1.putExtra("uploadedby", item.getUploadedby());
-                i1.putExtra("noofallowedliveatkt", item.getNoofallowedliveatkt());
-                i1.putExtra("noofalloweddeadatkt", item.getNoofalloweddeadatkt());
+                i1.putExtra("noofallowedliveatkt", item.getNoofalloweddeadatkt());
                 startActivity(i1);
             }
 
@@ -1204,49 +1255,36 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onRefresh() {
 
-
+                itemListNotificationNew.clear();
+                itemListPlacementnew.clear();
                 if (selectedMenuFlag == 1) {
 //                    getNotifications();
-                }
-                else if (selectedMenuFlag == 2) {
-//                    getPlacements();
+                    getNotifications2();
+                } else if (selectedMenuFlag == 2) {
+                    getPlacements2();
                 }
 
             }
         });
 
-//        tswipe_refresh_layout.setRefreshing(true);
-//
-//        new GetUnreadCountOfNotificationAndPlacement().execute();
-//        new GetUnreadMessagesCount().execute();
 
+        getNotifications2();
+//        getPlacements2();
+        new UpdateFirebaseToken().execute();
 
     }
 
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();
-        for (RecyclerItem d : itemListNotification) {
+        for (RecyclerItemEdit d : itemListNotificationNew) {
 
             if (containsIgnoreCase(d.getTitle(), text)) {
                 tempListNotification.add(d);
             }
         }
-        mAdapterNotification.updateList(tempListNotification, text);
+        mAdapterNotificationEdit.updateList(tempListNotification, text);
     }
 
-    public void getNotifications() {
-        tswipe_refresh_layout.setRefreshing(true);
-        previousTotalNotification = 0;
-        loadingNotification = true;
-        page_to_call_notification = 1;
-        isFirstRunNotification = true;
-        isLastPageLoadedNotification = false;
-        lastPageFlagNotification = 0;
-        new GetNotificationsReadStatus().execute();
-        Log.d("Ad.getNotifications", ":total_no_of_notifications::" + total_no_of_notifications);
-        Log.d("Ad.getNotifications", ":notificationpages::" + notificationpages);
-        Log.d("Ad.getNotifications", ": readcountNotification::" + unreadcountNotification);
-    }
 
     void changeReadStatusNotification(String id) {
         new ChangeReadStatusNotification().execute(id);
@@ -1265,44 +1303,28 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 try {
 
 
+                    Log.d("TAG", "simulateLoadingNotification: accessed");
+                    Log.d("TAG", "page_to_call_notification:"+page_to_call_notification);
+                    Log.d("TAG", "notificationpages:"+notificationpages);
+
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
 
 
                     if (page_to_call_notification != notificationpages) {
+
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin , "GET", params);
+                        json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
-                        notificationids = new String[notificationcount];
-                        notificationtitles = new String[notificationcount];
-                        notificationnotifications = new String[notificationcount];
-                        notificationfilename1 = new String[notificationcount];
-                        notificationfilename2 = new String[notificationcount];
-                        notificationfilename3 = new String[notificationcount];
-                        notificationfilename4 = new String[notificationcount];
-                        notificationfilename5 = new String[notificationcount];
-                        notificationuploadtime = new String[notificationcount];
-                        notificationlastmodified = new String[notificationcount];
-                        notificationuploadedby = new String[notificationcount];
-                        notificationuploadedbyplain = new String[notificationcount];
-                        for (int i = 0; i < notificationcount; i++) {
-                            notificationids[i] = json.getString("id" + i);
-                            notificationtitles[i] = json.getString("title" + i);
-                            notificationnotifications[i] = json.getString("notification" + i);
-                            notificationfilename1[i] = json.getString("filename1" + i);
-                            notificationfilename2[i] = json.getString("filename2" + i);
-                            notificationfilename3[i] = json.getString("filename3" + i);
-                            notificationfilename4[i] = json.getString("filename4" + i);
-                            notificationfilename5[i] = json.getString("filename5" + i);
-                            notificationuploadtime[i] = json.getString("uploadtime" + i);
-                            notificationlastmodified[i] = json.getString("lastmodified" + i);
-                            notificationuploadedby[i] = json.getString("uploadedby" + i);
+                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
 
-                        }
+
                     } else {
                         if (!isLastPageLoadedNotification) {
 
@@ -1315,32 +1337,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
-                            notificationids = new String[notificationcount];
-                            notificationtitles = new String[notificationcount];
-                            notificationnotifications = new String[notificationcount];
-                            notificationfilename1 = new String[notificationcount];
-                            notificationfilename2 = new String[notificationcount];
-                            notificationfilename3 = new String[notificationcount];
-                            notificationfilename4 = new String[notificationcount];
-                            notificationfilename5 = new String[notificationcount];
-                            notificationuploadtime = new String[notificationcount];
-                            notificationlastmodified = new String[notificationcount];
-                            notificationuploadedby = new String[notificationcount];
-                            notificationuploadedbyplain = new String[notificationcount];
-                            for (int i = 0; i < notificationcount; i++) {
-                                notificationids[i] = json.getString("id" + i);
-                                notificationtitles[i] = json.getString("title" + i);
-                                notificationnotifications[i] = json.getString("notification" + i);
-                                notificationfilename1[i] = json.getString("filename1" + i);
-                                notificationfilename2[i] = json.getString("filename2" + i);
-                                notificationfilename3[i] = json.getString("filename3" + i);
-                                notificationfilename4[i] = json.getString("filename4" + i);
-                                notificationfilename5[i] = json.getString("filename5" + i);
-                                notificationuploadtime[i] = json.getString("uploadtime" + i);
-                                notificationlastmodified[i] = json.getString("lastmodified" + i);
-                                notificationuploadedby[i] = json.getString("uploadedby" + i);
-
-                            }
+                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
                         }
 
                     }
@@ -1356,79 +1355,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 if (!isLastPageLoadedNotification) {
 
-                    for (int i = 0; i < notificationcount; i++)
-                        try {
-
-                            if (notificationtitles[i] != null) {
-                                byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
-                                byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                                notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-                            }
-                            if (notificationnotifications[i] != null) {
-                                byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
-                                byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                                notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
-                            }
-                            if (notificationfilename1[i] != null) {
-                                if (!notificationfilename1[i].equals("null")) {
-                                    byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
-                                    byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
-                                    notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename2[i] != null) {
-                                if (!notificationfilename2[i].equals("null")) {
-                                    byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
-                                    byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
-                                    notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename3[i] != null) {
-                                if (!notificationfilename3[i].equals("null")) {
-                                    byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
-                                    byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
-                                    notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename4[i] != null) {
-                                if (!notificationfilename4[i].equals("null")) {
-                                    byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
-                                    byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
-                                    notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename5[i] != null) {
-                                if (!notificationfilename5[i].equals("null")) {
-                                    byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
-                                    byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
-                                    notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
-                                }
-                            }
-                            if (notificationuploadtime[i] != null) {
-                                byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
-                                byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                                notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
-                            }
-                            if (notificationlastmodified[i] != null) {
-                                byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
-                                byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                                notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
-                            }
-                            if (notificationuploadedby[i] != null) {
-                                byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-                                byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                                notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                            }
+                    setserverlisttoadapter(itemlistfromserver);
 
 
-                        } catch (Exception e) {
-                            //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
                 }
 
 
                 tswipe_refresh_layout.setRefreshing(false);
-                new GetLastUpdatedNotification().execute();
+//                new GetLastUpdatedNotification().execute();
             }
         }.execute();
     }
@@ -1502,7 +1436,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public void requestCropImage() {
         resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(AdminActivity.this,"crop", "yes");
+        MySharedPreferencesManager.save(AdminActivity.this, "crop", "yes");
         chooseImage();
 
     }
@@ -1535,7 +1469,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     mainfragment.setVisibility(View.GONE);
                     crop_flag = 1;
                     beginCrop(result.getData());
-                     Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     crop_layout.setVisibility(View.GONE);
                     tswipe_refresh_layout.setVisibility(View.GONE);
@@ -1556,7 +1490,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
 
 
-
+        }
     }
 
     private void beginCrop(Uri source) {
@@ -1657,222 +1591,22 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         return super.onOptionsItemSelected(item);
     }
 
-    void addNotificationdatatoAdapter() {
 
-        if (isFirstRunNotification) {
-            itemListNotification.clear();
-            mAdapterNotification.notifyDataSetChanged();
-            isFirstRunNotification = false;
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
+//        refreshUserCount();
+//
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+//
+//    }
 
-        }
-
-        if (!isLastPageLoadedNotification) {
-
-            for (int i = 0; i < notificationcount; i++) {
-
-                String headingtoshow = "", notificationtoshow = "";
-                int largeheadingflag = 0, largenotificationflag = 0;
-
-                if (notificationtitles[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        headingtoshow += notificationtitles[i].charAt(j);
-                    largeheadingflag = 1;
-                    headingtoshow += "...";
-                }
-                if (notificationnotifications[i].length() > 25) {
-                    for (int j = 0; j < 25; j++)
-                        notificationtoshow += notificationnotifications[i].charAt(j);
-                    largenotificationflag = 1;
-                    notificationtoshow += "...";
-                }
-                DateFormat inputFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
-                DateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
-                String outputDate = "";
-                try {
-                    Date date = inputFormat.parse(notificationuploadtime[i]);
-                    outputDate = outputFormat.format(date);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                RecyclerItem item = null;
-//                            Toast.makeText(this, "read status count Notification:-"+readstatuscountNotification, Toast.LENGTH_LONG).show();
-//                            Toast.makeText(this, "notification read status here:-"+notificationreadstatus, Toast.LENGTH_LONG).show();
-
-                for (int j = 0; j < readstatuscountNotification; j++) {
-                    String idnstatus = notificationreadstatus[j];
-                    Log.d("TAGAdmin", "idnstatus: " + idnstatus);
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                            Log.d("TAGAdmin", "sid: " + sid);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-
-
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "cplaceme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], AdminActivity.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
-
-        mAdapterNotification.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
-        refreshUserCount();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
-
-    }
-
-    void getPlacements() {
-        tswipe_refresh_layout.setRefreshing(true);
-        previousTotalPlacement = 0;
-        loadingPlacement = true;
-        page_to_call_placement = 1;
-        isFirstRunPlacement = true;
-        isLastPageLoadedPlacement = false;
-        lastPageFlagPlacement = 0;
-        Log.d("PlacmentTesting", "previousTotalPlacement: " + previousTotalPlacement);
-        Log.d("PlacmentTesting", "page_to_call_placement: " + page_to_call_placement);
-        Log.d("PlacmentTesting", "lastPageFlagPlacement: " + lastPageFlagPlacement);
-        new GetPlacementsReadStatus().execute();
-    }
 
 //    @Override
 //    protected void onRestart() {
@@ -1885,93 +1619,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //        }
 //    }
 
-    void addPlacementdatatoAdapter()
-    {
-        if (isFirstRunPlacement) {
-            itemListPlacement.clear();
-            mAdapterPlacement.notifyDataSetChanged();
-            isFirstRunPlacement = false;
-        }
-        selectedMenuFlag = 2;
-        if (!isLastPageLoadedPlacement) {
-            for (int i = 0; i < placementcount; i++) {
-
-                String companynametoshow = "";
-                int largecompanynameflag = 0;
-
-                if (placementcompanyname[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        companynametoshow += placementcompanyname[i].charAt(j);
-                    largecompanynameflag = 1;
-                    companynametoshow += "...";
-                }
-
-                RecyclerItemPlacement item = null;
-                for (int j = 0; j < readstatuscountPlacement; j++) {
-                    String idnstatus = placementreadstatus[j];
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AdminActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AdminActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AdminActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, AdminActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AdminActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AdminActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AdminActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, AdminActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-        }
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-        mAdapterPlacement.notifyDataSetChanged();
-
-    }
 
     void changeReadStatusPlacement(String id) {
         new ChangeReadStatusPlacement().execute(id);
@@ -1997,62 +1644,22 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));
                         params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
                         json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
+                        try {
 
-                        placementcount = Integer.parseInt(json.getString("count"));
-                        placementids = new String[placementcount];
-                        placementcompanyname = new String[placementcount];
-                        placementcpackage = new String[placementcount];
-                        placementpost = new String[placementcount];
-                        placementforwhichcourse = new String[placementcount];
-                        placementforwhichstream = new String[placementcount];
-                        placementvacancies = new String[placementcount];
-                        placementlastdateofregistration = new String[placementcount];
-                        placementdateofarrival = new String[placementcount];
-                        placementbond = new String[placementcount];
-                        placementnoofapti = new String[placementcount];
-                        placementnooftechtest = new String[placementcount];
-                        placementnoofgd = new String[placementcount];
-                        placementnoofti = new String[placementcount];
-                        placementnoofhri = new String[placementcount];
-                        placementstdx = new String[placementcount];
-                        placementstdxiiordiploma = new String[placementcount];
-                        placementug = new String[placementcount];
-                        placementpg = new String[placementcount];
-                        placementuploadtime = new String[placementcount];
-                        placementlastmodified = new String[placementcount];
-                        placementuploadedby = new String[placementcount];
-                        placementuploadedbyplain = new String[placementcount];
-                        placementnoofallowedliveatkt = new String[placementcount];
-                        placementnoofalloweddeadatkt = new String[placementcount];
+                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
-                        for (int i = 0; i < placementcount; i++) {
 
-                            placementids[i] = json.getString("id" + i);
-                            placementcompanyname[i] = json.getString("companyname" + i);
-                            placementcpackage[i] = json.getString("package" + i);
-                            placementpost[i] = json.getString("post" + i);
-                            placementforwhichcourse[i] = json.getString("forwhichcourse" + i);
-                            placementforwhichstream[i] = json.getString("forwhichstream" + i);
-                            placementvacancies[i] = json.getString("vacancies" + i);
-                            placementlastdateofregistration[i] = json.getString("lastdateofregistration" + i);
-                            placementdateofarrival[i] = json.getString("dateofarrival" + i);
-                            placementbond[i] = json.getString("bond" + i);
-                            placementnoofapti[i] = json.getString("noofapti" + i);
-                            placementnooftechtest[i] = json.getString("nooftechtest" + i);
-                            placementnoofgd[i] = json.getString("noofgd" + i);
-                            placementnoofti[i] = json.getString("noofti" + i);
-                            placementnoofhri[i] = json.getString("noofhri" + i);
-                            placementstdx[i] = json.getString("stdx" + i);
-                            placementstdxiiordiploma[i] = json.getString("stdxiiordiploma" + i);
-                            placementug[i] = json.getString("ug" + i);
-                            placementpg[i] = json.getString("pg" + i);
-                            placementuploadtime[i] = json.getString("uploadtime" + i);
-                            placementlastmodified[i] = json.getString("lastmodified" + i);
-                            placementuploadedby[i] = json.getString("uploadedby" + i);
-                            placementnoofallowedliveatkt[i] = json.getString("noofallowedliveatkt" + i);
-                            placementnoofalloweddeadatkt[i] = json.getString("noofalloweddeadatkt" + i);
+
+                        } catch (Exception e) {
                         }
+
+
 
                     } else {
                         if (!isLastPageLoadedPlacement) {
@@ -2062,63 +1669,21 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));
                             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
                             json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
+                            try {
 
-                            placementcount = Integer.parseInt(json.getString("count"));
+                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
-                            placementids = new String[placementcount];
-                            placementcompanyname = new String[placementcount];
-                            placementcpackage = new String[placementcount];
-                            placementpost = new String[placementcount];
-                            placementforwhichcourse = new String[placementcount];
-                            placementforwhichstream = new String[placementcount];
-                            placementvacancies = new String[placementcount];
-                            placementlastdateofregistration = new String[placementcount];
-                            placementdateofarrival = new String[placementcount];
-                            placementbond = new String[placementcount];
-                            placementnoofapti = new String[placementcount];
-                            placementnooftechtest = new String[placementcount];
-                            placementnoofgd = new String[placementcount];
-                            placementnoofti = new String[placementcount];
-                            placementnoofhri = new String[placementcount];
-                            placementstdx = new String[placementcount];
-                            placementstdxiiordiploma = new String[placementcount];
-                            placementug = new String[placementcount];
-                            placementpg = new String[placementcount];
-                            placementuploadtime = new String[placementcount];
-                            placementlastmodified = new String[placementcount];
-                            placementuploadedby = new String[placementcount];
-                            placementuploadedbyplain = new String[placementcount];
-                            placementnoofallowedliveatkt = new String[placementcount];
-                            placementnoofalloweddeadatkt = new String[placementcount];
 
-                            for (int i = 0; i < placementcount; i++) {
 
-                                placementids[i] = json.getString("id" + i);
-                                placementcompanyname[i] = json.getString("companyname" + i);
-                                placementcpackage[i] = json.getString("package" + i);
-                                placementpost[i] = json.getString("post" + i);
-                                placementforwhichcourse[i] = json.getString("forwhichcourse" + i);
-                                placementforwhichstream[i] = json.getString("forwhichstream" + i);
-                                placementvacancies[i] = json.getString("vacancies" + i);
-                                placementlastdateofregistration[i] = json.getString("lastdateofregistration" + i);
-                                placementdateofarrival[i] = json.getString("dateofarrival" + i);
-                                placementbond[i] = json.getString("bond" + i);
-                                placementnoofapti[i] = json.getString("noofapti" + i);
-                                placementnooftechtest[i] = json.getString("nooftechtest" + i);
-                                placementnoofgd[i] = json.getString("noofgd" + i);
-                                placementnoofti[i] = json.getString("noofti" + i);
-                                placementnoofhri[i] = json.getString("noofhri" + i);
-                                placementstdx[i] = json.getString("stdx" + i);
-                                placementstdxiiordiploma[i] = json.getString("stdxiiordiploma" + i);
-                                placementug[i] = json.getString("ug" + i);
-                                placementpg[i] = json.getString("pg" + i);
-                                placementuploadtime[i] = json.getString("uploadtime" + i);
-                                placementlastmodified[i] = json.getString("lastmodified" + i);
-                                placementuploadedby[i] = json.getString("uploadedby" + i);
-                                placementnoofallowedliveatkt[i] = json.getString("noofallowedliveatkt" + i);
-                                placementnoofalloweddeadatkt[i] = json.getString("noofalloweddeadatkt" + i);
+                            } catch (Exception e) {
                             }
+
                         }
                     }
                 } catch (Exception e) {
@@ -2132,160 +1697,21 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(false);
-                if (!isLastPageLoadedPlacement)
-                    for (int i = 0; i < placementcount; i++)
-                        try {
-//                            if(placementcompanyname[i]!=null)
-//                            {
-//                                byte[] placementcompanynameEncryptedBytes=SimpleBase64Encoder.decode(placementcompanyname[i]);
-//                                byte[] placementcompanynameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcompanynameEncryptedBytes);
-//                                placementcompanyname[i]=new String(placementcompanynameDecryptedBytes);
-//                            }
-//                            if(placementcpackage[i]!=null)
-//                            {
-//                                byte[] placementcpackageEncryptedBytes=SimpleBase64Encoder.decode(placementcpackage[i]);
-//                                byte[] placementcpackageDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementcpackageEncryptedBytes);
-//                                placementcpackage[i]=new String(placementcpackageDecryptedBytes);
-//                            }
-//                            if(placementpost[i]!=null)
-//                            {
-//                                byte[] placementpostEncryptedBytes=SimpleBase64Encoder.decode(placementpost[i]);
-//                                byte[] placementpostDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpostEncryptedBytes);
-//                                placementpost[i]=new String(placementpostDecryptedBytes);
-//                            }
-//                            if(placementforwhichcourse[i]!=null)
-//                            {
-//                                byte[] placementforwhichcourseEncryptedBytes=SimpleBase64Encoder.decode(placementforwhichcourse[i]);
-//                                byte[] placementforwhichcourseDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichcourseEncryptedBytes);
-//                                placementforwhichcourse[i]=new String(placementforwhichcourseDecryptedBytes);
-//                            }
-//                            if(placementforwhichstream[i]!=null)
-//                            {
-//                                byte[] placementforwhichstreamEncryptedBytes=SimpleBase64Encoder.decode(placementforwhichstream[i]);
-//                                byte[] placementforwhichstreamDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementforwhichstreamEncryptedBytes);
-//                                placementforwhichstream[i]=new String(placementforwhichstreamDecryptedBytes);
-//                            }
-//                            if(placementvacancies[i]!=null)
-//                            {
-//                                byte[] placementvacanciesEncryptedBytes=SimpleBase64Encoder.decode(placementvacancies[i]);
-//                                byte[] placementvacanciesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementvacanciesEncryptedBytes);
-//                                placementvacancies[i]=new String(placementvacanciesDecryptedBytes);
-//                            }
-//                            if(placementlastdateofregistration[i]!=null)
-//                            {
-//                                byte[] placementlastdateofregistrationEncryptedBytes=SimpleBase64Encoder.decode(placementlastdateofregistration[i]);
-//                                byte[] placementlastdateofregistrationDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastdateofregistrationEncryptedBytes);
-//                                placementlastdateofregistration[i]=new String(placementlastdateofregistrationDecryptedBytes);
-//                            }
-//                            if(placementdateofarrival[i]!=null)
-//                            {
-//                                byte[] placementdateofarrivalEncryptedBytes=SimpleBase64Encoder.decode(placementdateofarrival[i]);
-//                                byte[] placementdateofarrivalDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementdateofarrivalEncryptedBytes);
-//                                placementdateofarrival[i]=new String(placementdateofarrivalDecryptedBytes);
-//                            }
-//                            if(placementbond[i]!=null)
-//                            {
-//                                byte[] placementbondEncryptedBytes=SimpleBase64Encoder.decode(placementbond[i]);
-//                                byte[] placementbondDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementbondEncryptedBytes);
-//                                placementbond[i]=new String(placementbondDecryptedBytes);
-//                            }
-//                            if(placementnoofapti[i]!=null)
-//                            {
-//                                byte[] placementnoofaptiEncryptedBytes=SimpleBase64Encoder.decode(placementnoofapti[i]);
-//                                byte[] placementnoofaptiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofaptiEncryptedBytes);
-//                                placementnoofapti[i]=new String(placementnoofaptiDecryptedBytes);
-//                            }
-//                            if(placementnooftechtest[i]!=null)
-//                            {
-//                                byte[] placementnooftechtestEncryptedBytes=SimpleBase64Encoder.decode(placementnooftechtest[i]);
-//                                byte[] placementnooftechtestDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftechtestEncryptedBytes);
-//                                placementnooftechtest[i]=new String(placementnooftechtestDecryptedBytes);
-//                            }
-//                            if(placementnoofgd[i]!=null)
-//                            {
-//                                byte[] placementnoofgdEncryptedBytes=SimpleBase64Encoder.decode(placementnoofgd[i]);
-//                                byte[] placementnoofgdDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofgdEncryptedBytes);
-//                                placementnoofgd[i]=new String(placementnoofgdDecryptedBytes);
-//                            }
-//                            if(placementnoofti[i]!=null)
-//                            {
-//                                byte[] placementnooftiEncryptedBytes=SimpleBase64Encoder.decode(placementnoofti[i]);
-//                                byte[] placementnooftiDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnooftiEncryptedBytes);
-//                                placementnoofti[i]=new String(placementnooftiDecryptedBytes);
-//                            }
-//                            if(placementnoofhri[i]!=null)
-//                            {
-//                                byte[] placementnoofhriEncryptedBytes=SimpleBase64Encoder.decode(placementnoofhri[i]);
-//                                byte[] placementnoofhriDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofhriEncryptedBytes);
-//                                placementnoofhri[i]=new String(placementnoofhriDecryptedBytes);
-//                            }
-//                            if(placementstdx[i]!=null)
-//                            {
-//                                byte[] placementstdxEncryptedBytes=SimpleBase64Encoder.decode(placementstdx[i]);
-//                                byte[] placementstdxDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxEncryptedBytes);
-//                                placementstdx[i]=new String(placementstdxDecryptedBytes);
-//                            }
-//                            if(placementstdxiiordiploma[i]!=null)
-//                            {
-//                                byte[] placementstdxiiordiplomaEncryptedBytes=SimpleBase64Encoder.decode(placementstdxiiordiploma[i]);
-//                                byte[] placementstdxiiordiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementstdxiiordiplomaEncryptedBytes);
-//                                placementstdxiiordiploma[i]=new String(placementstdxiiordiplomaDecryptedBytes);
-//                            }
-//                            if(placementug[i]!=null)
-//                            {
-//                                byte[] placementugEncryptedBytes=SimpleBase64Encoder.decode(placementug[i]);
-//                                byte[] placementugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementugEncryptedBytes);
-//                                placementug[i]=new String(placementugDecryptedBytes);
-//                            }
-//                            if(placementpg[i]!=null)
-//                            {
-//                                byte[] placementpgEncryptedBytes=SimpleBase64Encoder.decode(placementpg[i]);
-//                                byte[] placementpgDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementpgEncryptedBytes);
-//                                placementpg[i]=new String(placementpgDecryptedBytes);
-//                            }
-//                            if(placementuploadtime[i]!=null)
-//                            {
-//                                byte[] placementuploadtimeEncryptedBytes=SimpleBase64Encoder.decode(placementuploadtime[i]);
-//                                byte[] placementuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadtimeEncryptedBytes);
-//                                placementuploadtime[i]=new String(placementuploadtimeDecryptedBytes);
-//                            }
-//                            if(placementlastmodified[i]!=null)
-//                            {
-//                                byte[] placementlastmodifiedEncryptedBytes=SimpleBase64Encoder.decode(placementlastmodified[i]);
-//                                byte[] placementlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementlastmodifiedEncryptedBytes);
-//                                placementlastmodified[i]=new String(placementlastmodifiedDecryptedBytes);
-//                            }
+                if (!isLastPageLoadedPlacement){
 
-                            if (placementuploadedby[i] != null) {
-                                byte[] placementuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(placementuploadedby[i]);
-                                byte[] placementuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementuploadedbyEncryptedBytes);
-                                placementuploadedbyplain[i] = new String(placementuploadedbyDecryptedBytes);
-                            }
 
-//                            if(placementnoofallowedliveatkt[i]!=null)
-//                            {
-//                                byte[] placementnoofallowedliveatktEncryptedBytes=SimpleBase64Encoder.decode(placementnoofallowedliveatkt[i]);
-//                                byte[] placementnoofallowedliveatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofallowedliveatktEncryptedBytes);
-//                                placementnoofallowedliveatkt[i]=new String(placementnoofallowedliveatktDecryptedBytes);
-//                            }
-//                            if(placementnoofalloweddeadatkt[i]!=null)
-//                            {
-//                                byte[] placementnoofalloweddeadatktEncryptedBytes=SimpleBase64Encoder.decode(placementnoofalloweddeadatkt[i]);
-//                                byte[] placementnoofalloweddeadatktDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, placementnoofalloweddeadatktEncryptedBytes);
-//                                placementnoofalloweddeadatkt[i]=new String(placementnoofalloweddeadatktDecryptedBytes);
-//                            }
+                    setplacementListtoadapter(placementListfromserver);
+                }
+                tswipe_refresh_layout.setRefreshing(false);
 
-                        } catch (Exception e) {
-                            //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                new GetLastUpdatedPlacement().execute();
+
             }
         }.execute();
     }
 
     void filterPlacements(String text) {
         tempListPlacement = new ArrayList();
-        for (RecyclerItemPlacement d : itemListPlacement) {
+        for (RecyclerItemPlacement d : itemListPlacementnew) {
 
             if (containsIgnoreCase(d.getCompanyname(), text)) {
                 tempListPlacement.add(d);
@@ -2307,53 +1733,57 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 //    }
 
-    class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
 
 
-        protected String doInBackground(String... param) {
+    void getNotifications2() {
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+//metadata read count and read status
 
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-
-                json = jParser.makeHttpRequest(Z.url_GetNotificationsAdminAdminMetaData, "GET", params);
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-
-//                json = jParser.makeHttpRequest(url_GetPlacementsAdminAdminMetaData, "GET", params);
-//                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+        new GetNotificationsReadStatus().execute();
 
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-//            placementcountrl.setVisibility(View.VISIBLE);
-//            placementcounttxt.setText(unreadcountPlacement+"");
-//            if(unreadcountPlacement==0)
-//            {
-//                placementcountrl.setVisibility(View.GONE);
-//            }
+//        new Getplacementbyhr().execute();
 
 
-            notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification + "");
-            if (unreadcountNotification == 0) {
-                Toast.makeText(AdminActivity.this, "no notification", Toast.LENGTH_SHORT).show();
-                notificationcountrl.setVisibility(View.GONE);
-            }
-
-//            getNotifications();
-
-        }
     }
+
+
+
+//placements methods and classes
+
+    void getPlacements2() {
+        tswipe_refresh_layout.setRefreshing(true);
+        previousTotalPlacement = 0;
+        loadingPlacement = true;
+        page_to_call_placement = 1;
+        isFirstRunPlacement = true;
+        isLastPageLoadedPlacement = false;
+        lastPageFlagPlacement = 0;
+
+        new GetPlacementsReadStatus().execute();
+    }
+
+    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
+
+        itemListNotificationNew.addAll(itemlist);
+        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
+
+        mAdapterNotificationEdit.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+
+    }
+
 
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
@@ -2367,22 +1797,17 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             try {
 
                 json = jParser.makeHttpRequest(Z.url_GetNotificationsAdminAdminMetaData, "GET", params);
+
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
-                json = jParser.makeHttpRequest(Z.url_GetReadStatusOfNotificationsAdmin, "GET", params);
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
 
-                readstatuscountNotification = Integer.parseInt(json.getString("count"));
-                Log.d("TAGAdmin", "readstatuscountNotification: " + readstatuscountNotification);
-
-                notificationreadstatus = new String[readstatuscountNotification];
-                for (int i = 0; i < readstatuscountNotification; i++) {
-                    notificationreadstatus[i] = json.getString("s" + i);
-                    Log.d("TAGAdmin", "getReadStatus " + notificationreadstatus[i]);
-                }
-
+//
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2392,18 +1817,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
             try {
-//              Toast.makeText(AdminActivity.this, "total_no_of_notifications"+total_no_of_notifications, Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "total pagess  "+notificationpages, Toast.LENGTH_LONG).show();
-//
-//              Toast.makeText(AdminActivity.this, "UNRead count:-"+unreadcountNotification, Toast.LENGTH_LONG).show();
-//
-//              Toast.makeText(AdminActivity.this, "Read count:-"+readstatuscountNotification, Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 0 :-"+notificationreadstatus[0], Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 1:-"+notificationreadstatus[1], Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 2 :-"+notificationreadstatus[2], Toast.LENGTH_LONG).show();
-                Log.d("GetReadStatus", ":total_no_of_notifications::" + total_no_of_notifications);
-                Log.d("GetReadStatus", ":notificationpages::" + notificationpages);
-                Log.d("GetReadStatus", ": readcountNotification::" + unreadcountNotification);
+                notificationcountrl.setVisibility(View.VISIBLE);
+                notificationcounttxt.setText(unreadcountNotification + "");
+                if (unreadcountNotification == 0) {
+                    notificationcountrl.setVisibility(View.GONE);
+                }
+
+
+                new GetNotifications2().execute();
 
 
             } catch (Exception e) {
@@ -2411,17 +1832,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
 
 
-            notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification + "");
-            if (unreadcountNotification == 0) {
-                notificationcountrl.setVisibility(View.GONE);
-            }
-            new GetNotifications().execute();
-
         }
     }
-
-//placements methods and classes
 
     class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
 
@@ -2482,216 +1894,73 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         public abstract void onLoadMore(int current_page);
     }
 
-    class GetNotifications extends AsyncTask<String, String, String> {
+    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            map = downloadImage(Z.load_student_image);
+            return map;
+        }
 
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            profile.setImageBitmap(result);
+        }
 
-        protected String doInBackground(String... param) {
+        private Bitmap downloadImage(String url) {
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
 
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
+            url = uri.toString();
+
+            Bitmap bitmap = null;
+            InputStream stream = null;
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inSampleSize = 1;
+
             try {
-                notificationcount = Integer.parseInt(json.getString("count"));
-
-                notificationids = new String[notificationcount];
-                notificationtitles = new String[notificationcount];
-                notificationnotifications = new String[notificationcount];
-                notificationfilename1 = new String[notificationcount];
-                notificationfilename2 = new String[notificationcount];
-                notificationfilename3 = new String[notificationcount];
-                notificationfilename4 = new String[notificationcount];
-                notificationfilename5 = new String[notificationcount];
-                notificationuploadtime = new String[notificationcount];
-                notificationlastmodified = new String[notificationcount];
-                notificationuploadedby = new String[notificationcount];
-                notificationuploadedbyplain = new String[notificationcount];
-                for (int i = 0; i < notificationcount; i++) {
-                    notificationids[i] = json.getString("id" + i);
-                    notificationtitles[i] = json.getString("title" + i);
-                    notificationnotifications[i] = json.getString("notification" + i);
-                    notificationfilename1[i] = json.getString("filename1" + i);
-                    notificationfilename2[i] = json.getString("filename2" + i);
-                    notificationfilename3[i] = json.getString("filename3" + i);
-                    notificationfilename4[i] = json.getString("filename4" + i);
-                    notificationfilename5[i] = json.getString("filename5" + i);
-                    notificationuploadtime[i] = json.getString("uploadtime" + i);
-                    notificationlastmodified[i] = json.getString("lastmodified" + i);
-                    notificationuploadedby[i] = json.getString("uploadedby" + i);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+                stream = getHttpConnection(url);
+                bitmap = BitmapFactory.
+                        decodeStream(stream, null, bmOptions);
+                stream.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-            return r;
+            return bitmap;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
+        // Makes HttpURLConnection and returns InputStream
+        private InputStream getHttpConnection(String urlString)
+                throws IOException {
+            InputStream stream = null;
+            URL url = new URL(urlString);
+            URLConnection connection = url.openConnection();
 
+            try {
+                HttpURLConnection httpConnection = (HttpURLConnection) connection;
+                httpConnection.setRequestMethod("GET");
+                httpConnection.connect();
 
-            tswipe_refresh_layout.setVisibility(View.VISIBLE);
-            tswipe_refresh_layout.setRefreshing(false);
-
-            for (int i = 0; i < notificationcount; i++)
-                try {
-
-
-                    if (notificationtitles[i] != null) {
-                        byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
-                        byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                        notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-//                        Toast.makeText(AdminActivity.this, "title"+notificationtitles[i], Toast.LENGTH_SHORT).show();
-                        Log.d("notificationdecripted", "notificationtitles" + "[" + i + "] " + notificationtitles[i]);
-
-                    }
-                    if (notificationnotifications[i] != null) {
-                        byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
-                        byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                        notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
-//                        Toast.makeText(AdminActivity.this, "notification"+notificationnotifications[i], Toast.LENGTH_SHORT).show();
-
-                    }
-                    if (notificationfilename1[i] != null) {
-                        if (!notificationfilename1[i].equals("null")) {
-                            byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
-                            byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
-                            notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename2[i] != null) {
-                        if (!notificationfilename2[i].equals("null")) {
-                            byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
-                            byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
-                            notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename3[i] != null) {
-                        if (!notificationfilename3[i].equals("null")) {
-                            byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
-                            byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
-                            notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename4[i] != null) {
-                        if (!notificationfilename4[i].equals("null")) {
-                            byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
-                            byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
-                            notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename5[i] != null) {
-                        if (!notificationfilename5[i].equals("null")) {
-                            byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
-                            byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
-                            notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
-                        }
-                    }
-                    if (notificationuploadtime[i] != null) {
-                        byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
-                        byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                        notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
-                    }
-                    if (notificationlastmodified[i] != null) {
-                        byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
-                        byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                        notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
-                    }
-                    if (notificationuploadedby[i] != null) {
-                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-                        byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                        Log.d("notificationuploadedby", "notificationuploadedby" + "[" + i + "] " + notificationuploadedby[i]);
-
-                    }
-
-
-                } catch (Exception e) {
-                    //Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    stream = httpConnection.getInputStream();
                 }
-
-
-            new GetLastUpdatedNotification().execute();
-//            addNotificationdatatoAdapter();
-
-
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return stream;
         }
+
     }
 
-    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
+    class UploadProfile extends AsyncTask<String, String, String> {
 
-        String s = "";
 
         protected String doInBackground(String... param) {
-            String r = null;
 
-
-            Set<String> uniqKeys = new TreeSet<String>();
-            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
-
-
-            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
-            lastupdatedNotification = new String[uniqueUploadersNotification.length];
-            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
-                for (int i = 0; i < notificationcount; i++) {
-
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
-                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
-                    }
-                }
-            }
-            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-                try {
-                    s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    } else {
-                        lastupdatedNotification[i] = s;
-//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                }
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-//            Toast.makeText(AdminActivity.this,"uniqueUploadersNotification:- \n"+uniqueUploadersNotification[0] , Toast.LENGTH_LONG).show();
-//
-//            Toast.makeText(AdminActivity.this,notificationuploadedbyplain[0]+"\n"+notificationuploadedby[0] , Toast.LENGTH_LONG).show();
-
-
-//            for(int i=0;i<lastupdated.length;i++)
-//            {
-//                if(lastupdated[i]==null) {
-//                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(AdminActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
-//
-//
-//                }
-//            }
-            if (s.equals("noupdate")) {
-                Toast.makeText(AdminActivity.this, "no update", Toast.LENGTH_SHORT).show();
-            } else {
-//                lastupdatedNotification [i]=s;
-            }
-
-            if (!isLastPageLoadedNotification) {
-            }
-            addNotificationdatatoAdapter();
-
-        }
-
-    }
 
     class CompressTask extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
@@ -2807,6 +2076,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
     }
+
     class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -2818,21 +2088,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
             try {
                 json = jParser.makeHttpRequest(Z.url_GetPlacementsAdminAdminMetaData, "GET", params);
+
+
                 placementpages = Integer.parseInt(json.getString("pages"));
                 called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
-                json = jParser.makeHttpRequest(Z.url_GetReadStatusOfPlacementsForAdmin, "GET", params);
-                readstatuscountPlacement = Integer.parseInt(json.getString("count"));
-                placementreadstatus = new String[readstatuscountPlacement];
 
-
-                for (int i = 0; i < readstatuscountPlacement; i++) {
-                    placementreadstatus[i] = json.getString("s" + i);
-//                    Log.d("PlacmentTesting", "total_no_of_placements: "+placementreadstatus[i]);
-                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2843,17 +2107,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
             placementcountrl.setVisibility(View.VISIBLE);
+
             placementcounttxt.setText(unreadcountPlacement + "");
             if (unreadcountPlacement == 0) {
                 placementcountrl.setVisibility(View.GONE);
             }
-            Log.d("PlacmentTesting", "total_no_of_placements: " + total_no_of_placements);
-            Log.d("PlacmentTesting", "unreadcountPlacement: " + unreadcountPlacement);
-            for (int i = 0; i < readstatuscountPlacement; i++) {
-                Log.d("PlacmentTesting", "placementreadstatus1: " + placementreadstatus[i]);
-            }
 
-            new GetPlacements().execute();
+
+            new GetPlacements2().execute();
+
 
         }
     }
@@ -3108,60 +2370,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 } catch (Exception e) {
                     //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            new GetLastUpdatedPlacement().execute();
+//            new GetLastUpdatedPlacement().execute();
         }
     }
-    class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-            Set<String> uniqKeys = new TreeSet<String>();
-            uniqKeys.addAll(Arrays.asList(placementuploadedbyplain));
-
-            uniqueUploadersPlacement = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncPlacement = new String[uniqueUploadersPlacement.length];
-            lastupdatedPlacement = new String[uniqueUploadersPlacement.length];
-
-            for (int j = 0; j < uniqueUploadersPlacement.length; j++) {
-                for (int i = 0; i < placementcount; i++) {
-
-                    if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[j])) {
-                        uniqueUploadersEncPlacement[j] = placementuploadedby[i];
-                    }
-                }
-            }
-
-            for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-                try {
-                    String s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-                    } else {
-                        lastupdatedPlacement[i] = s;
-
-                    }
-
-                } catch (Exception e) {
-                }
-            }
-
-
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (!isLastPageLoadedPlacement)
-                addPlacementdatatoAdapter();
-
-        }
-
-    }
 
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
@@ -3282,5 +2494,133 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         }
     }
+
+    class GetNotifications2 extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            Log.d("class", "accessed");
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
+            try {
+
+                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            setserverlisttoadapter(itemlistfromserver);
+
+        }
+
+
+    }
+
+    class GetPlacements2 extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+            String r = null;
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+
+            json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
+            try {
+
+                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+
+            } catch (Exception e) {
+            }
+
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+            setplacementListtoadapter(placementListfromserver);
+
+        }
+    }
+
+    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
+
+        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
+        itemListPlacementnew.addAll(itemList2);
+
+        mAdapterPlacement.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+
+        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+
+
+    }
+    class UpdateFirebaseToken extends AsyncTask<String, String, String> {
+
+        // TODO move UpdateFirebaseToken code to all base activity
+        // TODO update AID,DID
+        JSONObject json;
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
+                String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
+                Log.d("TAG", "splashScreen token\n" + token);
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                params.add(new BasicNameValuePair("t", token));             //1
+                json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+                Log.d("TAG", "token json admin: "+json);
+
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+//            if (resultofop.equals("success")) {
+//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+//            }
+        }
+    }
+
 
 }

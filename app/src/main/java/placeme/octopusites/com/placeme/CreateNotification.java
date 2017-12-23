@@ -86,11 +86,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     int attachmentcount = 0;
     int attach1 = 0, attach2 = 0, attach3 = 0, attach4 = 0, attach5 = 0;
     int forstudflag = 0, forallumflag = 0;
-    TextInputLayout batches,titleinput,notificationinput;
+    TextInputLayout batches, titleinput, notificationinput;
     RelativeLayout yearspinner;
     RelativeLayout attchrl1, attchrl2, attchrl3, attchrl4, attchrl5;
     JSONObject json;
     JSONParser jParser = new JSONParser();
+
     //attachment work
     int filecounter = 0;
     int filesame = 0;
@@ -116,18 +117,16 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     String File1index = "", File2index = "", File3index = "", File4index = "", File5index = "";
     String Forwhomefromdb = "";
     Drawable compleatesprogress;
-
+    ArrayAdapter<String> dataAdapter;
+    ArrayList<String> TagCreateList = new ArrayList<>();
+    int edittedFlag = 0, containsall = 0;
+    String digest1, digest2;
     private String charset = "UTF-8";
     private String boundary;
     private HttpURLConnection httpConn;
     private OutputStream outputStream;
     private PrintWriter writer;
     private TagsEditText batchesTags;
-    ArrayAdapter<String> dataAdapter;
-    ArrayList<String> TagCreateList=new ArrayList<>();
-    int edittedFlag=0,containsall=0;
-    String digest1,digest2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,16 +135,15 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         scrollview = ((ScrollView) findViewById(R.id.schroll1));
 
-        titleinput=(TextInputLayout)findViewById(R.id.titleinput);
-        notificationinput=(TextInputLayout)findViewById(R.id.notificationinput);
+        titleinput = (TextInputLayout) findViewById(R.id.titleinput);
+        notificationinput = (TextInputLayout) findViewById(R.id.notificationinput);
         titleinput.setTypeface(Z.getLight(this));
         notificationinput.setTypeface(Z.getLight(this));
 
 
-
-         createnotitxt = (TextView) findViewById(R.id.createnotitxt);
-         createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
-         lastmodifiedtxt = (TextView) findViewById(R.id.lastmodifiedtxt);
+        createnotitxt = (TextView) findViewById(R.id.createnotitxt);
+        createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
+        lastmodifiedtxt = (TextView) findViewById(R.id.lastmodifiedtxt);
         createnotitxt.setTypeface(Z.getBold(this));
         createnotinotitxt.setTypeface(Z.getLight(this));
         lastmodifiedtxt.setTypeface(Z.getLight(this));
@@ -217,8 +215,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
-
 
 
         title = (TextInputEditText) findViewById(R.id.title);
@@ -680,64 +676,33 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         }
                     }
 
-
                     if (stitle.length() < 2) {
                         titleinput.setError("Kindly enter notification title ");
                         errorflag = 1;
                     } else if (snotiffication.length() < 2) {
                         notificationinput.setError("Kindly enter some message");
                         errorflag = 1;
-                    } else if (instname == null) {
-                        Toast.makeText(this, "Please Fill Institute Name in Your Profile in Order To Create Notification", Toast.LENGTH_LONG).show();
+                    } else if (forwhom.length() < 2) {
+                        Toast.makeText(CreateNotification.this, "select Student or Admin", Toast.LENGTH_SHORT).show();
                         errorflag = 1;
-
                     } else if (errorflag == 0) {
-                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                        String sPadding = "ISO10126Padding";
 
-                        byte[] roleBytes = srole.getBytes("UTF-8");
-                        byte[] stitleBytes = stitle.getBytes("UTF-8");
-                        byte[] snotifficationBytes = snotiffication.getBytes("UTF-8");
-                        byte[] forwhomyBytes = forwhom.getBytes("UTF-8");
-
-                        byte[] filenameparam1Bytes = filenameparam1.getBytes("UTF-8");
-                        byte[] filenameparam2Bytes = filenameparam2.getBytes("UTF-8");
-                        byte[] filenameparam3Bytes = filenameparam3.getBytes("UTF-8");
-                        byte[] filenameparam4Bytes = filenameparam4.getBytes("UTF-8");
-                        byte[] filenameparam5Bytes = filenameparam5.getBytes("UTF-8");
-
-                        byte[] roleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, roleBytes);
-                        encRole = new String(SimpleBase64Encoder.encode(roleEncryptedBytes));
-                        byte[] titleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, stitleBytes);
-                        encTitle = new String(SimpleBase64Encoder.encode(titleEncryptedBytes));
-                        byte[] notifficationEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, snotifficationBytes);
-                        encNotiffication = new String(SimpleBase64Encoder.encode(notifficationEncryptedBytes));
-                        byte[] forwhomyEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, forwhomyBytes);
-                        encforwhom = new String(SimpleBase64Encoder.encode(forwhomyEncryptedBytes));
-
-                        byte[] filenameparam1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam1Bytes);
-                        encfilenameparam1 = new String(SimpleBase64Encoder.encode(filenameparam1EncryptedBytes));
-                        byte[] filenameparam2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam2Bytes);
-                        encfilenameparam2 = new String(SimpleBase64Encoder.encode(filenameparam2EncryptedBytes));
-                        byte[] filenameparam3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam3Bytes);
-                        encfilenameparam3 = new String(SimpleBase64Encoder.encode(filenameparam3EncryptedBytes));
-                        byte[] filenameparam4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam4Bytes);
-                        encfilenameparam4 = new String(SimpleBase64Encoder.encode(filenameparam4EncryptedBytes));
-                        byte[] filenameparam5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameparam5Bytes);
-                        encfilenameparam5 = new String(SimpleBase64Encoder.encode(filenameparam5EncryptedBytes));
-
+                        encRole = Z.Encrypt(srole, CreateNotification.this);
+                        encTitle = Z.Encrypt(stitle, CreateNotification.this);
+                        encNotiffication = Z.Encrypt(snotiffication, CreateNotification.this);
+                        encforwhom = Z.Encrypt(forwhom, CreateNotification.this);
+                        encfilenameparam1 = Z.Encrypt(filenameparam1, CreateNotification.this);
+                        encfilenameparam2 = Z.Encrypt(filenameparam2, CreateNotification.this);
+                        encfilenameparam3 = Z.Encrypt(filenameparam3, CreateNotification.this);
+                        encfilenameparam4 = Z.Encrypt(filenameparam4, CreateNotification.this);
+                        encfilenameparam5 = Z.Encrypt(filenameparam5, CreateNotification.this);
                         File1index = map3.get(filenameparam1);
                         File2index = map3.get(filenameparam2);
                         File3index = map3.get(filenameparam3);
                         File4index = map3.get(filenameparam4);
                         File5index = map3.get(filenameparam5);
 
-                        if (forwhom.length() < 2) {
-                            Toast.makeText(CreateNotification.this, "select Student or Admin", Toast.LENGTH_SHORT).show();
-                            errorflag = 1;
-                        } else if (FLAG.equals("EditNotification")) {
-                            Toast.makeText(this, "flag  :" + FLAG, Toast.LENGTH_SHORT).show();
+                        if (FLAG.equals("EditNotification")) {
                             new Modify().execute();
                         } else if (FLAG.equals("fromAdminActivity")) {
                             Log.d("Tag", "here: ");

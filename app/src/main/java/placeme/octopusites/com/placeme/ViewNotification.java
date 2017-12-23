@@ -82,6 +82,8 @@ public class ViewNotification extends AppCompatActivity {
 
         uploadedbytxt=(TextView)findViewById(R.id.uploadedbytxt);
         lastmodifiedtxt=(TextView)findViewById(R.id.lastmodifiedtxt);
+        uploadedbytxt.setTypeface(Z.getLight(this));
+        lastmodifiedtxt.setTypeface(Z.getLight(this));
 
         String uploadedby="";
         String uploadedby_enc=getIntent().getStringExtra("uploadedby");
@@ -137,7 +139,7 @@ public class ViewNotification extends AppCompatActivity {
         });
 
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/meriweather.ttf");
+
         Log.d("gettingdata", "id"+getIntent().getStringExtra("id"));
 
         Log.d("gettingdata", "titile"+getIntent().getStringExtra("title"));
@@ -152,13 +154,15 @@ public class ViewNotification extends AppCompatActivity {
 
 
         notificationheadingview=(TextView)findViewById(R.id.notificationheadingview);
+        notificationheadingview.setTypeface(Z.getBold(this));
         notificationnotificationview=(TextView)findViewById(R.id.notificationnotificationview);
+        notificationnotificationview.setTypeface(Z.getLight(this));
 
         notificationheadingview.setText(getIntent().getStringExtra("title"));
         notificationnotificationview.setText(getIntent().getStringExtra("notification"));
 
 
-        notificationheadingview.setTypeface(custom_font);
+
 
         if(getIntent().getStringExtra("file1")!=null)
         {

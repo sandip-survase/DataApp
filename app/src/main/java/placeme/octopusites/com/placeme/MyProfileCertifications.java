@@ -3980,6 +3980,36 @@ public class MyProfileCertifications extends AppCompatActivity {
     public void savecertifi() {
 
         try {
+            if(slicense1.equals(""))
+                slicense1="-";
+
+            if(slicense2.equals(""))
+                slicense2="-";
+
+            if(slicense3.equals(""))
+                slicense3="-";
+
+            if(slicense4.equals(""))
+                slicense4="-";
+
+            if(slicense5.equals(""))
+                slicense5="-";
+
+            if(slicense6.equals(""))
+                slicense6="-";
+
+            if(slicense7.equals(""))
+                slicense7="-";
+
+            if(slicense8.equals(""))
+                slicense8="-";
+
+            if(slicense9.equals(""))
+                slicense9="-";
+
+            if(slicense10.equals(""))
+                slicense10="-";
+
 
             Certificates obj1 = new Certificates(stitle1, sissuer1, slicense1, sstartdate1, senddate1, willexpire1);
             Certificates obj2 = new Certificates(stitle2, sissuer2, slicense2, sstartdate2, senddate2, willexpire2);

@@ -67,7 +67,7 @@ import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.OTPActivity.md5;
+import static placeme.octopusites.com.placeme.Z.md5;
 
 public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
@@ -725,6 +725,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
+
+        Log.d("TAG", "onCreate: welcome shared digest1 : "+digest1);
+        Log.d("TAG", "onCreate: welcome shared digest2 : "+digest2);
 
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);

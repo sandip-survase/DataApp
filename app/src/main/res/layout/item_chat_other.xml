@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="15dp"
+    android:padding="10dp"
     >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginRight="-25dp"
         android:layout_marginTop="10dp"
+        android:tint="@color/sky_blue_color"
         android:layout_weight="1"
         android:src="@drawable/arrow_bg2" />
 
@@ -24,8 +25,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="70dp"
         android:layout_weight="6"
+        android:textSize="14dp"
         android:background="@drawable/rounded_corner1_message"
         android:padding="16dp"
-        android:textColor="#282f35" />
+        android:textColor="@color/while_color" />
 
 </LinearLayout>

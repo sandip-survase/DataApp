@@ -14,6 +14,7 @@ public class PlacementTabAdmin2 extends Fragment {
 
 
     TextView aptiview,techtestview,gdview,techinterviewview,hrinterviewview;
+    TextView aptitxt,companygdtxt,companytechtesttxt,companytechinterviewtxt,companyhrinterviewtxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -26,6 +27,24 @@ public class PlacementTabAdmin2 extends Fragment {
         gdview=(TextView)rootView.findViewById(R.id.companygdview);
         techinterviewview=(TextView)rootView.findViewById(R.id.companytechinterviewview);
         hrinterviewview=(TextView)rootView.findViewById(R.id.companyhrinterviewview);
+
+        aptitxt=(TextView)rootView.findViewById(R.id.aptitxt);
+        companygdtxt=(TextView)rootView.findViewById(R.id.companygdtxt);
+        companytechtesttxt=(TextView)rootView.findViewById(R.id.companytechtesttxt);
+        companytechinterviewtxt=(TextView)rootView.findViewById(R.id.companytechinterviewtxt);
+        companyhrinterviewtxt=(TextView)rootView.findViewById(R.id.companyhrinterviewtxt);
+
+        aptitxt.setTypeface(Z.getLight(getActivity()));
+        companygdtxt.setTypeface(Z.getLight(getActivity()));
+        companytechtesttxt.setTypeface(Z.getLight(getActivity()));
+        companytechinterviewtxt.setTypeface(Z.getLight(getActivity()));
+        companyhrinterviewtxt.setTypeface(Z.getLight(getActivity()));
+
+        aptiview.setTypeface(Z.getBold(getActivity()));
+        techtestview.setTypeface(Z.getBold(getActivity()));
+        gdview.setTypeface(Z.getBold(getActivity()));
+        techinterviewview.setTypeface(Z.getBold(getActivity()));
+        hrinterviewview.setTypeface(Z.getBold(getActivity()));
 
 
 

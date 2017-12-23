@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     tools:context=".ViewPlacement">
 
     <!-- our toolbar -->
@@ -23,7 +23,7 @@
         android:id="@+id/placementtabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#282f35"
+        android:background="@color/dark_color"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_below="@+id/placementtoolbar"

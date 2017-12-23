@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -267,6 +268,12 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("e",encnewemail));             //1
             params.add(new BasicNameValuePair("p",encaccountpassword));             //2
+            try {
+                Log.d("TAG", "username: "+Z.Decrypt(username, EditEmail.this));
+                Log.d("TAG", "new username: "+Z.Decrypt(encnewemail, EditEmail.this));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             json = jParser.makeHttpRequest(Z.url_editemail, "GET", params);
             Log.d("TAG", "SaveEditedEmail json : "+json);
             try {

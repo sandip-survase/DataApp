@@ -4,14 +4,15 @@
     android:id="@+id/activity_view_notification"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     tools:context=".ViewNotification">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/boxborderwhite"
+        android:background="@drawable/boxborderadminactions"
+        android:elevation="2dp"
         >
 
 
@@ -25,11 +26,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/notificationheadingview"
-                android:textColor="#eee"
-                android:textSize="20dp"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
                 android:text="Title"
                 android:textStyle="bold"
-                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 />
@@ -39,10 +39,12 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_below="@+id/headingrl"
             android:id="@+id/notificationsection"
-            android:background="#eee"
+            android:background="@color/sky_blue_color"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
             />
         <ScrollView
             android:layout_width="match_parent"
@@ -57,7 +59,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:textSize="14dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical|right"
@@ -71,7 +74,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/notificationnotificationview"
-                    android:textColor="#bbb"
+                    android:textColor="@color/dark_color"
+                    android:textSize="11dp"
                     android:text="Attachments"
                     android:layout_marginTop="10dp"
                     android:id="@+id/attachmentstxt"
@@ -114,14 +118,14 @@
                         android:layout_below="@+id/attachment1img"
                         android:id="@+id/filename1"
                         android:layout_marginTop="2dp"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
                         />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#eee"
+                        android:background="@color/dark_color"
                         android:layout_below="@+id/filename1"
                         android:layout_marginTop="5dp"
                         android:id="@+id/attachline1"
@@ -133,6 +137,7 @@
                         android:src="@drawable/download"
                         android:layout_marginTop="5dp"
                         android:layout_centerHorizontal="true"
+                        android:backgroundTint="@color/dark_color"
                         />
 
                 </RelativeLayout>
@@ -356,21 +361,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/blankview1"
-                    android:textColor="#bbb"
-                    android:text="Uploaded by :- "
+                    android:textColor="@color/dark_color"
+                    android:text="Uploaded by : "
                     android:layout_marginTop="10dp"
                     android:id="@+id/uploadedbytxt"
                     android:layout_marginLeft="10dp"
+                    android:textSize="11dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/uploadedbytxt"
-                    android:textColor="#bbb"
-                    android:text="Last Modified :- "
-                    android:layout_marginTop="10dp"
+                    android:textColor="@color/dark_color"
+                    android:text="Last Modified : "
+                    android:layout_marginTop="4dp"
                     android:id="@+id/lastmodifiedtxt"
                     android:layout_marginLeft="10dp"
+                    android:textSize="11dp"
                     />
                 <View
                     android:layout_width="1dp"

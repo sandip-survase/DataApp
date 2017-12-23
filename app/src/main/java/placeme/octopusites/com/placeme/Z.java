@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -16,10 +20,12 @@ public class Z {
     public static final String IP = "http://104.237.4.236/";
 
     public static final String IP_8081 = "http://104.237.4.236:8081/";
+
+    public static final String IP_1234= "http://104.237.4.236:1234/";
+
     public static final String IP_8086 = "http://104.237.4.236:8086/";
 
-    public static final String IP_8080 = "http://104.237.4.236:8080/";
-
+//    public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
 
     public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE="Fail to upload image!\nPlease try again";
@@ -33,11 +39,12 @@ public class Z {
     public static final String url_getnotificationsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
+
     public static final String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";
     public static final String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
     public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
     public static final String url_getplacements = IP + "CreateNotificationTemp/GetPlacements";
-    //                           --------------------alumniActivity(alumni)-----------------
+    //                           --------------------alumniActivity(alumni)----------------------------------------------
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
     public static final String url_GetReadStatusOfNotificationsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
     public static final String url_GetNotificationsAlumni = IP + "CreateNotificationTemp/GetNotificationsAlumni";
@@ -46,27 +53,27 @@ public class Z {
     public static final String url_GetReadStatusOfPlacementsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
     public static final String url_GetPlacementsAlumni = IP + "CreateNotificationTemp/GetPlacementsAlumni";
     public static final String url_ChangePlacementReadStatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
-    //                                --------------------adminActivity)-----------------
+    //                                --------------------adminActivity-----------------
 //placement urls
-    public static final String url_GetPlacementsAdminAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsForAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    public static final String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
-    public static final String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+    public static final String url_GetPlacementsAdminAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsAdminMetaData";
+    public static final String url_GetReadStatusOfPlacementsForAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
+    public static final String url_GetPlacementsAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementsAdmin";
+    public static final String url_ChangePlacementReadStatusAdmin = IP_8086 + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
-    public static final String url_GetNotificationsAdminAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsAdminMetaData";
-    public static final String url_GetReadStatusOfNotificationsAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    public static final String url_GetNotificationsAdmin = IP + "CreateNotificationTemp/GetNotificationsAdmin";
-    public static final String url_ChangeNotificationReadStatusAdmin = IP + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+    public static final String url_GetNotificationsAdminAdminMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
+    public static final String url_GetNotificationsAdmin = IP_8086 + "CreateNotificationTemp/GetNotificationsAdmin";
+    public static final String url_ChangeNotificationReadStatusAdmin = IP_8086 + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     //    -------------------------------EditNotification-----------------------------------
-    public static final String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
-    public static final String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
-    public static final String url_GetNotificationsSentByAdmin = IP + "CreateNotificationTemp/GetNotificationsSentByAdmin";
-    public static final String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
+    public static final String url_GetNotificationsByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
+    public static final String url_GetNotificationsSentByAdmin = IP_8086 + "CreateNotificationTemp/GetNotificationsSentByAdmin";
+    public static final String url_DeleteNotification = IP_8086 + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
-    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
-    public static final String url_GetPlacementSentByAdmin = IP + "CreateNotificationTemp/GetPlacementSentByAdmin";
-    public static final String url_Delete_Placements = IP + "CreateNotificationTemp/DeletePlacement";
+    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
+    public static final String url_GetReadStatusOfPlacementsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
+    public static final String url_GetPlacementSentByAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementSentByAdmin";
+    public static final String url_Delete_Placements = IP_8086 + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
     public static final String url_GetPlacementsCreatedByHr = IP + "CreateNotificationTemp/GetPlacementsCreatedByHr";
     //    -------------------------------EditPlacementHr -----------------------------------
@@ -78,6 +85,8 @@ public class Z {
     public static final String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
+
+
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
@@ -100,22 +109,23 @@ public class Z {
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
     public static final String url_create_firebase = IP + "Firbase/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
-//    ----------------------------------/sunny---------------------------------------------------------------
-    public static final String url_ChangeUsernameFireBase = IP + "PlaceMe/ChangeUsername";
-    public static final String url_get_chatrooms = IP + "PlaceMe/GetChatRooms";
-    public static final String url_getmessagesreadstatus = IP + "PlaceMe/GetReadStatusOfMessages";
-    public static final String url_changepass = IP + "PlaceMe/ChangePass";
+    public static final String url_UpdateFirebaseToken = IP + "Firbase/UpdateFirebaseToken";
+    //    ----------------------------------/sunny---------------------------------------------------------------
 
-    //#############################   PlaceMe   ######################################
-    public static final String load_news = IP + "PlaceMe/GetNews";
-    public static final String load_videos = IP + "PlaceMe/GetVideos";
-    public static final String url_savechat = IP + "PlaceMe/SaveChat";
-    public static final String url_loadchat = IP + "PlaceMe/LoadChat";
-    public static final String url_SendPushNotification = IP + "PlaceMe/SendPushNotification";
-    public static final String url_markread = IP + "PlaceMe/MarkRead";
-    public static final String url_GetLastPushedMessage = IP + "PlaceMe/GetLastPushedMessage";
-    public static final String url_ChangeMessageReadStatus = IP + "PlaceMe/ChangeMessageReadStatus";
+    public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
+    public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
+    public static final String url_getmessagesreadstatus = IP + "Firebase/GetReadStatusOfMessages";
+    public static final String url_changepass = IP + "Firebase/ChangePass";
+
+    //#############################   Firebase   ######################################
+    public static final String load_news = IP + "Firebase/GetNews";
+    public static final String load_videos = IP + "Firebase/GetVideos";
+    public static final String url_savechat = IP + "Firebase/SaveChat";
+    public static final String url_loadchat = IP + "Firebase/LoadChat";
+    public static final String url_SendPushNotification = IP + "Firebase/SendPushNotification";
+    public static final String url_markread = IP + "Firebase/MarkRead";
+    public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
+    public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
 
     // Messages -----------------------------------------
     public static final String url_Welcome = IP + "AESTest/Welcome";
@@ -124,10 +134,10 @@ public class Z {
     public static final String url_getdigest = IP + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
-    public static final String url_editemail = IP + "AESTest/EditEmail";
+    public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
 
     //**************************************   AESTest   *****************************************
-    public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
+    public static final String url_VerifyOTPEditEmail = IP_8086 + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
@@ -237,7 +247,6 @@ public class Z {
     private static final String IP_10 = "http://192.168.100.10/";
     private static final String IP_20 = "http://192.168.100.20/";
     private static final String IP_30 = "http://192.168.100.30/";
-
     private static Typeface FA = null, Bold = null, Light = null, Italic = null, BoldItalic = null, Righteous = null;
     private static Animation fadeAnimation = null, fadeandmovedownAnimation = null, slideoutleft2Animation = null, fadeoutAnimation = null, slideinleft1Animation = null, slideinleft2Animation = null, scaledownAnimation = null, bottomupbox1Animation = null, bottomupbox2Animation = null, bottomupbox3Animation = null, bottomupbox4Animation = null;
     public static String digest1=null,digest2=null;
@@ -485,6 +494,28 @@ public class Z {
         byte[] DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, EncryptedBytes);
         return new String(DecryptedBytes);
     }
+    public static String md5(String input) {
 
+        String md5 = null;
+
+        if (null == input) return null;
+
+        try {
+
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+
+        } catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+        }
+        return md5;
+    }
 
 }

@@ -21,13 +21,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#eee"
+        android:background="@color/while_color"
         android:id="@+id/sendrl"
         >
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#282f35"
+            android:background="@color/sky_blue_color"
             android:id="@+id/line"
             />
         <EditText
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type a Message"
-            android:textColor="#282f35"
+            android:textColor="@color/dark_color"
             android:textColorHint="#aaa"
             android:imeOptions="actionDone"
             android:background="@android:color/transparent"
@@ -47,7 +47,7 @@
         <View
             android:layout_width="45dp"
             android:layout_height="50dp"
-            android:background="#282f35"
+            android:background="@color/dark_color"
             android:layout_alignParentRight="true"
             />
         <ImageView
@@ -55,7 +55,7 @@
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/send"
-            android:tint="#eee"
+            android:tint="@color/sky_blue_color"
             android:id="@+id/send"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"

@@ -400,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         mainfragment.setVisibility(View.GONE);
                         tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                        getNotifications();
+                        getNotifications();
                         recyclerViewNotification.setVisibility(View.VISIBLE);
                         recyclerViewPlacement.setVisibility(View.GONE);
                         mViewPager.setVisibility(View.GONE);
@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         mainfragment.setVisibility(View.GONE);
                         tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                        getPlacements();
+                        getPlacements();
                         recyclerViewNotification.setVisibility(View.GONE);
                         recyclerViewPlacement.setVisibility(View.VISIBLE);
                         mViewPager.setVisibility(View.GONE);
@@ -1065,7 +1065,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         recyclerViewNotification.setAdapter(mAdapterNotification);
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
+//        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -1147,8 +1147,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     item = itemListPlacement.get(position);
 
 
-                if (!item.getisRead()) {
-                    item.setisRead(true);
+                if(!item.isIsread())
+                {
+                    item.setIsread(true);
                     unreadcountPlacement--;
                     placementcountrl.setVisibility(View.VISIBLE);
                     placementcounttxt.setText(unreadcountPlacement + "");
@@ -1233,7 +1234,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
         getNotifications();
-
+        new UpdateFirebaseToken().execute();
     }
 
     void loginFirebase(String username, String hash) {
@@ -2306,7 +2307,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 }
 
-
 //            new GetLastUpdatedNotification().execute();
 
         }
@@ -2546,67 +2546,67 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
 
-    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-
-            Set<String> uniqKeys = new TreeSet<String>();
-            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
-
-            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
-            lastupdatedNotification = new String[uniqueUploadersNotification.length];
-            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
-                for (int i = 0; i < notificationcount; i++) {
-
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
-                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
-                    }
-                }
-            }
-            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
-                // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-                try {
-                    String s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    } else {
-                        lastupdatedNotification[i] = s;
-                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                }
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-//            for(int i=0;i<lastupdated.length;i++)
-//            {
-//                if(lastupdated[i]==null) {
-//                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
+//    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
 //
 //
+//        protected String doInBackground(String... param) {
+//            String r = null;
+//
+//
+//            Set<String> uniqKeys = new TreeSet<String>();
+//            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
+//
+//            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
+//            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
+//            lastupdatedNotification = new String[uniqueUploadersNotification.length];
+//            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
+//                for (int i = 0; i < notificationcount; i++) {
+//
+//                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
+//                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
+//                    }
 //                }
 //            }
-
-            if (!isLastPageLoadedNotification)
-                addNotificationdatatoAdapter();
-
-        }
-
-    }
+//            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
+//                // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
+//                List<NameValuePair> params = new ArrayList<NameValuePair>();
+//                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
+//                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
+//                try {
+//                    String s = json.getString("lastupdated");
+//                    if (s.equals("noupdate")) {
+//                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        lastupdatedNotification[i] = s;
+//                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } catch (Exception e) {
+//                }
+//            }
+//            return r;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+////            for(int i=0;i<lastupdated.length;i++)
+////            {
+////                if(lastupdated[i]==null) {
+////                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
+////                }
+////                else {
+////                    Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
+////
+////
+////                }
+////            }
+//
+//            if (!isLastPageLoadedNotification)
+//                addNotificationdatatoAdapter();
+//
+//        }
+//
+//    }
 
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
@@ -2652,9 +2652,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         @Override
         protected void onPostExecute(String result) {
-
-            if (!isLastPageLoadedPlacement)
-                addPlacementdatatoAdapter();
+//
+//            if (!isLastPageLoadedPlacement)
+//                addPlacementdatatoAdapter();
 
         }
 
@@ -2841,92 +2841,92 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    void addPlacementdatatoAdapter() {
-        if (isFirstRunPlacement) {
-            itemListPlacement.clear();
-            mAdapterPlacement.notifyDataSetChanged();
-            isFirstRunPlacement = false;
-        }
-        selectedMenuFlag = 2;
-        if (!isLastPageLoadedPlacement) {
-            for (int i = 0; i < placementcount; i++) {
-
-                String companynametoshow = "";
-                int largecompanynameflag = 0;
-
-                if (placementcompanyname[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        companynametoshow += placementcompanyname[i].charAt(j);
-                    largecompanynameflag = 1;
-                    companynametoshow += "...";
-                }
-
-                RecyclerItemPlacement item = null;
-                for (int j = 0; j < readstatuscountPlacement; j++) {
-                    String idnstatus = placementreadstatus[j];
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-        }
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-        mAdapterPlacement.notifyDataSetChanged();
-
-    }
+//    void addPlacementdatatoAdapter() {
+//        if (isFirstRunPlacement) {
+//            itemListPlacement.clear();
+//            mAdapterPlacement.notifyDataSetChanged();
+//            isFirstRunPlacement = false;
+//        }
+//        selectedMenuFlag = 2;
+//        if (!isLastPageLoadedPlacement) {
+//            for (int i = 0; i < placementcount; i++) {
+//
+//                String companynametoshow = "";
+//                int largecompanynameflag = 0;
+//
+//                if (placementcompanyname[i].length() > 25) {
+//                    for (int j = 0; j < 20; j++)
+//                        companynametoshow += placementcompanyname[i].charAt(j);
+//                    largecompanynameflag = 1;
+//                    companynametoshow += "...";
+//                }
+//
+//                RecyclerItemPlacement item = null;
+//                for (int j = 0; j < readstatuscountPlacement; j++) {
+//                    String idnstatus = placementreadstatus[j];
+//                    String sid = "";
+//                    if (idnstatus.contains("U")) {
+//
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(placementids[i])) {
+//                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
+//                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
+//                                    if (lastupdatedPlacement[k] == null) {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    } else {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                }
+//
+//                            }
+//                        }
+//                    } else if (idnstatus.contains("R")) {
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(placementids[i])) {
+//                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
+//                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
+//                                    if (lastupdatedPlacement[k] == null) {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    } else {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                }
+//
+//                            }
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
+//
+//        if (lastPageFlagPlacement == 1)
+//            isLastPageLoadedPlacement = true;
+//        mAdapterPlacement.notifyDataSetChanged();
+//
+//    }
 
     private void disableScrollbars(ScrollView scrollView) {
         if (scrollView != null) {
@@ -3391,6 +3391,43 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
+    class UpdateFirebaseToken extends AsyncTask<String, String, String> {
+
+        // TODO move UpdateFirebaseToken code to all base activity
+        // TODO update AID,DID
+        JSONObject json;
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
+                String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
+                Log.d("TAG", "splashScreen token\n" + token);
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                params.add(new BasicNameValuePair("t", token));             //1
+                json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+
+
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+//            if (resultofop.equals("success")) {
+//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+//            }
+        }
+    }
+
 
 
 }
