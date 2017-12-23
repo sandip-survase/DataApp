@@ -1652,7 +1652,61 @@ public class PersonalProfileTabFragment extends Fragment  {
 
 //            save.setVisibility(View.VISIBLE);
             personalprogress.setVisibility(View.GONE);
+
+            s.setFname(fname);
+            s.setMname(mname);
+            s.setLname(sname);
+            s.setNameasten(nameasten);
+            s.setEmail2(alternateemail);
+            s.setMothername(mothername);
+            s.setDob(dob);
+            s.setGender(gender);
+            s.setTelephone(phone);
+            s.setPhone(mobile);
+            s.setMobile2(alternatemobile);
+            s.setMothertongue(mothertongue);
+            s.setHobbies(hobbies);
+            s.setBloodgroup(bloodgroup);
+            s.setCategory(category);
+            s.setReligion(religion);
+            s.setCaste(caste);
+            s.setPrn(prn);
+
+
+            s.setLang1(lang1);
+            s.setLang2(lang2);
+            s.setLang3(lang3);
+            s.setLang4(lang4);
+            s.setLang5(lang5);
+            s.setLang6(lang6);
+            s.setLang7(lang7);
+            s.setLang8(lang8);
+            s.setLang9(lang9);
+            s.setLang10(lang10);
+
+            Log.d("TAG", "onCreateView: lang1 - " + lang1);
+            Log.d("TAG", "onCreateView: lang2 - " + lang2);
+            Log.d("TAG", "onCreateView: lang3 - " + lang3);
+            Log.d("TAG", "onCreateView: lang4 - " + lang4);
+
+
+            s.setAddressline1(addrline1c);
+            s.setAddressline2(addrline2c);
+            s.setAddressline3(addrline3c);
+            s.setPaddrline1(addrline1p);
+            s.setPaddrline2(addrline2p);
+            s.setPaddrline3(addrline3p);
+            s.setHandicapped(handicapped);
+            s.setSports(sports);
+            s.setDefenceex(defenceex);
+
+
+
+
+
+
         }
+
     }
 
 }

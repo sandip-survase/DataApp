@@ -12,7 +12,7 @@ public class LicenseActivity extends AppCompatActivity {
 //    TODO add new lib : https://github.com/shaohui10086/AdvancedLuban
 
     TextView mainheading,subheading,license1,content1,license2,content2,license3,content3,license4,content4,license5,content5,license6,content6,license7,content7,license8,content8,license9,content9,license10,content10;
-    TextView license11,content11,license12,content12,license13,content13,license14,content14,license15,content15,license16,content16,license17,content17,license18,content18,license19,content19,license20,content20;
+    TextView license11, content11, license12, content12, license13, content13, license14, content14, license15, content15, license16, content16, license17, content17, license18, content18, license19, content19, license20, content20, license21, content21;
     String mainheadstr = "Libraries We Use";
     String subheadingstr = "The following sets forth attribution notices for third party software that may be contained in portion of the place me product. we thank the open source community for all of their contribution.";
 
@@ -311,6 +311,25 @@ public class LicenseActivity extends AppCompatActivity {
             "   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  express or implied.\n" +
             "   See the License for the specific language governing permissions  and\n" +
             "   limitations under the License.\n";
+
+    String licencestr21 = "multidex";
+    String contentstr21 = "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+            "   you may not use this file except in compliance with the License.\n" +
+            "   You may obtain a copy of the License at\n" +
+            "\n" +
+            "       http://www.apache.org/licenses/LICENSE-2.0\n" +
+            "\n" +
+            "   Unless required by applicable law or agreed to in writing, software\n" +
+            "   distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+            "   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+            "   See the License for the specific language governing permissions and\n" +
+            "   limitations under the License.\n";
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -382,6 +401,9 @@ public class LicenseActivity extends AppCompatActivity {
 
         license20 = (TextView)findViewById(R.id.license20);
         content20 = (TextView)findViewById(R.id.content20);
+
+        license21 = (TextView) findViewById(R.id.license21);
+        content21 = (TextView) findViewById(R.id.content21);
 
 //        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
 //        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/ubuntu.ttf");
@@ -517,6 +539,9 @@ public class LicenseActivity extends AppCompatActivity {
 
         license20.setText(licencestr20);
         content20.setText(contentstr20);
+
+        license21.setText(licencestr21);
+        content21.setText(contentstr21);
 
 
     }

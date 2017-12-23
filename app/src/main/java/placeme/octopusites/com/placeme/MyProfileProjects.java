@@ -2316,6 +2316,14 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                 else if(role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 edittedFlag=0;
+
+                s.setProj1(sproj1);
+                s.setDomain1(sdomain1);
+                s.setTeam1(steam1);
+                s.setDuration1(sduration1);
+
+
+
                 MyProfileProjects.super.onBackPressed();
 
 

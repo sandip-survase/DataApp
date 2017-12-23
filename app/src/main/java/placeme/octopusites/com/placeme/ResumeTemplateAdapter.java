@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -164,6 +165,8 @@ public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAd
             protected Void doInBackground(Void... param) {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
+                Log.d("TAG", "doInBackground: username -" + username);
+                Log.d("TAG", "doInBackground: id -" + id);
                 params.add(new BasicNameValuePair("u",username));
                 params.add(new BasicNameValuePair("id",id+""));
                 json = jParser.makeHttpRequest(Z.download_resume_template, "GET", params);

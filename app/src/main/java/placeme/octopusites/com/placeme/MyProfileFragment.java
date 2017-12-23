@@ -1882,6 +1882,7 @@ public class MyProfileFragment extends Fragment {
                         studentData.setDomain1(domain1);
                         studentData.setTeam1(team1);
                         studentData.setDuration1(duration1);
+
                         studentData.setProj2(proj2);
                         studentData.setDomain2(domain2);
                         studentData.setTeam2(team2);

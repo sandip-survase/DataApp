@@ -470,6 +470,100 @@ public class ViewPlacement extends AppCompatActivity {
 //            int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
 //            int found_contact_details=0,found_personal=0;
 
+
+            StudentData s = new StudentData();
+
+            String dob = s.getDob();
+            String mobile = s.getPhone();
+            String hobbies = s.getHobbies();
+            String lang1 = s.getLang1();
+
+            String addrline1c = s.getAddressline1();
+            String addrline2c = s.getAddressline2();
+            String addrline3c = s.getAddressline3();
+
+
+            String proj = s.getProj1();
+            String strength1 = s.getStrength1();
+            String weak1 = s.getWeak1();
+            String certifi = s.getTitle1();
+            String course1 = s.getCourse1();
+            String skill1 = s.getSkill1();
+            String ptitle1 = s.getPtitle1();
+            String pubtitle1 = s.getPubtitle1();
+
+
+            Log.d("TAG", "onPostExecute: dob -" + dob);
+            Log.d("TAG", "onPostExecute: mobile -" + mobile);
+            Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
+            Log.d("TAG", "onPostExecute: lang1 -" + lang1);
+            Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
+            Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
+            Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
+            Log.d("TAG", "onPostExecute: proj -" + proj);
+            Log.d("TAG", "onPostExecute: strength1 -" + strength1);
+            Log.d("TAG", "onPostExecute: weak1 -" + weak1);
+            Log.d("TAG", "onPostExecute: certifi -" + certifi);
+            Log.d("TAG", "onPostExecute: course1 -" + course1);
+            Log.d("TAG", "onPostExecute: skill1 -" + skill1);
+            Log.d("TAG", "onPostExecute: ptitle1 -" + ptitle1);
+            Log.d("TAG", "onPostExecute: pubtitle1 -" + pubtitle1);
+
+
+            if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
+                found_personal = 1;
+            } else
+                found_personal = 0;
+
+
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                found_lang = 1;
+            else
+                found_lang = 0;
+
+
+            if (!proj.equals(""))
+                found_projects = 1;
+            else
+                found_projects = 0;
+
+            if (!strength1.equals(""))
+                found_strengths = 1;
+            else
+                found_strengths = 0;
+
+            if (!weak1.equals(""))
+                found_weaknesses = 1;
+            else
+                found_weaknesses = 0;
+
+            if (!certifi.equals(""))
+                found_certificates = 1;
+            else
+                found_certificates = 0;
+
+            if (!course1.equals(""))
+                found_courses = 1;
+            else
+                found_courses = 0;
+
+            if (!skill1.equals(""))
+                found_skills = 1;
+            else
+                found_skills = 0;
+
+            if (!ptitle1.equals(""))
+                found_patents = 1;
+            else
+                found_patents = 0;
+
+            if (!pubtitle1.equals(""))
+                found_publications = 1;
+            else
+                found_publications = 0;
+
+
+
             if (found_box1 == 0) {
 //                    please fill intro information
                 Toast.makeText(ViewPlacement.this, " please fill introduction information", Toast.LENGTH_SHORT).show();
@@ -541,6 +635,7 @@ public class ViewPlacement extends AppCompatActivity {
 
                 }
             }
+
             if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_contact_details == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
                 new SaveResumedatabase().execute();
 
@@ -562,7 +657,7 @@ public class ViewPlacement extends AppCompatActivity {
 
                 String template=MySharedPreferencesManager.getData(ViewPlacement.this,"template");
                 if(template==null){
-                    int temp = 1;
+                    int temp = 2;
                     template=temp+"";
                 }
 
@@ -580,6 +675,7 @@ public class ViewPlacement extends AppCompatActivity {
 
                  r = json.getString("info");
                 Log.d("TAG", "doInBackground: result -"+r);
+
 
             } catch (Exception e) {
                 Log.d("TAG", "doInBackground: exception - "+e.getMessage());
