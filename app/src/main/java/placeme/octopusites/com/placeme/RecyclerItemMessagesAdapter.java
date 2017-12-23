@@ -42,6 +42,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
             date = (TextView) view.findViewById(R.id.date);
             unreadmessagecount = (TextView) view.findViewById(R.id.unreadmessagecount);
             unreadmessagecountrl = (RelativeLayout)view.findViewById(R.id.unreadmessagecountrl);
+
         }
     }
 
@@ -84,6 +85,8 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
 
         holder.name.setText(item.getFname()+" "+item.getLname());
+        holder.name.setTypeface(Z.getBold(holder.profile.getContext()));
+
 
         if(searchText!=null) {
             if (searchText.length() > 0) {
@@ -97,32 +100,33 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
 
         holder.lastmessage.setText(item.getLastmessage());
+        holder.lastmessage.setTypeface(Z.getLight(holder.profile.getContext()));
         if(item.getUnreadcount()!=null) {
             if(item.getUnreadcount().length()>0) {
                 int unreadcount=Integer.parseInt(item.getUnreadcount());
                 if(unreadcount==0)
                 {
                     holder.unreadmessagecountrl.setVisibility(View.GONE);
-                    holder.name.setTextColor(Color.parseColor("#eeeeee"));
-                    holder.name.setTypeface(null, Typeface.NORMAL);
+                    holder.name.setTextColor(Color.parseColor("#03353e"));
+
                 }
                 else {
                     holder.unreadmessagecountrl.setVisibility(View.VISIBLE);
                     holder.unreadmessagecount.setText(""+unreadcount);
-                    holder.name.setTextColor(Color.parseColor("#c59a6d"));
-                    holder.name.setTypeface(null, Typeface.BOLD);
+                    holder.name.setTextColor(Color.parseColor("#00bcd4"));
+
                 }
             }
             else {
                 holder.unreadmessagecountrl.setVisibility(View.GONE);
-                holder.name.setTextColor(Color.parseColor("#eeeeee"));
-                holder.name.setTypeface(null, Typeface.NORMAL);
+                holder.name.setTextColor(Color.parseColor("#03353e"));
+
             }
         }
         else {
             holder.unreadmessagecountrl.setVisibility(View.GONE);
-            holder.name.setTextColor(Color.parseColor("#eeeeee"));
-            holder.name.setTypeface(null, Typeface.NORMAL);
+            holder.name.setTextColor(Color.parseColor("#03353e"));
+
         }
 
 
@@ -138,6 +142,8 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
                     String time1 = sdf2.format(date0);
                     holder.date.setText("" + date1);
                     holder.time.setText("" + time1);
+                    holder.date.setTypeface(Z.getLight(holder.profile.getContext()));
+                    holder.time.setTypeface(Z.getLight(holder.profile.getContext()));
                 } catch (Exception e) {
                 }
             }

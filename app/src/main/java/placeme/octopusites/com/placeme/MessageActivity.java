@@ -89,6 +89,7 @@ public class MessageActivity extends AppCompatActivity {
 
         profile=(CircleImageView)v.findViewById(R.id.profile);
         name=(TextView)v.findViewById(R.id.name);
+        name.setTypeface(Z.getBold(this));
 
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
@@ -139,6 +140,7 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
 
         mETxtMessage = (EditText)findViewById(R.id.message_line);
+        mETxtMessage.setTypeface(Z.getBold(this));
         send = (ImageView)findViewById(R.id.send);
 
         send.setOnClickListener(new View.OnClickListener() {

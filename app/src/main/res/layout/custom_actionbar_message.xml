@@ -11,26 +11,20 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_centerVertical="true"
-        app:border_color="#FF000000"
-        android:src="@drawable/tpo"
+        android:src="@drawable/profile_image_icon"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#eee"
+        android:textColor="@color/while_color"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/profile"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:id="@+id/name"
         />
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/trash"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        />
+
 
 </RelativeLayout>

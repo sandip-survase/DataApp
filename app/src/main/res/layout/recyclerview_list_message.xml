@@ -13,14 +13,13 @@
         android:id="@+id/profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/profile_icon"
+        android:src="@drawable/profile_image_icon"
         android:layout_centerVertical="true"
-        app:border_color="#FF000000"
         />
 
     <TextView
         android:id="@+id/name"
-        android:textColor="@color/heading"
+        android:textColor="@color/sky_blue_color"
         android:textSize="16dp"
         android:text="TPO"
         android:textStyle="bold"
@@ -35,7 +34,7 @@
         android:layout_below="@id/name"
         android:layout_width="match_parent"
         android:text="last message"
-        android:textColor="@color/notification"
+        android:textColor="@color/dark_color"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/profile"
         android:layout_marginTop="5dp"
@@ -43,7 +42,7 @@
 
     <TextView
         android:id="@+id/date"
-        android:textColor="@color/attachment"
+        android:textColor="@color/dark_color"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:textSize="12dp"
@@ -51,7 +50,7 @@
 
     <TextView
         android:id="@+id/time"
-        android:textColor="@color/attachment"
+        android:textColor="@color/dark_color"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:textSize="12dp"
@@ -76,7 +75,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:id="@+id/unreadmessagecount"
-            android:textColor="#282f35"
+            android:textColor="@color/dark_color"
             />
     </RelativeLayout>
 

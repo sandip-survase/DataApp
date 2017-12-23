@@ -2303,8 +2303,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 }
 
-
-            new GetLastUpdatedNotification().execute();
+//            new GetLastUpdatedNotification().execute();
 
         }
     }
@@ -2543,67 +2542,67 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
 
-    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-
-            Set<String> uniqKeys = new TreeSet<String>();
-            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
-
-            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
-            lastupdatedNotification = new String[uniqueUploadersNotification.length];
-            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
-                for (int i = 0; i < notificationcount; i++) {
-
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
-                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
-                    }
-                }
-            }
-            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
-                // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-                try {
-                    String s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    } else {
-                        lastupdatedNotification[i] = s;
-                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                }
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-//            for(int i=0;i<lastupdated.length;i++)
-//            {
-//                if(lastupdated[i]==null) {
-//                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
+//    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
 //
 //
+//        protected String doInBackground(String... param) {
+//            String r = null;
+//
+//
+//            Set<String> uniqKeys = new TreeSet<String>();
+//            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
+//
+//            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
+//            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
+//            lastupdatedNotification = new String[uniqueUploadersNotification.length];
+//            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
+//                for (int i = 0; i < notificationcount; i++) {
+//
+//                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
+//                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
+//                    }
 //                }
 //            }
-
-            if (!isLastPageLoadedNotification)
-                addNotificationdatatoAdapter();
-
-        }
-
-    }
+//            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
+//                // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
+//                List<NameValuePair> params = new ArrayList<NameValuePair>();
+//                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
+//                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
+//                try {
+//                    String s = json.getString("lastupdated");
+//                    if (s.equals("noupdate")) {
+//                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        lastupdatedNotification[i] = s;
+//                        // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } catch (Exception e) {
+//                }
+//            }
+//            return r;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+////            for(int i=0;i<lastupdated.length;i++)
+////            {
+////                if(lastupdated[i]==null) {
+////                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
+////                }
+////                else {
+////                    Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
+////
+////
+////                }
+////            }
+//
+//            if (!isLastPageLoadedNotification)
+//                addNotificationdatatoAdapter();
+//
+//        }
+//
+//    }
 
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 

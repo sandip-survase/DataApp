@@ -57,12 +57,14 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private void configureMyChatViewHolder(MyChatViewHolder myChatViewHolder, int position) {
         Chat chat = mChats.get(position);
         myChatViewHolder.txtChatMessage.setText(chat.message);
+        myChatViewHolder.txtChatMessage.setTypeface(Z.getBold(myChatViewHolder.txtChatMessage.getContext()));
 
     }
 
     private void configureOtherChatViewHolder(OtherChatViewHolder otherChatViewHolder, int position) {
         Chat chat = mChats.get(position);
         otherChatViewHolder.txtChatMessage.setText(chat.message);
+        otherChatViewHolder.txtChatMessage.setTypeface(Z.getBold(otherChatViewHolder.txtChatMessage.getContext()));
 
     }
 
@@ -90,6 +92,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public MyChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.msg);
+
 
         }
     }
