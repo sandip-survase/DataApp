@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +53,6 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class EditNotification extends AppCompatActivity {
 
-    public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
@@ -88,6 +88,9 @@ public class EditNotification extends AppCompatActivity {
     String lastupdatedNotification[];
     String notificationreadstatus[];
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
+    ArrayList<String> notificationdeleteArraylist = new ArrayList<>();
+    SwipeRefreshLayout tswipe_refresh_layout;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
     //notification deletion
     private MaterialSearchView searchView;
     //edit part
@@ -97,17 +100,11 @@ public class EditNotification extends AppCompatActivity {
     private int page_to_call_notification = 1;
     private int current_page_notification = 1;
     private String plainusername, username = "", fname = "", mname = "", sname = "";
-
     private List<RecyclerItem> itemListNotification = new ArrayList<>();
     private RecyclerItemAdapter mAdapterNotification;
-    ArrayList<String> notificationdeleteArraylist = new ArrayList<>();
-
-
-    private RecyclerView recyclerViewNotification, recyclerViewPlacement;
+    private RecyclerView recyclerViewNotification;
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +144,6 @@ public class EditNotification extends AppCompatActivity {
         }
 
 
-
-
 //        recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
 //        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
 //        recyclerViewNotification.setHasFixedSize(true);
@@ -159,14 +154,13 @@ public class EditNotification extends AppCompatActivity {
 //        recyclerViewNotification.setAdapter(mAdapterNotification);
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew,EditNotification.this);
+        mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew, EditNotification.this);
         recyclerViewNotification.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
         recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
         recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
         recyclerViewNotification.setAdapter(mAdapterNotificationEdit);
-
 
 
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
@@ -292,7 +286,8 @@ public class EditNotification extends AppCompatActivity {
             public void onLoadMore(int current_page) {
 
                 if (total_no_of_notifications > 20) {
-//                    simulateLoadingNotification();
+                    Log.d("here", "onLoadMore: ");
+                    simulateLoadingNotification();
                 }
 
             }
@@ -349,7 +344,6 @@ public class EditNotification extends AppCompatActivity {
         });
 
 
-
         TextView editnotitxt = (TextView) findViewById(R.id.editnotitxt);
         TextView editnotinotitxt = (TextView) findViewById(R.id.editnotinotitxt);
         editnotitxt.setTypeface(Z.getBold(this));
@@ -358,8 +352,18 @@ public class EditNotification extends AppCompatActivity {
 
 
 //        addPlacementdatatoAdapter();
-//        getNotifications();
         getNotifications2();
+
+
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                itemListNotificationNew.clear();
+                getNotifications2();
+            }
+        });
+
 
     }
 
@@ -519,219 +523,28 @@ public class EditNotification extends AppCompatActivity {
     }
 
 
-    //populate notiff
-    void getNotifications() {
-        previousTotalNotification = 0;
-        loadingNotification = true;
-        page_to_call_notification = 1;
-        isFirstRunNotification = true;
-        isLastPageLoadedNotification = false;
-        lastPageFlagNotification = 0;
-        new GetNotificationsReadStatus().execute();
-
-    }
-
-    void addNotificationdatatoAdapter() {
-
-        if (isFirstRunNotification) {
-            itemListNotification.clear();
-            mAdapterNotification.notifyDataSetChanged();
-            isFirstRunNotification = false;
-
-        }
-
-        if (!isLastPageLoadedNotification) {
-
-            for (int i = 0; i < notificationcount; i++) {
-
-                String headingtoshow = "", notificationtoshow = "";
-                int largeheadingflag = 0, largenotificationflag = 0;
-
-                if (notificationtitles[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        headingtoshow += notificationtitles[i].charAt(j);
-                    largeheadingflag = 1;
-                    headingtoshow += "...";
-                }
-                if (notificationnotifications[i].length() > 25) {
-                    for (int j = 0; j < 25; j++)
-                        notificationtoshow += notificationnotifications[i].charAt(j);
-                    largenotificationflag = 1;
-                    notificationtoshow += "...";
-                }
-                DateFormat inputFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
-                DateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
-                String outputDate = "";
-                try {
-                    Date date = inputFormat.parse(notificationuploadtime[i]);
-                    outputDate = outputFormat.format(date);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                RecyclerItem item = null;
-//                            Toast.makeText(this, "read status count Notification:-"+readstatuscountNotification, Toast.LENGTH_LONG).show();
-//                            Toast.makeText(this, "notification read status here:-"+notificationreadstatus, Toast.LENGTH_LONG).show();
-
-                for (int j = 0; j < readstatuscountNotification; j++) {
-                    String idnstatus = notificationreadstatus[j];
-                    Log.d("TAGAdmin", "idnstatus: " + idnstatus);
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                            Log.d("TAGAdmin", "sid: " + sid);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, false, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(notificationids[i])) {
-                            for (int k = 0; k < uniqueUploadersNotification.length; k++) {
-
-                                if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[k])) {
-
-
-                                    if (lastupdatedNotification[k] == null) {
-
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, "cplaceme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, "placeme");
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, "placeme");
-
-                                            itemListNotification.add(item);
-                                        }
-                                    } else {
-                                        if (notificationfilename1[i].equals("null")) {
-
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], false, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        } else {
-                                            if (largeheadingflag == 1 && largenotificationflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 1 && largeheadingflag == 0)
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationtoshow, notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else if (largenotificationflag == 0 && largeheadingflag == 1)
-                                                item = new RecyclerItem(notificationids[i], headingtoshow, notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-                                            else
-                                                item = new RecyclerItem(notificationids[i], notificationtitles[i], notificationtitles[i], notificationnotifications[i], notificationnotifications[i], notificationfilename1[i], notificationfilename2[i], notificationfilename3[i], notificationfilename4[i], notificationfilename5[i], outputDate, notificationlastmodified[i], true, true, notificationuploadedby[i], EditNotification.this, lastupdatedNotification[k]);
-
-                                            itemListNotification.add(item);
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
-
-        mAdapterNotification.notifyDataSetChanged();
-    }
-
     private void simulateLoadingNotification() {
         new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                tswipe_refresh_layout.setRefreshing(true);
+            }
 
             @Override
             protected Void doInBackground(Void... param) {
                 try {
 
 
+                    Log.d("TAG", "simulateLoadingNotification: accessed");
+                    Log.d("TAG", "page_to_call_notification:"+page_to_call_notification);
+                    Log.d("TAG", "notificationpages:"+notificationpages);
+
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
 
 
                     if (page_to_call_notification != notificationpages) {
+
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
@@ -739,32 +552,11 @@ public class EditNotification extends AppCompatActivity {
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
-                        notificationids = new String[notificationcount];
-                        notificationtitles = new String[notificationcount];
-                        notificationnotifications = new String[notificationcount];
-                        notificationfilename1 = new String[notificationcount];
-                        notificationfilename2 = new String[notificationcount];
-                        notificationfilename3 = new String[notificationcount];
-                        notificationfilename4 = new String[notificationcount];
-                        notificationfilename5 = new String[notificationcount];
-                        notificationuploadtime = new String[notificationcount];
-                        notificationlastmodified = new String[notificationcount];
-                        notificationuploadedby = new String[notificationcount];
-                        notificationuploadedbyplain = new String[notificationcount];
-                        for (int i = 0; i < notificationcount; i++) {
-                            notificationids[i] = json.getString("id" + i);
-                            notificationtitles[i] = json.getString("title" + i);
-                            notificationnotifications[i] = json.getString("notification" + i);
-                            notificationfilename1[i] = json.getString("filename1" + i);
-                            notificationfilename2[i] = json.getString("filename2" + i);
-                            notificationfilename3[i] = json.getString("filename3" + i);
-                            notificationfilename4[i] = json.getString("filename4" + i);
-                            notificationfilename5[i] = json.getString("filename5" + i);
-                            notificationuploadtime[i] = json.getString("uploadtime" + i);
-                            notificationlastmodified[i] = json.getString("lastmodified" + i);
-                            notificationuploadedby[i] = json.getString("uploadedby" + i);
+                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
 
-                        }
+
                     } else {
                         if (!isLastPageLoadedNotification) {
 
@@ -777,32 +569,9 @@ public class EditNotification extends AppCompatActivity {
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
-                            notificationids = new String[notificationcount];
-                            notificationtitles = new String[notificationcount];
-                            notificationnotifications = new String[notificationcount];
-                            notificationfilename1 = new String[notificationcount];
-                            notificationfilename2 = new String[notificationcount];
-                            notificationfilename3 = new String[notificationcount];
-                            notificationfilename4 = new String[notificationcount];
-                            notificationfilename5 = new String[notificationcount];
-                            notificationuploadtime = new String[notificationcount];
-                            notificationlastmodified = new String[notificationcount];
-                            notificationuploadedby = new String[notificationcount];
-                            notificationuploadedbyplain = new String[notificationcount];
-                            for (int i = 0; i < notificationcount; i++) {
-                                notificationids[i] = json.getString("id" + i);
-                                notificationtitles[i] = json.getString("title" + i);
-                                notificationnotifications[i] = json.getString("notification" + i);
-                                notificationfilename1[i] = json.getString("filename1" + i);
-                                notificationfilename2[i] = json.getString("filename2" + i);
-                                notificationfilename3[i] = json.getString("filename3" + i);
-                                notificationfilename4[i] = json.getString("filename4" + i);
-                                notificationfilename5[i] = json.getString("filename5" + i);
-                                notificationuploadtime[i] = json.getString("uploadtime" + i);
-                                notificationlastmodified[i] = json.getString("lastmodified" + i);
-                                notificationuploadedby[i] = json.getString("uploadedby" + i);
-
-                            }
+                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
                         }
 
                     }
@@ -818,349 +587,27 @@ public class EditNotification extends AppCompatActivity {
 
                 if (!isLastPageLoadedNotification) {
 
-                    for (int i = 0; i < notificationcount; i++)
-                        try {
-
-                            if (notificationtitles[i] != null) {
-                                byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
-                                byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                                notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-                            }
-                            if (notificationnotifications[i] != null) {
-                                byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
-                                byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                                notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
-                            }
-                            if (notificationfilename1[i] != null) {
-                                if (!notificationfilename1[i].equals("null")) {
-                                    byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
-                                    byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
-                                    notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename2[i] != null) {
-                                if (!notificationfilename2[i].equals("null")) {
-                                    byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
-                                    byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
-                                    notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename3[i] != null) {
-                                if (!notificationfilename3[i].equals("null")) {
-                                    byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
-                                    byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
-                                    notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename4[i] != null) {
-                                if (!notificationfilename4[i].equals("null")) {
-                                    byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
-                                    byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
-                                    notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
-                                }
-                            }
-                            if (notificationfilename5[i] != null) {
-                                if (!notificationfilename5[i].equals("null")) {
-                                    byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
-                                    byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
-                                    notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
-                                }
-                            }
-                            if (notificationuploadtime[i] != null) {
-                                byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
-                                byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                                notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
-                            }
-                            if (notificationlastmodified[i] != null) {
-                                byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
-                                byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                                notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
-                            }
-                            if (notificationuploadedby[i] != null) {
-                                byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-                                byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                                notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                            }
+                    setserverlisttoadapter(itemlistfromserver);
 
 
-                        } catch (Exception e) {
-                            //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
                 }
 
 
-                new GetLastUpdatedNotification().execute();
+                tswipe_refresh_layout.setRefreshing(false);
+//                new GetLastUpdatedNotification().execute();
             }
         }.execute();
     }
 
-    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
+    void getNotifications2() {
 
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_GetNotificationsByAdminMetaData, "GET", params);
-                notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification = new int[notificationpages];
-                total_no_of_notifications = Integer.parseInt(json.getString("count"));
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-                json = jParser.makeHttpRequest(Z.url_GetReadStatusOfNotificationsByAdmin, "GET", params);
-
-                readstatuscountNotification = Integer.parseInt(json.getString("count"));
-                Log.d("TAGAdmin", "readstatuscountNotification: " + readstatuscountNotification);
-
-                notificationreadstatus = new String[readstatuscountNotification];
-                for (int i = 0; i < readstatuscountNotification; i++) {
-                    notificationreadstatus[i] = json.getString("s" + i);
-                    Log.d("TAGAdmin", "getReadStatus " + notificationreadstatus[i]);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-//              Toast.makeText(AdminActivity.this, "total_no_of_notifications"+total_no_of_notifications, Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "total pagess  "+notificationpages, Toast.LENGTH_LONG).show();
-//
-//              Toast.makeText(AdminActivity.this, "UNRead count:-"+unreadcountNotification, Toast.LENGTH_LONG).show();
-//
-//              Toast.makeText(AdminActivity.this, "Read count:-"+readstatuscountNotification, Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 0 :-"+notificationreadstatus[0], Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 1:-"+notificationreadstatus[1], Toast.LENGTH_LONG).show();
-//              Toast.makeText(AdminActivity.this, "notification read status 2 :-"+notificationreadstatus[2], Toast.LENGTH_LONG).show();
-                Log.d("GetReadStatus", ":total_no_of_notifications::" + total_no_of_notifications);
-                Log.d("GetReadStatus", ":notificationpages::" + notificationpages);
-                Log.d("GetReadStatus", ": readcountNotification::" + unreadcountNotification);
-
-
-            } catch (Exception e) {
-                Toast.makeText(EditNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-
-            new GetNotifications().execute();
-
-        }
-    }
-
-    class GetNotifications extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
-            try {
-                notificationcount = Integer.parseInt(json.getString("count"));
-
-                notificationids = new String[notificationcount];
-                notificationtitles = new String[notificationcount];
-                notificationnotifications = new String[notificationcount];
-                notificationfilename1 = new String[notificationcount];
-                notificationfilename2 = new String[notificationcount];
-                notificationfilename3 = new String[notificationcount];
-                notificationfilename4 = new String[notificationcount];
-                notificationfilename5 = new String[notificationcount];
-                notificationuploadtime = new String[notificationcount];
-                notificationlastmodified = new String[notificationcount];
-                notificationuploadedby = new String[notificationcount];
-                notificationuploadedbyplain = new String[notificationcount];
-                for (int i = 0; i < notificationcount; i++) {
-                    notificationids[i] = json.getString("id" + i);
-                    notificationtitles[i] = json.getString("title" + i);
-                    notificationnotifications[i] = json.getString("notification" + i);
-                    notificationfilename1[i] = json.getString("filename1" + i);
-                    notificationfilename2[i] = json.getString("filename2" + i);
-                    notificationfilename3[i] = json.getString("filename3" + i);
-                    notificationfilename4[i] = json.getString("filename4" + i);
-                    notificationfilename5[i] = json.getString("filename5" + i);
-                    notificationuploadtime[i] = json.getString("uploadtime" + i);
-                    notificationlastmodified[i] = json.getString("lastmodified" + i);
-                    notificationuploadedby[i] = json.getString("uploadedby" + i);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-            for (int i = 0; i < notificationcount; i++)
-                try {
-
-
-                    if (notificationtitles[i] != null) {
-                        byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
-                        byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
-                        notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
-//                        Toast.makeText(AdminActivity.this, "title"+notificationtitles[i], Toast.LENGTH_SHORT).show();
-                        Log.d("notificationdecripted", "notificationtitles" + "[" + i + "] " + notificationtitles[i]);
-
-                    }
-                    if (notificationnotifications[i] != null) {
-                        byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
-                        byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
-                        notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
-//                        Toast.makeText(AdminActivity.this, "notification"+notificationnotifications[i], Toast.LENGTH_SHORT).show();
-
-                    }
-                    if (notificationfilename1[i] != null) {
-                        if (!notificationfilename1[i].equals("null")) {
-                            byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
-                            byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
-                            notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename2[i] != null) {
-                        if (!notificationfilename2[i].equals("null")) {
-                            byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
-                            byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
-                            notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename3[i] != null) {
-                        if (!notificationfilename3[i].equals("null")) {
-                            byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
-                            byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
-                            notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename4[i] != null) {
-                        if (!notificationfilename4[i].equals("null")) {
-                            byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
-                            byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
-                            notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
-                        }
-                    }
-                    if (notificationfilename5[i] != null) {
-                        if (!notificationfilename5[i].equals("null")) {
-                            byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
-                            byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
-                            notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
-                        }
-                    }
-                    if (notificationuploadtime[i] != null) {
-                        byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
-                        byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
-                        notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
-                    }
-                    if (notificationlastmodified[i] != null) {
-                        byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
-                        byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
-                        notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
-                    }
-                    if (notificationuploadedby[i] != null) {
-                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
-                        byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
-                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
-                        Log.d("notificationuploadedby", "notificationuploadedby" + "[" + i + "] " + notificationuploadedby[i]);
-
-                    }
-
-
-                } catch (Exception e) {
-                    //Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                }
-
-
-            new GetLastUpdatedNotification().execute();
-//            addNotificationdatatoAdapter();
-
-
-        }
-    }
-
-
-    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
-
-        String s = "";
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-
-            Set<String> uniqKeys = new TreeSet<String>();
-            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
-
-
-            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
-            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
-            lastupdatedNotification = new String[uniqueUploadersNotification.length];
-            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
-                for (int i = 0; i < notificationcount; i++) {
-
-                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
-                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
-                    }
-                }
-            }
-            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-                try {
-                    s = json.getString("lastupdated");
-                    if (s.equals("noupdate")) {
-//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    } else {
-                        lastupdatedNotification[i] = s;
-//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                }
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-//            Toast.makeText(AdminActivity.this,"uniqueUploadersNotification:- \n"+uniqueUploadersNotification[0] , Toast.LENGTH_LONG).show();
-//
-//            Toast.makeText(AdminActivity.this,notificationuploadedbyplain[0]+"\n"+notificationuploadedby[0] , Toast.LENGTH_LONG).show();
-
-
-//            for(int i=0;i<lastupdated.length;i++)
-//            {
-//                if(lastupdated[i]==null) {
-//                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(AdminActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
-//
-//
-//                }
-//            }
-            if (s.equals("noupdate")) {
-                Toast.makeText(EditNotification.this, "no update", Toast.LENGTH_SHORT).show();
-            } else {
-//                lastupdatedNotification [i]=s;
-            }
-
-            if (!isLastPageLoadedNotification) {
-            }
-            addNotificationdatatoAdapter();
-
-        }
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+        new GetNotificationsByadminMetadata().execute();
 
     }
 
@@ -1198,7 +645,7 @@ public class EditNotification extends AppCompatActivity {
                 Toast.makeText(EditNotification.this, result, Toast.LENGTH_LONG).show();
                 Log.d("Tag", "onPostExecute: " + result);
                 goBack();
-                getNotifications();
+                getNotifications2();
 
             } catch (Exception e) {
                 Log.d("Tag", "onPostExecute: " + result);
@@ -1208,6 +655,7 @@ public class EditNotification extends AppCompatActivity {
 
         }
     }
+
 
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
 
@@ -1232,6 +680,7 @@ public class EditNotification extends AppCompatActivity {
                     previousTotalNotification = totalItemCountNotification;
                 }
             }
+
             if (!loadingNotification && (totalItemCountNotification - visibleItemCountNotification)
                     <= (firstVisibleItemNotification + visibleThresholdNotification)) {
                 // End has been reached
@@ -1248,21 +697,7 @@ public class EditNotification extends AppCompatActivity {
         public abstract void onLoadMore(int current_page);
     }
 
-
-    void getNotifications2() {
-
-        previousTotalNotification = 0;
-        loadingNotification = true;
-        page_to_call_notification = 1;
-        isFirstRunNotification = true;
-        isLastPageLoadedNotification = false;
-        lastPageFlagNotification = 0;
-
-        new Getplacementbyhr().execute();
-
-    }
-
-    class Getplacementbyhr extends AsyncTask<String, String, String> {
+    class GetplacementbyAdmin extends AsyncTask<String, String, String> {
 
         private static final String TAG = "Getplacementbyhr";
         ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
@@ -1271,15 +706,17 @@ public class EditNotification extends AppCompatActivity {
 
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", "sunny"));       //0
-            Log.d("class", "accessed");
-            json = jParser.makeHttpRequest(url_GetPlacementsCreatedByHr, "GET", params);
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
             try {
+
+
                 Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
                 Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                Log.d("itemlistfromserver", "filename1=======================" + itemlistfromserver.get(0).getNotification());
-
+                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
 
 
             } catch (Exception e) {
@@ -1295,18 +732,70 @@ public class EditNotification extends AppCompatActivity {
 
         }
 
-        void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
-            itemListNotificationNew.clear();
-            itemListNotificationNew.addAll(itemlist);
-//        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
-//        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
-            mAdapterNotificationEdit.notifyDataSetChanged();
+
+
+    }
+    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
+
+
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
+
+        itemListNotificationNew.addAll(itemlist);
+        mAdapterNotificationEdit.notifyDataSetChanged();
+//
+
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+
+    }
+
+    class GetNotificationsByadminMetadata extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_GetNotificationsByAdminMetaData, "GET", params);
+
+                notificationpages = Integer.parseInt(json.getString("pages"));
+                called_pages_notification = new int[notificationpages];
+                total_no_of_notifications = Integer.parseInt(json.getString("count"));
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+
+//
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+
+
+                new GetplacementbyAdmin().execute();
+
+
+
+            } catch (Exception e) {
+                Toast.makeText(EditNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
 
 
         }
-
-
     }
 
 }

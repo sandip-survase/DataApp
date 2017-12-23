@@ -1061,7 +1061,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         recyclerViewNotification.setAdapter(mAdapterNotification);
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
+//        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -1143,8 +1143,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     item = itemListPlacement.get(position);
 
 
-                if (!item.getisRead()) {
-                    item.setisRead(true);
+                if(!item.isIsread())
+                {
+                    item.setIsread(true);
                     unreadcountPlacement--;
                     placementcountrl.setVisibility(View.VISIBLE);
                     placementcounttxt.setText(unreadcountPlacement + "");
@@ -2648,9 +2649,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         @Override
         protected void onPostExecute(String result) {
-
-            if (!isLastPageLoadedPlacement)
-                addPlacementdatatoAdapter();
+//
+//            if (!isLastPageLoadedPlacement)
+//                addPlacementdatatoAdapter();
 
         }
 
@@ -2837,92 +2838,92 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    void addPlacementdatatoAdapter() {
-        if (isFirstRunPlacement) {
-            itemListPlacement.clear();
-            mAdapterPlacement.notifyDataSetChanged();
-            isFirstRunPlacement = false;
-        }
-        selectedMenuFlag = 2;
-        if (!isLastPageLoadedPlacement) {
-            for (int i = 0; i < placementcount; i++) {
-
-                String companynametoshow = "";
-                int largecompanynameflag = 0;
-
-                if (placementcompanyname[i].length() > 25) {
-                    for (int j = 0; j < 20; j++)
-                        companynametoshow += placementcompanyname[i].charAt(j);
-                    largecompanynameflag = 1;
-                    companynametoshow += "...";
-                }
-
-                RecyclerItemPlacement item = null;
-                for (int j = 0; j < readstatuscountPlacement; j++) {
-                    String idnstatus = placementreadstatus[j];
-                    String sid = "";
-                    if (idnstatus.contains("U")) {
-
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-                    } else if (idnstatus.contains("R")) {
-                        for (int k = 0; k < idnstatus.length() - 1; k++) {
-                            sid += idnstatus.charAt(k);
-                        }
-                        if (sid.equals(placementids[i])) {
-                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
-                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
-                                    if (lastupdatedPlacement[k] == null) {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    } else {
-                                        if (largecompanynameflag == 1)
-                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        else
-                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
-                                        itemListPlacement.add(item);
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-        }
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-        mAdapterPlacement.notifyDataSetChanged();
-
-    }
+//    void addPlacementdatatoAdapter() {
+//        if (isFirstRunPlacement) {
+//            itemListPlacement.clear();
+//            mAdapterPlacement.notifyDataSetChanged();
+//            isFirstRunPlacement = false;
+//        }
+//        selectedMenuFlag = 2;
+//        if (!isLastPageLoadedPlacement) {
+//            for (int i = 0; i < placementcount; i++) {
+//
+//                String companynametoshow = "";
+//                int largecompanynameflag = 0;
+//
+//                if (placementcompanyname[i].length() > 25) {
+//                    for (int j = 0; j < 20; j++)
+//                        companynametoshow += placementcompanyname[i].charAt(j);
+//                    largecompanynameflag = 1;
+//                    companynametoshow += "...";
+//                }
+//
+//                RecyclerItemPlacement item = null;
+//                for (int j = 0; j < readstatuscountPlacement; j++) {
+//                    String idnstatus = placementreadstatus[j];
+//                    String sid = "";
+//                    if (idnstatus.contains("U")) {
+//
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(placementids[i])) {
+//                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
+//                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
+//                                    if (lastupdatedPlacement[k] == null) {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    } else {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], false, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                }
+//
+//                            }
+//                        }
+//                    } else if (idnstatus.contains("R")) {
+//                        for (int k = 0; k < idnstatus.length() - 1; k++) {
+//                            sid += idnstatus.charAt(k);
+//                        }
+//                        if (sid.equals(placementids[i])) {
+//                            for (int k = 0; k < uniqueUploadersPlacement.length; k++) {
+//                                if (placementuploadedbyplain[i].equals(uniqueUploadersPlacement[k])) {
+//                                    if (lastupdatedPlacement[k] == null) {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, "placeme", placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    } else {
+//                                        if (largecompanynameflag == 1)
+//                                            item = new RecyclerItemPlacement(placementids[i], companynametoshow, placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        else
+//                                            item = new RecyclerItemPlacement(placementids[i], placementcompanyname[i], placementcpackage[i] + " LPA", placementpost[i], placementforwhichcourse[i], placementforwhichstream[i], placementvacancies[i], placementlastdateofregistration[i], placementdateofarrival[i], placementbond[i], placementnoofapti[i], placementnooftechtest[i], placementnoofgd[i], placementnoofti[i], placementnoofhri[i], placementstdx[i], placementstdxiiordiploma[i], placementug[i], placementpg[i], placementuploadtime[i], placementlastmodified[i], placementuploadedby[i], true, MainActivity.this, lastupdatedPlacement[k], placementnoofallowedliveatkt[i], placementnoofalloweddeadatkt[i]);
+//                                        itemListPlacement.add(item);
+//                                    }
+//                                }
+//
+//                            }
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
+//
+//        if (lastPageFlagPlacement == 1)
+//            isLastPageLoadedPlacement = true;
+//        mAdapterPlacement.notifyDataSetChanged();
+//
+//    }
 
     private void disableScrollbars(ScrollView scrollView) {
         if (scrollView != null) {

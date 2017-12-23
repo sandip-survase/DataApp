@@ -168,6 +168,8 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d("tag2", "adapter notification Accessed" );
+
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_list_row, parent, false);
 

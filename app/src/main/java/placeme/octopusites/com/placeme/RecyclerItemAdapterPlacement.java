@@ -1,5 +1,6 @@
 package placeme.octopusites.com.placeme;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -27,6 +28,8 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
 
     private List<RecyclerItemPlacement> itemList;
     private String searchText;
+    Context mContext;
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public CircleImageView uploadedbyprofile,logo;
@@ -51,8 +54,9 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
         notifyDataSetChanged();
     }
 
-    public RecyclerItemAdapterPlacement(List<RecyclerItemPlacement> itemList) {
+    public RecyclerItemAdapterPlacement(List<RecyclerItemPlacement> itemList,Context mContext) {
         this.itemList = itemList;
+        this.mContext=mContext;
     }
 
     @Override
@@ -75,7 +79,7 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
                 .appendQueryParameter("u", item.getUploadedby())
                 .build();
 
-        GlideApp.with(item.getContext())
+        GlideApp.with(mContext)
                 .load(uri)
                 .signature(new ObjectKey(item.getSignature()))
                 .into(holder.uploadedbyprofile);
@@ -95,13 +99,13 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
         holder.cpackage.setText(item.getCpackage());
         holder.post.setText(item.getPost());
 
-        if(item.getisRead())
+        if(item.isIsread())
         {
             holder.companyname.setTextColor(Color.parseColor("#eeeeee"));
             holder.companyname.setTypeface(null, Typeface.NORMAL);
 
         }
-        else if(!item.getisRead())
+        else if(!item.isIsread())
         {
             holder.companyname.setTextColor(Color.parseColor("#c59a6d"));
             holder.companyname.setTypeface(null, Typeface.BOLD);
