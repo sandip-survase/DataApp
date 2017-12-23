@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -16,28 +20,26 @@ public class Z {
     public static final String IP = "http://104.237.4.236/";
 
     public static final String IP_8081 = "http://104.237.4.236:8081/";
+
+    public static final String IP_1234= "http://104.237.4.236:1234/";
+
     public static final String IP_8086 = "http://104.237.4.236:8086/";
 
-    public static final String IP_8080 = "http://104.237.4.236:8080/";
+    public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
 
+    public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
 
-    public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
-
-    public static final String IP_30_8080 = "http://192.168.100.30:8080/";
-
-
-    //-----------------------------------------sunny---------------------------------------------------------------
-// -------------------------------------------MainActivity(student)-----------------------------------------------
+    //    ----------------------------------sunny---------------------------------------------------------------
+//                    --------------------MainActivity(student)-----------------
     public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
-
     public static final String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";
     public static final String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
     public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
     public static final String url_getplacements = IP + "CreateNotificationTemp/GetPlacements";
-    //                           --------------------alumniActivity(alumni)----------------------------------------------
+    //                           --------------------alumniActivity(alumni)-----------------
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
     public static final String url_GetReadStatusOfNotificationsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
     public static final String url_GetNotificationsAlumni = IP + "CreateNotificationTemp/GetNotificationsAlumni";
@@ -46,27 +48,27 @@ public class Z {
     public static final String url_GetReadStatusOfPlacementsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
     public static final String url_GetPlacementsAlumni = IP + "CreateNotificationTemp/GetPlacementsAlumni";
     public static final String url_ChangePlacementReadStatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
-    //                                --------------------adminActivity-----------------
+    //                                --------------------adminActivity)-----------------
 //placement urls
-    public static final String url_GetPlacementsAdminAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsForAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    public static final String url_GetPlacementsAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementsAdmin";
-    public static final String url_ChangePlacementReadStatusAdmin = IP_8086 + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+    public static final String url_GetPlacementsAdminAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsAdminMetaData";
+    public static final String url_GetReadStatusOfPlacementsForAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
+    public static final String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
+    public static final String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
-    public static final String url_GetNotificationsAdminAdminMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsAdminMetaData";
-    public static final String url_GetReadStatusOfNotificationsAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    public static final String url_GetNotificationsAdmin = IP_8086 + "CreateNotificationTemp/GetNotificationsAdmin";
-    public static final String url_ChangeNotificationReadStatusAdmin = IP_8086 + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+    public static final String url_GetNotificationsAdminAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
+    public static final String url_GetNotificationsAdmin = IP + "CreateNotificationTemp/GetNotificationsAdmin";
+    public static final String url_ChangeNotificationReadStatusAdmin = IP + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     //    -------------------------------EditNotification-----------------------------------
-    public static final String url_GetNotificationsByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
-    public static final String url_GetReadStatusOfNotificationsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
-    public static final String url_GetNotificationsSentByAdmin = IP_8086 + "CreateNotificationTemp/GetNotificationsSentByAdmin";
-    public static final String url_DeleteNotification = IP_8086 + "CreateNotificationTemp/DeleteNotification";
+    public static final String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
+    public static final String url_GetNotificationsSentByAdmin = IP + "CreateNotificationTemp/GetNotificationsSentByAdmin";
+    public static final String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
-    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
-    public static final String url_GetPlacementSentByAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementSentByAdmin";
-    public static final String url_Delete_Placements = IP_8086 + "CreateNotificationTemp/DeletePlacement";
+    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
+    public static final String url_GetReadStatusOfPlacementsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
+    public static final String url_GetPlacementSentByAdmin = IP + "CreateNotificationTemp/GetPlacementSentByAdmin";
+    public static final String url_Delete_Placements = IP + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
     public static final String url_GetPlacementsCreatedByHr = IP + "CreateNotificationTemp/GetPlacementsCreatedByHr";
     //    -------------------------------EditPlacementHr -----------------------------------
@@ -78,8 +80,6 @@ public class Z {
     public static final String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
-
-
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
@@ -101,30 +101,23 @@ public class Z {
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
-    public static final String url_create_firebase = IP + "Firbase/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
+    public static final String url_create_firebase = IP + "Firebase/RegisterFirebaseUser";
+    public static final String url_UpdateFirebaseToken = IP + "Firebase/UpdateFirebaseToken";
     //    ----------------------------------/sunny---------------------------------------------------------------
+    public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
+    public static final String url_get_chatrooms = Local_IP_Raju + "Firebase/GetChatRooms";
+    public static final String url_getmessagesreadstatus = Local_IP_Raju + "Firebase/GetReadStatusOfMessages";
+    public static final String url_changepass = IP + "Firebase/ChangePass";
 
-
-    public static final String url_ChangeUsernameFireBase = IP + "PlaceMe/ChangeUsername";
-    public static final String url_get_chatrooms = IP + "PlaceMe/GetChatRooms";
-    public static final String url_getmessagesreadstatus = IP + "PlaceMe/GetReadStatusOfMessages";
-    public static final String url_changepass = IP + "PlaceMe/ChangePass";
-
-
-
-
-
-
-    //#############################   PlaceMe   ######################################
-    public static final String load_news = IP + "PlaceMe/GetNews";
-    public static final String load_videos = IP + "PlaceMe/GetVideos";
-    public static final String url_savechat = IP + "PlaceMe/SaveChat";
-    public static final String url_loadchat = IP + "PlaceMe/LoadChat";
-    public static final String url_SendPushNotification = IP + "PlaceMe/SendPushNotification";
-    public static final String url_markread = IP + "PlaceMe/MarkRead";
-    public static final String url_GetLastPushedMessage = IP + "PlaceMe/GetLastPushedMessage";
-    public static final String url_ChangeMessageReadStatus = IP + "PlaceMe/ChangeMessageReadStatus";
+    //#############################   Firebase   ######################################
+    public static final String load_news = IP_1234 + "Firebase/GetNews";
+    public static final String load_videos = IP_1234 + "Firebase/GetVideos";
+    public static final String url_savechat = Local_IP_Raju + "Firebase/SaveChat";
+    public static final String url_loadchat = Local_IP_Raju + "Firebase/LoadChat";
+    public static final String url_SendPushNotification = Local_IP_Raju + "Firebase/SendPushNotification";
+    public static final String url_markread = Local_IP_Raju + "Firebase/MarkRead";
+    public static final String url_GetLastPushedMessage = Local_IP_Raju + "Firebase/GetLastPushedMessage";
+    public static final String url_ChangeMessageReadStatus = Local_IP_Raju + "Firebase/ChangeMessageReadStatus";
 
     // Messages -----------------------------------------
     public static final String url_Welcome = IP + "AESTest/Welcome";
@@ -133,10 +126,10 @@ public class Z {
     public static final String url_getdigest = IP + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
-    public static final String url_editemail = IP + "AESTest/EditEmail";
+    public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
 
     //**************************************   AESTest   *****************************************
-    public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
+    public static final String url_VerifyOTPEditEmail = IP_8086 + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
@@ -159,21 +152,21 @@ public class Z {
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
 
-    //    --------------------------------------Load fragment data-------------------------------------
+//    --------------------------------------Load fragment data-------------------------------------
     public static final String url_SaveAdminIntro = IP + "ProfileObjects/SaveAdminIntro";
     public static final String url_saveprojects = IP + "ProfileObjects/SaveProjects";
     public static final String url_SaveTenth = IP + "ProfileObjects/SaveTenth";
     public static final String url_savedata_twelth = IP + "ProfileObjects/SaveTwelth";
 
-    //    --------------------------------------Intro-------------------------------------
+//    --------------------------------------Intro-------------------------------------
     public static final String url_savedata_diploma = IP + "ProfileObjects/SaveDiploma";
     public static final String url_savedata_ug = IP + "ProfileObjects/SaveUg";
     public static final String url_savedata_pg_sem = IP + "ProfileObjects/SavePgSem";
 
-    //    --------------------------------------project-------------------------------------
+//    --------------------------------------project-------------------------------------
     public static final String url_savedata_pg_year = IP + "ProfileObjects/SavePgYear";
 
-    //    -----------------------------------Education details--------------------------
+//    -----------------------------------Education details--------------------------
     public static final String url_savelanguages = IP + "ProfileObjects/SaveLanguages";
     public static final String url_savecertifications = IP + "ProfileObjects/SaveCertificates";
     public static final String url_savecourses = IP + "ProfileObjects/SaveCourses";
@@ -181,7 +174,7 @@ public class Z {
     public static final String url_savehonors = IP + "ProfileObjects/SaveHonors";
     public static final String url_savepatents = IP + "ProfileObjects/SavePatents";
 
-    //    ----------------------------------------Accomplishments-----------------------------
+//    ----------------------------------------Accomplishments-----------------------------
     public static final String url_savepublications = IP + "ProfileObjects/SavePublications";
     public static final String url_savecareerobj = IP + "ProfileObjects/SaveCareerObj";
     public static final String url_savestrengths = IP + "ProfileObjects/SaveStrengths";
@@ -190,31 +183,31 @@ public class Z {
     public static final String url_SaveStdalmContact = IP + "ProfileObjects/SaveStdAlmContact";
     public static final String url_SaveAdminContact = IP + "ProfileObjects/SaveAdminContact";
 
-    //    -----------------------------------------MyProfileCareerDetails---------------------------------
+//    -----------------------------------------MyProfileCareerDetails---------------------------------
     public static final String url_SaveHrContact = IP + "ProfileObjects/SaveHrContact";
     public static final String url_SaveExperiences = IP + "ProfileObjects/SaveExperiences";
     public static final String savepersonalinfo = IP + "ProfileObjects/SavePersonalInfo";
     public static final String url_SaveAdminPersonal = IP + "ProfileObjects/SaveAdminPersonal";
 
-    //    --------------------------------------------MyProfileContact---------------------------------
+//    --------------------------------------------MyProfileContact---------------------------------
     public static final String url_SaveHrCompany = IP + "ProfileObjects/SaveHrCompany";
     public static final String url_SaveAdminInstituteData = IP + "ProfileObjects/SaveAdminInstituteData";
     public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
 
-    //   --------------------------------------------Experience---------------------------------
+//   --------------------------------------------Experience---------------------------------
     public static final String url_getugcourses = IP + "AESTest/GetUGCourses";
 
-    //  --------------------------------------------Tabfragment---------------------------------
+//  --------------------------------------------Tabfragment---------------------------------
     public static final String url_getstreams = IP + "AESTest/GetUGStreams";
     public static final String url_getuniversities = IP + "AESTest/GetUGUniversities";
 
-    //    ------------------------------------------company details---------------------------------
+//    ------------------------------------------company details---------------------------------
     public static final String url_getpgcourses = IP + "AESTest/GetPGCourses";
 
-    //    ------------------------------------------Institute details---------------------------------
+//    ------------------------------------------Institute details---------------------------------
     public static final String url_getpgstreams = IP + "AESTest/GetPGStreams";
 
-    //    ------------------------------------------Education details---------------------------------
+//    ------------------------------------------Education details---------------------------------
     public static final String url_getpguniversities = IP + "AESTest/GetPGUniversities";
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
@@ -246,10 +239,9 @@ public class Z {
     private static final String IP_10 = "http://192.168.100.10/";
     private static final String IP_20 = "http://192.168.100.20/";
     private static final String IP_30 = "http://192.168.100.30/";
-
     private static Typeface FA = null, Bold = null, Light = null, Italic = null, BoldItalic = null, Righteous = null;
     private static Animation fadeAnimation = null, fadeandmovedownAnimation = null, slideoutleft2Animation = null, fadeoutAnimation = null, slideinleft1Animation = null, slideinleft2Animation = null, scaledownAnimation = null, bottomupbox1Animation = null, bottomupbox2Animation = null, bottomupbox3Animation = null, bottomupbox4Animation = null;
-    public static String digest1 = null, digest2 = null;
+    public static String digest1=null,digest2=null;
 //    --------------------------------- function --------------------------------------------------------------
 
     public static Typeface getFA(Context context) {
@@ -309,7 +301,7 @@ public class Z {
         if (fadeAnimation != null)
             view.startAnimation(fadeAnimation);
         else {
-            fadeAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+            fadeAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadein);
             view.startAnimation(fadeAnimation);
         }
 
@@ -320,7 +312,7 @@ public class Z {
         if (fadeandmovedownAnimation != null)
             view.startAnimation(fadeandmovedownAnimation);
         else {
-            fadeandmovedownAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadeinmove);
+            fadeandmovedownAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadeinmove);
             view.startAnimation(fadeandmovedownAnimation);
         }
     }
@@ -330,7 +322,7 @@ public class Z {
         if (slideoutleft2Animation != null)
             view.startAnimation(slideoutleft2Animation);
         else {
-            slideoutleft2Animation = AnimationUtils.loadAnimation(activity, R.anim.slideoutleft2);
+            slideoutleft2Animation =AnimationUtils.loadAnimation(activity,R.anim.slideoutleft2);
             view.startAnimation(slideoutleft2Animation);
         }
 
@@ -341,7 +333,7 @@ public class Z {
         if (fadeoutAnimation != null)
             view.startAnimation(fadeoutAnimation);
         else {
-            fadeoutAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadeout);
+            fadeoutAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadeout);
             view.startAnimation(fadeoutAnimation);
         }
 
@@ -352,7 +344,7 @@ public class Z {
         if (slideinleft1Animation != null)
             view.startAnimation(slideinleft1Animation);
         else {
-            slideinleft1Animation = AnimationUtils.loadAnimation(activity, R.anim.slideinleft1);
+            slideinleft1Animation =AnimationUtils.loadAnimation(activity,R.anim.slideinleft1);
             view.startAnimation(slideinleft1Animation);
         }
 
@@ -363,7 +355,7 @@ public class Z {
         if (slideinleft2Animation != null)
             view.startAnimation(slideinleft2Animation);
         else {
-            slideinleft2Animation = AnimationUtils.loadAnimation(activity, R.anim.slideinleft2);
+            slideinleft2Animation =AnimationUtils.loadAnimation(activity,R.anim.slideinleft2);
             view.startAnimation(slideinleft2Animation);
         }
 
@@ -405,7 +397,7 @@ public class Z {
         if (scaledownAnimation != null)
             view.startAnimation(scaledownAnimation);
         else {
-            scaledownAnimation = AnimationUtils.loadAnimation(activity, R.anim.scaledown);
+            scaledownAnimation =AnimationUtils.loadAnimation(activity,R.anim.scaledown);
             view.startAnimation(scaledownAnimation);
         }
 
@@ -416,7 +408,7 @@ public class Z {
         if (bottomupbox1Animation != null)
             view.startAnimation(bottomupbox1Animation);
         else {
-            bottomupbox1Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box1);
+            bottomupbox1Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box1);
             view.startAnimation(bottomupbox1Animation);
         }
 
@@ -427,7 +419,7 @@ public class Z {
         if (bottomupbox2Animation != null)
             view.startAnimation(bottomupbox2Animation);
         else {
-            bottomupbox2Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box2);
+            bottomupbox2Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box2);
             view.startAnimation(bottomupbox2Animation);
         }
 
@@ -438,7 +430,7 @@ public class Z {
         if (bottomupbox3Animation != null)
             view.startAnimation(bottomupbox3Animation);
         else {
-            bottomupbox3Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box3);
+            bottomupbox3Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box3);
             view.startAnimation(bottomupbox3Animation);
         }
 
@@ -448,33 +440,35 @@ public class Z {
         if (bottomupbox4Animation != null)
             view.startAnimation(bottomupbox4Animation);
         else {
-            bottomupbox4Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box4);
+            bottomupbox4Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box4);
             view.startAnimation(bottomupbox4Animation);
         }
 
     }
-
-    public static String getDigest1(Context context) {
-        if (digest1 != null)
+    public static String getDigest1(Context context)
+    {
+        if(digest1!=null)
             return digest1;
-        else {
-            digest1 = MySharedPreferencesManager.getDigest1(context);
+        else
+        {
+            digest1=MySharedPreferencesManager.getDigest1(context);
         }
         return digest1;
     }
-
-    public static String getDigest2(Context context) {
-        if (digest2 != null)
+    public static String getDigest2(Context context)
+    {
+        if(digest2!=null)
             return digest2;
-        else {
-            digest2 = MySharedPreferencesManager.getDigest2(context);
+        else
+        {
+            digest2=MySharedPreferencesManager.getDigest2(context);
         }
         return digest2;
     }
-
-    public static String Encrypt(String string, Context context) throws Exception {
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(getDigest1(context));
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(getDigest2(context));
+    public static String Encrypt(String string,Context context) throws Exception
+    {
+        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
         String sPadding = "ISO10126Padding";
 
         byte[] objBytes = string.getBytes("UTF-8");
@@ -482,16 +476,38 @@ public class Z {
 
         return new String(SimpleBase64Encoder.encode(objEncryptedBytes));
     }
-
-    public static String Decrypt(String string, Context context) throws Exception {
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(getDigest1(context));
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(getDigest2(context));
+    public static String Decrypt(String string,Context context) throws Exception
+    {
+        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
         String sPadding = "ISO10126Padding";
 
         byte[] EncryptedBytes = SimpleBase64Encoder.decode(string);
         byte[] DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, EncryptedBytes);
         return new String(DecryptedBytes);
     }
+    public static String md5(String input) {
 
+        String md5 = null;
+
+        if (null == input) return null;
+
+        try {
+
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+
+        } catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+        }
+        return md5;
+    }
 
 }
