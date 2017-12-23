@@ -2552,7 +2552,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
-
+                Log.d("TAG", "token json admin: "+json);
 
                 resultofop = json.getString("info");
 
@@ -2564,9 +2564,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         @Override
         protected void onPostExecute(String result) {
-            if (resultofop.equals("success")) {
-                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
-            }
+//            if (resultofop.equals("success")) {
+//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+//            }
         }
     }
 

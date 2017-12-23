@@ -534,7 +534,7 @@ public class SplashScreen extends Activity {
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
-
+                Log.d("TAG", "token json splash: "+json);
 
                 resultofop = json.getString("info");
 

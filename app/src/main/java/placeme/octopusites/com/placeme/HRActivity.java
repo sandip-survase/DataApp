@@ -1439,9 +1439,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         @Override
         protected void onPostExecute(String result) {
-            if (resultofop.equals("success")) {
-                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
-            }
+//            if (resultofop.equals("success")) {
+//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+//            }
         }
     }
 
