@@ -1039,7 +1039,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
+//        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -2937,6 +2937,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             crop_flag = 0;
         } else if (requestCode == Crop.REQUEST_CROP) {
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.showUpdateProgress();
             handleCrop(resultCode, result);
         }
 

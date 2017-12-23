@@ -2323,7 +2323,6 @@ public class AdminProfileFragment extends Fragment {
                     })
                     .into(myprofileimg);
 
-
         }
     }
 

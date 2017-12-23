@@ -1292,12 +1292,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     Toast.makeText(HRActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(HRActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
-                    fragment.HideUpdateProgress();
+                    fragment.hideprofileprogress();
                 }
 
             } else {
                 Toast.makeText(HRActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
-                fragment.HideUpdateProgress();
+                fragment.hideprofileprogress();
             }
 
         }
