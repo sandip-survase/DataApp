@@ -155,7 +155,7 @@ public class MessagesFragment extends Fragment {
 
                     refreshFromDB();
                 }
-                startActivity(new Intent(getActivity(),MessageActivity.class).putExtra("uploadedby",item.getUploadedby()).putExtra("signature",item.getSignature()).putExtra("fname",item.getFname()).putExtra("lname",item.getLname()).putExtra("sender",plainusername).putExtra("receiver",item.getUsername()).putExtra("sender_uid",item.getSender_uid()).putExtra("receiver_uid",item.getUid()));
+                startActivityForResult(new Intent(getActivity(),MessageActivity.class).putExtra("uploadedby",item.getUploadedby()).putExtra("signature",item.getSignature()).putExtra("fname",item.getFname()).putExtra("lname",item.getLname()).putExtra("sender",plainusername).putExtra("receiver",item.getUsername()).putExtra("sender_uid",item.getSender_uid()).putExtra("receiver_uid",item.getUid()),90);
 
             }
 

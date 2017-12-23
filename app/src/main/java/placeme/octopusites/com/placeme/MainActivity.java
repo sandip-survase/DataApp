@@ -3129,6 +3129,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
         }
+        if(requestCode==90)
+        {
+            MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.addMessages();
+        }
     }
 
 
@@ -3341,7 +3346,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
                 String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
-                Log.d("TAG", "splashScreen token\n" + token);
+                Log.d("TAG", "mainactivity token\n" + token);
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));       //0

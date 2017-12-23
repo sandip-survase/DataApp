@@ -170,7 +170,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int current_page_placement = 1;
     private TextView toolbar_title;
 
-
+    RelativeLayout admincontrolsrl;
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
 
     //new
@@ -216,6 +216,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
 
+        admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
 
         String encUsername = MySharedPreferencesManager.getUsername(this);
         Log.d("Shardpreff", "encUsername=======================: " + encUsername);
@@ -354,7 +355,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onSearchViewShown() {
 
-                RelativeLayout admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
+
                 admincontrolsrl.setVisibility(View.GONE);
 
                 if (selectedMenuFlag == 1) {
@@ -376,7 +377,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onSearchViewClosed() {
 
-                RelativeLayout admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                 admincontrolsrl.setVisibility(View.VISIBLE);
 
             }
@@ -417,6 +417,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
+                        admincontrolsrl.setVisibility(View.GONE);
 
                     } else if (navMenuFlag == 2) {
 
@@ -442,6 +443,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //                      recyclerViewNotification.setVisibility(View.VISIBLE);
 //                      recyclerViewPlacement.setVisibility(View.GONE);
 
+                        admincontrolsrl.setVisibility(View.VISIBLE);
                     } else if (navMenuFlag == 3) {
 
                         notificationorplacementflag = 2;
@@ -464,6 +466,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //                     recyclerViewNotification.setVisibility(View.GONE);
 //                     recyclerViewPlacement.setVisibility(View.VISIBLE);
 
+                        admincontrolsrl.setVisibility(View.VISIBLE);
+
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -477,6 +481,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         toolbar_title.setText("Messages");
                         tswipe_refresh_layout.setVisibility(View.GONE);
 
+                        admincontrolsrl.setVisibility(View.GONE);
+
                     } else if (navMenuFlag == 5) {
                         crop_layout.setVisibility(View.GONE);
                         SettingsFragment fragment = new SettingsFragment();
@@ -488,6 +494,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Settings");
                         tswipe_refresh_layout.setVisibility(View.GONE);
+
+                        admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
                         crop_layout.setVisibility(View.GONE);
                         NewsFeedFragment fragment = new NewsFeedFragment();
@@ -499,6 +507,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Blog");
                         tswipe_refresh_layout.setVisibility(View.GONE);
+
+                        admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 7) {
                         crop_layout.setVisibility(View.GONE);
                         AboutFragment fragment = new AboutFragment();
@@ -510,6 +520,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("About");
                         tswipe_refresh_layout.setVisibility(View.GONE);
+
+                        admincontrolsrl.setVisibility(View.GONE);
                     }
                 }
 

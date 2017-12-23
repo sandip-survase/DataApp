@@ -30,6 +30,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     static int count = 0;  // notification id ...increase this count when new type of notifiation arrives
     static int countfornotiff = 0;
     static int countforplace = 0;
+    static int countformessage = 0;
     static String stro = "", stro2 = "";
     static String notiffbigtext = "", notiffbigtext2 = "";
 
@@ -293,6 +294,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     manager.notify(count, builder.build());
 //                    countforplace++;
+
+                }
+                else if (Notificationtags.equals("chat")) {
+                    count=3;
+
 
                 }
 

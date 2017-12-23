@@ -38,7 +38,11 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/profile"
         android:layout_marginTop="5dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:layout_marginRight="30dp"
+        />
 
     <TextView
         android:id="@+id/date"

@@ -105,7 +105,7 @@ public class Z {
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
     public static final String url_create_firebase = IP + "Firbase/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken = IP + "Firbase/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken = IP+"Firebase/UpdateFirebaseToken";
     //    ----------------------------------/sunny---------------------------------------------------------------
 
     public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
