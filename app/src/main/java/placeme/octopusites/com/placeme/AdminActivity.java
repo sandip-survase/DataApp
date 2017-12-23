@@ -3,8 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -35,6 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -51,11 +50,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -146,8 +140,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String lastupdatedPlacement[];
     TextView createPlacementOrNotification, editPlacementOrNotification;
     PlacementEditData settag = new PlacementEditData();
-    Toolbar toolbar;
-    TextView bluePanelTv;
+
     private ImageView resultView;
     private int chooserType;
     private String mediaPath;
@@ -172,9 +165,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
     private TextView toolbar_title;
-
-
-    //new
+    Toolbar toolbar;
+    TextView bluePanelTv;
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
 
@@ -518,7 +510,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         final View hView = navigationView.getHeaderView(0);
         profile = (CircleImageView) hView.findViewById(R.id.profile_image);
-        new GetProfileImage().execute();
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
         final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
         final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
@@ -1372,7 +1364,44 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     public void requestProfileImage() {
-        new GetProfileImage().execute();
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(AdminActivity.this)
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(profile);
+
+        }
     }
 
     public void requestCropImage() {
@@ -1469,7 +1498,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             mainfragment.setVisibility(View.VISIBLE);
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().execute();
+            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -1990,9 +2019,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         mAdapterPlacement.updateList(tempListPlacement, text);
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
 
 //        if (navMenuFlag == 2) {
 //
@@ -2001,7 +2030,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //            getPlacements();
 //        }
 
-    }
+//    }
 
     public void refreshUserCount() {
         new GetCountOfUsersUnderAdmin().execute();
@@ -2212,6 +2241,217 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         public abstract void onLoadMore(int current_page);
     }
 
+    class GetNotifications extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
+            try {
+                notificationcount = Integer.parseInt(json.getString("count"));
+
+                notificationids = new String[notificationcount];
+                notificationtitles = new String[notificationcount];
+                notificationnotifications = new String[notificationcount];
+                notificationfilename1 = new String[notificationcount];
+                notificationfilename2 = new String[notificationcount];
+                notificationfilename3 = new String[notificationcount];
+                notificationfilename4 = new String[notificationcount];
+                notificationfilename5 = new String[notificationcount];
+                notificationuploadtime = new String[notificationcount];
+                notificationlastmodified = new String[notificationcount];
+                notificationuploadedby = new String[notificationcount];
+                notificationuploadedbyplain = new String[notificationcount];
+                for (int i = 0; i < notificationcount; i++) {
+                    notificationids[i] = json.getString("id" + i);
+                    notificationtitles[i] = json.getString("title" + i);
+                    notificationnotifications[i] = json.getString("notification" + i);
+                    notificationfilename1[i] = json.getString("filename1" + i);
+                    notificationfilename2[i] = json.getString("filename2" + i);
+                    notificationfilename3[i] = json.getString("filename3" + i);
+                    notificationfilename4[i] = json.getString("filename4" + i);
+                    notificationfilename5[i] = json.getString("filename5" + i);
+                    notificationuploadtime[i] = json.getString("uploadtime" + i);
+                    notificationlastmodified[i] = json.getString("lastmodified" + i);
+                    notificationuploadedby[i] = json.getString("uploadedby" + i);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            tswipe_refresh_layout.setRefreshing(false);
+
+            for (int i = 0; i < notificationcount; i++)
+                try {
+
+
+                    if (notificationtitles[i] != null) {
+                        byte[] notificationtitlesEncryptedBytes = SimpleBase64Encoder.decode(notificationtitles[i]);
+                        byte[] notificationtitlesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationtitlesEncryptedBytes);
+                        notificationtitles[i] = new String(notificationtitlesDecryptedBytes);
+//                        Toast.makeText(AdminActivity.this, "title"+notificationtitles[i], Toast.LENGTH_SHORT).show();
+                        Log.d("notificationdecripted", "notificationtitles" + "[" + i + "] " + notificationtitles[i]);
+
+                    }
+                    if (notificationnotifications[i] != null) {
+                        byte[] notificationnotificationsEncryptedBytes = SimpleBase64Encoder.decode(notificationnotifications[i]);
+                        byte[] notificationnotificationsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationnotificationsEncryptedBytes);
+                        notificationnotifications[i] = new String(notificationnotificationsDecryptedBytes);
+//                        Toast.makeText(AdminActivity.this, "notification"+notificationnotifications[i], Toast.LENGTH_SHORT).show();
+
+                    }
+                    if (notificationfilename1[i] != null) {
+                        if (!notificationfilename1[i].equals("null")) {
+                            byte[] notificationfilename1EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename1[i]);
+                            byte[] notificationfilename1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename1EncryptedBytes);
+                            notificationfilename1[i] = new String(notificationfilename1DecryptedBytes);
+                        }
+                    }
+                    if (notificationfilename2[i] != null) {
+                        if (!notificationfilename2[i].equals("null")) {
+                            byte[] notificationfilename2EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename2[i]);
+                            byte[] notificationfilename2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename2EncryptedBytes);
+                            notificationfilename2[i] = new String(notificationfilename2DecryptedBytes);
+                        }
+                    }
+                    if (notificationfilename3[i] != null) {
+                        if (!notificationfilename3[i].equals("null")) {
+                            byte[] notificationfilename3EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename3[i]);
+                            byte[] notificationfilename3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename3EncryptedBytes);
+                            notificationfilename3[i] = new String(notificationfilename3DecryptedBytes);
+                        }
+                    }
+                    if (notificationfilename4[i] != null) {
+                        if (!notificationfilename4[i].equals("null")) {
+                            byte[] notificationfilename4EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename4[i]);
+                            byte[] notificationfilename4DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename4EncryptedBytes);
+                            notificationfilename4[i] = new String(notificationfilename4DecryptedBytes);
+                        }
+                    }
+                    if (notificationfilename5[i] != null) {
+                        if (!notificationfilename5[i].equals("null")) {
+                            byte[] notificationfilename5EncryptedBytes = SimpleBase64Encoder.decode(notificationfilename5[i]);
+                            byte[] notificationfilename5DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationfilename5EncryptedBytes);
+                            notificationfilename5[i] = new String(notificationfilename5DecryptedBytes);
+                        }
+                    }
+                    if (notificationuploadtime[i] != null) {
+                        byte[] notificationuploadtimeEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadtime[i]);
+                        byte[] notificationuploadtimeDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadtimeEncryptedBytes);
+                        notificationuploadtime[i] = new String(notificationuploadtimeDecryptedBytes);
+                    }
+                    if (notificationlastmodified[i] != null) {
+                        byte[] notificationlastmodifiedEncryptedBytes = SimpleBase64Encoder.decode(notificationlastmodified[i]);
+                        byte[] notificationlastmodifiedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationlastmodifiedEncryptedBytes);
+                        notificationlastmodified[i] = new String(notificationlastmodifiedDecryptedBytes);
+                    }
+                    if (notificationuploadedby[i] != null) {
+                        byte[] notificationuploadedbyEncryptedBytes = SimpleBase64Encoder.decode(notificationuploadedby[i]);
+                        byte[] notificationuploadedbyDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, notificationuploadedbyEncryptedBytes);
+                        notificationuploadedbyplain[i] = new String(notificationuploadedbyDecryptedBytes);
+                        Log.d("notificationuploadedby", "notificationuploadedby" + "[" + i + "] " + notificationuploadedby[i]);
+
+                    }
+
+
+                } catch (Exception e) {
+                    //Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+
+
+            new GetLastUpdatedNotification().execute();
+//            addNotificationdatatoAdapter();
+
+
+        }
+    }
+
+    class GetLastUpdatedNotification extends AsyncTask<String, String, String> {
+
+        String s = "";
+
+        protected String doInBackground(String... param) {
+            String r = null;
+
+
+            Set<String> uniqKeys = new TreeSet<String>();
+            uniqKeys.addAll(Arrays.asList(notificationuploadedbyplain));
+
+
+            uniqueUploadersNotification = uniqKeys.toArray(new String[uniqKeys.size()]);
+            uniqueUploadersEncNotification = new String[uniqueUploadersNotification.length];
+            lastupdatedNotification = new String[uniqueUploadersNotification.length];
+            for (int j = 0; j < uniqueUploadersNotification.length; j++) {
+                for (int i = 0; i < notificationcount; i++) {
+
+                    if (notificationuploadedbyplain[i].equals(uniqueUploadersNotification[j])) {
+                        uniqueUploadersEncNotification[j] = notificationuploadedby[i];
+                    }
+                }
+            }
+            for (int i = 0; i < uniqueUploadersNotification.length; i++) {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
+                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
+                try {
+                    s = json.getString("lastupdated");
+                    if (s.equals("noupdate")) {
+//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
+                    } else {
+                        lastupdatedNotification[i] = s;
+//                         Toast.makeText(AdminActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                }
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+//            Toast.makeText(AdminActivity.this,"uniqueUploadersNotification:- \n"+uniqueUploadersNotification[0] , Toast.LENGTH_LONG).show();
+//
+//            Toast.makeText(AdminActivity.this,notificationuploadedbyplain[0]+"\n"+notificationuploadedby[0] , Toast.LENGTH_LONG).show();
+
+
+//            for(int i=0;i<lastupdated.length;i++)
+//            {
+//                if(lastupdated[i]==null) {
+//                 //   Toast.makeText(MainActivity.this, uniqueUploaders[i] + "\n nulla it is", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    Toast.makeText(AdminActivity.this, uniqueUploaders[i] + "\n" + lastupdated[i], Toast.LENGTH_SHORT).show();
+//
+//
+//                }
+//            }
+            if (s.equals("noupdate")) {
+                Toast.makeText(AdminActivity.this, "no update", Toast.LENGTH_SHORT).show();
+            } else {
+//                lastupdatedNotification [i]=s;
+            }
+
+            if (!isLastPageLoadedNotification) {
+            }
+            addNotificationdatatoAdapter();
+
+        }
+
+    }
+
     public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -2308,19 +2548,20 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if (response.get(0).contains("success")) {
-                MySharedPreferencesManager.save(AdminActivity.this, "crop", "no");
+            if (response != null && response.get(0).contains("success")) {
+                MySharedPreferencesManager.save(AdminActivity.this,"crop", "no");
                 Toast.makeText(AdminActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
+                fragment.downloadImage();
                 DeleteRecursive(new File(directory));
-            } else if (response.get(0).contains("null")) {
+            } else if (response != null && response.get(0).contains("null")) {
                 requestProfileImage();
                 AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                 fragment.refreshContent();
                 Toast.makeText(AdminActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(AdminActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -2633,7 +2874,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             new GetLastUpdatedPlacement().execute();
         }
     }
-
     class GetLastUpdatedPlacement extends AsyncTask<String, String, String> {
 
 
@@ -2747,30 +2987,35 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     class LoginFirebaseTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-            String user = param[0];
-            String hash = param[1];
+            String user=param[0];
+            String hash=param[1];
             FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(user, hash)
+                    .signInWithEmailAndPassword(user,hash)
                     .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
+                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
                             } else {
-                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Failed to login to Firebase");
+                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Failed to login to Firebase");
                             }
                         }
                     });
             return null;
         }
-
         @Override
         protected void onPostExecute(String result) {
-            String status = MySharedPreferencesManager.getData(AdminActivity.this, "fireLoginStatus");
+            String status=MySharedPreferencesManager.getData(AdminActivity.this,"fireLoginStatus");
             Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
-            MySharedPreferencesManager.removeKey(AdminActivity.this, "fireLoginStatus");
+            MySharedPreferencesManager.removeKey(AdminActivity.this,"fireLoginStatus");
         }
+    }
+
+
+    public void refreshUserCount() {
+        new GetCountOfUsersUnderAdmin().execute();
+        Log.d("kun", "refreshUserCount: ");
     }
 
     class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {

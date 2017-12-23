@@ -1877,9 +1877,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected Boolean doInBackground(String... param) {
 
             String r = null;
+            String platform="Android ("+getDeviceName()+")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));    //0
-            params.add(new BasicNameValuePair("m", getDeviceName()));      //1
+            params.add(new BasicNameValuePair("m", platform));      //1
             JSONObject json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
             if (json != null) {
                 try {

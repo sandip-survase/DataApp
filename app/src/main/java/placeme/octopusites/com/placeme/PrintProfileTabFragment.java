@@ -98,7 +98,7 @@ public class PrintProfileTabFragment extends Fragment {
                         break;
                     case R.id.radioButtonWord:
                         format="word";
-                        radioButtonPdf.setChecked(true);
+//                        radioButtonPdf.setChecked(true);
 //                        Toast.makeText(getActivity(),"Word option is not available right now, but will be available soon.",Toast.LENGTH_LONG).show();
                         break;
                 }

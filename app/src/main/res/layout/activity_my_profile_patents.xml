@@ -1987,7 +1987,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/patentline7"
             android:layout_marginTop="35dp"
-            android:src="@drawable/trash" />
+            android:src="@drawable/delete_icon" />
 
         <View
             android:id="@+id/trash8selectionview"
@@ -2079,7 +2079,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/delete_icon"
+                    android:src="@drawable/drop"
                     android:tint="@color/dark_color" />
 
                 <View

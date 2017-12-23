@@ -301,6 +301,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                         } else {
                                             personalflag = 0;
                                             fragment.save();
+                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     if(projFrag.edittedFlag==1){
@@ -310,10 +311,12 @@ public class EditProfileAlumni extends AppCompatActivity {
                                                 mViewPager.setCurrentItem(2);
                                                 projFrag.myvalidate();
                                                 projectflag = 1;
+
                                             }
                                         } else {
                                             projFrag.save();
                                             projectflag = 0;
+                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     if(expFrag.edittedFlag==1){
@@ -326,6 +329,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                             }
                                         } else {
                                             expFrag.save();
+                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                             expflag = 0;
                                         }
                                     }
@@ -357,8 +361,10 @@ public class EditProfileAlumni extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(EditProfileAlumni.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(EditProfileAlumni.this));
                 }
             });
 

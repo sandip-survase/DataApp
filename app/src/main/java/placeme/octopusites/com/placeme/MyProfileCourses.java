@@ -2856,10 +2856,11 @@ public class MyProfileCourses extends AppCompatActivity {
                 fromdate9.setText(sfromdate9);
                 todate9.setText(stodate9);
             }
-            sname1="";
-            sinst1="";
-            sfromdate1="";
-            stodate1="";
+
+            sname1 = name1.getText().toString();
+            sinst1 = inst1.getText().toString();
+            sfromdate1 = fromdate1.getText().toString();
+            stodate1 = todate1.getText().toString();
 
 
             if(sname1.equals("") && sinst1.equals("") && sfromdate1.equals("") && stodate1.equals("") ){

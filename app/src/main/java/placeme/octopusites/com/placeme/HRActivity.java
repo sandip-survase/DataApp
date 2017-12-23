@@ -215,7 +215,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
-                        getSupportActionBar().setTitle("My Profile");
+
 
                     } else if (navMenuFlag == 2) {
 
@@ -1074,7 +1074,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             mainfragment.setVisibility(View.VISIBLE);
             HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().execute();
+            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -1131,21 +1131,41 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     private void downloadImage() {
 
-        String t = String.valueOf(System.currentTimeMillis());
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
 
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profile);
+        @Override
+        protected void onPostExecute(String result) {
 
+            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
 
+            GlideApp.with(HRActivity.this)
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(profile);
+        }
     }
 
     public void requestProfileImage() {
@@ -1198,20 +1218,21 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             //           tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if (response.get(0).contains("success")) {
+            if (response != null && response.get(0).contains("success")) {
 
                 MySharedPreferencesManager.save(HRActivity.this, "crop", "no");
-                Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
+                fragment.downloadImage();
+                Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 DeleteRecursive(new File(directory));
-            } else if (response.get(0).contains("null")) {
+            } else if (response != null && response.get(0).contains("null")) {
                 requestProfileImage();
                 MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                 fragment.refreshContent();
                 Toast.makeText(HRActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(HRActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
 

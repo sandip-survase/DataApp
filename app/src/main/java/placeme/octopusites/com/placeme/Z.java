@@ -109,7 +109,7 @@ public class Z {
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
-    public static final String url_create_firebase = IP_8081 + "Firbase/RegisterFirebaseUser";
+    public static final String url_create_firebase = IP + "Firbase/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
 //    ----------------------------------/sunny---------------------------------------------------------------
     public static final String url_ChangeUsernameFireBase = IP + "PlaceMe/ChangeUsername";
@@ -131,7 +131,7 @@ public class Z {
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
-    public static final String url_getdigest = IP_8086 + "AESTest/GetDigest";
+    public static final String url_getdigest = IP + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP + "AESTest/EditEmail";

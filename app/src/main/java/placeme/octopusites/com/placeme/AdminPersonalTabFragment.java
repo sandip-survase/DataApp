@@ -18,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -47,7 +48,8 @@ public class AdminPersonalTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     String digest1, digest2, encobj = "";
-    TextInputEditText role, inst, fnameedittext, mnameedittext, snameedittext, nameastenedittext, caddrline1, caddrline2, caddrline3, paddrline1, paddrline2, paddrline3, emailedittext, phoneedittext, profileaemail, mothernameedittext, dobedittext, mobileedittext, alternatemobileedittext, mothertongueedittext, hobbiesedittext, casteedittext, prnedittext, languagesknownedittext;
+    EditText fnameedittext;
+    EditText role, inst , mnameedittext, snameedittext, nameastenedittext, caddrline1, caddrline2, caddrline3, paddrline1, paddrline2, paddrline3, emailedittext, phoneedittext, profileaemail, mothernameedittext, dobedittext, mobileedittext, alternatemobileedittext, mothertongueedittext, hobbiesedittext, casteedittext, prnedittext, languagesknownedittext;
     RadioButton radioButtonMale, radioButtonFemale, radioButtonHandicappedNo, radioButtonHandicappedYes, radioButtonSportsNo, radioButtonSportsState, radioButtonSportsNational, radioButtonSportsInternational, radioButtonDefenceNo, radioButtonDefence, radioButtonExserviceman;
     Spinner bloodgrpspinner, categoryspinner, religionspinner;
     String fname = "", mname = "", sname = "", nameasten = "", semail = "", alternateemail = "", srole = "", sinst = "", mothername = "", dob = "", gender = "", mobile = "", phone = "", alternatemobile = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", handicapped = "", sports = "", defenceex = "";
@@ -109,27 +111,27 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrtxt.setTypeface(Z.getLight(getActivity()));
         loctxt.setTypeface(Z.getBold(getActivity()));
 
-        fnameedittext = (TextInputEditText) rootView.findViewById(R.id.fname);
-        mnameedittext = (TextInputEditText) rootView.findViewById(R.id.mname);
-        snameedittext = (TextInputEditText) rootView.findViewById(R.id.sname);
-        role = (TextInputEditText) rootView.findViewById(R.id.role);
-        emailedittext = (TextInputEditText) rootView.findViewById(R.id.email);
+        fnameedittext = (EditText) rootView.findViewById(R.id.fname);
+        mnameedittext = (EditText) rootView.findViewById(R.id.mname);
+        snameedittext = (EditText) rootView.findViewById(R.id.sname);
+        role = (EditText) rootView.findViewById(R.id.role);
+        emailedittext = (EditText) rootView.findViewById(R.id.email);
         emailedittext.setFocusable(false);
-        profileaemail = (TextInputEditText) rootView.findViewById(R.id.profileaemail);
-        inst = (TextInputEditText) rootView.findViewById(R.id.inst);
-        dobedittext = (TextInputEditText) rootView.findViewById(R.id.dob);
+        profileaemail = (EditText) rootView.findViewById(R.id.profileaemail);
+        inst = (EditText) rootView.findViewById(R.id.inst);
+        dobedittext = (EditText) rootView.findViewById(R.id.dob);
         dobedittext.setFocusable(false);
 
         radioGroupGender = (RadioGroup) rootView.findViewById(R.id.radioGroupGender);
         radioButtonMale = (RadioButton) rootView.findViewById(R.id.radioButtonMale);
         radioButtonFemale = (RadioButton) rootView.findViewById(R.id.radioButtonFemale);
-        caddrline1 = (TextInputEditText) rootView.findViewById(R.id.caddrline1);
-        caddrline2 = (TextInputEditText) rootView.findViewById(R.id.caddrline2);
-        caddrline3 = (TextInputEditText) rootView.findViewById(R.id.caddrline3);
+        caddrline1 = (EditText) rootView.findViewById(R.id.caddrline1);
+        caddrline2 = (EditText) rootView.findViewById(R.id.caddrline2);
+        caddrline3 = (EditText) rootView.findViewById(R.id.caddrline3);
         CheckBoxPSC = (CheckBox) rootView.findViewById(R.id.CheckBoxPSC);
-        paddrline1 = (TextInputEditText) rootView.findViewById(R.id.paddrline1);
-        paddrline2 = (TextInputEditText) rootView.findViewById(R.id.paddrline2);
-        paddrline3 = (TextInputEditText) rootView.findViewById(R.id.paddrline3);
+        paddrline1 = (EditText) rootView.findViewById(R.id.paddrline1);
+        paddrline2 = (EditText) rootView.findViewById(R.id.paddrline2);
+        paddrline3 = (EditText) rootView.findViewById(R.id.paddrline3);
 
 //        save = (Button) rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
@@ -147,7 +149,6 @@ public class AdminPersonalTabFragment extends Fragment {
         caddrline2.setTypeface(Z.getBold(getActivity()));
         caddrline3.setTypeface(Z.getBold(getActivity()));
         CheckBoxPSC.setTypeface(Z.getBold(getActivity()));
-        fnameedittext.setTypeface(Z.getBold(getActivity()));
         paddrline1.setTypeface(Z.getBold(getActivity()));
         paddrline2.setTypeface(Z.getBold(getActivity()));
         paddrline3.setTypeface(Z.getBold(getActivity()));

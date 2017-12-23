@@ -77,14 +77,14 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class MyProfileFragment extends Fragment {
+    final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3, myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView trytxt, extraprojectscount;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, careeredit, contactedit;
-    final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl;
-    String username = "",ucode="", resultofop="",dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="",personaldataobject="",contact_details_dataobject="";
+    String username = "", ucode = "", resultofop = "", dataobject = "", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "";
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "";
     String marks10 = "", outof10 = "", percentage10 = "", schoolname10 = "", board10 = "", yearofpassing10 = "", marks12 = "", outof12 = "", percentage12 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "";
     String markssem1ug = "", outofsem1ug = "", percentagesem1ug = "", markssem2ug = "", outofsem2ug = "", percentagesem2ug = "", markssem3ug = "", outofsem3ug = "", percentagesem3ug = "", markssem4ug = "", outofsem4ug = "", percentagesem4ug = "", markssem5ug = "", outofsem5ug = "", percentagesem5ug = "", markssem6ug = "", outofsem6ug = "", percentagesem6ug = "", markssem7ug = "", outofsem7ug = "", percentagesem7ug = "", markssem8ug = "", outofsem8ug = "", percentagesem8ug = "", aggregateug = "", courseug = "", streamug = "", universityug = "", collegenameug = "", yearofpassingug = "";
@@ -102,28 +102,46 @@ public class MyProfileFragment extends Fragment {
     String strength1 = "", strength2 = "", strength3 = "", strength4 = "", strength5 = "", strength6 = "", strength7 = "", strength8 = "", strength9 = "", strength10 = "";
     String weak1 = "", weak2 = "", weak3 = "", weak4 = "", weak5 = "", weak6 = "", weak7 = "", weak8 = "", weak9 = "", weak10 = "";
     String location1 = "", location2 = "", location3 = "", location4 = "", location5 = "";
-    String careerobj = "", twelthdataobject = "",diplomadataobject="";
+    String careerobj = "", twelthdataobject = "", diplomadataobject = "";
     String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "";
     String nameasten = "", mothername = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     ProgressBar updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
-    RelativeLayout box1,edutab4,edutab1,edutab2,edutab3,noedutab,projtab1,projtab2,projtab3,acctab1,acctab2,acctab3,acctab4,acctab5,acctab6,acctab7,careertab1,careertab2,careertab3,careertab4,contacttab1,contacttab2,contacttab3;
-    RelativeLayout  noprojtab;
+    RelativeLayout box1, edutab4, edutab1, edutab2, edutab3, noedutab, projtab1, projtab2, projtab3, acctab1, acctab2, acctab3, acctab4, acctab5, acctab6, acctab7, careertab1, careertab2, careertab3, careertab4, contacttab1, contacttab2, contacttab3;
+    RelativeLayout noprojtab;
 
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
     int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
     int found_contact_details = 0, found_personal = 0;
-    int proj_count=0,lang_count=0,cert_count=0,courses_count=0,skills_count=0,patent_count=0,public_count=0,honor_count=0,strength_count=0,weakness_count=0,location_count=0;
+    int proj_count = 0, lang_count = 0, cert_count = 0, courses_count = 0, skills_count = 0, patent_count = 0, public_count = 0, honor_count = 0, strength_count = 0, weakness_count = 0, location_count = 0;
     JSONParser jParser = new JSONParser();
     JSONObject json;
 
     String digest1, digest2;
-    View rootView,box2;
+    View rootView, box2;
     StudentData studentData = new StudentData();
     int percentProfile = 0;
     ProgressBar profileprogress;
 
-    public void bottomupbox2(Activity activity,View view){
+    public static String getUserCountry(Context context) {
+        try {
+            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            final String simCountry = tm.getSimCountryIso();
+            if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
+                return simCountry.toUpperCase(Locale.US);
+            } else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
+                String networkCountry = tm.getNetworkCountryIso();
+                if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
+                    return networkCountry.toUpperCase(Locale.US);
+                }
+            }
+        } catch (Exception e) {
+            Log.d("TAG", "getUserCountry: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public void bottomupbox2(Activity activity, View view) {
 
         Animation animation1 =
                 AnimationUtils.loadAnimation(activity,
@@ -138,7 +156,7 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onAnimationEnd(Animation animation) {
                 profileprogress.setVisibility(View.VISIBLE);
-                View box2section=rootView.findViewById(R.id.box2section);
+                View box2section = rootView.findViewById(R.id.box2section);
                 box2section.setVisibility(View.VISIBLE);
                 editprofiletxt.setVisibility(View.VISIBLE);
             }
@@ -150,44 +168,45 @@ public class MyProfileFragment extends Fragment {
         });
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
-        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
-        box2=rootView.findViewById(R.id.box2);
+        box1 = (RelativeLayout) rootView.findViewById(R.id.box1);
+        box2 = rootView.findViewById(R.id.box2);
 
-        edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
-        edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
-        noedutab=(RelativeLayout)rootView.findViewById(R.id.noedutab);
-        edutab3=(RelativeLayout)rootView.findViewById(R.id.edutab3);
-        edutab4=(RelativeLayout)rootView.findViewById(R.id.edutab4);
-
-
-        projtab1=(RelativeLayout)rootView.findViewById(R.id.projtab1);
-        projtab2=(RelativeLayout)rootView.findViewById(R.id.projtab2);
-        projtab3=(RelativeLayout)rootView.findViewById(R.id.projtab3);
-        noprojtab=(RelativeLayout)rootView.findViewById(R.id.noprojtab);
+        edutab2 = (RelativeLayout) rootView.findViewById(R.id.edutab2);
+        edutab1 = (RelativeLayout) rootView.findViewById(R.id.edutab1);
+        noedutab = (RelativeLayout) rootView.findViewById(R.id.noedutab);
+        edutab3 = (RelativeLayout) rootView.findViewById(R.id.edutab3);
+        edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
 
 
-        acctab1=(RelativeLayout)rootView.findViewById(R.id.acctab1);
-        acctab2=(RelativeLayout)rootView.findViewById(R.id.acctab2);
-        acctab3=(RelativeLayout)rootView.findViewById(R.id.acctab3);
-        acctab4=(RelativeLayout)rootView.findViewById(R.id.acctab4);
-        acctab5=(RelativeLayout)rootView.findViewById(R.id.acctab5);
-        acctab6=(RelativeLayout)rootView.findViewById(R.id.acctab6);
-        acctab7=(RelativeLayout)rootView.findViewById(R.id.acctab7);
+        projtab1 = (RelativeLayout) rootView.findViewById(R.id.projtab1);
+        projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+        projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+        noprojtab = (RelativeLayout) rootView.findViewById(R.id.noprojtab);
 
-        careertab1=(RelativeLayout)rootView.findViewById(R.id.careertab1);
-        careertab2=(RelativeLayout)rootView.findViewById(R.id.careertab2);
-        careertab3=(RelativeLayout)rootView.findViewById(R.id.careertab3);
-        careertab4=(RelativeLayout)rootView.findViewById(R.id.careertab4);
-        contacttab1=(RelativeLayout)rootView.findViewById(R.id.contacttab1);
-        contacttab2=(RelativeLayout)rootView.findViewById(R.id.contacttab2);
-        contacttab3=(RelativeLayout)rootView.findViewById(R.id.contacttab3);
 
-        username=MySharedPreferencesManager.getUsername(getActivity());
+        acctab1 = (RelativeLayout) rootView.findViewById(R.id.acctab1);
+        acctab2 = (RelativeLayout) rootView.findViewById(R.id.acctab2);
+        acctab3 = (RelativeLayout) rootView.findViewById(R.id.acctab3);
+        acctab4 = (RelativeLayout) rootView.findViewById(R.id.acctab4);
+        acctab5 = (RelativeLayout) rootView.findViewById(R.id.acctab5);
+        acctab6 = (RelativeLayout) rootView.findViewById(R.id.acctab6);
+        acctab7 = (RelativeLayout) rootView.findViewById(R.id.acctab7);
+
+        careertab1 = (RelativeLayout) rootView.findViewById(R.id.careertab1);
+        careertab2 = (RelativeLayout) rootView.findViewById(R.id.careertab2);
+        careertab3 = (RelativeLayout) rootView.findViewById(R.id.careertab3);
+        careertab4 = (RelativeLayout) rootView.findViewById(R.id.careertab4);
+        contacttab1 = (RelativeLayout) rootView.findViewById(R.id.contacttab1);
+        contacttab2 = (RelativeLayout) rootView.findViewById(R.id.contacttab2);
+        contacttab3 = (RelativeLayout) rootView.findViewById(R.id.contacttab3);
+
+        username = MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         role = MySharedPreferencesManager.getRole(getActivity());
@@ -200,7 +219,7 @@ public class MyProfileFragment extends Fragment {
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
-        iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
+        iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
 
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
@@ -210,7 +229,7 @@ public class MyProfileFragment extends Fragment {
         myprofilepercenttxt = (TextView) rootView.findViewById(R.id.myprofilepercenttxt);
         editprofiletxt = (TextView) rootView.findViewById(R.id.editprofiletxt);
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
-        ImageView box2pencil=(ImageView) rootView.findViewById(R.id.box2pencil);
+        ImageView box2pencil = (ImageView) rootView.findViewById(R.id.box2pencil);
 
 
         projboxtxt = (TextView) rootView.findViewById(R.id.projboxtxt);
@@ -223,7 +242,7 @@ public class MyProfileFragment extends Fragment {
 
         TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
         TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
-         extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
+        extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
 
         myprofilecource4 = (TextView) rootView.findViewById(R.id.myprofilecource4);
         myprofileproj1 = (TextView) rootView.findViewById(R.id.myprofileproj1);
@@ -347,32 +366,28 @@ public class MyProfileFragment extends Fragment {
         contactmobile.setTypeface(Z.getBold(getActivity()));
 
 
-        if(!ShouldAnimateProfile.shouldAnimate)
-        {
-            Z.bottomupbox1(getActivity(),box1);
-            bottomupbox2(getActivity(),box2);
-            Z.bottomupbox4(getActivity(),edutab4);
-            Z.fade(getActivity(),myprofileimg);
-            Z.fade(getActivity(),iv_camera);
-            Z.bottomupbox3(getActivity(),eduboxtxt);
-            Z.bottomupbox3(getActivity(),box2pencil);
-            Z.fadeandmovedown(getActivity(),myprofilepreview);
-            ShouldAnimateProfile.shouldAnimate=true;
-        }
-        else
-        {
+        if (!ShouldAnimateProfile.shouldAnimate) {
+            Z.bottomupbox1(getActivity(), box1);
+            bottomupbox2(getActivity(), box2);
+            Z.bottomupbox4(getActivity(), edutab4);
+            Z.fade(getActivity(), myprofileimg);
+            Z.fade(getActivity(), iv_camera);
+            Z.bottomupbox3(getActivity(), eduboxtxt);
+            Z.bottomupbox3(getActivity(), box2pencil);
+            Z.fadeandmovedown(getActivity(), myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate = true;
+        } else {
             profileprogress.setVisibility(View.VISIBLE);
-            View box2section=rootView.findViewById(R.id.box2section);
+            View box2section = rootView.findViewById(R.id.box2section);
             box2section.setVisibility(View.VISIBLE);
             editprofiletxt.setVisibility(View.VISIBLE);
         }
 
 
-
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetStudentData().execute();
+                new GetStudentData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 ((MainActivity) getActivity()).requestProfileImage();
             }
         });
@@ -454,7 +469,6 @@ public class MyProfileFragment extends Fragment {
         });
 
 
-
         Log.d("in mainfragment", "update user set isactivated=\"no\" where usernamed=\"60/onJpfYmsVdoDTjizGCg7kCu7DzogOMAfO06U4hIc=\"': " + role);
 
         myprofilrole.setText(role);
@@ -480,7 +494,7 @@ public class MyProfileFragment extends Fragment {
     }
 
     public void refreshContent() {
-        new GetStudentData().execute();
+        new GetStudentData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((MainActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
 
@@ -505,24 +519,6 @@ public class MyProfileFragment extends Fragment {
         return CountryZipCode;
     }
 
-    public static String getUserCountry(Context context) {
-        try {
-            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            final String simCountry = tm.getSimCountryIso();
-            if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
-                return simCountry.toUpperCase(Locale.US);
-            } else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
-                String networkCountry = tm.getNetworkCountryIso();
-                if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
-                    return networkCountry.toUpperCase(Locale.US);
-                }
-            }
-        } catch (Exception e) {
-            Log.d("TAG", "getUserCountry: " + e.getMessage());
-        }
-        return null;
-    }
-
     void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Choose Action").setItems(items, new DialogInterface.OnClickListener() {
@@ -537,7 +533,7 @@ public class MyProfileFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    new DeleteProfile().execute();
+                                    new DeleteProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -556,6 +552,774 @@ public class MyProfileFragment extends Fragment {
         builder.show();
     }
 
+    void populateData() {
+        Log.d("TAG", "populateData: welcome to populate");
+
+        if (resultofop.equals("found")) {
+            if (!ucode.equals(""))
+                myprofilepreview.setText(ucode);
+
+            if (phone != null) {
+                if (!phone.equals("")) {
+                    contactmobile.setText(phone);
+                }
+            }
+        }
+
+        if (found_contact_details == 1) {
+            if (!addressline1.equals("")) {
+                contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
+                percentProfile++;
+            }
+            if (phone != null) {
+                if (!phone.equals("")) {
+                    contactmobile.setText(phone);
+                }
+            }
+        }
+
+        if (found_box1 == 1) {
+            if (!fname.equals("") && !lname.equals("")) {
+                myprofilename.setText(fname + " " + lname);
+                nametxt.setText(fname + " " + lname);
+                percentProfile++;
+            }
+
+            if (!country.equals("") && !state.equals("") && !city.equals("")) {
+                myprofilloc.setText(city + ", " + state + ", " + country);
+            }
+        }
+        if (found_tenth == 1) {
+            if (!board10.equals("")) {
+
+                noedutab.setVisibility(View.GONE);
+                edutab3.setVisibility(View.VISIBLE);
+
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
+
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
+
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassing10.length() - 6; i++) {
+                    month += yearofpassing10.charAt(i);
+                }
+                for (int i = 5; i < yearofpassing10.length(); i++) {
+                    years += yearofpassing10.charAt(i);
+                }
+
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+                if (currentYear > year)
+                    myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
+                        myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
+                    } else {
+                        myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
+                        myprofiledu.setText("Std. X  (" + board10 + ")");
+                    }
+                } else {
+                    myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
+                    myprofiledu.setText("Std. X  (" + board10 + ")");
+                }
+
+                if (!schoolname10.equals(""))
+                    myprofileclgname3.setText(schoolname10);
+                if (!yearofpassing10.equals(""))
+                    myprofileclgyearofpassing3.setText(yearofpassing10);
+                percentProfile++;
+            }
+        }
+        if (found_twelth == 1) {
+
+            Log.d("TAG", "populateData: twelth data  found_twelth " + found_twelth);
+
+            if (!schoolname12.equals("")) {
+
+                noedutab.setVisibility(View.GONE);
+                edutab2.setVisibility(View.VISIBLE);
+
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
+
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
+
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassing12.length() - 6; i++) {
+                    month += yearofpassing12.charAt(i);
+                }
+                for (int i = 5; i < yearofpassing12.length(); i++) {
+                    years += yearofpassing12.charAt(i);
+                }
+
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+                if (currentYear > year)
+                    myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
+                        myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
+                    } else {
+                        myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
+                        myprofiledu.setText("Std. XII (" + board12 + ")");
+                    }
+                } else {
+                    myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
+                    myprofiledu.setText("Std. XII (" + board12 + ")");
+                }
+
+                if (!schoolname12.equals(""))
+                    myprofileclgname2.setText(schoolname12);
+                if (!yearofpassing12.equals(""))
+                    myprofileclgyearofpassing2.setText(yearofpassing12);
+                percentProfile++;
+            }
+        }
+        if (found_diploma == 1) {
+            Log.d("TAG", "populateData: welcome to diploma");
+            if (!collegenamediploma.equals("")) {
+                percentProfile++;
+                noedutab.setVisibility(View.GONE);
+                edutab2.setVisibility(View.VISIBLE);
+
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
+
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
+
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
+                    month += yearofpassingdiploma.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingdiploma.length(); i++) {
+                    years += yearofpassingdiploma.charAt(i);
+                }
+
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+                if (currentYear > year)
+                    myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
+                        myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
+                    } else {
+                        myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
+                        myprofiledu.setText("Diploma (" + coursediploma + ")");
+                    }
+                } else {
+                    myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
+                    myprofiledu.setText("Diploma (" + coursediploma + ")");
+                }
+
+                if (!collegenamediploma.equals(""))
+                    myprofileclgname2.setText(collegenamediploma);
+                if (!yearofpassingdiploma.equals(""))
+                    myprofileclgyearofpassing2.setText(yearofpassingdiploma);
+            }
+
+        }
+
+        if (found_ug == 1) {
+            if (!collegenameug.equals("")) {
+
+                noedutab.setVisibility(View.GONE);
+                edutab1.setVisibility(View.VISIBLE);
+
+                percentProfile++;
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
+
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
+
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassingug.length() - 6; i++) {
+                    month += yearofpassingug.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingug.length(); i++) {
+                    years += yearofpassingug.charAt(i);
+                }
+
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+                if (currentYear > year) {
+                    myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
+                } else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
+                        myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
+                    } else {
+                        myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
+                        myprofiledu.setText(courseug + " (" + streamug + ")");
+                    }
+
+                } else {
+                    myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
+                    myprofiledu.setText(courseug + " (" + streamug + ")");
+                }
+
+                myprofileclgname.setText(collegenameug);
+                myprofileclgyearofpassing.setText(yearofpassingug);
+
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.GONE);
+                edutab4.setVisibility(View.GONE);
+            }
+        }
+        if (found_pgsem == 1) {
+            Log.d("TAG", "populateData: universitypgsem" + universitypgsem);
+            if (!collegenamepgsem.equals("")) {
+                percentProfile++;
+                noedutab.setVisibility(View.GONE);
+                edutab4.setVisibility(View.VISIBLE);
+
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
+
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
+
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
+                    month += yearofpassingpgsem.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingpgsem.length(); i++) {
+                    years += yearofpassingpgsem.charAt(i);
+                }
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+
+                if (currentYear > year)
+                    myprofilecource4.setText("Attended " + coursepgsem + " at");
+
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
+                        myprofilecource4.setText("Attended " + coursepgsem + " at");
+                    } else {
+                        myprofilecource4.setText("Attending " + coursepgsem + " at");
+                        myprofiledu.setText(coursepgsem);
+                    }
+                } else {
+                    myprofilecource4.setText("Attending " + coursepgsem + " at");
+                    myprofiledu.setText(coursepgsem);
+                }
+
+                myprofileclgname4.setText(collegenamepgsem);
+                myprofileclgyearofpassing4.setText(yearofpassingpgsem);
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.VISIBLE);
+                edutab4.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if (found_projects == 1) {
+
+            if (!proj1.equals("")) {
+                percentProfile++;
+                if (!proj1.equals("")) {
+
+                    myprofileproj1.setText(proj1);
+                    myprofiledomain1.setText(domain1);
+                    myprofileduration1.setText(duration1 + " Months");
+
+                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+
+                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                    gear2.setVisibility(View.GONE);
+                    projtab2.setVisibility(View.GONE);
+
+                    gear3.setVisibility(View.GONE);
+                    projtab3.setVisibility(View.GONE);
+
+                    noprojtab.setVisibility(View.GONE);
+                    projtab1.setVisibility(View.VISIBLE);
+
+
+                }
+
+                if (!proj2.equals("")) {
+                    myprofileproj2.setText(proj2);
+                    myprofiledomain2.setText(domain2);
+                    myprofileduration2.setText(duration2 + " Months");
+
+                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                    gear2.setVisibility(View.VISIBLE);
+                    projtab2.setVisibility(View.VISIBLE);
+                    gear3.setVisibility(View.GONE);
+                    projtab3.setVisibility(View.GONE);
+
+                    noprojtab.setVisibility(View.GONE);
+                }
+                if (!proj3.equals("")) {
+                    myprofileproj3.setText(proj3);
+                    myprofiledomain3.setText(domain3);
+                    myprofileduration3.setText(duration3 + " Months");
+
+                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                    gear2.setVisibility(View.VISIBLE);
+                    projtab2.setVisibility(View.VISIBLE);
+
+                    gear3.setVisibility(View.VISIBLE);
+                    projtab3.setVisibility(View.VISIBLE);
+
+                    noprojtab.setVisibility(View.GONE);
+
+                    if (!proj4.equals("")) {
+                        extraprojectscount.setVisibility(View.VISIBLE);
+                        extraprojectscount.setText("and " + proj_count + " more");
+                    }
+                }
+            } else {
+                noprojtab.setVisibility(View.VISIBLE);
+                projtab1.setVisibility(View.GONE);
+                projtab2.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+                extraprojectscount.setVisibility(View.GONE);
+            }
+        }
+
+        if (found_lang == 1) {
+
+            if (!lang1.equals("- Select Language -")) {
+                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1);
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2);
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -")) {
+                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and " + lang_count + " more");
+                    Log.d("TAG", "populateData: lang_count - " + lang_count);
+                }
+
+                percentProfile++;
+            } else {
+                acc1txttxt.setText("No known languages filled.");
+            }
+        }
+        if (found_certificates == 1) {
+
+            if (!title1.equals("")) {
+                percentProfile++;
+
+                if (!title1.equals(""))
+                    acc2txttxt.setText(title1);
+                if (!title1.equals("") && !title2.equals(""))
+                    acc2txttxt.setText(title1 + ", " + title2);
+                if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
+                    acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
+                if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
+                    acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " and " + cert_count + " more");
+                Log.d("TAG", "populateData: certcount - " + cert_count);
+            } else {
+                acc2txttxt.setText("No certifications filled.");
+            }
+        }
+        if (found_courses == 1) {
+            if (!course1.equals("")) {
+                percentProfile++;
+                if (!course1.equals(""))
+                    acc3txttxt.setText(course1);
+                if (!course1.equals("") && !course2.equals(""))
+                    acc3txttxt.setText(course1 + ", " + course2);
+                if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
+                    acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
+                if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
+                    acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and " + courses_count + " more");
+                Log.d("TAG", "populateData: course - " + courses_count);
+
+            } else {
+                acc3txttxt.setText("No skills filled.");
+            }
+        }
+        if (found_skills == 1) {
+            if (!skill1.equals("")) {
+
+                percentProfile++;
+                if (!skill1.equals(""))
+                    acc4txttxt.setText(skill1);
+                if (!skill1.equals("") && !skill2.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2);
+                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
+                Log.d("TAG", "populateData: skills_count - " + skills_count);
+            } else {
+                acc4txttxt.setText("No skills filled.");
+            }
+        }
+        if (found_honors == 1) {
+
+            if (!htitle1.equals("")) {
+                percentProfile++;
+                if (!htitle1.equals(""))
+                    acc5txttxt.setText(htitle1);
+                if (!htitle1.equals("") && !htitle2.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2);
+                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and " + honor_count + " more");
+                Log.d("TAG", "populateData: honor_count - " + honor_count);
+            } else {
+                acc5txttxt.setText("No awards filled.");
+            }
+
+        }
+        if (found_patents == 1) {
+            if (!ptitle1.equals("")) {
+                percentProfile++;
+                if (!ptitle1.equals(""))
+                    acc6txttxt.setText(ptitle1);
+                if (!ptitle1.equals("") && !ptitle2.equals(""))
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2);
+                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
+                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and " + patent_count + " more");
+            } else {
+                acc6txttxt.setText("No patents filled.");
+            }
+
+        }
+        if (found_publications == 1) {
+            if (!pubtitle1.equals("")) {
+                percentProfile++;
+                if (!pubtitle1.equals(""))
+                    acc7txttxt.setText(pubtitle1);
+                if (!pubtitle1.equals("") && !pubtitle2.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
+                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
+                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and " + public_count + " more");
+            } else {
+                acc7txttxt.setText("No publications filled.");
+            }
+
+        }
+
+
+        if (found_careerobj == 1) {
+            if (!careerobj.equals(""))
+                careerobjtxttxt.setText(careerobj);
+            percentProfile++;
+        }
+        if (found_strengths == 1) {
+            if (!strength1.equals("")) {
+                if (!strength1.equals(""))
+                    strengthstxt.setText(strength1);
+                if (!strength1.equals("") && !strength2.equals(""))
+                    strengthstxt.setText(strength1 + ", " + strength2);
+                if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
+                    strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
+                if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
+                    strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " and " + strength_count + " more");
+                percentProfile++;
+            } else {
+                strengthstxt.setText("No Strengths filled.");
+            }
+
+        }
+        if (found_weaknesses == 1) {
+
+            if (!weak1.equals("")) {
+
+                if (!weak1.equals(""))
+                    weaknessestxt.setText(weak1);
+                if (!weak1.equals("") && !weak2.equals(""))
+                    weaknessestxt.setText(weak1 + ", " + weak2);
+                if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
+                    weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
+                if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
+                    weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " and " + weakness_count + " more");
+                percentProfile++;
+
+            } else {
+                weaknessestxt.setText("No Weaknesses filled.");
+            }
+
+        }
+        if (found_locationpreferences == 1) {
+            if (!location1.equals("")) {
+
+                if (!location1.equals(""))
+                    locationpreferences.setText(location1);
+                if (!location1.equals("") && !location2.equals(""))
+                    locationpreferences.setText(location1 + ", " + location2);
+                if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
+                    locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
+                if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
+                    locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " and " + location_count + " more");
+                percentProfile++;
+            } else {
+                locationpreferences.setText("No location preferences filled.");
+            }
+
+        }
+
+        if (found_pgyear == 1) {
+            Log.d("TAG", "populateData: universitypgyear" + universitypgyear);
+            if (!collegenamepgyear.equals("")) {
+                percentProfile++;
+                noedutab.setVisibility(View.GONE);
+                edutab4.setVisibility(View.VISIBLE);
+
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
+
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
+
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
+                    month += yearofpassingpgyear.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingpgyear.length(); i++) {
+                    years += yearofpassingpgyear.charAt(i);
+                }
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+                if (currentYear > year)
+                    myprofilecource4.setText("Attended " + coursepgyear + " at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
+                        myprofilecource4.setText("Attended " + coursepgyear + " at");
+                    } else {
+                        myprofilecource4.setText("Attending " + coursepgyear + " at");
+                        myprofiledu.setText(coursepgyear);
+                    }
+                } else {
+                    myprofilecource4.setText("Attending " + coursepgsem + " at");
+                    myprofiledu.setText(coursepgyear);
+                }
+
+                myprofileclgname4.setText(collegenamepgyear);
+                myprofileclgyearofpassing4.setText(yearofpassingpgyear);
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.VISIBLE);
+                edutab4.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if (myprofiledu.getText().toString().equals("Current Education"))
+            myprofiledu.setVisibility(View.GONE);
+        else
+            myprofiledu.setVisibility(View.VISIBLE);
+
+
+        float R = (1000 - 0) / (18 - 0);
+        float y = (percentProfile - 0) * R + 0;
+        int val = Math.round(y);
+
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
+        progressAnimator.setDuration(700);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
+
+
+    }
+
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
+
+        // HW layer support only exists on API 11+
+        if (Build.VERSION.SDK_INT >= 11) {
+            if (animation == null && nextAnim != 0) {
+                animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
+            }
+
+            if (animation != null) {
+                getView().setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    public void onAnimationEnd(Animation animation) {
+                        getView().setLayerType(View.LAYER_TYPE_NONE, null);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+
+
+                });
+            }
+        }
+
+        return animation;
+    }
+
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
+
+    public void downloadImage() {
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    }
+
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -568,7 +1332,7 @@ public class MyProfileFragment extends Fragment {
                 params.add(new BasicNameValuePair("u", username));
                 Log.d("TAG", "doInBackround: " + username);
 
-               json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
+                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
 
                 String s = "";
 
@@ -580,7 +1344,7 @@ public class MyProfileFragment extends Fragment {
 
                     ucode = json.getString("ucode");
                     String phoneenc = json.getString("phone");
-                    phone = Decrypt(phoneenc,digest1,digest2);
+                    phone = Decrypt(phoneenc, digest1, digest2);
 
                     s = json.getString("intro");
                     Log.d("TAG", "json :-" + s);
@@ -605,9 +1369,9 @@ public class MyProfileFragment extends Fragment {
                         studentData.setCountry(country);
                         studentData.setState(state);
                         studentData.setCity(city);
-                        Log.d("TAG", "doInBackground: country -"+country);
-                        Log.d("TAG", "doInBackground: state -"+state);
-                        Log.d("TAG", "doInBackground: city -"+city);
+                        Log.d("TAG", "doInBackground: country -" + country);
+                        Log.d("TAG", "doInBackground: state -" + state);
+                        Log.d("TAG", "doInBackground: city -" + city);
                         Log.d("TAG", "dataobject===: " + dataobject);
                     }
 
@@ -653,20 +1417,20 @@ public class MyProfileFragment extends Fragment {
                         studentData.setStrength9(strength9);
                         studentData.setStrength10(strength10);
 
-                        if(!strength4.equals(""))
-                            strength_count=1;
-                        if(!strength5.equals(""))
-                            strength_count=2;
-                        if(!strength6.equals(""))
-                            strength_count=3;
-                        if(!strength7.equals(""))
-                            strength_count=4;
-                        if(!strength8.equals(""))
-                            strength_count=5;
-                        if(!strength9.equals(""))
-                            strength_count=6;
-                        if(!strength10.equals(""))
-                            strength_count=7;
+                        if (!strength4.equals(""))
+                            strength_count = 1;
+                        if (!strength5.equals(""))
+                            strength_count = 2;
+                        if (!strength6.equals(""))
+                            strength_count = 3;
+                        if (!strength7.equals(""))
+                            strength_count = 4;
+                        if (!strength8.equals(""))
+                            strength_count = 5;
+                        if (!strength9.equals(""))
+                            strength_count = 6;
+                        if (!strength10.equals(""))
+                            strength_count = 7;
 
 
                     }
@@ -703,26 +1467,26 @@ public class MyProfileFragment extends Fragment {
                         studentData.setWeak9(weak9);
                         studentData.setWeak10(weak10);
 
-                        if(!weak4.equals(""))
-                            weakness_count=1;
+                        if (!weak4.equals(""))
+                            weakness_count = 1;
 
-                        if(!weak5.equals(""))
-                            weakness_count=2;
+                        if (!weak5.equals(""))
+                            weakness_count = 2;
 
-                        if(!weak6.equals(""))
-                            weakness_count=3;
+                        if (!weak6.equals(""))
+                            weakness_count = 3;
 
-                        if(!weak7.equals(""))
-                            weakness_count=4;
+                        if (!weak7.equals(""))
+                            weakness_count = 4;
 
-                        if(!weak8.equals(""))
-                            weakness_count=5;
+                        if (!weak8.equals(""))
+                            weakness_count = 5;
 
-                        if(!weak9.equals(""))
-                            weakness_count=6;
+                        if (!weak9.equals(""))
+                            weakness_count = 6;
 
-                        if(!weak10.equals(""))
-                            weakness_count=7;
+                        if (!weak10.equals(""))
+                            weakness_count = 7;
 
                     }
 
@@ -745,11 +1509,11 @@ public class MyProfileFragment extends Fragment {
                         studentData.setLocation4(location4);
                         studentData.setLocation5(location5);
 
-                        if(!location4.equals(""))
-                            location_count=1;
+                        if (!location4.equals(""))
+                            location_count = 1;
 
-                        if(!location5.equals(""))
-                            location_count=2;
+                        if (!location5.equals(""))
+                            location_count = 2;
                     }
 
                     s = json.getString("tenth");
@@ -760,9 +1524,9 @@ public class MyProfileFragment extends Fragment {
 
                         MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(tenthdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        yearofpassing10= obj2.monthandyearofpassing;
-                        board10 =obj2.selectedBoard;
-                        schoolname10 =obj2.schoolname;
+                        yearofpassing10 = obj2.monthandyearofpassing;
+                        board10 = obj2.selectedBoard;
+                        schoolname10 = obj2.schoolname;
 
                         studentData.setYearofpassing10(yearofpassing10);
                         studentData.setBoard10(board10);
@@ -903,38 +1667,38 @@ public class MyProfileFragment extends Fragment {
                     }
                     s = json.getString("pgsem");
                     if (s.equals("found")) {
-                        found_pgsem=1;
+                        found_pgsem = 1;
                         Log.d("TAG", "dataload found_pgsem:-" + found_pgsem);
-                        PgSem obj=(PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+                        PgSem obj = (PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        markssem1pgsem=obj.getMarkssem1();
-                        outofsem1pgsem=obj.getOutofsem1();
-                        percentagesem1pgsem=obj.getPercentsem1();
-                        markssem2pgsem=obj.getMarkssem2();
-                        outofsem2pgsem=obj.getOutofsem2();
-                        percentagesem2pgsem=obj.getPercentsem2();
-                        markssem3pgsem=obj.getMarkssem3();
-                        outofsem3pgsem=obj.getOutofsem3();
-                        percentagesem3pgsem=obj.getPercentsem3();
-                        markssem4pgsem=obj.getMarkssem4();
-                        outofsem4pgsem=obj.getOutofsem4();
-                        percentagesem4pgsem=obj.getPercentsem4();
-                        markssem5pgsem=obj.getMarkssem5();
-                        outofsem5pgsem=obj.getOutofsem5();
-                        percentagesem5pgsem=obj.getPercentsem5();
-                        markssem6pgsem=obj.getMarkssem6();
-                        outofsem6pgsem=obj.getOutofsem6();
-                        percentagesem6pgsem=obj.getPercentsem6();
-                        aggregatepgsem=obj.getAggregatepgsem();
-                        coursepgsem=obj.getSelectedCoursepgsem();
-                        streampgsem=obj.getSelectedStreampgsem();
-                        universitypgsem=obj.getSelectedUniversitypgsem();
-                        collegenamepgsem=obj.getSchoolnamepgsemester();
-                        yearofpassingpgsem=obj.getMonthandyearofpassingpgsem();
+                        markssem1pgsem = obj.getMarkssem1();
+                        outofsem1pgsem = obj.getOutofsem1();
+                        percentagesem1pgsem = obj.getPercentsem1();
+                        markssem2pgsem = obj.getMarkssem2();
+                        outofsem2pgsem = obj.getOutofsem2();
+                        percentagesem2pgsem = obj.getPercentsem2();
+                        markssem3pgsem = obj.getMarkssem3();
+                        outofsem3pgsem = obj.getOutofsem3();
+                        percentagesem3pgsem = obj.getPercentsem3();
+                        markssem4pgsem = obj.getMarkssem4();
+                        outofsem4pgsem = obj.getOutofsem4();
+                        percentagesem4pgsem = obj.getPercentsem4();
+                        markssem5pgsem = obj.getMarkssem5();
+                        outofsem5pgsem = obj.getOutofsem5();
+                        percentagesem5pgsem = obj.getPercentsem5();
+                        markssem6pgsem = obj.getMarkssem6();
+                        outofsem6pgsem = obj.getOutofsem6();
+                        percentagesem6pgsem = obj.getPercentsem6();
+                        aggregatepgsem = obj.getAggregatepgsem();
+                        coursepgsem = obj.getSelectedCoursepgsem();
+                        streampgsem = obj.getSelectedStreampgsem();
+                        universitypgsem = obj.getSelectedUniversitypgsem();
+                        collegenamepgsem = obj.getSchoolnamepgsemester();
+                        yearofpassingpgsem = obj.getMonthandyearofpassingpgsem();
 
 
-                        Log.d("TAG", "doInBackground: universitypgsem - "+universitypgsem);
-                        Log.d("TAG", "doInBackground: collegenamepgsem - "+collegenamepgsem);
+                        Log.d("TAG", "doInBackground: universitypgsem - " + universitypgsem);
+                        Log.d("TAG", "doInBackground: collegenamepgsem - " + collegenamepgsem);
 
 
                         studentData.setMarkssem1pgsem(markssem1pgsem);
@@ -966,30 +1730,30 @@ public class MyProfileFragment extends Fragment {
                     }
                     s = json.getString("pgyear");
                     if (s.equals("found")) {
-                        found_pgyear=1;
+                        found_pgyear = 1;
                         Log.d("TAG", "dataload found_pgyear:-" + found_pgyear);
-                        PgYear obj=(PgYear) fromString(json.getString("pgyeardata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+                        PgYear obj = (PgYear) fromString(json.getString("pgyeardata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        marksyear1pgyear=obj.getMarksyear1();
-                        outofyear1pgyear=obj.getOutofyear1();
-                        percentageyear1pgyear=obj.getPercentyear1();
-                        marksyear2pgyear=obj.getMarksyear2();
-                        outofyear2pgyear=obj.getOutofyear2();
-                        percentageyear2pgyear=obj.getPercentyear2();
-                        marksyear3pgyear=obj.getMarksyear3();
-                        outofyear3pgyear=obj.getOutofyear3();
-                        percentageyear3pgyear=obj.getPercentyear3();
-                        aggregatepgyear=obj.getAggregatepgyear();
-                        coursepgyear=obj.getSelectedCoursepgyear();
-                        streampgyear=obj.getSelectedStreampgyear();
-                        universitypgyear=obj.getSelectedUniversitypgyear();
-                        collegenamepgyear=obj.getSchoolnamepgyears();
-                        yearofpassingpgyear=obj.getMonthandyearofpassingpgyear();
+                        marksyear1pgyear = obj.getMarksyear1();
+                        outofyear1pgyear = obj.getOutofyear1();
+                        percentageyear1pgyear = obj.getPercentyear1();
+                        marksyear2pgyear = obj.getMarksyear2();
+                        outofyear2pgyear = obj.getOutofyear2();
+                        percentageyear2pgyear = obj.getPercentyear2();
+                        marksyear3pgyear = obj.getMarksyear3();
+                        outofyear3pgyear = obj.getOutofyear3();
+                        percentageyear3pgyear = obj.getPercentyear3();
+                        aggregatepgyear = obj.getAggregatepgyear();
+                        coursepgyear = obj.getSelectedCoursepgyear();
+                        streampgyear = obj.getSelectedStreampgyear();
+                        universitypgyear = obj.getSelectedUniversitypgyear();
+                        collegenamepgyear = obj.getSchoolnamepgyears();
+                        yearofpassingpgyear = obj.getMonthandyearofpassingpgyear();
 
-                        Log.d("TAG", "doInBackground: coursepgyear - "+coursepgyear);
-                        Log.d("TAG", "doInBackground: streampgyear - "+streampgyear);
-                        Log.d("TAG", "doInBackground: collegenamepgyear - "+collegenamepgyear);
-                        Log.d("TAG", "doInBackground: yearofpassingpgyear - "+yearofpassingpgyear);
+                        Log.d("TAG", "doInBackground: coursepgyear - " + coursepgyear);
+                        Log.d("TAG", "doInBackground: streampgyear - " + streampgyear);
+                        Log.d("TAG", "doInBackground: collegenamepgyear - " + collegenamepgyear);
+                        Log.d("TAG", "doInBackground: yearofpassingpgyear - " + yearofpassingpgyear);
 
                         studentData.setMarksyear1pgyear(marksyear1pgyear);
                         studentData.setOutofyear1pgyear(outofyear1pgyear);
@@ -1009,109 +1773,105 @@ public class MyProfileFragment extends Fragment {
                     }
 
 
-                    s=json.getString("projects");
+                    s = json.getString("projects");
 
 
-                    if(s.equals("found")) {
-                        found_projects=1;
+                    if (s.equals("found")) {
+                        found_projects = 1;
                         Log.d("TAG", " dataload found_projects :-" + found_projects);
-                        ArrayList<Projects> projectsList=(ArrayList<Projects>)fromString(json.getString("projectsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Projects> projectsList = (ArrayList<Projects>) fromString(json.getString("projectsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Projects obj1=projectsList.get(0);
-                        Projects obj2=projectsList.get(1);
-                        Projects obj3=projectsList.get(2);
-                        Projects obj4=projectsList.get(3);
-                        Projects obj5=projectsList.get(4);
-                        Projects obj6=projectsList.get(5);
-                        Projects obj7=projectsList.get(6);
-                        Projects obj8=projectsList.get(7);
-                        Projects obj9=projectsList.get(8);
-                        Projects obj10=projectsList.get(9);
-
-
-
-                        proj1=obj1.getProj1();
-                        domain1=obj1.getDomain1();
-                        team1=obj1.getTeam1();
-                        duration1=obj1.getDuration1();
+                        Projects obj1 = projectsList.get(0);
+                        Projects obj2 = projectsList.get(1);
+                        Projects obj3 = projectsList.get(2);
+                        Projects obj4 = projectsList.get(3);
+                        Projects obj5 = projectsList.get(4);
+                        Projects obj6 = projectsList.get(5);
+                        Projects obj7 = projectsList.get(6);
+                        Projects obj8 = projectsList.get(7);
+                        Projects obj9 = projectsList.get(8);
+                        Projects obj10 = projectsList.get(9);
 
 
+                        proj1 = obj1.getProj1();
+                        domain1 = obj1.getDomain1();
+                        team1 = obj1.getTeam1();
+                        duration1 = obj1.getDuration1();
 
 
-                        proj2=obj2.getProj1();
-                        domain2=obj2.getDomain1();
-                        team2=obj2.getTeam1();
-                        duration2=obj2.getDuration1();
+                        proj2 = obj2.getProj1();
+                        domain2 = obj2.getDomain1();
+                        team2 = obj2.getTeam1();
+                        duration2 = obj2.getDuration1();
 
-                        proj3=obj3.getProj1();
-                        domain3=obj3.getDomain1();
-                        team3=obj3.getTeam1();
-                        duration3=obj3.getDuration1();
+                        proj3 = obj3.getProj1();
+                        domain3 = obj3.getDomain1();
+                        team3 = obj3.getTeam1();
+                        duration3 = obj3.getDuration1();
 
-                        proj4=obj4.getProj1();
-                        domain4=obj4.getDomain1();
-                        team4=obj4.getTeam1();
-                        duration4=obj4.getDuration1();
+                        proj4 = obj4.getProj1();
+                        domain4 = obj4.getDomain1();
+                        team4 = obj4.getTeam1();
+                        duration4 = obj4.getDuration1();
 
-                        proj5=obj5.getProj1();
-                        domain5=obj5.getDomain1();
-                        team5=obj5.getTeam1();
-                        duration5=obj5.getDuration1();
+                        proj5 = obj5.getProj1();
+                        domain5 = obj5.getDomain1();
+                        team5 = obj5.getTeam1();
+                        duration5 = obj5.getDuration1();
 
-                        proj6=obj6.getProj1();
-                        domain6=obj6.getDomain1();
-                        team6=obj6.getTeam1();
-                        duration6=obj6.getDuration1();
+                        proj6 = obj6.getProj1();
+                        domain6 = obj6.getDomain1();
+                        team6 = obj6.getTeam1();
+                        duration6 = obj6.getDuration1();
 
-                        proj7=obj7.getProj1();
-                        domain7=obj7.getDomain1();
-                        team7=obj7.getTeam1();
-                        duration7=obj7.getDuration1();
+                        proj7 = obj7.getProj1();
+                        domain7 = obj7.getDomain1();
+                        team7 = obj7.getTeam1();
+                        duration7 = obj7.getDuration1();
 
-                        proj8=obj8.getProj1();
-                        domain8=obj8.getDomain1();
-                        team8=obj8.getTeam1();
-                        duration8=obj8.getDuration1();
+                        proj8 = obj8.getProj1();
+                        domain8 = obj8.getDomain1();
+                        team8 = obj8.getTeam1();
+                        duration8 = obj8.getDuration1();
 
-                        proj9=obj9.getProj1();
-                        domain9=obj9.getDomain1();
-                        team9=obj9.getTeam1();
-                        duration9=obj9.getDuration1();
+                        proj9 = obj9.getProj1();
+                        domain9 = obj9.getDomain1();
+                        team9 = obj9.getTeam1();
+                        duration9 = obj9.getDuration1();
 
-                        proj10=obj10.getProj1();
-                        domain10=obj10.getDomain1();
-                        team10=obj10.getTeam1();
-                        duration10=obj10.getDuration1();
+                        proj10 = obj10.getProj1();
+                        domain10 = obj10.getDomain1();
+                        team10 = obj10.getTeam1();
+                        duration10 = obj10.getDuration1();
 
 
-                        Log.d("TAG", "doInBackground: proj1 - "+proj1);
-                        Log.d("TAG", "doInBackground: domain1 - "+domain1);
-                        Log.d("TAG", "doInBackground: team1 - "+team1);
-                        Log.d("TAG", "doInBackground: duration1 - "+duration1);
+                        Log.d("TAG", "doInBackground: proj1 - " + proj1);
+                        Log.d("TAG", "doInBackground: domain1 - " + domain1);
+                        Log.d("TAG", "doInBackground: team1 - " + team1);
+                        Log.d("TAG", "doInBackground: duration1 - " + duration1);
 
-                        Log.d("TAG", "doInBackground: proj1 - "+proj1);
-                        Log.d("TAG", "doInBackground: proj2 - "+proj2);
-                        Log.d("TAG", "doInBackground: proj3 - "+proj3);
-                        Log.d("TAG", "doInBackground: proj4 - "+proj4);
-                        Log.d("TAG", "doInBackground: proj5 - "+proj5);
-                        Log.d("TAG", "doInBackground: proj6 - "+proj6);
-                        Log.d("TAG", "doInBackground: proj7 - "+proj7);
+                        Log.d("TAG", "doInBackground: proj1 - " + proj1);
+                        Log.d("TAG", "doInBackground: proj2 - " + proj2);
+                        Log.d("TAG", "doInBackground: proj3 - " + proj3);
+                        Log.d("TAG", "doInBackground: proj4 - " + proj4);
+                        Log.d("TAG", "doInBackground: proj5 - " + proj5);
+                        Log.d("TAG", "doInBackground: proj6 - " + proj6);
+                        Log.d("TAG", "doInBackground: proj7 - " + proj7);
 
-                        if(!proj4.equals(""))
-                        proj_count=1;
-                        if(!proj5.equals(""))
-                            proj_count=2;
-                        if(!proj6.equals(""))
-                            proj_count=3;
-                        if(!proj7.equals(""))
-                            proj_count=4;
-                        if(!proj8.equals(""))
-                            proj_count=5;
-                        if(!proj9.equals(""))
-                            proj_count=6;
-                        if(!proj10.equals(""))
-                            proj_count=7;
-
+                        if (!proj4.equals(""))
+                            proj_count = 1;
+                        if (!proj5.equals(""))
+                            proj_count = 2;
+                        if (!proj6.equals(""))
+                            proj_count = 3;
+                        if (!proj7.equals(""))
+                            proj_count = 4;
+                        if (!proj8.equals(""))
+                            proj_count = 5;
+                        if (!proj9.equals(""))
+                            proj_count = 6;
+                        if (!proj10.equals(""))
+                            proj_count = 7;
 
 
                         studentData.setProj1(proj1);
@@ -1157,46 +1917,46 @@ public class MyProfileFragment extends Fragment {
 
 
                     }
-                    s=json.getString("knownlang");
-                    Log.d("TAG", "knownlang: "+s);
+                    s = json.getString("knownlang");
+                    Log.d("TAG", "knownlang: " + s);
 
 
-                    if(s.equals("found")) {
-                        found_lang=1;
+                    if (s.equals("found")) {
+                        found_lang = 1;
                         Log.d("TAG", " dataload found_lang :-" + found_lang);
-                        ArrayList<KnownLangs> knownLangsList=(ArrayList<KnownLangs>)fromString(json.getString("knownlangdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        KnownLangs obj1=knownLangsList.get(0);
-                        KnownLangs obj2=knownLangsList.get(1);
-                        KnownLangs obj3=knownLangsList.get(2);
-                        KnownLangs obj4=knownLangsList.get(3);
-                        KnownLangs obj5=knownLangsList.get(4);
-                        KnownLangs obj6=knownLangsList.get(5);
-                        KnownLangs obj7=knownLangsList.get(6);
-                        KnownLangs obj8=knownLangsList.get(7);
-                        KnownLangs obj9=knownLangsList.get(8);
-                        KnownLangs obj10=knownLangsList.get(9);
+                        KnownLangs obj1 = knownLangsList.get(0);
+                        KnownLangs obj2 = knownLangsList.get(1);
+                        KnownLangs obj3 = knownLangsList.get(2);
+                        KnownLangs obj4 = knownLangsList.get(3);
+                        KnownLangs obj5 = knownLangsList.get(4);
+                        KnownLangs obj6 = knownLangsList.get(5);
+                        KnownLangs obj7 = knownLangsList.get(6);
+                        KnownLangs obj8 = knownLangsList.get(7);
+                        KnownLangs obj9 = knownLangsList.get(8);
+                        KnownLangs obj10 = knownLangsList.get(9);
 
-                        lang1=obj1.getKnownlang();
-                        proficiency1=obj1.getProficiency();
-                        lang2=obj2.getKnownlang();
-                        proficiency2=obj2.getProficiency();
-                        lang3=obj3.getKnownlang();
-                        proficiency3=obj3.getProficiency();
-                        lang4=obj4.getKnownlang();
-                        proficiency4=obj4.getProficiency();
-                        lang5=obj5.getKnownlang();
-                        proficiency5=obj5.getProficiency();
-                        lang6=obj6.getKnownlang();
-                        proficiency6=obj6.getProficiency();
-                        lang7=obj7.getKnownlang();
-                        proficiency7=obj7.getProficiency();
-                        lang8=obj8.getKnownlang();
-                        proficiency8=obj8.getProficiency();
-                        lang9=obj9.getKnownlang();
-                        proficiency9=obj9.getProficiency();
-                        lang10=obj10.getKnownlang();
-                        proficiency10=obj10.getProficiency();
+                        lang1 = obj1.getKnownlang();
+                        proficiency1 = obj1.getProficiency();
+                        lang2 = obj2.getKnownlang();
+                        proficiency2 = obj2.getProficiency();
+                        lang3 = obj3.getKnownlang();
+                        proficiency3 = obj3.getProficiency();
+                        lang4 = obj4.getKnownlang();
+                        proficiency4 = obj4.getProficiency();
+                        lang5 = obj5.getKnownlang();
+                        proficiency5 = obj5.getProficiency();
+                        lang6 = obj6.getKnownlang();
+                        proficiency6 = obj6.getProficiency();
+                        lang7 = obj7.getKnownlang();
+                        proficiency7 = obj7.getProficiency();
+                        lang8 = obj8.getKnownlang();
+                        proficiency8 = obj8.getProficiency();
+                        lang9 = obj9.getKnownlang();
+                        proficiency9 = obj9.getProficiency();
+                        lang10 = obj10.getKnownlang();
+                        proficiency10 = obj10.getProficiency();
 
                         studentData.setLang1(lang1);
                         studentData.setProficiency1(proficiency1);
@@ -1219,108 +1979,108 @@ public class MyProfileFragment extends Fragment {
                         studentData.setLang10(lang10);
                         studentData.setProficiency10(proficiency10);
 
-                        if(!lang4.equals("") && !lang4.equals("- Select Language -"))
-                            lang_count =1;
-                        if(!lang5.equals("") && !lang5.equals("- Select Language -"))
-                            lang_count=2;
-                        if(!lang6.equals("") && !lang6.equals("- Select Language -"))
-                            lang_count=3;
-                        if(!lang7.equals("") && !lang7.equals("- Select Language -"))
-                            lang_count=4;
-                        if(!lang8.equals("") && !lang8.equals("- Select Language -"))
-                            lang_count=5;
-                        if(!lang9.equals("") && !lang9.equals("- Select Language -"))
-                            lang_count=6;
-                        if(!lang10.equals("") && !lang10.equals("- Select Language -"))
-                            lang_count=7;
+                        if (!lang4.equals("") && !lang4.equals("- Select Language -"))
+                            lang_count = 1;
+                        if (!lang5.equals("") && !lang5.equals("- Select Language -"))
+                            lang_count = 2;
+                        if (!lang6.equals("") && !lang6.equals("- Select Language -"))
+                            lang_count = 3;
+                        if (!lang7.equals("") && !lang7.equals("- Select Language -"))
+                            lang_count = 4;
+                        if (!lang8.equals("") && !lang8.equals("- Select Language -"))
+                            lang_count = 5;
+                        if (!lang9.equals("") && !lang9.equals("- Select Language -"))
+                            lang_count = 6;
+                        if (!lang10.equals("") && !lang10.equals("- Select Language -"))
+                            lang_count = 7;
 
                     }
-                    s=json.getString("certificates");
-                    if(s.equals("found")) {
-                        found_certificates=1;
+                    s = json.getString("certificates");
+                    if (s.equals("found")) {
+                        found_certificates = 1;
                         Log.d("TAG", " dataload found_certificates :-" + found_certificates);
-                        ArrayList<Certificates> certificatesList=(ArrayList<Certificates>)fromString(json.getString("certificatesdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Certificates> certificatesList = (ArrayList<Certificates>) fromString(json.getString("certificatesdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Certificates obj1=certificatesList.get(0);
-                        Certificates obj2=certificatesList.get(1);
-                        Certificates obj3=certificatesList.get(2);
-                        Certificates obj4=certificatesList.get(3);
-                        Certificates obj5=certificatesList.get(4);
-                        Certificates obj6=certificatesList.get(5);
-                        Certificates obj7=certificatesList.get(6);
-                        Certificates obj8=certificatesList.get(7);
-                        Certificates obj9=certificatesList.get(8);
-                        Certificates obj10=certificatesList.get(9);
+                        Certificates obj1 = certificatesList.get(0);
+                        Certificates obj2 = certificatesList.get(1);
+                        Certificates obj3 = certificatesList.get(2);
+                        Certificates obj4 = certificatesList.get(3);
+                        Certificates obj5 = certificatesList.get(4);
+                        Certificates obj6 = certificatesList.get(5);
+                        Certificates obj7 = certificatesList.get(6);
+                        Certificates obj8 = certificatesList.get(7);
+                        Certificates obj9 = certificatesList.get(8);
+                        Certificates obj10 = certificatesList.get(9);
 
-                        title1=obj1.getTitle();
-                        issuer1=obj1.getIssuer();
-                        license1=obj1.getLicense();
-                        startdate1certificate=obj1.getStartdate();
-                        enddate1certificate=obj1.getEnddate();
-                        willexpire1certificate=obj1.getWillexpire();
+                        title1 = obj1.getTitle();
+                        issuer1 = obj1.getIssuer();
+                        license1 = obj1.getLicense();
+                        startdate1certificate = obj1.getStartdate();
+                        enddate1certificate = obj1.getEnddate();
+                        willexpire1certificate = obj1.getWillexpire();
 
-                        title2=obj2.getTitle();
-                        issuer2=obj2.getIssuer();
-                        license2=obj2.getLicense();
-                        startdate2certificate=obj2.getStartdate();
-                        enddate2certificate=obj2.getEnddate();
-                        willexpire2certificate=obj2.getWillexpire();
+                        title2 = obj2.getTitle();
+                        issuer2 = obj2.getIssuer();
+                        license2 = obj2.getLicense();
+                        startdate2certificate = obj2.getStartdate();
+                        enddate2certificate = obj2.getEnddate();
+                        willexpire2certificate = obj2.getWillexpire();
 
-                        title3=obj3.getTitle();
-                        issuer3=obj3.getIssuer();
-                        license3=obj3.getLicense();
-                        startdate3certificate=obj3.getStartdate();
-                        enddate3certificate=obj3.getEnddate();
-                        willexpire3certificate=obj3.getWillexpire();
+                        title3 = obj3.getTitle();
+                        issuer3 = obj3.getIssuer();
+                        license3 = obj3.getLicense();
+                        startdate3certificate = obj3.getStartdate();
+                        enddate3certificate = obj3.getEnddate();
+                        willexpire3certificate = obj3.getWillexpire();
 
-                        title4=obj4.getTitle();
-                        issuer4=obj4.getIssuer();
-                        license4=obj4.getLicense();
-                        startdate4certificate=obj4.getStartdate();
-                        enddate4certificate=obj4.getEnddate();
-                        willexpire4certificate=obj4.getWillexpire();
+                        title4 = obj4.getTitle();
+                        issuer4 = obj4.getIssuer();
+                        license4 = obj4.getLicense();
+                        startdate4certificate = obj4.getStartdate();
+                        enddate4certificate = obj4.getEnddate();
+                        willexpire4certificate = obj4.getWillexpire();
 
-                        title5=obj5.getTitle();
-                        issuer5=obj5.getIssuer();
-                        license5=obj5.getLicense();
-                        startdate5certificate=obj5.getStartdate();
-                        enddate5certificate=obj5.getEnddate();
-                        willexpire5certificate=obj5.getWillexpire();
+                        title5 = obj5.getTitle();
+                        issuer5 = obj5.getIssuer();
+                        license5 = obj5.getLicense();
+                        startdate5certificate = obj5.getStartdate();
+                        enddate5certificate = obj5.getEnddate();
+                        willexpire5certificate = obj5.getWillexpire();
 
-                        title6=obj6.getTitle();
-                        issuer6=obj6.getIssuer();
-                        license6=obj6.getLicense();
-                        startdate6certificate=obj6.getStartdate();
-                        enddate6certificate=obj6.getEnddate();
-                        willexpire6certificate=obj6.getWillexpire();
+                        title6 = obj6.getTitle();
+                        issuer6 = obj6.getIssuer();
+                        license6 = obj6.getLicense();
+                        startdate6certificate = obj6.getStartdate();
+                        enddate6certificate = obj6.getEnddate();
+                        willexpire6certificate = obj6.getWillexpire();
 
-                        title7=obj7.getTitle();
-                        issuer7=obj7.getIssuer();
-                        license7=obj7.getLicense();
-                        startdate7certificate=obj7.getStartdate();
-                        enddate7certificate=obj7.getEnddate();
-                        willexpire7certificate=obj7.getWillexpire();
+                        title7 = obj7.getTitle();
+                        issuer7 = obj7.getIssuer();
+                        license7 = obj7.getLicense();
+                        startdate7certificate = obj7.getStartdate();
+                        enddate7certificate = obj7.getEnddate();
+                        willexpire7certificate = obj7.getWillexpire();
 
-                        title8=obj8.getTitle();
-                        issuer8=obj8.getIssuer();
-                        license8=obj8.getLicense();
-                        startdate8certificate=obj8.getStartdate();
-                        enddate8certificate=obj8.getEnddate();
-                        willexpire8certificate=obj8.getWillexpire();
+                        title8 = obj8.getTitle();
+                        issuer8 = obj8.getIssuer();
+                        license8 = obj8.getLicense();
+                        startdate8certificate = obj8.getStartdate();
+                        enddate8certificate = obj8.getEnddate();
+                        willexpire8certificate = obj8.getWillexpire();
 
-                        title9=obj9.getTitle();
-                        issuer9=obj9.getIssuer();
-                        license9=obj9.getLicense();
-                        startdate9certificate=obj9.getStartdate();
-                        enddate9certificate=obj9.getEnddate();
-                        willexpire9certificate=obj9.getWillexpire();
+                        title9 = obj9.getTitle();
+                        issuer9 = obj9.getIssuer();
+                        license9 = obj9.getLicense();
+                        startdate9certificate = obj9.getStartdate();
+                        enddate9certificate = obj9.getEnddate();
+                        willexpire9certificate = obj9.getWillexpire();
 
-                        title10=obj10.getTitle();
-                        issuer10=obj10.getIssuer();
-                        license10=obj10.getLicense();
-                        startdate10certificate=obj10.getStartdate();
-                        enddate10certificate=obj10.getEnddate();
-                        willexpire10certificate=obj10.getWillexpire();
+                        title10 = obj10.getTitle();
+                        issuer10 = obj10.getIssuer();
+                        license10 = obj10.getLicense();
+                        startdate10certificate = obj10.getStartdate();
+                        enddate10certificate = obj10.getEnddate();
+                        willexpire10certificate = obj10.getWillexpire();
 
                         studentData.setTitle1(title1);
                         studentData.setIssuer1(issuer1);
@@ -1343,7 +2103,7 @@ public class MyProfileFragment extends Fragment {
                         studentData.setTitle4(title4);
 
                         studentData.setIssuer4(issuer4);
-                        Log.d("TAG", "doInBackground: issuer4 - "+issuer4);
+                        Log.d("TAG", "doInBackground: issuer4 - " + issuer4);
                         studentData.setLicense4(license4);
                         studentData.setStartdate4certificate(startdate4certificate);
                         studentData.setEnddate4certificate(enddate4certificate);
@@ -1385,96 +2145,96 @@ public class MyProfileFragment extends Fragment {
                         studentData.setEnddate10certificate(enddate10certificate);
                         studentData.setWillexpire10certificate(willexpire10certificate);
 
-                        if(!title4.equals(""))
-                            cert_count=1;
-                        if(!title5.equals(""))
-                            cert_count=2;
-                        if(!title6.equals(""))
-                            cert_count=3;
-                        if(!title7.equals(""))
-                            cert_count=4;
-                        if(!title8.equals(""))
-                            cert_count=5;
-                        if(!title9.equals(""))
-                            cert_count=6;
-                        if(!title10.equals(""))
-                            cert_count=7;
+                        if (!title4.equals(""))
+                            cert_count = 1;
+                        if (!title5.equals(""))
+                            cert_count = 2;
+                        if (!title6.equals(""))
+                            cert_count = 3;
+                        if (!title7.equals(""))
+                            cert_count = 4;
+                        if (!title8.equals(""))
+                            cert_count = 5;
+                        if (!title9.equals(""))
+                            cert_count = 6;
+                        if (!title10.equals(""))
+                            cert_count = 7;
 
-                        Log.d("TAG", "doInBackground: cert_count -"+cert_count);
+                        Log.d("TAG", "doInBackground: cert_count -" + cert_count);
 
                     }
-                    s=json.getString("courses");
-                    Log.d("TAG", "doInBackground: course1 -"+s);
-                    if(s.equals("found")) {
-                        found_courses=1;
+                    s = json.getString("courses");
+                    Log.d("TAG", "doInBackground: course1 -" + s);
+                    if (s.equals("found")) {
+                        found_courses = 1;
                         Log.d("TAG", " dataload found_courses :-" + found_courses);
-                        ArrayList<Courses> coursesList=(ArrayList<Courses>)fromString(json.getString("coursesdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Courses> coursesList = (ArrayList<Courses>) fromString(json.getString("coursesdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Courses obj1=coursesList.get(0);
-                        Courses obj2=coursesList.get(1);
-                        Courses obj3=coursesList.get(2);
-                        Courses obj4=coursesList.get(3);
-                        Courses obj5=coursesList.get(4);
-                        Courses obj6=coursesList.get(5);
-                        Courses obj7=coursesList.get(6);
-                        Courses obj8=coursesList.get(7);
-                        Courses obj9=coursesList.get(8);
-                        Courses obj10=coursesList.get(9);
+                        Courses obj1 = coursesList.get(0);
+                        Courses obj2 = coursesList.get(1);
+                        Courses obj3 = coursesList.get(2);
+                        Courses obj4 = coursesList.get(3);
+                        Courses obj5 = coursesList.get(4);
+                        Courses obj6 = coursesList.get(5);
+                        Courses obj7 = coursesList.get(6);
+                        Courses obj8 = coursesList.get(7);
+                        Courses obj9 = coursesList.get(8);
+                        Courses obj10 = coursesList.get(9);
 
-                        course1=obj1.getName();
-                        inst1=obj1.getInst();
-                        fromdate1=obj1.getFromdate();
-                        todate1=obj1.getTodate();
+                        course1 = obj1.getName();
+                        inst1 = obj1.getInst();
+                        fromdate1 = obj1.getFromdate();
+                        todate1 = obj1.getTodate();
 
-                        Log.d("TAG", "doInBackground: course1 -"+course1);
-                        Log.d("TAG", "doInBackground: inst1 - "+inst1);
-                        Log.d("TAG", "doInBackground: fromdate1 -"+fromdate1);
-                        Log.d("TAG", "doInBackground: todate1 - "+todate1);
+                        Log.d("TAG", "doInBackground: course1 -" + course1);
+                        Log.d("TAG", "doInBackground: inst1 - " + inst1);
+                        Log.d("TAG", "doInBackground: fromdate1 -" + fromdate1);
+                        Log.d("TAG", "doInBackground: todate1 - " + todate1);
 
-                        course2=obj2.getName();
-                        inst2=obj2.getInst();
-                        fromdate2=obj2.getFromdate();
-                        todate2=obj2.getTodate();
+                        course2 = obj2.getName();
+                        inst2 = obj2.getInst();
+                        fromdate2 = obj2.getFromdate();
+                        todate2 = obj2.getTodate();
 
-                        course3=obj3.getName();
-                        inst3=obj3.getInst();
-                        fromdate3=obj3.getFromdate();
-                        todate3=obj3.getTodate();
+                        course3 = obj3.getName();
+                        inst3 = obj3.getInst();
+                        fromdate3 = obj3.getFromdate();
+                        todate3 = obj3.getTodate();
 
-                        course4=obj4.getName();
-                        inst4=obj4.getInst();
-                        fromdate4=obj4.getFromdate();
-                        todate4=obj4.getTodate();
+                        course4 = obj4.getName();
+                        inst4 = obj4.getInst();
+                        fromdate4 = obj4.getFromdate();
+                        todate4 = obj4.getTodate();
 
-                        course5=obj5.getName();
-                        inst5=obj5.getInst();
-                        fromdate5=obj5.getFromdate();
-                        todate5=obj5.getTodate();
+                        course5 = obj5.getName();
+                        inst5 = obj5.getInst();
+                        fromdate5 = obj5.getFromdate();
+                        todate5 = obj5.getTodate();
 
-                        course6=obj6.getName();
-                        inst6=obj6.getInst();
-                        fromdate6=obj6.getFromdate();
-                        todate6=obj6.getTodate();
+                        course6 = obj6.getName();
+                        inst6 = obj6.getInst();
+                        fromdate6 = obj6.getFromdate();
+                        todate6 = obj6.getTodate();
 
-                        course7=obj7.getName();
-                        inst7=obj7.getInst();
-                        fromdate7=obj7.getFromdate();
-                        todate7=obj7.getTodate();
+                        course7 = obj7.getName();
+                        inst7 = obj7.getInst();
+                        fromdate7 = obj7.getFromdate();
+                        todate7 = obj7.getTodate();
 
-                        course8=obj8.getName();
-                        inst8=obj8.getInst();
-                        fromdate8=obj8.getFromdate();
-                        todate8=obj8.getTodate();
+                        course8 = obj8.getName();
+                        inst8 = obj8.getInst();
+                        fromdate8 = obj8.getFromdate();
+                        todate8 = obj8.getTodate();
 
-                        course9=obj9.getName();
-                        inst9=obj9.getInst();
-                        fromdate9=obj9.getFromdate();
-                        todate9=obj9.getTodate();
+                        course9 = obj9.getName();
+                        inst9 = obj9.getInst();
+                        fromdate9 = obj9.getFromdate();
+                        todate9 = obj9.getTodate();
 
-                        course10=obj10.getName();
-                        inst10=obj10.getInst();
-                        fromdate10=obj10.getFromdate();
-                        todate10=obj10.getTodate();
+                        course10 = obj10.getName();
+                        inst10 = obj10.getInst();
+                        fromdate10 = obj10.getFromdate();
+                        todate10 = obj10.getTodate();
 
                         studentData.setCourse1(course1);
                         studentData.setInst1(inst1);
@@ -1517,116 +2277,116 @@ public class MyProfileFragment extends Fragment {
                         studentData.setFromdate10(fromdate10);
                         studentData.setTodate10(todate10);
 
-                        if(!course4.equals(""))
-                            courses_count=1;
+                        if (!course4.equals(""))
+                            courses_count = 1;
 
-                        if(!course5.equals(""))
-                            courses_count=2;
+                        if (!course5.equals(""))
+                            courses_count = 2;
 
-                        if(!course6.equals(""))
-                            courses_count=3;
+                        if (!course6.equals(""))
+                            courses_count = 3;
 
-                        if(!course7.equals(""))
-                            courses_count=4;
+                        if (!course7.equals(""))
+                            courses_count = 4;
 
-                        if(!course8.equals(""))
-                            courses_count=5;
+                        if (!course8.equals(""))
+                            courses_count = 5;
 
-                        if(!course9.equals(""))
-                            courses_count=6;
+                        if (!course9.equals(""))
+                            courses_count = 6;
 
-                        if(!course10.equals(""))
-                            courses_count=7;
+                        if (!course10.equals(""))
+                            courses_count = 7;
 
-                        Log.d("TAG", "doInBackground: courses_count "+courses_count);
+                        Log.d("TAG", "doInBackground: courses_count " + courses_count);
 
                     }
-                    s=json.getString("skills");
-                    if(s.equals("found")) {
-                        found_skills=1;
+                    s = json.getString("skills");
+                    if (s.equals("found")) {
+                        found_skills = 1;
                         Log.d("TAG", " dataload found_skills :-" + found_skills);
-                        ArrayList<Skills> skillsList=(ArrayList<Skills>)fromString(json.getString("skillsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Skills obj1=skillsList.get(0);
-                        Skills obj2=skillsList.get(1);
-                        Skills obj3=skillsList.get(2);
-                        Skills obj4=skillsList.get(3);
-                        Skills obj5=skillsList.get(4);
-                        Skills obj6=skillsList.get(5);
-                        Skills obj7=skillsList.get(6);
-                        Skills obj8=skillsList.get(7);
-                        Skills obj9=skillsList.get(8);
-                        Skills obj10=skillsList.get(9);
-                        Skills obj11=skillsList.get(10);
-                        Skills obj12=skillsList.get(11);
-                        Skills obj13=skillsList.get(12);
-                        Skills obj14=skillsList.get(13);
-                        Skills obj15=skillsList.get(14);
-                        Skills obj16=skillsList.get(15);
-                        Skills obj17=skillsList.get(16);
-                        Skills obj18=skillsList.get(17);
-                        Skills obj19=skillsList.get(18);
-                        Skills obj20=skillsList.get(19);
+                        Skills obj1 = skillsList.get(0);
+                        Skills obj2 = skillsList.get(1);
+                        Skills obj3 = skillsList.get(2);
+                        Skills obj4 = skillsList.get(3);
+                        Skills obj5 = skillsList.get(4);
+                        Skills obj6 = skillsList.get(5);
+                        Skills obj7 = skillsList.get(6);
+                        Skills obj8 = skillsList.get(7);
+                        Skills obj9 = skillsList.get(8);
+                        Skills obj10 = skillsList.get(9);
+                        Skills obj11 = skillsList.get(10);
+                        Skills obj12 = skillsList.get(11);
+                        Skills obj13 = skillsList.get(12);
+                        Skills obj14 = skillsList.get(13);
+                        Skills obj15 = skillsList.get(14);
+                        Skills obj16 = skillsList.get(15);
+                        Skills obj17 = skillsList.get(16);
+                        Skills obj18 = skillsList.get(17);
+                        Skills obj19 = skillsList.get(18);
+                        Skills obj20 = skillsList.get(19);
 
-                        skill1=obj1.getSkill();
-                        sproficiency1=obj1.getProficiency();
+                        skill1 = obj1.getSkill();
+                        sproficiency1 = obj1.getProficiency();
 
-                        skill2=obj2.getSkill();
-                        sproficiency2=obj2.getProficiency();
+                        skill2 = obj2.getSkill();
+                        sproficiency2 = obj2.getProficiency();
 
-                        skill3=obj3.getSkill();
-                        sproficiency3=obj3.getProficiency();
+                        skill3 = obj3.getSkill();
+                        sproficiency3 = obj3.getProficiency();
 
-                        skill4=obj4.getSkill();
-                        sproficiency4=obj4.getProficiency();
+                        skill4 = obj4.getSkill();
+                        sproficiency4 = obj4.getProficiency();
 
-                        skill5=obj5.getSkill();
-                        sproficiency5=obj5.getProficiency();
+                        skill5 = obj5.getSkill();
+                        sproficiency5 = obj5.getProficiency();
 
-                        skill6=obj6.getSkill();
-                        sproficiency6=obj6.getProficiency();
+                        skill6 = obj6.getSkill();
+                        sproficiency6 = obj6.getProficiency();
 
-                        skill7=obj7.getSkill();
-                        sproficiency7=obj7.getProficiency();
+                        skill7 = obj7.getSkill();
+                        sproficiency7 = obj7.getProficiency();
 
-                        skill8=obj8.getSkill();
-                        sproficiency8=obj8.getProficiency();
+                        skill8 = obj8.getSkill();
+                        sproficiency8 = obj8.getProficiency();
 
-                        skill9=obj9.getSkill();
-                        sproficiency9=obj9.getProficiency();
+                        skill9 = obj9.getSkill();
+                        sproficiency9 = obj9.getProficiency();
 
-                        skill10=obj10.getSkill();
-                        sproficiency10=obj10.getProficiency();
+                        skill10 = obj10.getSkill();
+                        sproficiency10 = obj10.getProficiency();
 
-                        skill11=obj11.getSkill();
-                        sproficiency11=obj11.getProficiency();
+                        skill11 = obj11.getSkill();
+                        sproficiency11 = obj11.getProficiency();
 
-                        skill12=obj12.getSkill();
-                        sproficiency12=obj12.getProficiency();
+                        skill12 = obj12.getSkill();
+                        sproficiency12 = obj12.getProficiency();
 
-                        skill13=obj13.getSkill();
-                        sproficiency13=obj13.getProficiency();
+                        skill13 = obj13.getSkill();
+                        sproficiency13 = obj13.getProficiency();
 
-                        skill14=obj14.getSkill();
-                        sproficiency14=obj14.getProficiency();
+                        skill14 = obj14.getSkill();
+                        sproficiency14 = obj14.getProficiency();
 
-                        skill15=obj15.getSkill();
-                        sproficiency15=obj15.getProficiency();
+                        skill15 = obj15.getSkill();
+                        sproficiency15 = obj15.getProficiency();
 
-                        skill16=obj16.getSkill();
-                        sproficiency16=obj16.getProficiency();
+                        skill16 = obj16.getSkill();
+                        sproficiency16 = obj16.getProficiency();
 
-                        skill17=obj17.getSkill();
-                        sproficiency17=obj17.getProficiency();
+                        skill17 = obj17.getSkill();
+                        sproficiency17 = obj17.getProficiency();
 
-                        skill18=obj18.getSkill();
-                        sproficiency18=obj18.getProficiency();
+                        skill18 = obj18.getSkill();
+                        sproficiency18 = obj18.getProficiency();
 
-                        skill19=obj19.getSkill();
-                        sproficiency19=obj19.getProficiency();
+                        skill19 = obj19.getSkill();
+                        sproficiency19 = obj19.getProficiency();
 
-                        skill20=obj20.getSkill();
-                        sproficiency20=obj20.getProficiency();
+                        skill20 = obj20.getSkill();
+                        sproficiency20 = obj20.getProficiency();
 
                         studentData.setSkill1(skill1);
                         studentData.setSproficiency1(sproficiency1);
@@ -1669,125 +2429,125 @@ public class MyProfileFragment extends Fragment {
                         studentData.setSkill20(skill20);
                         studentData.setSproficiency20(sproficiency20);
 
-                        if(!skill4.equals(""))
-                            skills_count=1;
+                        if (!skill4.equals(""))
+                            skills_count = 1;
 
-                        if(!skill5.equals(""))
-                            skills_count=2;
+                        if (!skill5.equals(""))
+                            skills_count = 2;
 
-                        if(!skill6.equals(""))
-                            skills_count=3;
+                        if (!skill6.equals(""))
+                            skills_count = 3;
 
-                        if(!skill7.equals(""))
-                            skills_count=4;
+                        if (!skill7.equals(""))
+                            skills_count = 4;
 
-                        if(!skill8.equals(""))
-                            skills_count=5;
+                        if (!skill8.equals(""))
+                            skills_count = 5;
 
-                        if(!skill9.equals(""))
-                            skills_count=6;
+                        if (!skill9.equals(""))
+                            skills_count = 6;
 
-                        if(!skill10.equals(""))
-                            skills_count=7;
+                        if (!skill10.equals(""))
+                            skills_count = 7;
 
-                        if(!skill11.equals(""))
-                            skills_count=8;
+                        if (!skill11.equals(""))
+                            skills_count = 8;
 
-                        if(!skill12.equals(""))
-                            skills_count=9;
+                        if (!skill12.equals(""))
+                            skills_count = 9;
 
-                        if(!skill13.equals(""))
-                            skills_count=10;
+                        if (!skill13.equals(""))
+                            skills_count = 10;
 
-                        if(!skill14.equals(""))
-                            skills_count=11;
+                        if (!skill14.equals(""))
+                            skills_count = 11;
 
-                        if(!skill15.equals(""))
-                            skills_count=12;
+                        if (!skill15.equals(""))
+                            skills_count = 12;
 
-                        if(!skill16.equals(""))
-                            skills_count=13;
+                        if (!skill16.equals(""))
+                            skills_count = 13;
 
-                        if(!skill17.equals(""))
-                            skills_count=14;
+                        if (!skill17.equals(""))
+                            skills_count = 14;
 
-                        if(!skill18.equals(""))
-                            skills_count=15;
+                        if (!skill18.equals(""))
+                            skills_count = 15;
 
-                        if(!skill19.equals(""))
-                            skills_count=16;
+                        if (!skill19.equals(""))
+                            skills_count = 16;
 
-                        if(!skill20.equals(""))
-                            skills_count=17;
+                        if (!skill20.equals(""))
+                            skills_count = 17;
 
 
                     }
-                    s=json.getString("honors");
-                    if(s.equals("found")) {
-                        found_honors=1;
+                    s = json.getString("honors");
+                    if (s.equals("found")) {
+                        found_honors = 1;
                         Log.d("TAG", " dataload found_honors :-" + found_honors);
-                        ArrayList<Honors> honorsList=(ArrayList<Honors>)fromString(json.getString("honorsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Honors> honorsList = (ArrayList<Honors>) fromString(json.getString("honorsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Honors obj1=honorsList.get(0);
-                        Honors obj2=honorsList.get(1);
-                        Honors obj3=honorsList.get(2);
-                        Honors obj4=honorsList.get(3);
-                        Honors obj5=honorsList.get(4);
-                        Honors obj6=honorsList.get(5);
-                        Honors obj7=honorsList.get(6);
-                        Honors obj8=honorsList.get(7);
-                        Honors obj9=honorsList.get(8);
-                        Honors obj10=honorsList.get(9);
+                        Honors obj1 = honorsList.get(0);
+                        Honors obj2 = honorsList.get(1);
+                        Honors obj3 = honorsList.get(2);
+                        Honors obj4 = honorsList.get(3);
+                        Honors obj5 = honorsList.get(4);
+                        Honors obj6 = honorsList.get(5);
+                        Honors obj7 = honorsList.get(6);
+                        Honors obj8 = honorsList.get(7);
+                        Honors obj9 = honorsList.get(8);
+                        Honors obj10 = honorsList.get(9);
 
-                        htitle1=obj1.getTitle();
-                        hissuer1=obj1.getIssuer();
-                        hdescription1=obj1.getDescription();
-                        yearofhonor1=obj1.getYearofhonor();
+                        htitle1 = obj1.getTitle();
+                        hissuer1 = obj1.getIssuer();
+                        hdescription1 = obj1.getDescription();
+                        yearofhonor1 = obj1.getYearofhonor();
 
-                        htitle2=obj2.getTitle();
-                        hissuer2=obj2.getIssuer();
-                        hdescription2=obj2.getDescription();
-                        yearofhonor2=obj2.getYearofhonor();
+                        htitle2 = obj2.getTitle();
+                        hissuer2 = obj2.getIssuer();
+                        hdescription2 = obj2.getDescription();
+                        yearofhonor2 = obj2.getYearofhonor();
 
-                        htitle3=obj3.getTitle();
-                        hissuer3=obj3.getIssuer();
-                        hdescription3=obj3.getDescription();
-                        yearofhonor3=obj3.getYearofhonor();
+                        htitle3 = obj3.getTitle();
+                        hissuer3 = obj3.getIssuer();
+                        hdescription3 = obj3.getDescription();
+                        yearofhonor3 = obj3.getYearofhonor();
 
-                        htitle4=obj4.getTitle();
-                        hissuer4=obj4.getIssuer();
-                        hdescription4=obj4.getDescription();
-                        yearofhonor4=obj4.getYearofhonor();
+                        htitle4 = obj4.getTitle();
+                        hissuer4 = obj4.getIssuer();
+                        hdescription4 = obj4.getDescription();
+                        yearofhonor4 = obj4.getYearofhonor();
 
-                        htitle5=obj5.getTitle();
-                        hissuer5=obj5.getIssuer();
-                        hdescription5=obj5.getDescription();
-                        yearofhonor5=obj5.getYearofhonor();
+                        htitle5 = obj5.getTitle();
+                        hissuer5 = obj5.getIssuer();
+                        hdescription5 = obj5.getDescription();
+                        yearofhonor5 = obj5.getYearofhonor();
 
-                        htitle6=obj6.getTitle();
-                        hissuer6=obj6.getIssuer();
-                        hdescription6=obj6.getDescription();
-                        yearofhonor6=obj6.getYearofhonor();
+                        htitle6 = obj6.getTitle();
+                        hissuer6 = obj6.getIssuer();
+                        hdescription6 = obj6.getDescription();
+                        yearofhonor6 = obj6.getYearofhonor();
 
-                        htitle7=obj7.getTitle();
-                        hissuer7=obj7.getIssuer();
-                        hdescription7=obj7.getDescription();
-                        yearofhonor7=obj7.getYearofhonor();
+                        htitle7 = obj7.getTitle();
+                        hissuer7 = obj7.getIssuer();
+                        hdescription7 = obj7.getDescription();
+                        yearofhonor7 = obj7.getYearofhonor();
 
-                        htitle8=obj8.getTitle();
-                        hissuer8=obj8.getIssuer();
-                        hdescription8=obj8.getDescription();
-                        yearofhonor8=obj8.getYearofhonor();
+                        htitle8 = obj8.getTitle();
+                        hissuer8 = obj8.getIssuer();
+                        hdescription8 = obj8.getDescription();
+                        yearofhonor8 = obj8.getYearofhonor();
 
-                        htitle9=obj9.getTitle();
-                        hissuer9=obj9.getIssuer();
-                        hdescription9=obj9.getDescription();
-                        yearofhonor9=obj9.getYearofhonor();
+                        htitle9 = obj9.getTitle();
+                        hissuer9 = obj9.getIssuer();
+                        hdescription9 = obj9.getDescription();
+                        yearofhonor9 = obj9.getYearofhonor();
 
-                        htitle10=obj10.getTitle();
-                        hissuer10=obj10.getIssuer();
-                        hdescription10=obj10.getDescription();
-                        yearofhonor10=obj10.getYearofhonor();
+                        htitle10 = obj10.getTitle();
+                        hissuer10 = obj10.getIssuer();
+                        hdescription10 = obj10.getDescription();
+                        yearofhonor10 = obj10.getYearofhonor();
 
                         studentData.setHtitle1(htitle1);
                         studentData.setHissuer1(hissuer1);
@@ -1830,142 +2590,141 @@ public class MyProfileFragment extends Fragment {
                         studentData.setHdescription10(hdescription10);
                         studentData.setYearofhonor10(yearofhonor10);
 
-                        if(!htitle4.equals(""))
-                            honor_count=1;
+                        if (!htitle4.equals(""))
+                            honor_count = 1;
 
-                        if(!htitle5.equals(""))
-                            honor_count=2;
-                        if(!htitle6.equals(""))
-                            honor_count=3;
-                        if(!htitle7.equals(""))
-                            honor_count=4;
-                        if(!htitle8.equals(""))
-                            honor_count=5;
-                        if(!htitle9.equals(""))
-                            honor_count=6;
-                        if(!htitle10.equals(""))
-                            honor_count=7;
-
+                        if (!htitle5.equals(""))
+                            honor_count = 2;
+                        if (!htitle6.equals(""))
+                            honor_count = 3;
+                        if (!htitle7.equals(""))
+                            honor_count = 4;
+                        if (!htitle8.equals(""))
+                            honor_count = 5;
+                        if (!htitle9.equals(""))
+                            honor_count = 6;
+                        if (!htitle10.equals(""))
+                            honor_count = 7;
 
 
                     }
 
-                    s=json.getString("patents");
-                    if(s.equals("found")) {
-                        found_patents=1;
+                    s = json.getString("patents");
+                    if (s.equals("found")) {
+                        found_patents = 1;
                         Log.d("TAG", " dataload found_patents :-" + found_patents);
-                        ArrayList<Patents> patentsList=(ArrayList<Patents>)fromString(json.getString("patentsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Patents> patentsList = (ArrayList<Patents>) fromString(json.getString("patentsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Patents obj1=patentsList.get(0);
-                        Patents obj2=patentsList.get(1);
-                        Patents obj3=patentsList.get(2);
-                        Patents obj4=patentsList.get(3);
-                        Patents obj5=patentsList.get(4);
-                        Patents obj6=patentsList.get(5);
-                        Patents obj7=patentsList.get(6);
-                        Patents obj8=patentsList.get(7);
-                        Patents obj9=patentsList.get(8);
-                        Patents obj10=patentsList.get(9);
+                        Patents obj1 = patentsList.get(0);
+                        Patents obj2 = patentsList.get(1);
+                        Patents obj3 = patentsList.get(2);
+                        Patents obj4 = patentsList.get(3);
+                        Patents obj5 = patentsList.get(4);
+                        Patents obj6 = patentsList.get(5);
+                        Patents obj7 = patentsList.get(6);
+                        Patents obj8 = patentsList.get(7);
+                        Patents obj9 = patentsList.get(8);
+                        Patents obj10 = patentsList.get(9);
 
-                        ptitle1= obj1.getTitle();
-                        pappno1= obj1.getAppno();
-                        pselectedcountry1= obj1.getPatoffice();
-                        pinventor1= obj1.getInventor();
-                        issuedorpending1= obj1.getIssuedorpending();
-                        pissue1= obj1.getIssue();
-                        pfiling1= obj1.getFiling();
-                        purl1= obj1.getUrl();
-                        pdescription1= obj1.getDescription();
+                        ptitle1 = obj1.getTitle();
+                        pappno1 = obj1.getAppno();
+                        pselectedcountry1 = obj1.getPatoffice();
+                        pinventor1 = obj1.getInventor();
+                        issuedorpending1 = obj1.getIssuedorpending();
+                        pissue1 = obj1.getIssue();
+                        pfiling1 = obj1.getFiling();
+                        purl1 = obj1.getUrl();
+                        pdescription1 = obj1.getDescription();
 
-                        ptitle2= obj2.getTitle();
-                        pappno2= obj2.getAppno();
-                        pselectedcountry2= obj2.getPatoffice();
-                        pinventor2= obj2.getInventor();
-                        issuedorpending2= obj2.getIssuedorpending();
-                        pissue2= obj2.getIssue();
-                        pfiling2= obj2.getFiling();
-                        purl2= obj2.getUrl();
-                        pdescription2= obj2.getDescription();
+                        ptitle2 = obj2.getTitle();
+                        pappno2 = obj2.getAppno();
+                        pselectedcountry2 = obj2.getPatoffice();
+                        pinventor2 = obj2.getInventor();
+                        issuedorpending2 = obj2.getIssuedorpending();
+                        pissue2 = obj2.getIssue();
+                        pfiling2 = obj2.getFiling();
+                        purl2 = obj2.getUrl();
+                        pdescription2 = obj2.getDescription();
 
-                        ptitle3= obj3.getTitle();
-                        pappno3= obj3.getAppno();
-                        pselectedcountry3= obj3.getPatoffice();
-                        pinventor3= obj3.getInventor();
-                        issuedorpending3= obj3.getIssuedorpending();
-                        pissue3= obj3.getIssue();
-                        pfiling3= obj3.getFiling();
-                        purl3= obj3.getUrl();
-                        pdescription3= obj3.getDescription();
+                        ptitle3 = obj3.getTitle();
+                        pappno3 = obj3.getAppno();
+                        pselectedcountry3 = obj3.getPatoffice();
+                        pinventor3 = obj3.getInventor();
+                        issuedorpending3 = obj3.getIssuedorpending();
+                        pissue3 = obj3.getIssue();
+                        pfiling3 = obj3.getFiling();
+                        purl3 = obj3.getUrl();
+                        pdescription3 = obj3.getDescription();
 
-                        ptitle4= obj4.getTitle();
-                        pappno4= obj4.getAppno();
-                        pselectedcountry4= obj4.getPatoffice();
-                        pinventor4= obj4.getInventor();
-                        issuedorpending4= obj4.getIssuedorpending();
-                        pissue4= obj4.getIssue();
-                        pfiling4= obj4.getFiling();
-                        purl4= obj4.getUrl();
-                        pdescription4= obj4.getDescription();
+                        ptitle4 = obj4.getTitle();
+                        pappno4 = obj4.getAppno();
+                        pselectedcountry4 = obj4.getPatoffice();
+                        pinventor4 = obj4.getInventor();
+                        issuedorpending4 = obj4.getIssuedorpending();
+                        pissue4 = obj4.getIssue();
+                        pfiling4 = obj4.getFiling();
+                        purl4 = obj4.getUrl();
+                        pdescription4 = obj4.getDescription();
 
-                        ptitle5= obj5.getTitle();
-                        pappno5= obj5.getAppno();
-                        pselectedcountry5= obj5.getPatoffice();
-                        pinventor5= obj5.getInventor();
-                        issuedorpending5= obj5.getIssuedorpending();
-                        pissue5= obj5.getIssue();
-                        pfiling5= obj5.getFiling();
-                        purl5= obj5.getUrl();
-                        pdescription5= obj5.getDescription();
+                        ptitle5 = obj5.getTitle();
+                        pappno5 = obj5.getAppno();
+                        pselectedcountry5 = obj5.getPatoffice();
+                        pinventor5 = obj5.getInventor();
+                        issuedorpending5 = obj5.getIssuedorpending();
+                        pissue5 = obj5.getIssue();
+                        pfiling5 = obj5.getFiling();
+                        purl5 = obj5.getUrl();
+                        pdescription5 = obj5.getDescription();
 
-                        ptitle6= obj6.getTitle();
-                        pappno6= obj6.getAppno();
-                        pselectedcountry6= obj6.getPatoffice();
-                        pinventor6= obj6.getInventor();
-                        issuedorpending6= obj6.getIssuedorpending();
-                        pissue6= obj6.getIssue();
-                        pfiling6= obj6.getFiling();
-                        purl6= obj6.getUrl();
-                        pdescription6= obj6.getDescription();
+                        ptitle6 = obj6.getTitle();
+                        pappno6 = obj6.getAppno();
+                        pselectedcountry6 = obj6.getPatoffice();
+                        pinventor6 = obj6.getInventor();
+                        issuedorpending6 = obj6.getIssuedorpending();
+                        pissue6 = obj6.getIssue();
+                        pfiling6 = obj6.getFiling();
+                        purl6 = obj6.getUrl();
+                        pdescription6 = obj6.getDescription();
 
-                        ptitle7= obj7.getTitle();
-                        pappno7= obj7.getAppno();
-                        pselectedcountry7= obj7.getPatoffice();
-                        pinventor7= obj7.getInventor();
-                        issuedorpending7= obj7.getIssuedorpending();
-                        pissue7= obj7.getIssue();
-                        pfiling7= obj7.getFiling();
-                        purl7= obj7.getUrl();
-                        pdescription7= obj7.getDescription();
+                        ptitle7 = obj7.getTitle();
+                        pappno7 = obj7.getAppno();
+                        pselectedcountry7 = obj7.getPatoffice();
+                        pinventor7 = obj7.getInventor();
+                        issuedorpending7 = obj7.getIssuedorpending();
+                        pissue7 = obj7.getIssue();
+                        pfiling7 = obj7.getFiling();
+                        purl7 = obj7.getUrl();
+                        pdescription7 = obj7.getDescription();
 
-                        ptitle8= obj8.getTitle();
-                        pappno8= obj8.getAppno();
-                        pselectedcountry8= obj8.getPatoffice();
-                        pinventor8= obj8.getInventor();
-                        issuedorpending8= obj8.getIssuedorpending();
-                        pissue8= obj8.getIssue();
-                        pfiling8= obj8.getFiling();
-                        purl8= obj8.getUrl();
-                        pdescription8= obj8.getDescription();
+                        ptitle8 = obj8.getTitle();
+                        pappno8 = obj8.getAppno();
+                        pselectedcountry8 = obj8.getPatoffice();
+                        pinventor8 = obj8.getInventor();
+                        issuedorpending8 = obj8.getIssuedorpending();
+                        pissue8 = obj8.getIssue();
+                        pfiling8 = obj8.getFiling();
+                        purl8 = obj8.getUrl();
+                        pdescription8 = obj8.getDescription();
 
-                        ptitle9= obj9.getTitle();
-                        pappno9= obj9.getAppno();
-                        pselectedcountry9= obj9.getPatoffice();
-                        pinventor9= obj9.getInventor();
-                        issuedorpending9= obj9.getIssuedorpending();
-                        pissue9= obj9.getIssue();
-                        pfiling9= obj9.getFiling();
-                        purl9= obj9.getUrl();
-                        pdescription9= obj9.getDescription();
+                        ptitle9 = obj9.getTitle();
+                        pappno9 = obj9.getAppno();
+                        pselectedcountry9 = obj9.getPatoffice();
+                        pinventor9 = obj9.getInventor();
+                        issuedorpending9 = obj9.getIssuedorpending();
+                        pissue9 = obj9.getIssue();
+                        pfiling9 = obj9.getFiling();
+                        purl9 = obj9.getUrl();
+                        pdescription9 = obj9.getDescription();
 
-                        ptitle10= obj10.getTitle();
-                        pappno10= obj10.getAppno();
-                        pselectedcountry10= obj10.getPatoffice();
-                        pinventor10= obj10.getInventor();
-                        issuedorpending10= obj10.getIssuedorpending();
-                        pissue10= obj10.getIssue();
-                        pfiling10= obj10.getFiling();
-                        purl10= obj10.getUrl();
-                        pdescription10= obj10.getDescription();
+                        ptitle10 = obj10.getTitle();
+                        pappno10 = obj10.getAppno();
+                        pselectedcountry10 = obj10.getPatoffice();
+                        pinventor10 = obj10.getInventor();
+                        issuedorpending10 = obj10.getIssuedorpending();
+                        pissue10 = obj10.getIssue();
+                        pfiling10 = obj10.getFiling();
+                        purl10 = obj10.getUrl();
+                        pdescription10 = obj10.getDescription();
 
                         studentData.setPtitle1(ptitle1);
                         studentData.setPappno1(pappno1);
@@ -2058,112 +2817,112 @@ public class MyProfileFragment extends Fragment {
                         studentData.setPselectedcountry10(pselectedcountry10);
                         studentData.setIssuedorpending10(issuedorpending10);
 
-                        if(!ptitle4.equals(""))
-                            patent_count=1;
+                        if (!ptitle4.equals(""))
+                            patent_count = 1;
 
-                        if(!ptitle5.equals(""))
-                            patent_count=2;
-                        if(!ptitle6.equals(""))
-                            patent_count=3;
-                        if(!ptitle7.equals(""))
-                            patent_count=4;
-                        if(!ptitle8.equals(""))
-                            patent_count=5;
-                        if(!ptitle9.equals(""))
-                            patent_count=6;
-                        if(!ptitle10.equals(""))
-                            patent_count=7;
+                        if (!ptitle5.equals(""))
+                            patent_count = 2;
+                        if (!ptitle6.equals(""))
+                            patent_count = 3;
+                        if (!ptitle7.equals(""))
+                            patent_count = 4;
+                        if (!ptitle8.equals(""))
+                            patent_count = 5;
+                        if (!ptitle9.equals(""))
+                            patent_count = 6;
+                        if (!ptitle10.equals(""))
+                            patent_count = 7;
 
                     }
-                    s=json.getString("publications");
-                    if(s.equals("found")) {
-                        found_publications=1;
+                    s = json.getString("publications");
+                    if (s.equals("found")) {
+                        found_publications = 1;
                         Log.d("TAG", " dataload found_publications :-" + found_publications);
-                        ArrayList<Publications> publicationsList=(ArrayList<Publications>)fromString(json.getString("publicationsdata"),MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
+                        ArrayList<Publications> publicationsList = (ArrayList<Publications>) fromString(json.getString("publicationsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-                        Publications obj1=publicationsList.get(0);
-                        Publications obj2=publicationsList.get(1);
-                        Publications obj3=publicationsList.get(2);
-                        Publications obj4=publicationsList.get(3);
-                        Publications obj5=publicationsList.get(4);
-                        Publications obj6=publicationsList.get(5);
-                        Publications obj7=publicationsList.get(6);
-                        Publications obj8=publicationsList.get(7);
-                        Publications obj9=publicationsList.get(8);
-                        Publications obj10=publicationsList.get(9);
+                        Publications obj1 = publicationsList.get(0);
+                        Publications obj2 = publicationsList.get(1);
+                        Publications obj3 = publicationsList.get(2);
+                        Publications obj4 = publicationsList.get(3);
+                        Publications obj5 = publicationsList.get(4);
+                        Publications obj6 = publicationsList.get(5);
+                        Publications obj7 = publicationsList.get(6);
+                        Publications obj8 = publicationsList.get(7);
+                        Publications obj9 = publicationsList.get(8);
+                        Publications obj10 = publicationsList.get(9);
 
                         pubtitle1 = obj1.getTitle();
                         publication1 = obj1.getPublication();
                         author1 = obj1.getAuthor();
                         publicationdate1 = obj1.getPublicationdate();
                         puburl1 = obj1.getUrl();
-                        pubdescription1= obj1.getDescription();
+                        pubdescription1 = obj1.getDescription();
 
                         pubtitle2 = obj2.getTitle();
                         publication2 = obj2.getPublication();
                         author2 = obj2.getAuthor();
                         publicationdate2 = obj2.getPublicationdate();
                         puburl2 = obj2.getUrl();
-                        pubdescription2= obj2.getDescription();
+                        pubdescription2 = obj2.getDescription();
 
 
-                        Log.d("TAG", "doInBackground: puburl2 - "+puburl2);
+                        Log.d("TAG", "doInBackground: puburl2 - " + puburl2);
 
                         pubtitle3 = obj3.getTitle();
                         publication3 = obj3.getPublication();
                         author3 = obj3.getAuthor();
                         publicationdate3 = obj3.getPublicationdate();
                         puburl3 = obj3.getUrl();
-                        pubdescription3= obj3.getDescription();
+                        pubdescription3 = obj3.getDescription();
 
                         pubtitle4 = obj4.getTitle();
                         publication4 = obj4.getPublication();
                         author4 = obj4.getAuthor();
                         publicationdate4 = obj4.getPublicationdate();
                         puburl4 = obj4.getUrl();
-                        pubdescription4= obj4.getDescription();
+                        pubdescription4 = obj4.getDescription();
 
                         pubtitle5 = obj5.getTitle();
                         publication5 = obj5.getPublication();
                         author5 = obj5.getAuthor();
                         publicationdate5 = obj5.getPublicationdate();
                         puburl5 = obj5.getUrl();
-                        pubdescription5= obj5.getDescription();
+                        pubdescription5 = obj5.getDescription();
 
                         pubtitle6 = obj6.getTitle();
                         publication6 = obj6.getPublication();
                         author6 = obj6.getAuthor();
                         publicationdate6 = obj6.getPublicationdate();
                         puburl6 = obj6.getUrl();
-                        pubdescription6= obj6.getDescription();
+                        pubdescription6 = obj6.getDescription();
 
                         pubtitle7 = obj7.getTitle();
                         publication7 = obj7.getPublication();
                         author7 = obj7.getAuthor();
                         publicationdate7 = obj7.getPublicationdate();
                         puburl7 = obj7.getUrl();
-                        pubdescription7= obj7.getDescription();
+                        pubdescription7 = obj7.getDescription();
 
                         pubtitle8 = obj8.getTitle();
                         publication8 = obj8.getPublication();
                         author8 = obj8.getAuthor();
                         publicationdate8 = obj8.getPublicationdate();
                         puburl8 = obj8.getUrl();
-                        pubdescription8= obj8.getDescription();
+                        pubdescription8 = obj8.getDescription();
 
                         pubtitle9 = obj9.getTitle();
                         publication9 = obj9.getPublication();
                         author9 = obj9.getAuthor();
                         publicationdate9 = obj9.getPublicationdate();
                         puburl9 = obj9.getUrl();
-                        pubdescription9= obj9.getDescription();
+                        pubdescription9 = obj9.getDescription();
 
                         pubtitle10 = obj10.getTitle();
                         publication10 = obj10.getPublication();
                         author10 = obj10.getAuthor();
                         publicationdate10 = obj10.getPublicationdate();
                         puburl10 = obj10.getUrl();
-                        pubdescription10= obj10.getDescription();
+                        pubdescription10 = obj10.getDescription();
 
                         studentData.setPubtitle1(pubtitle1);
                         studentData.setPublication1(publication1);
@@ -2229,20 +2988,20 @@ public class MyProfileFragment extends Fragment {
                         studentData.setPuburl10(puburl10);
                         studentData.setPubdescription10(pubdescription10);
 
-                        if(!pubtitle4.equals(""))
-                            public_count=1;
-                        if(!pubtitle5.equals(""))
-                            public_count=2;
-                        if(!pubtitle6.equals(""))
-                            public_count=3;
-                        if(!pubtitle7.equals(""))
-                           public_count=4;
-                        if(!pubtitle8.equals(""))
-                            public_count=5;
-                        if(!pubtitle9.equals(""))
-                            public_count=6;
-                        if(!pubtitle10.equals(""))
-                            public_count=7;
+                        if (!pubtitle4.equals(""))
+                            public_count = 1;
+                        if (!pubtitle5.equals(""))
+                            public_count = 2;
+                        if (!pubtitle6.equals(""))
+                            public_count = 3;
+                        if (!pubtitle7.equals(""))
+                            public_count = 4;
+                        if (!pubtitle8.equals(""))
+                            public_count = 5;
+                        if (!pubtitle9.equals(""))
+                            public_count = 6;
+                        if (!pubtitle10.equals(""))
+                            public_count = 7;
 
                     }
                     s = json.getString("personal");
@@ -2284,9 +3043,8 @@ public class MyProfileFragment extends Fragment {
                         sports = obj2.sports;
                         defenceex = obj2.defenceex;
 
-                        Log.d("TAG", "doInBackground: personal - "+fname);
-                        Log.d("TAG", "doInBackground: personal - "+lname);
-
+                        Log.d("TAG", "doInBackground: personal - " + fname);
+                        Log.d("TAG", "doInBackground: personal - " + lname);
 
 
                         studentData.setFname(fname);
@@ -2328,7 +3086,6 @@ public class MyProfileFragment extends Fragment {
                         studentData.setDefenceex(defenceex);
 
 
-
                     }
                     s = json.getString("contact_details");
                     if (s.equals("found")) {
@@ -2349,15 +3106,14 @@ public class MyProfileFragment extends Fragment {
                         addressline3 = obj2.getAddressline3();
 
 
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- "+fname);
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- "+lname);
-                        Log.d("TAG", "doInBackground: telephone -"+telephone);
-                        Log.d("TAG", "doInBackground: phone -"+phone);
-                        Log.d("TAG", "doInBackground: mobile2 -"+mobile2);
-                        Log.d("TAG", "doInBackground: addressline1 -"+addressline1);
-                        Log.d("TAG", "doInBackground: addressline2 -"+addressline2);
-                        Log.d("TAG", "doInBackground: addressline3 -"+addressline3);
-
+                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + fname);
+                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + lname);
+                        Log.d("TAG", "doInBackground: telephone -" + telephone);
+                        Log.d("TAG", "doInBackground: phone -" + phone);
+                        Log.d("TAG", "doInBackground: mobile2 -" + mobile2);
+                        Log.d("TAG", "doInBackground: addressline1 -" + addressline1);
+                        Log.d("TAG", "doInBackground: addressline2 -" + addressline2);
+                        Log.d("TAG", "doInBackground: addressline3 -" + addressline3);
 
 
                         studentData.setFname(fname);
@@ -2370,7 +3126,6 @@ public class MyProfileFragment extends Fragment {
                         studentData.setAddressline2(addressline2);
                         studentData.setAddressline3(addressline3);
                     }
-
 
 
                 }
@@ -2404,773 +3159,6 @@ public class MyProfileFragment extends Fragment {
             }
         }
 
-    }
-
-    void populateData() {
-        Log.d("TAG", "populateData: welcome to populate");
-        if (resultofop.equals("found")) {
-            if (!ucode.equals(""))
-                myprofilepreview.setText(ucode);
-
-            if (phone != null) {
-                if (!phone.equals("")) {
-                    contactmobile.setText(phone);
-                }
-            }
-        }
-
-        if (found_contact_details == 1) {
-            if (!addressline1.equals("")) {
-                contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
-                percentProfile++;
-            }
-            if (phone != null) {
-                if (!phone.equals("")) {
-                    contactmobile.setText(phone);
-                }
-            }
-        }
-
-        if (found_box1 == 1) {
-            if (!fname.equals("") && !lname.equals("")) {
-                myprofilename.setText(fname + " " + lname);
-                nametxt.setText(fname + " " + lname);
-                percentProfile++;
-            }
-
-            if (!country.equals("") && !state.equals("") && !city.equals("")) {
-                myprofilloc.setText(city + ", " + state + ", " + country);
-                percentProfile++;
-            }
-        }
-        if (found_tenth == 1) {
-            if (!board10.equals("")) {
-
-                noedutab.setVisibility(View.GONE);
-                edutab3.setVisibility(View.VISIBLE);
-
-                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                HashMap<String, Integer> map = new HashMap(source);
-
-                map.put("Jan", 1);
-                map.put("Feb", 2);
-                map.put("Mar", 3);
-                map.put("Apr", 4);
-                map.put("May", 5);
-                map.put("Jun", 6);
-                map.put("Jul", 7);
-                map.put("Aug", 8);
-                map.put("Sep", 9);
-                map.put("Oct", 10);
-                map.put("Nov", 11);
-                map.put("Dec", 12);
-
-                Date date = new Date();
-
-                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                String currentMonth = sdfm.format(date);
-                String currentYears = sdfy.format(date);
-
-                String month = "", years = "";
-
-                for (int i = 0; i < yearofpassing10.length() - 6; i++) {
-                    month += yearofpassing10.charAt(i);
-                }
-                for (int i = 5; i < yearofpassing10.length(); i++) {
-                    years += yearofpassing10.charAt(i);
-                }
-
-                int currentYear = Integer.parseInt(currentYears);
-                int year = Integer.parseInt(years);
-
-                if (currentYear > year)
-                    myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
-                else if (currentYear == year) {
-                    if (map.get(currentMonth) > map.get(month)) {
-                        myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
-                    } else {
-                        myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
-                        myprofiledu.setText("Std. X  (" + board10 + ")");
-                    }
-                } else {
-                    myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
-                    myprofiledu.setText("Std. X  (" + board10 + ")");
-                }
-
-                if (!schoolname10.equals(""))
-                    myprofileclgname3.setText(schoolname10);
-                if (!yearofpassing10.equals(""))
-                    myprofileclgyearofpassing3.setText(yearofpassing10);
-                percentProfile++;
-            }
-        }
-        if (found_twelth == 1) {
-
-            Log.d("TAG", "populateData: twelth data  found_twelth "+found_twelth);
-
-            if (!schoolname12.equals("")) {
-
-                noedutab.setVisibility(View.GONE);
-                edutab2.setVisibility(View.VISIBLE);
-
-                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                HashMap<String, Integer> map = new HashMap(source);
-
-                map.put("Jan", 1);
-                map.put("Feb", 2);
-                map.put("Mar", 3);
-                map.put("Apr", 4);
-                map.put("May", 5);
-                map.put("Jun", 6);
-                map.put("Jul", 7);
-                map.put("Aug", 8);
-                map.put("Sep", 9);
-                map.put("Oct", 10);
-                map.put("Nov", 11);
-                map.put("Dec", 12);
-
-                Date date = new Date();
-
-                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                String currentMonth = sdfm.format(date);
-                String currentYears = sdfy.format(date);
-
-                String month = "", years = "";
-
-                for (int i = 0; i < yearofpassing12.length() - 6; i++) {
-                    month += yearofpassing12.charAt(i);
-                }
-                for (int i = 5; i < yearofpassing12.length(); i++) {
-                    years += yearofpassing12.charAt(i);
-                }
-
-                int currentYear = Integer.parseInt(currentYears);
-                int year = Integer.parseInt(years);
-
-                if (currentYear > year)
-                    myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
-                else if (currentYear == year) {
-                    if (map.get(currentMonth) > map.get(month)) {
-                        myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
-                    } else {
-                        myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
-                        myprofiledu.setText("Std. XII (" + board12 + ")");
-                    }
-                } else {
-                    myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
-                    myprofiledu.setText("Std. XII (" + board12 + ")");
-                }
-
-                if (!schoolname12.equals(""))
-                    myprofileclgname2.setText(schoolname12);
-                if (!yearofpassing12.equals(""))
-                    myprofileclgyearofpassing2.setText(yearofpassing12);
-                percentProfile++;
-            }
-        }
-        if (found_diploma == 1) {
-            Log.d("TAG", "populateData: welcome to diploma");
-            if (!collegenamediploma.equals("")) {
-
-                noedutab.setVisibility(View.GONE);
-                edutab2.setVisibility(View.VISIBLE);
-
-                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                HashMap<String, Integer> map = new HashMap(source);
-
-                map.put("Jan", 1);
-                map.put("Feb", 2);
-                map.put("Mar", 3);
-                map.put("Apr", 4);
-                map.put("May", 5);
-                map.put("Jun", 6);
-                map.put("Jul", 7);
-                map.put("Aug", 8);
-                map.put("Sep", 9);
-                map.put("Oct", 10);
-                map.put("Nov", 11);
-                map.put("Dec", 12);
-
-                Date date = new Date();
-
-                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                String currentMonth = sdfm.format(date);
-                String currentYears = sdfy.format(date);
-
-                String month = "", years = "";
-
-                for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
-                    month += yearofpassingdiploma.charAt(i);
-                }
-                for (int i = 5; i < yearofpassingdiploma.length(); i++) {
-                    years += yearofpassingdiploma.charAt(i);
-                }
-
-                int currentYear = Integer.parseInt(currentYears);
-                int year = Integer.parseInt(years);
-                if (currentYear > year)
-                    myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
-                else if (currentYear == year) {
-                    if (map.get(currentMonth) > map.get(month)) {
-                        myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
-                    } else {
-                        myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
-                        myprofiledu.setText("Diploma (" + coursediploma + ")");
-                    }
-                } else {
-                    myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
-                    myprofiledu.setText("Diploma (" + coursediploma + ")");
-                }
-
-                if (!collegenamediploma.equals(""))
-                    myprofileclgname2.setText(collegenamediploma);
-                if (!yearofpassingdiploma.equals(""))
-                    myprofileclgyearofpassing2.setText(yearofpassingdiploma);
-            }
-            percentProfile++;
-        }
-
-        if (found_ug == 1) {
-            if (!collegenameug.equals("")) {
-
-                noedutab.setVisibility(View.GONE);
-                edutab1.setVisibility(View.VISIBLE);
-
-                percentProfile++;
-                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                HashMap<String, Integer> map = new HashMap(source);
-
-                map.put("Jan", 1);
-                map.put("Feb", 2);
-                map.put("Mar", 3);
-                map.put("Apr", 4);
-                map.put("May", 5);
-                map.put("Jun", 6);
-                map.put("Jul", 7);
-                map.put("Aug", 8);
-                map.put("Sep", 9);
-                map.put("Oct", 10);
-                map.put("Nov", 11);
-                map.put("Dec", 12);
-
-                Date date = new Date();
-
-                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                String currentMonth = sdfm.format(date);
-                String currentYears = sdfy.format(date);
-
-                String month = "", years = "";
-
-                for (int i = 0; i < yearofpassingug.length() - 6; i++) {
-                    month += yearofpassingug.charAt(i);
-                }
-                for (int i = 5; i < yearofpassingug.length(); i++) {
-                    years += yearofpassingug.charAt(i);
-                }
-
-                int currentYear = Integer.parseInt(currentYears);
-                int year = Integer.parseInt(years);
-
-                if (currentYear > year) {
-                    myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
-                } else if (currentYear == year) {
-                    if (map.get(currentMonth) > map.get(month)) {
-                        myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
-                    } else {
-                        myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
-                        myprofiledu.setText(courseug + " (" + streamug + ")");
-                    }
-
-                } else {
-                    myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
-                    myprofiledu.setText(courseug + " (" + streamug + ")");
-                }
-
-                myprofileclgname.setText(collegenameug);
-                myprofileclgyearofpassing.setText(yearofpassingug);
-
-
-                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                insti4.setVisibility(View.GONE);
-                edutab4.setVisibility(View.GONE);
-            }
-        }
-        if (found_pgsem == 1) {
-            Log.d("TAG", "populateData: universitypgsem"+universitypgsem);
-            if (!collegenamepgsem.equals("")) {
-
-                noedutab.setVisibility(View.GONE);
-                edutab4.setVisibility(View.VISIBLE);
-
-                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                HashMap<String, Integer> map = new HashMap(source);
-
-                map.put("Jan", 1);
-                map.put("Feb", 2);
-                map.put("Mar", 3);
-                map.put("Apr", 4);
-                map.put("May", 5);
-                map.put("Jun", 6);
-                map.put("Jul", 7);
-                map.put("Aug", 8);
-                map.put("Sep", 9);
-                map.put("Oct", 10);
-                map.put("Nov", 11);
-                map.put("Dec", 12);
-
-                Date date = new Date();
-
-                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                String currentMonth = sdfm.format(date);
-                String currentYears = sdfy.format(date);
-
-                String month = "", years = "";
-
-                for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
-                    month += yearofpassingpgsem.charAt(i);
-                }
-                for (int i = 5; i < yearofpassingpgsem.length(); i++) {
-                    years += yearofpassingpgsem.charAt(i);
-                }
-                int currentYear = Integer.parseInt(currentYears);
-                int year = Integer.parseInt(years);
-
-
-                if (currentYear > year)
-                    myprofilecource4.setText("Attended " + coursepgsem + " at");
-
-                else if (currentYear == year) {
-                    if (map.get(currentMonth) > map.get(month)) {
-                        myprofilecource4.setText("Attended " + coursepgsem + " at");
-                    } else {
-                        myprofilecource4.setText("Attending " + coursepgsem + " at");
-                        myprofiledu.setText(coursepgsem);
-                    }
-                } else {
-                    myprofilecource4.setText("Attending " + coursepgsem + " at");
-                    myprofiledu.setText(coursepgsem);
-                }
-
-                myprofileclgname4.setText(collegenamepgsem);
-                myprofileclgyearofpassing4.setText(yearofpassingpgsem);
-
-                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                insti4.setVisibility(View.VISIBLE);
-                edutab4.setVisibility(View.VISIBLE);
-            }
-        }
-
-        if (found_projects == 1) {
-
-            if (!proj1.equals("")) {
-                percentProfile++;
-                if (!proj1.equals("")) {
-
-                    myprofileproj1.setText(proj1);
-                    myprofiledomain1.setText(domain1);
-                    myprofileduration1.setText(duration1 + " Months");
-
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                    gear2.setVisibility(View.GONE);
-                    projtab2.setVisibility(View.GONE);
-
-                    gear3.setVisibility(View.GONE);
-                    projtab3.setVisibility(View.GONE);
-
-                    noprojtab.setVisibility(View.GONE);
-                    projtab1.setVisibility(View.VISIBLE);
-
-
-                }
-
-                if (!proj2.equals("")) {
-                    myprofileproj2.setText(proj2);
-                    myprofiledomain2.setText(domain2);
-                    myprofileduration2.setText(duration2 + " Months");
-
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                    gear2.setVisibility(View.VISIBLE);
-                    projtab2.setVisibility(View.VISIBLE);
-                    gear3.setVisibility(View.GONE);
-                    projtab3.setVisibility(View.GONE);
-
-                    noprojtab.setVisibility(View.GONE);
-                }
-                if (!proj3.equals("")) {
-                    myprofileproj3.setText(proj3);
-                    myprofiledomain3.setText(domain3);
-                    myprofileduration3.setText(duration3 + " Months");
-
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                    gear2.setVisibility(View.VISIBLE);
-                    projtab2.setVisibility(View.VISIBLE);
-
-                    gear3.setVisibility(View.VISIBLE);
-                    projtab3.setVisibility(View.VISIBLE);
-
-                    noprojtab.setVisibility(View.GONE);
-
-                    if (!proj4.equals("")) {
-                        extraprojectscount.setVisibility(View.VISIBLE);
-                        extraprojectscount.setText("and " + proj_count + " more");
-                    }
-                }
-            }
-            else
-            {
-                noprojtab.setVisibility(View.VISIBLE);
-                projtab1.setVisibility(View.GONE);
-                projtab2.setVisibility(View.GONE);
-                projtab3.setVisibility(View.GONE);
-                extraprojectscount.setVisibility(View.GONE);
-            }
-        }
-
-        if (found_lang == 1) {
-
-            if(!lang1.equals("- Select Language -")) {
-                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1);
-
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2);
-
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -")) {
-                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and " + lang_count + " more");
-                    Log.d("TAG", "populateData: lang_count - " + lang_count);
-                }
-
-                percentProfile++;
-            }
-            else
-            {
-                acc1txttxt.setText("No known languages filled.");
-            }
-        }
-        if (found_certificates == 1) {
-
-            if (!title1.equals("")){
-                percentProfile++;
-
-            if (!title1.equals(""))
-                acc2txttxt.setText(title1);
-            if (!title1.equals("") && !title2.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2);
-            if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
-            if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " and "+ cert_count +" more");
-            Log.d("TAG", "populateData: certcount - "+cert_count);
-            }
-            else
-            {
-                acc2txttxt.setText("No certifications filled.");
-            }
-        }
-        if (found_courses == 1) {
-            if (!title1.equals("")){
-                percentProfile++;
-                if (!course1.equals(""))
-                acc3txttxt.setText(course1);
-            if (!course1.equals("") && !course2.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2);
-            if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
-            if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and "+ courses_count +" more");
-            Log.d("TAG", "populateData: course - "+courses_count);
-
-            }
-            else
-            {
-                acc3txttxt.setText("No skills filled.");
-            }
-        }
-        if (found_skills == 1) {
-
-
-                if(!skill1.equals("")) {
-
-                    percentProfile++;
-                if (!skill1.equals(""))
-                    acc4txttxt.setText(skill1);
-                if (!skill1.equals("") && !skill2.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2);
-                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
-                Log.d("TAG", "populateData: skills_count - " + skills_count);
-                percentProfile++;
-            }
-            else {
-                acc4txttxt.setText("No skills filled.");
-            }
-        }
-        if (found_honors == 1) {
-            percentProfile++;
-            if(!htitle1.equals("")) {
-                if (!htitle1.equals(""))
-                    acc5txttxt.setText(htitle1);
-                if (!htitle1.equals("") && !htitle2.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2);
-                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and " + honor_count + " more");
-                Log.d("TAG", "populateData: honor_count - " + honor_count);
-            }
-            else {
-                acc5txttxt.setText("No awards filled.");
-            }
-
-        }
-        if (found_patents == 1) {
-            if(!ptitle1.equals("")) {
-                percentProfile++;
-            if (!ptitle1.equals(""))
-                acc6txttxt.setText(ptitle1);
-            if (!ptitle1.equals("") && !ptitle2.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
-            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
-            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and "+ patent_count +" more");
-            }
-            else {
-                acc6txttxt.setText("No patents filled.");
-            }
-
-        }
-        if (found_publications == 1) {
-            if(!pubtitle1.equals("")) {
-                percentProfile++;
-                if (!pubtitle1.equals(""))
-                acc7txttxt.setText(pubtitle1);
-            if (!pubtitle1.equals("") && !pubtitle2.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
-            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
-            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ public_count +" more");
-            }
-            else {
-                acc7txttxt.setText("No publications filled.");
-            }
-
-        }
-
-
-        if (found_careerobj == 1) {
-            if (!careerobj.equals(""))
-                careerobjtxttxt.setText(careerobj);
-            percentProfile++;
-        }
-        if (found_strengths == 1) {
-            if(!strength1.equals("")) {
-            if (!strength1.equals(""))
-                strengthstxt.setText(strength1);
-            if (!strength1.equals("") && !strength2.equals(""))
-                strengthstxt.setText(strength1 + ", " + strength2);
-            if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
-                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
-            if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
-                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " and "+ strength_count +" more");
-            percentProfile++;
-            }
-            else {
-                strengthstxt.setText("No Strengths filled.");
-            }
-
-        }
-        if (found_weaknesses == 1) {
-
-            if(!weak1.equals("")) {
-
-                if (!weak1.equals(""))
-                weaknessestxt.setText(weak1);
-            if (!weak1.equals("") && !weak2.equals(""))
-                weaknessestxt.setText(weak1 + ", " + weak2);
-            if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
-                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
-            if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
-                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " and "+ weakness_count +" more");
-            percentProfile++;
-
-            }
-            else {
-                weaknessestxt.setText("No Weaknesses filled.");
-            }
-
-        }
-        if (found_locationpreferences == 1) {
-            if(!location1.equals("")) {
-
-                if (!location1.equals(""))
-                locationpreferences.setText(location1);
-            if (!location1.equals("") && !location2.equals(""))
-                locationpreferences.setText(location1 + ", " + location2);
-            if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
-                locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
-            if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
-                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " and "+ location_count +" more");
-            percentProfile++;
-            }
-            else {
-                locationpreferences.setText("No location preferences filled.");
-            }
-
-        }
-
-        if (found_pgyear == 1) {
-            Log.d("TAG", "populateData: universitypgyear"+universitypgyear);
-            if (!collegenamepgyear.equals("")) {
-
-                noedutab.setVisibility(View.GONE);
-                edutab4.setVisibility(View.VISIBLE);
-
-                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                HashMap<String, Integer> map = new HashMap(source);
-
-                map.put("Jan", 1);
-                map.put("Feb", 2);
-                map.put("Mar", 3);
-                map.put("Apr", 4);
-                map.put("May", 5);
-                map.put("Jun", 6);
-                map.put("Jul", 7);
-                map.put("Aug", 8);
-                map.put("Sep", 9);
-                map.put("Oct", 10);
-                map.put("Nov", 11);
-                map.put("Dec", 12);
-
-                Date date = new Date();
-
-                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                String currentMonth = sdfm.format(date);
-                String currentYears = sdfy.format(date);
-
-                String month = "", years = "";
-
-                for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
-                    month += yearofpassingpgyear.charAt(i);
-                }
-                for (int i = 5; i < yearofpassingpgyear.length(); i++) {
-                    years += yearofpassingpgyear.charAt(i);
-                }
-                int currentYear = Integer.parseInt(currentYears);
-                int year = Integer.parseInt(years);
-
-                if (currentYear > year)
-                    myprofilecource4.setText("Attended " + coursepgyear + " at");
-                else if (currentYear == year) {
-                    if (map.get(currentMonth) > map.get(month)) {
-                        myprofilecource4.setText("Attended " + coursepgyear + " at");
-                    } else {
-                        myprofilecource4.setText("Attending " + coursepgyear + " at");
-                        myprofiledu.setText(coursepgyear);
-                    }
-                } else {
-                    myprofilecource4.setText("Attending " + coursepgsem + " at");
-                    myprofiledu.setText(coursepgyear);
-                }
-
-                myprofileclgname4.setText(collegenamepgyear);
-                myprofileclgyearofpassing4.setText(yearofpassingpgyear);
-
-                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                insti4.setVisibility(View.VISIBLE);
-                edutab4.setVisibility(View.VISIBLE);
-            }
-        }
-
-        if (myprofiledu.getText().toString().equals("Current Education"))
-            myprofiledu.setVisibility(View.GONE);
-        else
-            myprofiledu.setVisibility(View.VISIBLE);
-
-
-        float R = (1000 - 0) / (15 - 0);
-        float y = (percentProfile - 0) * R + 0;
-        int val = Math.round(y);
-
-        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
-        progressAnimator.setDuration(700);
-        progressAnimator.setInterpolator(new LinearInterpolator());
-        progressAnimator.start();
-
-
-
-
-
-    }
-
-
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
-
-        // HW layer support only exists on API 11+
-        if (Build.VERSION.SDK_INT >= 11) {
-            if (animation == null && nextAnim != 0) {
-                animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
-            }
-
-            if (animation != null) {
-                getView().setLayerType(View.LAYER_TYPE_HARDWARE, null);
-
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    public void onAnimationEnd(Animation animation) {
-                        getView().setLayerType(View.LAYER_TYPE_NONE, null);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-
-                });
-            }
-        }
-
-        return animation;
     }
 
     class DeleteProfile extends AsyncTask<String, String, String> {
@@ -3210,56 +3198,52 @@ public class MyProfileFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(final Activity activity) {
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
 
-        super.onAttach(activity);
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
 
-        setHasOptionsMenu(true);
+        @Override
+        protected void onPostExecute(String result) {
+
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(getActivity())
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            updateProgress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            updateProgress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                    })
+                    .into(myprofileimg);
+        }
     }
-
-    @Override
-    public void onPrepareOptionsMenu(final Menu menu) {
-
-        super.onPrepareOptionsMenu(menu);
-
-        menu.clear();
-    }
-
-
-    private void downloadImage() {
-
-        String t = String.valueOf(System.currentTimeMillis());
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
-
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        updateProgress.setVisibility(View.GONE);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        updateProgress.setVisibility(View.GONE);
-                        return false;
-                    }
-
-                })
-                .into(myprofileimg);
-
-
-    }
-
 
 }
 

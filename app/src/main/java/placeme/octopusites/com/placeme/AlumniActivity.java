@@ -70,9 +70,6 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback
 {
     //
-
-
-    
 //placement variable
 
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
@@ -208,6 +205,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         tabLayout.setupWithViewPager(mViewPager);
 
         username = MySharedPreferencesManager.getUsername(this);
+        Log.d("***", "onCreate: username"+username);
         pass=MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -242,7 +240,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 }
         );
 
-        username=getIntent().getStringExtra("username");
+//        username=getIntent().getStringExtra("username");
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
@@ -2965,7 +2963,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             mainfragment.setVisibility(View.VISIBLE);
             MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
 //            fragment.showUpdateProgress();
-            new UploadProfile().execute();
+            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -3023,6 +3021,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             try {
                 File sourceFile = new File(filepath);
                 MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                Log.d("***", "UploadProfile : input  username "+username);
                 multipart.addFormField("u", username);
                 if(filename!="") {
                     multipart.addFormField("f", filename);
@@ -3047,22 +3046,23 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             //           tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if(response.get(0).contains("success")) {
+            if(response != null && response.get(0).contains("success")) {
 
                 MySharedPreferencesManager.save(AlumniActivity.this,"crop", "no");
-                Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-//                fragment.refreshContent();
+                fragment.downloadImage();
+                Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 DeleteRecursive(new File(directory));
             }
-            else if(response.get(0).contains("null"))
+            else if(response != null && response.get(0).contains("null"))
             {
                 requestProfileImage();
                 MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
 //                fragment.refreshContent();
                 Toast.makeText(AlumniActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
+            }else
+                Toast.makeText(AlumniActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
 
         }
         void DeleteRecursive(File fileOrDirectory) {
@@ -3085,21 +3085,43 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     private void downloadImage() {
 
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
+    }
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
+    class Getsingnature extends AsyncTask<String, String, String> {
 
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profile);
+        String signature="";
+        protected String doInBackground(String... param) {
 
-        Log.d("TAG", "downloadImage: called from activity "+username);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json "+json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {}
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("TAG", "downloadImage signature : "+signature);
+//        String t = String.valueOf(System.currentTimeMillis());
+
+            Log.d("TAG", "downloadImage: GetImage username "+username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            GlideApp.with(AlumniActivity.this)
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(profile);
+        }
     }
 
 

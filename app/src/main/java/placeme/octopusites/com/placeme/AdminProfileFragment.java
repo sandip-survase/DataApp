@@ -17,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -73,7 +74,7 @@ public class AdminProfileFragment extends Fragment {
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     CircleImageView myprofileimg;
     ImageButton iv_camera;
-    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
+    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt,noexptxt;
     RelativeLayout editprofilerl;
     RelativeLayout box1,exptab1,exptab2, exptab3,noexptab;
     View box2;
@@ -231,7 +232,7 @@ public class AdminProfileFragment extends Fragment {
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
 
-        TextView noedudetailstxt=(TextView)rootView.findViewById(R.id.noedudetailstxt);
+//        TextView noedudetailstxt=(TextView)rootView.findViewById(R.id.noedudetailstxt);
 
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
@@ -264,7 +265,6 @@ public class AdminProfileFragment extends Fragment {
         acc6txttxt = (TextView) rootView.findViewById(R.id.acc6txttxt);
         acc7txttxt = (TextView) rootView.findViewById(R.id.acc7txttxt);
 
-
         exp1txt = (TextView) rootView.findViewById(R.id.exp1txt);
         myprofileexp1name = (TextView) rootView.findViewById(R.id.myprofileexp1name);
         myprofileexpfromto = (TextView) rootView.findViewById(R.id.myprofileexpfromto);
@@ -291,9 +291,9 @@ public class AdminProfileFragment extends Fragment {
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
+        noexptxt = (TextView) rootView.findViewById(R.id.noexptxt);
 
-
-
+        noexptxt.setTypeface(Z.getBold(getActivity()));
 
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
@@ -333,7 +333,7 @@ public class AdminProfileFragment extends Fragment {
         acc6txttxt.setTypeface(Z.getBold(getActivity()));
         acc7txttxt.setTypeface(Z.getBold(getActivity()));
 
-        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
+//        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
 
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
@@ -442,7 +442,7 @@ public class AdminProfileFragment extends Fragment {
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetAdminData().execute();
+                new GetAdminData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 ((AdminActivity) getActivity()).requestProfileImage();
             }
         });
@@ -467,8 +467,25 @@ public class AdminProfileFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
+
+
     public void refreshContent() {
-        new GetAdminData().execute();
+        new GetAdminData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((AdminActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
 
@@ -513,7 +530,7 @@ public class AdminProfileFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    new DeleteProfile().execute();
+                                    new DeleteProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -537,29 +554,23 @@ public class AdminProfileFragment extends Fragment {
     void populateData() {
         setVisibilityExpbox();
 
-        if(!ucode.equals(""))
-            myprofilepreview.setText(ucode);
 
+        if(ucode!=null) {
+            if (!ucode.equals(""))
+                myprofilepreview.setText(ucode);
+        }
 
         if (found_AdminIntro == 1) {
             if (!fname.equals("") && !lname.equals("")) {
                 myprofilename.setText(fname + " " + lname);
                 nametxt.setText(fname + " " + lname);
-
-                percentProfile++;
-            }
-
-            if (!fname.equals("") && lname.equals("")) {
-                myprofilename.setText(fname);
                 percentProfile++;
             }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
-                percentProfile++;
             }
             if (!inst.equals("")) {
                 myprofiledu.setText(inst);
-                percentProfile++;
             }
         }
         if (found_institute == 1) {
@@ -573,17 +584,14 @@ public class AdminProfileFragment extends Fragment {
             if (!instemail.equals("")) {
                 instcontactemail.setText(instemail);
 //                contactpersonalemail.setText(instemail);
-                percentProfile++;
             }
 
             if (!instweb.equals("")) {
                 instwebsite.setText(instweb);
-                //  percentProfile++;
             }
 
             if (!instphone.equals("")) {
                 insttelephone.setText(instphone);
-                percentProfile++;
             }
 
             if (!instcaddrline1.equals("")) {
@@ -595,7 +603,7 @@ public class AdminProfileFragment extends Fragment {
         if (found_contact_details == 1) {
             if (!addressline1.equals("")) {
                 contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
-
+            }
                 if (!email2.equals("")) {
                     contactprofesionalemail.setText(email2);
                 }
@@ -607,12 +615,14 @@ public class AdminProfileFragment extends Fragment {
                 }
 //                contactpersonalemail.setText(plainusername);
                 percentProfile++;
-            }
+
         }
 
 
         if (found_lang == 1) {
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+            if (!lang1.equals("- Select Language -")) {
+
+                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
                 acc2txttxt.setText(lang1);
             if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
                 acc2txttxt.setText(lang1 + ", " + lang2);
@@ -622,7 +632,13 @@ public class AdminProfileFragment extends Fragment {
                 acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
             percentProfile++;
         }
+            else {
+                acc2txttxt.setText("No known languages filled.");
+            }
+        }
+
         if (found_skills == 1) {
+            if(!skill1.equals("")) {
             if (!skill1.equals(""))
                 acc4txttxt.setText(skill1);
             if (!skill1.equals("") && !skill2.equals(""))
@@ -633,7 +649,13 @@ public class AdminProfileFragment extends Fragment {
                 acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and "+ skills_count +" more");
             percentProfile++;
         }
+            else {
+                acc4txttxt.setText("No skills filled.");
+            }
+        }
+
         if (found_honors == 1) {
+            if(!htitle1.equals("")) {
             if (!htitle1.equals(""))
                 acc5txttxt.setText(htitle1);
             if (!htitle1.equals("") && !htitle2.equals(""))
@@ -645,7 +667,13 @@ public class AdminProfileFragment extends Fragment {
             percentProfile++;
 
         }
+            else {
+                acc5txttxt.setText("No awards filled.");
+            }
+
+        }
         if (found_patents == 1) {
+            if(!ptitle1.equals("")) {
             if (!ptitle1.equals(""))
                 acc6txttxt.setText(ptitle1);
             if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -657,9 +685,15 @@ public class AdminProfileFragment extends Fragment {
             percentProfile++;
 
         }
+            else {
+                acc6txttxt.setText("No patents filled.");
+            }
 
+        }
         if (found_publications == 1) {
-            if (!pubtitle1.equals(""))
+            if(!pubtitle1.equals("")) {
+
+                if (!pubtitle1.equals(""))
                 acc7txttxt.setText(pubtitle1);
             if (!pubtitle1.equals("") && !pubtitle2.equals(""))
                 acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
@@ -670,17 +704,22 @@ public class AdminProfileFragment extends Fragment {
             percentProfile++;
 
         }
+            else {
+                acc7txttxt.setText("No publications filled.");
+            }
+
+        }
 
         populateExperiencesInfo();
 
         if (hrinfobox1 == true)
             percentProfile++;
 
-        if (hrinfobox2 == true)
-            percentProfile++;
-
-        if (hrinfobox3 == true)
-            percentProfile++;
+//        if (hrinfobox2 == true)
+//            percentProfile++;
+//
+//        if (hrinfobox3 == true)
+//            percentProfile++;
 
     }
 
@@ -714,6 +753,8 @@ public class AdminProfileFragment extends Fragment {
             extraexpcount.setVisibility(View.VISIBLE);
             extraexpcount.setText("and "+ exps_count +" more");
         }
+        else
+            extraexpcount.setVisibility(View.GONE);
 
         Log.d(HRlog, "exp count " + exp_count);
 
@@ -725,6 +766,18 @@ public class AdminProfileFragment extends Fragment {
 
             exptab2.setVisibility(View.GONE);
             exp2.setVisibility(View.GONE);
+            exptab3.setVisibility(View.GONE);
+            exp3.setVisibility(View.GONE);
+
+        }
+        else {
+            exptab1.setVisibility(View.GONE);
+            exp1.setVisibility(View.GONE);
+            noexptab.setVisibility(View.VISIBLE);
+
+            exptab2.setVisibility(View.GONE);
+            exp2.setVisibility(View.GONE);
+
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
 
@@ -2208,25 +2261,43 @@ public class AdminProfileFragment extends Fragment {
 
 
 
-    private void downloadImage() {
-//        new Getsingnature().execute();
+    public void downloadImage() {
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    class Getsingnature extends AsyncTask<String, String, String> {
+    String signature="";
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json "+json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {}
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("TAG", "downloadImage signature : "+signature);
 //        String t = String.valueOf(System.currentTimeMillis());
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
+            Log.d("TAG", "downloadImage: GetImage username "+username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
 
-
-        GlideApp.with(getContext())
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(myprofileimg);
-
-        Log.d("TAG", "downloadImage: called from fragment "+username);
-
+            GlideApp.with(getContext())
+                    .load(uri)
+                    .signature(new ObjectKey(signature))
+                    .into(myprofileimg);
+        }
     }
 
     //ssss
@@ -3387,7 +3458,7 @@ public class AdminProfileFragment extends Fragment {
                 populateData();
                 myprofileimg.setImageBitmap(result);
                 //show progress
-                float R = (1000 - 0) / (16 - 0);
+                float R = (1000 - 0) / (9 - 0);
                 float y = (percentProfile - 0) * R + 0;
                 val1 = Math.round(y);
 
@@ -3395,7 +3466,7 @@ public class AdminProfileFragment extends Fragment {
                 progressAnimator.setDuration(1000);
                 progressAnimator.setInterpolator(new LinearInterpolator());
                 progressAnimator.start();
-//                new GetImage().execute();
+//                new GetImage().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 downloadImage();
 
             } catch (Exception e) {

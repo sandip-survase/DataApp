@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +33,7 @@ public class AdminInstituteTabFragment extends Fragment {
     //    Button save;
 //    ProgressBar saveprogress;
     public static final String Username = "nameKey";
-    TextInputEditText iname, iemail, iweb, iphone, ialtphone, uniname,caddrline1, caddrline2, caddrline3, ireg;
+    EditText iname, iemail, iweb, iphone, ialtphone, uniname,caddrline1, caddrline2, caddrline3, ireg;
     String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
     TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,caddrline1input, caddrline2input, caddrline3input,instreginput;
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
@@ -84,18 +84,18 @@ public class AdminInstituteTabFragment extends Fragment {
         caddrline3input.setTypeface(Z.getLight(getActivity()));
 
 
-        iname = (TextInputEditText) rootView.findViewById(R.id.instname);
-        iemail = (TextInputEditText) rootView.findViewById(R.id.instemail);
-        iweb = (TextInputEditText) rootView.findViewById(R.id.instweb);
-        iphone = (TextInputEditText) rootView.findViewById(R.id.instphone);
-        ialtphone = (TextInputEditText) rootView.findViewById(R.id.instphonea);
-        uniname = (TextInputEditText) rootView.findViewById(R.id.instuniversity);
-        ireg = (TextInputEditText) rootView.findViewById(R.id.instreg);
+        iname = (EditText) rootView.findViewById(R.id.instname);
+        iemail = (EditText) rootView.findViewById(R.id.instemail);
+        iweb = (EditText) rootView.findViewById(R.id.instweb);
+        iphone = (EditText) rootView.findViewById(R.id.instphone);
+        ialtphone = (EditText) rootView.findViewById(R.id.instphonea);
+        uniname = (EditText) rootView.findViewById(R.id.instuniversity);
+        ireg = (EditText) rootView.findViewById(R.id.instreg);
         loctxt = (TextView)rootView.findViewById(R.id.loctxt);
 
-        caddrline1 = (TextInputEditText)rootView. findViewById(R.id.caddrline1);
-        caddrline2 = (TextInputEditText)rootView. findViewById(R.id.caddrline2);
-        caddrline3 = (TextInputEditText)rootView. findViewById(R.id.caddrline3);
+        caddrline1 = (EditText)rootView. findViewById(R.id.caddrline1);
+        caddrline2 = (EditText)rootView. findViewById(R.id.caddrline2);
+        caddrline3 = (EditText)rootView. findViewById(R.id.caddrline3);
 
         iname.setTypeface(Z.getBold(getActivity()));
         iemail.setTypeface(Z.getBold(getActivity()));
