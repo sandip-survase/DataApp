@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,6 +34,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.signature.ObjectKey;
 
 import org.apache.http.NameValuePair;
@@ -2859,6 +2865,10 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress.setVisibility(View.VISIBLE);
     }
 
+    public void hideUpdateProgress() {
+        updateProgress.setVisibility(View.VISIBLE);
+    }
+
     void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Choose Action").setItems(items, new DialogInterface.OnClickListener() {
@@ -4973,6 +4983,20 @@ public class MyProfileAlumniFragment extends Fragment {
             GlideApp.with(getContext())
                     .load(uri)
                     .signature(new ObjectKey(signature))
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            updateProgress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            updateProgress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                    })
                     .into(myprofileimg);
         }
     }

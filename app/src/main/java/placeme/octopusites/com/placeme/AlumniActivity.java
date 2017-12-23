@@ -53,6 +53,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,6 +64,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.shaohui.advancedluban.Luban;
+import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
@@ -71,7 +74,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 {
     //
 //placement variable
-
+    File Imgfile;
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
@@ -80,16 +83,16 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private int current_page_placement = 1;
     int total_no_of_placements;
     int[] called_pages_placement;
-    boolean isFirstRunPlacement=true,isLastPageLoadedPlacement=false;
-    int lastPageFlagPlacement=0;
-    int unreadcountPlacement=0;
-    int placementcount=0;
-    int readstatuscountPlacement=0;
-    int placementpages=0;
+    boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
+    int lastPageFlagPlacement = 0;
+    int unreadcountPlacement = 0;
+    int placementcount = 0;
+    int readstatuscountPlacement = 0;
+    int placementpages = 0;
     String placementreadstatus[];
-    RelativeLayout placementcountrl,messagecountrl;
-    TextView placementcounttxt,messagecount;
-    String placementids[],placementcompanyname[],placementcpackage[],placementpost[],placementforwhichcourse[],placementforwhichstream[],placementvacancies[],placementlastdateofregistration[],placementdateofarrival[],placementbond[],placementnoofapti[],placementnooftechtest[],placementnoofgd[],placementnoofti[],placementnoofhri[],placementstdx[],placementstdxiiordiploma[],placementug[],placementpg[],placementuploadtime[],placementlastmodified[],placementuploadedby[],placementuploadedbyplain[],placementnoofallowedliveatkt[],placementnoofalloweddeadatkt[];
+    RelativeLayout placementcountrl, messagecountrl;
+    TextView placementcounttxt, messagecount;
+    String placementids[], placementcompanyname[], placementcpackage[], placementpost[], placementforwhichcourse[], placementforwhichstream[], placementvacancies[], placementlastdateofregistration[], placementdateofarrival[], placementbond[], placementnoofapti[], placementnooftechtest[], placementnoofgd[], placementnoofti[], placementnoofhri[], placementstdx[], placementstdxiiordiploma[], placementug[], placementpg[], placementuploadtime[], placementlastmodified[], placementuploadedby[], placementuploadedbyplain[], placementnoofallowedliveatkt[], placementnoofalloweddeadatkt[];
     String[] uniqueUploadersPlacement;
     String[] uniqueUploadersEncPlacement;
     String lastupdatedPlacement[];
@@ -102,13 +105,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
     private int page_to_call_notification = 1;
-    boolean isFirstRunNotification=true,isLastPageLoadedNotification=false;
-    int lastPageFlagNotification=0;
-    int notificationpages=0;
+    boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
+    int lastPageFlagNotification = 0;
+    int notificationpages = 0;
     int[] called_pages_notification;
     int total_no_of_notifications;
-    int unreadcountNotification=0;
-    int readstatuscountNotification=0;
+    int unreadcountNotification = 0;
+    int readstatuscountNotification = 0;
     String notificationreadstatus[];
     RelativeLayout notificationcountrl;
     TextView notificationcounttxt;
@@ -128,34 +131,34 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
     //
-    public static final int ALUMNI_DATA_CHANGE_RESULT_CODE =222 ;
-    private String username="";
+    public static final int ALUMNI_DATA_CHANGE_RESULT_CODE = 222;
+    private String username = "";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     int notificationorplacementflag=0;
     private List<RecyclerItem> itemList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerItemAdapter mAdapter;
-    int count=0,id[],pcount=0;
-    String heading[],notification[];
+    int count = 0, id[], pcount = 0;
+    String heading[], notification[];
     JSONParser jParser = new JSONParser();
     JSONObject json;
     FrameLayout mainfragment;
     Handler handler=new Handler();
     private MaterialSearchView searchView;
-    RelativeLayout createnotificationrl,editnotificationrl;
-    int notificationplacementflag=0;
+    RelativeLayout createnotificationrl, editnotificationrl;
+    int notificationplacementflag = 0;
     public static final String Intro = "intro";
-    int navMenuFlag=0,oldNavMenuFlag=0;
-    int selectedMenuFlag=1;
+    int navMenuFlag = 0, oldNavMenuFlag = 0;
+    int selectedMenuFlag = 1;
 
     //  our coding here
     private ImageView resultView;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
     private String finalPath;
-    int  crop_flag=0;
-    String digest1,digest2;
+    int crop_flag = 0;
+    String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
@@ -182,6 +185,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     };
 
     private TextView toolbar_title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -212,7 +216,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         String role = MySharedPreferencesManager.getRole(this);
 
 
-        MySharedPreferencesManager.save(AlumniActivity.this,"intro","yes");
+        MySharedPreferencesManager.save(AlumniActivity.this, "intro", "yes");
 
         setupViewPager(mViewPager);
         setupTabIcons();
@@ -319,6 +323,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 searchView.setBackIcon(upArrow);
             }
+
             @Override
             public void onSearchViewClosed() {
             }
@@ -1034,7 +1039,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement,AlumniActivity.this);
+//        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -1240,7 +1245,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         });
 //        tswipe_refresh_layout.setRefreshing(true);
         getNotifications();
-        new UpdateFirebaseToken().execute();
+
 
     }
 
@@ -2591,8 +2596,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             isFirstRunNotification = false;
         }
 
-        if(!isLastPageLoadedNotification)
-        {
+        if (!isLastPageLoadedNotification) {
             for (int i = 0; i < notificationcount; i++) {
 
                 String headingtoshow = "", notificationtoshow = "";
@@ -2851,7 +2855,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 @Override
                 public void run() {
-                    doubleBackToExitPressedOnce=false;
+                    doubleBackToExitPressedOnce = false;
                 }
             }, 2000);
         }
@@ -2900,13 +2904,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
 
-        if(resultCode==ALUMNI_DATA_CHANGE_RESULT_CODE){
+        if (resultCode == ALUMNI_DATA_CHANGE_RESULT_CODE) {
 
             MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
 
         }
-        if(requestCode== Picker.PICK_IMAGE_DEVICE) {
+        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {
 
@@ -2918,7 +2922,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 crop_layout.setVisibility(View.VISIBLE);
                 //            tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.GONE);
-                crop_flag=1;
+                crop_flag = 1;
                 beginCrop(result.getData());
                 // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
@@ -2926,16 +2930,15 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 //            tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.VISIBLE);
             }
-        }
-        else if(resultCode==RESULT_CANCELED)
-        {
+        } else if (resultCode == RESULT_CANCELED) {
             crop_layout.setVisibility(View.GONE);
             //        tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
-            crop_flag=0;
-        }
-        else if (requestCode == Crop.REQUEST_CROP) {
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.showUpdateProgress();
             handleCrop(resultCode, result);
         }
 
@@ -2963,7 +2966,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             mainfragment.setVisibility(View.VISIBLE);
             MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
 //            fragment.showUpdateProgress();
-            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+            new CompressTask().execute();
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -3016,55 +3022,113 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             }
         });
     }
-    class UploadProfile extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
+
+    class CompressTask extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
+            File sourceFile = new File(filepath);
             try {
-                File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                Log.d("***", "UploadProfile : input  username "+username);
-                multipart.addFormField("u", username);
-                if(filename!="") {
-                    multipart.addFormField("f", filename);
-                    multipart.addFilePart("uf", sourceFile);
+                Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
+            } catch (Exception e) {}
+            Luban.compress(AlumniActivity.this, sourceFile)
+                    .setMaxSize(256)                // limit the final image size（unit：Kb）
+                    .putGear(Luban.CUSTOM_GEAR)
+                    .launch(new OnCompressListener() {
+                        @Override
+                        public void onStart() {
+                        }
+                        @Override
+                        public void onSuccess(File file) {
+                            try {
+                                Log.d("TAG", "After compress :   " + file.length() / 1024 + " kb");
+                            } catch (Exception e) {
+                            }
+                            if (file.exists()) {
+                                String filepath = file.getAbsolutePath();
+                                String filename = "";
+                                int index = filepath.lastIndexOf("/");
+                                directory = "";
+                                for (int i = 0; i < index; i++)
+                                    directory += filepath.charAt(i);
+                                for (int i = index + 1; i < filepath.length(); i++)
+                                    filename += filepath.charAt(i);
+                                Log.d("TAG", "before : f name- " + filename);
+                                Imgfile = file;
+
+                                new UploadProfile().execute();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d("TAG", "onError: "+e.getMessage());
+                        }
+                    });
+            return true;
+        }
+    }
+
+    class UploadProfile extends AsyncTask<String, String, Boolean> {
+
+
+        protected Boolean doInBackground(String... param) {
+
+            if (Imgfile != null) {
+
+                MultipartUtility multipart = null;
+                try {
+                    multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                    Log.d("TAG", "UploadProfile : input  username " + username);
+                    multipart.addFormField("u", username);
+                    if (filename != "") {
+                        multipart.addFormField("f", filename);
+                        multipart.addFilePart("uf", Imgfile);
+                        Log.d("TAG", "onSuccess: f name- " + filename);
+                    } else
+                        multipart.addFormField("f", "null");
+                    response = multipart.finish();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("TAG", "exp : " + e.getMessage());
+
                 }
-                else
-                    multipart.addFormField("f", "null");
-                response = multipart.finish();
 
+            } else
+                return false;
 
-            } catch (Exception ex) {
-
-            }
-
-            return "";
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
 
             crop_layout.setVisibility(View.GONE);
             //           tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
 
-            if(response != null && response.get(0).contains("success")) {
+            if (result) {
 
-                MySharedPreferencesManager.save(AlumniActivity.this,"crop", "no");
-                requestProfileImage();
-                MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.downloadImage();
-                Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                DeleteRecursive(new File(directory));
-            }
-            else if(response != null && response.get(0).contains("null"))
-            {
-                requestProfileImage();
-                MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                if (response != null && response.get(0).contains("success")) {
+                    MySharedPreferencesManager.save(AlumniActivity.this, "crop", "no");
+                    requestProfileImage();
+                    fragment.downloadImage();
+                    Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                    DeleteRecursive(new File(directory));
+                } else if (response != null && response.get(0).contains("null")) {
+                    requestProfileImage();
 //                fragment.refreshContent();
-                Toast.makeText(AlumniActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }else
-                Toast.makeText(AlumniActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(AlumniActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AlumniActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                    fragment.hideUpdateProgress();
+                }
+            } else {
+                Toast.makeText(AlumniActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                fragment.hideUpdateProgress();
+            }
         }
+
         void DeleteRecursive(File fileOrDirectory) {
 
             if (fileOrDirectory.isDirectory())
@@ -3076,8 +3140,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
 
     }
-    public void requestProfileImage()
-    {
+
+    public void requestProfileImage() {
         downloadImage();
 //        new GetProfileImage().execute();
     }
@@ -3097,10 +3161,11 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            Log.d("TAG", "doInBackground: Getsingnature json "+json);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+            }
             return signature;
         }
 

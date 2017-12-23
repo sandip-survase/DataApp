@@ -504,6 +504,10 @@ public class MyProfileFragment extends Fragment {
         updateProgress.setVisibility(View.VISIBLE);
     }
 
+    public void HideUpdateProgress() {
+        updateProgress.setVisibility(View.GONE);
+    }
+
     public String GetCountryZipCode() {
         String CountryID = "";
         String CountryZipCode = "";

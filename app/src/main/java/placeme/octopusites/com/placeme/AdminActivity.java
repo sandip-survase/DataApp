@@ -57,16 +57,12 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.shaohui.advancedluban.Luban;
+import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
@@ -75,7 +71,7 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
-
+    File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
@@ -169,6 +165,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
     private TextView toolbar_title;
+    Toolbar toolbar;
+    TextView bluePanelTv;
+
 
     RelativeLayout admincontrolsrl;
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
@@ -435,7 +434,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         recyclerViewPlacement.setVisibility(View.GONE);
 //                      createPlacementOrNotification=(TextView)findViewById(R.id.createnotificationtxt) ;
 //                      editPlacementOrNotification
-                        selectedMenuFlag=1;
+                        selectedMenuFlag = 1;
 
 //                        getNotifications();
                         getNotifications2();
@@ -1462,50 +1461,40 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
         if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
-            Log.d("TAG", "onActivityResult: result code " + ADMIN_DATA_CHANGE_RESULT_CODE);
+            AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.refreshContent();
+        } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
-            username = MySharedPreferencesManager.getUsername(AdminActivity.this);
             try {
-                plainusername = Decrypt(username, digest1, digest2);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            if (resultCode == 111) {
-                AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
-            } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
-
-                try {
-                    if (imagePicker == null) {
-                        imagePicker = new ImagePicker(this);
-                        imagePicker.setImagePickerCallback(this);
-                    }
-                    imagePicker.submit(result);
-                    crop_layout.setVisibility(View.VISIBLE);
-                    tswipe_refresh_layout.setVisibility(View.GONE);
-                    mainfragment.setVisibility(View.GONE);
-                    crop_flag = 1;
-                    beginCrop(result.getData());
-                    // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    crop_layout.setVisibility(View.GONE);
-                    tswipe_refresh_layout.setVisibility(View.GONE);
-                    tswipe_refresh_layout.setVisibility(View.GONE);
-                    mainfragment.setVisibility(View.VISIBLE);
-//                 Toast.makeText(this, "here", Toast.LENGTH_SHORT).show();
-
+                if (imagePicker == null) {
+                    imagePicker = new ImagePicker(this);
+                    imagePicker.setImagePickerCallback(this);
                 }
-            } else if (resultCode == RESULT_CANCELED) {
+                imagePicker.submit(result);
+                crop_layout.setVisibility(View.VISIBLE);
+                tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.GONE);
+                crop_flag = 1;
+                beginCrop(result.getData());
+                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
                 crop_layout.setVisibility(View.GONE);
                 tswipe_refresh_layout.setVisibility(View.GONE);
+                tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.VISIBLE);
-                crop_flag = 0;
-            } else if (requestCode == Crop.REQUEST_CROP) {
+//                 Toast.makeText(this, "here", Toast.LENGTH_SHORT).show();
 
-                // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
-                handleCrop(resultCode, result);
             }
+        } else if (resultCode == RESULT_CANCELED) {
+            crop_layout.setVisibility(View.GONE);
+            tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
+
+            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+            handleCrop(resultCode, result);
+        }
 
 
         }
@@ -1535,7 +1524,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             mainfragment.setVisibility(View.VISIBLE);
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().execute();
+
+            new CompressTask().execute();
+//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -1972,55 +1963,110 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-    class UploadProfile extends AsyncTask<String, String, String> {
 
-
-        protected String doInBackground(String... param) {
-
+    class CompressTask extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
+            File sourceFile = new File(filepath);
             try {
-
-                File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                Log.d("***", "doInBackground: input username "+username);
-                multipart.addFormField("u", username);
-
-                if (filename != "") {
-                    multipart.addFormField("f", filename);
-                    multipart.addFilePart("uf", sourceFile);
-                } else
-                    multipart.addFormField("f", "null");
-                response = multipart.finish();
-
-
-            } catch (Exception ex) {
-
+                Log.d("TAG", "Before compress :   " + sourceFile.length() / 1024 + " kb");
+            } catch (Exception e) {
             }
+            Luban.compress(AdminActivity.this, sourceFile)
+                    .setMaxSize(256)                // limit the final image size（unit：Kb）
+                    .putGear(Luban.CUSTOM_GEAR)
+                    .launch(new OnCompressListener() {
+                        @Override
+                        public void onStart() {
+                        }
 
-            return "";
+                        @Override
+                        public void onSuccess(File file) {
+                            try {
+                                Log.d("TAG", "After compress :   " + file.length() / 1024 + " kb");
+                            } catch (Exception e) {
+                            }
+                            if (file.exists()) {
+                                String filepath = file.getAbsolutePath();
+                                String filename = "";
+                                int index = filepath.lastIndexOf("/");
+                                directory = "";
+                                for (int i = 0; i < index; i++)
+                                    directory += filepath.charAt(i);
+                                for (int i = index + 1; i < filepath.length(); i++)
+                                    filename += filepath.charAt(i);
+
+                                Log.d("TAG", "before : f name- " + filename);
+                                Imgfile = file;
+
+                                new UploadProfile().execute();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d("TAG", "onError: " + e.getMessage());
+                        }
+                    });
+            return true;
+        }
+    }
+
+    class UploadProfile extends AsyncTask<String, String, Boolean> {
+
+
+        protected Boolean doInBackground(String... param) {
+            if (Imgfile != null) {
+                try {
+                    File sourceFile = new File(filepath);
+
+                    MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                    Log.d("TAG", "doInBackground: input username " + username);
+                    multipart.addFormField("u", username);
+
+                    if (filename != "") {
+                        multipart.addFormField("f", filename);
+                        multipart.addFilePart("uf", Imgfile);
+                    } else
+                        multipart.addFormField("f", "null");
+                    response = multipart.finish();
+
+
+                } catch (Exception ex) {
+
+                }
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
 
             crop_layout.setVisibility(View.GONE);
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
+            AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            if (result) {
+                if (response != null && response.get(0).contains("success")) {
+                    MySharedPreferencesManager.save(AdminActivity.this, "crop", "no");
+                    Toast.makeText(AdminActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                    requestProfileImage();
 
-            if (response != null && response.get(0).contains("success")) {
-                MySharedPreferencesManager.save(AdminActivity.this,"crop", "no");
-                Toast.makeText(AdminActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                requestProfileImage();
-                AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.downloadImage();
-                DeleteRecursive(new File(directory));
-            } else if (response != null && response.get(0).contains("null")) {
-                requestProfileImage();
-                AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
-                Toast.makeText(AdminActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }else
-                Toast.makeText(AdminActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
-
+                    fragment.downloadImage();
+                    DeleteRecursive(new File(directory));
+                } else if (response != null && response.get(0).contains("null")) {
+                    requestProfileImage();
+                    fragment.refreshContent();
+                    Toast.makeText(AdminActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AdminActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                    fragment.hideUpdateProgress();
+                }
+            } else {
+                Toast.makeText(AdminActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                fragment.hideUpdateProgress();
+            }
         }
 
         void DeleteRecursive(File fileOrDirectory) {

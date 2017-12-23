@@ -703,6 +703,10 @@ public class HRProfileFragment extends Fragment {
         profileprogress.setVisibility(View.VISIBLE);
     }
 
+    public void hideprofileprogress() {
+        profileprogress.setVisibility(View.GONE);
+    }
+
     public int alltoDatestoInt(String mydate) {
         int m = 0, t = 0;
 

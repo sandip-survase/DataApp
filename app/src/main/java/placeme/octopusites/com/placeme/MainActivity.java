@@ -59,6 +59,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,6 +70,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.shaohui.advancedluban.Luban;
+import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
@@ -78,6 +81,7 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class MainActivity extends AppCompatActivity implements ImagePickerCallback {
 
+    File Imgfile;
     final public static int STUDENT_DATA_CHANGE_RESULT_CODE = 333;
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
@@ -3161,7 +3165,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             mainfragment.setVisibility(View.VISIBLE);
             MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new CompressTask().execute();
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -3171,6 +3176,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
+
 
     private void chooseImage() {
 
@@ -3229,55 +3236,111 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-
-    class UploadProfile extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
+    class CompressTask extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
+            File sourceFile = new File(filepath);
             try {
+                Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
+            } catch (Exception e) {}
+            Luban.compress(MainActivity.this, sourceFile)
+                    .setMaxSize(256)                // limit the final image size（unit：Kb）
+                    .putGear(Luban.CUSTOM_GEAR)
+                    .launch(new OnCompressListener() {
+                        @Override
+                        public void onStart() {
+                        }
+                        @Override
+                        public void onSuccess(File file) {
+                            try {
+                                Log.d("TAG", "After compress :   " + file.length() / 1024 + " kb");
+                            } catch (Exception e) {
+                            }
+                            if (file.exists()) {
+                                String filepath = file.getAbsolutePath();
+                                String filename = "";
+                                int index = filepath.lastIndexOf("/");
+                                directory = "";
+                                for (int i = 0; i < index; i++)
+                                    directory += filepath.charAt(i);
+                                for (int i = index + 1; i < filepath.length(); i++)
+                                    filename += filepath.charAt(i);
+                                Log.d("TAG", "before : f name- " + filename);
+                                Imgfile = file;
 
-                File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                Log.d("***", "doInBackground: input username " + username);
-                multipart.addFormField("u", username);
 
-                if (filename != "") {
-                    multipart.addFormField("f", filename);
-                    multipart.addFilePart("uf", sourceFile);
-                } else
-                    multipart.addFormField("f", "null");
-                response = multipart.finish();
+                                    new UploadProfile().execute();
 
+                            }
+                        }
 
-            } catch (Exception ex) {
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d("TAG", "onError: "+e.getMessage());
+                        }
+                    });
+            return true;
+        }
+    }
 
-            }
+    class UploadProfile extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
 
-            return "";
+            if (Imgfile != null) {
+
+                MultipartUtility multipart = null;
+                try {
+                    multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                    Log.d("TAG", "UploadProfile : input  username " + username);
+                    multipart.addFormField("u", username);
+                    if (filename != "") {
+                        multipart.addFormField("f", filename);
+                        multipart.addFilePart("uf", Imgfile);
+                        Log.d("TAG", "onSuccess: f name- " + filename);
+                    } else
+                        multipart.addFormField("f", "null");
+                    response = multipart.finish();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("TAG", "exp : " + e.getMessage());
+
+                }
+
+            } else
+                return false;
+
+            return true;
+
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
 
+            MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             crop_layout.setVisibility(View.GONE);
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if (response != null && response.get(0).contains("success")) {
-                MySharedPreferencesManager.save(MainActivity.this, "crop", "no");
-                requestProfileImage();
-                MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.downloadImage();
-                Toast.makeText(MainActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                DeleteRecursive(new File(directory));
-            } else if (response != null && response.get(0).contains("null")) {
-                requestProfileImage();
-                MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
-                Toast.makeText(MainActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }else
-                Toast.makeText(MainActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
+            if(result) {
+                if (response != null && response.get(0).contains("success")) {
+                    MySharedPreferencesManager.save(MainActivity.this, "crop", "no");
+                    requestProfileImage();
+                    fragment.downloadImage();
+                    Toast.makeText(MainActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                    DeleteRecursive(new File(directory));
+                } else if (response != null && response.get(0).contains("null")) {
+                    requestProfileImage();
+                    fragment.refreshContent();
+                    Toast.makeText(MainActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                    fragment.HideUpdateProgress();
+                }
+
+            }else {
+                Toast.makeText(MainActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                fragment.HideUpdateProgress();
+            }
 
         }
 
