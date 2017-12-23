@@ -28,7 +28,7 @@ public class Z {
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
 
     public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
-
+//;sid
     //-----------------------------------------sunny---------------------------------------------------------------
 // -------------------------------------------MainActivity(student)-----------------------------------------------
     public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
