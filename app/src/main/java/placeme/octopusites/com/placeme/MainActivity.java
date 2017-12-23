@@ -1230,7 +1230,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
         getNotifications();
-
+        new UpdateFirebaseToken().execute();
     }
 
     void loginFirebase(String username, String hash) {
@@ -3328,6 +3328,43 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
+    class UpdateFirebaseToken extends AsyncTask<String, String, String> {
+
+        // TODO move UpdateFirebaseToken code to all base activity
+        // TODO update AID,DID
+        JSONObject json;
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
+                String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
+                Log.d("TAG", "splashScreen token\n" + token);
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                params.add(new BasicNameValuePair("t", token));             //1
+                json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+
+
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+//            if (resultofop.equals("success")) {
+//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+//            }
+        }
+    }
+
 
 
 }

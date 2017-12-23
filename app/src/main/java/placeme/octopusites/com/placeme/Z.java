@@ -25,7 +25,7 @@ public class Z {
 
     public static final String IP_8086 = "http://104.237.4.236:8086/";
 
-    public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
+//    public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
 
     public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
 //;sid
@@ -105,23 +105,23 @@ public class Z {
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
     public static final String url_create_firebase = IP + "Firbase/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken = IP + "PlaceMe/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken = IP + "Firbase/UpdateFirebaseToken";
     //    ----------------------------------/sunny---------------------------------------------------------------
 
     public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
-    public static final String url_get_chatrooms = Local_IP_Raju + "Firebase/GetChatRooms";
-    public static final String url_getmessagesreadstatus = Local_IP_Raju + "Firebase/GetReadStatusOfMessages";
+    public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
+    public static final String url_getmessagesreadstatus = IP + "Firebase/GetReadStatusOfMessages";
     public static final String url_changepass = IP + "Firebase/ChangePass";
 
     //#############################   Firebase   ######################################
-    public static final String load_news = IP_1234 + "Firebase/GetNews";
-    public static final String load_videos = IP_1234 + "Firebase/GetVideos";
-    public static final String url_savechat = Local_IP_Raju + "Firebase/SaveChat";
-    public static final String url_loadchat = Local_IP_Raju + "Firebase/LoadChat";
-    public static final String url_SendPushNotification = Local_IP_Raju + "Firebase/SendPushNotification";
-    public static final String url_markread = Local_IP_Raju + "Firebase/MarkRead";
-    public static final String url_GetLastPushedMessage = Local_IP_Raju + "Firebase/GetLastPushedMessage";
-    public static final String url_ChangeMessageReadStatus = Local_IP_Raju + "Firebase/ChangeMessageReadStatus";
+    public static final String load_news = IP + "Firebase/GetNews";
+    public static final String load_videos = IP + "Firebase/GetVideos";
+    public static final String url_savechat = IP + "Firebase/SaveChat";
+    public static final String url_loadchat = IP + "Firebase/LoadChat";
+    public static final String url_SendPushNotification = IP + "Firebase/SendPushNotification";
+    public static final String url_markread = IP + "Firebase/MarkRead";
+    public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
+    public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
 
     // Messages -----------------------------------------
     public static final String url_Welcome = IP + "AESTest/Welcome";
