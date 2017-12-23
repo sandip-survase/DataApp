@@ -114,7 +114,7 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
         holder.uploadtime.setText(item.getUploadtime());
         if(item.isAttachment())
         {
-            Drawable myDrawable = mContext.getResources().getDrawable(R.drawable.attachment);
+            Drawable myDrawable = mContext.getResources().getDrawable(R.drawable.attachment_icon);
             holder.imageView.setImageDrawable(myDrawable);
 
         }
@@ -125,13 +125,13 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
         if(item.isIsread())
         {
-            holder.title.setTextColor(Color.parseColor("#eeeeee"));
+            holder.title.setTextColor(Color.parseColor("#03353e"));
             holder.title.setTypeface(null, Typeface.NORMAL);
 
         }
         else if(!item.isIsread())
         {
-            holder.title.setTextColor(Color.parseColor("#c59a6d"));
+            holder.title.setTextColor(Color.parseColor("#00bcd4"));
             holder.title.setTypeface(null, Typeface.BOLD);
 
         }
