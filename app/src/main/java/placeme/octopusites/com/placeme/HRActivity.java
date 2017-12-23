@@ -57,6 +57,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.shaohui.advancedluban.Luban;
+import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
@@ -67,6 +69,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     public static final int HR_DATA_CHANGE_RESULT_CODE = 444;
 
+    File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
@@ -133,7 +136,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
 
-//        username=getIntent().getStringExtra("username");
         username = MySharedPreferencesManager.getUsername(this);
         String pass = MySharedPreferencesManager.getPassword(HRActivity.this);
         String role = MySharedPreferencesManager.getRole(HRActivity.this);
@@ -145,7 +147,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         } catch (Exception e) {
             e.printStackTrace();
         }
-        username = getIntent().getStringExtra("username");
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
@@ -1074,7 +1075,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             mainfragment.setVisibility(View.VISIBLE);
             HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.showUpdateProgress();
-            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new CompressTask().execute();
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -1136,6 +1138,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     class Getsingnature extends AsyncTask<String, String, String> {
         String signature = "";
+
         protected String doInBackground(String... param) {
             JSONParser jParser = new JSONParser();
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1188,51 +1191,114 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     // thumbanail
 
-    class UploadProfile extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
+
+    class CompressTask extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
+            File sourceFile = new File(filepath);
             try {
-                username=MySharedPreferencesManager.getUsername(HRActivity.this);
-                File sourceFile = new File(filepath);
-                Log.d("***", "doInBackground: input username "+username);
-                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                multipart.addFormField("u", username);
-                if (filename != "") {
-                    multipart.addFormField("f", filename);
-                    multipart.addFilePart("uf", sourceFile);
-                } else
-                    multipart.addFormField("f", "null");
-                response = multipart.finish();
-
-
-            } catch (Exception ex) {
-
+                Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
+            } catch (Exception e) {
             }
+            Luban.compress(HRActivity.this, sourceFile)
+                    .setMaxSize(256)                // limit the final image size（unit：Kb）
+                    .putGear(Luban.CUSTOM_GEAR)
+                    .launch(new OnCompressListener() {
+                        @Override
+                        public void onStart() {
+                        }
 
-            return "";
+                        @Override
+                        public void onSuccess(File file) {
+                            try {
+                                Log.d("TAG", "After compress :   " + file.length() / 1024 + " kb");
+                            } catch (Exception e) {
+                            }
+                            if (file.exists()) {
+                                String filepath = file.getAbsolutePath();
+                                String filename = "";
+                                int index = filepath.lastIndexOf("/");
+                                directory = "";
+                                for (int i = 0; i < index; i++)
+                                    directory += filepath.charAt(i);
+                                for (int i = index + 1; i < filepath.length(); i++)
+                                    filename += filepath.charAt(i);
+                                Log.d("TAG", "before : f name- " + filename);
+                                Imgfile = file;
+
+                                new UploadProfile().execute();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d("TAG", "onError: "+e.getMessage());
+                        }
+                    });
+            return true;
+        }
+    }
+
+
+    class UploadProfile extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
+
+            if (Imgfile != null) {
+
+                MultipartUtility multipart = null;
+                try {
+                    multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                    Log.d("TAG", "UploadProfile : input  username " + username);
+                    multipart.addFormField("u", username);
+                    if (filename != "") {
+                        multipart.addFormField("f", filename);
+                        multipart.addFilePart("uf", Imgfile);
+                        Log.d("TAG", "onSuccess: f name- " + filename);
+                    } else
+                        multipart.addFormField("f", "null");
+                    response = multipart.finish();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("TAG", "exp : " + e.getMessage());
+
+                }
+
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
 
             crop_layout.setVisibility(View.GONE);
             //           tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
+            HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            if (result) {
 
-            if (response != null && response.get(0).contains("success")) {
+                if (response != null && response.get(0).contains("success")) {
 
-                MySharedPreferencesManager.save(HRActivity.this, "crop", "no");
-                requestProfileImage();
-                HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.downloadImage();
-                Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                DeleteRecursive(new File(directory));
-            } else if (response != null && response.get(0).contains("null")) {
-                requestProfileImage();
-                MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
-                Toast.makeText(HRActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }else
-                Toast.makeText(HRActivity.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
+                    MySharedPreferencesManager.save(HRActivity.this, "crop", "no");
+                    requestProfileImage();
+
+                    fragment.downloadImage();
+                    Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                    DeleteRecursive(new File(directory));
+                } else if (response != null && response.get(0).contains("null")) {
+                    requestProfileImage();
+                    fragment.downloadImage();
+                    Toast.makeText(HRActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HRActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                    fragment.HideUpdateProgress();
+                }
+
+            } else {
+                Toast.makeText(HRActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
+                fragment.HideUpdateProgress();
+            }
 
         }
 

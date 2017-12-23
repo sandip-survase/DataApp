@@ -532,7 +532,13 @@ public class HRProfileFragment extends Fragment {
     }
 
     public void showUpdateProgress() {
+
         updateProgress.setVisibility(View.VISIBLE);
+    }
+
+    public void HideUpdateProgress() {
+
+        updateProgress.setVisibility(View.GONE);
     }
 
     void showDialog() {

@@ -2859,6 +2859,10 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress.setVisibility(View.VISIBLE);
     }
 
+    public void hideUpdateProgress() {
+        updateProgress.setVisibility(View.VISIBLE);
+    }
+
     void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Choose Action").setItems(items, new DialogInterface.OnClickListener() {

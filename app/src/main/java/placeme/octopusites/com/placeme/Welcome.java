@@ -53,12 +53,15 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.shaohui.advancedluban.Luban;
+import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
@@ -69,6 +72,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
 public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
+    File Imgfile;
     public static final String Intro = "intro";
     String encUsersName, plainUsername, usertype, isactivated, passwordstr, encPassword, encfname, enclname, encmobile, encinstOrEmail, encrole, encProMail;
     String resultofop = "";
@@ -2034,7 +2038,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 filename += filepath.charAt(i);
 
             crop_layout.setVisibility(View.GONE);
-            new UploadProfile().execute();
+//            new UploadProfile().execute();
+            new CompressTask().execute();
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
@@ -2044,55 +2049,107 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-    class UploadProfile extends AsyncTask<String, String, String> {
+    class CompressTask extends AsyncTask<String, String, Boolean> {
+        protected Boolean doInBackground(String... param) {
+            File sourceFile = new File(filepath);
+            try {
+                Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
+            } catch (Exception e) {}
+            Luban.compress(Welcome.this, sourceFile)
+                    .setMaxSize(256)                // limit the final image size（unit：Kb）
+                    .putGear(Luban.CUSTOM_GEAR)
+                    .launch(new OnCompressListener() {
+                        @Override
+                        public void onStart() {
+                        }
+                        @Override
+                        public void onSuccess(File file) {
+                            try {
+                                Log.d("TAG", "After compress :   " + file.length() / 1024 + " kb");
+                            } catch (Exception e) {
+                            }
+                            if (file.exists()) {
+                                String filepath = file.getAbsolutePath();
+                                String filename = "";
+                                int index = filepath.lastIndexOf("/");
+                                directory = "";
+                                for (int i = 0; i < index; i++)
+                                    directory += filepath.charAt(i);
+                                for (int i = index + 1; i < filepath.length(); i++)
+                                    filename += filepath.charAt(i);
+                                Log.d("TAG", "before : f name- " + filename);
+                                Imgfile = file;
+
+                                new UploadProfile().execute();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d("TAG", "onError: "+e.getMessage());
+                        }
+                    });
+            return true;
+        }
+    }
+
+    class UploadProfile extends AsyncTask<String, String, Boolean> {
 
         @Override
         protected void onPreExecute() {
             updateProgress.setVisibility(View.VISIBLE);
         }
 
-        protected String doInBackground(String... param) {
-            try {
-                Log.d("TAG", " inside UploadProfile");
-                File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                multipart.addFormField("u", encUsersName);
-                if (filename != "") {
-                    multipart.addFormField("f", filename);
-                    multipart.addFilePart("uf", sourceFile);
-                } else
-                    multipart.addFormField("f", "null");
-                response = multipart.finish();
+        protected Boolean doInBackground(String... param) {
 
-                Log.d("TAG", "UploadProfile : response1 " + response);
+            if (Imgfile != null) {
 
-            } catch (Exception ex) {
-                Log.d("TAG", "doInBackground: exp : " + ex.getMessage());
-            }
+                MultipartUtility multipart = null;
+                try {
+                    multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
+                    Log.d("TAG", "UploadProfile : input  username " + encUsersName);
+                    multipart.addFormField("u", encUsersName);
+                    if (filename != "") {
+                        multipart.addFormField("f", filename);
+                        multipart.addFilePart("uf", Imgfile);
+                        Log.d("TAG", "onSuccess: f name- " + filename);
+                    } else
+                        multipart.addFormField("f", "null");
+                    response = multipart.finish();
 
-            return "";
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("TAG", "exp : " + e.getMessage());
+
+                }
+
+            } else
+                return false;
+
+            return true;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
 
             crop_layout.setVisibility(View.GONE);
             updateProgress.setVisibility(View.GONE);
-            Log.d("TAG", "UploadProfile : response2 " + response);
-            if (response != null && response.get(0).contains("success")) {
+            if(result) {
+                Log.d("TAG", "UploadProfile : response2 " + response);
+                if (response != null && response.get(0).contains("success")) {
+                    MySharedPreferencesManager.save(Welcome.this, "crop", "no");
+                    requestProfileImage();
+                    refreshContent();
+                    Toast.makeText(Welcome.this, "Photo uploaded successfully !", Toast.LENGTH_SHORT).show();
+                    DeleteRecursive(new File(directory));
+                } else if (response != null && response.get(0).contains("null")) {
+                    requestProfileImage();
+                    Toast.makeText(Welcome.this, "Upload failed, please try again !", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(Welcome.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
 
-                MySharedPreferencesManager.save(Welcome.this, "crop", "no");
-
-                Toast.makeText(Welcome.this, "Photo uploaded successfully !", Toast.LENGTH_SHORT).show();
-                requestProfileImage();
-                refreshContent();
-                DeleteRecursive(new File(directory));
-            } else if (response != null && response.get(0).contains("null")) {
-                requestProfileImage();
-                Toast.makeText(Welcome.this, "Upload failed, please try again !", Toast.LENGTH_SHORT).show();
-            } else
-                Toast.makeText(Welcome.this, Z.FAIL_TO_PROCESS, Toast.LENGTH_SHORT).show();
-
+            }else
+                Toast.makeText(Welcome.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
         }
 
         void DeleteRecursive(File fileOrDirectory) {
@@ -2108,6 +2165,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     }
 
     public void refreshContent() {
+
         downloadImage();
     }
 

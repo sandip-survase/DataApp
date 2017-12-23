@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class LicenseActivity extends AppCompatActivity {
 
+//    TODO add new lib : https://github.com/shaohui10086/AdvancedLuban
+
     TextView mainheading,subheading,license1,content1,license2,content2,license3,content3,license4,content4,license5,content5,license6,content6,license7,content7,license8,content8,license9,content9,license10,content10;
     TextView license11,content11,license12,content12,license13,content13,license14,content14,license15,content15,license16,content16,license17,content17,license18,content18,license19,content19,license20,content20;
     String mainheadstr = "Libraries We Use";
