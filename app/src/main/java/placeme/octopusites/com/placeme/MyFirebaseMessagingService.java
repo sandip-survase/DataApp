@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Base64;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -30,15 +33,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     static int count = 0;  // notification id ...increase this count when new type of notifiation arrives
     static int countfornotiff = 0;
     static int countforplace = 0;
-    static int countformessage = 0;
+    static int countformessagesenders = 0;
     static String stro = "", stro2 = "";
     static String notiffbigtext = "", notiffbigtext2 = "";
+    String chatBigText = null;
+    String chatSubText = null;
 
     static ArrayList<String> companynameslist = new ArrayList<>();
     static ArrayList<String> packagelists = new ArrayList<>();
     static ArrayList<String> postlists = new ArrayList<>();
     static ArrayList<String> ldrlists = new ArrayList<>();
     static ArrayList<String> vacantlist = new ArrayList<>();
+    static ArrayList<String> messages = new ArrayList<>();
+    static ArrayList<String> messageSenders = new ArrayList<>();
 
 
     static ArrayList<String> notificationtitlelist = new ArrayList<>();
@@ -298,7 +305,132 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
                 else if (Notificationtags.equals("chat")) {
                     count=3;
+                    Log.d(TAG, "chat received: ");
+                    String sender = data.getString("sender");
+                    String receiver = data.getString("receiver");
+                    String message = data.getString("message");
+                    String timestamp = data.getString("timestamp");
+                    String sender_uid = data.getString("sender_uid");
+                    String receiver_uid = data.getString("receiver_uid");
 
+                    if (!messageSenders.contains(sender)) {
+                        messageSenders.add(sender);
+                        Log.d(TAG, "added: " + sender + " to list");
+                    }
+                    Log.d(TAG, "senders list size: " + messageSenders.size());
+                    StringBuffer sb = new StringBuffer("");
+                    int index1 = message.indexOf("pLACEmeMsGTime");
+                    for (int j = 0; j < index1; j++) {
+                        sb.append(message.charAt(j));
+                    }
+                    String extractedMessage = sb.toString();
+                    sb = new StringBuffer("");
+                    index1 += 14;
+                    for (int j = index1; j < message.length(); j++) {
+                        sb.append(message.charAt(j));
+                    }
+                    String extractedTime = sb.toString();
+
+                    ArrayList<String> name1 = new ArrayList<>();
+                    DatabaseHelper helper = new DatabaseHelper(this);
+                    name1 = helper.getName(sender);
+
+                    Intent intent = new Intent(this, MessageActivity.class);
+                    intent.putExtra("fname", name1.get(0));
+                    intent.putExtra("lname", name1.get(1));
+                    intent.putExtra("uploadedby", name1.get(2));
+                    intent.putExtra("signature", name1.get(3));
+                    intent.putExtra("sender", receiver);
+                    intent.putExtra("receiver", sender);
+                    intent.putExtra("sender_uid", receiver_uid);
+                    intent.putExtra("receiver_uid", sender_uid);
+
+                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+//                    Bitmap icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
+                    String previouslyEncodedImage = MySharedPreferencesManager.getData(this, sender);
+                    if (!previouslyEncodedImage.equalsIgnoreCase("")) {
+                        byte[] b = Base64.decode(previouslyEncodedImage, Base64.DEFAULT);
+                        icon = BitmapFactory.decodeByteArray(b, 0, b.length);
+
+                    }
+                    if (messages.size() == 1) {
+                        messages.add(extractedMessage);
+                        chatSubText = "1 chat from " + messageSenders.size() + " conversation";
+                        chatBigText = messages.get(0);
+                    } else {
+                        messages.add(extractedMessage);
+                        chatBigText = messages.get(0) + "\n" + messages.get(1);
+                        chatSubText = "2 chats from " + messageSenders.size() + " conversation";
+                        switch (messages.size()) {
+                            case 3:
+                                chatBigText = messages.get(0) + "\n" + messages.get(1) + "\n" + messages.get(2);
+                                chatSubText = "3 chats from " + messageSenders.size() + " conversation";
+                                break;
+                            case 4:
+                                chatBigText = messages.get(0) + "\n" + messages.get(1) + "\n" + messages.get(2) + "\n" + messages.get(3);
+                                chatSubText = "4 chats from " + messageSenders.size() + " conversation";
+                                break;
+                            default:
+                                chatBigText = messages.get(0) + "\n" + messages.get(1) + "\n" + messages.get(2) + "\n" + messages.get(3) + "\n...........";
+                                chatSubText = messages.size() + " chats from " + messageSenders.size() + " conversation";
+                                break;
+                        }
+
+                    }
+                    NotificationCompat.Builder builder = null;
+//                    if(messageSenders.size()==1) {
+//                        builder= new NotificationCompat.Builder(this)
+//                                .setLargeIcon(icon2)
+//                                .setColor(Color.parseColor("#03353E"))
+//                                .setContentTitle(name1.get(0) + " " + name1.get(1))
+//                                .setContentText(extractedMessage)
+//                                .setAutoCancel(true)
+//                                .setSound(defaultSoundUri)
+//                                .setNumber(++countformessage)
+//                                .setStyle(new NotificationCompat.BigTextStyle()
+//                                        .bigText(chatBigText))
+//                                .setSubText(chatSubText)
+//                                .setPriority(IMPORTANCE_HIGH)
+//                                .setContentIntent(pendingIntent);
+//                    }
+//                    else
+//                    {
+                    builder = new NotificationCompat.Builder(this)
+                            .setLargeIcon(icon)
+                            .setSmallIcon(R.drawable.bar)
+                            .setColor(Color.parseColor("#03353E"))
+                            .setContentTitle(name1.get(0) + " " + name1.get(1))
+                            .setContentText(extractedMessage)
+                            .setAutoCancel(true)
+                            .setSound(defaultSoundUri)
+                            .setNumber(messages.size())
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                                    .bigText(chatBigText))
+                            .setSubText(chatSubText)
+                            .setPriority(IMPORTANCE_HIGH)
+                            .setContentIntent(pendingIntent);
+//                    }
+                    if (helper.isChatRoomActive(sender_uid, receiver_uid)) {
+                        Ringtone r = RingtoneManager.getRingtone(this, defaultSoundUri);
+                        r.play();
+                        Log.d(TAG, "chat room already active: ");
+                        messages.clear();
+                        messageSenders.clear();
+
+                    } else {
+                        Log.d(TAG, "chat room not active: ");
+
+
+                        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        manager.notify(0, builder.build());
+
+                        Intent pushNotification = new Intent("pushNotificationChat");
+                        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
+
+
+                    }
 
                 }
 

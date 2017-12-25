@@ -535,8 +535,8 @@ public class MessageActivity extends AppCompatActivity {
             {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("s", Z.Encrypt(sender,MessageActivity.this)));    //0
-                params.add(new BasicNameValuePair("r", Z.Encrypt(receiver,MessageActivity.this)));  //1
+                params.add(new BasicNameValuePair("s", sender));    //0
+                params.add(new BasicNameValuePair("r", receiver));  //1
 
                 json = jParser.makeHttpRequest(Z.url_ChangeMessageReadStatus, "GET", params);
 

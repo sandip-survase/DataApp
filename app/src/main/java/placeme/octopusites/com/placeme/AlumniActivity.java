@@ -1,5 +1,7 @@
 package placeme.octopusites.com.placeme;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -68,6 +70,7 @@ import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback
@@ -99,6 +102,11 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private List<RecyclerItemPlacement> itemListPlacement = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
     List<RecyclerItemPlacement> tempListPlacement;
+    String reciever_username[], reciever_uid[];
+    String unread_count[];
+    int unreadMessageCount = 0;
+    String sender_uid;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
 //
 
@@ -503,8 +511,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         placementcounttxt=(TextView)hView.findViewById(R.id.placementcount);
         placementcountrl=(RelativeLayout)hView.findViewById(R.id.placementcountrl);
 //
-//        messagecount=(TextView)hView.findViewById(R.id.messagecount);
-//        messagecountrl=(RelativeLayout)hView.findViewById(R.id.messagecountrl);
+        messagecount = (TextView) hView.findViewById(R.id.messagecount);
+        messagecountrl = (RelativeLayout) hView.findViewById(R.id.messagecountrl);
 
         View v1=(View)hView.findViewById(R.id.prifileselectionview);
         View v2=(View)hView.findViewById(R.id.notificationselectionview);
@@ -992,6 +1000,21 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
             }
         });
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                if (intent.getAction().equals("pushNotificationChat")) {
+
+                    Log.d("TAG", "push broadcast received: ");
+                    new GetUnreadCountOfNotificationAndPlacement().execute();
+                    new GetUnreadMessagesCount().execute();
+                    MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                    if (fragment != null)
+                        fragment.addMessages();
+                }
+            }
+        };
 
         Drawable myDrawable = getResources().getDrawable(R.drawable.notification_icon_selected);
         notificationi.setImageDrawable(myDrawable);
@@ -1245,10 +1268,166 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         });
 //        tswipe_refresh_layout.setRefreshing(true);
         getNotifications();
-
+        new GetUnreadMessagesCount().execute();
 
     }
 
+    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
+
+            try {
+
+                count = Integer.parseInt(json.getString("count"));
+                sender_uid = json.getString("uid");
+
+                reciever_username = new String[count];
+                reciever_uid = new String[count];
+                unread_count = new String[count];
+
+                for (int i = 0; i < count; i++) {
+                    unread_count[i] = "0";
+                    reciever_username[i] = json.getString("username" + i);
+                    reciever_uid[i] = json.getString("uid" + i);
+                }
+
+            } catch (Exception ex) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (count > 0) {
+
+                for (int i = 0; i < count; i++) {
+
+                    String tempusername = null;
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
+
+                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
+
+                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+
+
+                    } catch (Exception e) {
+                    }
+
+                    new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+                }
+
+            }
+
+
+        }
+    }
+
+    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
+
+        String sender, reciever, senderuid, recieveruid;
+        int index;
+
+        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
+            this.sender = sender;
+            this.reciever = reciever;
+            this.senderuid = senderuid;
+            this.recieveruid = recieveruid;
+            this.index = index;
+        }
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("s", sender));       //0
+            params.add(new BasicNameValuePair("r", reciever));     //1
+            params.add(new BasicNameValuePair("su", senderuid));    //2
+            params.add(new BasicNameValuePair("ru", recieveruid));  //3
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
+                unread_count[index] = json.getString("unreadcount");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            unreadMessageCount = 0;
+            if (index == count - 1) {
+
+                for (int i = 0; i < count; i++) {
+
+                    unreadMessageCount += Integer.parseInt(unread_count[i]);
+
+                }
+                messagecountrl.setVisibility(View.VISIBLE);
+                messagecount.setText(unreadMessageCount + "");
+                if (unreadMessageCount == 0) {
+                    messagecountrl.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
+                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            placementcountrl.setVisibility(View.VISIBLE);
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
+                placementcountrl.setVisibility(View.GONE);
+            }
+            notificationcountrl.setVisibility(View.VISIBLE);
+            notificationcounttxt.setText(unreadcountNotification + "");
+            if (unreadcountNotification == 0) {
+                notificationcountrl.setVisibility(View.GONE);
+            }
+
+            getNotifications();
+
+        }
+    }
     void filterNotifications(String text)
     {
         tempListNotification = new ArrayList();

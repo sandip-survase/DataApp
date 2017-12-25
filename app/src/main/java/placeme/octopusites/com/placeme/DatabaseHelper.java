@@ -122,6 +122,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         return flag;
     }
+
+    public boolean isChatInDB(String senderUid, String receiverUid, String timestamp) {
+        boolean isChatInDB = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "select * from chat where senderUid='" + senderUid + "' and receiverUid='" + receiverUid + "' and timestamp='" + timestamp + "'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        int c = cursor.getCount();
+        if (c > 0)
+            isChatInDB = true;
+        return isChatInDB;
+    }
     public boolean updateChatRoom(String plain_username,String last_message,String last_message_time)
     {
         boolean isSuccess=false;
