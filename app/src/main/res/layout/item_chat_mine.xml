@@ -23,7 +23,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="9.8dp"
+        android:layout_marginTop="9.3dp"
         android:tint="@color/dark_color"
         android:src="@drawable/arrow_bg1" />
 

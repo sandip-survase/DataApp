@@ -249,26 +249,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                if (intent.getAction().equals("pushNotification")) {
+                if (intent.getAction().equals("pushNotificationChat")) {
 
-//                    String sender = intent.getStringExtra("sender");
-//                    for(int i=0;i<reciever_username.length;i++)
-//                    {
-//                        if(reciever_username[i].equals(sender)) {
-//                            unread_count[i] = Integer.parseInt(unread_count[i]) + 1+"";
-//                            unreadMessageCount++;
-//                        }
-//                    }
-//                    messagecountrl.setVisibility(View.VISIBLE);
-//                    messagecount.setText(unreadMessageCount+"");
-//                    if(unreadMessageCount==0)
-//                    {
-//                        messagecountrl.setVisibility(View.GONE);
-//                    }
+                    Log.d("TAG", "push broadcast received: ");
                     new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                    fragment.addMessages();
+                    if (fragment != null)
+                        fragment.addMessages();
                 }
             }
         };
@@ -1230,7 +1218,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //        tswipe_refresh_layout.setRefreshing(true);
 //
 //        new GetUnreadCountOfNotificationAndPlacement().execute();
-//        new GetUnreadMessagesCount().execute();
+        new GetUnreadMessagesCount().execute();
 
 
         getNotifications();
@@ -1404,7 +1392,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     } catch (Exception e) {
                     }
 
-//                    new GetMessagesReadStatus(username,tempusername,sender_uid, reciever_uid[i],i).execute();
+                    new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
                 }
 
             }
@@ -1450,6 +1438,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
 
+            unreadMessageCount = 0;
             if (index == count - 1) {
 
                 for (int i = 0; i < count; i++) {
@@ -3133,11 +3122,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
         }
-        if(requestCode==90)
-        {
-            MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.addMessages();
-        }
+
     }
 
 
@@ -3388,7 +3373,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotificationChat"));
 
     }
 

@@ -145,17 +145,23 @@ public class MessagesFragment extends Fragment {
 
                 RecyclerItemMessages item = itemList.get(position);
 
-                if(role.equals("student"))
-                    ((MainActivity)getActivity()).updateUnreadMessageCount(Integer.parseInt(unread_count[position]));
+                if (role.equals("student")) {
+                    if (unread_count != null) {
+                        ((MainActivity) getActivity()).updateUnreadMessageCount(Integer.parseInt(unread_count[position]));
+                        Log.d("TAG", "unread messages count: " + Integer.parseInt(unread_count[position]));
+                    }
+                }
 
                 DatabaseHelper helper = new DatabaseHelper(getContext());
-                unread_count[position] = "0";
+                if (unread_count != null)
+                    unread_count[position] = "0";
 
-                if(helper.updateUnreadCout(item.getUsername(),unread_count[position])) {
+                if (unread_count != null)
+                    if(helper.updateUnreadCout(item.getUsername(),unread_count[position])) {
 
-                    refreshFromDB();
-                }
-                startActivityForResult(new Intent(getActivity(),MessageActivity.class).putExtra("uploadedby",item.getUploadedby()).putExtra("signature",item.getSignature()).putExtra("fname",item.getFname()).putExtra("lname",item.getLname()).putExtra("sender",plainusername).putExtra("receiver",item.getUsername()).putExtra("sender_uid",item.getSender_uid()).putExtra("receiver_uid",item.getUid()),90);
+                        refreshFromDB();
+                    }
+                startActivity(new Intent(getActivity(), MessageActivity.class).putExtra("uploadedby", item.getUploadedby()).putExtra("signature", item.getSignature()).putExtra("fname", item.getFname()).putExtra("lname", item.getLname()).putExtra("sender", plainusername).putExtra("receiver", item.getUsername()).putExtra("sender_uid", item.getSender_uid()).putExtra("receiver_uid", item.getUid()));
 
             }
 
@@ -220,6 +226,7 @@ public class MessagesFragment extends Fragment {
     public void addMessages()
     {
 
+
         DatabaseHelper helper = new DatabaseHelper(getContext());
         tempList.clear();
         tempList=helper.loadChatRooms();
@@ -228,18 +235,23 @@ public class MessagesFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
 
 
-
+        Log.d("TAG", "calling getmessages: ");
         new GetMessages().execute();
 
     }
+
+
     class GetMessages extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
 
+
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", usernameenc));
-            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
+            Log.d("TAG", "sending: " + usernameenc);
+            json = jParser.makeHttpRequest("http://104.237.4.236:1234/Firebase/GetChatRooms", "GET", params);
+            Log.d("TAG", "get chatroom json: " + json);
             Bitmap map = null;
             try {
 
