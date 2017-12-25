@@ -129,7 +129,7 @@ public class Z {
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
-    public static final String url_getdigest = IP_8081 + "AESTest/GetDigest";
+    public static final String url_getdigest = IP + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
