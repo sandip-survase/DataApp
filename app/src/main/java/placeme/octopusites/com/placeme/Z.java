@@ -31,8 +31,6 @@ public class Z {
     public static final String FAIL_TO_UPLOAD_IMAGE="Fail to upload image!\nPlease try again";
 
 
-
-
     //    ----------------------------------sunny---------------------------------------------------------------
 //                    --------------------MainActivity(student)-----------------
     public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
@@ -131,7 +129,7 @@ public class Z {
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
-    public static final String url_getdigest = IP + "AESTest/GetDigest";
+    public static final String url_getdigest = IP_8081 + "AESTest/GetDigest";
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
@@ -314,6 +312,18 @@ public class Z {
         }
 
     }
+
+    public static void fadeImage(Activity activity, View view) {
+
+        if (fadeAnimation != null)
+            view.startAnimation(fadeAnimation);
+        else {
+            fadeAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadeinimage);
+            view.startAnimation(fadeAnimation);
+        }
+
+    }
+
 
     public static void fadeandmovedown(Activity activity, View view) {
 

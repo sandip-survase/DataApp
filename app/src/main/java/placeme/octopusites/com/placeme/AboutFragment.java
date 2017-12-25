@@ -43,6 +43,10 @@ public class AboutFragment extends Fragment {
         allrightstxt.setTypeface(Z.getLight(getActivity()));
         licensetxt.setTypeface(Z.getBold(getActivity()));
 
+
+        String versionName = "Version " + BuildConfig.VERSION_NAME;
+        versiontxt.setText(versionName);
+
         licensetxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

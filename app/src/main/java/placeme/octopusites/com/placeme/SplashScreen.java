@@ -1,15 +1,19 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,7 +37,7 @@ import java.util.TimerTask;
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
@@ -94,7 +99,9 @@ public class SplashScreen extends Activity {
         poweredbyid.setTypeface(Z.getLight(this));
         companynamesplash.setTypeface(Z.getBold(this));
 
-        new GetDigest().execute();
+        Log.d("TAG", "build ver : " + BuildConfig.VERSION_NAME);
+
+        new GetDigestEcho().execute();
 
 
 //        CaocConfig.Builder.create().backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
@@ -131,6 +138,7 @@ public class SplashScreen extends Activity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        new UpdateFirebaseToken().execute();
 
 // my code
 //        CaocConfig.Builder.create()
@@ -149,12 +157,6 @@ public class SplashScreen extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    android_id = Secure.getString(getApplication().getContentResolver(), Secure.ANDROID_ID);
-                    TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-                    device_id = telephonyManager.getDeviceId();
-                } catch (Exception e) {
-                }
 
 
                 String i = sharedpreferences.getString(Intro, null);
@@ -343,7 +345,7 @@ public class SplashScreen extends Activity {
 
         private final String mEmail;
         private final String mPassword;
-        String s,resultofop;
+        String s, resultofop;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -427,7 +429,7 @@ public class SplashScreen extends Activity {
         protected String doInBackground(String... param) {
 
             String r = null;
-            String platform="Android ("+getDeviceName()+")";
+            String platform = "Android (" + getDeviceName() + ")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", platform));      //1
@@ -446,49 +448,72 @@ public class SplashScreen extends Activity {
         }
     }
 
-    class GetDigest extends AsyncTask<String, String, Boolean> {
+    class GetDigestEcho extends AsyncTask<String, String, Boolean> {
 
-        String info = null;
+        String info = null, versionName = null, versionType = null;
+
 
         protected Boolean doInBackground(String... param) {
 
             String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
 
+            try {
+                android_id = Secure.getString(getApplication().getContentResolver(), Secure.ANDROID_ID);
+                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                device_id = telephonyManager.getDeviceId();
+            } catch (Exception e) {
+            }
+
+            String echo_number = "" + new Random().nextInt();
+
             Log.d("TAG", "doInBackground: user " + username);
             Log.d("TAG", "doInBackground: aid " + android_id);
             Log.d("TAG", "doInBackground: did " + device_id);
+
+            Log.d("TAG", "splash echo send " + echo_number);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
             params.add(new BasicNameValuePair("did", device_id));
             params.add(new BasicNameValuePair("u", username));
+            params.add(new BasicNameValuePair("e", echo_number));
 
             JSONObject json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
             Log.d("TAG", "GetDigest: json -------  GetDigest ------------ " + json);
 
             if (json != null) {
-
                 try {
-                    info = json.getString("info");
+                    String receivedEcho = json.getString("num");
 
-                    if (info != null && info.equals("success")) {
+                    if (receivedEcho != null && receivedEcho.equals(echo_number)) {
+                        Log.d("TAG", "splash echo recevied : " + receivedEcho);
+                        info = json.getString("info");
 
-                        digest1 = json.getString("digest1");
-                        digest2 = json.getString("digest2");
-                        digest3 = json.getString("digest3");
+                        if (info != null && info.equals("success")) {
 
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                            digest1 = json.getString("digest1");
+                            digest2 = json.getString("digest2");
+                            digest3 = json.getString("digest3");
 
-                        editor.putString("digest1", digest1);
-                        editor.putString("digest2", digest2);
-                        editor.putString("digest3", digest3);
-                        editor.commit();
-                    }
+                            versionName = Z.Decrypt(json.getString("versionName"), SplashScreen.this);
+                            versionType = Z.Decrypt(json.getString("versionType"), SplashScreen.this);
+
+                            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                            editor.putString("digest1", digest1);
+                            editor.putString("digest2", digest2);
+                            editor.putString("digest3", digest3);
+                            editor.commit();
+                        } else
+                            return false;
+                    } else
+                        return false;
 
                 } catch (Exception e) {
-                    Log.d("TAG", "doInBackground: exception in splashsreen" + e.getMessage());
+                    Log.d("TAG", "doInBackground: exception in splashScreen" + e.getMessage());
                     e.printStackTrace();
+                    return false;
                 }
             } else
                 return false;
@@ -499,12 +524,23 @@ public class SplashScreen extends Activity {
         @Override
         protected void onPostExecute(Boolean result) {
 
-            if (result) {
-                if (info != null && info.equals("success")) {
+            if (result == true && info != null && info.equals("success") && versionName != null && versionType != null) {
 
-                    new UpdateFirebaseToken().execute();
+                String currentVersion = BuildConfig.VERSION_NAME;
+
+                if (versionName.equals(currentVersion)) {
+                    Log.d("TAG", "+++++++++++++++++  no update");
+
                     mainWork();
+
+                } else {
+                    if (versionType.equals("force")) {
+                        showForceUpdateDialog();
+                    } else if (versionType.equals("optional")) {
+                        showOptionalUpdateDialog();
+                    }
                 }
+
             } else {
                 Intent i = new Intent(SplashScreen.this, NoInternet.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -515,10 +551,78 @@ public class SplashScreen extends Activity {
         }
     }
 
+    private void showOptionalUpdateDialog() {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder
+                .setTitle("New update available!")
+                .setMessage("Please, update app to new version.")
+                .setCancelable(false)
+                .setPositiveButton("Update",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                String packageName = getPackageName();
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details:id=" + packageName)));
+                                finish();
+
+                            }
+                        })
+
+                .setNegativeButton("NO,THANKS", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        mainWork();
+
+                    }
+                });
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(SplashScreen.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(SplashScreen.this));
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    private void showForceUpdateDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder
+                .setTitle("New update available!")
+                .setMessage("Please, update app to new version.")
+                .setCancelable(false)
+                .setPositiveButton("Update",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                String packageName = getPackageName();
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details:id=" + packageName)));
+                                //TODO check playStore link
+                                finish();
+
+                            }
+                        });
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(SplashScreen.this));
+            }
+        });
+        alertDialog.show();
+    }
+
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
-        // TODO move UpdateFirebaseToken code to all base activity
-        // TODO update AID,DID
+
         JSONObject json;
         JSONParser jParser = new JSONParser();
         String resultofop = null;
@@ -534,7 +638,7 @@ public class SplashScreen extends Activity {
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
-                Log.d("TAG", "token json splash: "+json);
+                Log.d("TAG", "token json splash: " + json);
 
                 resultofop = json.getString("info");
 

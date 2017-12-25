@@ -3218,8 +3218,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     }
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
-        // TODO move UpdateFirebaseToken code to all base activity
-        // TODO update AID,DID
         JSONObject json;
         JSONParser jParser = new JSONParser();
         String resultofop = null;

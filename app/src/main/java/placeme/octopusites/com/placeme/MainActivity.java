@@ -3350,7 +3350,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 for (File child : fileOrDirectory.listFiles())
                     DeleteRecursive(child);
 
-            fileOrDirectory.delete();
+            if (fileOrDirectory.delete())
+                Log.d("TAG", "deleted : ");
 
         }
 

@@ -3242,6 +3242,7 @@ public class MyProfileFragment extends Fragment {
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             updateProgress.setVisibility(View.GONE);
+                            Z.fadeImage(getActivity(), myprofileimg);
                             return false;
                         }
 

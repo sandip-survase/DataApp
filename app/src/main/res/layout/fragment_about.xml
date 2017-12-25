@@ -26,7 +26,6 @@
             android:layout_below="@+id/aboutplacemetxt"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Version 0.0.1"
             android:textColor="@color/dark_color" />
 
         <ImageView
