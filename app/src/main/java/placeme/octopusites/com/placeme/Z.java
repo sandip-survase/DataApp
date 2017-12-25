@@ -226,7 +226,7 @@ public class Z {
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";
     public static final String url_delete_file = IP + "AESTest/DeleteFile";
     public static final String url_uploadSingleFile = IP + "AESTest/UploadSingleFile";
-    public static final String url_GetRegisteredUsersUnderAdmin = IP + "AESTest/GetRegisteredUsersUnderAdmin";
+    public static final String url_GetRegisteredUsersUnderAdmin = IP_8086 + "AESTest/GetRegisteredUsersUnderAdmin";
     public static final String url_getlastupdated = IP + "AESTest/GetLastUpdated";
     public static final String url_SavePlacedDebarInfo = IP + "AESTest/SavePlacedDebarInfo";
     public static final String url_GetPlacedDebarInfo = IP + "AESTest/GetPlacedDebarInfo";
