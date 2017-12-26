@@ -45,6 +45,13 @@ public class PlacementTab3 extends Fragment {
         twelthordiplomaeligibility=(ImageView) rootView.findViewById(R.id.eligibilitytwelthordiploma);
         ugeligibility=(ImageView) rootView.findViewById(R.id.eligibilityug);
 
+        tenthview.setTypeface(Z.getBold(getActivity()));
+        twelthordiplomaview.setTypeface(Z.getBold(getActivity()));
+        ugview.setTypeface(Z.getBold(getActivity()));
+        studenttenthview.setTypeface(Z.getBold(getActivity()));
+        studenttwelthordiplomaview.setTypeface(Z.getBold(getActivity()));
+        studentugview.setTypeface(Z.getBold(getActivity()));
+
         tenthview.setText(tenth);
         twelthordiplomaview.setText(twelthordiploma);
         ugview.setText(ug);

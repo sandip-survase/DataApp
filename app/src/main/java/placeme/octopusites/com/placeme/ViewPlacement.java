@@ -91,6 +91,7 @@ public class ViewPlacement extends AppCompatActivity {
 
 
         registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
+        registerbutton.setTypeface(Z.getBold(this));
         progressBar = (ProgressBar) findViewById(R.id.registerforplacementprogress);
 
 
