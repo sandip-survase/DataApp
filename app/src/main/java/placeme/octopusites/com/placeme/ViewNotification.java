@@ -84,6 +84,7 @@ public class ViewNotification extends AppCompatActivity {
         lastmodifiedtxt=(TextView)findViewById(R.id.lastmodifiedtxt);
         uploadedbytxt.setTypeface(Z.getLight(this));
         lastmodifiedtxt.setTypeface(Z.getLight(this));
+        attachmentstxt.setTypeface(Z.getLight(this));
 
         String uploadedby="";
 

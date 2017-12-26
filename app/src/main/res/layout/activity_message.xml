@@ -55,7 +55,6 @@
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/send"
-            android:tint="@color/sky_blue_color"
             android:id="@+id/send"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"

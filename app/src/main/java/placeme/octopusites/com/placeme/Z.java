@@ -69,7 +69,7 @@ public class Z {
     public static final String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
     public static final String url_GetPlacementSentByAdminByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
+    public static final String url_GetReadStatusOfPlacementsByAFdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
     public static final String url_GetPlacementSentByAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementSentByAdmin";
     public static final String url_Delete_Placements = IP_8086 + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------

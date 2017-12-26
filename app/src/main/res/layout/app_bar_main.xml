@@ -34,7 +34,7 @@
             android:id="@+id/blogtabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#282f35"
+            android:background="@color/dark_color"
             android:visibility="gone"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/sky_blue_color"

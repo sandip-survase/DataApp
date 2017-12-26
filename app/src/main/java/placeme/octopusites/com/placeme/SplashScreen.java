@@ -500,17 +500,21 @@ public class SplashScreen extends AppCompatActivity {
                                 digest1 = json.getString("digest1");
                                 digest2 = json.getString("digest2");
                                 digest3 = json.getString("digest3");
-
-                                versionName = Z.Decrypt(json.getString("versionName"), SplashScreen.this);
-                                versionType = Z.Decrypt(json.getString("versionType"), SplashScreen.this);
-
                                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
-
                                 editor.putString("digest1", digest1);
                                 editor.putString("digest2", digest2);
                                 editor.putString("digest3", digest3);
                                 editor.commit();
+
+                                versionName = json.getString("versionName");
+                                versionType = json.getString("versionType");
+
+                                versionName = Z.Decrypt(versionName, SplashScreen.this);
+                                versionType = Z.Decrypt(versionType, SplashScreen.this);
+
+
+
                             } else
                                 return 3;
                         } else

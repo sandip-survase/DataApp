@@ -79,6 +79,17 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
     }
 
     @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d("tag2", "adapter notification Accessed" );
+
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recyclerview_list_row, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+
+    @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         RecyclerItemEdit item = itemList.get(position);
@@ -118,9 +129,12 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
         else
             holder.title.setText(item.getTitle());
 
-
+            holder.title.setTypeface(Z.getBold(holder.title.getContext()));
         holder.notification.setText(item.getNotification());
         holder.uploadtime.setText(item.getUploadtime());
+        holder.notification.setTypeface(Z.getLight(holder.title.getContext()));
+        holder.uploadtime.setTypeface(Z.getLight(holder.title.getContext()));
+
         if(item.isAttachment())
         {
             Drawable myDrawable = mContext.getResources().getDrawable(R.drawable.attachment_icon);
@@ -135,13 +149,13 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
         if(item.isIsread())
         {
             holder.title.setTextColor(Color.parseColor("#03353e"));
-            holder.title.setTypeface(null, Typeface.NORMAL);
+
 
         }
         else if(!item.isIsread())
         {
             holder.title.setTextColor(Color.parseColor("#00bcd4"));
-            holder.title.setTypeface(null, Typeface.BOLD);
+
 
         }
 
@@ -177,15 +191,6 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
 
 
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("tag2", "adapter notification Accessed" );
-
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_list_row, parent, false);
-
-        return new MyViewHolder(itemView);
-    }
 
     @Override
     public int getItemCount() {
