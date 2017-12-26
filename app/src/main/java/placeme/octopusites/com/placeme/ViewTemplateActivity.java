@@ -95,6 +95,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
             }
         });
         progressbar=(ProgressBar)findViewById(R.id.progressbar);
+        Log.d("TAG", "oncreate: resume page -");
         new GetResumePages().execute();
 
 
@@ -166,20 +167,26 @@ public class ViewTemplateActivity extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
+            Log.d("TAG", "doInBackground: resume page -");
+            Log.d("TAG", "doInBackground: id - " + id);
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("i",id+""));
+
             json = jParser.makeHttpRequest(Z.load_resume_pages, "GET", params);
+            Log.d("TAG", "doInBackground: json - " + json);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);
+                Log.d("TAG", "doInBackground: resume page count -" + count);
                 resumePages=new int[count];
                 for(int i=0;i<count;i++)
                     resumePages[i]=Integer.parseInt(json.getString("page"+i));
 
-
-
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                Log.d("TAG", "doInBackground: exception - " + e.getMessage());
+                e.printStackTrace();
+            }
             return r;
         }
 
