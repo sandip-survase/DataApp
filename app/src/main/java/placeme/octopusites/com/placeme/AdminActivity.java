@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
@@ -15,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -1352,7 +1354,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     } catch (Exception e) {
                     }
 
-                    new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+//                    new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
                 }
 
             }
@@ -2612,7 +2614,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
 
-            if (result.equals("0")) {
+            if (result != null && result.equals("0")) {
                 bluePanelTv.setText(Z.users_under_your_supervision);
             } else {
                 bluePanelTv.setText(result + Z.users_under_your_supervision);

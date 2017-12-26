@@ -310,8 +310,6 @@ public class ShowUsers extends AppCompatActivity {
 
                             }
 
-
-
                         }catch (Exception e){
                             Log.d("TAG", "doInBackground: exp "+e.getMessage());
                         }
@@ -330,7 +328,6 @@ public class ShowUsers extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             new GetLastUpdatedNotification().execute();
-
 
         }
     }

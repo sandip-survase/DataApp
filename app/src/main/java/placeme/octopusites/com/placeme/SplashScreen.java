@@ -448,12 +448,12 @@ public class SplashScreen extends AppCompatActivity {
         }
     }
 
-    class GetDigestEcho extends AsyncTask<String, String, Boolean> {
+    class GetDigestEcho extends AsyncTask<String, String, Integer> {
 
         String info = null, versionName = null, versionType = null;
 
 
-        protected Boolean doInBackground(String... param) {
+        protected Integer doInBackground(String... param) {
 
             String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
 
@@ -481,74 +481,128 @@ public class SplashScreen extends AppCompatActivity {
             JSONObject json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
             Log.d("TAG", "GetDigest: json -------  GetDigest ------------ " + json);
 
-            if (json != null) {
-                try {
-                    String receivedEcho = json.getString("num");
 
-                    if (receivedEcho != null && receivedEcho.equals(echo_number)) {
-                        Log.d("TAG", "splash echo recevied : " + receivedEcho);
-                        info = json.getString("info");
+            try {
 
-                        if (info != null && info.equals("success")) {
+                if (json != null) {
 
-                            digest1 = json.getString("digest1");
-                            digest2 = json.getString("digest2");
-                            digest3 = json.getString("digest3");
+                    info = json.getString("info");
+                    if (info != null) {
 
-                            versionName = Z.Decrypt(json.getString("versionName"), SplashScreen.this);
-                            versionType = Z.Decrypt(json.getString("versionType"), SplashScreen.this);
+                        String receivedEcho = json.getString("num");
 
-                            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                        if (receivedEcho != null && receivedEcho.equals(echo_number)) {
+                            Log.d("TAG", "splash echo recevied : " + receivedEcho);
 
-                            editor.putString("digest1", digest1);
-                            editor.putString("digest2", digest2);
-                            editor.putString("digest3", digest3);
-                            editor.commit();
+
+                            if (info != null && info.equals("success")) {
+
+                                digest1 = json.getString("digest1");
+                                digest2 = json.getString("digest2");
+                                digest3 = json.getString("digest3");
+
+                                versionName = Z.Decrypt(json.getString("versionName"), SplashScreen.this);
+                                versionType = Z.Decrypt(json.getString("versionType"), SplashScreen.this);
+
+                                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                                editor.putString("digest1", digest1);
+                                editor.putString("digest2", digest2);
+                                editor.putString("digest3", digest3);
+                                editor.commit();
+                            } else
+                                return 3;
                         } else
-                            return false;
+                            return 3;
+
                     } else
-                        return false;
+                        return 3;
 
-                } catch (Exception e) {
-                    Log.d("TAG", "doInBackground: exception in splashScreen" + e.getMessage());
-                    e.printStackTrace();
-                    return false;
-                }
-            } else
-                return false;
+                } else
+                    return 2;  // no internet
 
-            return true;
+            } catch (Exception e) {
+                Log.d("TAG", "doInBackground: exception in splashScreen" + e.getMessage());
+                e.printStackTrace();
+                return 3;    // server prob or null or exception
+            }
+
+            return 1; // all good
         }
 
         @Override
-        protected void onPostExecute(Boolean result) {
+        protected void onPostExecute(Integer result) {
 
-            if (result == true && info != null && info.equals("success") && versionName != null && versionType != null) {
 
-                String currentVersion = BuildConfig.VERSION_NAME;
+            switch (result) {
 
-                if (versionName.equals(currentVersion)) {
-                    Log.d("TAG", "+++++++++++++++++  no update");
+                case 1: {
+                    if (info.equals("success") && versionName != null && versionType != null) {
 
-                    mainWork();
+                        String currentVersion = BuildConfig.VERSION_NAME;
 
-                } else {
-                    if (versionType.equals("force")) {
-                        showForceUpdateDialog();
-                    } else if (versionType.equals("optional")) {
-                        showOptionalUpdateDialog();
+                        if (versionName.equals(currentVersion)) {
+                            Log.d("TAG", "+++++++++++++++++  no update");
+
+                            mainWork();
+
+                        } else {
+                            if (versionType.equals("force")) {
+                                showForceUpdateDialog();
+                            } else if (versionType.equals("optional")) {
+                                showOptionalUpdateDialog();
+                            }
+                        }
+
                     }
+                    break;
                 }
+                case 2: {
 
-            } else {
-                Intent i = new Intent(SplashScreen.this, NoInternet.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
-                i.putExtra("splash", true);
-                startActivity(i);
+                    Intent i = new Intent(SplashScreen.this, NoInternet.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    i.putExtra("splash", true);
+                    startActivity(i);
+
+                    break;
+
+                }
+                case 3: {
+                    showErrorDialog();
+                    break;
+                }
             }
-
         }
+    }
+
+    private void showErrorDialog() {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder
+                .setMessage("Could not reach to server!")
+                .setCancelable(false)
+                .setPositiveButton("try again",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(SplashScreen.this, SplashScreen.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);       // clear stack histry new fresh call
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        });
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(SplashScreen.this));
+            }
+        });
+        alertDialog.show();
+
     }
 
     private void showOptionalUpdateDialog() {
