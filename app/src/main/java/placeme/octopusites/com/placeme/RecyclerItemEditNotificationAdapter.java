@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.signature.ObjectKey;
 
 
@@ -111,7 +112,8 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
         GlideApp.with(mContext)
                 .load(uri)
-//                .signature(new ObjectKey(item.getSignature()))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .signature(new ObjectKey(item.getSignature()))
                 .into(holder.uploadedbyprofile);
 
 
@@ -131,9 +133,16 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
             holder.title.setTypeface(Z.getBold(holder.title.getContext()));
         holder.notification.setText(item.getNotification());
-        holder.uploadtime.setText(item.getUploadtime());
         holder.notification.setTypeface(Z.getLight(holder.title.getContext()));
-        holder.uploadtime.setTypeface(Z.getLight(holder.title.getContext()));
+
+
+        if(item.getUploadedby().equals("PLACE ME")){
+            holder.uploadtime.setVisibility(View.GONE);
+        }else {
+            holder.uploadtime.setVisibility(View.VISIBLE);
+            holder.uploadtime.setText(item.getUploadtime());
+            holder.uploadtime.setTypeface(Z.getLight(holder.title.getContext()));
+        }
 
         if(item.isAttachment())
         {

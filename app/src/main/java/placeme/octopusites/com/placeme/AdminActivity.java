@@ -1912,7 +1912,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(Z.url_ChangeNotificationReadStatusAdmin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_changenotificationsreadstatus, "GET", params);
             return r;
         }
 
@@ -2489,7 +2489,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
 
-            json = jParser.makeHttpRequest(Z.url_ChangePlacementReadStatusAdmin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_ChangePlacementReadStatus, "GET", params);
             return r;
         }
 

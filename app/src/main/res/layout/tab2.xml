@@ -62,6 +62,7 @@
                 android:id="@+id/companyaptiview"
                 android:layout_below="@+id/aptitxt"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
@@ -93,6 +94,8 @@
                 android:id="@+id/companygdview"
                 android:layout_below="@+id/companygdtxt"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
@@ -124,6 +127,8 @@
                 android:id="@+id/companytechtestview"
                 android:layout_below="@+id/companytechtesttxt"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
@@ -155,6 +160,8 @@
                 android:id="@+id/companytechinterviewview"
                 android:layout_below="@+id/companytechinterviewtxt"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+
                 android:gravity="center"
                 android:textSize="16dp"
                 android:text="1"
@@ -218,6 +225,8 @@
                 android:id="@+id/companyhrinterviewview"
                 android:layout_below="@+id/companyhrinterviewtxt"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
