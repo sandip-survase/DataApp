@@ -116,7 +116,7 @@ public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAd
             else
             {
                 GlideApp.with(holder.status.getContext())
-                        .load(R.drawable.download)
+                        .load(R.drawable.download_white)
                         .into(holder.status);
 
                 holder.touchable_area.setOnClickListener(new View.OnClickListener() {
@@ -146,9 +146,6 @@ public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAd
                 holder.thumbnail.getContext().startActivity(new Intent(holder.thumbnail.getContext(),ViewTemplateActivity.class).putExtra("key",item.getId()));
             }
         });
-
-
-
     }
     @Override
     public int getItemCount() {

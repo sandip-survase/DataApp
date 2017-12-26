@@ -184,12 +184,12 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     ViewPager mViewPager;
     TabLayout tabLayout;
     private int[] tabIcons = {
-            R.drawable.tab_news,
-            R.drawable.tab_videos,
-            R.drawable.tab_resume,
-            R.drawable.tab_question,
-            R.drawable.tab_ebooks,
-            R.drawable.tab_question_sets,
+            R.drawable.news_feed_icon,
+            R.drawable.videos_icon,
+            R.drawable.resume_templates_icon,
+            R.drawable.question_sets_icon,
+            R.drawable.ebooks_icon,
+            R.drawable.question_sets_icon,
     };
 
     private TextView toolbar_title;
@@ -1257,7 +1257,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } catch (Exception e) {
                     }
-
+                    if (reciever_uid != null)
                     new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
                 }
 
@@ -2879,17 +2879,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         mAdapterNotification.notifyDataSetChanged();
 
     }
-//
-
-
-
-
-
-
-
-
-
-
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
@@ -2901,8 +2890,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     }
     private void setupViewPager(ViewPager viewPager) {
         AlumniActivity.ViewPagerAdapter adapter = new AlumniActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new NewsFeedFragment(), "News Feed");
-        adapter.addFrag(new VideosFragment(), "Videos");
+        adapter.addFrag(new NoDataAvailableFragment(), "News Feed");
+        adapter.addFrag(new NoDataAvailableFragment(), "Videos");
         adapter.addFrag(new ResumeTemplatesFragment(), "Resume Templates");
         adapter.addFrag(new NoDataAvailableFragment(), "Interview Questions");
         adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");

@@ -1527,7 +1527,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("u", encUsersName));       //0
 
             JSONObject json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
-
+            Log.d("TAG", "ValidateUser json: " + json);
             if (json != null ) {
                 try {
 
@@ -1536,7 +1536,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         if (result.equals("found"))
                             foundFname = json.getString("fname");
 
-                    Log.d("TAG", "ValidateUser json: " + json);
 
                 } catch (Exception e) {
                     Log.d("TAG", "ValidateUser json  exp :  " + e.getMessage());
