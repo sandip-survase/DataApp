@@ -7,7 +7,7 @@
     android:id="@+id/activity_create_placement_hr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     tools:context="placeme.octopusites.com.placeme.CreatePlacementHr">
 
     <android.support.v7.widget.Toolbar
@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Placement/Internship"
-        android:textSize="18dp"
-        android:textColor="#eee"
+        android:textSize="16dp"
+        android:textColor="@color/dark_color"
         android:id="@+id/createnotitxt"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
@@ -37,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/createnotitxt"
-        android:textColor="#bbb"
+        android:textColor="@color/dark_color"
+        android:textSize="12dp"
         android:text="Choose to whom you want to send this Placement."
         android:layout_marginTop="10dp"
         android:id="@+id/createnotinotitxt"
@@ -69,7 +70,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text=""
                 android:layout_marginTop="0dp"
                 android:id="@+id/dummy2"
@@ -78,25 +79,24 @@
                 android:id="@+id/batchesTags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                TagsEditText:tagsTextColor="#282f35"
+                TagsEditText:tagsTextColor="@color/while_color"
                 TagsEditText:allowSpaceInTag="true"
                 android:editable="false"
                 TagsEditText:tagsBackground="@drawable/square_default"
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                android:textColor="#eee"
+                android:textColor="@color/while_color"
                 android:textSize="16dp"
                 android:singleLine = "true"
                 android:maxLines="1"
                 android:layout_marginLeft="5dp"
-                android:popupBackground="#001111"
-
+                android:popupBackground="@color/while_color"
 
                 android:layout_below="@+id/dummy2"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text=""
                 android:layout_below="@+id/tagsEditText"
                 android:layout_marginTop="0dp"
@@ -129,7 +129,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text=""
                 android:layout_marginTop="0dp"
                 android:id="@+id/dummy3"
@@ -138,17 +138,17 @@
                 android:id="@+id/expTag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                TagsEditText:tagsTextColor="#282f35"
+                TagsEditText:tagsTextColor="@color/while_color"
                 TagsEditText:allowSpaceInTag="true"
                 android:editable="false"
                 TagsEditText:tagsBackground="@drawable/square_default"
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                android:textColor="#eee"
+                android:textColor="@color/while_color"
                 android:textSize="16dp"
                 android:singleLine = "true"
                 android:maxLines="1"
                 android:layout_marginLeft="5dp"
-                android:popupBackground="#001111"
+                android:popupBackground="@color/while_color"
 
 
                 android:layout_below="@+id/dummy3"/>
@@ -156,7 +156,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:text=""
                 android:layout_below="@+id/expTag"
                 android:layout_marginTop="0dp"
@@ -172,7 +172,7 @@
         android:id="@+id/placementtabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#282f35"
+        android:background="@color/dark_color"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_below="@+id/expselector"

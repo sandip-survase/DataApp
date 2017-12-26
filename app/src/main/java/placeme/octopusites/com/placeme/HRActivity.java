@@ -155,6 +155,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         createnotificationtxt = (TextView) findViewById(R.id.createnotificationtxt);
         editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
+        createnotificationtxt.setTypeface(Z.getBold(this));
+        editnotificationtxt.setTypeface(Z.getBold(this));
+
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
@@ -226,7 +229,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
-                        getSupportActionBar().setTitle("Notifications");
+
 
                         createnotificationtxt.setText("Create Notification");
                         editnotificationtxt.setText("Edit Notification");
@@ -249,7 +252,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                         addTempPlacements();
-                        getSupportActionBar().setTitle("Placements");
 
                         createnotificationtxt.setText("Create Placements");
                         editnotificationtxt.setText("Edit Placements");

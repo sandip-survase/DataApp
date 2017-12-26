@@ -59,18 +59,7 @@ public class CreatePlacementHr extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     String encUsername = "",encRole="";
     String  sbatchesTags="",sexptaTags="";
-
-
-
-
-
-
-
-
-
-
-
-
+    TextView createnotitxt,createnotinotitxt;
 
 
 
@@ -79,6 +68,11 @@ public class CreatePlacementHr extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_placement_hr);
 
+        createnotitxt=(TextView)findViewById(R.id.createnotitxt);
+        createnotinotitxt=(TextView)findViewById(R.id.createnotinotitxt);
+
+        createnotitxt.setTypeface(Z.getBold(this));
+        createnotinotitxt.setTypeface(Z.getLight(this));
 //        ui work
         toolbar = (Toolbar) findViewById(R.id.placementtoolbar);
         setSupportActionBar(toolbar);

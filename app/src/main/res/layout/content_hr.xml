@@ -5,7 +5,7 @@
     android:id="@+id/content_hr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:focusableInTouchMode="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="placeme.octopusites.com.placeme.HRActivity"
@@ -37,14 +37,15 @@
             android:layout_height="50dp"
             android:id="@+id/admincontrolsrl"
             android:background="@drawable/boxborder"
+            android:elevation="2dp"
             >
 
             <View
-                android:layout_width="3dp"
+                android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/section"
-                android:background="#282f35"
+                android:background="@color/sky_blue_color"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,12 +55,11 @@
                 >
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/adminplus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/add_icon"
                     android:layout_centerVertical="true"
                     android:id="@+id/addnotification"
-                    android:tint="#282f35"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     />
@@ -72,7 +72,7 @@
                     android:text="Create Notification"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:textColor="#282f35"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/createnotificationtxt"
                     />
 
@@ -85,12 +85,11 @@
                 android:id="@+id/editnotificationrl"
                 >
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/adminedit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/edit_notification_icon"
                     android:layout_centerVertical="true"
                     android:id="@+id/editnotification"
-                    android:tint="#282f35"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     />
@@ -103,7 +102,7 @@
                     android:text="Edit Notification"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:textColor="#282f35"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/editnotificationtxt"
                     />
             </RelativeLayout>
