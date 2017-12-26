@@ -54,19 +54,10 @@
 
         />
     <View
-        android:id="@+id/proselectionview"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_below="@+id/chattxt"
-        android:layout_marginTop="10dp"
-
-        />
-
-    <View
         android:id="@+id/settingselectionview"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/protxt"
+        android:layout_below="@+id/chattxt"
         android:layout_marginTop="10dp"
 
         />
@@ -237,33 +228,13 @@
         android:textSize="11dp"
         />
     <ImageView
-        android:id="@+id/pro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pro_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/chattxt"
-        />
-    <TextView
-        android:id="@+id/protxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Try Place Me Pro"
-        android:layout_below="@+id/pro"
-        android:textColor="#fcfdfd"
-        android:layout_centerHorizontal="true"
-        android:textSize="11dp"
-        android:gravity="center"
-        />
-    <ImageView
         android:id="@+id/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/settings_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/protxt"
+        android:layout_below="@+id/chattxt"
         />
     <TextView
         android:id="@+id/settingstxt"

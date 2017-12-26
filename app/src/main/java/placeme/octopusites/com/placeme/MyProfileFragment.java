@@ -294,8 +294,6 @@ public class MyProfileFragment extends Fragment {
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
 
-        trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-        trytxt.setTypeface(Z.getBold(getActivity()));
 
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
@@ -456,15 +454,6 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivityForResult(new Intent(getActivity(), EditProfile.class), 0);
-            }
-        });
-
-        View proselectionview = (View) rootView.findViewById(R.id.proselectionview);
-        proselectionview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ProSplashScreen.class));
-
             }
         });
 

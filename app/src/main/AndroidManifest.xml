@@ -42,6 +42,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
                 <category android:name="com.samsung.android.intent.category.PENWINDOW_LAUNCHER" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -212,22 +213,8 @@
             android:name=".LicenseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PlacemePro"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".KnowMoreActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dialog" />
-        <activity
-            android:name=".SwitchToProActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".GetTemplatesActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ProSplashScreen"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         <activity android:name=".PushNotificationPreferences" />
         <activity
             android:name=".QuestionsActivity"
@@ -326,13 +313,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyFormTheme" />
         <activity
-            android:name=".PlacemeProAdmin"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".KnowMoreAdminActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dialog" />
-        <activity
             android:name=".ViewResume"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dialog" />
@@ -386,11 +366,9 @@
             android:name=".EditProfileAlumni"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".AdminSingleUserViewDialog"
             android:theme="@style/MyFormTheme" />
-
         <activity
             android:name=".WelcomeGenrateCodeActivity"
             android:theme="@style/AppFullScreenTheme" />
@@ -411,7 +389,7 @@
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".HRRoleSelected"
-            android:theme="@style/Theme.Transparent"></activity>
+            android:theme="@style/Theme.Transparent" />
 
         <meta-data
             android:name="com.sec.android.support.multiwindow"
@@ -419,7 +397,6 @@
         <meta-data
             android:name="com.samsung.android.sdk.multiwindow.penwindow.enable"
             android:value="true" />
-
         <meta-data
             android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
             android:value="632.0dip" />
@@ -442,18 +419,31 @@
             android:name=".EditPlacementHr"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".EditPlacementMainHr"
+        <activity
+            android:name=".EditPlacementMainHr"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
-        <meta-data android:name="com.samsung.android.sdk.multiwindow.penwindow.enable" android:value="true" />
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true" />
+        <meta-data
+            android:name="com.samsung.android.sdk.multiwindow.penwindow.enable"
+            android:value="true" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
+            android:value="632.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H"
+            android:value="598.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W"
+            android:value="632.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
+            android:value="598.0dip" />
 
-        <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
-        <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
-        <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="632.0dip" />
-        <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="598.0dip" />
+        <activity android:name=".StayTunedActivity"></activity>
     </application>
 
 </manifest>

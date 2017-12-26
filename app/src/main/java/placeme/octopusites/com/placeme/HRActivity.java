@@ -339,33 +339,16 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
         final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
         final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
-        final ImageView proi = (ImageView) hView.findViewById(R.id.pro);
         final ImageView settingsi = (ImageView) hView.findViewById(R.id.settings);
         final ImageView newsi = (ImageView) hView.findViewById(R.id.blog);
-        final ImageView chati = (ImageView) hView.findViewById(R.id.chat);
         downloadImage();
-
-//        notificationcounttxt=(TextView) hView.findViewById(R.id.notificationcount);
-//        notificationcountrl=(RelativeLayout) hView.findViewById(R.id.notificationcountrl);
-//        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
-
-//        notificationcounttxt=(TextView)hView.findViewById(R.id.notificationcount);
-//        notificationcountrl=(RelativeLayout)hView.findViewById(R.id.notificationcountrl);
-//
-//        placementcounttxt=(TextView)hView.findViewById(R.id.placementcount);
-//        placementcountrl=(RelativeLayout)hView.findViewById(R.id.placementcountrl);
-//
-//        messagecount=(TextView)hView.findViewById(R.id.messagecount);
-//        messagecountrl=(RelativeLayout)hView.findViewById(R.id.messagecountrl);
 
         View v1 = (View) hView.findViewById(R.id.prifileselectionview);
         View v2 = (View) hView.findViewById(R.id.notificationselectionview);
         View v3 = (View) hView.findViewById(R.id.placementselectionview);
-//        View v4 = (View) hView.findViewById(R.id.proselectionview);
         View v5 = (View) hView.findViewById(R.id.settingselectionview);
         View v6 = (View) hView.findViewById(R.id.blogselectionview);
         View v7 = (View) hView.findViewById(R.id.abtselectionview);
-//        View v8 = (View) hView.findViewById(R.id.chatselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 

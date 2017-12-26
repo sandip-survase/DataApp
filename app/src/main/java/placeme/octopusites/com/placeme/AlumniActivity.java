@@ -496,7 +496,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         final ImageView profilei=(ImageView)hView.findViewById(R.id.profile);
         final ImageView notificationi=(ImageView)hView.findViewById(R.id.notification);
         final ImageView placementi=(ImageView)hView.findViewById(R.id.placement);
-        final ImageView proi=(ImageView)hView.findViewById(R.id.pro);
         final ImageView settingsi=(ImageView)hView.findViewById(R.id.settings);
         final ImageView newsi=(ImageView)hView.findViewById(R.id.blog);
         final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
@@ -517,7 +516,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         View v1=(View)hView.findViewById(R.id.prifileselectionview);
         View v2=(View)hView.findViewById(R.id.notificationselectionview);
         View v3=(View)hView.findViewById(R.id.placementselectionview);
-        View v4=(View)hView.findViewById(R.id.proselectionview);
         View v5=(View)hView.findViewById(R.id.settingselectionview);
         View v6=(View)hView.findViewById(R.id.blogselectionview);
         View v7=(View)hView.findViewById(R.id.abtselectionview);
@@ -559,13 +557,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
@@ -628,13 +619,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
-
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
@@ -693,13 +677,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
@@ -760,13 +737,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 pt8.setTypeface(Z.getBold(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
-
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
@@ -791,19 +761,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             }
         });
 
-        v4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                crop_flag=1;
-                startActivity(new Intent(AlumniActivity.this,ProSplashScreen.class));
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-
-
-            }
-        });
         v5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -837,13 +795,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
@@ -902,13 +853,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
@@ -970,13 +914,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(Z.getLight(AlumniActivity.this));
-                pt4.setTextColor(getResources().getColor(R.color.while_color));
-
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
@@ -1034,10 +971,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
         pt8.setTypeface(Z.getLight(AlumniActivity.this));
         pt8.setTextColor(getResources().getColor(R.color.while_color));
-
-        TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-        pt4.setTypeface(Z.getLight(AlumniActivity.this));
-        pt4.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
         pt5.setTypeface(Z.getLight(AlumniActivity.this));

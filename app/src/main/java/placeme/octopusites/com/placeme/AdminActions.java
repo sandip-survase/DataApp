@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AdminActions extends AppCompatActivity implements View.OnClickListener{
 
@@ -187,6 +188,6 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(this,SwitchToProActivity.class));
+        startActivity(new Intent(this, StayTunedActivity.class));
     }
 }

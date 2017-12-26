@@ -312,11 +312,6 @@ public class MyProfileAlumniFragment extends Fragment {
 
         TextView expboxtxt = (TextView) rootView.findViewById(R.id.expboxtxt);
 
-        TextView trytxt;
-
-        trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-
-
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
@@ -424,8 +419,6 @@ public class MyProfileAlumniFragment extends Fragment {
         contactmobile.setTypeface(Z.getBold(getActivity()));
         contactemail.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
-
-        trytxt.setTypeface(Z.getBold(getActivity()));
 
 
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
@@ -540,14 +533,7 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         });
 
-        View proselectionview = (View) rootView.findViewById(R.id.proselectionview);
-        proselectionview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ProSplashScreen.class));
 
-            }
-        });
 
         hashMap = new HashMap<>();
         hashMap.put("Jan", 1);

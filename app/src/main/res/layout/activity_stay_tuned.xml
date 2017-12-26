@@ -14,16 +14,16 @@
         android:layout_below="@+id/versiontxt"
         android:id="@+id/placemelogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="20dp" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/placemelogo"
         android:id="@+id/switchtorl"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginTop="20dp">
+
         <TextView
             android:id="@+id/trytxt"
             android:layout_width="wrap_content"
@@ -48,8 +48,8 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:textSize="14dp"
-        android:layout_below="@+id/switchtorl"
-        />
+        android:layout_below="@+id/switchtorl" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +59,6 @@
         android:id="@+id/staytxt"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:textSize="18dp"
-        />
+        android:textSize="18dp" />
 
 </RelativeLayout>

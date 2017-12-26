@@ -235,7 +235,6 @@ public class Z {
     public static final String url_DeleteNonActiveUser = IP + "AESTest/DeleteNonActiveUser";
     public static final String url_SaveWelcomeIntroData = IP + "AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = IP + "AESTest/SaveStudentFnameLnameMobile";
-    //    public static final String url = IP+"HandleMobileRequests/getimg.jsp?username=";
     public static final String url_SendActivationCode = IP + "AESTest/SendActivationCode";
     public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";

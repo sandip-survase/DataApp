@@ -1,31 +1,31 @@
 package placeme.octopusites.com.placeme;
 
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class SwitchToProActivity extends AppCompatActivity {
+public class StayTunedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_switch_to_pro);
+        setContentView(R.layout.activity_stay_tuned);
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Place Me");
         ab.setDisplayHomeAsUpEnabled(true);
 
 
+        TextView trytxt = (TextView) findViewById(R.id.trytxt);
 
-        TextView trytxt=(TextView)findViewById(R.id.trytxt);
-
-        TextView hitxt=(TextView)findViewById(R.id.hitxt);
-        TextView staytxt=(TextView)findViewById(R.id.staytxt);
+        TextView hitxt = (TextView) findViewById(R.id.hitxt);
+        TextView staytxt = (TextView) findViewById(R.id.staytxt);
         trytxt.setTypeface(Z.getBold(this));
         hitxt.setTypeface(Z.getLight(this));
         staytxt.setTypeface(Z.getBold(this));
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -33,9 +33,9 @@ public class SwitchToProActivity extends AppCompatActivity {
 
                 onBackPressed();
 
-                return(true);
+                return (true);
         }
 
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

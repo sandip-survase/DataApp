@@ -1801,41 +1801,6 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/prorl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/box7"
-                    android:layout_centerHorizontal="true">
-
-
-                    <TextView
-                        android:id="@+id/trytxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="20dp"
-                        android:gravity="bottom"
-                        android:text="Try Place Me Pro for Free"
-                        android:textColor="#03353e"
-                        android:textSize="20dp" />
-
-
-                </RelativeLayout>
-
-                <View
-                    android:id="@+id/proview"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/prorl"
-                    android:background="#00bcd4" />
-
-                <View
-                    android:id="@+id/proselectionview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/proview"
-                    android:layout_below="@+id/box7" />
-
             </RelativeLayout>
 
 

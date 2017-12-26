@@ -41,7 +41,7 @@ public class SettingsFragment extends Fragment {
         emailselectionview=(View)rootView.findViewById(R.id.emailselectionview);
         lastloginselectionview=(View)rootView.findViewById(R.id.lastloginselectionview);
         reportselectionview=(View)rootView.findViewById(R.id.reportselectionview);
-        proselectionview=(View)rootView.findViewById(R.id.proselectionview);
+
 
         faqselectionview=(View)rootView.findViewById(R.id.faqselectionview);
         helpselectionview=(View)rootView.findViewById(R.id.helpselectionview);
