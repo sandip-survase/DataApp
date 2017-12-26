@@ -29,7 +29,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.UserDetails;
+
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class ShowUsers extends AppCompatActivity {
 
@@ -48,6 +51,7 @@ public class ShowUsers extends AppCompatActivity {
     String sPadding;
     int searchFlag=0;
     FloatingActionButton fab;
+
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -260,61 +264,27 @@ public class ShowUsers extends AppCompatActivity {
                     encUsersName=new String[count];
                     signature=new String[count];
 
-                    byte[]  demo1DecryptedBytes = null;
+                String o=json.getString("object");
+                ArrayList<UserDetails> userDetails= (ArrayList<UserDetails>) fromString(o,MySharedPreferencesManager.getDigest1(ShowUsers.this),MySharedPreferencesManager.getDigest2(ShowUsers.this));
+
+                    Log.d("TAG", "doInBackground: ------------------------------- size "+userDetails.size());
 
                     for (int i = 0; i < count; i++) {
 
-                        try {
+                        registerUsersName[i] = userDetails.get(i).getUser();
+                        userType[i] = userDetails.get(i).getRole();
+                        fnames[i] = userDetails.get(i).getFname();
+                        lnames[i] = userDetails.get(i).getLname();
+                        isactivated[i] = userDetails.get(i).getIsactivated();
+                        encUsersName[i]=Z.Encrypt(registerUsersName[i],ShowUsers.this);
 
-                            registerUsersName[i] = json.getString("user" + i);
-                            userType[i] = json.getString("role" + i);
-                            fnames[i] = json.getString("fname" + i);
-                            lnames[i] = json.getString("lname" + i);
-                            isactivated[i] = json.getString("isactivated" + i);
-
-                            params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u",registerUsersName[i]));       //0
-                            json2 = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
-
-                            String s = json2.getString("lastupdated");
-                            if(s.equals("noupdate"))
-                            {
-                                // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                signature [i]=s;
-                                // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+s , Toast.LENGTH_SHORT).show();
-                            }
-
-                            if (!registerUsersName[i].equals("null")) {
-                                byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(registerUsersName[i]);
-                                demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-                                encUsersName[i]=registerUsersName[i];
-                                registerUsersName[i]=new String(demo1DecryptedBytes);
-
-
-                            }
-
-                            if (!fnames[i].equals("null")) {
-                                byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(fnames[i]);
-                                demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-                                fnames[i]=new String(demo1DecryptedBytes);
-
-                            }
-
-                            if (!lnames[i].equals("null")) {
-                                byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(lnames[i]);
-                                demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-                                lnames[i]=new String(demo1DecryptedBytes);
-
-                            }
-
-                        }catch (Exception e){
-                            Log.d("TAG", "doInBackground: exp "+e.getMessage());
-                        }
-
+                        Log.d("TAG", "doInBackground:  registerUsersName[i] "+ registerUsersName[i]);
+                        Log.d("TAG", "doInBackground:  userType[i] "+ userType[i]);
+                        Log.d("TAG", "doInBackground:  fnames[i] "+ fnames[i]);
+                        Log.d("TAG", "doInBackground:  lnames[i] "+ lnames[i]);
+                        Log.d("TAG", "doInBackground:  isactivated[i] "+ isactivated[i]);
                     }
+
                 }
 
             } catch (Exception e) {
@@ -327,8 +297,9 @@ public class ShowUsers extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            new GetLastUpdatedNotification().execute();
-
+            addUsersdatatoAdapter(count);
+            swipeRefreshLayout.setRefreshing(false);
+//            new GetLastUpdatedNotification().execute();
         }
     }
 
@@ -367,8 +338,7 @@ public class ShowUsers extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            addUsersdatatoAdapter(count);
-            swipeRefreshLayout.setRefreshing(false);
+
         }
 
     }
@@ -444,11 +414,6 @@ public class ShowUsers extends AppCompatActivity {
             else
                 strisactivated="Not Activated";
 
-//            Log.d("TAG", "addUsersdatatoAdapter: count "+count);
-//            Log.d("TAG", "addUsersdatatoAdapter: name "+fullname);
-//            Log.d("TAG", "addUsersdatatoAdapter: username "+username);
-//            Log.d("TAG", "addUsersdatatoAdapter: role "+role);
-//            Log.d("TAG", "addUsersdatatoAdapter: Activated "+strisactivated);
 
 //            RecyclerItemUsersAdmin item = new RecyclerItemUsersAdmin(i, "Abc " + i, "abc" + i + "@gmail.com ", "Student", "Placed in Cognizant");
             RecyclerItemUsersAdmin item = new RecyclerItemUsersAdmin(encusername,fullname,username,role,strisactivated,strsignature);
