@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
@@ -15,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -180,7 +182,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
 
 
-    private List<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
+    private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
     ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
 
@@ -268,6 +270,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
+
         if(notificationorplacementflag==1) {
             recyclerViewNotification.setVisibility(View.VISIBLE);
             recyclerViewPlacement.setVisibility(View.GONE);
@@ -1125,56 +1128,62 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                try {
 
-                RecyclerItemEdit itemN = null;
-                if (searchNotificationFlag == 1)
-                    itemN = tempListNotification.get(position);
-                else
-                    itemN = itemListNotificationNew.get(position);
-                if (!itemN.isIsread()) {
-                    itemN.setIsread(true);
-                    unreadcountNotification--;
-                    notificationcountrl.setVisibility(View.VISIBLE);
-                    notificationcounttxt.setText(unreadcountNotification + "");
-                    if (unreadcountNotification == 0) {
-                        notificationcountrl.setVisibility(View.GONE);
+
+                    RecyclerItemEdit itemN = null;
+                    if (searchNotificationFlag == 1)
+                        itemN = tempListNotification.get(position);
+                    else
+                        itemN = itemListNotificationNew.get(position);
+                    if (!itemN.isIsread()) {
+                        itemN.setIsread(true);
+                        unreadcountNotification--;
+                        notificationcountrl.setVisibility(View.VISIBLE);
+                        notificationcounttxt.setText(unreadcountNotification + "");
+                        if (unreadcountNotification == 0) {
+                            notificationcountrl.setVisibility(View.GONE);
+                        }
+
                     }
 
+
+                    mAdapterNotificationEdit.notifyDataSetChanged();
+                    changeReadStatusNotification(itemN.getId());
+
+                    crop_flag = 1;
+                    Intent i1 = new Intent(AdminActivity.this, ViewNotification.class);
+
+                    i1.putExtra("id", itemN.getId());
+                    i1.putExtra("title", itemN.getTitle());
+                    i1.putExtra("notification", itemN.getNotification());
+                    i1.putExtra("file1",itemN.getFilename1());
+                    i1.putExtra("file2",itemN.getFilename2());
+                    i1.putExtra("file3",itemN.getFilename3());
+                    i1.putExtra("file4",itemN.getFilename4());
+                    i1.putExtra("file5",itemN.getFilename5());
+                    i1.putExtra("uploadedby", itemN.getUploadedby());
+                    i1.putExtra("uploadtime", itemN.getUploadtime());
+                    i1.putExtra("lastmodified", itemN.getLastmodified());
+
+                    Log.d("addOnItemTouch", "id: " + itemN.getId());
+                    Log.d("addOnItemTouch", "title" + itemN.getTitle());
+                    Log.d("addOnItemTouch", "notification" + itemN.getNotification());
+                    Log.d("addOnItemTouch", "file1" + itemN.getFilename1());
+                    Log.d("addOnItemTouch", "file2" + itemN.getFilename2());
+                    Log.d("addOnItemTouch", "file3" + itemN.getFilename3());
+                    Log.d("addOnItemTouch", "file4" + itemN.getFilename4());
+                    Log.d("addOnItemTouch", "file5" + itemN.getFilename5());
+                    Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                    Log.d("addOnItemTouch", "uploadtime" + itemN.getUploadtime());
+                    Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                    Log.d("addOnItemTouch", "lastmodified" + itemN.getLastmodified());
+                    startActivity(i1);
+
+
+                } catch (Exception e) {
+
                 }
-
-                mAdapterNotificationEdit.notifyDataSetChanged();
-
-                changeReadStatusNotification(itemN.getId());
-
-                crop_flag = 1;
-                Intent i1 = new Intent(AdminActivity.this, ViewNotification.class);
-
-                i1.putExtra("id", itemN.getId());
-                i1.putExtra("title", itemN.getTitle());
-                i1.putExtra("notification", itemN.getNotification());
-                i1.putExtra("file1", itemN.getFilename1());
-                i1.putExtra("file2", itemN.getFilename2());
-                i1.putExtra("file3", itemN.getFilename3());
-                i1.putExtra("file4", itemN.getFilename4());
-                i1.putExtra("file5", itemN.getFilename5());
-                i1.putExtra("uploadedby", itemN.getUploadedby());
-                i1.putExtra("uploadtime", itemN.getUploadtime());
-                i1.putExtra("lastmodified", itemN.getLastmodified());
-
-                Log.d("addOnItemTouch", "id: " + itemN.getId());
-                Log.d("addOnItemTouch", "title" + itemN.getTitle());
-                Log.d("addOnItemTouch", "notification" + itemN.getNotification());
-                Log.d("addOnItemTouch", "file1" + itemN.getFilename1());
-                Log.d("addOnItemTouch", "file2" + itemN.getFilename2());
-                Log.d("addOnItemTouch", "file3" + itemN.getFilename3());
-                Log.d("addOnItemTouch", "file4" + itemN.getFilename4());
-                Log.d("addOnItemTouch", "file5" + itemN.getFilename5());
-                Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
-                Log.d("addOnItemTouch", "uploadtime" + itemN.getUploadtime());
-                Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
-                Log.d("addOnItemTouch", "lastmodified" + itemN.getLastmodified());
-                startActivity(i1);
-
             }
 
             @Override
