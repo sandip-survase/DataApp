@@ -16,6 +16,7 @@ public class PlacementTab1 extends Fragment {
     String companyname,cpackage,lastdateofreg,post,vacancies,bond,dateofarrival;
 
     TextView companynameview,cpackageview,lastdateofregview,postview,vacanciesview,bondview,dateofarrivalview;
+    TextView companynametxt,posttxt,packagetxt,vacancytxt,lastdateofregtxt,bondtxt,dateofarrtxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -30,6 +31,13 @@ public class PlacementTab1 extends Fragment {
         bond=save.getBond();
         dateofarrival=save.getDateofarrival();
 
+        companynametxt=(TextView)rootView.findViewById(R.id.companynametxt);
+        posttxt=(TextView)rootView.findViewById(R.id.posttxt);
+        packagetxt=(TextView)rootView.findViewById(R.id.packagetxt);
+        vacancytxt=(TextView)rootView.findViewById(R.id.vacancytxt);
+        lastdateofregtxt=(TextView)rootView.findViewById(R.id.lastdateofregtxt);
+        bondtxt=(TextView)rootView.findViewById(R.id.bondtxt);
+        dateofarrtxt=(TextView)rootView.findViewById(R.id.dateofarrtxt);
 
         companynameview=(TextView)rootView.findViewById(R.id.companynameview);
         lastdateofregview=(TextView)rootView.findViewById(R.id.companylastdateofregview);
@@ -46,6 +54,23 @@ public class PlacementTab1 extends Fragment {
         bondview.setText(bond);
         dateofarrivalview.setText(dateofarrival);
         cpackageview.setText(cpackage);
+
+        companynametxt.setTypeface(Z.getLight(getActivity()));
+        posttxt.setTypeface(Z.getLight(getActivity()));
+        packagetxt.setTypeface(Z.getLight(getActivity()));
+        vacancytxt.setTypeface(Z.getLight(getActivity()));
+        lastdateofregtxt.setTypeface(Z.getLight(getActivity()));
+        bondtxt.setTypeface(Z.getLight(getActivity()));
+        dateofarrtxt.setTypeface(Z.getLight(getActivity()));
+
+
+        companynameview.setTypeface(Z.getBold(getActivity()));
+        lastdateofregview.setTypeface(Z.getBold(getActivity()));
+        postview.setTypeface(Z.getBold(getActivity()));
+        vacanciesview.setTypeface(Z.getBold(getActivity()));
+        bondview.setTypeface(Z.getBold(getActivity()));
+        dateofarrivalview.setTypeface(Z.getBold(getActivity()));
+        cpackageview.setTypeface(Z.getBold(getActivity()));
 
         return rootView;
     }

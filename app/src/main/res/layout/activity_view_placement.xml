@@ -60,16 +60,16 @@
             android:id="@+id/registerforplacementbutton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@color/while_color"
             android:textAllCaps="false"
-            android:textSize="20dp"
-            android:text="Register"
-            android:background="#282f35"
+            android:textSize="18dp"
+            android:text="REGISTER"
+            android:background="@drawable/textviewborder"
             />
         <View
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#c59a6d"
+            android:background="@color/dark_color"
             android:layout_gravity="center"
             />
     </LinearLayout>

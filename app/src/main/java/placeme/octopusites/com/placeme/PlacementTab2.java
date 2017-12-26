@@ -14,6 +14,7 @@ public class PlacementTab2 extends Fragment {
 
     String apti,techtest,gd,techinterview,hrinterview;
     TextView aptiview,techtestview,gdview,techinterviewview,hrinterviewview;
+    TextView aptitxt,companygdtxt,companytechtesttxt,companytechinterviewtxt,companyhrinterviewtxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -26,6 +27,12 @@ public class PlacementTab2 extends Fragment {
         techinterview=save.getNoofti();
         hrinterview=save.getNoofhri();
 
+        aptitxt=(TextView)rootView.findViewById(R.id.aptitxt);
+        companygdtxt=(TextView)rootView.findViewById(R.id.companygdtxt);
+        companytechtesttxt=(TextView)rootView.findViewById(R.id.companytechtesttxt);
+        companytechinterviewtxt=(TextView)rootView.findViewById(R.id.companytechinterviewtxt);
+        companyhrinterviewtxt=(TextView)rootView.findViewById(R.id.companyhrinterviewtxt);
+
         aptiview=(TextView)rootView.findViewById(R.id.companyaptiview);
         techtestview=(TextView)rootView.findViewById(R.id.companytechtestview);
         gdview=(TextView)rootView.findViewById(R.id.companygdview);
@@ -37,6 +44,18 @@ public class PlacementTab2 extends Fragment {
         gdview.setText(gd);
         techinterviewview.setText(techinterview);
         hrinterviewview.setText(hrinterview);
+
+        aptitxt.setTypeface(Z.getLight(getActivity()));
+        companygdtxt.setTypeface(Z.getLight(getActivity()));
+        companytechtesttxt.setTypeface(Z.getLight(getActivity()));
+        companytechinterviewtxt.setTypeface(Z.getLight(getActivity()));
+        companyhrinterviewtxt.setTypeface(Z.getLight(getActivity()));
+
+        aptiview.setTypeface(Z.getBold(getActivity()));
+        techtestview.setTypeface(Z.getBold(getActivity()));
+        gdview.setTypeface(Z.getBold(getActivity()));
+        techinterviewview.setTypeface(Z.getBold(getActivity()));
+        hrinterviewview.setTypeface(Z.getBold(getActivity()));
 
         return rootView;
     }

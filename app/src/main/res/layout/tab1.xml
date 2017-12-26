@@ -14,7 +14,7 @@
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="#999"
+        android:background="@color/dark_color"
         android:layout_centerHorizontal="true"
         android:id="@+id/sectionhorizontal"
         />
@@ -22,7 +22,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#999"
+        android:background="@color/dark_color"
         android:layout_centerVertical="true"
         android:id="@+id/sectionvertical"
         />
@@ -37,7 +37,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#999"
+            android:background="@color/dark_color"
             android:layout_centerVertical="true"
             android:id="@+id/box1section"
             />
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Company Name"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -61,12 +61,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companynameview"
                 android:layout_below="@+id/companynametxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="Octopus ITES Private Limited"
                 android:textStyle="bold"
                 />
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Post"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -91,12 +91,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companypostview"
                 android:layout_below="@+id/posttxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="Trainee Engineer"
                 android:textStyle="bold"
                 />
@@ -113,7 +113,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#999"
+            android:background="@color/dark_color"
             android:layout_centerVertical="true"
             android:id="@+id/box2section"
             />
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Package"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -137,12 +137,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companypackageview"
                 android:layout_below="@+id/packagetxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="3.35 LPA"
                 android:textStyle="bold"
                 />
@@ -157,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vacancies"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -167,12 +167,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companyvacanciesview"
                 android:layout_below="@+id/vacancytxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="20"
                 android:textStyle="bold"
                 />
@@ -188,7 +188,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#999"
+            android:background="@color/dark_color"
             android:layout_centerVertical="true"
             android:id="@+id/box3section"
             />
@@ -204,7 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last Date Of Registration"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -214,12 +214,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companylastdateofregview"
                 android:layout_below="@+id/lastdateofregtxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="29-Jan-2017"
                 android:textStyle="bold"
                 />
@@ -234,7 +234,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bond In Months"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -244,12 +244,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companybondview"
                 android:layout_below="@+id/bondtxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="12"
                 android:textStyle="bold"
                 />
@@ -267,7 +267,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#999"
+            android:background="@color/dark_color"
             android:layout_centerVertical="true"
             android:id="@+id/box4section"
             />
@@ -281,7 +281,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date Of Arrival"
-                android:textColor="#c59a6d"
+                android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
@@ -291,12 +291,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/companydateofarrview"
                 android:layout_below="@+id/dateofarrtxt"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 android:text="30-Jan-2017"
                 />
