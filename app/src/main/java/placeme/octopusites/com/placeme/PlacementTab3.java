@@ -18,6 +18,7 @@ public class PlacementTab3 extends Fragment {
 
     String tenth,twelthordiploma,ug,liveatkt,deadatkt;
     TextView tenthview,twelthordiplomaview,ugview,studenttenthview,studenttwelthordiplomaview,studentugview;
+    TextView company10txt,student10txt,companyugtxt,studentugtxt,company12txt,student12txt;
     String studenttenthmarks,studentugmarks,studenttwelthordiplomamarks;
     ImageView tentheligibility,twelthordiplomaeligibility,ugeligibility;
     @Override
@@ -34,6 +35,20 @@ public class PlacementTab3 extends Fragment {
         studenttenthmarks=save.getStudenttenthmarks();
         studenttwelthordiplomamarks=save.getStudenttwelthordiplomamarks();
         studentugmarks=save.getStudentugmarks();
+
+        company10txt=(TextView)rootView.findViewById(R.id.company10txt);
+        student10txt=(TextView)rootView.findViewById(R.id.student10txt);
+        companyugtxt=(TextView)rootView.findViewById(R.id.companyugtxt);
+        studentugtxt=(TextView)rootView.findViewById(R.id.studentugtxt);
+        company12txt=(TextView)rootView.findViewById(R.id.company12txt);
+        student12txt=(TextView)rootView.findViewById(R.id.student12txt);
+
+        company10txt.setTypeface(Z.getLight(getActivity()));
+        student10txt.setTypeface(Z.getLight(getActivity()));
+        companyugtxt.setTypeface(Z.getLight(getActivity()));
+        studentugtxt.setTypeface(Z.getLight(getActivity()));
+        company12txt.setTypeface(Z.getLight(getActivity()));
+        student12txt.setTypeface(Z.getLight(getActivity()));
 
         tenthview=(TextView)rootView.findViewById(R.id.companytenthmarksview);
         twelthordiplomaview=(TextView)rootView.findViewById(R.id.companytwelthordiplomamarksview);
