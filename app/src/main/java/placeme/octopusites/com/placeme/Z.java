@@ -137,7 +137,7 @@ public class Z {
     public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
 
     //**************************************   AESTest   *****************************************
-    public static final String url_VerifyOTPEditEmail = IP_8086 + "AESTest/VerifyOTPEditEmail";
+    public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
@@ -242,6 +242,7 @@ public class Z {
     public static final String url_ClearOTP = IP + "AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = IP + "AESTest/AddStudentUnderAdmin";
     public static final String url_GetCountOfUsersUnderAdmin = IP + "AESTest/GetCountOfUsersUnderAdmin";
+
     private static final String IP_100 = "http://192.168.100.100/";
     private static final String IP_10 = "http://192.168.100.10/";
     private static final String IP_20 = "http://192.168.100.20/";

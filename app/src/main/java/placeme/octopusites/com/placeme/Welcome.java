@@ -1528,6 +1528,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             JSONObject json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
             Log.d("TAG", "ValidateUser json: " + json);
+
             if (json != null ) {
                 try {
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,7 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
 
         GlideApp.with(holder.name.getContext())
                 .load(uri)
-                .signature(new ObjectKey(item.getSignatsure()))
+                .signature(new ObjectKey(""+System.currentTimeMillis()))
                 .into(holder.uploadedbyprofile);
 
 
