@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/companyname"
-        android:textColor="@color/heading"
+        android:textColor="@color/dark_color"
         android:textSize="16dp"
         android:text="companyname"
         android:singleLine="true"
@@ -54,27 +54,28 @@
         android:layout_below="@id/companyname"
         android:layout_width="match_parent"
         android:text="LDR 30-Apr-2017"
-        android:textColor="@color/notification"
+        android:textColor="@color/dark_color"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/logo"
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/cpackage"
-        android:textColor="@color/attachment"
+        android:textColor="@color/dark_color"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:textSize="12dp"
         android:text="3.4 LPA"
+        android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/post"
-        android:textColor="@color/attachment"
+        android:textColor="@color/dark_color"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
-        android:textSize="12dp"
+        android:textSize="10dp"
         android:text="Trainee"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content" />

@@ -99,20 +99,24 @@ try{
         else
             holder.companyname.setText(item.getCompanyname());
 
+        holder.companyname.setTypeface(Z.getBold(holder.companyname.getContext()));
         holder.lastdateofreg.setText(item.getLastdateofregistration());
         holder.cpackage.setText(item.getCpackage());
         holder.post.setText(item.getPost());
+    holder.lastdateofreg.setTypeface(Z.getLight(holder.lastdateofreg.getContext()));
+    holder.cpackage.setTypeface(Z.getLight(holder.cpackage.getContext()));
+    holder.post.setTypeface(Z.getLight(holder.post.getContext()));
 
         if(item.isIsread())
         {
-            holder.companyname.setTextColor(Color.parseColor("#eeeeee"));
-            holder.companyname.setTypeface(null, Typeface.NORMAL);
+            holder.companyname.setTextColor(Color.parseColor("#03353e"));
+
 
         }
         else if(!item.isIsread())
         {
-            holder.companyname.setTextColor(Color.parseColor("#c59a6d"));
-            holder.companyname.setTypeface(null, Typeface.BOLD);
+            holder.companyname.setTextColor(Color.parseColor("#00bcd4"));
+
 
         }
 

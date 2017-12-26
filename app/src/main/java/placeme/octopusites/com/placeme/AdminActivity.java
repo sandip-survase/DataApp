@@ -266,6 +266,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
         bluePanelTv = (TextView) findViewById(R.id.bluePanelTv);
+        bluePanelTv.setTypeface(Z.getBold(this));
         refreshUserCount();
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
@@ -317,7 +318,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         });
         createPlacementOrNotification = (TextView) findViewById(R.id.createnotificationtxt);
         editPlacementOrNotification = (TextView) findViewById(R.id.editnotificationtxt);
-
+        createPlacementOrNotification.setTypeface(Z.getBold(this));
+        editPlacementOrNotification.setTypeface(Z.getBold(this));
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
