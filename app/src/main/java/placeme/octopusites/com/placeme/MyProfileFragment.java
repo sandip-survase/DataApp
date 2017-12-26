@@ -1352,8 +1352,6 @@ public class MyProfileFragment extends Fragment {
 
                     s = json.getString("intro");
                     Log.d("TAG", "json :-" + s);
-
-
                     if (s.equals("found")) {
                         found_box1 = 1;
                         Log.d("TAG", " dataload found_box1 :-" + found_box1);
@@ -3155,7 +3153,6 @@ public class MyProfileFragment extends Fragment {
             try {
 
                 downloadImage();
-
                 populateData();
 
             } catch (Exception e) {

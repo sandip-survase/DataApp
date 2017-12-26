@@ -71,12 +71,16 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         RecyclerItemPlacement item = itemList.get(position);
+try{
+
+
+
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
-                .appendQueryParameter("u", item.getUploadedby())
+                .appendQueryParameter("u",Z.Encrypt(item.getUploadedby(),mContext) )
                 .build();
 
         GlideApp.with(mContext)
@@ -115,9 +119,11 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
 
         try {
             Log.d("uploadedbysfdsdf", ": "+item.getUploadedby());
+
+            Log.d("descrypttest", ": "+Z.Decrypt( "9BQWBVslGra/4p5pzji+IwsZlNZqopirWZyfHPpAqbI=",mContext  ));
             String s1=item.getUploadedby();
-            String s1Plain= Decrypt(s1,"I09jdG9wdXMxMkl0ZXMjJQ==","I1BsYWNlMTJNZSMlJSopXg==");
-            if(  s1Plain.equals("sandipsurvase1993@gmail.com")   ){
+//            String s1Plain= Z.Decrypt(s1,mContext);
+            if(  s1.equals("sandipsurvase1993@gmail.com")   ){
                 holder.logo.setVisibility(View.VISIBLE);
             }else {
                 holder.logo.setVisibility(View.INVISIBLE);
@@ -127,7 +133,9 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
         }
 
 
+}catch (Exception e){
 
+}
 
 
 

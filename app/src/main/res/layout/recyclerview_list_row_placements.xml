@@ -13,7 +13,7 @@
         android:id="@+id/uploadedbyprofile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/profile_icon"
+        android:src="@drawable/profile_image_icon"
         android:layout_centerVertical="true"
         app:border_color="#FF000000"
         />

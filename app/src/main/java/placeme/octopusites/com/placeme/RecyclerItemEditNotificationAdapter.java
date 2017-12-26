@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.signature.ObjectKey;
 
+
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,12 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         RecyclerItemEdit item = itemList.get(position);
+        try{
+
+
+
+            Log.d("Tag", "contex: "+mContext);
+        Log.d("Tag", "uploadedby: "+item.getUploadedby());
 
 
 
@@ -88,18 +95,20 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
                 .scheme("http")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
-                .appendQueryParameter("u", item.getUploadedby())
+                .appendQueryParameter("u",Z.Encrypt(item.getUploadedby(),mContext) )
                 .build();
-
 
         GlideApp.with(mContext)
                 .load(uri)
-                .signature(new ObjectKey(item.getSignature()))
+//                .signature(new ObjectKey(item.getSignature()))
                 .into(holder.uploadedbyprofile);
 
 
+            Log.d("Tag", "uri : "+uri.toString());
+            Log.d("Tag", "signature : "+item.getSignature());
 
-        if(searchText!=null) {
+
+            if(searchText!=null) {
             if (searchText.length() > 0) {
                 holder.title.setText(highlightText(searchText,item.getTitle()));
             }
@@ -137,12 +146,12 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
         }
 
 
-        //
+        // temporary work remove when uploader signature sending through object
         try {
             Log.d("uploadedbysfdsdf", ": "+item.getUploadedby());
             String s1=item.getUploadedby();
-            String s1Plain= Decrypt(s1,"I09jdG9wdXMxMkl0ZXMjJQ==","I1BsYWNlMTJNZSMlJSopXg==");
-            if(  s1Plain.equals("sandipsurvase1993@gmail.com")   ){
+
+            if(  s1.equals("sandipsurvase1993@gmail.com")   ){
                 holder.logo.setVisibility(View.VISIBLE);
             }else {
                 holder.logo.setVisibility(View.INVISIBLE);
@@ -156,7 +165,9 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
 
 
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -201,5 +212,6 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
         }
         return originalText;
     }
+
 
 }

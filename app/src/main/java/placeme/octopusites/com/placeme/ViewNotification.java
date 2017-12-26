@@ -86,24 +86,28 @@ public class ViewNotification extends AppCompatActivity {
         lastmodifiedtxt.setTypeface(Z.getLight(this));
 
         String uploadedby="";
+
         String uploadedby_enc=getIntent().getStringExtra("uploadedby");
         Log.d("gettingdata", "uploadedby_enc"+uploadedby_enc);
 
         try
         {
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
 
-
-            uploadedby=Decrypt(uploadedby_enc,MySharedPreferencesManager.getDigest1(this),MySharedPreferencesManager.getDigest2(this));
+//            uploadedby=uploadedby_enc;
             Log.d("gettingdata", "uploadedby"+uploadedby);
+
+        String File1= Z.Decrypt(getIntent().getStringExtra("file1"),ViewNotification.this);
+            String File2= Z.Decrypt(getIntent().getStringExtra("file2"),ViewNotification.this);
+            String File3= Z.Decrypt(getIntent().getStringExtra("file3"),ViewNotification.this);
+            String File4= Z.Decrypt(getIntent().getStringExtra("file4"),ViewNotification.this);
+            String File5= Z.Decrypt(getIntent().getStringExtra("file5"),ViewNotification.this);
 
 
         }catch (Exception e){}
 
 
-        uploadedbytxt.setText("Uploaded by "+uploadedby);
+
+        uploadedbytxt.setText("Uploaded by "+uploadedby_enc);
         lastmodifiedtxt.setText("Last modified on "+getIntent().getStringExtra("lastmodified"));
         attachmentrl1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,7 +25,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.Modelmyprofileintro;
+import placeme.octopusites.com.placeme.modal.MyProfileDiplomaModal;
+import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
+import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
+import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
+import placeme.octopusites.com.placeme.modal.PgSem;
+
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 
 public class ViewPlacement extends AppCompatActivity {
@@ -36,23 +44,22 @@ public class ViewPlacement extends AppCompatActivity {
 
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    
 
-    
 
     String username, resultofop;
     String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
     Button registerbutton;
     ProgressBar progressBar;
 
-    int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
-    int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
-    int found_contact_details=0,found_personal=0;
+    int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
+    int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
+    int found_contact_details = 0, found_personal = 0;
 
 
-    String digest1, digest2, role;
-    byte[] demoKeyBytes;
-    byte[] demoIVBytes;
+    String role;
+    String fname = "", lname = "";
+
+
     String sPadding = "ISO10126Padding";
 
     @Override
@@ -62,8 +69,7 @@ public class ViewPlacement extends AppCompatActivity {
 
 
         username = MySharedPreferencesManager.getUsername(this);
-        digest1 = MySharedPreferencesManager.getDigest1(this);
-        digest2 = MySharedPreferencesManager.getDigest2(this);
+
         role = MySharedPreferencesManager.getRole(this);
 
         toolbar = (Toolbar) findViewById(R.id.placementtoolbar);
@@ -80,20 +86,9 @@ public class ViewPlacement extends AppCompatActivity {
 
 
         String uploadedby_enc = getIntent().getStringExtra("uploadedby");
-        try {
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(uploadedby_enc);
+        uploadedby = uploadedby_enc;
 
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-
-            uploadedby = new String(demo1DecryptedBytes1);
-
-
-        } catch (Exception e) {
-        }
 
         registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
         progressBar = (ProgressBar) findViewById(R.id.registerforplacementprogress);
@@ -151,7 +146,19 @@ public class ViewPlacement extends AppCompatActivity {
         save.setUploadedby(uploadedby);
 
 
-        new getStudentMarksInfo().execute();
+        new GetStudentData().execute();
+
+        registerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // download resume in database
+                registerbutton.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                new registerforPlacementTask().execute();
+
+            }
+        });
+
 
     }
 
@@ -209,9 +216,16 @@ public class ViewPlacement extends AppCompatActivity {
         protected Integer doInBackground(String... urls) {
             try {
 
+
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
                 params.add(new BasicNameValuePair("id", id));
+                params.add(new BasicNameValuePair("u", username));
+                params.add(new BasicNameValuePair("f", fname));
+                params.add(new BasicNameValuePair("l", lname));
+                params.add(new BasicNameValuePair("lc", companyname));
+
+
+
                 json = jParser.makeHttpRequest(Z.url_RegisterForPlacement, "GET", params);
                 String s = null;
                 resultofop = json.getString("info");
@@ -242,121 +256,6 @@ public class ViewPlacement extends AppCompatActivity {
 
     }
 
-    private class getStudentMarksInfo extends AsyncTask<String, Void, Integer> {
-        @Override
-        protected Integer doInBackground(String... urls) {
-            try {
-
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-
-                json = jParser.makeHttpRequest(Z.url_GetStudentMarksInfo, "GET", params);
-
-                String s = json.getString("tenth");
-                if (s.equals("found"))
-                    studenttenthmarks = json.getString("tenthPercentage");
-                s = json.getString("twelth");
-                if (s.equals("found"))
-                    studenttwelthordiplomamarks = json.getString("twelthPercentage");
-                s = json.getString("diploma");
-                if (s.equals("found"))
-                    studenttwelthordiplomamarks = json.getString("diplomaPercentage");
-                s = json.getString("ug");
-                if (s.equals("found"))
-                    studentugmarks = json.getString("ugPercentage");
-                s = json.getString("pgsem");
-                if (s.equals("found"))
-                    studentpgmarks = json.getString("pgsemPercentage");
-                s = json.getString("pgyear");
-                if (s.equals("found"))
-                    studentpgmarks = json.getString("pgsemPercentage");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return 0;
-        }
-
-        @Override
-        protected void onPostExecute(Integer result) {
-            try {
-                demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                sPadding = "ISO10126Padding";
-
-                if (studenttenthmarks != null) {
-                    byte[] studenttenthmarksEncryptedBytes = SimpleBase64Encoder.decode(studenttenthmarks);
-                    byte[] studenttenthmarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studenttenthmarksEncryptedBytes);
-                    studenttenthmarks = new String(studenttenthmarksDecryptedBytes);
-                } else
-                    studenttenthmarks = "0";
-                if (studenttwelthordiplomamarks != null) {
-                    byte[] studenttwelthordiplomamarksEncryptedBytes = SimpleBase64Encoder.decode(studenttwelthordiplomamarks);
-                    byte[] studenttwelthordiplomamarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studenttwelthordiplomamarksEncryptedBytes);
-                    studenttwelthordiplomamarks = new String(studenttwelthordiplomamarksDecryptedBytes);
-                } else
-                    studenttwelthordiplomamarks = "0";
-                if (studentugmarks != null) {
-                    byte[] studentugmarksEncryptedBytes = SimpleBase64Encoder.decode(studentugmarks);
-                    byte[] studentugmarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studentugmarksEncryptedBytes);
-                    studentugmarks = new String(studentugmarksDecryptedBytes);
-                } else
-                    studentugmarks = "0";
-                if (studentpgmarks != null) {
-                    byte[] studentpgmarksEncryptedBytes = SimpleBase64Encoder.decode(studentpgmarks);
-                    byte[] studentpgmarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studentpgmarksEncryptedBytes);
-                    studentpgmarks = new String(studentpgmarksDecryptedBytes);
-                } else
-                    studentpgmarks = "0";
-
-                SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
-                save.setStudenttenthmarks(studenttenthmarks);
-                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
-                save.setStudentugmarks(studentugmarks);
-                save.setStudentpgmarks(studentpgmarks);
-
-                Float c10,s10,c12,s12,cu,su;
-                c10= Float.parseFloat(stdx);
-                c12= Float.parseFloat(stdxiiordiploma);
-                cu= Float.parseFloat(ug);
-
-                s10= Float.parseFloat(studenttenthmarks);
-                s12= Float.parseFloat(studenttwelthordiplomamarks);
-                su= Float.parseFloat(studentugmarks);
-
-                int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
-                if (s10 >= c10) {
-                    tenthflag = 1;
-                }
-                if (s12 >= c12) {
-                    twelthordiplomaflag = 1;
-                }
-                if (su >= cu) {
-                    ugflag = 1;
-                }
-                LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
-                if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1)
-                    registerbuttonlayout.setVisibility(View.VISIBLE);
-                else
-                    registerbuttonlayout.setVisibility(View.GONE);
-                registerbutton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // download resume in database
-                        registerbutton.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-
-                        new GetStudentData().execute();
-
-                    }
-                });
-
-            } catch (Exception e) {
-            }
-
-        }
-    }
 
 //    student data
 
@@ -369,30 +268,60 @@ public class ViewPlacement extends AppCompatActivity {
                 params.add(new BasicNameValuePair("u", username));
                 json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
 
+
+                //shift this to class
+                String studenttenthmarksObj = "", studenttwelthordiplomamarksobj = "", diplomadataobject, ugdataobject = "";
+
+
                 resultofop = json.getString("info");
                 if (resultofop.equals("found")) {
                     String s = json.getString("intro");
                     if (s.equals("found")) {
                         found_box1 = 1;
+                        Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(json.getString("introObj"), MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
+                        fname = obj2.getFirstname();
+                        lname = obj2.getLastname();
+
                     }
                     s = json.getString("tenth");
                     if (s.equals("found")) {
+
+                        studenttenthmarksObj = json.getString("tenthobj");
+                        MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(studenttenthmarksObj, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
+                        studenttenthmarks = obj2.percentage;
                         found_tenth = 1;
                     }
                     s = json.getString("twelth");
                     if (s.equals("found")) {
-                        found_twelth = 1;
+                        studenttwelthordiplomamarksobj = json.getString("twelthobj");
+                        MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(studenttwelthordiplomamarksobj, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
+                        studenttwelthordiplomamarks = obj2.getPercentage();
+                        if (studenttwelthordiplomamarks != null) {
+                            found_twelth = 1;
+                        } else {
+                            found_twelth = 0;
+                            s = json.getString("diploma");
+                            if (s.equals("found")) {
+                                diplomadataobject = json.getString("diplomaobj");
+                                MyProfileDiplomaModal obj3 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
+                                studenttwelthordiplomamarks = obj3.getAggregate();
+                                found_diploma = 1;
+                            }
+                        }
                     }
-                    s = json.getString("diploma");
-                    if (s.equals("found")) {
-                        found_diploma = 1;
-                    }
+
                     s = json.getString("ug");
                     if (s.equals("found")) {
+                        ugdataobject = json.getString("ugobj");
+                        MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
+                        studentugmarks = obj2.aggregate;
                         found_ug = 1;
                     }
                     s = json.getString("pgsem");
                     if (s.equals("found")) {
+
+                        PgSem obj = (PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
+                        studentpgmarks = obj.getAggregatepgsem();
                         found_pgsem = 1;
                     }
 
@@ -470,100 +399,6 @@ public class ViewPlacement extends AppCompatActivity {
 //            int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
 //            int found_contact_details=0,found_personal=0;
 
-
-            StudentData s = new StudentData();
-
-            String dob = s.getDob();
-            String mobile = s.getPhone();
-            String hobbies = s.getHobbies();
-            String lang1 = s.getLang1();
-
-            String addrline1c = s.getAddressline1();
-            String addrline2c = s.getAddressline2();
-            String addrline3c = s.getAddressline3();
-
-
-            String proj = s.getProj1();
-            String strength1 = s.getStrength1();
-            String weak1 = s.getWeak1();
-            String certifi = s.getTitle1();
-            String course1 = s.getCourse1();
-            String skill1 = s.getSkill1();
-            String ptitle1 = s.getPtitle1();
-            String pubtitle1 = s.getPubtitle1();
-
-
-            Log.d("TAG", "onPostExecute: dob -" + dob);
-            Log.d("TAG", "onPostExecute: mobile -" + mobile);
-            Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
-            Log.d("TAG", "onPostExecute: lang1 -" + lang1);
-            Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
-            Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
-            Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
-            Log.d("TAG", "onPostExecute: proj -" + proj);
-            Log.d("TAG", "onPostExecute: strength1 -" + strength1);
-            Log.d("TAG", "onPostExecute: weak1 -" + weak1);
-            Log.d("TAG", "onPostExecute: certifi -" + certifi);
-            Log.d("TAG", "onPostExecute: course1 -" + course1);
-            Log.d("TAG", "onPostExecute: skill1 -" + skill1);
-            Log.d("TAG", "onPostExecute: ptitle1 -" + ptitle1);
-            Log.d("TAG", "onPostExecute: pubtitle1 -" + pubtitle1);
-
-
-            if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
-                found_personal = 1;
-            } else
-                found_personal = 0;
-
-
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                found_lang = 1;
-            else
-                found_lang = 0;
-
-
-            if (!proj.equals(""))
-                found_projects = 1;
-            else
-                found_projects = 0;
-
-            if (!strength1.equals(""))
-                found_strengths = 1;
-            else
-                found_strengths = 0;
-
-            if (!weak1.equals(""))
-                found_weaknesses = 1;
-            else
-                found_weaknesses = 0;
-
-            if (!certifi.equals(""))
-                found_certificates = 1;
-            else
-                found_certificates = 0;
-
-            if (!course1.equals(""))
-                found_courses = 1;
-            else
-                found_courses = 0;
-
-            if (!skill1.equals(""))
-                found_skills = 1;
-            else
-                found_skills = 0;
-
-            if (!ptitle1.equals(""))
-                found_patents = 1;
-            else
-                found_patents = 0;
-
-            if (!pubtitle1.equals(""))
-                found_publications = 1;
-            else
-                found_publications = 0;
-
-
-
             if (found_box1 == 0) {
 //                    please fill intro information
                 Toast.makeText(ViewPlacement.this, " please fill introduction information", Toast.LENGTH_SHORT).show();
@@ -636,35 +471,72 @@ public class ViewPlacement extends AppCompatActivity {
                 }
             }
 
-            if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_contact_details == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
-                new SaveResumedatabase().execute();
+            SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
+            save.setStudenttenthmarks(studenttenthmarks);
+            save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
+            save.setStudentugmarks(studentugmarks);
+            save.setStudentpgmarks(studentpgmarks);
 
+            Float c10, s10, c12, s12, cu, su;
+            c10 = Float.parseFloat(stdx);
+            c12 = Float.parseFloat(stdxiiordiploma);
+            cu = Float.parseFloat(ug);
+
+            s10 = Float.parseFloat(studenttenthmarks);
+            s12 = Float.parseFloat(studenttwelthordiplomamarks);
+            su = Float.parseFloat(studentugmarks);
+
+            int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
+            if (s10 >= c10) {
+                tenthflag = 1;
             }
-            else{
+            if (s12 >= c12) {
+                twelthordiplomaflag = 1;
+            }
+            if (su >= cu) {
+                ugflag = 1;
+            }
+
+            LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
+            if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1) {
+                registerbuttonlayout.setVisibility(View.VISIBLE);
                 registerbutton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
+
+                if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_contact_details == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
+                    new SaveResumedatabase().execute();
+                } else {
+                    Toast.makeText(ViewPlacement.this, " Resume not generated", Toast.LENGTH_SHORT).show();
+                    new GetStudentData().execute();
+                }
+
+            } else {
+                registerbuttonlayout.setVisibility(View.GONE);
+
             }
+
+
         }
     }
 
     private class SaveResumedatabase extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
-            String r="";
+            String r = "";
             String format = "pdf";
 
             try {
 
-                String template=MySharedPreferencesManager.getData(ViewPlacement.this,"template");
-                if(template==null){
+                String template = MySharedPreferencesManager.getData(ViewPlacement.this, "template");
+                if (template == null) {
                     int temp = 2;
-                    template=temp+"";
+                    template = temp + "";
                 }
 
 
-                Log.d("TAG", "doInBackground: username -"+username);
-                Log.d("TAG", "doInBackground: format -"+format);
-                Log.d("TAG", "doInBackground: template -"+template);
+                Log.d("TAG", "doInBackground: username -" + username);
+                Log.d("TAG", "doInBackground: format -" + format);
+                Log.d("TAG", "doInBackground: template -" + template);
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
 
                 params.add(new BasicNameValuePair("username", username));
@@ -673,12 +545,12 @@ public class ViewPlacement extends AppCompatActivity {
 
                 json = jParser.makeHttpRequest(Z.url_SaveResume, "GET", params);
 
-                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: result -"+r);
+                r = json.getString("info");
+                Log.d("TAG", "doInBackground: result -" + r);
 
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: exception - "+e.getMessage());
+                Log.d("TAG", "doInBackground: exception - " + e.getMessage());
             }
             return r;
         }
@@ -694,7 +566,7 @@ public class ViewPlacement extends AppCompatActivity {
                 registerbutton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
 
-            }catch (Exception e) {
+            } catch (Exception e) {
             }
         }
     }
