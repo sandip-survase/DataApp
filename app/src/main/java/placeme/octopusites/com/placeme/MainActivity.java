@@ -170,12 +170,12 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     ViewPager mViewPager;
     TabLayout tabLayout;
     private int[] tabIcons = {
-            R.drawable.tab_news,
-            R.drawable.tab_videos,
-            R.drawable.tab_resume,
-            R.drawable.tab_question,
-            R.drawable.tab_ebooks,
-            R.drawable.tab_question_sets,
+            R.drawable.news_feed_icon,
+            R.drawable.videos_icon,
+            R.drawable.resume_templates_icon,
+            R.drawable.question_sets_icon,
+            R.drawable.ebooks_icon,
+            R.drawable.question_sets_icon,
     };
     //initial setup
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;

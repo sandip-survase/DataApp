@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -107,7 +108,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
-
+            Log.d("TAG", "doInBackground: getresume psge");
             map = downloadImage(Z.load_resume_page+"?i="+id+"&p="+setFlag);
             return map;
         }

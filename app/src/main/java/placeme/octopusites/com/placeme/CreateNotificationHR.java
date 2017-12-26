@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -62,6 +63,7 @@ public class CreateNotificationHR extends AppCompatActivity {
     String forwhom = "", tempselection = "", tempforwhom = "";
 
     TextView createnotitxt, createnotinotitxt, attachmentstxt;
+    TextInputLayout titleinput,notificationinput;
 
     int errorflag = 0;
 
@@ -123,17 +125,13 @@ public class CreateNotificationHR extends AppCompatActivity {
         Window window = CreateNotificationHR.this.getWindow();
 
 
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
-
         createnotitxt = (TextView) findViewById(R.id.createnotitxt);
         createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
         attachmentstxt = (TextView) findViewById(R.id.attachmentstxt);
 
-        createnotitxt.setTypeface(custom_font);
-        createnotinotitxt.setTypeface(custom_font2);
-        attachmentstxt.setTypeface(custom_font2);
+        createnotitxt.setTypeface(Z.getBold(this));
+        createnotinotitxt.setTypeface(Z.getLight(this));
+        attachmentstxt.setTypeface(Z.getLight(this));
 
 
         attchrl1 = (RelativeLayout) findViewById(R.id.file1);
@@ -154,8 +152,14 @@ public class CreateNotificationHR extends AppCompatActivity {
         prg4 = (ProgressBar) findViewById(R.id.PROGRESS_BAR4);
         prg5 = (ProgressBar) findViewById(R.id.PROGRESS_BAR5);
 
+        titleinput=(TextInputLayout)findViewById(R.id.titleinput);
+        notificationinput=(TextInputLayout)findViewById(R.id.notificationinput);
         title = (EditText) findViewById(R.id.title);
         notification = (EditText) findViewById(R.id.notification);
+        titleinput.setTypeface(Z.getLight(this));
+        notificationinput.setTypeface(Z.getLight(this));
+        title.setTypeface(Z.getBold(this));
+        notification.setTypeface(Z.getBold(this));
 
 
         tempforwhom = getIntent().getStringExtra("emailids");
