@@ -1286,8 +1286,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new NewsFeedFragment(), "News Feed");
-        adapter.addFrag(new VideosFragment(), "Videos");
+        adapter.addFrag(new NoDataAvailableFragment(), "News Feed");
+        adapter.addFrag(new NoDataAvailableFragment(), "Videos");
         adapter.addFrag(new ResumeTemplatesFragment(), "Resume Templates");
         adapter.addFrag(new NoDataAvailableFragment(), "Interview Questions");
         adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");
@@ -1399,8 +1399,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     } catch (Exception e) {
                     }
-
-//                    new GetMessagesReadStatus(username,tempusername,sender_uid, reciever_uid[i],i).execute();
+                    if (reciever_uid != null)
+                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
                 }
 
             }

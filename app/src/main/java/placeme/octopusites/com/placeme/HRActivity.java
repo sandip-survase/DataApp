@@ -292,7 +292,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
                         crop_layout.setVisibility(View.GONE);
-                        NewsFeedFragment fragment = new NewsFeedFragment();
+                        NoDataAvailableFragment fragment = new NoDataAvailableFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction =
                                 getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.mainfragment, fragment);

@@ -517,7 +517,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
                         crop_layout.setVisibility(View.GONE);
-                        NewsFeedFragment fragment = new NewsFeedFragment();
+                        NoDataAvailableFragment fragment = new NoDataAvailableFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction =
                                 getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
@@ -1295,7 +1295,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     } catch (Exception e) {
                     }
 
-//                    new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+                    if (reciever_uid != null)
+                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
                 }
 
             }
@@ -1531,8 +1532,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 

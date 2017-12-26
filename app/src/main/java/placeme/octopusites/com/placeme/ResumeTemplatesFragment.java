@@ -34,8 +34,6 @@ public class ResumeTemplatesFragment extends Fragment {
     int count=0;
     int resumeIds[];
     String resumeNames[],resumeDownloadStatus[];
-
-
     String username;
     public ResumeTemplatesFragment() {
 
