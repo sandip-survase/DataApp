@@ -613,6 +613,7 @@ public class PrintProfileTabFragment extends Fragment {
 
                 }
             }
+
             if( found_box1 == 1 && found_tenth==1 && (found_diploma==1 || found_twelth==1 )&& found_ug==1 && found_projects==1 && found_lang==1 && found_contact_details==1 && found_skills==1 && found_careerobj==1 && found_strengths==1 && found_weaknesses==1 && found_personal==1){
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);

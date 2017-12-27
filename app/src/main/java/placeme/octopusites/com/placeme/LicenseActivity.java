@@ -11,7 +11,7 @@ public class LicenseActivity extends AppCompatActivity {
 
 
     TextView mainheading,subheading,license1,content1,license2,content2,license3,content3,license4,content4,license5,content5,license6,content6,license7,content7,license8,content8,license9,content9,license10,content10;
-    TextView license11, content11, license12, content12, license13, content13, license14, content14, license15, content15, license16, content16, license17, content17, license18, content18, license19, content19, license20, content20, license21, content21;
+    TextView license11, content11, license12, content12, license13, content13, license14, content14, license15, content15, license16, content16, license17, content17, license18, content18, license19, content19, license20, content20, license21, content21, license22, content22, license23, content23;
     String mainheadstr = "Libraries We Use";
     String subheadingstr = "The following sets forth attribution notices for third party software that may be contained in portion of the place me product. we thank the open source community for all of their contribution.";
 
@@ -324,7 +324,33 @@ public class LicenseActivity extends AppCompatActivity {
             "   See the License for the specific language governing permissions and\n" +
             "   limitations under the License.\n";
 
+    String licencestr22 = "Ripple Effect";
+    String contentstr22 = "The MIT License (MIT)\n" +
+            "\n" +
+            "Copyright (c) 2014 Robin Chutaux\n" +
+            "\n" +
+            "Permission is hereby granted, free of charge, to any person obtaining a copy\n" +
+            "of this software and associated documentation files (the \"Software\"), to deal\n" +
+            "in the Software without restriction, including without limitation the rights\n" +
+            "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n" +
+            "copies of the Software, and to permit persons to whom the Software is\n" +
+            "furnished to do so, subject to the following conditions:";
 
+
+    String licencestr23 = "advancedluban";
+    String contentstr23 = "Copyright 2016 shaohui10086\n" +
+            "\n" +
+            "Licensed under the Apache License, Version 2.0 (the \"License\");\n" +
+            "you may not use this file except in compliance with the License.\n" +
+            "You may obtain a copy of the License at\n" +
+            "\n" +
+            "   http://www.apache.org/licenses/LICENSE-2.0\n" +
+            "\n" +
+            "Unless required by applicable law or agreed to in writing, software\n" +
+            "distributed under the License is distributed on an \"AS IS\" BASIS,\n" +
+            "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n" +
+            "See the License for the specific language governing permissions and\n" +
+            "limitations under the License.\n";
 
 
 
@@ -404,6 +430,12 @@ public class LicenseActivity extends AppCompatActivity {
         license21 = (TextView) findViewById(R.id.license21);
         content21 = (TextView) findViewById(R.id.content21);
 
+        license22 = (TextView) findViewById(R.id.license22);
+        content22 = (TextView) findViewById(R.id.content22);
+
+        license23 = (TextView) findViewById(R.id.license23);
+        content23 = (TextView) findViewById(R.id.content23);
+
 //        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
 //        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/ubuntu.ttf");
 //        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/arimo.ttf");
@@ -476,6 +508,15 @@ public class LicenseActivity extends AppCompatActivity {
         license20.setTypeface(custom_font7);
         content20.setTypeface(custom_font6);
 
+        license21.setTypeface(custom_font7);
+        content21.setTypeface(custom_font6);
+
+        license22.setTypeface(custom_font7);
+        content22.setTypeface(custom_font6);
+
+        license23.setTypeface(custom_font7);
+        content23.setTypeface(custom_font6);
+
         mainheading.setText(mainheadstr);
         subheading.setText(subheadingstr);
 
@@ -541,6 +582,12 @@ public class LicenseActivity extends AppCompatActivity {
 
         license21.setText(licencestr21);
         content21.setText(contentstr21);
+
+        license22.setText(licencestr22);
+        content22.setText(contentstr22);
+
+        license23.setText(licencestr23);
+        content23.setText(contentstr23);
 
 
     }

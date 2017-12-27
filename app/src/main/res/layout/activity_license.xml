@@ -19,7 +19,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/mainheading"
@@ -824,6 +825,92 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/license22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/licensebox21"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license22"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/licensebox22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/license22"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/while_color"
+                android:elevation="6dp">
+
+                <TextView
+                    android:id="@+id/content22"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="content21"
+                    android:textColor="#282f35"
+                    android:textSize="10dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/license23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/licensebox22"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license23"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/licensebox23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/license23"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/while_color"
+                android:elevation="6dp">
+
+
+                <TextView
+                    android:id="@+id/content23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="content23"
+                    android:textColor="#282f35"
+                    android:textSize="10dp" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/dummpy_view_for_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/licensebox23"
+                android:layout_marginTop="20dp" />
+
 
         </RelativeLayout>
     </ScrollView>
