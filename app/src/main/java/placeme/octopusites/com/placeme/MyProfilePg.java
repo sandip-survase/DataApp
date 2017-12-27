@@ -103,7 +103,6 @@ public class MyProfilePg extends AppCompatActivity {
         username = MySharedPreferencesManager.getUsername(this);
         role = MySharedPreferencesManager.getRole(this);
 
-
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
         ab.setDisplayHomeAsUpEnabled(true);
@@ -1778,18 +1777,18 @@ public class MyProfilePg extends AppCompatActivity {
         if (selectedCoursepgsem == null|| selectedCoursepgsem.equals("- Select Course -")) {
             oldCoursesem = "- Select Course -";
             courseSem=oldCoursesem;
+        } else {
+            oldCoursesem = selectedCoursepgsem;
+            courseSem = oldCoursesem;
         }
-        else
-            oldCoursesem=selectedCoursepgsem;
-
 
         if(selectedUniversitypgsem==null|| selectedUniversitypgsem.equals("- Select University -")){
             oldUniversitysem="- Select University -";
             universitySem=oldUniversitysem;
+        } else {
+            oldUniversitysem = selectedUniversitypgsem;
+            universitySem = oldUniversitysem;
         }
-        else
-            oldUniversitysem=selectedUniversitypgsem;
-
 
         if (selectedStreampgyear == null|| selectedStreampgyear.equals("- Select Stream -")) {
             oldStreamyear = "- Select Stream -";
