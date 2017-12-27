@@ -1222,8 +1222,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onRefresh() {
 
-                itemListNotificationNew.clear();
-                itemListPlacementnew.clear();
                 if (selectedMenuFlag == 1) {
 //                    getNotifications();
                     getNotifications2();
@@ -1804,6 +1802,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     void getNotifications2() {
+        itemListNotificationNew.clear();
+
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
@@ -1825,6 +1825,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //placements methods and classes
 
     void getPlacements2() {
+        itemListPlacementnew.clear();
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
@@ -1832,7 +1833,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         isFirstRunPlacement = true;
         isLastPageLoadedPlacement = false;
         lastPageFlagPlacement = 0;
-
         new GetPlacementsReadStatus().execute();
     }
 

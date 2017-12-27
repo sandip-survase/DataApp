@@ -106,8 +106,10 @@ public class EditPlacementMain extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
-        TextView createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
+
+
+        TextView createnotitxt=(TextView)findViewById(R.id.createnotitxt);
+        TextView createnotinotitxt=(TextView)findViewById(R.id.createnotinotitxt);
 
         createnotitxt.setTypeface(Z.getBold(this));
         createnotinotitxt.setTypeface(Z.getBold(this));
