@@ -53,6 +53,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -91,6 +92,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     JSONObject json;
     JSONParser jParser = new JSONParser();
     boolean showPop = false;
+    final List<String> yearList = new ArrayList<String>();
 
     //attachment work
     int filecounter = 0;
@@ -238,7 +240,14 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         batchesTags.setThreshold(1);
         batchesTags.setFocusable(false);
 
-        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+        yearList.add("ALL");
+        Calendar currentCalendar = Calendar.getInstance();
+        for (int i = currentCalendar.get(Calendar.YEAR) - 1; i >= 2000; i--)
+            yearList.add("" + i);
+
+
+//        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, yearList) {
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
@@ -269,7 +278,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         //dont popullate
                         Toast.makeText(CreateNotification.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
                     } else {
-                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+//                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, yearList) {
                             @Override
                             public View getDropDownView(int position, View convertView,
                                                         ViewGroup parent) {
@@ -300,7 +310,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String temp = getResources().getStringArray(R.array.fruits)[position];
+//                String temp = getResources().getStringArray(R.array.fruits)[position];
+                String temp = yearList.get(position);
                 temp = temp.trim();
 
                 if (temp.contains("ALL")) {
