@@ -15,6 +15,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +35,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,6 +48,7 @@ public class CreatePlacement extends AppCompatActivity {
 
 
     String role;
+    boolean showPop = false;
     ViewPagerAdapter adapter;
     CheckBox CheckBoxstudent, CheckBoxsAlumni;
     int forstudflag = 0, forallumflag = 0;
@@ -62,6 +66,7 @@ public class CreatePlacement extends AppCompatActivity {
     String paramcompanyname = "", cpackage = "", post = "", selected = "", vacancies = "", lastdateofrr = "", dateofarrival = "", bond = "", apti = "", techtest = "",
             groupdisc = "", techinterview = "", Hrinterview = "", xcriteria = "", xiicriteria = "", ugcriteria = "", pgcriteria = "";
     private Toolbar toolbar;
+    final List<String> yearList = new ArrayList<String>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TagsEditText batchesTags;
@@ -112,7 +117,14 @@ public class CreatePlacement extends AppCompatActivity {
         batchesTags.setHint("Enter the Batches");
         batchesTags.setFocusable(false);
 
-        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+        yearList.add("ALL");
+        Calendar currentCalendar = Calendar.getInstance();
+        for (int i = currentCalendar.get(Calendar.YEAR) - 1; i >= 2000; i--)
+            yearList.add("" + i);
+
+
+//        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, yearList) {
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
@@ -163,6 +175,7 @@ public class CreatePlacement extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    showPop = false;
                     allumiselector.setVisibility(View.VISIBLE);
 //                    batches.setVisibility(View.VISIBLE);
                     forallumflag = 1;
@@ -172,8 +185,11 @@ public class CreatePlacement extends AppCompatActivity {
                     edittedFlag = 1;
                 } else {
                     forallumflag = 0;
-                    allumiselector.setVisibility(View.GONE);
+
+
                     batchesTags.setText("");
+                    batchesTags.dismissDropDown();
+                    allumiselector.setVisibility(View.GONE);
                     edittedFlag = 1;
                 }
             }
@@ -183,34 +199,42 @@ public class CreatePlacement extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 batchesTags.setAdapter(dataAdapter);
                 batchesTags.setThreshold(1);
-                if (batchesTags.getText().toString().contains("ALL")) {
-                    //dont popullate
-                    Toast.makeText(CreatePlacement.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
-                } else {
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
-                        @Override
-                        public View getDropDownView(int position, View convertView,
-                                                    ViewGroup parent) {
-                            View view = super.getDropDownView(position, convertView, parent);
-                            TextView tv = (TextView) view;
-                            Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                            tv.setTypeface(custom_font3);
 
-                            if (position == 0) {
-                                // Set the hint text color gray
-                                tv.setTextColor(Color.GRAY);
-                            } else {
-                                tv.setTextColor(Color.parseColor("#eeeeee"));
+                if (showPop == false) {
+
+                    if (batchesTags.getText().toString().contains("ALL")) {
+                        //dont popullate
+                        Toast.makeText(CreatePlacement.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
+                    } else {
+//                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, yearList) {
+                            @Override
+                            public View getDropDownView(int position, View convertView,
+                                                        ViewGroup parent) {
+                                View view = super.getDropDownView(position, convertView, parent);
+                                TextView tv = (TextView) view;
+                                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                                tv.setTypeface(custom_font3);
+
+                                if (position == 0) {
+                                    // Set the hint text color gray
+                                    tv.setTextColor(Color.GRAY);
+                                } else {
+                                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                                }
+                                return view;
                             }
-                            return view;
-                        }
-                    };
+                        };
 
 
-                    batchesTags.setAdapter(dataAdapter);
-                    batchesTags.showDropDown();
+                        batchesTags.setAdapter(dataAdapter);
+                        batchesTags.showDropDown();
+
+
+                    }
                 }
             }
         });
@@ -219,7 +243,8 @@ public class CreatePlacement extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String temp = getResources().getStringArray(R.array.fruits)[position];
+//                String temp = getResources().getStringArray(R.array.fruits)[position];
+                String temp = yearList.get(position);
                 temp = temp.trim();
 
                 if (temp.contains("ALL")) {
@@ -243,6 +268,8 @@ public class CreatePlacement extends AppCompatActivity {
                         String[] TagCreateArray = new String[TagCreateList.size()];
                         TagCreateArray = TagCreateList.toArray(TagCreateArray);
                         batchesTags.setTags(TagCreateArray);
+
+                        Toast.makeText(CreatePlacement.this, "Batch " + temp + " is already present", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -264,8 +291,9 @@ public class CreatePlacement extends AppCompatActivity {
                 if (temp.equals("")) {
                     batchesTags.dismissDropDown();
                     allumiselector.setVisibility(View.GONE);
+                    CheckBoxsAlumni.setChecked(false);
+                    showPop = true;
                 }
-
 
             }
 
