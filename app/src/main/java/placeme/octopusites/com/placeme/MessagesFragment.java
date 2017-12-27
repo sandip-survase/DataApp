@@ -250,7 +250,7 @@ public class MessagesFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", usernameenc));
             Log.d("TAG", "sending: " + usernameenc);
-            json = jParser.makeHttpRequest("http://104.237.4.236:1234/Firebase/GetChatRooms", "GET", params);
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
             Log.d("TAG", "get chatroom json: " + json);
             Bitmap map = null;
             try {
