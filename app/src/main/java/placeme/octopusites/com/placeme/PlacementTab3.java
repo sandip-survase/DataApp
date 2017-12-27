@@ -74,10 +74,34 @@ public class PlacementTab3 extends Fragment {
 
 
         if (MySharedPreferencesManager.getRole(getActivity()).equals("student") || MySharedPreferencesManager.getRole(getActivity()).equals("alumni")) {
+
+
+
+            if(studenttenthmarks.equals("0.00")){
+                studenttenthview.setText("N/A");
+
+            }else{
             studenttenthview.setText(studenttenthmarks);
+
+            }
+            if(studenttwelthordiplomamarks.equals("0.00") ){
+                studenttwelthordiplomaview.setText("N/A");
+
+            }else{
             studenttwelthordiplomaview.setText(studenttwelthordiplomamarks);
+
+            }
+            if(studentugmarks.equals("0.00")){
+                studentugview.setText("N/A");
+
+            }else{
+
             studentugview.setText(studentugmarks);
-//
+            }
+
+
+
+
             Float c10, s10, c12, s12, cu, su;
             c10 = Float.parseFloat(tenth);
             c12 = Float.parseFloat(twelthordiploma);

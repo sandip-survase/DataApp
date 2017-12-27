@@ -145,11 +145,11 @@ public class ViewPlacement extends AppCompatActivity {
         save.setLastmodified(lastmodified);
         save.setUploadedby(uploadedby);
 
-if(MySharedPreferencesManager.getRole(this).equals("student")){
-        new GetStudentData().execute();
+        if (MySharedPreferencesManager.getRole(this).equals("student")) {
+            new GetStudentData().execute();
 
-}
-        if(MySharedPreferencesManager.getRole(this).equals("alumni")){
+        }
+        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
             new GetStudentData().execute();
 
         }
@@ -229,7 +229,6 @@ if(MySharedPreferencesManager.getRole(this).equals("student")){
                 params.add(new BasicNameValuePair("f", fname));
                 params.add(new BasicNameValuePair("l", lname));
                 params.add(new BasicNameValuePair("lc", companyname));
-
 
 
                 json = jParser.makeHttpRequest(Z.url_RegisterForPlacement, "GET", params);
@@ -478,30 +477,78 @@ if(MySharedPreferencesManager.getRole(this).equals("student")){
             }
 
             SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
-            save.setStudenttenthmarks(studenttenthmarks);
-            save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
-            save.setStudentugmarks(studentugmarks);
-            save.setStudentpgmarks(studentpgmarks);
-
-            Float c10, s10, c12, s12, cu, su;
+            Float c10 = 0.0f, s10 = 0.0f, c12 = 0.0f, s12 = 0.0f, cu = 0.0f, su = 0.0f;
             c10 = Float.parseFloat(stdx);
             c12 = Float.parseFloat(stdxiiordiploma);
             cu = Float.parseFloat(ug);
-
-            s10 = Float.parseFloat(studenttenthmarks);
-            s12 = Float.parseFloat(studenttwelthordiplomamarks);
-            su = Float.parseFloat(studentugmarks);
-
             int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
-            if (s10 >= c10) {
-                tenthflag = 1;
+
+
+            if (found_tenth == 0) {
+//10 th not filled
+  save.setStudenttenthmarks("0.00");
+
+            } else {
+
+                save.setStudenttenthmarks(studenttenthmarks);
+                s10 = Float.parseFloat(studenttenthmarks);
+                if (s10 >= c10) {
+                    tenthflag = 1;
+                }
+
+
             }
-            if (s12 >= c12) {
-                twelthordiplomaflag = 1;
+
+            if (found_twelth == 1) {
+
+                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
+                s12 = Float.parseFloat(studenttwelthordiplomamarks);
+                if (s12 >= c12) {
+                    twelthordiplomaflag = 1;
+                }
+
+            } else   if (found_diploma == 1)  {
+                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
+                s12 = Float.parseFloat(studenttwelthordiplomamarks);
+                if (s12 >= c12) {
+                    twelthordiplomaflag = 1;
+                }
+
+
+            }else{
+                save.setStudenttwelthordiplomamarks("0.00");
+
             }
-            if (su >= cu) {
-                ugflag = 1;
+
+
+
+
+            if (found_ug == 0) {
+                save.setStudentugmarks("0.00");
+
+//udgnot found
+            } else {
+
+                save.setStudentugmarks(studentugmarks);
+                su = Float.parseFloat(studentugmarks);
+
+                if (su >= cu) {
+                    ugflag = 1;
+                }
+
+
             }
+
+            if (found_pgsem == 0) {
+//studentpgmarks found
+                save.setStudentpgmarks("0.00");
+
+            } else {
+                save.setStudentpgmarks(studentpgmarks);
+
+
+            }
+
 
             LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
             if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1) {

@@ -112,8 +112,8 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
         GlideApp.with(mContext)
                 .load(uri)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .signature(new ObjectKey(item.getSignature()))
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .signature(new ObjectKey(item.getUploadedby()))
                 .into(holder.uploadedbyprofile);
 
 

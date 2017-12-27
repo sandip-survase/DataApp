@@ -1514,6 +1514,11 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
+                Log.d("Backtrack", "placementpages: "+placementpages);
+                Log.d("Backtrack", "called_pages_placement: "+called_pages_placement);
+                Log.d("Backtrack", "total_no_of_placements: "+total_no_of_placements);
+                Log.d("Backtrack", "unreadcountPlacement: "+unreadcountPlacement);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2390,6 +2395,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
+
         itemListPlacementnew.addAll(itemList2);
 
         mAdapterPlacement.notifyDataSetChanged();
