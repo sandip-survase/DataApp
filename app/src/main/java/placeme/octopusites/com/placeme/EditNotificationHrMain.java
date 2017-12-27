@@ -32,7 +32,7 @@ public class EditNotificationHrMain extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         file1=(RelativeLayout)findViewById(R.id.file1);

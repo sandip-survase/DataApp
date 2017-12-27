@@ -44,24 +44,24 @@ public class NewsFeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_newsfeed, container, false);
 
-
-        swipe_refresh_layout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
-        recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_newsfeed);
-        mAdapter=new NewsFeedAdapter(itemList);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(mAdapter);
-
-        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                new GetNews().execute();
-            }
-        });
-        swipe_refresh_layout.setRefreshing(true);
-        new GetNews().execute();
+//
+//        swipe_refresh_layout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
+//        recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_newsfeed);
+//        mAdapter=new NewsFeedAdapter(itemList);
+//        recyclerView.setHasFixedSize(true);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(mLayoutManager);
+//        recyclerView.setAdapter(mAdapter);
+//
+//        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                new GetNews().execute();
+//            }
+//        });
+//        swipe_refresh_layout.setRefreshing(true);
+//        new GetNews().execute();
 
         return rootView;
     }

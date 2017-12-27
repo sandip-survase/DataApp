@@ -38,11 +38,11 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
         public MyViewHolder(View view) {
             super(view);
 
-            name = (TextView) view.findViewById(R.id.name);
-            timestamp = (TextView) view.findViewById(R.id.timestamp);
-            txtStatusMsg = (TextView) view.findViewById(R.id.txtStatusMsg);
-            profilePic=(ImageView)view.findViewById(R.id.profilePic);
-            feedImage1=(ImageView)view.findViewById(R.id.feedImage1);
+//            name = (TextView) view.findViewById(R.id.name);
+//            timestamp = (TextView) view.findViewById(R.id.timestamp);
+//            txtStatusMsg = (TextView) view.findViewById(R.id.txtStatusMsg);
+//            profilePic=(ImageView)view.findViewById(R.id.profilePic);
+//            feedImage1=(ImageView)view.findViewById(R.id.feedImage1);
 
         }
     }

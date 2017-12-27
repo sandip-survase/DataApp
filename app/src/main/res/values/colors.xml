@@ -4,35 +4,7 @@
     <color name="colorPrimaryDark">#03353e</color>
     <color name="colorAccent">#00bcd4</color>
 
-
-
-    <color name="highlight">#f3f3f3</color>
-    <color name="white">#eee</color>
-    <color name="bg_screen1">#f64c73</color>
-    <color name="bg_screen2">#20d2bb</color>
-    <color name="bg_screen3">#3395ff</color>
-    <color name="bg_screen4">#c873f4</color>
-    <color name="attachment">#eee</color>
-    <color name="notification">#ccc</color>
-    <color name="year">#999999</color>
-    <color name="title">#222222</color>
-    <color name="heading">#c59a6d</color>
-    <color name="colorDivider">#c59a6d</color>
-    <color name="bg_tag_default">#c59a6d</color>
-    <color name="background">#282f35</color>
     <color name="transperent">@android:color/transparent</color>
-    <color name="holoblue">@android:color/holo_blue_bright</color>
-    <color name="feed_bg">#d3d6db</color>
-    <color name="feed_item_bg">#ffffff</color>
-    <color name="feed_item_border">#c2c3c8</color>
-    <color name="link">#0a80d1</color>
-    <color name="timestamp">#a0a3a7</color>
-    <color name="viewBg">#f1f5f8</color>
-    <color name="album_title">#4c4c4c</color>
-    <color name="array_dot_active">#00bcd4</color>
-    <color name="array_dot_inactive">#03353e</color>
-    <color name="blackOlive">#eeeeee</color>
-    <color name="black_overlay">#66000000</color>
 
     <color name="while_color">#fcfdfd</color>
     <color name="sky_blue_color">#00bcd4</color>

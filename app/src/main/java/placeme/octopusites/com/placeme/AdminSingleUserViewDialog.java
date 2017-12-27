@@ -67,7 +67,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         checkboxplaced = (CheckBox) findViewById(R.id.checkboxplaced);

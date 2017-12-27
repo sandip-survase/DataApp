@@ -44,7 +44,7 @@ public class BroadcastMessage extends AppCompatActivity {
         Window window = BroadcastMessage.this.getWindow();
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
@@ -62,7 +62,7 @@ public class BroadcastMessage extends AppCompatActivity {
                 if(toggle1==0)
                 {
                     toggle1=1;
-                    facebookicon.setColorFilter(getResources().getColor(R.color.holoblue));
+                    facebookicon.setColorFilter(getResources().getColor(R.color.sky_blue_color));
                 }
                 else
                 {
@@ -77,7 +77,7 @@ public class BroadcastMessage extends AppCompatActivity {
                 if(toggle2==0)
                 {
                     toggle2=1;
-                    twittericon.setColorFilter(getResources().getColor(R.color.holoblue));
+                    twittericon.setColorFilter(getResources().getColor(R.color.sky_blue_color));
                 }
                 else
                 {
@@ -92,7 +92,7 @@ public class BroadcastMessage extends AppCompatActivity {
                 if(toggle3==0)
                 {
                     toggle3=1;
-                    linkedinicon.setColorFilter(getResources().getColor(R.color.holoblue));
+                    linkedinicon.setColorFilter(getResources().getColor(R.color.sky_blue_color));
                 }
                 else
                 {

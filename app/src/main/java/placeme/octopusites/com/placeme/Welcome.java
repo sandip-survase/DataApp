@@ -1287,8 +1287,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         params.setMargins(5, 5, 5, 5);
 
 
-        int colorsActive = getResources().getColor(R.color.array_dot_active);
-        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
+        int colorsActive = getResources().getColor(R.color.sky_blue_color);
+        int colorsInactive = getResources().getColor(R.color.dark_color);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {

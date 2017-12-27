@@ -31,7 +31,7 @@ public class QuestionsetsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#ffffff'>Question Sets</font>"));
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);

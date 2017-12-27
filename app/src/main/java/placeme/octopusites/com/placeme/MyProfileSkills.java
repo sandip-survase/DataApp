@@ -82,7 +82,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         TextView skilltxt = (TextView) findViewById(R.id.skilltxt);
         skilltxt.setTypeface(Z.getBold(this));

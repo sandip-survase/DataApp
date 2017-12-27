@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
                         super.onTabUnselected(tab);
-                        int tabIconColor = ContextCompat.getColor(MainActivity.this, R.color.white);
+                        int tabIconColor = ContextCompat.getColor(MainActivity.this, R.color.while_color);
                         tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                     }
 

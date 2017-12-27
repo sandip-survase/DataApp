@@ -368,7 +368,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             }
         });
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView strengthtxt=(TextView)findViewById(R.id.strengthtxt);

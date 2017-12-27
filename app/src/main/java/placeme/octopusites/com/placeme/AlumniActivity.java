@@ -252,7 +252,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
                         super.onTabUnselected(tab);
-                        int tabIconColor = ContextCompat.getColor(AlumniActivity.this, R.color.white);
+                        int tabIconColor = ContextCompat.getColor(AlumniActivity.this, R.color.while_color);
                         tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                     }
 

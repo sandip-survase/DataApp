@@ -81,7 +81,7 @@ public class CreatePlacementHr extends AppCompatActivity {
 
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
@@ -98,8 +98,7 @@ public class CreatePlacementHr extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-
-        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.passing_years_for_hr)) {
+        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
@@ -145,7 +144,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                     //dont popullate
                     Toast.makeText(CreatePlacementHr.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
                 } else {
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.passing_years_for_hr)) {
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
                         @Override
                         public View getDropDownView(int position, View convertView,
                                                     ViewGroup parent) {
@@ -175,7 +174,7 @@ public class CreatePlacementHr extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String temp = getResources().getStringArray(R.array.passing_years_for_hr)[position];
+                String temp = getResources().getStringArray(R.array.fruits)[position];
                 temp = temp.trim();
 
                 if (temp.contains("ALL")) {

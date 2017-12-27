@@ -42,7 +42,7 @@ public class ShowRegisteredUsers extends AppCompatActivity {
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#ffffff'>Registered Users</font>"));
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
@@ -74,7 +74,7 @@ public class ShowRegisteredUsers extends AppCompatActivity {
             @Override
             public void onSearchViewClosed() {
                 final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
-                upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+                upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
                 getSupportActionBar().setHomeAsUpIndicator(upArrow);
             }
         });

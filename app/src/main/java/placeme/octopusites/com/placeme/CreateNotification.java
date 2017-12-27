@@ -213,7 +213,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
@@ -236,7 +236,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //        mTagsEditText.setAdapter(new ArrayAdapter<>(this,
 //                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.fruits)));
         batchesTags.setThreshold(1);
-        batchesTags.setTagsTextColor(R.color.blackOlive);
+        batchesTags.setTagsTextColor(R.color.dark_color);
         batchesTags.setFocusable(false);
 
         dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {

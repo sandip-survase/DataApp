@@ -98,7 +98,7 @@ public class MyProfilePatents extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         trash1selectionview = (View) findViewById(R.id.trash1selectionview);

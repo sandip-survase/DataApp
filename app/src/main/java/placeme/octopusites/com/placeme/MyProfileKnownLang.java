@@ -80,7 +80,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
         addmorelangtxt.setTypeface(Z.getBold(this));
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 //        Window window = MyProfileKnownLang.this.getWindow();
