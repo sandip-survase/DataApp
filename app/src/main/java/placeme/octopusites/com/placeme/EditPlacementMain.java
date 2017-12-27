@@ -124,6 +124,7 @@ public class EditPlacementMain extends AppCompatActivity {
 
         batchesTagsedittext = (TagsEditText) findViewById(R.id.batchesTags);
         batchesTagsedittext.setFocusable(false);
+        batchesTagsedittext.setHint("Enter the Batches");
         RecyclerItemPlacement obj = (RecyclerItemPlacement) getIntent().getParcelableExtra("object");
 
 

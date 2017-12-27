@@ -111,7 +111,6 @@
                 android:maxLines="1"
                 android:layout_marginLeft="5dp"
                 android:popupBackground="@color/while_color"
-
                 android:layout_below="@+id/dummy2" />
 
             <TextView

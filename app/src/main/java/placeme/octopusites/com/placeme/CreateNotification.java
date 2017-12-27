@@ -63,7 +63,6 @@ import mabbas007.tagsedittext.TagsEditText;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class CreateNotification extends AppCompatActivity implements TagsEditText.TagsEditListener {
 
@@ -91,6 +90,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     RelativeLayout attchrl1, attchrl2, attchrl3, attchrl4, attchrl5;
     JSONObject json;
     JSONParser jParser = new JSONParser();
+    boolean showPop = false;
 
     //attachment work
     int filecounter = 0;
@@ -236,7 +236,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //        mTagsEditText.setAdapter(new ArrayAdapter<>(this,
 //                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.fruits)));
         batchesTags.setThreshold(1);
-        batchesTags.setTagsTextColor(R.color.dark_color);
         batchesTags.setFocusable(false);
 
         dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
@@ -245,8 +244,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(Z.getLight(CreateNotification.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -265,32 +263,35 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                 batchesTags.setAdapter(dataAdapter);
                 batchesTags.setThreshold(1);
-                if (batchesTags.getText().toString().contains("ALL")) {
-                    //dont popullate
-                    Toast.makeText(CreateNotification.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
-                } else {
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
-                        @Override
-                        public View getDropDownView(int position, View convertView,
-                                                    ViewGroup parent) {
-                            View view = super.getDropDownView(position, convertView, parent);
-                            TextView tv = (TextView) view;
-                            Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                            tv.setTypeface(custom_font3);
 
-                            if (position == 0) {
-                                // Set the hint text color gray
-                                tv.setTextColor(Color.GRAY);
-                            } else {
-                                tv.setTextColor(Color.parseColor("#eeeeee"));
+                if (showPop == false) {
+                    if (batchesTags.getText().toString().contains("ALL")) {
+                        //dont popullate
+                        Toast.makeText(CreateNotification.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
+                    } else {
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
+                            @Override
+                            public View getDropDownView(int position, View convertView,
+                                                        ViewGroup parent) {
+                                View view = super.getDropDownView(position, convertView, parent);
+                                TextView tv = (TextView) view;
+                                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                                tv.setTypeface(custom_font3);
+
+                                if (position == 0) {
+                                    // Set the hint text color gray
+                                    tv.setTextColor(Color.GRAY);
+                                } else {
+                                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                                }
+                                return view;
                             }
-                            return view;
-                        }
-                    };
+                        };
 
 
-                    batchesTags.setAdapter(dataAdapter);
-                    batchesTags.showDropDown();
+                        batchesTags.setAdapter(dataAdapter);
+                        batchesTags.showDropDown();
+                    }
                 }
             }
         });
@@ -323,6 +324,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         String[] TagCreateArray = new String[TagCreateList.size()];
                         TagCreateArray = TagCreateList.toArray(TagCreateArray);
                         batchesTags.setTags(TagCreateArray);
+                        Toast.makeText(CreateNotification.this, "Batch " + temp + " is already present", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -339,19 +341,19 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 Log.d("setTagsListener", "onEditingFinished: " + containsall);
 
                 String temp = "";
-                temp = batchesTags.getText().toString();
-                Log.d("tag", "onTagsChanged: " + temp);
+                temp = batchesTags.getText().toString().trim();
+                Log.d("tag", "onTagsChanged: " + temp + " len " + temp.length());
                 if (temp.equals("")) {
                     batchesTags.dismissDropDown();
                     yearspinner.setVisibility(View.GONE);
+                    allum.setChecked(false);
+                    showPop = true;
                 }
-
 
             }
 
             @Override
             public void onEditingFinished() {
-
 
             }
         });
@@ -374,6 +376,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    showPop = false;
                     yearspinner.setVisibility(View.VISIBLE);
                     batches.setVisibility(View.VISIBLE);
                     forallumflag = 1;
@@ -382,6 +385,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     batchesTags.setVisibility(View.VISIBLE);
                     edittedFlag = 1;
                 } else {
+
                     forallumflag = 0;
                     yearspinner.setVisibility(View.INVISIBLE);
                     batches.setVisibility(View.INVISIBLE);
@@ -2495,13 +2499,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     whomsYears += Forwhomefromdb.charAt(i);
                 }
 //                String testStr="STUDENT";
+                String testStr = "STUDENT";
                 Log.d("TAG1", "before: " + whomsYears);
-                whomsYears = whomsYears.replace("ADMIN,", "");
+                whomsYears = whomsYears.replace(Z.Decrypt(encUsername, CreateNotification.this), "");
                 Log.d("TAG1", "after1: " + whomsYears);
                 whomsYears = whomsYears.replace("STUDENT,", "");
                 Log.d("TAG1", "after2: " + whomsYears);
-                whomsYears = whomsYears.replace("ADMIN", "");
-                Log.d("TAG1", "after3: " + whomsYears);
                 whomsYears = whomsYears.replace("STUDENT", "");
                 Log.d("TAG1", "after4: " + whomsYears);
                 whomsYears = whomsYears.replace("ALL", "");
@@ -2512,6 +2515,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     whomsYears = whomsYears.replace(",", " ");
                     String batchyears[] = whomsYears.split(" ");
                     batchesTags.setTags(batchyears);
+                    showPop = true;
 
                 }
 
