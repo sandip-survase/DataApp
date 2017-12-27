@@ -48,7 +48,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fnameinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -73,7 +72,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mnameinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -98,7 +96,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/snameinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -122,7 +119,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nameas10input"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -146,7 +142,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileemailinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -170,7 +165,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileaemailinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -195,7 +189,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mothernameinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -219,7 +212,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dobinput"
-                android:layout_marginTop="20dp"
                 android:imeOptions="actionNext"
                 android:text="Gender"
                 android:textColor="@color/dark_color"
@@ -260,9 +252,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/radioGroupGender"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
+                android:layout_marginTop="20dp"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
@@ -283,7 +275,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/phoneinput"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -307,7 +298,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mobileinput"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -330,7 +320,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/amobileinput"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -353,7 +342,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mothertongueinput"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -377,7 +365,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/hobbiesinput"
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -496,8 +483,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/religionspinner"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
+                android:layout_marginTop="20dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
@@ -520,7 +507,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/castinput"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -543,7 +529,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/prninput"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -566,7 +551,7 @@
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/prninput"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/pencil_icon" />
 
             <TextView
@@ -574,7 +559,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/knownlanginput"
-                android:layout_marginTop="20dp"
                 android:text="Current Address*"
                 android:textColor="@color/dark_color"
                 android:textSize="16dp" />
@@ -584,8 +568,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrtxt"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
+                android:layout_marginTop="20dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
@@ -608,7 +592,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline1input"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -631,7 +614,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline2input"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -655,7 +637,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline3input"
-                android:layout_marginTop="20dp"
                 android:text="Permanant Address"
                 android:textColor="@color/dark_color"
                 android:textSize="16dp" />
@@ -699,7 +680,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline1input"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -722,7 +702,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline2input"
-                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -745,7 +724,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline3input"
-                android:layout_marginTop="20dp"
                 android:text="Handicapped"
                 android:textColor="@color/dark_color"
                 android:textSize="16dp" />
@@ -754,8 +732,8 @@
                 android:id="@+id/radioGroupHandicapped"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/paddrline3input"
                 android:layout_marginTop="20dp"
+                android:layout_below="@+id/paddrline3input"
                 android:layout_toRightOf="@+id/handicappedtxt"
                 android:orientation="horizontal">
 
