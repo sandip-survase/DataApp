@@ -317,8 +317,10 @@ public class MessagesFragment extends Fragment {
 
                     }
 
-                    new GetMessagesReadStatus(usernameenc,tempusername,sender_uid, reciever_uid[i],i).execute();
-                    new GetProfileImageAndSaveToPref(reciever_username[i],tempusername).execute();
+                    if (reciever_uid != null & reciever_username != null) {
+                        new GetMessagesReadStatus(usernameenc, tempusername, sender_uid, reciever_uid[i], i).execute();
+                        new GetProfileImageAndSaveToPref(reciever_username[i], tempusername).execute();
+                    }
                 }
 
             }
