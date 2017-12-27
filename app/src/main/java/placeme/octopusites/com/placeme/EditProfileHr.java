@@ -105,6 +105,7 @@ public class EditProfileHr extends AppCompatActivity {
                         }
                     }
                 }
+
                 if (currentPosition == 1) {
                     HrCompanyDetailsTabFragment hrCompanyDetailsTabFragment = (HrCompanyDetailsTabFragment) adapter.getItem(1);
                     Boolean project_success = hrCompanyDetailsTabFragment.validate();

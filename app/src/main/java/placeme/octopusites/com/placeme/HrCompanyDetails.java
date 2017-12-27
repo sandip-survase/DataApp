@@ -45,7 +45,7 @@ public class HrCompanyDetails extends AppCompatActivity {
     public int pos;
     String CompanyType = "", strobj = "";
     String encobj = "";
-    String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
+    String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "", oldnature = "", newnature = "";
     TextInputEditText CompanyName,otherNature, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
     Spinner Company_Nature;
     String encComName = "", encUsername = "", encComMail = "", encComWeb = "", encComPhone = "", encComAlterPhone = "", encComCIIN = "", encComType = "", encComAddL1 = "", encComAddL2 = "", encComAddL3 = "";
@@ -130,11 +130,17 @@ public class HrCompanyDetails extends AppCompatActivity {
         CompanyCIINstr = h.getCompanyCIIN();
         CompanyNaturestr = h.getCompanyNature();
 
+
         CompanyAddressLine1str = h.getCompanyaddl1();
         CompanyAddressLine2str = h.getCompanyaddl2();
         CompanyAddressLine3str = h.getCompanyaddl3();
 
-        Log.d("TAG", "onCreate: ");
+        oldnature = CompanyNaturestr;
+
+        if (oldnature == null) {
+            oldnature = "-Select Company Nature-";
+        }
+
 
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, Nature) {
@@ -186,6 +192,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                 // new HrCompanyDetails().GetStates().execute();
                 pos = position;
                 CompanyType = Nature[position];
+                newnature = CompanyType;
                 Log.d("TAG", "onItemSelected: - " + CompanyType);
 
                 if (CompanyType.equals("Other")) {
@@ -252,13 +259,6 @@ public class HrCompanyDetails extends AppCompatActivity {
                 CompanyAddressLine3.setText(CompanyAddressLine3str);
 
         }
-
-//        if (CompanyNaturestr != null) {
-//            if (!CompanyNaturestr.equals("")) {
-//                Company_Nature.setSelection(dataAdapter.getPosition(CompanyNaturestr));
-//            }
-//        }
-
 
         if (CompanyNaturestr != null) {
             int foundboard = 0;
@@ -568,7 +568,8 @@ public class HrCompanyDetails extends AppCompatActivity {
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_CANCELED, returnIntent);
 
-//|| !CompanyNaturestr.equals(CompanyType)
+//|| !CompanyNaturestr.equals
+//|| !oldnature.equals(CompanyType)
         if (flag1 == 1 ) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -594,8 +595,12 @@ public class HrCompanyDetails extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(HrCompanyDetails.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(HrCompanyDetails.this));
+
+
                 }
             });
 

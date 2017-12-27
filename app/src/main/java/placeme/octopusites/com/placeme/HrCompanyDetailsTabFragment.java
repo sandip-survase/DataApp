@@ -202,13 +202,13 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                 Log.d("TAG", "onItemSelected: CompanyType - " + CompanyType);
                 Log.d("TAG", "onItemSelected: CompanyNaturestr - " + CompanyNaturestr);
 
-                if (CompanyNaturestr != null) {
-                    if (!CompanyNaturestr.equals(CompanyType)) {
-                        flag1 = 1;
-                        Log.d("TAG", "onItemSelected: flag1 - " + flag1);
-                    }
-
-                }
+//                if (CompanyNaturestr != null) {
+//                    if (!CompanyNaturestr.equals(CompanyType)) {
+//                        flag1 = 1;
+//                        Log.d("TAG", "onItemSelected: flag1 - " + flag1);
+//                    }
+//
+//                }
 
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);

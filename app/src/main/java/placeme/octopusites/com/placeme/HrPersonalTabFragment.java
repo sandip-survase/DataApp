@@ -88,9 +88,7 @@ public class HrPersonalTabFragment extends Fragment {
 
 
         TextView loctxt = (TextView) rootView.findViewById(R.id.loctxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        loctxt.setTypeface(custom_font1);
-
+        loctxt.setTypeface(Z.getBold(getActivity()));
 
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
