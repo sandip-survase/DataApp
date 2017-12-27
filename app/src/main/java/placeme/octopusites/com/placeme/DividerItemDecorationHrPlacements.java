@@ -28,7 +28,7 @@ public class DividerItemDecorationHrPlacements extends RecyclerView.ItemDecorati
 
     public DividerItemDecorationHrPlacements(Context context, int orientation) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
-        mDivider = context.getResources().getDrawable(R.drawable.line_divider_hr_placements);
+        mDivider = context.getResources().getDrawable(R.drawable.line_divider);
         a.recycle();
         setOrientation(orientation);
     }

@@ -741,7 +741,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 if (notificationorplacementflag == 0) {
 
-                    startActivity(new Intent(HRActivity.this, ViewNotificationAdmin.class).putExtra("username", username));
+                    startActivity(new Intent(HRActivity.this, ViewNotification.class).putExtra("username", username));
                 } else if (notificationorplacementflag == 1) {
                     startActivity(new Intent(HRActivity.this, ViewPlacementAdmin.class).putExtra("username", username));
                 }

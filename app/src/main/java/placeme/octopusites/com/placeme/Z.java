@@ -17,15 +17,13 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class Z {
     public static final String VPS_IP = "104.237.4.236";   // for authority
-    public static final String IP = "http://104.237.4.236/";
+    public static final String IP = "http://162.213.199.3/";
     public static final String IP_8081 = "http://104.237.4.236:8081/";
     public static final String IP_1234= "http://104.237.4.236:1234/";
     public static final String IP_8086 = "http://104.237.4.236:8086/";
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
     public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
 
-
-//    public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
 
     public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE="Fail to upload image!\nPlease try again";

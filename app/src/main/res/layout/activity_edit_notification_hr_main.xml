@@ -31,7 +31,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/trash"
+                android:src="@drawable/delete_icon"
                 android:layout_alignParentRight="true"
                 android:id="@+id/trashnotification"
                 />
@@ -210,8 +210,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/attachnoti"
-        app:backgroundTint="#fff"
+        app:srcCompat="@drawable/attachment_white_icon"
+        app:backgroundTint="@color/dark_color"
         />
 
 </RelativeLayout>

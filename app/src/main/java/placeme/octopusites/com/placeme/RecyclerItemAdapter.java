@@ -107,7 +107,7 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
         holder.uploadtime.setText(item.getUploadtime());
         if(item.getisAttachment())
         {
-            Drawable myDrawable = item.getContext().getResources().getDrawable(R.drawable.attachment);
+            Drawable myDrawable = item.getContext().getResources().getDrawable(R.drawable.attachment_icon);
             holder.imageView.setImageDrawable(myDrawable);
 
         }

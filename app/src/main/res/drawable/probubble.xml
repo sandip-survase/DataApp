@@ -4,11 +4,11 @@
     <solid android:color="#ffffff"/>
     <stroke
         android:width="1dp"
-        android:color="#c59a6d" />
+        android:color="@color/sky_blue_color" />
 
     <gradient
-        android:centerColor="#fff"
-        android:startColor="#fff"
-        android:endColor="#fff"
+        android:centerColor="@color/while_color"
+        android:startColor="@color/while_color"
+        android:endColor="@color/while_color"
         />
 </shape>

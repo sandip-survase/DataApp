@@ -46,7 +46,6 @@
                         <ImageView
                             android:layout_width="112dp"
                             android:layout_height="150dp"
-                            android:src="@drawable/format1"
                             android:layout_marginBottom="10dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
@@ -67,7 +66,6 @@
                         <ImageView
                             android:layout_width="112dp"
                             android:layout_height="150dp"
-                            android:src="@drawable/format1"
                             android:layout_marginBottom="10dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"

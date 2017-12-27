@@ -275,8 +275,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/attachnoti"
-        app:backgroundTint="#fff"
+        app:srcCompat="@drawable/attachment_white_icon"
+        app:backgroundTint="@color/dark_color"
         />
 
 
