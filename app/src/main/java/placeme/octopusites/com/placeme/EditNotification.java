@@ -100,7 +100,7 @@ public class EditNotification extends AppCompatActivity {
     private int page_to_call_notification = 1;
     private int current_page_notification = 1;
     private String plainusername, username = "", fname = "", mname = "", sname = "";
-    private List<RecyclerItem> itemListNotification = new ArrayList<>();
+    private List<RecyclerItemEdit> itemListNotification = new ArrayList<>();
     private RecyclerItemAdapter mAdapterNotification;
     private RecyclerView recyclerViewNotification;
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
@@ -170,20 +170,15 @@ public class EditNotification extends AppCompatActivity {
 
 
                 if (deleteflag == 1) {
-                    if (selectedPositions[position] == 0) {
-                        view.setBackgroundColor(Color.parseColor("#000000"));
+
+                    if (!notificationdeleteArraylist.contains(item.getId())) {
+                        notificationdeleteArraylist.add(item.getId());
+                        view.setBackgroundColor(Color.parseColor("#999999"));
                         selectedCount++;
                         setActionBarTitle(selectedCount);
                         selectedPositions[position] = 1;
                         selectedViews[position] = view;
-                        Log.d("selectfordel", "onClick: " + item.getId());
-                        if (!notificationdeleteArraylist.contains(item.getId())) {
-                            notificationdeleteArraylist.add(item.getId());
-
-                        }
-
-                    } else {
-
+                    }else{
                         notificationdeleteArraylist.remove(item.getId());
                         view.setBackgroundColor(Color.TRANSPARENT);
                         selectedCount--;
@@ -192,8 +187,26 @@ public class EditNotification extends AppCompatActivity {
                         selectedViews[position] = null;
                         if (selectedCount == 0)
                             goBack();
-
                     }
+
+
+//                    if (selectedPositions[position] == 0) {
+//                        view.setBackgroundColor(Color.parseColor("#000000"));
+//                        selectedCount++;
+//                        setActionBarTitle(selectedCount);
+//                        selectedPositions[position] = 1;
+//                        selectedViews[position] = view;
+//                        Log.d("selectfordel", "onClick: " + item.getId());
+//                        if (!notificationdeleteArraylist.contains(item.getId())) {
+//                            notificationdeleteArraylist.add(item.getId());
+//
+//                        }
+//
+//                    } else {
+//
+//
+//
+//                    }
                 } else if (role.equals("hr")) {
                     startActivity(new Intent(EditNotification.this, EditNotificationHrMain.class));
 
@@ -221,61 +234,35 @@ public class EditNotification extends AppCompatActivity {
                     startActivity(i1);
 
 
-                    //startActivity(new Intent(EditNotification.this,EditNotificationMain.class));
-//
-//                    Intent i1 = new Intent(EditNotification.this, EditNotificationMain.class);
-//                    i1.putExtra("flag","EditNotification");
-//                    i1.putExtra("id",item.getId());
-//
-//                    i1.putExtra("title",item.getTitle());
-//                    i1.putExtra("notification",item.getNotification());
-//                    i1.putExtra("file1",item.getFilename1());
-//                    i1.putExtra("file2",item.getFilename2());
-//                    i1.putExtra("file3",item.getFilename3());
-//                    i1.putExtra("file4",item.getFilename4());
-//                    i1.putExtra("file5",item.getFilename5());
-//                    i1.putExtra("uploadedby",item.getUploadedby());
-//                    i1.putExtra("uploadtime",item.getUploadtime());
-//                    i1.putExtra("lastmodified",item.getLastmodified());
-//                    Log.d("Check2" ,"id: "+item.getId());
-//                    Log.d("Check2" ,"notiff: "+item.getNotification());
-//                    Log.d("Check2" ,"title: "+item.getTitle());
-//                    Log.d("Check2" ,"file1: "+item.getFilename1());
-//                    Log.d("Check2" ,"lastmodified: "+item.getLastmodified());
-//                    Log.d("Check2" ,"file5: "+item.getFilename5());
-//                    startActivity(i1);
-
                 }
             }
-//                    changeReadStatusNotification(item.getId());
 
-//                crop_flag=1;
 
 
             @Override
             public void onLongClick(View view, int position) {
-                RecyclerItem item = itemListNotification.get(position);
+                RecyclerItemEdit item = itemListNotificationNew.get(position);
+                    Log.d("POsition", "onLongClick: " + position);
+                    Log.d("id", "onLongClick: " + item.getId());
 
                 if (deleteflag == 0) {
 //                    int retval = itemListNotification.size();
 //                    selectedPositions=new int[retval];
 //                    selectedViews=new View[retval];
 
-                    Log.d("POsition", "onLongClick: " + position);
-                    Log.d("id", "onLongClick: " + item.getId());
 
                     if (!notificationdeleteArraylist.contains(item.getId())) {
                         notificationdeleteArraylist.add(item.getId());
                     }
+
                     myVib.vibrate(40);
                     hideSearchMenu();
                     deleteflag = 1;
                     setDeleteActionbar();
-                    view.setBackgroundColor(Color.parseColor("#000000"));
+                    view.setBackgroundColor(Color.parseColor("#999999"));
                     selectedCount++;
                     setActionBarTitle(selectedCount);
-                    selectedPositions[position] = 1;
-                    selectedViews[position] = view;
+
 
                 }
 
@@ -510,12 +497,6 @@ public class EditNotification extends AppCompatActivity {
             setNormalActionbar();
             deleteflag = 0;
             showSearchMenu();
-            for (int i = 0; i < mAdapterNotification.getItemCount(); i++) {
-                if (selectedViews[i] != null) {
-                    selectedViews[i].setBackgroundColor(Color.TRANSPARENT);
-                }
-                selectedPositions[i] = 0;
-            }
             selectedCount = 0;
 
         } else
@@ -744,6 +725,8 @@ public class EditNotification extends AppCompatActivity {
 
         itemListNotificationNew.addAll(itemlist);
         mAdapterNotificationEdit.notifyDataSetChanged();
+        selectedPositions=new int[total_no_of_notifications];
+        selectedViews=new View[total_no_of_notifications];
 //
 
         tswipe_refresh_layout.setVisibility(View.VISIBLE);

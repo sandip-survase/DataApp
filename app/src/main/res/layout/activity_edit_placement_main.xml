@@ -112,14 +112,13 @@
                 android:editable="false"
                 TagsEditText:tagsBackground="@drawable/square_default"
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                android:textColor="@color/dark_color"
-                android:textSize="24dp"
-                android:singleLine = "true"
+                android:textColor="@color/while_color"
+                android:textSize="16dp"
+                android:singleLine="true"
                 android:maxLines="1"
-                android:background="@color/transparent"
                 android:layout_marginLeft="5dp"
                 android:popupBackground="@color/while_color"
-                android:layout_below="@+id/dummy2"/>
+                android:layout_below="@+id/dummy2" />
 
             <TextView
                 android:layout_width="0dp"

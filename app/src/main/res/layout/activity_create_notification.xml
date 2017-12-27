@@ -21,23 +21,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:focusableInTouchMode="true"
-            >
+            android:focusableInTouchMode="true">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create Notification"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
-                android:id="@+id/createnotitxt"
-                />
+                android:id="@+id/createnotitxt" />
+
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/delete_icon"
                 android:layout_alignParentRight="true"
-                android:id="@+id/trashnotification"
-                />
+                android:id="@+id/trashnotification" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,8 +46,8 @@
                 android:text="Your notification will be broadcasted only to the students and/or alumnis of your institute."
                 android:layout_marginTop="10dp"
                 android:textSize="14dp"
-                android:id="@+id/createnotinotitxt"
-                />
+                android:id="@+id/createnotinotitxt" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,8 +56,7 @@
                 android:text="Last modified : 15-Feb-2016, 10:30 AM"
                 android:layout_marginTop="10dp"
                 android:textSize="11dp"
-                android:id="@+id/lastmodifiedtxt"
-                />
+                android:id="@+id/lastmodifiedtxt" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -75,10 +74,10 @@
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp"
-                    android:maxLength="200"
-                    />
+                    android:maxLength="200" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,8 +97,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:id="@+id/notification"
-                    android:maxLength="2500"
-                    />
+                    android:maxLength="2500" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -110,8 +108,7 @@
                 android:layout_below="@+id/notificationinput"
                 android:layout_marginTop="5dp"
                 android:id="@+id/choosetxt"
-                android:textSize="12dp"
-                />
+                android:textSize="12dp" />
 
 
             <CheckBox
@@ -122,8 +119,8 @@
                 android:text="Students"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                />
+                android:textColor="@color/dark_color" />
+
             <CheckBox
                 android:id="@+id/CheckBoxsAlumni"
                 android:layout_width="wrap_content"
@@ -134,10 +131,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp"
-                />
-
-
+                android:layout_marginLeft="20dp" />
 
 
             <RelativeLayout
@@ -149,9 +143,6 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
-
-
-
 
 
                 <android.support.design.widget.TextInputLayout
@@ -179,8 +170,8 @@
                         android:textColor="@color/sky_blue_color"
                         android:text=""
                         android:layout_marginTop="0dp"
-                        android:id="@+id/dummy2"
-                        />
+                        android:id="@+id/dummy2" />
+
                     <mabbas007.tagsedittext.TagsEditText
                         android:id="@+id/tagsEditText"
                         android:layout_width="match_parent"
@@ -190,12 +181,13 @@
                         TagsEditText:tagsBackground="@drawable/square_default"
                         TagsEditText:tagsCloseImageRight="@drawable/tag_close"
                         android:textSize="14dp"
-                        android:singleLine = "true"
+                        android:singleLine="true"
+                        TagsEditText:tagsTextColor="@color/while_color"
+                        android:textColor="@color/while_color"
                         android:maxLines="1"
                         android:layout_marginLeft="5dp"
                         android:popupBackground="@color/while_color"
-                        android:layout_below="@+id/dummy2"
-                        />
+                        android:layout_below="@+id/dummy2" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -204,11 +196,11 @@
                         android:text=""
                         android:layout_below="@+id/tagsEditText"
                         android:layout_marginTop="0dp"
-                        android:id="@+id/dummy"
-                        />
+                        android:id="@+id/dummy" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -217,8 +209,7 @@
                 android:textSize="11dp"
                 android:layout_below="@+id/yearspinner"
                 android:layout_marginTop="5dp"
-                android:id="@+id/attachmentstxt"
-                />
+                android:id="@+id/attachmentstxt" />
 
             <RelativeLayout
                 android:layout_width="150dp"
@@ -233,14 +224,14 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -254,8 +245,7 @@
                     android:paddingBottom="10dp"
                     android:layout_alignParentLeft="true"
                     android:textSize="12dp"
-                    android:layout_marginRight="28dp"
-                    />
+                    android:layout_marginRight="28dp" />
 
 
                 <ImageView
@@ -265,9 +255,9 @@
                     android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:layout_marginRight="20dp" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -281,14 +271,14 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR2"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -301,8 +291,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
-                    android:layout_marginRight="28dp"
-                    />
+                    android:layout_marginRight="28dp" />
 
 
                 <ImageView
@@ -312,8 +301,7 @@
                     android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:layout_marginRight="20dp" />
 
             </RelativeLayout>
 
@@ -330,14 +318,15 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR3"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -366,6 +355,7 @@
 
                     />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -379,14 +369,15 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR4"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -413,6 +404,7 @@
 
                     />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -426,14 +418,15 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR5"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -445,8 +438,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
-                    android:layout_marginRight="28dp"
-                    />
+                    android:layout_marginRight="28dp" />
 
                 <ImageView
                     android:id="@+id/delfile5"
@@ -462,8 +454,8 @@
         </RelativeLayout>
 
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -473,7 +465,6 @@
         android:layout_margin="16dp"
         app:srcCompat="@drawable/attachment_white_icon"
         app:backgroundTint="@color/dark_color"
-        android:elevation="6dp"
-        />
+        android:elevation="6dp" />
 
 </RelativeLayout>
