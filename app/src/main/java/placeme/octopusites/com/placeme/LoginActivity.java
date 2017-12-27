@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -53,7 +54,8 @@ public class LoginActivity extends AppCompatActivity {
     String country = "", regionName = "", city = "", isp = "", countryCode = "", query = "";
     String enccountry, encregionName, enccity, encisp, enccountryCode, encquery;
     String digest1, digest2;
-    TextInputLayout usernameTextInputLayout,passwordTextInputLayout;
+    TextInputLayout usernameTextInputLayout, passwordTextInputLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,10 +124,10 @@ public class LoginActivity extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         signup.setTypeface(Z.getBold(this));
 
-        TextView newp = (TextView)findViewById(R.id.newp);
+        TextView newp = (TextView) findViewById(R.id.newp);
         newp.setTypeface(Z.getBold(this));
 
-        String otp = MySharedPreferencesManager.getData(LoginActivity.this,"otp");
+        String otp = MySharedPreferencesManager.getData(LoginActivity.this, "otp");
 
         if (otp != null) {
             if (otp.equals("yes")) {
@@ -133,8 +135,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         }
-
-
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -210,10 +210,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         String newUserCheck = getIntent().getStringExtra("showOTP");
-        if (newUserCheck!=null && newUserCheck.equals("yes")) {
+        if (newUserCheck != null && newUserCheck.equals("yes")) {
             startActivity(new Intent(LoginActivity.this, OTPActivity.class));
-        }else if(MySharedPreferencesManager.getUsername(this)!=null&&MySharedPreferencesManager.getPassword(this)!=null)
-            attemptLogin(MySharedPreferencesManager.getUsername(this),MySharedPreferencesManager.getPassword(this));
+        } else if (MySharedPreferencesManager.getUsername(this) != null && MySharedPreferencesManager.getPassword(this) != null)
+            attemptLogin(MySharedPreferencesManager.getUsername(this), MySharedPreferencesManager.getPassword(this));
     }
 
     void attemptLogin(String u, String p) {
@@ -234,12 +234,12 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... args) {
             try {
-                if (isNetworkAvailable()) {
+
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
-                    Log.d("TAG", "loginActivity json : "+json);
+                Log.d("TAG", "loginActivity json : " + json);
                     String s = null;
 
                     s = json.getString("info");
@@ -248,7 +248,7 @@ public class LoginActivity extends AppCompatActivity {
                     resultofop = s;
                     Log.d("Msg", json.getString("info"));
 
-                    MySharedPreferencesManager.save(LoginActivity.this,"role", s);
+                MySharedPreferencesManager.save(LoginActivity.this, "role", s);
 
                     if (s.equals("student")) {
 
@@ -278,14 +278,12 @@ public class LoginActivity extends AppCompatActivity {
                         String role = json.getString("role");
                         Log.d("Msg role ", role);
 
-                        MySharedPreferencesManager.save(LoginActivity.this,"role", role);
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", role);
                         EmailCred = mEmail;
 
                         return 6;
                     }
 
-                } else
-                    return 2;
 
             } catch (Exception e) {
                 Log.d("exp", e.getMessage());
@@ -302,18 +300,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         void processOutput(final int success) {
-            if (success == 2) {
 
-                passwordedittext.setText("");
-                Toast.makeText(LoginActivity.this, "No internet connection ! Please check your internet connection", Toast.LENGTH_LONG).show();
-            } else {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         if (success == 1) {
                             new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this,"role","student");
-                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this, "role", "student");
+                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("student");
 //                            r.setUsername(EmailCred);
@@ -321,8 +315,8 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this,"role","admin");
-                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this, "role", "admin");
+                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("admin");
 //                            r.setUsername(EmailCred);
@@ -330,8 +324,8 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this,"role","hr");
-                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this, "role", "hr");
+                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("hr");
 //                            r.setUsername(EmailCred);
@@ -339,8 +333,8 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else if (success == 5) {
                             new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this,"role","alumni");
-                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this, "role", "alumni");
+                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("alumni");
@@ -350,7 +344,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 }).start();
-            }
+
             if (success == 6) {
                 Toast.makeText(LoginActivity.this, "You are already registered but not verified. Enter OTP sent on your registered email address", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(LoginActivity.this, OTPActivity.class));
@@ -369,37 +363,25 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isNetworkAvailable() throws Exception {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
-            localHttpURLConnection.setConnectTimeout(1000);
-            localHttpURLConnection.connect();
-            return true;
-        }
-        return false;
-    }
-
     class SaveSessionDetails extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
 
-            String encUsername=null;
+            String encUsername = null;
             try {
-                encUsername=Z.Encrypt(username,LoginActivity.this);
+                encUsername = Z.Encrypt(username, LoginActivity.this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.d("TAG", "SaveSessionDetails called : **********************"+encUsername);
+            Log.d("TAG", "SaveSessionDetails called : **********************" + encUsername);
             String r = null;
-            String platform="Android ("+getDeviceName()+")";
+            String platform = "Android (" + getDeviceName() + ")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsername));           //0
             params.add(new BasicNameValuePair("m", platform));      //1
             json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
-            Log.d("TAG", "SaveSessionDetails json : "+json);
+            Log.d("TAG", "SaveSessionDetails json : " + json);
             try {
                 r = json.getString("info");
 
