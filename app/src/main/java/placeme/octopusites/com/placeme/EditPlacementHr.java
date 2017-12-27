@@ -13,7 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -58,7 +60,7 @@ public class EditPlacementHr extends AppCompatActivity {
     private RecyclerView recyclerViewPlacement;
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
-
+    TextView editnotitxt,editnotinotitxt,deletenotitxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,13 @@ public class EditPlacementHr extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
+        editnotitxt=(TextView)findViewById(R.id.editnotitxt);
+        editnotinotitxt=(TextView)findViewById(R.id.editnotinotitxt);
+        deletenotitxt=(TextView)findViewById(R.id.deletenotitxt);
 
+        editnotitxt.setTypeface(Z.getBold(this));
+        editnotinotitxt.setTypeface(Z.getLight(this));
+        deletenotitxt.setTypeface(Z.getBold(this));
         //init
         username = MySharedPreferencesManager.getUsername(this);
         String role = MySharedPreferencesManager.getRole(this);
@@ -177,6 +185,20 @@ public class EditPlacementHr extends AppCompatActivity {
 
         getPlacements();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+            case android.R.id.home:
+                onBackPressed();
+                return (true);
+        }
+
+        return (super.onOptionsItemSelected(item));
+    }
+
 
     void getPlacements() {
         previousTotalPlacement = 0;

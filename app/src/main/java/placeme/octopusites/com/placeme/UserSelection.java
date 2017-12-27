@@ -36,13 +36,7 @@ public class UserSelection extends AppCompatActivity {
 
     //serverside
 
-
-
-
     Boolean editregistered=false,editedshortlist=false,editedPlaced=false;
-
-
-
 
 
 

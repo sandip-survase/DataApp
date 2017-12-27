@@ -36,7 +36,7 @@
             android:textColor="@color/dark_color"
             android:text="Below is the list of placements uploaded by you."
             android:layout_marginTop="10dp"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:id="@+id/editnotinotitxt"
             />
         <TextView

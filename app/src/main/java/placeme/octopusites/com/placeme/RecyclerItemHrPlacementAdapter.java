@@ -52,6 +52,11 @@ public class RecyclerItemHrPlacementAdapter extends RecyclerView.Adapter<Recycle
         holder.placednumber.setText(item.getPlacednumber()+" Candidates Placed.");
         holder.lastdateofreg.setText(item.getLastdateofreg());
 
+        holder.companyname.setTypeface(Z.getBold(holder.companyname.getContext()));
+        holder.lastmodifiedtime.setTypeface(Z.getBold(holder.lastmodifiedtime.getContext()));
+        holder.registerednumber.setTypeface(Z.getBold(holder.registerednumber.getContext()));
+        holder.placednumber.setTypeface(Z.getBold(holder.placednumber.getContext()));
+        holder.lastdateofreg.setTypeface(Z.getBold(holder.lastdateofreg.getContext()));
 
 
     }
