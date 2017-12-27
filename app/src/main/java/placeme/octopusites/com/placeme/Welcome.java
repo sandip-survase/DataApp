@@ -1635,9 +1635,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected Integer doInBackground(Void... args) {
 
             int returnCode = 0;
-
             try {
-                if (isNetworkAvailable()) {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
@@ -1744,10 +1742,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                     }
 
-                } else {
-                    returnCode = 2;
-                    return 2;
-                }
+
 
             } catch (Exception e) {
                 Log.d("exp", e.getMessage());
@@ -1764,10 +1759,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
 
         void processOutput(final int success) {
-            if (success == 2) {
-
-                Toast.makeText(Welcome.this, "No Internet Connection..!", Toast.LENGTH_LONG).show();
-            } else if (success == 7) { // through admin
+            if (success == 7) { // through admin
                 path = 3;
 
                 String MSG = "Your account has already been created by " + adminfname + " " + adminlname + " from " + adminInstitute;
@@ -1863,17 +1855,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-    private boolean isNetworkAvailable() throws Exception {
-        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
-            localHttpURLConnection.setConnectTimeout(1000);
-            localHttpURLConnection.connect();
-            return true;
-        }
-        return false;
-    }
 
     class SaveSessionDetails extends AsyncTask<String, String, Boolean> {
 

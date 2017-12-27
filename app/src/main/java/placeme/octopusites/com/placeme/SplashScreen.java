@@ -245,10 +245,6 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     void processOutput(final int success) {
-        if (success == 2) {
-            Toast.makeText(SplashScreen.this, "No Internet Connection..!", Toast.LENGTH_LONG).show();
-            finish();
-        } else {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -326,20 +322,20 @@ public class SplashScreen extends AppCompatActivity {
                     }
                 }
             }).start();
-        }
+
     }
 
-    private boolean isNetworkAvailable() throws Exception {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://104.237.4.236").openConnection();
-            localHttpURLConnection.setConnectTimeout(1000);
-            localHttpURLConnection.connect();
-            return true;
-        }
-        return false;
-    }
+//    private boolean isNetworkAvailable() throws Exception {
+//        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+//            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://104.237.4.236").openConnection();
+//            localHttpURLConnection.setConnectTimeout(1000);
+//            localHttpURLConnection.connect();
+//            return true;
+//        }
+//        return false;
+//    }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
 
@@ -355,7 +351,6 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... args) {
             try {
-                if (isNetworkAvailable()) {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
@@ -407,8 +402,7 @@ public class SplashScreen extends AppCompatActivity {
                         EmailCred = mEmail;
                         return 5;
                     }
-                } else
-                    return 2;
+
 
             } catch (Exception e) {
                 e.printStackTrace();
