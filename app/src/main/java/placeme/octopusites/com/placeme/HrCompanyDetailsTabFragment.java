@@ -199,10 +199,15 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 pos = position;
                 CompanyType = Nature[position];
+                Log.d("TAG", "onItemSelected: CompanyType - " + CompanyType);
+                Log.d("TAG", "onItemSelected: CompanyNaturestr - " + CompanyNaturestr);
+
                 if (CompanyNaturestr != null) {
                     if (!CompanyNaturestr.equals(CompanyType)) {
                         flag1 = 1;
+                        Log.d("TAG", "onItemSelected: flag1 - " + flag1);
                     }
+
                 }
 
                 if (CompanyType.equals("Other")) {
@@ -474,6 +479,9 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
+        Log.d("TAG", "onCreateView: flag1 - " + flag1);
+
 
         flag1 = 0;
         return rootView;

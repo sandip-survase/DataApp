@@ -111,7 +111,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressline3input"
-            android:layout_marginTop="10dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -135,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instemailinput"
-            android:layout_marginTop="10dp"
+
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -159,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instwebinput"
-            android:layout_marginTop="10dp"
+
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -183,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instphoneinput"
-            android:layout_marginTop="10dp"
+
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -207,7 +206,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instphoneainput"
-            android:layout_marginTop="10dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">

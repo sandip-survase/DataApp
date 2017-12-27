@@ -118,7 +118,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -149,7 +148,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -270,7 +269,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -301,7 +300,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -417,7 +416,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -449,7 +448,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -566,7 +565,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -598,7 +597,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -716,7 +715,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -748,7 +747,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -865,7 +864,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -896,7 +895,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1012,7 +1011,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1044,7 +1043,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1161,7 +1160,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1193,7 +1192,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1311,7 +1310,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1343,7 +1342,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1462,7 +1461,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/fromdateinput10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1493,7 +1492,7 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                     android:id="@+id/todateinput10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
 app:errorEnabled="true"
 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">

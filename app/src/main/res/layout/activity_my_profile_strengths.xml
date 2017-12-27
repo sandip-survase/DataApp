@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -58,18 +58,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
-                    android:imeOptions="actionDone"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
 
@@ -81,7 +81,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl1"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -115,17 +114,17 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
-                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -138,7 +137,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl2"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -173,17 +171,17 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
-                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -196,7 +194,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl3"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -231,17 +228,17 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
-                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -254,7 +251,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl4"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -289,16 +285,16 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:inputType="textCapWords"
                     android:imeOptions="actionDone"
+                    android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -312,7 +308,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl5"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -347,8 +342,8 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength6"
@@ -370,7 +365,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl6"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -405,8 +399,8 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength7"
@@ -428,7 +422,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl7"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -463,8 +456,8 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength8"
@@ -486,7 +479,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl8"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -521,8 +513,8 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength9"
@@ -544,7 +536,6 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/strengthrl9"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -578,8 +569,8 @@ app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
-app:errorEnabled="true"
-app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength10"

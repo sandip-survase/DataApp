@@ -82,7 +82,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lnameTextInputLayout"
             android:theme="@style/TextLabel"
-            android:layout_marginTop="20dp"
             android:id="@+id/roleinputlayout"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
@@ -108,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/roleinputlayout"
             android:theme="@style/TextLabel"
-            android:layout_marginTop="20dp"
+
             android:id="@+id/emailinputlayout"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"

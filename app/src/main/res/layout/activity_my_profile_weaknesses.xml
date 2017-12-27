@@ -81,7 +81,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl1"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -138,7 +137,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl2"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -196,7 +194,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl3"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -254,7 +251,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl4"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -312,7 +308,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl5"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -370,7 +365,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl6"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -428,7 +422,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl7"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -486,7 +479,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl8"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -544,7 +536,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/weakrl9"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 

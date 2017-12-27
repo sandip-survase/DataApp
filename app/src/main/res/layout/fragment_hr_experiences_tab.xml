@@ -113,7 +113,7 @@
                     android:id="@+id/fromdateinput1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -144,7 +144,7 @@
                     android:id="@+id/todateinput1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl1"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch1"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl1"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -279,7 +279,7 @@
                     android:id="@+id/fromdateinput2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -311,7 +311,7 @@
                     android:id="@+id/todateinput2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -338,7 +338,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl2"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch2"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -350,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl2"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -445,7 +445,7 @@
                     android:id="@+id/fromdateinput3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -477,7 +477,7 @@
                     android:id="@+id/todateinput3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -504,7 +504,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl3"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch3"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -516,7 +516,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl3"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -610,7 +610,7 @@
                     android:id="@+id/fromdateinput4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -641,7 +641,7 @@
                     android:id="@+id/todateinput4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -668,7 +668,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl4"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch4"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -680,7 +680,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl4"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -775,7 +775,7 @@
                     android:id="@+id/fromdateinput5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -807,7 +807,7 @@
                     android:id="@+id/todateinput5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -834,7 +834,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl5"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch5"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -846,7 +846,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl5"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -941,7 +941,7 @@
                     android:id="@+id/fromdateinput6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -973,7 +973,7 @@
                     android:id="@+id/todateinput6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -1000,7 +1000,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl6"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch6"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -1012,7 +1012,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl6"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -1107,7 +1107,7 @@
                     android:id="@+id/fromdateinput7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1139,7 +1139,7 @@
                     android:id="@+id/todateinput7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -1166,7 +1166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl7"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch7"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -1178,7 +1178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl7"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -1273,7 +1273,7 @@
                     android:id="@+id/fromdateinput8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1305,7 +1305,7 @@
                     android:id="@+id/todateinput8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -1332,7 +1332,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl8"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch8"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -1344,7 +1344,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl8"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -1439,7 +1439,7 @@
                     android:id="@+id/fromdateinput9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1471,7 +1471,7 @@
                     android:id="@+id/todateinput9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -1498,7 +1498,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/todaterl9"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch9"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -1510,7 +1510,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl9"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>
@@ -1605,7 +1605,7 @@
                     android:id="@+id/fromdateinput10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1637,7 +1637,7 @@
                     android:id="@+id/todateinput10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+
                     android:focusable="false"
                     android:singleLine="true"
                     android:theme="@style/TextLabel"
@@ -1665,7 +1665,7 @@
                 android:layout_below="@+id/todaterl10"
                 android:layout_marginBottom="80dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_toLeftOf="@+id/switch10"
                 android:text="I currently work here"
                 android:textColor="@color/dark_color"
@@ -1678,7 +1678,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/todaterl10"
                 android:layout_marginBottom="80dp"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/SCBSwitch" />
 
         </RelativeLayout>

@@ -161,7 +161,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur17"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
@@ -242,7 +241,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur18"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
@@ -324,7 +322,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur19"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
@@ -406,7 +403,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur20"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
@@ -488,7 +484,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur21"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
@@ -571,7 +566,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur22"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -596,7 +590,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgsemaggregateinput"
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -811,7 +804,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -928,7 +920,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur23"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section2">
 
                 <android.support.design.widget.TextInputLayout
@@ -1009,7 +1000,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur24"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/section2">
 
                 <android.support.design.widget.TextInputLayout
@@ -1091,7 +1081,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edur25"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1116,7 +1105,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgyearaggregateinput"
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1303,7 +1291,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/otheryearuniversityinput"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1331,7 +1319,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">

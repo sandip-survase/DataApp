@@ -83,7 +83,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput1"
-                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -107,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput1"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -131,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput1"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -155,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput1"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -179,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput1"
-                android:layout_marginTop="10dp"
+
 
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
@@ -265,7 +264,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput2"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -289,7 +288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput2"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -313,7 +312,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput2"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -337,7 +336,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput2"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -361,7 +360,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput2"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -450,7 +449,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput3"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -474,7 +473,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput3"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -498,7 +497,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput3"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -523,7 +522,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput3"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -547,7 +546,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput3"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -632,7 +631,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput4"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -656,7 +655,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput4"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -680,7 +679,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput4"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -705,7 +704,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput4"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -729,7 +728,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput4"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -814,7 +813,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput5"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -838,7 +837,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput5"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -862,7 +861,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput5"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -887,7 +886,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput5"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -911,7 +910,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput5"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -996,7 +995,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput6"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1020,7 +1019,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput6"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1044,7 +1043,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput6"
-                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1069,7 +1067,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput6"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1093,7 +1091,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput6"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1178,7 +1176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput7"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1202,7 +1200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput7"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1226,7 +1224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput7"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1251,7 +1249,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput7"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1275,7 +1273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput7"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1360,7 +1358,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput8"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1384,7 +1382,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput8"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1408,7 +1406,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput8"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1433,7 +1431,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput8"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1457,7 +1455,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput8"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1542,7 +1540,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput9"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1566,7 +1564,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput9"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1590,7 +1588,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput9"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1614,7 +1612,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput9"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1638,7 +1636,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput9"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1724,7 +1722,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleinput10"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1748,7 +1746,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationinput10"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1772,7 +1770,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/authorsinput10"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1797,7 +1795,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/publicationdateinput10"
-                android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -1821,7 +1819,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput10"
-                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">

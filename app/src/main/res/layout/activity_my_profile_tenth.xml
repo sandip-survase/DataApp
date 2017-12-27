@@ -125,7 +125,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edurl1"
-            android:layout_marginTop="10dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -149,7 +148,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/schoolname10input"
             android:layout_marginRight="3dp"
-            android:layout_marginTop="20dp"
             android:layout_weight=".28"
             android:orientation="horizontal">
 

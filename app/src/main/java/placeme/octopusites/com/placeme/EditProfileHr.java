@@ -238,6 +238,12 @@ public class EditProfileHr extends AppCompatActivity {
         HrExperiencesTabFragment hrExperiencesTabFragment = (HrExperiencesTabFragment) adapter.getItem(3);
         HrContactTabFragment hrContactTabFragment = (HrContactTabFragment) adapter.getItem(4);
 
+        Log.d("TAG", "onCreateView: flag1 - " + hrCompanyDetailsTabFragment.flag1);
+        Log.d("TAG", "onCreateView: flag2 - " + hrCompanyDetailsTabFragment.flag2);
+        Log.d("TAG", "onCreateView: edittedFlagp - " + fragment.edittedFlagp);
+        Log.d("TAG", "onCreateView: hrExperiencesTabFragment.edittedFlag - " + hrExperiencesTabFragment.edittedFlag);
+        Log.d("TAG", "onCreateView: hrContactTabFragment.edittedFlag - " + hrContactTabFragment.edittedFlag);
+
 
         if (fragment.edittedFlagp == 1 || hrCompanyDetailsTabFragment.flag1 == 1 || hrExperiencesTabFragment.edittedFlag == 1 || hrContactTabFragment.edittedFlag == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

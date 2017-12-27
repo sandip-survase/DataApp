@@ -125,7 +125,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur9"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -208,7 +207,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edurl0"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -292,7 +290,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur11"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -376,7 +373,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur12"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -460,7 +456,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur13"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -544,7 +539,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur14"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -628,7 +622,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur15"
-            android:layout_marginTop="20dp"
             android:layout_toLeftOf="@+id/section">
 
             <android.support.design.widget.TextInputLayout
@@ -713,7 +706,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/edur16"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -738,7 +730,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/uaggregateinput"
             android:layout_marginRight="3dp"
-            android:layout_marginTop="20dp"
             android:layout_weight=".28"
             android:orientation="horizontal">
 
@@ -928,7 +919,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/otheruniversityinput"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
@@ -957,7 +948,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">

@@ -294,6 +294,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 ocompanytherNatureTextInputLayout.setError(null);
+                flag1 = 1;
             }
 
             @Override

@@ -83,7 +83,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/locationrl1"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -142,7 +141,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/locationrl2"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -201,7 +199,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/locationrl3"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
@@ -260,7 +257,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/locationrl4"
-            android:layout_marginTop="20dp"
             android:background="@color/sky_blue_color"
             android:visibility="gone" />
 
