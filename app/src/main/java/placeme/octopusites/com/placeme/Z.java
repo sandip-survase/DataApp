@@ -32,6 +32,16 @@ public class Z {
     public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE="Fail to upload image!\nPlease try again";
 
+    //------------------------------ login ----------------------------------------
+
+    public static final String url_Welcome = IP + "AESTest/Welcome";
+    public static final String url_login = IP + "AESTest/Auth";
+    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
+    public static final String url_getdigest = IP + "AESTest/GetDigest";
+    public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
+
+    //------------------------------ login ----------------------------------------
+
 
     //-----------------------------------------sunny---------------------------------------------------------------
 // -------------------------------------------MainActivity(student)-----------------------------------------------
@@ -130,10 +140,7 @@ public class Z {
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
 
     // Messages -----------------------------------------
-    public static final String url_Welcome = IP + "AESTest/Welcome";
-    public static final String url_login = IP + "AESTest/Auth";
-    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
-    public static final String url_getdigest = IP + "AESTest/GetDigest";
+
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
@@ -144,7 +151,6 @@ public class Z {
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
-    public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
     public static final String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";
     public static final String url_savepreferences = IP + "AESTest/SavePreferences";
     public static final String url_report = IP + "AESTest/ReportBug";
@@ -245,14 +251,12 @@ public class Z {
     public static final String url_AddStudentUnderAdmin = IP + "AESTest/AddStudentUnderAdmin";
     public static final String url_GetCountOfUsersUnderAdmin = IP + "AESTest/GetCountOfUsersUnderAdmin";
 
-    private static final String IP_100 = "http://192.168.100.100/";
-    private static final String IP_10 = "http://192.168.100.10/";
-    private static final String IP_20 = "http://192.168.100.20/";
-    private static final String IP_30 = "http://192.168.100.30/";
+
+//    --------------------------------- function --------------------------------------------------------------
+
     private static Typeface FA = null, Bold = null, Light = null, Italic = null, BoldItalic = null, Righteous = null;
     private static Animation fadeAnimation = null, fadeandmovedownAnimation = null, slideoutleft2Animation = null, fadeoutAnimation = null, slideinleft1Animation = null, slideinleft2Animation = null, scaledownAnimation = null, bottomupbox1Animation = null, bottomupbox2Animation = null, bottomupbox3Animation = null, bottomupbox4Animation = null;
-    public static String digest1=null,digest2=null;
-//    --------------------------------- function --------------------------------------------------------------
+    public static String digest1 = null, digest2 = null;
 
     public static Typeface getFA(Context context) {
         if (FA != null)
