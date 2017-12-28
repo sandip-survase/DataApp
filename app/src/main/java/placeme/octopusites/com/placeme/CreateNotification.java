@@ -373,12 +373,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         stud.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag = 1;
+
                 if (isChecked) {
                     forstudflag = 1;
-                    edittedFlag = 1;
                 } else {
                     forstudflag = 0;
-                    edittedFlag = 1;
                 }
             }
         });
@@ -386,6 +386,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         allum.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag = 1;
                 if (isChecked) {
                     showPop = false;
                     yearspinner.setVisibility(View.VISIBLE);
@@ -394,7 +395,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     yearspinner.setVisibility(View.VISIBLE);
                     batches.setVisibility(View.VISIBLE);
                     batchesTags.setVisibility(View.VISIBLE);
-                    edittedFlag = 1;
+
                 } else {
 
                     forallumflag = 0;
@@ -402,7 +403,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     batches.setVisibility(View.INVISIBLE);
                     batchesTags.setVisibility(View.GONE);
                     batchesTags.setText("");
-                    edittedFlag = 1;
+
                 }
             }
         });
@@ -425,6 +426,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             }
         });
+
         notiffication.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -435,9 +437,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 notificationinput.setError(null);
                 edittedFlag = 1;
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -507,22 +507,23 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 //getters
 
-
-        FLAG = getIntent().getStringExtra("flag");
-        ssnotificationid = getIntent().getStringExtra("id");
-        sstitle = getIntent().getStringExtra("title");
-        ssnotification = getIntent().getStringExtra("notification");
-        ssfile1 = getIntent().getStringExtra("file1");
-        ssfile2 = getIntent().getStringExtra("file2");
-        ssfile3 = getIntent().getStringExtra("file3");
-        ssfile4 = getIntent().getStringExtra("file4");
-        ssfile5 = getIntent().getStringExtra("file5");
-        ssuploadedby = getIntent().getStringExtra("uploadedby");
-        ssuploadtime = getIntent().getStringExtra("uploadtime");
-        sslastmodified = getIntent().getStringExtra("lastmodified");
-        //CALLTOFORWHOME
-
         try {
+
+            FLAG = getIntent().getStringExtra("flag");
+            ssnotificationid = getIntent().getStringExtra("id");
+            sstitle = getIntent().getStringExtra("title");
+            ssnotification = getIntent().getStringExtra("notification");
+            ssfile1 = getIntent().getStringExtra("file1");
+            ssfile2 = getIntent().getStringExtra("file2");
+            ssfile3 = getIntent().getStringExtra("file3");
+            ssfile4 = getIntent().getStringExtra("file4");
+            ssfile5 = getIntent().getStringExtra("file5");
+            ssuploadedby = getIntent().getStringExtra("uploadedby");
+            ssuploadtime = getIntent().getStringExtra("uploadtime");
+            sslastmodified = getIntent().getStringExtra("lastmodified");
+            //CALLTOFORWHOME
+
+
             Log.d("*****", "FLAG: " + FLAG);
             Log.d("*****", "id: " + ssnotificationid);
 
@@ -632,10 +633,15 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             Log.d("*****", "uploadedby: " + ssuploadedby);
             Log.d("*****", "uploadtime: " + ssuploadtime);
             Log.d("*****", "lastmodified: s" + sslastmodified);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -2535,6 +2541,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 Log.d("whomsYears e:", e.getMessage());
                 Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
+            edittedFlag = 0;
         }
     }
 

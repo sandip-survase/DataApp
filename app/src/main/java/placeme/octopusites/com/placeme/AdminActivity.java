@@ -187,7 +187,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
 
 
-
     public static boolean containsIgnoreCase(String str, String searchStr) {
         if (str == null || searchStr == null) return false;
 
@@ -272,12 +271,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
 
-        if(notificationorplacementflag==1) {
+        if (notificationorplacementflag == 1) {
             recyclerViewNotification.setVisibility(View.VISIBLE);
             recyclerViewPlacement.setVisibility(View.GONE);
 
-           }
-        else   if(notificationorplacementflag==2) {
+        } else if (notificationorplacementflag == 2) {
             recyclerViewNotification.setVisibility(View.GONE);
             recyclerViewPlacement.setVisibility(View.VISIBLE);
         }
@@ -478,7 +476,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         recyclerViewNotification.setVisibility(View.GONE);
                         recyclerViewPlacement.setVisibility(View.VISIBLE);
 
-                      selectedMenuFlag=2;
+                        selectedMenuFlag = 2;
 
                         getPlacements2();
 
@@ -1038,7 +1036,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         //placements
 
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacementnew , AdminActivity.this);
+        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacementnew, AdminActivity.this);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -1381,6 +1379,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         }
     }
+
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();
         for (RecyclerItemEdit d : itemListNotificationNew) {
@@ -1411,8 +1410,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
                     Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:"+page_to_call_notification);
-                    Log.d("TAG", "notificationpages:"+notificationpages);
+                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
+                    Log.d("TAG", "notificationpages:" + notificationpages);
 
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
@@ -1595,7 +1594,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
 
-        }
+    }
 
 
     private void beginCrop(Uri source) {
@@ -1746,10 +1745,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
 
-
                         } catch (Exception e) {
                         }
-
 
 
                     } else {
@@ -1771,7 +1768,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                 Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
 
-
                             } catch (Exception e) {
                             }
 
@@ -1788,7 +1784,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(false);
-                if (!isLastPageLoadedPlacement){
+                if (!isLastPageLoadedPlacement) {
 
 
                     setplacementListtoadapter(placementListfromserver);
@@ -1825,7 +1821,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //    }
 
 
-
     void getNotifications2() {
         itemListNotificationNew.clear();
 
@@ -1845,7 +1840,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     }
-
 
 
 //placements methods and classes
@@ -2187,8 +2181,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2527,37 +2519,36 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     class LoginFirebaseTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-            String user=param[0];
-            String hash=param[1];
+            String user = param[0];
+            String hash = param[1];
             FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(user,hash)
+                    .signInWithEmailAndPassword(user, hash)
                     .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d("TAG", "successfully logged in to firebase");
-                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
                             } else {
                                 Log.d("TAG", "failed to login to firebase");
-                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Failed to login to Firebase");
                             }
                         }
                     });
             return null;
         }
+
         @Override
         protected void onPostExecute(String result) {
-            String status=MySharedPreferencesManager.getData(AdminActivity.this,"fireLoginStatus");
+            String status = MySharedPreferencesManager.getData(AdminActivity.this, "fireLoginStatus");
             Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
-            MySharedPreferencesManager.removeKey(AdminActivity.this,"fireLoginStatus");
+            MySharedPreferencesManager.removeKey(AdminActivity.this, "fireLoginStatus");
         }
     }
 
-
     public void refreshUserCount() {
         new GetCountOfUsersUnderAdmin().execute();
-        Log.d("kun", "refreshUserCount: ");
     }
 
     class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {
@@ -2580,7 +2571,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
 
-            if (result != null && result.equals("0")) {
+            if (result == null) {
+                bluePanelTv.setText(Z.users_under_your_supervision);
+            } else if (result.equals("0")) {
                 bluePanelTv.setText(Z.users_under_your_supervision);
             } else {
                 bluePanelTv.setText(result + Z.users_under_your_supervision);
@@ -2645,7 +2638,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
 
-
             } catch (Exception e) {
             }
 
@@ -2695,7 +2687,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
-                Log.d("TAG", "token json admin: "+json);
+                Log.d("TAG", "token json admin: " + json);
 
                 resultofop = json.getString("info");
 

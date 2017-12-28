@@ -106,7 +106,9 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
         createnotificationrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminActions.this,CreateNotification.class));
+                Intent i1 = new Intent(AdminActions.this, CreateNotification.class);
+                i1.putExtra("flag", "fromAdminActivity");
+                startActivity(i1);
             }
         });
         editnotificationrl.setOnClickListener(new View.OnClickListener() {
