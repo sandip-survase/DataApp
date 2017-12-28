@@ -246,7 +246,7 @@ public class OTPActivity extends AppCompatActivity {
 
                 }
                 else
-                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
+                    Toast.makeText(OTPActivity.this, "249 " + resultofop, Toast.LENGTH_LONG).show();
             }
             if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);
@@ -407,7 +407,6 @@ public class OTPActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             loginFirebase(plainusername, hash);
-            Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
 
         }
     }
