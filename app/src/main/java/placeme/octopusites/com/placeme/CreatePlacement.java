@@ -633,18 +633,16 @@ public class CreatePlacement extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
 //            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
-
 //            CreatePlacement.super.onBackPressed();
-
 //            if(result.equals("success"))
 //            {
 //                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 //
-////                Intent returnIntent = new Intent();
-////                returnIntent.putExtra("result", result);
-////                if(edittedFlag==1){
-////                    setResult(111);
-////                }
+//                Intent returnIntent = new Intent();
+//                returnIntent.putExtra("result", result);
+//                if(edittedFlag==1){
+//                    setResult(111);
+//                }
 //                CreateNotification.super.onBackPressed();
 //            }
 //            else {

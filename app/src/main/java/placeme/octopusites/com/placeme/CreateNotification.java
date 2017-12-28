@@ -672,7 +672,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                     if (forstudflag == 1) {
                         //notification for Student
-                        forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                        forwhom = instname + "( " + Decrypt(encUsername, digest1, digest2) + " ,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                         if (forallumflag == 1) {
                             //for Stud + alumni
                             forwhom = forwhom + "," + sunny + ")";
@@ -687,7 +687,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         //notification not for Student
                         if (forallumflag == 1) {
                             //for ALLUMNI
-                            forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + "," + sunny + ")";
+                            forwhom = instname + "( " + Decrypt(encUsername, digest1, digest2) + " ," + sunny + ")";
                             Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                         } else {
@@ -2479,7 +2479,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         protected void onPostExecute(String result) {
             try {
 
+                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                String sPadding = "ISO10126Padding";
                 if (!Forwhomefromdb.equals("")) {
+                    byte[] ForwhomefromdbEncryptedBytes = SimpleBase64Encoder.decode(Forwhomefromdb);
+                    byte[] ForwhomefromdbDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, ForwhomefromdbEncryptedBytes);
                     Forwhomefromdb = Z.Decrypt(Forwhomefromdb, CreateNotification.this);
                     Log.d("Forwhomefromdb", "onPostExecute: " + Forwhomefromdb);
                 }
@@ -2493,7 +2498,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     Forwhomefromdb = Forwhomefromdb.replace(tempu, "");
 
                 }
-                Log.d("Forwhomefromdb", "after: rep user " + Forwhomefromdb);
+                Log.d("Forwhomefromdb", "after: " + Forwhomefromdb);
 
                 if (Forwhomefromdb.contains("STUDENT")) {
                     stud.setChecked(true);
@@ -2503,52 +2508,48 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     batchesTags.setText("ALL");
                 } else {
 
-                    int index1 = Forwhomefromdb.indexOf("(");
-                    int index2 = Forwhomefromdb.indexOf(")");
-                    String whomsYears = "";
-                    for (int i = index1 + 1; i < index2; i++) {
-                        whomsYears += Forwhomefromdb.charAt(i);
-                    }
-
-                    String str = whomsYears;
-                    Log.d("Forwhomefromdb", "onPostExecute:" + str);
-                    str = str.replaceAll("[^-?0-9]+", " ");
-                    Log.d("Forwhomefromdb string:", str);
-                    String batchyears[] = str.split(" ");
-
-                    Log.d("Forwhomefromdb", "after : " + str);
-                    Log.d("Forwhomefromdb", "after size : " + str.length());
-
-
-                    if (str.length() >= 2) {
-                        allum.setChecked(true);
-                        batchesTags.setTags(batchyears);
-                        showPop = true;
-
-                    }
 
                 }
 
 
+                int index1 = Forwhomefromdb.indexOf("(");
+                int index2 = Forwhomefromdb.indexOf(")");
+                String whomsYears = "";
+                for (int i = index1 + 1; i < index2; i++) {
+                    whomsYears += Forwhomefromdb.charAt(i);
+                }
+
+                //k
+                String str = whomsYears;
+                Log.d("kun", "onPostExecute: str " + str);
+                str = str.replaceAll("[^-?0-9]+", " ");
+                Log.d("kun", "onPostExecute: " + Arrays.asList(str.trim().split(" ")));
+                Log.d("kun", str);
+                String batchyears[] = str.split(" ");
+
+                Log.d("kun", "after : " + str);
+
+                if (str.length() >= 2) {
+                    allum.setChecked(true);
+                    batchesTags.setTags(batchyears);
+                    showPop = true;
+
+                }
                 //k
 
 
+//                String testStr="STUDENT";
+                String testStr = "STUDENT";
+                Log.d("TAG1", "before: " + whomsYears);
+                whomsYears = whomsYears.replace(Z.Decrypt(encUsername, CreateNotification.this), "");
+                Log.d("TAG1", "after1: " + whomsYears);
+                whomsYears = whomsYears.replace("STUDENT,", "");
+                Log.d("TAG1", "after2: " + whomsYears);
+                whomsYears = whomsYears.replace("STUDENT", "");
+                whomsYears = whomsYears.replace(",STUDENT", "");
 
-                //k
-
-//
-////                String testStr="STUDENT";
-//                String testStr = "STUDENT";
-//                Log.d("TAG1", "before: " + whomsYears);
-//                whomsYears = whomsYears.replace(Z.Decrypt(encUsername, CreateNotification.this), "");
-//                Log.d("TAG1", "after1: " + whomsYears);
-//                whomsYears = whomsYears.replace("STUDENT,", "");
-//                Log.d("TAG1", "after2: " + whomsYears);
-//                whomsYears = whomsYears.replace("STUDENT", "");
-//                whomsYears = whomsYears.replace(",STUDENT", "");
-//
-//                Log.d("TAG1", "after4: " + whomsYears);
-//                whomsYears = whomsYears.replace("ALL", "");
+                Log.d("TAG1", "after4: " + whomsYears);
+                whomsYears = whomsYears.replace("ALL", "");
 
 
 

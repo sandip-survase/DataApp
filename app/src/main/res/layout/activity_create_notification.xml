@@ -31,12 +31,6 @@
                 android:textColor="@color/dark_color"
                 android:id="@+id/createnotitxt" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/delete_icon"
-                android:layout_alignParentRight="true"
-                android:id="@+id/trashnotification" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -344,13 +344,12 @@ public class EditNotification extends AppCompatActivity {
         editnotitxt.setTypeface(Z.getBold(this));
         editnotinotitxt.setTypeface(Z.getLight(this));
         deletenotitxt.setTypeface(Z.getBold(this));
-
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
 //        addPlacementdatatoAdapter();
         getNotifications2();
 
 
-        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
