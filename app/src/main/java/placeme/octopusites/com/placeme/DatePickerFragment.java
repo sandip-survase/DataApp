@@ -13,8 +13,10 @@ import android.view.animation.AnimationUtils;
 public class DatePickerFragment extends DialogFragment {
     DatePickerDialog.OnDateSetListener ondateSet;
     private int year, month, day;
+    String validate;
 
-    public DatePickerFragment() {}
+    public DatePickerFragment() {
+    }
 
     public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
         ondateSet = ondate;
@@ -27,12 +29,24 @@ public class DatePickerFragment extends DialogFragment {
         year = args.getInt("year");
         month = args.getInt("month");
         day = args.getInt("day");
+        validate = args.getString("validate");
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+
+        if (Build.VERSION.SDK_INT >= 11) {
+            if (validate.equals("min")) {
+                dialog.getDatePicker().setMinDate(System.currentTimeMillis());
+            } else if (validate.equals("max")) {
+                dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+            }
+
+        }
+        return dialog;
     }
+
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
 
