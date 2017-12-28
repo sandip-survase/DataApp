@@ -21,7 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.signature.ObjectKey;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -126,9 +127,9 @@ public class MessageActivity extends AppCompatActivity {
                 .build();
 
 
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(uri)
-                .signature(new ObjectKey(signature))
+                .signature(new StringSignature(signature))
                 .into(profile);
 
 

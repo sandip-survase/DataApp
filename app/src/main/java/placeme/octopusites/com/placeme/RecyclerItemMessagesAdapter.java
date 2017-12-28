@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -13,7 +12,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.signature.ObjectKey;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 
 import java.text.DateFormat;
 import java.text.Normalizer;
@@ -77,9 +77,9 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
                 .build();
 
 
-        GlideApp.with(holder.profile.getContext())
+        Glide.with(holder.profile.getContext())
                 .load(uri)
-                .signature(new ObjectKey(item.getSignature()))
+                .signature(new StringSignature(item.getSignature()))
                 .into(holder.profile);
 
 

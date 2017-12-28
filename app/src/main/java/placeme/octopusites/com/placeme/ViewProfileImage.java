@@ -10,7 +10,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.bumptech.glide.signature.ObjectKey;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -84,9 +85,9 @@ public class ViewProfileImage extends AppCompatActivity {
                     .appendQueryParameter("u", username)
                     .build();
 
-            GlideApp.with(ViewProfileImage.this)
+            Glide.with(ViewProfileImage.this)
                     .load(uri)
-                    .signature(new ObjectKey(signature))
+                    .signature(new StringSignature(signature))
                     .into(profile_image);
         }
     }

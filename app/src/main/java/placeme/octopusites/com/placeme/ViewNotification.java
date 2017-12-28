@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.DownloadManager;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -22,8 +21,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 
 
 public class ViewNotification extends AppCompatActivity {

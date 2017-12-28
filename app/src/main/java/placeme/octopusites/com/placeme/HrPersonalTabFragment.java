@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;

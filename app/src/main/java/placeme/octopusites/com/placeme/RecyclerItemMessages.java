@@ -1,7 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
-
 /**
  * Created by Lincoln on 15/01/16.
  */

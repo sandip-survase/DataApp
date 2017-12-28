@@ -15,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.signature.ObjectKey;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -85,9 +87,9 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
                 .build();
 
 
-        GlideApp.with(item.getContext())
+        Glide.with(item.getContext())
                 .load(uri)
-                .signature(new ObjectKey(item.getSignature()))
+                .signature(new StringSignature(item.getSignature()))
                 .into(holder.uploadedbyprofile);
 
 

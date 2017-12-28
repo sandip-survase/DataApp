@@ -32,7 +32,6 @@ import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 import placeme.octopusites.com.placeme.modal.PgSem;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 

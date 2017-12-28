@@ -53,6 +53,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
@@ -2515,6 +2516,16 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 for (int i = index1 + 1; i < index2; i++) {
                     whomsYears += Forwhomefromdb.charAt(i);
                 }
+
+                //k
+                String str = whomsYears;
+                Log.d("kun", "onPostExecute: str " + str);
+                str = str.replaceAll("[^-?0-9]+", " ");
+                Log.d("kun", "onPostExecute: " + Arrays.asList(str.trim().split(" ")));
+                Log.d("kun", "onPostExecute: str " + str);
+                //k
+
+
 //                String testStr="STUDENT";
                 String testStr = "STUDENT";
                 Log.d("TAG1", "before: " + whomsYears);
@@ -2523,6 +2534,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 whomsYears = whomsYears.replace("STUDENT,", "");
                 Log.d("TAG1", "after2: " + whomsYears);
                 whomsYears = whomsYears.replace("STUDENT", "");
+                whomsYears = whomsYears.replace(",STUDENT", "");
+
                 Log.d("TAG1", "after4: " + whomsYears);
                 whomsYears = whomsYears.replace("ALL", "");
 

@@ -3,10 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.TextUtils;
-import android.text.format.DateUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder> {
 
@@ -77,7 +71,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
         }
         if (item.getThumbnail() != null) {
 
-            GlideApp.with(holder.img.getContext())
+            Glide.with(holder.img.getContext())
                     .load(item.getThumbnail())
                     .into(holder.img);
 

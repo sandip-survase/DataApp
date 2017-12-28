@@ -38,7 +38,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.signature.ObjectKey;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -56,14 +57,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.shaohui.advancedluban.Luban;
@@ -2306,9 +2301,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     .appendQueryParameter("u", username)
                     .build();
 
-            GlideApp.with(AlumniActivity.this)
+            Glide.with(AlumniActivity.this)
                     .load(uri)
-                    .signature(new ObjectKey(signature))
+                    .signature(new StringSignature(signature))
                     .into(profile);
         }
     }

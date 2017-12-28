@@ -3,8 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -37,7 +35,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.signature.ObjectKey;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -54,8 +53,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -1106,8 +1103,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             if (notNull) {
 
                 if (result.equals("success")) {
-                    Toast.makeText(Welcome.this, "Thank you for submitting your information !", Toast.LENGTH_SHORT).show();
-
                     Log.d("TAG", "onPostExecute: SaveData role " + SELECTED_ROLE);
 
                     MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);       //0
@@ -1159,7 +1154,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     viewPager.setCurrentItem(3);
                     addBottomDots(3, 4);
                 } else {
-//                Toast.makeText(Welcome.this, "Invalid Institute Code\nplease contact your TPO", Toast.LENGTH_LONG).show();
                     instOrEmail.setError("Invalid Institute Code. Please contact your Training and placement officer");
                 }
 
@@ -1254,7 +1248,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             String hash = md5(passwordstr + salt);
             loginFirebase(plainUsername, hash);
-//            Toast.makeText(Welcome.this, resultofop, Toast.LENGTH_LONG).show();
 
         }
 
@@ -1470,7 +1463,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             if (notNull) {
                 if (result.equals("success")) {
-//                Toast.makeText(Welcome.this, "send activation code", Toast.LENGTH_SHORT).show();
                     MySharedPreferencesManager.save(Welcome.this, "activationMessage", "yes");
                     MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
                     startActivity(new Intent(Welcome.this, OTPActivity.class));
@@ -2171,9 +2163,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 .appendQueryParameter("u", encUsersName)
                 .build();
 
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .signature(new StringSignature(System.currentTimeMillis() + ""))
                 .into(profilePicture);
 
 

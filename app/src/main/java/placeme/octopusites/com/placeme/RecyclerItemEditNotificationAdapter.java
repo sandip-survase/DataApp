@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -16,17 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.signature.ObjectKey;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 
 /**
  * Created by sunny on 12/20/2017.
@@ -110,10 +106,10 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
                 .appendQueryParameter("u",Z.Encrypt(item.getUploadedby(),mContext) )
                 .build();
 
-        GlideApp.with(mContext)
+            Glide.with(mContext)
                 .load(uri)
 //                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .signature(new ObjectKey(item.getUploadedby()))
+                    .signature(new StringSignature(item.getSignature()))
                 .into(holder.uploadedbyprofile);
 
 

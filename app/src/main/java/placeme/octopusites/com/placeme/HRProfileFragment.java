@@ -34,11 +34,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.signature.ObjectKey;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -55,6 +54,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
+
+import javax.sql.DataSource;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import placeme.octopusites.com.placeme.modal.AdminContactDetailsModal;
@@ -2161,25 +2162,25 @@ public class HRProfileFragment extends Fragment {
                     .appendQueryParameter("u", username)
                     .build();
 
-            GlideApp.with(getContext())
+            Glide.with(getActivity())
                     .load(uri)
-                    .signature(new ObjectKey(signature))
-                    .listener(new RequestListener<Drawable>() {
+                    .crossFade()
+                    .listener(new RequestListener<Uri, GlideDrawable>() {
                         @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
                             updateProgress.setVisibility(View.GONE);
                             return false;
                         }
 
                         @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                             updateProgress.setVisibility(View.GONE);
-                            Z.fadeImage(getActivity(), myprofileimg);
                             return false;
                         }
-
                     })
                     .into(myprofileimg);
+
+
         }
     }
 

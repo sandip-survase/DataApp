@@ -36,7 +36,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.signature.ObjectKey;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -1531,9 +1532,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     .appendQueryParameter("u", username)
                     .build();
 
-            GlideApp.with(AdminActivity.this)
+            Glide.with(AdminActivity.this)
                     .load(uri)
-                    .signature(new ObjectKey(signature))
+                    .crossFade()
+                    .signature(new StringSignature(signature))
                     .into(profile);
 
         }
@@ -1549,10 +1551,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void chooseImage() {
 
-
         imagePicker.pickImage();
-
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {

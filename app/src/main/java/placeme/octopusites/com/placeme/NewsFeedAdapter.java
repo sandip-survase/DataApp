@@ -1,25 +1,18 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.ObjectKey;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyViewHolder> {
 
@@ -92,14 +85,14 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
 
 
         }
-        GlideApp.with(holder.profilePic.getContext())
+        Glide.with(holder.profilePic.getContext())
                 .load(item.getProfilePic())
                 .into(holder.profilePic);
 
 
         if (item.getImge() != null) {
 
-            GlideApp.with(holder.feedImage1.getContext())
+            Glide.with(holder.feedImage1.getContext())
                     .load(item.getImge())
                     .into(holder.feedImage1);
 
