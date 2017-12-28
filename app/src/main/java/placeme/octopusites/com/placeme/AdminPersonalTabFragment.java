@@ -809,6 +809,7 @@ public class AdminPersonalTabFragment extends Fragment {
         args.putInt("year", calender.get(Calendar.YEAR));
         args.putInt("month", calender.get(Calendar.MONTH));
         args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        args.putString("validate", "max");
         date.setArguments(args);
         /**
          * Set Call back to capture selected date
