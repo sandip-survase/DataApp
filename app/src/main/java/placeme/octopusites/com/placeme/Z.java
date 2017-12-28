@@ -16,8 +16,11 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class Z {
+    //**************************  final **************************
     public static final String VPS_IP = "162.213.199.3";   // for authority
     public static final String IP = "http://162.213.199.3/";
+    //**************************  final **************************
+
     public static final String IP_8080 = "http://162.213.199.3:8080/";
     public static final String IP_8081 = "http://104.237.4.236:8081/";
     public static final String IP_1234= "http://104.237.4.236:1234/";
@@ -28,6 +31,13 @@ public class Z {
 
     public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE="Fail to upload image!\nPlease try again";
+
+    //======================================= login =====================================
+    public static final String url_Welcome = IP + "AESTest/Welcome";
+    public static final String url_login = IP + "AESTest/Auth";
+    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
+    public static final String url_getdigest = IP + "AESTest/GetDigest";
+//======================================= login =====================================
 
 
     //-----------------------------------------sunny---------------------------------------------------------------
@@ -131,10 +141,7 @@ public class Z {
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
 
     // Messages -----------------------------------------
-    public static final String url_Welcome = IP + "AESTest/Welcome";
-    public static final String url_login = IP + "AESTest/Auth";
-    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
-    public static final String url_getdigest = IP + "AESTest/GetDigest";
+
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
@@ -250,10 +257,12 @@ public class Z {
     private static final String IP_10 = "http://192.168.100.10/";
     private static final String IP_20 = "http://192.168.100.20/";
     private static final String IP_30 = "http://192.168.100.30/";
+
+//    --------------------------------- function --------------------------------------------------------------
+
     private static Typeface FA = null, Bold = null, Light = null, Italic = null, BoldItalic = null, Righteous = null;
     private static Animation fadeAnimation = null, fadeandmovedownAnimation = null, slideoutleft2Animation = null, fadeoutAnimation = null, slideinleft1Animation = null, slideinleft2Animation = null, scaledownAnimation = null, bottomupbox1Animation = null, bottomupbox2Animation = null, bottomupbox3Animation = null, bottomupbox4Animation = null;
     public static String digest1 = null, digest2 = null;
-//    --------------------------------- function --------------------------------------------------------------
 
     public static Typeface getFA(Context context) {
         if (FA != null)
