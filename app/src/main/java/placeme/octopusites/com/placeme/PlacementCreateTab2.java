@@ -21,7 +21,7 @@ public class PlacementCreateTab2 extends Fragment {
     String sapti="",stechtest="",sgroupdisc="",stechinterview="",sHrinterview="";
 
     int Erroflag=0;
-
+    boolean edittedFlag = false;
 
 
     @Override
@@ -62,6 +62,7 @@ public class PlacementCreateTab2 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 aptiinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -78,6 +79,7 @@ public class PlacementCreateTab2 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 techtestinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -94,6 +96,7 @@ public class PlacementCreateTab2 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 gdinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -110,6 +113,7 @@ public class PlacementCreateTab2 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 techinterviewinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -126,6 +130,7 @@ public class PlacementCreateTab2 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 hrinterviewinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -184,15 +189,14 @@ public class PlacementCreateTab2 extends Fragment {
             }
         }
 
-
-
-
-
-
+        edittedFlag = false;
 
         return rootView;
     }
 
+    public boolean isTabEditted() {
+        return edittedFlag;
+    }
 
     public Boolean validate(){
 

@@ -20,6 +20,8 @@ public class PlacementCreateTab3 extends Fragment {
     EditText xcriteria ,xiicriteria,ugcriteria,pgcriteria;
     String sxcriteria="" ,sxiicriteria="",sugcriteria="",spgcriteria="",sforwhome="";
     int  Erroflag=0;
+    boolean edittedFlag = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,6 +55,7 @@ public class PlacementCreateTab3 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 xinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -69,6 +72,7 @@ public class PlacementCreateTab3 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 xiiinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -85,6 +89,7 @@ public class PlacementCreateTab3 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 uginput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -101,6 +106,7 @@ public class PlacementCreateTab3 extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 pginput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -157,12 +163,16 @@ public class PlacementCreateTab3 extends Fragment {
 
 
         }
-
+        edittedFlag = false;
 
         return rootView;
     }
-    public Boolean validate(){
 
+    public boolean isTabEditted() {
+        return edittedFlag;
+    }
+
+    public Boolean validate(){
 
         sxcriteria= xcriteria.getText().toString();
         sxiicriteria= xiicriteria.getText().toString();
