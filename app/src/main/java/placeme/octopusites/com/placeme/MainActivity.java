@@ -1069,6 +1069,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     i1.putExtra("id", item.getId());
                     i1.putExtra("title", item.getTitle());
                     i1.putExtra("notification", item.getNotification());
+
                     if (item.getFilename1() != null) {
                         i1.putExtra("file1", Z.Decrypt(item.getFilename1(), MainActivity.this));
                     } else {

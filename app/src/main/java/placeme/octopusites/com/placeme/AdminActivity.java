@@ -1091,11 +1091,36 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     i1.putExtra("id", itemN.getId());
                     i1.putExtra("title", itemN.getTitle());
                     i1.putExtra("notification", itemN.getNotification());
-                    i1.putExtra("file1",itemN.getFilename1());
-                    i1.putExtra("file2",itemN.getFilename2());
-                    i1.putExtra("file3",itemN.getFilename3());
-                    i1.putExtra("file4",itemN.getFilename4());
-                    i1.putExtra("file5",itemN.getFilename5());
+
+
+                    if (itemN.getFilename1() != null) {
+                        i1.putExtra("file1", Z.Decrypt(itemN.getFilename1(), AdminActivity.this));
+                    } else {
+                        i1.putExtra("file1", itemN.getFilename1());
+                    }
+
+                    if (itemN.getFilename2() != null) {
+                        i1.putExtra("file2", Z.Decrypt(itemN.getFilename2(), AdminActivity.this));
+                    } else {
+                        i1.putExtra("file2", itemN.getFilename2());
+                    }
+                    if (itemN.getFilename3() != null) {
+                        i1.putExtra("file3", Z.Decrypt(itemN.getFilename3(), AdminActivity.this));
+                    } else {
+                        i1.putExtra("file3", itemN.getFilename3());
+                    }
+                    if (itemN.getFilename4() != null) {
+                        i1.putExtra("file4", Z.Decrypt(itemN.getFilename4(), AdminActivity.this));
+                    } else {
+                        i1.putExtra("file4", itemN.getFilename4());
+                    }
+
+                    if (itemN.getFilename5() != null) {
+                        i1.putExtra("file5", Z.Decrypt(itemN.getFilename5(), AdminActivity.this));
+                    } else {
+                        i1.putExtra("file5", itemN.getFilename5());
+                    }
+
                     i1.putExtra("uploadedby", itemN.getUploadedby());
                     i1.putExtra("uploadtime", itemN.getUploadtime());
                     i1.putExtra("lastmodified", itemN.getLastmodified());
@@ -1232,9 +1257,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         });
 
-
+        new GetNotificationsReadStatus().execute();
+        new GetPlacementsReadStatus().execute();
         getNotifications2();
-//        getPlacements2();
         new UpdateFirebaseToken().execute();
         new GetUnreadMessagesCount().execute();
 
@@ -1813,6 +1838,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //metadata read count and read status
 
         new GetNotificationsReadStatus().execute();
+
 
 
 //        new Getplacementbyhr().execute();

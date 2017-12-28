@@ -24,7 +24,7 @@ public class Z {
 
     public static final String IP_8081 = "http://104.237.4.236:8081/";
     public static final String IP_1234= "http://104.237.4.236:1234/";
-    public static final String IP_8086 = "http://162.213.199.3/";
+    public static final String IP_8086 = "http://104.237.4.236:8086/";
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
     public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
 
@@ -85,37 +85,37 @@ public class Z {
     public static final String url_GetPlacementSentByAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementSentByAdmin";
     public static final String url_Delete_Placements = IP_8086 + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
-    public static final String url_GetPlacementsCreatedByHr = IP + "CreateNotificationTemp/GetPlacementsCreatedByHr";
+    public static final String url_GetPlacementsCreatedByHr = IP_8086 + "CreateNotificationTemp/GetPlacementsCreatedByHr";
     //    -------------------------------EditPlacementHr -----------------------------------
-    public static final String url_GetPlacementSentByHr = IP + "CreateNotificationTemp/GetPlacementSentByHr";
+    public static final String url_GetPlacementSentByHr = IP_8086 + "CreateNotificationTemp/GetPlacementSentByHr";
     //    -------------------------------EditPlacementMainHr -----------------------------------
-    public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
+    public static final String url_ModifyPlacementHr = IP_8086 + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static final String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
-    public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
-    public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
+    public static final String url_UploadAttach1 = IP_8086 + "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification = IP_8086 + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_GetForWhomeNotification = IP_8086 + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
+    public static final String url_SavefileOnServer = IP_8086 + "CreateNotificationTemp/SavefileOnServer";
 
 
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements = IP_8086 + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
-    public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
+    public static final String url_CreatePlacementsHr = IP_8086 + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
-    public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
+    public static final String url_CreateNotificationHrToEach = IP_8086 + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
-    public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
-    public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
+    public static final String url_GetForWhomePlacements = IP_8086 + "CreateNotificationTemp/GetForWhomePlacements";
+    public static final String url_ModifyPlacement = IP_8086 + "CreateNotificationTemp/ModifyPlacement";
 
     //    -------------------------------ViewPlacement -----------------------------------
     public static final String url_RegisterForPlacement = IP_8086 + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_8086 + "CreateNotificationTemp/GetStudentMarksInfo";
-    public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
+    public static final String url_SaveResume = IP_8086 + "GenerateResumeWithJODConverter3/SaveResume";
 
     //    -------------------------------EditPlacementMain -----------------------------------
-    public static final String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
-    public static final String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
-    public static final String url_SaveRegistereduserStatus = IP + "CreateNotificationTemp/SaveRegistereduserStatus";
+    public static final String url_SaveShortListedUsers = IP_8086 + "CreateNotificationTemp/SaveShortListedUsers";
+    public static final String url_SavePlacedUsers = IP_8086 + "CreateNotificationTemp/SavePlacedUsers";
+    public static final String url_SaveRegistereduserStatus = IP_8086 + "CreateNotificationTemp/SaveRegistereduserStatus";
     public static final int USER_DATA_CHANGE_RESULT_CODE = 888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";

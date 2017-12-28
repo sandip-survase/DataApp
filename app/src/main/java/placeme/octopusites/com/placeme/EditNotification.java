@@ -166,6 +166,8 @@ public class EditNotification extends AppCompatActivity {
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                try{
+
                 RecyclerItemEdit item = itemListNotificationNew.get(position);
 
 
@@ -178,7 +180,7 @@ public class EditNotification extends AppCompatActivity {
                         setActionBarTitle(selectedCount);
                         selectedPositions[position] = 1;
                         selectedViews[position] = view;
-                    }else{
+                    } else {
                         notificationdeleteArraylist.remove(item.getId());
                         view.setBackgroundColor(Color.TRANSPARENT);
                         selectedCount--;
@@ -190,23 +192,6 @@ public class EditNotification extends AppCompatActivity {
                     }
 
 
-//                    if (selectedPositions[position] == 0) {
-//                        view.setBackgroundColor(Color.parseColor("#000000"));
-//                        selectedCount++;
-//                        setActionBarTitle(selectedCount);
-//                        selectedPositions[position] = 1;
-//                        selectedViews[position] = view;
-//                        Log.d("selectfordel", "onClick: " + item.getId());
-//                        if (!notificationdeleteArraylist.contains(item.getId())) {
-//                            notificationdeleteArraylist.add(item.getId());
-//
-//                        }
-//
-//                    } else {
-//
-//
-//
-//                    }
                 } else if (role.equals("hr")) {
                     startActivity(new Intent(EditNotification.this, EditNotificationHrMain.class));
 
@@ -217,11 +202,36 @@ public class EditNotification extends AppCompatActivity {
                     i1.putExtra("id", item.getId());
                     i1.putExtra("title", item.getTitle());
                     i1.putExtra("notification", item.getNotification());
-                    i1.putExtra("file1", item.getFilename1());
-                    i1.putExtra("file2", item.getFilename2());
-                    i1.putExtra("file3", item.getFilename3());
-                    i1.putExtra("file4", item.getFilename4());
-                    i1.putExtra("file5", item.getFilename5());
+
+
+                    if (item.getFilename1() != null) {
+                        i1.putExtra("file1", Z.Decrypt(item.getFilename1(), EditNotification.this));
+                    } else {
+                        i1.putExtra("file1", item.getFilename1());
+                    }
+
+                    if (item.getFilename2() != null) {
+                        i1.putExtra("file2", Z.Decrypt(item.getFilename2(), EditNotification.this));
+                    } else {
+                        i1.putExtra("file2", item.getFilename2());
+                    }
+                    if (item.getFilename3() != null) {
+                        i1.putExtra("file3", Z.Decrypt(item.getFilename3(), EditNotification.this));
+                    } else {
+                        i1.putExtra("file3", item.getFilename3());
+                    }
+                    if (item.getFilename4() != null) {
+                        i1.putExtra("file4", Z.Decrypt(item.getFilename4(), EditNotification.this));
+                    } else {
+                        i1.putExtra("file4", item.getFilename4());
+                    }
+
+                    if (item.getFilename5() != null) {
+                        i1.putExtra("file5", Z.Decrypt(item.getFilename5(), EditNotification.this));
+                    } else {
+                        i1.putExtra("file5", item.getFilename5());
+                    }
+
                     i1.putExtra("uploadedby", item.getUploadedby());
                     i1.putExtra("uploadtime", item.getUploadtime());
                     i1.putExtra("lastmodified", item.getLastmodified());
@@ -235,15 +245,18 @@ public class EditNotification extends AppCompatActivity {
 
 
                 }
-            }
 
+            } catch (Exception e) {
+                Log.d("Exception", " " + e.getMessage());
+            }
+            }
 
 
             @Override
             public void onLongClick(View view, int position) {
                 RecyclerItemEdit item = itemListNotificationNew.get(position);
-                    Log.d("POsition", "onLongClick: " + position);
-                    Log.d("id", "onLongClick: " + item.getId());
+                Log.d("POsition", "onLongClick: " + position);
+                Log.d("id", "onLongClick: " + item.getId());
 
                 if (deleteflag == 0) {
 //                    int retval = itemListNotification.size();
@@ -267,6 +280,8 @@ public class EditNotification extends AppCompatActivity {
                 }
 
             }
+
+
         }));
         recyclerViewNotification.setOnScrollListener(new EndlessRecyclerOnScrollListenerNotification(linearLayoutManagerNotification) {
             @Override
@@ -517,8 +532,8 @@ public class EditNotification extends AppCompatActivity {
 
 
                     Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:"+page_to_call_notification);
-                    Log.d("TAG", "notificationpages:"+notificationpages);
+                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
+                    Log.d("TAG", "notificationpages:" + notificationpages);
 
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
@@ -714,9 +729,8 @@ public class EditNotification extends AppCompatActivity {
         }
 
 
-
-
     }
+
     void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
 
@@ -725,8 +739,8 @@ public class EditNotification extends AppCompatActivity {
 
         itemListNotificationNew.addAll(itemlist);
         mAdapterNotificationEdit.notifyDataSetChanged();
-        selectedPositions=new int[total_no_of_notifications];
-        selectedViews=new View[total_no_of_notifications];
+        selectedPositions = new int[total_no_of_notifications];
+        selectedViews = new View[total_no_of_notifications];
 //
 
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
@@ -770,7 +784,6 @@ public class EditNotification extends AppCompatActivity {
 
 
                 new GetplacementbyAdmin().execute();
-
 
 
             } catch (Exception e) {
