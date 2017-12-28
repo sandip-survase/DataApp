@@ -89,8 +89,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
 
         TextView tenthtxt = (TextView) findViewById(R.id.tenthtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        tenthtxt.setTypeface(custom_font1);
+        tenthtxt.setTypeface(Z.getBold(this));
 
         marks10 = (EditText) findViewById(R.id.marks10);
         outof10 = (EditText) findViewById(R.id.outof10);

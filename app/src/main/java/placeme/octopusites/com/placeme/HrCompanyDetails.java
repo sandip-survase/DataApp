@@ -222,8 +222,8 @@ public class HrCompanyDetails extends AppCompatActivity {
         if (CompanyEmailstr != null) {
             if (!CompanyEmailstr.equals(""))
                 CompanyEmail.setText(CompanyEmailstr);
-
         }
+
         if (CompanyWebstr != null) {
             if (!CompanyWebstr.equals(""))
                 CompanyWebsite.setText(CompanyWebstr);

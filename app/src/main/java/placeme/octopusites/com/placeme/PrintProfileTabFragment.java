@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -33,6 +34,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -176,6 +178,23 @@ public class PrintProfileTabFragment extends Fragment {
         });
 
         refreshContent();
+//        File myDirectory = new File(getActivity().getFilesDir(), "placemefolder");
+        File myDirectory = new File(Environment.getExternalStorageDirectory(), "placeme");
+
+        if (!myDirectory.exists()) {
+            myDirectory.mkdirs();
+            Toast.makeText(getActivity(), "folder created", Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(getActivity(), "already exits", Toast.LENGTH_SHORT).show();
+
+
+//        String folder_main = "NewFolderplace";
+//
+//        File f = new File(Environment.getExternalStorageDirectory(), folder_main);
+//        if (!f.exists()) {
+//                        Toast.makeText(getActivity(), "folder created", Toast.LENGTH_SHORT).show();
+//            f.mkdirs();
+//        }
 
 
         return rootView;
@@ -619,7 +638,7 @@ public class PrintProfileTabFragment extends Fragment {
                 resumeprogress.setVisibility(View.VISIBLE);
 
                 Log.d("TAG", "onPostExecute: template befpre uri " + template);
-                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
+//                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = new Uri.Builder()
                         .scheme("http")
                         .authority(Z.VPS_IP)
@@ -629,10 +648,47 @@ public class PrintProfileTabFragment extends Fragment {
                         .appendQueryParameter("template", template + "")
                         .build();
 
-                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-                localRequest.setNotificationVisibility(1);
-                localDownloadManager.enqueue(localRequest);
+                Log.d("TAG", "onPostExecute: uri - " + uri);
 
+//                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+//                localRequest.setNotificationVisibility(1);
+//                localDownloadManager.enqueue(localRequest);
+
+//****************
+                String storagePath = Environment.getExternalStorageDirectory().getPath() + "/placeme/";
+
+
+//Log.d("Strorgae in view",""+storagePath);
+//                File f = new File(storagePath);
+//                if (!f.exists()) {
+//                    f.mkdirs();
+//                }
+//storagePath.mkdirs();
+//                String pathname = f.toString();
+//                if (!f.exists()) {
+//                    f.mkdirs();
+//                }
+
+
+//Log.d("Storage ",""+pathname);
+                DownloadManager dm = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
+//                checkImage(uri.getLastPathSegment());
+//                if (!downloaded) {
+                DownloadManager.Request request = new DownloadManager.Request(uri);
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+                if (format.equals("pdf")) {
+                    request.setDestinationInExternalPublicDir("/placeme", "resume.pdf");
+                } else {
+                    request.setDestinationInExternalPublicDir("/placeme", "resume.docx");
+                }
+
+
+                Long referese = dm.enqueue(request);
+                Toast.makeText(getActivity(), "Downloading...", Toast.LENGTH_SHORT).show();
+//                }
+
+//                ************
                 downloadresume.setVisibility(View.VISIBLE);
                 resumeprogress.setVisibility(View.GONE);
 
