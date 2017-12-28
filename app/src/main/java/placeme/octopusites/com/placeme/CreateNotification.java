@@ -166,8 +166,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             ab.setTitle("Edit Notification");
             createnotitxt.setText("Modify/Delete Notification");
             createnotinotitxt.setText("Your changes will be broadcasted only to the students and/or alumnis of your institute.");
-            lastmodifiedtxt.setVisibility(View.VISIBLE);
-            trashnotification.setVisibility(View.VISIBLE);
+
 
         } else if (FLAG.equals("fromAdminActivity")) {
             ab.setTitle("Create Notification");
