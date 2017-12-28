@@ -144,14 +144,14 @@ public class ViewPlacement extends AppCompatActivity {
         save.setLastmodified(lastmodified);
         save.setUploadedby(uploadedby);
 
-        if (MySharedPreferencesManager.getRole(this).equals("student")) {
-            new GetStudentData().execute();
-
-        }
-        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
-            new GetStudentData().execute();
-
-        }
+//        if (MySharedPreferencesManager.getRole(this).equals("student")) {
+//            new GetStudentData().execute();
+//
+//        }
+//        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
+//            new GetStudentData().execute();
+//
+//        }
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +160,9 @@ public class ViewPlacement extends AppCompatActivity {
                 registerbutton.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 new registerforPlacementTask().execute();
+                if (role.equals("student")) {
+                    new GetStudentData().execute();
+                }
 
             }
         });
@@ -559,7 +562,7 @@ public class ViewPlacement extends AppCompatActivity {
                     new SaveResumedatabase().execute();
                 } else {
                     Toast.makeText(ViewPlacement.this, " Resume not generated", Toast.LENGTH_SHORT).show();
-                    new GetStudentData().execute();
+//                    new GetStudentData().execute();
                 }
 
             } else {
