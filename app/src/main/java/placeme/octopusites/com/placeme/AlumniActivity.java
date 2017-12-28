@@ -1226,6 +1226,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 itemListNotificationNew.clear();
                 itemListPlacementnew.clear();
                 if (selectedMenuFlag == 1) {
+
 //                    getNotifications();
                     getNotifications();
                 } else if (selectedMenuFlag == 2) {
@@ -1421,6 +1422,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     }
     void getNotifications()
     {
+        itemListNotificationNew.clear();
+
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
         loadingNotification = true;
@@ -1432,6 +1435,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     }
     void getPlacements()
     {
+        itemListPlacementnew.clear();
+
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;

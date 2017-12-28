@@ -1501,6 +1501,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
     void getNotifications() {
+        itemListNotificationNew.clear();
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
         loadingNotification = true;
@@ -1514,6 +1515,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     void getPlacements() {
         Log.d("pbacktrack", "getPlacements: accessed ");
+        itemListPlacementnew.clear();
 
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;

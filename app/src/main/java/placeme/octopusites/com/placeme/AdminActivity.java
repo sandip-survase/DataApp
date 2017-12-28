@@ -81,7 +81,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
 
-
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     JSONParser jParser = new JSONParser();
@@ -1821,8 +1820,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     void getNotifications2() {
-        itemListNotificationNew.clear();
 
+        itemListNotificationNew.clear();
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;

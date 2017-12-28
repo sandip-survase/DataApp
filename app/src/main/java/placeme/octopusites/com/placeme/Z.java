@@ -85,6 +85,7 @@ public class Z {
     public static final String url_GetPlacementSentByAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementSentByAdmin";
     public static final String url_Delete_Placements = IP_8086 + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
+    public static final String GetPlacementsCreatedByHrMetadata = IP_8086 + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
     public static final String url_GetPlacementsCreatedByHr = IP_8086 + "CreateNotificationTemp/GetPlacementsCreatedByHr";
     //    -------------------------------EditPlacementHr -----------------------------------
     public static final String url_GetPlacementSentByHr = IP_8086 + "CreateNotificationTemp/GetPlacementSentByHr";
@@ -107,12 +108,15 @@ public class Z {
     public static final String url_GetForWhomePlacements = IP_8086 + "CreateNotificationTemp/GetForWhomePlacements";
     public static final String url_ModifyPlacement = IP_8086 + "CreateNotificationTemp/ModifyPlacement";
 
-    //    -------------------------------ViewPlacement -----------------------------------
+
+    //    ---------------------------------------ViewPlacement -----------------------------------
     public static final String url_RegisterForPlacement = IP_8086 + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_8086 + "CreateNotificationTemp/GetStudentMarksInfo";
     public static final String url_SaveResume = IP_8086 + "GenerateResumeWithJODConverter3/SaveResume";
 
-    //    -------------------------------EditPlacementMain -----------------------------------
+
+
+    //----------------------------------------EditPlacementMain -----------------------------------
     public static final String url_SaveShortListedUsers = IP_8086 + "CreateNotificationTemp/SaveShortListedUsers";
     public static final String url_SavePlacedUsers = IP_8086 + "CreateNotificationTemp/SavePlacedUsers";
     public static final String url_SaveRegistereduserStatus = IP_8086 + "CreateNotificationTemp/SaveRegistereduserStatus";

@@ -537,6 +537,7 @@ public class EditPlacement extends AppCompatActivity {
     //adapter methods and classes
 
     void getPlacements() {
+        itemListPlacement.clear();
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;

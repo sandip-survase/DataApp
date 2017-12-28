@@ -100,6 +100,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     String directory;
     List<String> response;
 
+
     //
     ArrayList<ArrayList<RecyclerItemUsers>> registeredallListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
@@ -120,6 +121,42 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
     private TextView toolbar_title;
+
+
+    private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
+    private RecyclerItemAdapterPlacement mAdapterPlacement;
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
+
+    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
+    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
+    private int page_to_call_placement = 1;
+    private int current_page_placement = 1;
+    boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
+    int lastPageFlagPlacement = 0;
+
+    int placementpages = 0;
+    int[] called_pages_placement;
+    int total_no_of_placements;    int unreadcountPlacement = 0;
+
+    TextView notificationcounttxt;
+    RelativeLayout notificationcountrl;
+    TextView placementcounttxt;
+    RelativeLayout placementcountrl;
+
+    String username1;
+
+
+
+
+
+
+
+
+
+
+
+
 
     //
     @Override
@@ -158,6 +195,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
         createnotificationtxt.setTypeface(Z.getBold(this));
         editnotificationtxt.setTypeface(Z.getBold(this));
+
+
 
 
 
@@ -252,7 +291,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-                        addTempPlacements();
+//                        addTempPlacements();
 
                         createnotificationtxt.setText("Create Placements");
                         editnotificationtxt.setText("Edit Placements");
@@ -267,7 +306,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                        fab.setVisibility(View.VISIBLE);
 
 //                        initializerecyclerViewPlacements();
-                        getplacementbyhr();
+//                        getplacementbyhr();
+                        getPlacements2();
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -342,6 +382,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
         final ImageView settingsi = (ImageView) hView.findViewById(R.id.settings);
         final ImageView newsi = (ImageView) hView.findViewById(R.id.blog);
+
+        notificationcounttxt = (TextView) hView.findViewById(R.id.notificationcount);
+        notificationcountrl = (RelativeLayout) hView.findViewById(R.id.notificationcountrl);
+        placementcounttxt = (TextView) hView.findViewById(R.id.placementcount);
+        placementcountrl = (RelativeLayout) hView.findViewById(R.id.placementcountrl);
+
         downloadImage();
 
         View v1 = (View) hView.findViewById(R.id.prifileselectionview);
@@ -888,7 +934,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onRefresh() {
 
-                getplacementbyhr();
+                getPlacements2();
+
 
 //                if (selectedMenuFlag == 1)
 //                    getNotifications();
@@ -899,6 +946,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
 
+        getPlacements2();
         tswipe_refresh_layout.setRefreshing(true);
 
         new UpdateFirebaseToken().execute();
@@ -915,9 +963,20 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     }
 
+    void getPlacements2() {
+        itemListPlacementnew.clear();
+        tswipe_refresh_layout.setRefreshing(true);
+        previousTotalPlacement = 0;
+        loadingPlacement = true;
+        page_to_call_placement = 1;
+        isFirstRunPlacement = true;
+        isLastPageLoadedPlacement = false;
+        lastPageFlagPlacement = 0;
+        new GetPlacementsReadStatus().execute();
+    }
+
     void getplacementbyhr() {
 //        initializerecyclerViewPlacements();
-        new Getplacementbyhr().execute();
     }
 
 
@@ -1395,14 +1454,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         private static final String TAG = "Getplacementbyhr";
         ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
-        String username1 = MySharedPreferencesManager.getUsername(getBaseContext());
 
         protected String doInBackground(String... param) {
-            Log.d(TAG, "doInBackground:username1 " + username1);
-
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("u", "JPmAnGBeJZXNGflV0GTTdQm/vhd32vqwKhPHylZ77kw="));       //0
             params.add(new BasicNameValuePair("u", username1));       //0
 
 
@@ -1493,5 +1548,94 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //            }
         }
     }
+
+
+    class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+                json = jParser.makeHttpRequest(Z.GetPlacementsCreatedByHrMetadata, "GET", params);
+
+                placementpages = Integer.parseInt(json.getString("pages"));
+                called_pages_placement = new int[placementpages];
+                total_no_of_placements = Integer.parseInt(json.getString("count"));
+                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            placementcountrl.setVisibility(View.VISIBLE);
+
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
+                placementcountrl.setVisibility(View.GONE);
+            }
+
+
+            new Getplacementbyhr().execute();
+
+
+//            new GetPlacements2().execute();
+
+
+        }
+    }
+
+    class GetPlacements2 extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+            String r = null;
+
+
+
+            ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+
+            json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
+            try {
+
+                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+
+            } catch (Exception e) {
+            }
+
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+//            setserverlisttoadapter(placementListfromserver);
+
+        }
+    }
+
+
 
 }

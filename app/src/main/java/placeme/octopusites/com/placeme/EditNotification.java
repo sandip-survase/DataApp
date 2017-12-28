@@ -590,6 +590,10 @@ public class EditNotification extends AppCompatActivity {
 
     void getNotifications2() {
 
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(true);
+        itemListNotificationNew.clear();
+
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
