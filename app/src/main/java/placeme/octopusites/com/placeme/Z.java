@@ -23,14 +23,14 @@ public class Z {
 
     public static final String IP_8080 = "http://162.213.199.3:8080/";
     public static final String IP_8081 = "http://104.237.4.236:8081/";
-    public static final String IP_1234= "http://104.237.4.236:1234/";
+    public static final String IP_1234 = "http://104.237.4.236:1234/";
     public static final String IP_8086 = "http://104.237.4.236:8086/";
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
     public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
 
 
-    public static final String FAIL_TO_PROCESS="Fail to process your request!\nPlease try again";
-    public static final String FAIL_TO_UPLOAD_IMAGE="Fail to upload image!\nPlease try again";
+    public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
+    public static final String FAIL_TO_UPLOAD_IMAGE = "Fail to upload image!\nPlease try again";
 
     //======================================= login =====================================
     public static final String url_Welcome = IP + "AESTest/Welcome";
@@ -112,7 +112,6 @@ public class Z {
     public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
 
 
-
     //----------------------------------------EditPlacementMain -----------------------------------
     public static final String url_SaveShortListedUsers = IP_8086 + "CreateNotificationTemp/SaveShortListedUsers";
     public static final String url_SavePlacedUsers = IP_8086 + "CreateNotificationTemp/SavePlacedUsers";
@@ -122,7 +121,7 @@ public class Z {
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
     public static final String url_create_firebase = IP + "Firebase/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken = IP+"Firebase/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken = IP + "Firebase/UpdateFirebaseToken";
     //    ----------------------------------/sunny---------------------------------------------------------------
 
     public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
@@ -170,21 +169,21 @@ public class Z {
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
 
-//    --------------------------------------Load fragment data-------------------------------------
+    //    --------------------------------------Load fragment data-------------------------------------
     public static final String url_SaveAdminIntro = IP + "ProfileObjects/SaveAdminIntro";
     public static final String url_saveprojects = IP + "ProfileObjects/SaveProjects";
     public static final String url_SaveTenth = IP + "ProfileObjects/SaveTenth";
     public static final String url_savedata_twelth = IP + "ProfileObjects/SaveTwelth";
 
-//    --------------------------------------Intro-------------------------------------
+    //    --------------------------------------Intro-------------------------------------
     public static final String url_savedata_diploma = IP + "ProfileObjects/SaveDiploma";
     public static final String url_savedata_ug = IP + "ProfileObjects/SaveUg";
     public static final String url_savedata_pg_sem = IP + "ProfileObjects/SavePgSem";
 
-//    --------------------------------------project-------------------------------------
+    //    --------------------------------------project-------------------------------------
     public static final String url_savedata_pg_year = IP + "ProfileObjects/SavePgYear";
 
-//    -----------------------------------Education details--------------------------
+    //    -----------------------------------Education details--------------------------
     public static final String url_savelanguages = IP + "ProfileObjects/SaveLanguages";
     public static final String url_savecertifications = IP + "ProfileObjects/SaveCertificates";
     public static final String url_savecourses = IP + "ProfileObjects/SaveCourses";
@@ -192,7 +191,7 @@ public class Z {
     public static final String url_savehonors = IP + "ProfileObjects/SaveHonors";
     public static final String url_savepatents = IP + "ProfileObjects/SavePatents";
 
-//    ----------------------------------------Accomplishments-----------------------------
+    //    ----------------------------------------Accomplishments-----------------------------
     public static final String url_savepublications = IP + "ProfileObjects/SavePublications";
     public static final String url_savecareerobj = IP + "ProfileObjects/SaveCareerObj";
     public static final String url_savestrengths = IP + "ProfileObjects/SaveStrengths";
@@ -201,31 +200,31 @@ public class Z {
     public static final String url_SaveStdalmContact = IP + "ProfileObjects/SaveStdAlmContact";
     public static final String url_SaveAdminContact = IP + "ProfileObjects/SaveAdminContact";
 
-//    -----------------------------------------MyProfileCareerDetails---------------------------------
+    //    -----------------------------------------MyProfileCareerDetails---------------------------------
     public static final String url_SaveHrContact = IP + "ProfileObjects/SaveHrContact";
     public static final String url_SaveExperiences = IP + "ProfileObjects/SaveExperiences";
     public static final String savepersonalinfo = IP + "ProfileObjects/SavePersonalInfo";
     public static final String url_SaveAdminPersonal = IP + "ProfileObjects/SaveAdminPersonal";
 
-//    --------------------------------------------MyProfileContact---------------------------------
+    //    --------------------------------------------MyProfileContact---------------------------------
     public static final String url_SaveHrCompany = IP + "ProfileObjects/SaveHrCompany";
     public static final String url_SaveAdminInstituteData = IP + "ProfileObjects/SaveAdminInstituteData";
     public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
 
-//   --------------------------------------------Experience---------------------------------
+    //   --------------------------------------------Experience---------------------------------
     public static final String url_getugcourses = IP + "AESTest/GetUGCourses";
 
-//  --------------------------------------------Tabfragment---------------------------------
+    //  --------------------------------------------Tabfragment---------------------------------
     public static final String url_getstreams = IP + "AESTest/GetUGStreams";
     public static final String url_getuniversities = IP + "AESTest/GetUGUniversities";
 
-//    ------------------------------------------company details---------------------------------
+    //    ------------------------------------------company details---------------------------------
     public static final String url_getpgcourses = IP + "AESTest/GetPGCourses";
 
-//    ------------------------------------------Institute details---------------------------------
+    //    ------------------------------------------Institute details---------------------------------
     public static final String url_getpgstreams = IP + "AESTest/GetPGStreams";
 
-//    ------------------------------------------Education details---------------------------------
+    //    ------------------------------------------Education details---------------------------------
     public static final String url_getpguniversities = IP + "AESTest/GetPGUniversities";
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
@@ -321,7 +320,7 @@ public class Z {
         if (fadeAnimation != null)
             view.startAnimation(fadeAnimation);
         else {
-            fadeAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadein);
+            fadeAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
             view.startAnimation(fadeAnimation);
         }
 
@@ -344,7 +343,7 @@ public class Z {
         if (fadeandmovedownAnimation != null)
             view.startAnimation(fadeandmovedownAnimation);
         else {
-            fadeandmovedownAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadeinmove);
+            fadeandmovedownAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadeinmove);
             view.startAnimation(fadeandmovedownAnimation);
         }
     }
@@ -354,7 +353,7 @@ public class Z {
         if (slideoutleft2Animation != null)
             view.startAnimation(slideoutleft2Animation);
         else {
-            slideoutleft2Animation =AnimationUtils.loadAnimation(activity,R.anim.slideoutleft2);
+            slideoutleft2Animation = AnimationUtils.loadAnimation(activity, R.anim.slideoutleft2);
             view.startAnimation(slideoutleft2Animation);
         }
 
@@ -365,7 +364,7 @@ public class Z {
         if (fadeoutAnimation != null)
             view.startAnimation(fadeoutAnimation);
         else {
-            fadeoutAnimation =AnimationUtils.loadAnimation(activity,R.anim.fadeout);
+            fadeoutAnimation = AnimationUtils.loadAnimation(activity, R.anim.fadeout);
             view.startAnimation(fadeoutAnimation);
         }
 
@@ -376,7 +375,7 @@ public class Z {
         if (slideinleft1Animation != null)
             view.startAnimation(slideinleft1Animation);
         else {
-            slideinleft1Animation =AnimationUtils.loadAnimation(activity,R.anim.slideinleft1);
+            slideinleft1Animation = AnimationUtils.loadAnimation(activity, R.anim.slideinleft1);
             view.startAnimation(slideinleft1Animation);
         }
 
@@ -387,7 +386,7 @@ public class Z {
         if (slideinleft2Animation != null)
             view.startAnimation(slideinleft2Animation);
         else {
-            slideinleft2Animation =AnimationUtils.loadAnimation(activity,R.anim.slideinleft2);
+            slideinleft2Animation = AnimationUtils.loadAnimation(activity, R.anim.slideinleft2);
             view.startAnimation(slideinleft2Animation);
         }
 
@@ -429,7 +428,7 @@ public class Z {
         if (scaledownAnimation != null)
             view.startAnimation(scaledownAnimation);
         else {
-            scaledownAnimation =AnimationUtils.loadAnimation(activity,R.anim.scaledown);
+            scaledownAnimation = AnimationUtils.loadAnimation(activity, R.anim.scaledown);
             view.startAnimation(scaledownAnimation);
         }
 
@@ -440,7 +439,7 @@ public class Z {
         if (bottomupbox1Animation != null)
             view.startAnimation(bottomupbox1Animation);
         else {
-            bottomupbox1Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box1);
+            bottomupbox1Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box1);
             view.startAnimation(bottomupbox1Animation);
         }
 
@@ -451,7 +450,7 @@ public class Z {
         if (bottomupbox2Animation != null)
             view.startAnimation(bottomupbox2Animation);
         else {
-            bottomupbox2Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box2);
+            bottomupbox2Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box2);
             view.startAnimation(bottomupbox2Animation);
         }
 
@@ -462,7 +461,7 @@ public class Z {
         if (bottomupbox3Animation != null)
             view.startAnimation(bottomupbox3Animation);
         else {
-            bottomupbox3Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box3);
+            bottomupbox3Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box3);
             view.startAnimation(bottomupbox3Animation);
         }
 
@@ -472,35 +471,33 @@ public class Z {
         if (bottomupbox4Animation != null)
             view.startAnimation(bottomupbox4Animation);
         else {
-            bottomupbox4Animation =AnimationUtils.loadAnimation(activity,R.anim.bottom_up_box4);
+            bottomupbox4Animation = AnimationUtils.loadAnimation(activity, R.anim.bottom_up_box4);
             view.startAnimation(bottomupbox4Animation);
         }
 
     }
-    public static String getDigest1(Context context)
-    {
-        if(digest1!=null)
+
+    public static String getDigest1(Context context) {
+        if (digest1 != null)
             return digest1;
-        else
-        {
-            digest1=MySharedPreferencesManager.getDigest1(context);
+        else {
+            digest1 = MySharedPreferencesManager.getDigest1(context);
         }
         return digest1;
     }
-    public static String getDigest2(Context context)
-    {
-        if(digest2!=null)
+
+    public static String getDigest2(Context context) {
+        if (digest2 != null)
             return digest2;
-        else
-        {
-            digest2=MySharedPreferencesManager.getDigest2(context);
+        else {
+            digest2 = MySharedPreferencesManager.getDigest2(context);
         }
         return digest2;
     }
-    public static String Encrypt(String string,Context context) throws Exception
-    {
-        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
-        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
+
+    public static String Encrypt(String string, Context context) throws Exception {
+        byte[] demoKeyBytes = SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes = SimpleBase64Encoder.decode(getDigest2(context));
         String sPadding = "ISO10126Padding";
 
         byte[] objBytes = string.getBytes("UTF-8");
@@ -508,16 +505,17 @@ public class Z {
 
         return new String(SimpleBase64Encoder.encode(objEncryptedBytes));
     }
-    public static String Decrypt(String string,Context context) throws Exception
-    {
-        byte[] demoKeyBytes=SimpleBase64Encoder.decode(getDigest1(context));
-        byte[] demoIVBytes=SimpleBase64Encoder.decode(getDigest2(context));
+
+    public static String Decrypt(String string, Context context) throws Exception {
+        byte[] demoKeyBytes = SimpleBase64Encoder.decode(getDigest1(context));
+        byte[] demoIVBytes = SimpleBase64Encoder.decode(getDigest2(context));
         String sPadding = "ISO10126Padding";
 
         byte[] EncryptedBytes = SimpleBase64Encoder.decode(string);
         byte[] DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, EncryptedBytes);
         return new String(DecryptedBytes);
     }
+
     public static String md5(String input) {
 
         String md5 = null;
