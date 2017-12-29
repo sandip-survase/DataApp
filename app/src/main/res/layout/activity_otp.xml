@@ -16,16 +16,16 @@
         android:text="Enter OTP"
         android:layout_centerHorizontal="true"
         android:textSize="16dp"
-        android:textColor="@color/while_color"
-        />
+        android:textColor="@color/while_color" />
+
     <View
         android:layout_below="@+id/entertxt"
         android:id="@+id/viewv"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/sky_blue_color"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="10dp" />
+
     <ImageView
         android:id="@+id/otpClose"
         android:layout_width="15dp"
@@ -33,6 +33,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/close" />
+
     <TextView
         android:id="@+id/otptxt"
         android:layout_below="@+id/viewv"
@@ -41,8 +42,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/while_color"
         android:textSize="14dp"
-        android:text="Enter the One Time Password(OTP) sent to your registered email address."
-        />
+        android:text="Enter the One Time Password(OTP) sent to your registered email address." />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -52,8 +52,8 @@
         android:layout_marginTop="20dp"
         android:theme="@style/MyEditTextTheme"
         app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+
         <android.support.design.widget.TextInputEditText
             android:id="@+id/otp"
             android:hint="OTP"
@@ -67,8 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="start"
-            android:theme="@style/MyEditTextTheme"
-            />
+            android:theme="@style/MyEditTextTheme" />
     </android.support.design.widget.TextInputLayout>
 
     <TextView
@@ -81,8 +80,8 @@
         android:id="@+id/resend"
         android:layout_below="@+id/otplayout"
         android:textSize="14dp"
-        android:textColor="@color/sky_blue_color"
-        />
+        android:textColor="@color/sky_blue_color" />
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,8 +89,8 @@
         android:visibility="gone"
         android:id="@+id/otpprogress"
         android:layout_below="@+id/resend"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="10dp" />
+
     <Button
         android:id="@+id/submitotp"
         android:layout_width="match_parent"
@@ -101,6 +100,5 @@
         android:textAllCaps="false"
         android:layout_below="@+id/resend"
         android:layout_marginTop="10dp"
-        android:background="@drawable/textviewborder"
-        />
+        android:background="@drawable/textviewborder" />
 </RelativeLayout>

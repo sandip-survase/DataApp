@@ -17,7 +17,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
     <TextView
@@ -30,8 +30,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/placementtoolbar"
-        />
+        android:layout_below="@+id/placementtoolbar" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,8 +42,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/createnotinotitxt"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        />
+        android:layout_marginLeft="16dp" />
 
 
     <RelativeLayout
@@ -65,7 +63,7 @@
             android:maxLines="1"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:hint="select passing year" >
+            android:hint="select passing year">
 
             <TextView
                 android:layout_width="0dp"
@@ -73,8 +71,8 @@
                 android:textColor="@color/dark_color"
                 android:text=""
                 android:layout_marginTop="0dp"
-                android:id="@+id/dummy2"
-                />
+                android:id="@+id/dummy2" />
+
             <mabbas007.tagsedittext.TagsEditText
                 android:id="@+id/batchesTags"
                 android:layout_width="match_parent"
@@ -86,12 +84,12 @@
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
                 android:textColor="@color/while_color"
                 android:textSize="16dp"
-                android:singleLine = "true"
+                android:singleLine="true"
                 android:maxLines="1"
                 android:layout_marginLeft="5dp"
                 android:popupBackground="@color/while_color"
 
-                android:layout_below="@+id/dummy2"/>
+                android:layout_below="@+id/dummy2" />
 
             <TextView
                 android:layout_width="0dp"
@@ -100,8 +98,7 @@
                 android:text=""
                 android:layout_below="@+id/tagsEditText"
                 android:layout_marginTop="0dp"
-                android:id="@+id/dummy"
-                />
+                android:id="@+id/dummy" />
 
         </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
@@ -124,7 +121,7 @@
             android:maxLines="1"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:hint="select Experience" >
+            android:hint="select Experience">
 
             <TextView
                 android:layout_width="0dp"
@@ -132,8 +129,8 @@
                 android:textColor="@color/dark_color"
                 android:text=""
                 android:layout_marginTop="0dp"
-                android:id="@+id/dummy3"
-                />
+                android:id="@+id/dummy3" />
+
             <mabbas007.tagsedittext.TagsEditText
                 android:id="@+id/expTag"
                 android:layout_width="match_parent"
@@ -145,13 +142,13 @@
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
                 android:textColor="@color/while_color"
                 android:textSize="16dp"
-                android:singleLine = "true"
+                android:singleLine="true"
                 android:maxLines="1"
                 android:layout_marginLeft="5dp"
                 android:popupBackground="@color/while_color"
 
 
-                android:layout_below="@+id/dummy3"/>
+                android:layout_below="@+id/dummy3" />
 
             <TextView
                 android:layout_width="0dp"
@@ -160,12 +157,10 @@
                 android:text=""
                 android:layout_below="@+id/expTag"
                 android:layout_marginTop="0dp"
-                android:id="@+id/dummy4"
-                />
+                android:id="@+id/dummy4" />
 
         </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
-
 
 
     <android.support.design.widget.TabLayout

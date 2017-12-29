@@ -2,70 +2,70 @@
 <resources>
     <array name="pgstreams">
         <item>87,Aeronautical Engineering</item>
-           <item>87,Aerospace Engineering</item>
-           <item>47,Aerospace Engineering</item>
-           <item>87,Agricultural Engineering</item>
-           <item>47,Agricultural Engineering</item>
-           <item>87,Automobile Engineering</item>
-           <item>47,Automobile Engineering</item>
-           <item>47,Automotive engineering</item>
-           <item>47,Bio Chemical Engineering</item>
-           <item>47,Bio Medical Engineering</item>
-           <item>47,Bio-Technology</item>
-           <item>87,Biochemical Engineering</item>
-           <item>87,Biotechnology</item>
-           <item>87,Chemical Engineering</item>
-           <item>47,Chemical Engineering</item>
-           <item>87,Civil Engineering</item>
-           <item>47,Civil Engineering</item>
-           <item>47,Computer Engineering</item>
-           <item>87,Computer Science and Engineering</item>
-           <item>87,Electrical and Electronics Engineering</item>
-           <item>47,Electrical Controls Engineering</item>
-           <item>47,Electrical Engineering</item>
-           <item>47,Electronics  Engineering</item>
-           <item>87,Electronics and Communication Engineering</item>
-           <item>47,Electronics and Communication Engineering</item>
-           <item>87,Electronics and Instrumentation Engineering</item>
-           <item>47,Electronics and Telecomm Engineering</item>
-           <item>47,Electronics Instrumentation and Control</item>
-           <item>47,Engineering Management</item>
-           <item>47,Environmental Engineering</item>
-           <item>47,Fire Protection Engineering</item>
-           <item>47,Food Technology</item>
-           <item>87,Industrial Engineering</item>
-           <item>47,Industrial Production Engg.</item>
-           <item>87,Information Technology</item>
-           <item>47,Information Technology</item>
-           <item>47,Instrumentation and Control</item>
-           <item>47,Integrated Engineering</item>
-           <item>47,Leather Technology</item>
-           <item>47,Man Made Fiber Technology</item>
-           <item>87,Manufacturing Engineering</item>
-           <item>47,Manufacturing Engineering</item>
-           <item>47,Marine Engineering</item>
-           <item>87,Material Engineering</item>
-           <item>47,Materials Engineering</item>
-           <item>87,Mechanical Engineering</item>
-           <item>47,Mechanical Engineering</item>
-           <item>87,Mechatronics Engineering</item>
-           <item>47,Mechatronics Engineering</item>
-           <item>47,Metallurgical Engineering</item>
-           <item>87,Mining Engineering</item>
-           <item>47,Mining Engineering</item>
-           <item>47,Nuclear Engineering</item>
-           <item>87,Ocean and Marine Engineering</item>
-           <item>47,Oil Technology</item>
-           <item>47,Paint Technology</item>
-           <item>87,Petroleum Engineering</item>
-           <item>47,Plastics Engineering</item>
-           <item>47,Production Engineering</item>
-           <item>47,Robotics and Automation Engineering</item>
-           <item>47,Structural Engineering</item>
-           <item>47,Systems Science</item>
-           <item>87,Textile Engineering</item>
-           <item>47,Textile Engineering</item>
-       <item>145,Other</item>
+        <item>87,Aerospace Engineering</item>
+        <item>47,Aerospace Engineering</item>
+        <item>87,Agricultural Engineering</item>
+        <item>47,Agricultural Engineering</item>
+        <item>87,Automobile Engineering</item>
+        <item>47,Automobile Engineering</item>
+        <item>47,Automotive engineering</item>
+        <item>47,Bio Chemical Engineering</item>
+        <item>47,Bio Medical Engineering</item>
+        <item>47,Bio-Technology</item>
+        <item>87,Biochemical Engineering</item>
+        <item>87,Biotechnology</item>
+        <item>87,Chemical Engineering</item>
+        <item>47,Chemical Engineering</item>
+        <item>87,Civil Engineering</item>
+        <item>47,Civil Engineering</item>
+        <item>47,Computer Engineering</item>
+        <item>87,Computer Science and Engineering</item>
+        <item>87,Electrical and Electronics Engineering</item>
+        <item>47,Electrical Controls Engineering</item>
+        <item>47,Electrical Engineering</item>
+        <item>47,Electronics Engineering</item>
+        <item>87,Electronics and Communication Engineering</item>
+        <item>47,Electronics and Communication Engineering</item>
+        <item>87,Electronics and Instrumentation Engineering</item>
+        <item>47,Electronics and Telecomm Engineering</item>
+        <item>47,Electronics Instrumentation and Control</item>
+        <item>47,Engineering Management</item>
+        <item>47,Environmental Engineering</item>
+        <item>47,Fire Protection Engineering</item>
+        <item>47,Food Technology</item>
+        <item>87,Industrial Engineering</item>
+        <item>47,Industrial Production Engg.</item>
+        <item>87,Information Technology</item>
+        <item>47,Information Technology</item>
+        <item>47,Instrumentation and Control</item>
+        <item>47,Integrated Engineering</item>
+        <item>47,Leather Technology</item>
+        <item>47,Man Made Fiber Technology</item>
+        <item>87,Manufacturing Engineering</item>
+        <item>47,Manufacturing Engineering</item>
+        <item>47,Marine Engineering</item>
+        <item>87,Material Engineering</item>
+        <item>47,Materials Engineering</item>
+        <item>87,Mechanical Engineering</item>
+        <item>47,Mechanical Engineering</item>
+        <item>87,Mechatronics Engineering</item>
+        <item>47,Mechatronics Engineering</item>
+        <item>47,Metallurgical Engineering</item>
+        <item>87,Mining Engineering</item>
+        <item>47,Mining Engineering</item>
+        <item>47,Nuclear Engineering</item>
+        <item>87,Ocean and Marine Engineering</item>
+        <item>47,Oil Technology</item>
+        <item>47,Paint Technology</item>
+        <item>87,Petroleum Engineering</item>
+        <item>47,Plastics Engineering</item>
+        <item>47,Production Engineering</item>
+        <item>47,Robotics and Automation Engineering</item>
+        <item>47,Structural Engineering</item>
+        <item>47,Systems Science</item>
+        <item>87,Textile Engineering</item>
+        <item>47,Textile Engineering</item>
+        <item>145,Other</item>
     </array>
 
-    </resources>
+</resources>

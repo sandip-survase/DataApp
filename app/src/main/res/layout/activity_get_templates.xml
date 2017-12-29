@@ -4,82 +4,79 @@
     android:layout_height="match_parent"
     android:id="@+id/myprofileskills"
     android:background="#282f35">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_get_templates"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context="placeme.octopusites.com.placeme.GetTemplatesActivity">
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="50dp"
-        android:id="@+id/section"
-        android:layout_centerHorizontal="true"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#eee"
-        android:text="No Templates available right now..!"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
-    <RelativeLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_get_templates"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/section"
-        android:id="@+id/template1rl"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxborderwhite"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:visibility="gone"
-        >
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context="placeme.octopusites.com.placeme.GetTemplatesActivity">
 
-        <ImageView
-            android:id="@+id/template1"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            />
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Template 1"
-            android:checked="true"
-            android:textSize="13dp"
-            android:id="@+id/radioButtonTemplate1"
-            android:layout_below="@+id/template1"
-            android:textColor="#eee"
-            android:buttonTint="#eee"
-            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/section"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pro"
-            android:layout_alignParentRight="true"
-            android:textSize="10dp"
             android:textColor="#eee"
-            android:layout_alignParentBottom="true"
+            android:text="No Templates available right now..!"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:id="@+id/template1rl"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxborderwhite"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            />
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/template1"
+                android:layout_width="112dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Template 1"
+                android:checked="true"
+                android:textSize="13dp"
+                android:id="@+id/radioButtonTemplate1"
+                android:layout_below="@+id/template1"
+                android:textColor="#eee"
+                android:buttonTint="#eee" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pro"
+                android:layout_alignParentRight="true"
+                android:textSize="10dp"
+                android:textColor="#eee"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="5dp" />
 
         </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/section"
-        android:id="@+id/template2rl"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxborderwhite"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        >
-        </RelativeLayout>
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/template2rl"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxborderwhite"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"></RelativeLayout>
+
+    </RelativeLayout>
 </ScrollView>

@@ -10,22 +10,21 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:focusableInTouchMode="true"
-            >
+            android:focusableInTouchMode="true">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create Notification"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
-                android:id="@+id/createnotitxt"
-                />
+                android:id="@+id/createnotitxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -35,8 +34,7 @@
                 android:textSize="12dp"
                 android:text="Your notification will be sent  to selected Place Me users."
                 android:layout_marginTop="10dp"
-                android:id="@+id/createnotinotitxt"
-                />
+                android:id="@+id/createnotinotitxt" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -46,8 +44,7 @@
                 android:layout_below="@+id/createnotinotitxt"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -57,9 +54,10 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="200"
                     android:singleLine="true"
-                    android:id="@+id/title"/>
+                    android:id="@+id/title" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,8 +66,7 @@
                 android:id="@+id/notificationinput"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -82,7 +79,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="2500"
-                    android:id="@+id/notification"/>
+                    android:id="@+id/notification" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -94,8 +91,7 @@
                 android:text="Attachments"
                 android:layout_below="@+id/notificationinput"
                 android:layout_marginTop="10dp"
-                android:id="@+id/attachmentstxt"
-                />
+                android:id="@+id/attachmentstxt" />
 
             <RelativeLayout
                 android:layout_width="150dp"
@@ -110,14 +106,14 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,8 +126,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
-                    android:layout_marginRight="28dp"
-                    />
+                    android:layout_marginRight="28dp" />
 
 
                 <ImageView
@@ -141,9 +136,9 @@
                     android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:layout_marginRight="20dp" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -157,14 +152,14 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR2"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -177,8 +172,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
-                    android:layout_marginRight="28dp"
-                    />
+                    android:layout_marginRight="28dp" />
 
 
                 <ImageView
@@ -188,10 +182,10 @@
                     android:src="@drawable/tag_close"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:layout_marginRight="20dp" />
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -205,14 +199,15 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR3"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -241,6 +236,7 @@
 
                     />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -254,14 +250,15 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR4"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -288,6 +285,7 @@
 
                     />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -301,14 +299,15 @@
                 android:visibility="gone"
 
                 >
+
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
                     android:id="@+id/PROGRESS_BAR5"
-                    android:progressDrawable="@drawable/uploadfileprogress"
-                    />
+                    android:progressDrawable="@drawable/uploadfileprogress" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -320,8 +319,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="10dp"
                     android:textSize="12dp"
-                    android:layout_marginRight="28dp"
-                    />
+                    android:layout_marginRight="28dp" />
 
                 <ImageView
                     android:id="@+id/delfile5"
@@ -338,8 +336,8 @@
         </RelativeLayout>
 
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -348,7 +346,6 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         app:srcCompat="@drawable/attachment_white_icon"
-        app:backgroundTint="@color/dark_color"
-        />
+        app:backgroundTint="@color/dark_color" />
 
 </RelativeLayout>

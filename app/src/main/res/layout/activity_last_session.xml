@@ -4,228 +4,222 @@
     android:layout_height="match_parent"
     android:id="@+id/myprofilepg"
     android:background="@color/while_color">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_last_session"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context="placeme.octopusites.com.placeme.LastSession">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Active Session"
-        android:textSize="18dp"
-        android:textColor="@color/sky_blue_color"
-        android:id="@+id/activetxt"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Details"
-        android:textSize="11dp"
-        android:layout_below="@+id/activetxt"
-        android:id="@+id/detaildetailtxt"
-        android:textColor="@color/dark_color"
-        android:paddingTop="5dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Country"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/countrytxt"
-        android:layout_below="@+id/detaildetailtxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Place Me on Platform"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/platformtxt"
-        android:layout_below="@+id/countrytxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IP Address"
-        android:textSize="14dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/ipiptxt"
-        android:layout_below="@+id/platformtxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0.0.0.0"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/iptxt"
-        android:layout_below="@+id/ipiptxt"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IP Address Owner"
-        android:textSize="16dp"
-        android:textColor="#ccc"
-        android:id="@+id/ipipownertxt"
-        android:layout_below="@+id/iptxt"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:visibility="gone"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Owner"
-        android:textSize="16dp"
-        android:textColor="#ccc"
-        android:id="@+id/ipownertxt"
-        android:layout_below="@+id/ipipownertxt"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="10dp"
-        android:visibility="gone"
-        />
-
-    <View
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_last_session"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/ipownertxt"
-        android:layout_marginTop="20dp"
-        android:id="@+id/line1"
-        android:background="@color/sky_blue_color"
-        />
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context="placeme.octopusites.com.placeme.LastSession">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Last Session"
-        android:textSize="18dp"
-        android:textColor="@color/sky_blue_color"
-        android:id="@+id/lasttxt"
-        android:layout_below="@+id/line1"
-        android:layout_marginTop="20dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Active Session"
+            android:textSize="18dp"
+            android:textColor="@color/sky_blue_color"
+            android:id="@+id/activetxt" />
 
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Details"
-        android:textSize="11dp"
-        android:layout_below="@+id/lasttxt"
-        android:id="@+id/detaildetaillasttxt"
-        android:textColor="@color/dark_color"
-        android:paddingTop="5dp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="11dp"
+            android:layout_below="@+id/activetxt"
+            android:id="@+id/detaildetailtxt"
+            android:textColor="@color/dark_color"
+            android:paddingTop="5dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Country"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/countrylasttxt"
-        android:layout_below="@+id/detaildetaillasttxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Place Me on Platform"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/platformlasttxt"
-        android:layout_below="@+id/countrylasttxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/countrytxt"
+            android:layout_below="@+id/detaildetailtxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place Me on Platform"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/platformtxt"
+            android:layout_below="@+id/countrytxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IP Address"
-        android:textSize="14dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/ipiplasttxt"
-        android:layout_below="@+id/platformlasttxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0.0.0.0"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/iplasttxt"
-        android:layout_below="@+id/ipiplasttxt"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IP Address Owner"
-        android:textSize="16dp"
-        android:textColor="#ccc"
-        android:id="@+id/ipipownerlasttxt"
-        android:layout_below="@+id/iplasttxt"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:visibility="gone"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Owner"
-        android:textSize="16dp"
-        android:textColor="#ccc"
-        android:id="@+id/ipownerlasttxt"
-        android:layout_below="@+id/ipipownerlasttxt"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="10dp"
-        android:visibility="gone"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP Address"
+            android:textSize="14dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/ipiptxt"
+            android:layout_below="@+id/platformtxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Accessed"
-        android:textSize="14dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/lastaccessedtxttxt"
-        android:layout_below="@+id/ipownerlasttxt"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0:0"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/lastaccessedtxt"
-        android:layout_below="@+id/lastaccessedtxttxt"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="10dp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0.0.0"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/iptxt"
+            android:layout_below="@+id/ipiptxt"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP Address Owner"
+            android:textSize="16dp"
+            android:textColor="#ccc"
+            android:id="@+id/ipipownertxt"
+            android:layout_below="@+id/iptxt"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Owner"
+            android:textSize="16dp"
+            android:textColor="#ccc"
+            android:id="@+id/ipownertxt"
+            android:layout_below="@+id/ipipownertxt"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/ipownertxt"
+            android:layout_marginTop="20dp"
+            android:id="@+id/line1"
+            android:background="@color/sky_blue_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Last Session"
+            android:textSize="18dp"
+            android:textColor="@color/sky_blue_color"
+            android:id="@+id/lasttxt"
+            android:layout_below="@+id/line1"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="11dp"
+            android:layout_below="@+id/lasttxt"
+            android:id="@+id/detaildetaillasttxt"
+            android:textColor="@color/dark_color"
+            android:paddingTop="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/countrylasttxt"
+            android:layout_below="@+id/detaildetaillasttxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place Me on Platform"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/platformlasttxt"
+            android:layout_below="@+id/countrylasttxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP Address"
+            android:textSize="14dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/ipiplasttxt"
+            android:layout_below="@+id/platformlasttxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0.0.0"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/iplasttxt"
+            android:layout_below="@+id/ipiplasttxt"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP Address Owner"
+            android:textSize="16dp"
+            android:textColor="#ccc"
+            android:id="@+id/ipipownerlasttxt"
+            android:layout_below="@+id/iplasttxt"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Owner"
+            android:textSize="16dp"
+            android:textColor="#ccc"
+            android:id="@+id/ipownerlasttxt"
+            android:layout_below="@+id/ipipownerlasttxt"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Accessed"
+            android:textSize="14dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/lastaccessedtxttxt"
+            android:layout_below="@+id/ipownerlasttxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:0"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/lastaccessedtxt"
+            android:layout_below="@+id/lastaccessedtxttxt"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp" />
+
+    </RelativeLayout>
 </ScrollView>

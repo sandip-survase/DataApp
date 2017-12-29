@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:id="@+id/crop_layout"
-        >
+        android:id="@+id/crop_layout">
 
         <ImageView
             android:id="@+id/result_image"
@@ -37,22 +36,20 @@
             android:layout_height="50dp"
             android:id="@+id/admincontrolsrl"
             android:background="@drawable/boxborder"
-            android:elevation="2dp"
-            >
+            android:elevation="2dp">
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/section"
-                android:background="@color/sky_blue_color"
-                />
+                android:background="@color/sky_blue_color" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_toLeftOf="@+id/section"
-                android:id="@+id/createnotificationrl"
-                >
+                android:id="@+id/createnotificationrl">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -61,8 +58,8 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/addnotification"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    />
+                    android:layout_marginRight="5dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,8 +70,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/createnotificationtxt"
-                    />
+                    android:id="@+id/createnotificationtxt" />
 
             </RelativeLayout>
 
@@ -82,8 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@+id/section"
-                android:id="@+id/editnotificationrl"
-                >
+                android:id="@+id/editnotificationrl">
+
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -91,8 +87,8 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/editnotification"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    />
+                    android:layout_marginRight="5dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,17 +99,17 @@
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/editnotificationtxt"
-                    />
+                    android:id="@+id/editnotificationtxt" />
             </RelativeLayout>
 
         </RelativeLayout>
+
         <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_above="@+id/bottompanel"
             android:layout_below="@+id/admincontrolsrl"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.RecyclerView
                 android:layout_marginTop="10dp"
@@ -124,6 +120,7 @@
 
 
                 />
+
             <android.support.v7.widget.RecyclerView
                 android:layout_marginTop="10dp"
                 android:id="@+id/recycler_view"
@@ -134,22 +131,22 @@
                 />
 
         </android.support.v4.widget.SwipeRefreshLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/mainfragment"
-            android:layout_above="@+id/bottompanel"
-            >
+            android:layout_above="@+id/bottompanel">
 
         </FrameLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@android:color/holo_blue_bright"
             android:layout_alignParentBottom="true"
             android:id="@+id/bottompanel"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,8 +156,7 @@
                 android:layout_marginRight="70dp"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:textColor="#282f35"
-                />
+                android:textColor="#282f35" />
         </RelativeLayout>
 
 

@@ -11,22 +11,21 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:focusableInTouchMode="true"
-            >
+            android:focusableInTouchMode="true">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Broadcast Post/Message"
                 android:textSize="14dp"
                 android:textColor="@color/dark_color"
-                android:id="@+id/createpasstxt"
-                />
+                android:id="@+id/createpasstxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,8 +35,7 @@
                 android:textSize="12dp"
                 android:text="You can broadcast the post/message on social networking sites which are linked with Place Me."
                 android:layout_marginTop="10dp"
-                android:id="@+id/passsenstxt"
-                />
+                android:id="@+id/passsenstxt" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -47,8 +45,7 @@
                 android:id="@+id/notificationinput"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -60,7 +57,7 @@
                     android:scrollHorizontally="false"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/notification"/>
+                    android:id="@+id/notification" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -71,8 +68,7 @@
                 android:textSize="12dp"
                 android:text="Select social media network on which you want to share this post by clicking on respective icons."
                 android:layout_marginTop="20dp"
-                android:id="@+id/selecttxt"
-                />
+                android:id="@+id/selecttxt" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -81,8 +77,7 @@
                 android:layout_below="@+id/selecttxt"
                 android:layout_marginTop="10dp"
                 android:id="@+id/facebookicon"
-                android:tint="@color/dark_color"
-                />
+                android:tint="@color/dark_color" />
 
             <ImageView
                 android:tint="@color/dark_color"
@@ -93,8 +88,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/facebookicon"
                 android:id="@+id/twittericon"
-                android:layout_marginLeft="10dp"
-                />
+                android:layout_marginLeft="10dp" />
+
             <ImageView
                 android:tint="@color/dark_color"
                 android:layout_width="25dp"
@@ -104,13 +99,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/twittericon"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/linkedinicon"
-                />
+                android:id="@+id/linkedinicon" />
 
         </RelativeLayout>
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +114,5 @@
         android:layout_margin="16dp"
         app:srcCompat="@drawable/camera_icon_new"
         app:backgroundTint="@color/dark_color"
-        android:elevation="6dp"
-        />
+        android:elevation="6dp" />
 </RelativeLayout>

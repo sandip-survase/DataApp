@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfdfd"
-    >
+    android:background="#fcfdfd">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:id="@+id/introrl"
-        >
+        android:id="@+id/introrl">
 
         <TextView
             android:id="@+id/getProfilePictureMsg"
@@ -64,31 +61,30 @@
             android:layout_marginTop="10dp"
             android:id="@+id/profile_rl"
             android:padding="10dp"
-            android:clipToPadding="false"
-            >
+            android:clipToPadding="false">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePic"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="bottom|center_horizontal"
-                android:src="@drawable/profileimagescreen"
-                />
+                android:src="@drawable/profileimagescreen" />
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:id="@+id/updateProgress"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
+
             <com.andexert.library.RippleView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 app:rv_rippleDuration="80"
                 app:rv_color="#00bcd4"
-                app:rv_centered="true"
-                >
+                app:rv_centered="true">
 
                 <ImageButton
                     android:padding="8dp"
@@ -99,12 +95,12 @@
                     android:background="@drawable/button_round_camera"
                     android:elevation="8dp"
                     android:cropToPadding="true"
-                    android:scaleType="centerCrop"
-                    />
+                    android:scaleType="centerCrop" />
 
             </com.andexert.library.RippleView>
 
         </FrameLayout>
+
         <LinearLayout
             android:id="@+id/fnameAndLname"
             android:layout_width="match_parent"
@@ -122,8 +118,7 @@
                 android:layout_weight="1"
                 android:theme="@style/TextLabelNew"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/fname"
@@ -136,8 +131,7 @@
                     android:maxLength="50"
                     android:singleLine="true"
                     android:textSize="16dp"
-                    android:textColor="#03353e"
-                    />
+                    android:textColor="#03353e" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -149,8 +143,7 @@
                 android:layout_weight="1"
                 android:theme="@style/TextLabelNew"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/lname"
@@ -163,8 +156,7 @@
                     android:maxLength="50"
                     android:singleLine="true"
                     android:textSize="16dp"
-                    android:textColor="#03353e"
-                    />
+                    android:textColor="#03353e" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -178,8 +170,7 @@
             android:layout_toLeftOf="@+id/section"
             android:theme="@style/TextLabelNew"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/mobile"
@@ -191,8 +182,7 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:textSize="16dp"
-                android:textColor="#03353e"
-                />
+                android:textColor="#03353e" />
 
         </android.support.design.widget.TextInputLayout>
 

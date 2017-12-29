@@ -9,14 +9,13 @@
     android:elevation="2dp"
     android:orientation="vertical">
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:textSize="16dp"
-       android:text="company name"
-       android:textColor="@color/dark_color"
-       android:id="@+id/companyname"
-       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="company name"
+        android:textColor="@color/dark_color"
+        android:id="@+id/companyname" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,8 +25,8 @@
         android:textColor="@color/dark_color"
         android:layout_below="@+id/companyname"
         android:id="@+id/lastmodified"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginTop="30dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,16 +35,16 @@
         android:text="17-FEB-2017 12:00 PM"
         android:id="@+id/lastmodifiedtime"
         android:layout_below="@+id/lastmodified"
-        android:layout_marginTop="5dp"
-        />
+        android:layout_marginTop="5dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/dark_color"
         android:textSize="12dp"
         android:layout_alignParentRight="true"
-        android:id="@+id/registerednumber"
-        />
+        android:id="@+id/registerednumber" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,8 +52,7 @@
         android:textSize="12dp"
         android:layout_alignParentRight="true"
         android:id="@+id/placednumber"
-        android:layout_below="@+id/registerednumber"
-        />
+        android:layout_below="@+id/registerednumber" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,8 +63,8 @@
         android:layout_below="@+id/companyname"
         android:layout_alignParentRight="true"
         android:id="@+id/lastdateofregistrationtxt"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginTop="30dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,7 +74,6 @@
         android:layout_alignParentRight="true"
         android:id="@+id/lastdateofreg"
         android:layout_below="@+id/lastdateofregistrationtxt"
-        android:layout_marginTop="5dp"
-        />
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>

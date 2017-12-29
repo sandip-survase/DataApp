@@ -6,43 +6,38 @@
     android:orientation="vertical">
 
 
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_centerVertical="true"
-        android:id="@+id/section"
-        />
+        android:id="@+id/section" />
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/section"
-        android:background="@drawable/tableborder"
-        >
+        android:background="@drawable/tableborder">
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/dark_color"
             android:layout_centerHorizontal="true"
-            android:id="@+id/sectionhorizontal"
-            />
+            android:id="@+id/sectionhorizontal" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
             android:id="@+id/sectionvertical"
-            android:background="@color/dark_color"
-            />
+            android:background="@color/dark_color" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/sectionhorizontal"
-            android:layout_above="@id/sectionvertical"
-            >
+            android:layout_above="@id/sectionvertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,8 +47,7 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/aptitxt"
-                />
+                android:id="@+id/aptitxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,15 +60,14 @@
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/sectionhorizontal"
-            android:layout_below="@id/sectionvertical"
-            >
+            android:layout_below="@id/sectionvertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,8 +77,7 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/companygdtxt"
-                />
+                android:id="@+id/companygdtxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,15 +91,14 @@
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/sectionhorizontal"
-            android:layout_above="@id/sectionvertical"
-            >
+            android:layout_above="@id/sectionvertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,8 +108,7 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/companytechtesttxt"
-                />
+                android:id="@+id/companytechtesttxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,15 +122,14 @@
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/sectionhorizontal"
-            android:layout_below="@id/sectionvertical"
-            >
+            android:layout_below="@id/sectionvertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -150,8 +139,7 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/companytechinterviewtxt"
-                />
+                android:id="@+id/companytechinterviewtxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,49 +153,48 @@
                 android:gravity="center"
                 android:textSize="16dp"
                 android:text="1"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
         </RelativeLayout>
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/section"
-        >
+        android:layout_below="@id/section">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/dark_color"
+            android:layout_above="@+id/sectionvertical2" />
+
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/dark_color"
             android:layout_above="@+id/sectionvertical2"
-            />
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/dark_color"
-            android:layout_above="@+id/sectionvertical2"
-            android:layout_alignParentRight="true"
-            />
+            android:layout_alignParentRight="true" />
+
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/dark_color"
             android:layout_centerHorizontal="true"
             android:id="@+id/sectionhorizontal2"
-            android:layout_above="@+id/sectionvertical2"
-            />
+            android:layout_above="@+id/sectionvertical2" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
             android:id="@+id/sectionvertical2"
-            android:background="@color/dark_color"
-            />
+            android:background="@color/dark_color" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/sectionhorizontal2"
-            >
+            android:layout_toLeftOf="@+id/sectionhorizontal2">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -216,8 +203,8 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/companyhrinterviewtxt"
-                />
+                android:id="@+id/companyhrinterviewtxt" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -230,13 +217,10 @@
                 android:gravity="center"
                 android:textSize="14dp"
                 android:text="1"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
 
-
-
-</RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>

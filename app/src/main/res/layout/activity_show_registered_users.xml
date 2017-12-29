@@ -30,8 +30,7 @@
             android:textColor="#282f35"
             android:hint="Search User"
             android:textColorHint="#aaa"
-            style="@style/MaterialSearchViewStyle"
-            />
+            style="@style/MaterialSearchViewStyle" />
     </FrameLayout>
 
 </FrameLayout>

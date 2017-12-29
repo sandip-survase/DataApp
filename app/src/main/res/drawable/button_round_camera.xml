@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-  <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval" android:padding="20dp">
-  <solid android:color="#6E6E6E"/> <!-- this one is ths color of the Rounded Button -->
-  <corners
-   android:bottomRightRadius="30dp"
-   android:bottomLeftRadius="30dp"
-   android:topLeftRadius="30dp"
-   android:topRightRadius="30dp"
-      />
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:padding="20dp">
+    <solid android:color="#6E6E6E" /> <!-- this one is ths color of the Rounded Button -->
+    <corners
+        android:bottomRightRadius="30dp"
+        android:bottomLeftRadius="30dp"
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp" />
 
-<gradient
-    android:startColor="#03353e"
-    android:useLevel="true"
-    />
+    <gradient
+        android:startColor="#03353e"
+        android:useLevel="true" />
 </shape>

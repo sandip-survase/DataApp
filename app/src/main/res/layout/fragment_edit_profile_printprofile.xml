@@ -4,18 +4,18 @@
     android:layout_height="match_parent"
     android:id="@+id/myprofilepatents"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/while_color"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/completeprintrl"
-            >
+            android:id="@+id/completeprintrl">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
@@ -34,8 +34,8 @@
                 android:layout_marginRight="20dp"
                 android:id="@+id/getmore"
                 android:textSize="16dp"
-                android:textColor="@color/sky_blue_color"
-                />
+                android:textColor="@color/sky_blue_color" />
+
             <View
                 android:layout_below="@+id/recycler_view"
                 android:layout_marginTop="10dp"
@@ -45,8 +45,8 @@
                 android:layout_alignRight="@+id/getmore"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:id="@+id/getmoreselectionview"
-                />
+                android:id="@+id/getmoreselectionview" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,8 +56,8 @@
                 android:textSize="14dp"
                 android:id="@+id/selectformattxt"
                 android:layout_below="@+id/getmore"
-                android:layout_marginTop="15dp"
-                />
+                android:layout_marginTop="15dp" />
+
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,10 +65,9 @@
                 android:id="@+id/radioGroupFormat"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_centerHorizontal="true">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PDF"
@@ -77,10 +76,9 @@
                     android:textColor="@color/dark_color"
                     app:buttonTint="@color/sky_blue_color"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:paddingRight="10dp" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Word"
@@ -89,10 +87,10 @@
                     android:textColor="@color/dark_color"
                     app:buttonTint="@color/sky_blue_color"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    />
+                    android:paddingRight="10dp" />
             </RadioGroup>
         </RelativeLayout>
+
         <ProgressBar
             android:id="@+id/resumeprogress"
             android:layout_height="wrap_content"
@@ -101,21 +99,21 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:visibility="gone"
-            android:layout_below="@+id/completeprintrl"
-            />
+            android:layout_below="@+id/completeprintrl" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="bottom"
             android:layout_below="@+id/completeprintrl"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="20dp">
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:background="@color/sky_blue_color"
-                />
+                android:background="@color/sky_blue_color" />
+
             <Button
                 android:id="@+id/downloadresume"
                 android:layout_width="match_parent"
@@ -124,8 +122,7 @@
                 android:textAllCaps="false"
                 android:textSize="20dp"
                 android:text="Download"
-                android:background="@color/dark_color"
-                />
+                android:background="@color/dark_color" />
         </LinearLayout>
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

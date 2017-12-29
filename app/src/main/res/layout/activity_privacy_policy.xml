@@ -13,7 +13,6 @@
         android:textColor="#282f35"
         android:text="Hello user, We are working on our Privacy Policy. If you have any queries you can submit those from settings > Report bug/Feedback"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>

@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:id="@+id/crop_layout"
-        >
+        android:id="@+id/crop_layout">
 
         <ImageView
             android:id="@+id/result_image"
@@ -26,8 +25,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="45dp"
-        />
+        android:layout_marginBottom="45dp" />
 
 
     <LinearLayout
@@ -47,8 +45,8 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
         android:visibility="gone"
-        android:id="@+id/nextProgress"
-        />
+        android:id="@+id/nextProgress" />
+
     <com.andexert.library.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,17 +54,16 @@
         android:layout_alignParentLeft="true"
         app:rv_rippleDuration="80"
         app:rv_color="#00bcd4"
-        app:rv_centered="true"
-        >
-    <Button
-        android:id="@+id/btnPrev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#03353e"
-        android:text="BACK"
-        android:visibility="gone"
-        android:background="@color/transparent"
-        />
+        app:rv_centered="true">
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#03353e"
+            android:text="BACK"
+            android:visibility="gone"
+            android:background="@color/transparent" />
 
     </com.andexert.library.RippleView>
 
@@ -77,16 +74,15 @@
         android:layout_alignParentRight="true"
         app:rv_rippleDuration="80"
         app:rv_color="#00bcd4"
-        app:rv_centered="true"
-        >
-    <Button
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#03353e"
-        android:text="NEXT"
-        android:background="@color/transparent"
-        />
+        app:rv_centered="true">
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#03353e"
+            android:text="NEXT"
+            android:background="@color/transparent" />
     </com.andexert.library.RippleView>
 
 

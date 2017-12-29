@@ -14,8 +14,8 @@
         <ScrollView
             android:id="@+id/profilepreviewscrollview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -104,13 +104,14 @@
                         android:layout_height="wrap_content"
                         app:rv_rippleDuration="80"
                         app:rv_color="#00bcd4"
-                        app:rv_centered="true"
-                        >
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/pencil_icon" />
+                        app:rv_centered="true">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/pencil_icon" />
                     </com.andexert.library.RippleView>
+
                     <ImageView
                         android:id="@+id/introedit"
                         android:layout_width="60dp"
@@ -238,8 +239,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@color/while_color"
                     android:elevation="4dp"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
 
                 <ProgressBar
                     android:id="@+id/profileprogress"
@@ -257,8 +257,7 @@
                     android:max="1000"
                     android:progress="10"
                     android:progressDrawable="@drawable/progressbarblue"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
 
                 <RelativeLayout
                     android:id="@+id/editprofilerl"
@@ -279,8 +278,7 @@
                         android:text="EDIT PROFILE"
                         android:textColor="#00bcd4"
                         android:textSize="12dp"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -349,8 +347,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/insti4"
@@ -413,8 +410,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/insti1"
@@ -481,8 +477,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/insti2"
@@ -550,8 +545,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/insti3"
@@ -615,8 +609,7 @@
                         android:layout_marginTop="15dp"
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
-                        android:paddingBottom="10dp"
-                    >
+                        android:paddingBottom="10dp">
 
                         <ImageView
                             android:id="@+id/noeduinst"
@@ -625,8 +618,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:src="@drawable/institute_icon"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
                         <TextView
                             android:id="@+id/noedudetailstxt"
@@ -715,8 +707,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/gear1"
@@ -780,8 +771,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/gear2"
@@ -847,8 +837,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/gear3"
@@ -908,6 +897,7 @@
 
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/noprojtab"
                         android:layout_width="match_parent"
@@ -919,8 +909,7 @@
                         android:layout_marginTop="15dp"
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
-                        android:paddingBottom="10dp"
-                        >
+                        android:paddingBottom="10dp">
 
                         <ImageView
                             android:id="@+id/nogear"
@@ -929,8 +918,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:src="@drawable/projects_icon"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
                         <TextView
                             android:id="@+id/nomyprofileproj"
@@ -949,6 +937,7 @@
                             />
 
                     </RelativeLayout>
+
                     <TextView
                         android:id="@+id/extraprojectscount"
                         android:layout_width="wrap_content"
@@ -959,8 +948,7 @@
                         android:textColor="@color/dark_color"
                         android:text="and 3 more"
                         android:layout_below="@+id/noprojtab"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:layout_marginRight="10dp" />
                 </RelativeLayout>
 
                 <TextView
