@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fcfdfd"
-    android:focusableInTouchMode="true"
-    >
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/welcometextviewcontext1"
             android:layout_width="wrap_content"
@@ -31,8 +29,7 @@
             android:layout_below="@+id/welcometextviewcontext1"
             android:src="@drawable/logo"
             android:layout_centerHorizontal="true"
-            android:id="@+id/logo"
-            />
+            android:id="@+id/logo" />
 
         <TextView
             android:id="@+id/welcometextviewcontext2"
@@ -44,6 +41,7 @@
             android:layout_marginTop="20dp"
             android:textColor="@color/sky_blue_color"
             android:textSize="14dp" />
+
         <ImageView
             android:id="@+id/enterindustrydetailsscreen"
             android:layout_width="60dp"
@@ -51,271 +49,258 @@
             android:layout_below="@+id/welcometextviewcontext2"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/enterindustrydetailsscreen"
-            />
+            android:src="@drawable/enterindustrydetailsscreen" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/companyNameTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/enterindustrydetailsscreen"
-        android:layout_marginTop="20dp"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/companyName"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/companyNameTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter company name"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="500"
-            android:inputType="textCapWords"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/enterindustrydetailsscreen"
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/countryinputlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/companyNameTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company name"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="500"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
+        </android.support.design.widget.TextInputLayout>
 
-        <AutoCompleteTextView
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/countryinputlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter country"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:id="@+id/countryAutoBoxCompany"
-            android:textColor="#03353e"
-            android:maxLength="50"
-            android:inputType="textCapWords"
-            android:imeOptions="actionNext"
-            android:textSize="16dp"
-            />
+            android:layout_below="@+id/companyNameTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter country"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:id="@+id/countryAutoBoxCompany"
+                android:textColor="#03353e"
+                android:maxLength="50"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/addressTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/countryinputlayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/companyAddress"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/addressTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter company address"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="500"
-            android:inputType="textCapWords"
-            android:imeOptions="actionNext"
-            android:textSize="16dp"
-             />
+            android:layout_below="@id/countryinputlayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company address"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="500"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/emailTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addressTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/companyEmail"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter company email"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="100"
-            android:inputType="textEmailAddress"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/addressTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company email"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="100"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/websiteTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/emailTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/companyWebsite"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/websiteTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter company website"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="100"
-            android:inputType="textWebEmailAddress"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/emailTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company website"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="100"
+                android:inputType="textWebEmailAddress"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/phoneTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/websiteTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/companyPhone"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phoneTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter company phone"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="11"
-            android:imeOptions="actionNext"
-            android:textSize="16dp"/>
+            android:layout_below="@id/websiteTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company phone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="11"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/alternatePhoneTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phoneTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/companyAlternatephone"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/alternatePhoneTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter company alternate phone"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="11"
-            android:inputType="number"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/phoneTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyAlternatephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company alternate phone"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="11"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/CINTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/alternatePhoneTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/CIN"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/CINTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter CIN"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="500"
-            android:inputType="textCapCharacters"
-            android:imeOptions="actionDone"
-            android:textSize="16dp"/>
+            android:layout_below="@id/alternatePhoneTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/CIN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter CIN"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="500"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionDone"
+                android:textSize="16dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/CINTextInputLayout"
-        android:id="@+id/companyNatureSpinner"
-        android:layout_marginRight="3dp"
-        android:layout_weight=".28"
-        android:orientation="horizontal">
+        </android.support.design.widget.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/companyNature"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:background="@color/transparent"
-            android:popupBackground="#fcfdfd"
-            android:layout_marginLeft="5dp"
-            android:spinnerMode="dropdown"
-            android:textSize="16dp"
-            />
+            android:layout_below="@+id/CINTextInputLayout"
+            android:id="@+id/companyNatureSpinner"
+            android:layout_marginRight="3dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:id="@+id/spinnerimg1"
-            android:tint="#03353e"
-            android:src="@drawable/drop" />
+            <Spinner
+                android:id="@+id/companyNature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:popupBackground="#fcfdfd"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown"
+                android:textSize="16dp" />
 
-        <View
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg1"
+                android:tint="#03353e"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg1"
+                android:background="#03353e" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/otherNatureTextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/spinnerimg1"
-            android:background="#03353e"
-            />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/companyNatureSpinner"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/otherNature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter nature of company"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="100"
+                android:inputType="textCapWords"
+                android:imeOptions="actionDone"
+                android:textSize="16dp" />
+
+        </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/otherNatureTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/companyNatureSpinner"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/otherNature"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter nature of company"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="100"
-            android:inputType="textCapWords"
-            android:imeOptions="actionDone"
-            android:textSize="16dp"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-</RelativeLayout>
 </ScrollView>

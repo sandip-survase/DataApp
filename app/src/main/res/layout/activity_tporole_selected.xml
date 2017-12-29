@@ -4,66 +4,63 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/cancelView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/cancel"
-        android:layout_alignParentRight="true"
-        />
-    <ImageView
-        android:id="@+id/iv_icon_tpo"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:src="@drawable/tpo_role"
-        />
+        <ImageView
+            android:id="@+id/cancelView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cancel"
+            android:layout_alignParentRight="true" />
 
-    <TextView
-        android:id="@+id/tv_name_tpo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_icon_tpo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:textColor="#5b5b5b"
-        android:textSize="18dp"
-        />
+        <ImageView
+            android:id="@+id/iv_icon_tpo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="180dp"
+            android:src="@drawable/tpo_role" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/professionalemailTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name_tpo"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        android:layout_marginTop="20dp"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        <TextView
+            android:id="@+id/tv_name_tpo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_icon_tpo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#5b5b5b"
+            android:textSize="18dp" />
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/professionalemail"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/professionalemailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
-            android:hint="Enter Your Professional Email"
-            android:imeOptions="actionDone"
-            android:inputType="textEmailAddress"
-            android:maxLength="100"
-            android:singleLine="true"
-            android:textSize="16dp"
-            android:textColor="#03353e"
-            />
+            android:layout_below="@id/tv_name_tpo"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            android:layout_marginTop="20dp"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/professionalemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
+                android:hint="Enter Your Professional Email"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:maxLength="100"
+                android:singleLine="true"
+                android:textSize="16dp"
+                android:textColor="#03353e" />
+
+        </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
+
     <ProgressBar
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -72,8 +69,8 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
         android:visibility="gone"
-        android:id="@+id/nextProgress"
-        />
+        android:id="@+id/nextProgress" />
+
     <com.andexert.library.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,16 +78,15 @@
         android:layout_alignParentLeft="true"
         app:rv_rippleDuration="80"
         app:rv_color="#00bcd4"
-        app:rv_centered="true"
-        >
+        app:rv_centered="true">
+
         <Button
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#03353e"
             android:text="BACK"
-            android:background="@color/transparent"
-            />
+            android:background="@color/transparent" />
 
     </com.andexert.library.RippleView>
 
@@ -101,16 +97,15 @@
         android:layout_alignParentRight="true"
         app:rv_rippleDuration="80"
         app:rv_color="#00bcd4"
-        app:rv_centered="true"
-        >
+        app:rv_centered="true">
+
         <Button
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#03353e"
             android:text="NEXT"
-            android:background="@color/transparent"
-            />
+            android:background="@color/transparent" />
     </com.andexert.library.RippleView>
 
 </RelativeLayout>

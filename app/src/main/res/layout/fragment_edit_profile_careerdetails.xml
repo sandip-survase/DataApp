@@ -142,8 +142,7 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/locbutton"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
-            />
+            android:layout_marginTop="50dp" />
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

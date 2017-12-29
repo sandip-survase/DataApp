@@ -4,16 +4,14 @@
     android:layout_width="150dp"
     android:layout_height="180dp"
     android:padding="5dp"
-    android:background="@color/dark_color"
-    >
+    android:background="@color/dark_color">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/wheelll"
-        >
+        android:id="@+id/wheelll">
 
 
         <com.wx.wheelview.widget.WheelView
@@ -21,23 +19,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <com.wx.wheelview.widget.WheelView
             android:id="@+id/yearwheel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
 
     </LinearLayout>
+
     <View
         android:layout_width="1dp"
         android:layout_height="1dp"
         android:id="@+id/section"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,23 +44,22 @@
         android:orientation="vertical"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        >
+        android:layout_marginRight="5dp">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/monthsection1"
-            android:background="@color/dark_color"
-            />
+            android:background="@color/dark_color" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/monthsection2"
             android:background="@color/dark_color"
-            android:layout_marginTop="40dp"
-            />
+            android:layout_marginTop="40dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,54 +67,52 @@
         android:orientation="vertical"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        >
+        android:layout_marginRight="5dp">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/yearsection1"
-            android:background="@color/dark_color"
-            />
+            android:background="@color/dark_color" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/yearsection2"
             android:background="@color/dark_color"
-            android:layout_marginTop="40dp"
-            />
+            android:layout_marginTop="40dp" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/wheelll"
-        >
+        android:layout_below="@+id/wheelll">
+
         <View
             android:layout_width="1dp"
             android:layout_height="1dp"
             android:id="@+id/viewsection"
-            android:layout_centerHorizontal="true"
-            />
+            android:layout_centerHorizontal="true" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/viewsection"
-            android:id="@+id/setselectionview"
-            />
+            android:id="@+id/setselectionview" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/viewsection"
-            android:id="@+id/cancelselectionview"
-            />
+            android:id="@+id/cancelselectionview" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/wheelll"
-        >
+        android:layout_below="@+id/wheelll">
+
         <View
             android:layout_width="1dp"
             android:layout_height="1dp"
@@ -124,11 +120,12 @@
             android:layout_centerHorizontal="true"
 
             />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/textsection"
-            >
+            android:layout_toLeftOf="@+id/textsection">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,15 +133,15 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/sky_blue_color"
-                android:id="@+id/set"
-                />
+                android:id="@+id/set" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/textsection"
-            >
+            android:layout_toRightOf="@+id/textsection">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,8 +149,7 @@
                 android:textColor="@color/sky_blue_color"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/cancel"
-                />
+                android:id="@+id/cancel" />
         </RelativeLayout>
 
     </RelativeLayout>

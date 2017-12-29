@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/myprofileaccomplishments"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_intro"
@@ -18,8 +19,8 @@
             android:layout_height="50dp"
             android:id="@+id/studentBlock"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
-            />
+            android:elevation="6dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,8 +30,8 @@
             android:textSize="18dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:elevation="8dp"
-            />
+            android:elevation="8dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -38,8 +39,8 @@
             android:src="@drawable/add_icon_white"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:elevation="8dp"
-            />
+            android:elevation="8dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -47,8 +48,8 @@
             android:id="@+id/alumniBlock"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
-            />
+            android:elevation="6dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,8 +60,8 @@
             android:textSize="18dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
-            />
+            android:elevation="8dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -69,8 +70,8 @@
             android:src="@drawable/add_icon_white"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
-            />
+            android:elevation="8dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -78,8 +79,8 @@
             android:id="@+id/adminBlock"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
-            />
+            android:elevation="6dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,8 +91,8 @@
             android:id="@+id/honortxt"
             android:textSize="18dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_marginTop="30dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -100,8 +101,8 @@
             android:src="@drawable/add_icon_white"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
-            />
+            android:elevation="8dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -109,8 +110,8 @@
             android:id="@+id/patentbutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
-            />
+            android:elevation="6dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,8 +122,8 @@
             android:id="@+id/patenttxt"
             android:textSize="18dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_marginTop="30dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -131,8 +132,8 @@
             android:src="@drawable/add_icon_white"
             android:elevation="8dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_marginTop="30dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -140,8 +141,8 @@
             android:id="@+id/publicationbutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
-            />
+            android:elevation="6dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,8 +153,8 @@
             android:textSize="18dp"
             android:elevation="8dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_marginTop="30dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -162,8 +163,7 @@
             android:src="@drawable/add_icon_white"
             android:elevation="8dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_marginTop="30dp" />
 
     </RelativeLayout>
 </ScrollView>

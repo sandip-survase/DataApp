@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:id="@+id/crop_layout"
-        >
+        android:id="@+id/crop_layout">
 
         <ImageView
             android:id="@+id/result_image"
@@ -47,14 +46,13 @@
 
                 />
         </android.support.v4.widget.SwipeRefreshLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/mainfragment"
-            >
+            android:id="@+id/mainfragment">
 
         </FrameLayout>
-
 
 
     </RelativeLayout>

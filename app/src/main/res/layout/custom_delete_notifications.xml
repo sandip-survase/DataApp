@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
 
-     >
+    >
 
     <TextView
         android:id="@+id/selectedtxt"
@@ -13,7 +13,7 @@
         android:textSize="14dp"
         android:layout_centerVertical="true"
         android:text="0 Selected"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
 
     <ImageView
@@ -23,8 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="20dp"
-        android:id="@+id/trashnotifications"
-        />
+        android:id="@+id/trashnotifications" />
 
 
 </RelativeLayout>

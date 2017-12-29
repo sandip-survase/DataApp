@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofileintroscrollview"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_admin_institute_details"
@@ -20,8 +21,7 @@
             android:id="@+id/instnameinput"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:maxLength="200"
                 android:singleLine="true"
                 android:imeOptions="actionNext"
-                android:id="@+id/instname"/>
+                android:id="@+id/instname" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -43,8 +43,7 @@
             android:id="@+id/instemailinput"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -57,9 +56,10 @@
                 android:maxLength="100"
                 android:imeOptions="actionNext"
                 android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
-                android:id="@+id/instemail"/>
+                android:id="@+id/instemail" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,8 +68,7 @@
 
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -81,9 +80,10 @@
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
-                android:id="@+id/instweb"/>
+                android:id="@+id/instweb" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,8 +92,7 @@
             android:id="@+id/instphoneinput"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -105,9 +104,10 @@
                 android:imeOptions="actionNext"
                 android:textColor="@color/dark_color"
                 android:maxLength="11"
-                android:id="@+id/instphone"/>
+                android:id="@+id/instphone" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,8 +116,7 @@
             android:id="@+id/instphoneainput"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -129,9 +128,10 @@
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:maxLength="11"
-                android:id="@+id/instphonea"/>
+                android:id="@+id/instphonea" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -140,8 +140,7 @@
 
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -152,9 +151,10 @@
                 android:imeOptions="actionNext"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
-                android:id="@+id/instuniversity"/>
+                android:id="@+id/instuniversity" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,8 +163,7 @@
 
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -175,7 +174,7 @@
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:maxLength="20"
-                android:id="@+id/instreg"/>
+                android:id="@+id/instreg" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -194,8 +193,8 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
-            />
+            android:elevation="6dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,8 +203,7 @@
             android:id="@+id/caddrtxt"
             android:textColor="@color/dark_color"
             android:textSize="14dp"
-            android:layout_marginTop="12dp"
-            />
+            android:layout_marginTop="12dp" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -216,8 +214,8 @@
             android:layout_below="@+id/caddrtxt"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/caddrline1"
                 android:layout_width="match_parent"
@@ -229,9 +227,9 @@
                 android:singleLine="true"
                 android:inputType="textCapWords"
                 android:maxLines="1"
-                android:hint="House no/Flat no/Plot no, Name*"
-                />
+                android:hint="House no/Flat no/Plot no, Name*" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:theme="@style/TextLabel"
             android:layout_width="match_parent"
@@ -240,8 +238,8 @@
             android:layout_below="@+id/caddrline1input"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/caddrline2"
                 android:layout_width="match_parent"
@@ -253,9 +251,9 @@
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:maxLines="1"
-                android:hint="Street Name/Landmark*"
-                />
+                android:hint="Street Name/Landmark*" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:theme="@style/TextLabel"
             android:layout_width="match_parent"
@@ -264,8 +262,8 @@
             android:layout_below="@+id/caddrline2input"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/caddrline3"
                 android:layout_width="match_parent"
@@ -277,8 +275,7 @@
                 android:inputType="textCapWords"
                 android:singleLine="true"
                 android:maxLines="1"
-                android:hint="City, Pincode*"
-                />
+                android:hint="City, Pincode*" />
         </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>

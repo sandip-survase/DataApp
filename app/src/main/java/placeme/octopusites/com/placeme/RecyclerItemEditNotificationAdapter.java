@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 
@@ -28,13 +27,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by sunny on 12/20/2017.
  */
 
-public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<RecyclerItemEditNotificationAdapter.MyViewHolder>     {
+public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<RecyclerItemEditNotificationAdapter.MyViewHolder> {
 
     private ArrayList<RecyclerItemEdit> itemList;
     private String searchText;
     Context mContext;
-
-
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -67,9 +64,7 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
     }
 
 
-
-
-    public void updateList(ArrayList<RecyclerItemEdit> list,String searchText){
+    public void updateList(ArrayList<RecyclerItemEdit> list, String searchText) {
         itemList = list;
         this.searchText = searchText;
         notifyDataSetChanged();
@@ -77,7 +72,7 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("tag2", "adapter notification Accessed" );
+        Log.d("tag2", "adapter notification Accessed");
 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_list_row, parent, false);
@@ -90,111 +85,90 @@ public class RecyclerItemEditNotificationAdapter  extends RecyclerView.Adapter<R
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         RecyclerItemEdit item = itemList.get(position);
-        try{
+        try {
 
+            Log.d("Tag", "contex: " + mContext);
+            Log.d("Tag", "uploadedby: " + item.getUploadedby());
 
-
-            Log.d("Tag", "contex: "+mContext);
-        Log.d("Tag", "uploadedby: "+item.getUploadedby());
-
-
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("AESTest/GetImageThumbnail")
-                .appendQueryParameter("u",Z.Encrypt(item.getUploadedby(),mContext) )
-                .build();
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImageThumbnail")
+                    .appendQueryParameter("u", Z.Encrypt(item.getUploadedby(), mContext))
+                    .build();
 
             Glide.with(mContext)
-                .load(uri)
+                    .load(uri)
 //                .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .signature(new StringSignature(item.getSignature()))
-                .into(holder.uploadedbyprofile);
+                    .into(holder.uploadedbyprofile);
 
 
-            Log.d("Tag", "uri : "+uri.toString());
-            Log.d("Tag", "signature : "+item.getSignature());
+            Log.d("Tag", "uri : " + uri.toString());
+            Log.d("Tag", "signature : " + item.getSignature());
 
 
-            if(searchText!=null) {
-            if (searchText.length() > 0) {
-                holder.title.setText(highlightText(searchText,item.getTitle()));
-            }
-            else
+            if (searchText != null) {
+                if (searchText.length() > 0) {
+                    holder.title.setText(highlightText(searchText, item.getTitle()));
+                } else
+                    holder.title.setText(item.getTitle());
+            } else
                 holder.title.setText(item.getTitle());
-        }
-        else
-            holder.title.setText(item.getTitle());
 
             holder.title.setTypeface(Z.getBold(holder.title.getContext()));
-        holder.notification.setText(item.getNotification());
-        holder.notification.setTypeface(Z.getLight(holder.title.getContext()));
+            holder.notification.setText(item.getNotification());
+            holder.notification.setTypeface(Z.getLight(holder.title.getContext()));
 
 
-        if(item.getUploadedby().equals("PLACE ME")){
-            holder.uploadtime.setVisibility(View.GONE);
-        }else {
-            holder.uploadtime.setVisibility(View.VISIBLE);
-            holder.uploadtime.setText(item.getUploadtime());
-            holder.uploadtime.setTypeface(Z.getLight(holder.title.getContext()));
-        }
-
-        if(item.isAttachment())
-        {
-            Drawable myDrawable = mContext.getResources().getDrawable(R.drawable.attachment_icon);
-            holder.imageView.setImageDrawable(myDrawable);
-
-        }
-        else if(!item.isAttachment())
-        {
-            holder.imageView.setImageBitmap(null);
-        }
-
-        if(item.isIsread())
-        {
-            holder.title.setTextColor(Color.parseColor("#03353e"));
-
-
-        }
-        else if(!item.isIsread())
-        {
-            holder.title.setTextColor(Color.parseColor("#00bcd4"));
-
-
-        }
-
-
-        // temporary work remove when uploader signature sending through object
-        try {
-            Log.d("uploadedbysfdsdf", ": "+item.getUploadedby());
-            String s1=item.getUploadedby();
-
-            if(  s1.equals("sandipsurvase1993@gmail.com")   ){
-                holder.logo.setVisibility(View.VISIBLE);
-            }else {
-                holder.logo.setVisibility(View.INVISIBLE);
+            if (item.getUploadedby().equals("PLACE ME")) {
+                holder.uploadtime.setVisibility(View.GONE);
+            } else {
+                holder.uploadtime.setVisibility(View.VISIBLE);
+                holder.uploadtime.setText(item.getUploadtime());
+                holder.uploadtime.setTypeface(Z.getLight(holder.title.getContext()));
             }
+
+            if (item.isAttachment()) {
+                Drawable myDrawable = mContext.getResources().getDrawable(R.drawable.attachment_icon);
+                holder.imageView.setImageDrawable(myDrawable);
+
+            } else if (!item.isAttachment()) {
+                holder.imageView.setImageBitmap(null);
+            }
+
+            if (item.isIsread()) {
+                holder.title.setTextColor(Color.parseColor("#03353e"));
+
+
+            } else if (!item.isIsread()) {
+                holder.title.setTextColor(Color.parseColor("#00bcd4"));
+
+
+            }
+
+
+            // temporary work remove when uploader signature sending through object
+            try {
+                Log.d("uploadedbysfdsdf", ": " + item.getUploadedby());
+                String s1 = item.getUploadedby();
+
+                if (s1.equals("sandipsurvase1993@gmail.com")) {
+                    holder.logo.setVisibility(View.VISIBLE);
+                } else {
+                    holder.logo.setVisibility(View.INVISIBLE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
 
 
     }
-
-
-
-
 
 
     @Override

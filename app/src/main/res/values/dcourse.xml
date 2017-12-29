@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="dcourses">
-       <item>- Select Course -</item>
+        <item>- Select Course -</item>
         <item>Aeronautical Engineering</item>
-           <item>Agricultural Engineering</item>
-           <item>Architecture Assistant</item>
-           <item>Automobile Engineering</item>
-           <item>Chemical Engineering</item>
-           <item>Civil Engineering</item>
-           <item>Computer Hardware and Network Engineering</item>
-           <item>Computer Science and Engineering</item>
-           <item>Dairy Technology</item>
-           <item>Electrical and Electronics Engineering</item>
-           <item>Electrical Engineering</item>
-           <item>Electronics (Microprocessor)</item>
-           <item>Electronics and Communications Engineering</item>
-           <item>Electronics and Telecommunication Engineering</item>
-           <item>Environmental Engineering</item>
-           <item>Fashion Design</item>
-           <item>Fire and Safety Technology</item>
-           <item>Food Production and Technology</item>
-           <item>Food Technology</item>
-           <item>Garment Technology</item>
-           <item>Information Technology</item>
-           <item>Instrumentation and Control</item>
-           <item>Instrumentation Technology</item>
-           <item>Interior Design and Decoration</item>
-           <item>Leather Technology</item>
-           <item>Library and Information Sciences</item>
-           <item>Marine Engineering</item>
-           <item>Mechanical Engineering</item>
-           <item>Mechatronics Engineering</item>
-           <item>Medical Laboratory Technology</item>
-           <item>Metallurgy</item>
-           <item>Mining Technology</item>
-           <item>Multimedia and Animation</item>
-           <item>Network Engineering</item>
-           <item>Petroleum Engineering</item>
-           <item>Plastic Engineering</item>
-           <item>Production and Manufacturing</item>
-           <item>Rubber Technology</item>
-           <item>Textile Engineering</item>
-       <item>Other</item>
+        <item>Agricultural Engineering</item>
+        <item>Architecture Assistant</item>
+        <item>Automobile Engineering</item>
+        <item>Chemical Engineering</item>
+        <item>Civil Engineering</item>
+        <item>Computer Hardware and Network Engineering</item>
+        <item>Computer Science and Engineering</item>
+        <item>Dairy Technology</item>
+        <item>Electrical and Electronics Engineering</item>
+        <item>Electrical Engineering</item>
+        <item>Electronics (Microprocessor)</item>
+        <item>Electronics and Communications Engineering</item>
+        <item>Electronics and Telecommunication Engineering</item>
+        <item>Environmental Engineering</item>
+        <item>Fashion Design</item>
+        <item>Fire and Safety Technology</item>
+        <item>Food Production and Technology</item>
+        <item>Food Technology</item>
+        <item>Garment Technology</item>
+        <item>Information Technology</item>
+        <item>Instrumentation and Control</item>
+        <item>Instrumentation Technology</item>
+        <item>Interior Design and Decoration</item>
+        <item>Leather Technology</item>
+        <item>Library and Information Sciences</item>
+        <item>Marine Engineering</item>
+        <item>Mechanical Engineering</item>
+        <item>Mechatronics Engineering</item>
+        <item>Medical Laboratory Technology</item>
+        <item>Metallurgy</item>
+        <item>Mining Technology</item>
+        <item>Multimedia and Animation</item>
+        <item>Network Engineering</item>
+        <item>Petroleum Engineering</item>
+        <item>Plastic Engineering</item>
+        <item>Production and Manufacturing</item>
+        <item>Rubber Technology</item>
+        <item>Textile Engineering</item>
+        <item>Other</item>
     </array>
 
 </resources>

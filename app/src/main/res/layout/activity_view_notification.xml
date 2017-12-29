@@ -12,16 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/boxborderadminactions"
-        android:elevation="2dp"
-        >
+        android:elevation="2dp">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/headingrl"
-            android:padding="10dp"
-            >
+            android:padding="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,8 +30,7 @@
                 android:text="Title"
                 android:textStyle="bold"
                 android:layout_centerVertical="true"
-                android:gravity="center"
-                />
+                android:gravity="center" />
 
         </RelativeLayout>
 
@@ -44,13 +42,12 @@
             android:id="@+id/notificationsection"
             android:background="@color/sky_blue_color"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            />
+            android:layout_marginRight="4dp" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/notificationsection"
-            >
+            android:layout_below="@+id/notificationsection">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -67,8 +64,7 @@
                     android:layout_marginRight="10dp"
                     android:id="@+id/notificationnotificationview"
                     android:text="Notification"
-                    android:textIsSelectable="true"
-                    />
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,14 +76,13 @@
                     android:layout_marginTop="10dp"
                     android:id="@+id/attachmentstxt"
                     android:layout_marginLeft="10dp"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="1dp"
                     android:id="@+id/section"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:layout_centerHorizontal="true" />
 
                 <RelativeLayout
                     android:visibility="gone"
@@ -101,15 +96,13 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     android:id="@+id/attachmentrl1"
-                    android:layout_toLeftOf="@+id/section"
-                    >
+                    android:layout_toLeftOf="@+id/section">
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:id="@+id/attachment1img"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -121,16 +114,16 @@
                         android:textColor="@color/dark_color"
                         android:layout_centerHorizontal="true"
                         android:singleLine="true"
-                        android:gravity="center"
-                        />
+                        android:gravity="center" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/sky_blue_color"
                         android:layout_below="@+id/filename1"
                         android:layout_marginTop="5dp"
-                        android:id="@+id/attachline1"
-                        />
+                        android:id="@+id/attachline1" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -138,10 +131,10 @@
                         android:src="@drawable/download"
                         android:layout_marginTop="5dp"
                         android:layout_centerHorizontal="true"
-                        android:backgroundTint="@color/dark_color"
-                        />
+                        android:backgroundTint="@color/dark_color" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -154,16 +147,14 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/attachmentrl2"
-                    >
+                    android:id="@+id/attachmentrl2">
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@drawable/pdf"
                         android:id="@+id/attachment2img"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -176,25 +167,25 @@
                         android:layout_marginTop="2dp"
                         android:textColor="@color/dark_color"
                         android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        />
+                        android:gravity="center" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/sky_blue_color"
                         android:layout_below="@+id/filename2"
                         android:layout_marginTop="5dp"
-                        android:id="@+id/attachline2"
-                        />
+                        android:id="@+id/attachline2" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_below="@+id/attachline2"
                         android:src="@drawable/download"
                         android:layout_marginTop="5dp"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -207,16 +198,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     android:id="@+id/attachmentrl3"
-                    android:layout_toLeftOf="@+id/section"
-                    >
+                    android:layout_toLeftOf="@+id/section">
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@drawable/pdf"
                         android:id="@+id/attachment3img"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -229,26 +218,26 @@
                         android:layout_marginTop="2dp"
                         android:textColor="@color/dark_color"
                         android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        />
+                        android:gravity="center" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/sky_blue_color"
                         android:layout_below="@+id/filename3"
                         android:layout_marginTop="5dp"
-                        android:id="@+id/attachline3"
-                        />
+                        android:id="@+id/attachline3" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_below="@+id/attachline3"
                         android:src="@drawable/download"
                         android:layout_marginTop="5dp"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -261,16 +250,14 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/attachmentrl4"
-                    >
+                    android:id="@+id/attachmentrl4">
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@drawable/pdf"
                         android:id="@+id/attachment4img"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -283,25 +270,25 @@
                         android:layout_marginTop="2dp"
                         android:textColor="@color/dark_color"
                         android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        />
+                        android:gravity="center" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/sky_blue_color"
                         android:layout_below="@+id/filename4"
                         android:layout_marginTop="5dp"
-                        android:id="@+id/attachline4"
-                        />
+                        android:id="@+id/attachline4" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_below="@+id/attachline4"
                         android:src="@drawable/download"
                         android:layout_marginTop="5dp"
-                        android:layout_centerHorizontal="true"
-                        />
-                    </RelativeLayout>
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -314,16 +301,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     android:id="@+id/attachmentrl5"
-                    android:layout_toLeftOf="@+id/section"
-                    >
+                    android:layout_toLeftOf="@+id/section">
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@drawable/pdf"
                         android:id="@+id/attachment5img"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -336,32 +321,32 @@
                         android:layout_marginTop="2dp"
                         android:textColor="@color/dark_color"
                         android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        />
+                        android:gravity="center" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/sky_blue_color"
                         android:layout_below="@+id/filename5"
                         android:layout_marginTop="5dp"
-                        android:id="@+id/attachline5"
-                        />
+                        android:id="@+id/attachline5" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_below="@+id/attachline5"
                         android:src="@drawable/download"
                         android:layout_marginTop="5dp"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:layout_centerHorizontal="true" />
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="16dp"
                     android:layout_below="@+id/attachmentrl5"
-                    android:id="@+id/blankview1"
-                    />
+                    android:id="@+id/blankview1" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -371,8 +356,8 @@
                     android:layout_marginTop="10dp"
                     android:id="@+id/uploadedbytxt"
                     android:layout_marginLeft="10dp"
-                    android:textSize="11dp"
-                    />
+                    android:textSize="11dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -382,17 +367,16 @@
                     android:layout_marginTop="4dp"
                     android:id="@+id/lastmodifiedtxt"
                     android:layout_marginLeft="10dp"
-                    android:textSize="11dp"
-                    />
+                    android:textSize="11dp" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="16dp"
                     android:layout_below="@+id/lastmodifiedtxt"
-                    android:id="@+id/blankview2"
-                    />
+                    android:id="@+id/blankview2" />
             </RelativeLayout>
 
-            </ScrollView>
+        </ScrollView>
 
     </RelativeLayout>
 

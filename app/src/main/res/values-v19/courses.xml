@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="courses">
-<item>0,- Select Course -</item>
-<item>1,Bachelor Hotel Management and Catering Technology(B.H.M.C.T)</item>
-<item>2,Bachelor Library Science(B.L.Sc)</item>
-<item>3,Bachelor of Applied Sciences(B.A.S)</item>
-<item>4,Bachelor of Architecture(B.Arch)</item>
-<item>5,Bachelor of Arts Bachelor of Education(B.A. B.Ed)</item>
-<item>6,Bachelor of Arts Bachelor of Law(B.A.LLB)</item>
-<item>7,Bachelor of Arts(B.A)</item>
-<item>8,Bachelor of Audiology and Speech Language Pathology(B.A.S.L.P)</item>
-<item>9,Bachelor of Ayurvedic Medicine and Surgery(B.A.M.S)</item>
-<item>10,Bachelor of Business Administration Bachelor of Law(B.B.A LL.B)</item>
-<item>11,Bachelor of Business Administration(B.B.A)</item>
-<item>12,Bachelor of Business Management(B.B.M)</item>
-<item>13,Bachelor of Business Studies(B.B.S)</item>
-<item>14,Bachelor of Commerce(B.Com)</item>
-<item>15,Bachelor of Communication Journalism(B.C.J)</item>
-<item>16,Bachelor of Computer Applications(B.C.A)</item>
-<item>17,Bachelor of Computer Science(B.C.S)</item>
-<item>18,Bachelor of Dental Surgery(B.D.S)</item>
-<item>19,Bachelor of Design(B.Des)</item>
-<item>20,Bachelor of education in Artificial Intelligence(B.Ed AI)</item>
-<item>21,Bachelor of Education(B.Ed)</item>
-<item>22,Bachelor of Electronic Science(B.E.S)</item>
-<item>23,Bachelor of Elementary Education(B.EL.Ed)</item>
-<item>24,Bachelor of Engineering(B.E)</item>
-<item>25,Bachelor of Fashion Technology(B.F.Tech)</item>
-<item>26,Bachelor of Financial Investment and Analysis(B.F.I.A)</item>
-<item>27,Bachelor of Fine Arts(B.F.A)</item>
-<item>28,Bachelor of Fishery Sciences(B.F.S)</item>
-<item>29,Bachelor of General Law(B.G.L)</item>
-<item>30,Bachelor of Homeopathic Medicine and Surgery(B.H.M.S)</item>
-<item>31,Bachelor of Hospitality and Tourism Management(B.H.T.M)</item>
-<item>32,Bachelor of Hotel Management(B.H.M)</item>
-<item>33,Bachelor of Information Systems Management(B.I.S.M)</item>
-<item>34,Bachelor of Labour Management(B.L.M)</item>
-<item>35,Bachelor of Law(LL.B)</item>
-<item>36,Bachelor of Laws(B.L)</item>
-<item>37,Bachelor of Library and Information Science(B.L.I.S)</item>
-<item>38,Bachelor of Literature(B.Lit)</item>
-<item>39,Bachelor of Medical Laboratory Technology(B.M.L.T)</item>
-<item>40,Bachelor of Medical Record Science(B.M.R.Sc)</item>
-<item>41,Bachelor of Medical Technology(B.M.T)</item>
-<item>42,Bachelor of Medicine Bachelor of Surgery(M.B.B.S)</item>
-<item>43,Bachelor of Mental Retardation(B.M.R)</item>
-<item>44,Bachelor of Naturopathy and Yogic Sciences(B.N.Y.Sc)</item>
-<item>45,Bachelor of Occupational Therapy(B.O.T)</item>
-<item>46,Bachelor of Occupational Therapy(B.O.Th)</item>
-<item>47,Bachelor of Optometry and Vision Science(B.Optom)</item>
-<item>48,Bachelor of Pharmacy(B.Pharma)</item>
-<item>49,Bachelor of Physical Education(B.P.E)</item>
-<item>50,Bachelor Of Physical Education(B.P.Ed)</item>
-<item>51,Bachelor of Physiotherapy(B.P.T)</item>
-<item>52,Bachelor of Public Relations(B.P.R)</item>
-<item>53,Bachelor of Science Bachelor of Education(B.Sc.B.Ed)</item>
-<item>54,Bachelor of Science Education(B.S.E)</item>
-<item>55,Bachelor of Science in Education(B.Sc.Ed)</item>
-<item>56,Bachelor of Science(B.S)</item>
-<item>57,Bachelor of Siddha Medical Sciences(B.S.M.S)</item>
-<item>58,Bachelor Of Social Work(B.S.W)</item>
-<item>59,Bachelor of Socio Legal Sciences Bachelor of Laws(B.S.L.LL.B)</item>
-<item>60,Bachelor of Speech Language and Audiology(B.S.L.A)</item>
-<item>61,Bachelor of Tourism Administration(B.T.A)</item>
-<item>62,Bachelor of Unani Medicine and Surgery(B.U.M.S)</item>
-<item>63,Bachelor of Unani Medicine and Surgery(Kamil e Tob o Jarahat)</item>
-<item>64,Bachelor of Veterinary Science(B.V.Sc)</item>
-<item>65,Bachelors of Technology(B.Tech)</item>
-<item>66,Basic Training Certificate(B.T.C)</item>
-<item>67,Behavioral Healthcare Education(B.H.Ed)</item>
-<item>68,Under Graduate Basic Training(U.G.B.T)</item>
-<item>69,Under Graduate Teacher Training(U.G.T.T)</item>
-<item>70,Under Graduate Training(U.G.T)</item>
+        <item>0,- Select Course -</item>
+        <item>1,Bachelor Hotel Management and Catering Technology(B.H.M.C.T)</item>
+        <item>2,Bachelor Library Science(B.L.Sc)</item>
+        <item>3,Bachelor of Applied Sciences(B.A.S)</item>
+        <item>4,Bachelor of Architecture(B.Arch)</item>
+        <item>5,Bachelor of Arts Bachelor of Education(B.A. B.Ed)</item>
+        <item>6,Bachelor of Arts Bachelor of Law(B.A.LLB)</item>
+        <item>7,Bachelor of Arts(B.A)</item>
+        <item>8,Bachelor of Audiology and Speech Language Pathology(B.A.S.L.P)</item>
+        <item>9,Bachelor of Ayurvedic Medicine and Surgery(B.A.M.S)</item>
+        <item>10,Bachelor of Business Administration Bachelor of Law(B.B.A LL.B)</item>
+        <item>11,Bachelor of Business Administration(B.B.A)</item>
+        <item>12,Bachelor of Business Management(B.B.M)</item>
+        <item>13,Bachelor of Business Studies(B.B.S)</item>
+        <item>14,Bachelor of Commerce(B.Com)</item>
+        <item>15,Bachelor of Communication Journalism(B.C.J)</item>
+        <item>16,Bachelor of Computer Applications(B.C.A)</item>
+        <item>17,Bachelor of Computer Science(B.C.S)</item>
+        <item>18,Bachelor of Dental Surgery(B.D.S)</item>
+        <item>19,Bachelor of Design(B.Des)</item>
+        <item>20,Bachelor of education in Artificial Intelligence(B.Ed AI)</item>
+        <item>21,Bachelor of Education(B.Ed)</item>
+        <item>22,Bachelor of Electronic Science(B.E.S)</item>
+        <item>23,Bachelor of Elementary Education(B.EL.Ed)</item>
+        <item>24,Bachelor of Engineering(B.E)</item>
+        <item>25,Bachelor of Fashion Technology(B.F.Tech)</item>
+        <item>26,Bachelor of Financial Investment and Analysis(B.F.I.A)</item>
+        <item>27,Bachelor of Fine Arts(B.F.A)</item>
+        <item>28,Bachelor of Fishery Sciences(B.F.S)</item>
+        <item>29,Bachelor of General Law(B.G.L)</item>
+        <item>30,Bachelor of Homeopathic Medicine and Surgery(B.H.M.S)</item>
+        <item>31,Bachelor of Hospitality and Tourism Management(B.H.T.M)</item>
+        <item>32,Bachelor of Hotel Management(B.H.M)</item>
+        <item>33,Bachelor of Information Systems Management(B.I.S.M)</item>
+        <item>34,Bachelor of Labour Management(B.L.M)</item>
+        <item>35,Bachelor of Law(LL.B)</item>
+        <item>36,Bachelor of Laws(B.L)</item>
+        <item>37,Bachelor of Library and Information Science(B.L.I.S)</item>
+        <item>38,Bachelor of Literature(B.Lit)</item>
+        <item>39,Bachelor of Medical Laboratory Technology(B.M.L.T)</item>
+        <item>40,Bachelor of Medical Record Science(B.M.R.Sc)</item>
+        <item>41,Bachelor of Medical Technology(B.M.T)</item>
+        <item>42,Bachelor of Medicine Bachelor of Surgery(M.B.B.S)</item>
+        <item>43,Bachelor of Mental Retardation(B.M.R)</item>
+        <item>44,Bachelor of Naturopathy and Yogic Sciences(B.N.Y.Sc)</item>
+        <item>45,Bachelor of Occupational Therapy(B.O.T)</item>
+        <item>46,Bachelor of Occupational Therapy(B.O.Th)</item>
+        <item>47,Bachelor of Optometry and Vision Science(B.Optom)</item>
+        <item>48,Bachelor of Pharmacy(B.Pharma)</item>
+        <item>49,Bachelor of Physical Education(B.P.E)</item>
+        <item>50,Bachelor Of Physical Education(B.P.Ed)</item>
+        <item>51,Bachelor of Physiotherapy(B.P.T)</item>
+        <item>52,Bachelor of Public Relations(B.P.R)</item>
+        <item>53,Bachelor of Science Bachelor of Education(B.Sc.B.Ed)</item>
+        <item>54,Bachelor of Science Education(B.S.E)</item>
+        <item>55,Bachelor of Science in Education(B.Sc.Ed)</item>
+        <item>56,Bachelor of Science(B.S)</item>
+        <item>57,Bachelor of Siddha Medical Sciences(B.S.M.S)</item>
+        <item>58,Bachelor Of Social Work(B.S.W)</item>
+        <item>59,Bachelor of Socio Legal Sciences Bachelor of Laws(B.S.L.LL.B)</item>
+        <item>60,Bachelor of Speech Language and Audiology(B.S.L.A)</item>
+        <item>61,Bachelor of Tourism Administration(B.T.A)</item>
+        <item>62,Bachelor of Unani Medicine and Surgery(B.U.M.S)</item>
+        <item>63,Bachelor of Unani Medicine and Surgery(Kamil e Tob o Jarahat)</item>
+        <item>64,Bachelor of Veterinary Science(B.V.Sc)</item>
+        <item>65,Bachelors of Technology(B.Tech)</item>
+        <item>66,Basic Training Certificate(B.T.C)</item>
+        <item>67,Behavioral Healthcare Education(B.H.Ed)</item>
+        <item>68,Under Graduate Basic Training(U.G.B.T)</item>
+        <item>69,Under Graduate Teacher Training(U.G.T.T)</item>
+        <item>70,Under Graduate Training(U.G.T)</item>
         <item>71,Other</item>
     </array>
 </resources>

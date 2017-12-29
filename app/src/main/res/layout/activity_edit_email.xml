@@ -20,8 +20,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="5dp"
         android:id="@+id/editemailrl1"
-        android:elevation="6dp"
-        >
+        android:elevation="6dp">
 
 
         <TextView
@@ -30,8 +29,7 @@
             android:text="Email associated with account"
             android:textSize="12dp"
             android:textColor="@color/dark_color"
-            android:id="@+id/asstxt"
-            />
+            android:id="@+id/asstxt" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,8 +40,7 @@
             android:text="username@email.com"
             android:id="@+id/primaryemail"
             android:layout_marginTop="15dp"
-            android:layout_below="@+id/asstxt"
-            />
+            android:layout_below="@+id/asstxt" />
 
         <ImageView
             android:layout_width="25dp"
@@ -51,8 +48,7 @@
             android:src="@drawable/pencil_icon"
             android:id="@+id/editemailicon"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            />
+            android:layout_marginRight="5dp" />
 
 
         <TextView
@@ -68,6 +64,7 @@
             />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,8 +72,7 @@
         android:background="@drawable/textviewborder2"
         android:visibility="gone"
         android:padding="10dp"
-        android:elevation="6dp"
-        >
+        android:elevation="6dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,8 +80,7 @@
             android:text="Edit email address"
             android:textSize="14dp"
             android:textColor="@color/dark_color"
-            android:id="@+id/ass2txt"
-            />
+            android:id="@+id/ass2txt" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -96,8 +91,7 @@
             android:layout_marginTop="20dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -111,9 +105,10 @@
                 android:maxLength="100"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/dark_color"
-                android:id="@+id/newemail"/>
+                android:id="@+id/newemail" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,8 +117,7 @@
             android:layout_marginTop="20dp"
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            >
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -135,7 +129,7 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
-                android:id="@+id/accountpassword"/>
+                android:id="@+id/accountpassword" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -148,8 +142,7 @@
             android:theme="@style/TextLabel"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -162,7 +155,7 @@
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:inputType="number"
-                android:id="@+id/otp"/>
+                android:id="@+id/otp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -173,8 +166,8 @@
             android:layout_below="@+id/otpinput"
             android:id="@+id/passpasstxt"
             android:textColor="@color/dark_color"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp" />
+
         <ProgressBar
             android:id="@+id/editemailprogress"
             android:layout_height="wrap_content"
@@ -182,8 +175,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:visibility="gone"
-            android:layout_below="@+id/passpasstxt"
-            />
+            android:layout_below="@+id/passpasstxt" />
 
         <Button
             android:layout_width="200dp"
@@ -197,17 +189,16 @@
             android:elevation="10dp"
             android:background="@drawable/textviewborder"
             android:layout_below="@+id/passpasstxt"
-            android:id="@+id/changeemailbutton"
-            />
+            android:id="@+id/changeemailbutton" />
 
     </RelativeLayout>
+
     <View
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/editselectionview"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        />
+        android:layout_marginRight="5dp" />
 
 </RelativeLayout>

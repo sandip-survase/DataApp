@@ -9,36 +9,34 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_centerVertical="true"
-        android:id="@+id/section"
-        />
+        android:id="@+id/section" />
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/tableborder"
-        >
+        android:background="@drawable/tableborder">
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/dark_color"
             android:layout_centerHorizontal="true"
-            android:id="@+id/sectionhorizontal"
-            />
+            android:id="@+id/sectionhorizontal" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
             android:id="@+id/sectionvertical"
-            android:background="@color/dark_color"
-            />
+            android:background="@color/dark_color" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/sectionhorizontal"
-            android:layout_above="@id/sectionvertical"
-            >
+            android:layout_above="@id/sectionvertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,8 +45,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
                 android:textSize="10dp"
-                android:id="@+id/aptitxt"
-                />
+                android:id="@+id/aptitxt" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -64,8 +61,8 @@
                     android:textColor="@color/dark_color"
                     android:text="Company Criteria"
                     android:textSize="12dp"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:layout_centerHorizontal="true" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,21 +72,20 @@
                     android:textSize="12dp"
                     android:text="85"
                     android:textStyle="bold"
-                    android:layout_centerHorizontal="true"/>
-
+                    android:layout_centerHorizontal="true" />
 
 
             </RelativeLayout>
 
 
-
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/sectionhorizontal"
-            android:layout_below="@id/sectionvertical"
-            >
+            android:layout_below="@id/sectionvertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,8 +94,8 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/ugtxt"
-                />
+                android:id="@+id/ugtxt" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,8 +110,8 @@
                     android:textColor="@color/dark_color"
                     android:text="Company Criteria"
                     android:textSize="12dp"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:layout_centerHorizontal="true" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,22 +121,19 @@
                     android:textSize="12dp"
                     android:text="85"
                     android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    />
-
+                    android:layout_centerHorizontal="true" />
 
 
             </RelativeLayout>
 
 
-
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/sectionhorizontal"
-            android:layout_above="@id/sectionvertical"
-            >
+            android:layout_above="@id/sectionvertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -150,8 +143,8 @@
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
                 android:textSize="10dp"
-                android:id="@+id/diplomatxt"
-                />
+                android:id="@+id/diplomatxt" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,8 +159,8 @@
                     android:textColor="@color/dark_color"
                     android:text="Company Criteria"
                     android:textSize="12dp"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:layout_centerHorizontal="true" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,20 +170,19 @@
                     android:textSize="12dp"
                     android:text="85"
                     android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:layout_centerHorizontal="true" />
 
 
             </RelativeLayout>
 
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/sectionhorizontal"
-            android:layout_below="@id/sectionvertical"
-            >
+            android:layout_below="@id/sectionvertical">
 
 
         </RelativeLayout>

@@ -13,28 +13,27 @@
         android:layout_height="match_parent"
 
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:focusableInTouchMode="true"
-            >
+            android:focusableInTouchMode="true">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Modify/Delete Notification"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
-                android:id="@+id/createnotitxt"
-                />
+                android:id="@+id/createnotitxt" />
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/delete_icon"
                 android:layout_alignParentRight="true"
-                android:id="@+id/trashnotification"
-                />
+                android:id="@+id/trashnotification" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,8 +43,7 @@
                 android:text="Your changes will be broadcasted only to the students and/or alumnis of your institute."
                 android:layout_marginTop="10dp"
                 android:textSize="14dp"
-                android:id="@+id/createnotinotitxt"
-                />
+                android:id="@+id/createnotinotitxt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,8 +53,7 @@
                 android:text="Last modified : 15-Feb-2016, 10:30 AM"
                 android:layout_marginTop="10dp"
                 android:textSize="11dp"
-                android:id="@+id/lastmodifiedtxt"
-                />
+                android:id="@+id/lastmodifiedtxt" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -66,8 +63,7 @@
                 android:layout_below="@+id/lastmodifiedtxt"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -78,9 +74,10 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:id="@+id/title"/>
+                    android:id="@+id/title" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,8 +86,7 @@
                 android:id="@+id/notificationinput"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -104,7 +100,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="2500"
-                    android:id="@+id/notification"/>
+                    android:id="@+id/notification" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -115,8 +111,7 @@
                 android:textSize="12dp"
                 android:layout_below="@+id/notificationinput"
                 android:layout_marginTop="5dp"
-                android:id="@+id/choosetxt"
-                />
+                android:id="@+id/choosetxt" />
 
 
             <CheckBox
@@ -127,8 +122,8 @@
                 android:text="Students"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                />
+                android:textColor="@color/dark_color" />
+
             <CheckBox
                 android:id="@+id/CheckBoxsAlumni"
                 android:layout_width="wrap_content"
@@ -139,15 +134,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp"
-                />
+                android:layout_marginLeft="20dp" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="1dp"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/section"
-                />
+                android:id="@+id/section" />
 
 
             <RelativeLayout
@@ -187,8 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg1"
-                    android:background="#eee"
-                    />
+                    android:background="#eee" />
 
             </RelativeLayout>
 
@@ -201,8 +193,7 @@
                 android:id="@+id/batchesinput"
                 android:theme="@style/TextLabel"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-                >
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -212,7 +203,7 @@
                     android:focusable="false"
                     android:textSize="15dp"
                     android:textColor="#eee"
-                    android:id="@+id/batches"/>
+                    android:id="@+id/batches" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -223,8 +214,7 @@
                 android:text="Attachments"
                 android:layout_below="@+id/batchesinput"
                 android:layout_marginTop="5dp"
-                android:id="@+id/attachmentstxt"
-                />
+                android:id="@+id/attachmentstxt" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -236,8 +226,7 @@
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="10dp"
-                >
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -266,8 +255,8 @@
         </RelativeLayout>
 
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -276,8 +265,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         app:srcCompat="@drawable/attachment_white_icon"
-        app:backgroundTint="@color/dark_color"
-        />
+        app:backgroundTint="@color/dark_color" />
 
 
 </RelativeLayout>

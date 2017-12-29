@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
 
-     >
+    >
 
     <TextView
         android:id="@+id/trytxt"
@@ -12,7 +12,7 @@
         android:textColor="#282f35"
         android:textSize="23dp"
         android:text="Place Me"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
 
     <TextView
@@ -24,7 +24,6 @@
         android:text="Pro"
         android:layout_marginTop="4dp"
         android:layout_toRightOf="@+id/trytxt"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginRight="10dp" />
 
 </RelativeLayout>

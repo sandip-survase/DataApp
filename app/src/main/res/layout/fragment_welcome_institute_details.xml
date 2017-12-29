@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fcfdfd"
-    android:focusableInTouchMode="true"
-    >
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/welcometextviewcontext1"
             android:layout_width="wrap_content"
@@ -31,8 +29,7 @@
             android:layout_below="@+id/welcometextviewcontext1"
             android:src="@drawable/logo"
             android:layout_centerHorizontal="true"
-            android:id="@+id/logo"
-            />
+            android:id="@+id/logo" />
 
         <TextView
             android:id="@+id/welcometextviewcontext2"
@@ -44,6 +41,7 @@
             android:layout_marginTop="20dp"
             android:textColor="@color/sky_blue_color"
             android:textSize="14dp" />
+
         <ImageView
             android:id="@+id/enterinstdetailsimage"
             android:layout_width="60dp"
@@ -51,231 +49,219 @@
             android:layout_below="@+id/welcometextviewcontext2"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/enterinstdetailsimage"
-            />
+            android:src="@drawable/enterinstdetailsimage" />
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/instituteNameTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/enterinstdetailsimage"
-        android:layout_marginTop="20dp"
-        android:theme="@style/TextLabelNew"
-        android:layout_centerInParent="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/instituteName"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/instituteNameTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter full institute name"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="500"
-            android:inputType="textCapWords"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/enterinstdetailsimage"
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextLabelNew"
+            android:layout_centerInParent="true"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/instituteName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter full institute name"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="500"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/countryinputlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/instituteNameTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <AutoCompleteTextView
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/countryinputlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter country"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textColor="#03353e"
-            android:inputType="textCapWords"
-            android:maxLength="50"
-            android:imeOptions="actionNext"
-            android:textSize="16dp"
-            android:id="@+id/countryAutoBox"/>
+            android:layout_below="@+id/instituteNameTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter country"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textColor="#03353e"
+                android:inputType="textCapWords"
+                android:maxLength="50"
+                android:imeOptions="actionNext"
+                android:textSize="16dp"
+                android:id="@+id/countryAutoBox" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/addressTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/countryinputlayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/instituteAddress"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/addressTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter institute address"
-            android:singleLine="true"
-            android:inputType="textCapWords"
-            android:textColor="#03353e"
-            android:maxLength="500"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/countryinputlayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/instituteAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter institute address"
+                android:singleLine="true"
+                android:inputType="textCapWords"
+                android:textColor="#03353e"
+                android:maxLength="500"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/instituteEmailTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addressTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/instituteEmail"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/instituteEmailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter institute email"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
-            android:inputType="textEmailAddress"
-            android:maxLength="100"
-            android:imeOptions="actionNext"
-            android:textSize="16dp"
-            />
+            android:layout_below="@id/addressTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/instituteEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter institute email"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
+                android:inputType="textEmailAddress"
+                android:maxLength="100"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/websiteTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/instituteEmailTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/institutewebsite"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/websiteTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter institute website"
-            android:singleLine="true"
-            android:inputType="textWebEmailAddress"
-            android:textColor="#03353e"
-            android:maxLength="100"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/instituteEmailTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/institutewebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter institute website"
+                android:singleLine="true"
+                android:inputType="textWebEmailAddress"
+                android:textColor="#03353e"
+                android:maxLength="100"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/phoneTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/websiteTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/institutephone"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phoneTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Enter institute phone"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="11"
-            android:imeOptions="actionNext"
-            android:textSize="16dp"
-            />
+            android:layout_below="@id/websiteTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/institutephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter institute phone"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="11"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/alternatePhoneTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phoneTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/instituteAlternatephone"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/alternatePhoneTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Enter institute alternate phone"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:maxLength="11"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/phoneTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/instituteAlternatephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter institute alternate phone"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:maxLength="11"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/univercityTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/alternatePhoneTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/university"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/univercityTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter university name"
-            android:singleLine="true"
-            android:inputType="textCapWords"
-            android:textColor="#03353e"
-            android:maxLength="100"
-            android:imeOptions="actionNext"
-            android:textSize="16dp" />
+            android:layout_below="@id/alternatePhoneTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/university"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter university name"
+                android:singleLine="true"
+                android:inputType="textCapWords"
+                android:textColor="#03353e"
+                android:maxLength="100"
+                android:imeOptions="actionNext"
+                android:textSize="16dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/regNumTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/univercityTextInputLayout"
-        android:theme="@style/TextLabelNew"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/regNumber"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/regNumTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter registration number provided by university"
-            android:singleLine="true"
-            android:textColor="#03353e"
-            android:inputType="textCapCharacters"
-            android:maxLength="20"
-            android:imeOptions="actionDone"
-            android:textSize="16dp"/>
+            android:layout_below="@id/univercityTextInputLayout"
+            android:theme="@style/TextLabelNew"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/regNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter registration number provided by university"
+                android:singleLine="true"
+                android:textColor="#03353e"
+                android:inputType="textCapCharacters"
+                android:maxLength="20"
+                android:imeOptions="actionDone"
+                android:textSize="16dp" />
 
-</RelativeLayout>
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
 </ScrollView>

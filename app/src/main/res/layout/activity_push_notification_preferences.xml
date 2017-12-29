@@ -3,191 +3,183 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/while_color">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_push_notification_preferences"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context="placeme.octopusites.com.placeme.PushNotificationPreferences">
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Customize your push notification preferences to get what you want."
-        android:textSize="14dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/pushtxt"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placement updates from Institute"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/placeinsttxt"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/pushtxt"
-        android:layout_toLeftOf="@+id/switch1"
-        android:layout_alignParentLeft="true"
-        />
-
-
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/pushtxt"
-        android:layout_marginTop="50dp"
-        android:theme="@style/SCBSwitch"
-        android:checked="true"
-        />
-
-    <View
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_push_notification_preferences"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/sky_blue_color"
-        android:layout_below="@+id/placeinsttxt"
-        android:id="@+id/pushline1"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context="placeme.octopusites.com.placeme.PushNotificationPreferences">
 
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placement updates from Place Me"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/placeplacemetxt"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/pushline1"
-        android:layout_toLeftOf="@+id/switch2"
-        android:layout_alignParentLeft="true"
-        />
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/pushline1"
-        android:layout_marginTop="20dp"
-        android:theme="@style/SCBSwitch"
-        android:checked="true"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customize your push notification preferences to get what you want."
+            android:textSize="14dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/pushtxt" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/sky_blue_color"
-        android:layout_below="@+id/placeplacemetxt"
-        android:id="@+id/pushline2"
-        android:layout_marginTop="20dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placement updates from Institute"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/placeinsttxt"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/pushtxt"
+            android:layout_toLeftOf="@+id/switch1"
+            android:layout_alignParentLeft="true" />
 
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notifications from Institute"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/notiftxt"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/pushline2"
-        android:layout_toLeftOf="@+id/switch3"
-        android:layout_alignParentLeft="true"
-        />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pushtxt"
+            android:layout_marginTop="50dp"
+            android:theme="@style/SCBSwitch"
+            android:checked="true" />
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/pushline2"
-        android:layout_marginTop="20dp"
-        android:theme="@style/SCBSwitch"
-        android:checked="true"
-        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sky_blue_color"
+            android:layout_below="@+id/placeinsttxt"
+            android:id="@+id/pushline1"
+            android:layout_marginTop="20dp"
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/sky_blue_color"
-        android:layout_below="@+id/notiftxt"
-        android:id="@+id/pushline3"
-        android:layout_marginTop="20dp"
+            />
 
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notifications from Place Me"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/notifplacemetxt"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/pushline3"
-        android:layout_toLeftOf="@+id/switch4"
-        android:layout_alignParentLeft="true"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placement updates from Place Me"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/placeplacemetxt"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pushline1"
+            android:layout_toLeftOf="@+id/switch2"
+            android:layout_alignParentLeft="true" />
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/pushline3"
-        android:layout_marginTop="20dp"
-        android:theme="@style/SCBSwitch"
-        android:checked="true"
-        />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pushline1"
+            android:layout_marginTop="20dp"
+            android:theme="@style/SCBSwitch"
+            android:checked="true" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/sky_blue_color"
-        android:layout_below="@+id/notifplacemetxt"
-        android:id="@+id/pushline4"
-        android:layout_marginTop="20dp"
-    />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Blog Notifications"
-        android:textSize="16dp"
-        android:textColor="@color/dark_color"
-        android:id="@+id/blogtxt"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/pushline4"
-        android:layout_toLeftOf="@+id/switch5"
-        android:layout_alignParentLeft="true"
-        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sky_blue_color"
+            android:layout_below="@+id/placeplacemetxt"
+            android:id="@+id/pushline2"
+            android:layout_marginTop="20dp"
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/pushline4"
-        android:layout_marginTop="20dp"
-        android:theme="@style/SCBSwitch"
-        android:checked="true"
-        android:elevation="6dp"
-        />
+            />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/sky_blue_color"
-        android:layout_below="@+id/blogtxt"
-        android:id="@+id/pushline5"
-        android:layout_marginTop="20dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications from Institute"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/notiftxt"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pushline2"
+            android:layout_toLeftOf="@+id/switch3"
+            android:layout_alignParentLeft="true" />
 
-        />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pushline2"
+            android:layout_marginTop="20dp"
+            android:theme="@style/SCBSwitch"
+            android:checked="true" />
 
-</RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sky_blue_color"
+            android:layout_below="@+id/notiftxt"
+            android:id="@+id/pushline3"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications from Place Me"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/notifplacemetxt"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pushline3"
+            android:layout_toLeftOf="@+id/switch4"
+            android:layout_alignParentLeft="true" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pushline3"
+            android:layout_marginTop="20dp"
+            android:theme="@style/SCBSwitch"
+            android:checked="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sky_blue_color"
+            android:layout_below="@+id/notifplacemetxt"
+            android:id="@+id/pushline4"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blog Notifications"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/blogtxt"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pushline4"
+            android:layout_toLeftOf="@+id/switch5"
+            android:layout_alignParentLeft="true" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pushline4"
+            android:layout_marginTop="20dp"
+            android:theme="@style/SCBSwitch"
+            android:checked="true"
+            android:elevation="6dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sky_blue_color"
+            android:layout_below="@+id/blogtxt"
+            android:id="@+id/pushline5"
+            android:layout_marginTop="20dp"
+
+            />
+
+    </RelativeLayout>
 </ScrollView>

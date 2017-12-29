@@ -8,24 +8,21 @@
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/uploadedbyprofile"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/profile_image_icon"
-        android:layout_centerVertical="true"
-        />
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_centerVertical="true" />
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/logo"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/logo"
         app:border_color="#FF000000"
         android:layout_marginLeft="50dp"
-        android:layout_alignBottom="@+id/uploadedbyprofile"
-        />
+        android:layout_alignBottom="@+id/uploadedbyprofile" />
 
 
     <TextView
@@ -38,7 +35,7 @@
         android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <TextView
         android:id="@+id/notification"
@@ -51,7 +48,7 @@
         android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <TextView
         android:id="@+id/uploadtime"
@@ -62,15 +59,14 @@
         android:textSize="9dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <ImageView
         android:id="@+id/attachment"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
-        android:src="@drawable/attachment_icon"
-  />
+        android:src="@drawable/attachment_icon" />
 
 
 </RelativeLayout>

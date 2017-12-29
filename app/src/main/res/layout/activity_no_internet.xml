@@ -13,8 +13,7 @@
         android:src="@drawable/no_internet_screen"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:id="@+id/nointernetimage"
-        />
+        android:id="@+id/nointernetimage" />
 
     <TextView
         android:textColor="@color/dark_color"
@@ -29,6 +28,7 @@
         android:layout_below="@+id/nointernetimage"
 
         />
+
     <TextView
         android:textColor="@color/dark_color"
         android:layout_centerHorizontal="true"
@@ -55,8 +55,7 @@
         android:textColor="@color/while_color"
         android:textAllCaps="false"
         android:elevation="2dp"
-        android:background="@drawable/textviewborder"
-        />
+        android:background="@drawable/textviewborder" />
 
     <ProgressBar
         android:id="@+id/progressbar"

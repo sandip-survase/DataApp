@@ -19,8 +19,7 @@
             android:id="@+id/edituserrl"
             android:layout_marginTop="20dp"
             android:background="@drawable/boxborder"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <ImageView
                 android:layout_width="25dp"
@@ -37,16 +36,15 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
-                android:id="@+id/trash2selectionview"
-                />
+                android:id="@+id/trash2selectionview" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit email address"
                 android:textSize="14dp"
                 android:textColor="@color/dark_color"
-                android:id="@+id/ass2txt"
-                />
+                android:id="@+id/ass2txt" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -54,8 +52,7 @@
                 android:layout_below="@+id/ass2txt"
                 android:id="@+id/emailinput"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel"
-                >
+                android:theme="@style/TextLabel">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -68,8 +65,7 @@
                     android:maxLength="100"
                     android:inputType="textEmailAddress"
                     android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
-                    android:id="@+id/email"
-                    />
+                    android:id="@+id/email" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +77,7 @@
                 android:id="@+id/passpasstxt"
                 android:textColor="@color/dark_color"
                 android:textSize="12dp"
-                android:paddingTop="5dp"
-                />
+                android:paddingTop="5dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -90,8 +85,7 @@
                 android:background="@color/sky_blue_color"
                 android:layout_below="@+id/passpasstxt"
                 android:layout_marginTop="5dp"
-                android:id="@+id/line11"
-                />
+                android:id="@+id/line11" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,8 +95,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="12dp"
                 android:textColor="@color/dark_color"
-                android:id="@+id/placementstatus2txt"
-                />
+                android:id="@+id/placementstatus2txt" />
 
             <CheckBox
                 android:id="@+id/checkboxplaced"
@@ -113,8 +106,8 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="14dp"
-                />
+                android:layout_marginLeft="14dp" />
+
             <CheckBox
                 android:id="@+id/checkboxnotplaced"
                 android:layout_width="wrap_content"
@@ -125,8 +118,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp"
-                />
+                android:layout_marginLeft="20dp" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -145,7 +137,7 @@
                     android:imeOptions="actionDone"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
-                    android:id="@+id/companyname"/>
+                    android:id="@+id/companyname" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -155,8 +147,7 @@
                 android:background="@color/sky_blue_color"
                 android:layout_below="@+id/companynameinput"
                 android:layout_marginTop="5dp"
-                android:id="@+id/line22"
-                />
+                android:id="@+id/line22" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -166,8 +157,7 @@
                 android:textSize="12dp"
                 android:textColor="@color/dark_color"
                 android:layout_marginTop="5dp"
-                android:id="@+id/debarstatus2txt"
-                />
+                android:id="@+id/debarstatus2txt" />
 
             <CheckBox
                 android:id="@+id/CheckBoxdebar"
@@ -178,8 +168,8 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="14dp"
-                />
+                android:layout_marginLeft="14dp" />
+
             <CheckBox
                 android:id="@+id/CheckBoxsnotdebar"
                 android:layout_width="wrap_content"
@@ -190,16 +180,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp"
-                />
+                android:layout_marginLeft="20dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/sky_blue_color"
                 android:layout_below="@+id/CheckBoxsnotdebar"
                 android:layout_marginTop="5dp"
-                android:id="@+id/line33"
-                />
+                android:id="@+id/line33" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -209,8 +198,7 @@
                 android:textColor="@color/dark_color"
                 android:textSize="12dp"
                 android:layout_marginTop="5dp"
-                android:id="@+id/rolestatus2txt"
-                />
+                android:id="@+id/rolestatus2txt" />
 
             <CheckBox
                 android:id="@+id/checkboxstudent"
@@ -221,8 +209,8 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="14dp"
-                />
+                android:layout_marginLeft="14dp" />
+
             <CheckBox
                 android:id="@+id/checkboxalumni"
                 android:layout_width="wrap_content"
@@ -233,8 +221,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
                 android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp"
-                />
+                android:layout_marginLeft="20dp" />
 
 
         </RelativeLayout>

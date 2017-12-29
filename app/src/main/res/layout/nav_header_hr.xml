@@ -191,6 +191,7 @@
             android:textColor="#282f35"
             android:textSize="9dp" />
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/settings"
         android:layout_width="wrap_content"

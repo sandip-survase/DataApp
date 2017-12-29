@@ -93,8 +93,7 @@ public class UserSelection extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             MenuItem itemM = menu.findItem(R.id.action_save);
-            SpannableStringBuilder title = new SpannableStringBuilder("Registered");
-            title.setSpan(Z.getBold(UserSelection.this),0, title.length(), 0);
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 //
@@ -278,7 +277,7 @@ public class UserSelection extends AppCompatActivity {
                     startActivity(i1);
 
                     Log.d("Tag","listString"+ listString);
-                    Toast.makeText(UserSelection.this, "Send notification to:-" + listString + "-:user", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UserSelection.this, "Send notification to:-" + listString + "-:user", Toast.LENGTH_SHORT).show();
                 } else if (shortlisted) {
                     StringBuilder listString2 =new StringBuilder();
                     for (int k = 0; k < itemListPlacedToset.size(); k++) {
@@ -289,7 +288,7 @@ public class UserSelection extends AppCompatActivity {
                     i1.putExtra("selection","shortlisted");
                     i1.putExtra("id",""+listString2);
                     startActivity(i1);
-                    Toast.makeText(UserSelection.this, "Send notification to:-" + listString2 + "-:user", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UserSelection.this, "Send notification to:-" + listString2 + "-:user", Toast.LENGTH_SHORT).show();
                 } else if (placed) {
 
 //                    StringBuilder listString3 =new StringBuilder();
@@ -303,7 +302,7 @@ public class UserSelection extends AppCompatActivity {
                     i1.putExtra("id","ALL");
                     startActivity(i1);
 
-                    Toast.makeText(UserSelection.this, "Send notification to:- All-:user", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UserSelection.this, "Send notification to:- All-:user", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -481,14 +480,14 @@ public class UserSelection extends AppCompatActivity {
 
     public void showResume(String username) {
 
-        Toast.makeText(this, "Show Resume Of usr" + username, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Show Resume Of usr" + username, Toast.LENGTH_SHORT).show();
 
         Intent i1 = new Intent(UserSelection.this, ViewResume.class);
         i1.putExtra("username", username);
         startActivity(i1);
 
 
-        Toast.makeText(this, "after", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "after", Toast.LENGTH_SHORT).show();
 
 
 
@@ -725,13 +724,6 @@ public class UserSelection extends AppCompatActivity {
 
     public void fromserver(){
         if (itemListShortlited.size() == 0) {
-
-
-
-
-
-
-
 
 
             itemListShortlited.addAll(itemListShortlitedToset);

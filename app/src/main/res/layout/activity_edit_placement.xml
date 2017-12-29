@@ -30,8 +30,7 @@
             android:textColor="@color/dark_color"
             android:hint="Search Placement"
             android:textColorHint="#aaa"
-            android:theme="@style/MaterialSearchViewStyle"
-            />
+            android:theme="@style/MaterialSearchViewStyle" />
 
     </FrameLayout>
 

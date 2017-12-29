@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,9 +23,10 @@ public class Z {
     //**************************  final **************************
 
     public static final String IP_8080 = "http://162.213.199.3:8080/";
+    public static final String IP_40744 = "http://162.213.199.3:40744/";
     public static final String IP_8081 = "http://104.237.4.236:8081/";
     public static final String IP_1234 = "http://104.237.4.236:1234/";
-    public static final String IP_8086 = "http://162.213.199.3/";
+    public static final String IP_8086 = "http://162.213.199.3:8080/";
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
     public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
 
@@ -37,10 +39,13 @@ public class Z {
     public static final String url_login = IP + "AESTest/Auth";
     public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
+    public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
+    public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
 //======================================= login =====================================
 
 
     //-----------------------------------------sunny---------------------------------------------------------------
+    public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
 // -------------------------------------------MainActivity(student)-----------------------------------------------
     public static final String url_getnotificationsmetadata = IP_8086 + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotifications";
@@ -245,8 +250,6 @@ public class Z {
     public static final String url_SaveWelcomeIntroData = IP + "AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = IP + "AESTest/SaveStudentFnameLnameMobile";
     public static final String url_SendActivationCode = IP + "AESTest/SendActivationCode";
-    public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
-    public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
     public static final String url_checkUcode = IP + "AESTest/checkUcode";
     public static final String url_ClearOTP = IP + "AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = IP + "AESTest/AddStudentUnderAdmin";
@@ -538,6 +541,22 @@ public class Z {
             e.printStackTrace();
         }
         return md5;
+    }
+
+    public static boolean isAdminHrVerified(Context context) {
+        String isVerify = MySharedPreferencesManager.getData(context, "placemeverify");
+        Log.d("TAG", "shared isVerified: " + isVerify);
+        if (isVerify != null) {
+            try {
+                if (Z.Decrypt(isVerify, context).equals("yes")) {
+                    Log.d("TAG", "check isVerified: " + Z.Decrypt(isVerify, context));
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
 }

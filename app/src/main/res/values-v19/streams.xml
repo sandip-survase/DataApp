@@ -1,158 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="streams">
-<item>56,Anaesthesia Technology</item>
-<item>56,Biotechnology</item>
-<item>56,Cardiac Perfusion Technology (CPT)</item>
-<item>56,Cardio Vascular Technology (CVT)</item>
-<item>56,Diabetes Sciences</item>
-<item>56,Dialysis Therapy</item>
-<item>56,Echocardiography Technology</item>
-<item>56,Emergency Medical Technology</item>
-<item>56,Medical Laboratory Technology (MLT)</item>
-<item>56,Medical Radiologic Technology</item>
-<item>56,Microbiology</item>
-<item>56,Nursing</item>
-<item>56,Optometry</item>
-<item>56,Physician Assistant</item>
-<item>56,Respiratory Therapy</item>
-<item>56,Neuro Electro Physiology</item>
-<item>56,Visual Media</item>
-<item>56,Nursing</item>
-<item>65,Aerospace Engineering</item>
-<item>65,Chemical Engineering</item>
-<item>65,Civil Engineering</item>
-<item>65,Computer Science and Engineering</item>
-<item>65,Electrical and Electronics Engineering</item>
-<item>65,Electronics and Communication Engineering</item>
-<item>65,Electronics and Instrumentation Engineering</item>
-<item>65,Mechanical Engineering</item>
-<item>65,Automobile Engineering</item>
-<item>65,Information Technology</item>
-<item>65,Biotechnology</item>
-<item>65,Agricultural Engineering</item>
-<item>65,Petroleum Engineering</item>
-<item>65,Aeronautical Engineering</item>
-<item>65,Textile Engineering</item>
-<item>65,Biochemical Engineering</item>
-<item>65,Industrial Engineering</item>
-<item>65,Manufacturing Engineering</item>
-<item>65,Material Engineering</item>
-<item>65,Mechatronics Engineering</item>
-<item>65,Ocean and Marine Engineering</item>
-<item>65,Mining Engineering</item>
-<item>3,Applied physics</item>
-<item>3,Applied mathematics</item>
-<item>3,Architectural science</item>
-<item>3,General engineering</item>
-<item>3,Automotive engineering</item>
-<item>3,Biological engineering</item>
-<item>3,Biochemical engineering</item>
-<item>3,Business informatics</item>
-<item>3,Chemical engineering</item>
-<item>3,Civil engineering</item>
-<item>3,Computer science</item>
-<item>3,Computer engineering</item>
-<item>3,Communication</item>
-<item>3,Criminal justice</item>
-<item>3,Criminology</item>
-<item>3,Electrical engineering</item>
-<item>3,Environmental engineering</item>
-<item>3,Geomatics</item>
-<item>3,Occupational health and safety</item>
-<item>3,Public health</item>
-<item>3,Engineering management</item>
-<item>3,Engineering physics</item>
-<item>3,Engineering science</item>
-<item>3,Engineering science and mechanics</item>
-<item>3,Geological engineering</item>
-<item>3,Hospitality Management</item>
-<item>3,Industrial engineering</item>
-<item>3,Information management</item>
-<item>3,Integrated engineering</item>
-<item>3,Information systems</item>
-<item>3,Information technology</item>
-<item>3,Management engineering</item>
-<item>3,Management of technology</item>
-<item>3,Manufacturing engineering</item>
-<item>3,Materials science and engineering</item>
-<item>3,Mechanical engineering</item>
-<item>3,Mechanical engineering technology</item>
-<item>3,Mechatronics engineering</item>
-<item>3,Mining engineering</item>
-<item>3,Nanotechnology engineering</item>
-<item>3,Nutrition and Food</item>
-<item>3,Paralegal Studies</item>
-<item>3,Forensics</item>
-<item>3,Astrophysics</item>
-<item>3,Professional Technical Teacher Education</item>
-<item>3,Software engineering</item>
-<item>3,Sound engineering</item>
-<item>3,Surveying</item>
-<item>3,Sustainable building science technology</item>
-<item>3,Systems engineering</item>
-<item>3,Applied physics and electronic engineering</item>
-<item>3,Business management</item>
-<item>3,Social science</item>
-<item>3,Leadership</item>
-<item>3,Veterinary technology</item>
-<item>24,Aerospace Engineering</item>
-<item>24,Agricultural Engineering</item>
-<item>24,Automotive engineering</item>
-<item>24,Chemical Engineering</item>
-<item>24,Computer Engineering</item>
-<item>24,Civil Engineering</item>
-<item>24,Environmental Engineering</item>
-<item>24,Integrated Engineering</item>
-<item>24,Manufacturing Engineering</item>
-<item>24,Materials Engineering</item>
-<item>24,Marine Engineering</item>
-<item>24,Mechanical Engineering</item>
-<item>24,Mechatronics Engineering</item>
-<item>24,Mining Engineering</item>
-<item>24,Nuclear Engineering</item>
-<item>24,Plastics Engineering</item>
-<item>24,Production Engineering</item>
-<item>24,Textile Engineering</item>
-<item>24,Robotics and Automation Engineering</item>
-<item>24,Structural Engineering</item>
-<item>24,Systems Science</item>
-<item>24,Fire Protection Engineering</item>
-<item>24,Engineering Management</item>
-<item>24,Electrical Controls Engineering</item>
-<item>24,Automobile Engineering</item>
-<item>24,Bio Chemical Engineering</item>
-<item>24,Bio Medical Engineering</item>
-<item>24,Bio-Technology</item>
-<item>24,Information Technology</item>
-<item>24,Electronics and Communication Engineering</item>
-<item>24,Electrical Engineering</item>
-<item>24,Electronics  Engineering</item>
-<item>24,Electronics and Telecomm Engineering</item>
-<item>24,Electronics Instrumentation and Control</item>
-<item>24,Food Technology</item>
-<item>24,Instrumentation and Control</item>
-<item>24,Industrial Production Engg.</item>
-<item>24,Leather Technology</item>
-<item>24,Man Made Fiber Technology</item>
-<item>24,Metallurgical Engineering</item>
-<item>24,Oil Technology</item>
-<item>24,Paint Technology</item>
-<item>56,Agriculture</item>
-<item>56,Animation</item>
-<item>56,Anthropology</item>
-<item>56,Biochemistry</item>
-<item>56,Bioinformatics</item>
-<item>56,Biology Biomedical Life Sciences</item>
-<item>56,Botany</item>
-<item>56,Computer Science</item>
-<item>56,Environmental Science</item>
-<item>56,Exercise and Sport Science</item>
-<item>56,Home Science</item>
-<item>56,Information Technology</item>
-<item>56,Library Science</item>
-<item>56,Nutrition and Dietetics</item>
-<item>56,Statistics</item>
-<item>56,Zoology</item>
-</array>
-    </resources>
+        <item>56,Anaesthesia Technology</item>
+        <item>56,Biotechnology</item>
+        <item>56,Cardiac Perfusion Technology (CPT)</item>
+        <item>56,Cardio Vascular Technology (CVT)</item>
+        <item>56,Diabetes Sciences</item>
+        <item>56,Dialysis Therapy</item>
+        <item>56,Echocardiography Technology</item>
+        <item>56,Emergency Medical Technology</item>
+        <item>56,Medical Laboratory Technology (MLT)</item>
+        <item>56,Medical Radiologic Technology</item>
+        <item>56,Microbiology</item>
+        <item>56,Nursing</item>
+        <item>56,Optometry</item>
+        <item>56,Physician Assistant</item>
+        <item>56,Respiratory Therapy</item>
+        <item>56,Neuro Electro Physiology</item>
+        <item>56,Visual Media</item>
+        <item>56,Nursing</item>
+        <item>65,Aerospace Engineering</item>
+        <item>65,Chemical Engineering</item>
+        <item>65,Civil Engineering</item>
+        <item>65,Computer Science and Engineering</item>
+        <item>65,Electrical and Electronics Engineering</item>
+        <item>65,Electronics and Communication Engineering</item>
+        <item>65,Electronics and Instrumentation Engineering</item>
+        <item>65,Mechanical Engineering</item>
+        <item>65,Automobile Engineering</item>
+        <item>65,Information Technology</item>
+        <item>65,Biotechnology</item>
+        <item>65,Agricultural Engineering</item>
+        <item>65,Petroleum Engineering</item>
+        <item>65,Aeronautical Engineering</item>
+        <item>65,Textile Engineering</item>
+        <item>65,Biochemical Engineering</item>
+        <item>65,Industrial Engineering</item>
+        <item>65,Manufacturing Engineering</item>
+        <item>65,Material Engineering</item>
+        <item>65,Mechatronics Engineering</item>
+        <item>65,Ocean and Marine Engineering</item>
+        <item>65,Mining Engineering</item>
+        <item>3,Applied physics</item>
+        <item>3,Applied mathematics</item>
+        <item>3,Architectural science</item>
+        <item>3,General engineering</item>
+        <item>3,Automotive engineering</item>
+        <item>3,Biological engineering</item>
+        <item>3,Biochemical engineering</item>
+        <item>3,Business informatics</item>
+        <item>3,Chemical engineering</item>
+        <item>3,Civil engineering</item>
+        <item>3,Computer science</item>
+        <item>3,Computer engineering</item>
+        <item>3,Communication</item>
+        <item>3,Criminal justice</item>
+        <item>3,Criminology</item>
+        <item>3,Electrical engineering</item>
+        <item>3,Environmental engineering</item>
+        <item>3,Geomatics</item>
+        <item>3,Occupational health and safety</item>
+        <item>3,Public health</item>
+        <item>3,Engineering management</item>
+        <item>3,Engineering physics</item>
+        <item>3,Engineering science</item>
+        <item>3,Engineering science and mechanics</item>
+        <item>3,Geological engineering</item>
+        <item>3,Hospitality Management</item>
+        <item>3,Industrial engineering</item>
+        <item>3,Information management</item>
+        <item>3,Integrated engineering</item>
+        <item>3,Information systems</item>
+        <item>3,Information technology</item>
+        <item>3,Management engineering</item>
+        <item>3,Management of technology</item>
+        <item>3,Manufacturing engineering</item>
+        <item>3,Materials science and engineering</item>
+        <item>3,Mechanical engineering</item>
+        <item>3,Mechanical engineering technology</item>
+        <item>3,Mechatronics engineering</item>
+        <item>3,Mining engineering</item>
+        <item>3,Nanotechnology engineering</item>
+        <item>3,Nutrition and Food</item>
+        <item>3,Paralegal Studies</item>
+        <item>3,Forensics</item>
+        <item>3,Astrophysics</item>
+        <item>3,Professional Technical Teacher Education</item>
+        <item>3,Software engineering</item>
+        <item>3,Sound engineering</item>
+        <item>3,Surveying</item>
+        <item>3,Sustainable building science technology</item>
+        <item>3,Systems engineering</item>
+        <item>3,Applied physics and electronic engineering</item>
+        <item>3,Business management</item>
+        <item>3,Social science</item>
+        <item>3,Leadership</item>
+        <item>3,Veterinary technology</item>
+        <item>24,Aerospace Engineering</item>
+        <item>24,Agricultural Engineering</item>
+        <item>24,Automotive engineering</item>
+        <item>24,Chemical Engineering</item>
+        <item>24,Computer Engineering</item>
+        <item>24,Civil Engineering</item>
+        <item>24,Environmental Engineering</item>
+        <item>24,Integrated Engineering</item>
+        <item>24,Manufacturing Engineering</item>
+        <item>24,Materials Engineering</item>
+        <item>24,Marine Engineering</item>
+        <item>24,Mechanical Engineering</item>
+        <item>24,Mechatronics Engineering</item>
+        <item>24,Mining Engineering</item>
+        <item>24,Nuclear Engineering</item>
+        <item>24,Plastics Engineering</item>
+        <item>24,Production Engineering</item>
+        <item>24,Textile Engineering</item>
+        <item>24,Robotics and Automation Engineering</item>
+        <item>24,Structural Engineering</item>
+        <item>24,Systems Science</item>
+        <item>24,Fire Protection Engineering</item>
+        <item>24,Engineering Management</item>
+        <item>24,Electrical Controls Engineering</item>
+        <item>24,Automobile Engineering</item>
+        <item>24,Bio Chemical Engineering</item>
+        <item>24,Bio Medical Engineering</item>
+        <item>24,Bio-Technology</item>
+        <item>24,Information Technology</item>
+        <item>24,Electronics and Communication Engineering</item>
+        <item>24,Electrical Engineering</item>
+        <item>24,Electronics Engineering</item>
+        <item>24,Electronics and Telecomm Engineering</item>
+        <item>24,Electronics Instrumentation and Control</item>
+        <item>24,Food Technology</item>
+        <item>24,Instrumentation and Control</item>
+        <item>24,Industrial Production Engg.</item>
+        <item>24,Leather Technology</item>
+        <item>24,Man Made Fiber Technology</item>
+        <item>24,Metallurgical Engineering</item>
+        <item>24,Oil Technology</item>
+        <item>24,Paint Technology</item>
+        <item>56,Agriculture</item>
+        <item>56,Animation</item>
+        <item>56,Anthropology</item>
+        <item>56,Biochemistry</item>
+        <item>56,Bioinformatics</item>
+        <item>56,Biology Biomedical Life Sciences</item>
+        <item>56,Botany</item>
+        <item>56,Computer Science</item>
+        <item>56,Environmental Science</item>
+        <item>56,Exercise and Sport Science</item>
+        <item>56,Home Science</item>
+        <item>56,Information Technology</item>
+        <item>56,Library Science</item>
+        <item>56,Nutrition and Dietetics</item>
+        <item>56,Statistics</item>
+        <item>56,Zoology</item>
+    </array>
+</resources>

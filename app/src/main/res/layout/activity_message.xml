@@ -21,14 +21,14 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/while_color"
-        android:id="@+id/sendrl"
-        >
+        android:id="@+id/sendrl">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/sky_blue_color"
-            android:id="@+id/line"
-            />
+            android:id="@+id/line" />
+
         <EditText
             android:layout_below="@+id/line"
             android:layout_width="match_parent"
@@ -41,14 +41,14 @@
             android:layout_toLeftOf="@+id/send"
             android:layout_margin="10dp"
             android:textCursorDrawable="@drawable/custom_cursor"
-            android:id="@+id/message_line"
-            />
+            android:id="@+id/message_line" />
+
         <View
             android:layout_width="45dp"
             android:layout_height="50dp"
             android:background="@color/dark_color"
-            android:layout_alignParentRight="true"
-            />
+            android:layout_alignParentRight="true" />
+
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -56,11 +56,9 @@
             android:src="@drawable/send"
             android:id="@+id/send"
             android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

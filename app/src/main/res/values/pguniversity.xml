@@ -3,754 +3,757 @@
 
     <array name="pguniversity">
         <item>- Select University -</item>
-    <item>Acharya N.G. Ranga Agricultural University</item>
-      <item>Acharya Nagarjuna University</item>
-      <item>Adikavi Nannaya University</item>
-      <item>Ahmedabad University</item>
-      <item>Alagappa University</item>
-      <item>Aliah University</item>
-      <item>Aligarh Muslim University</item>
-      <item>All India Institute of Medical Sciences Bhopal</item>
-      <item>All India Institute of Medical Sciences Bhubaneswar</item>
-      <item>All India Institute of Medical Sciences Delhi</item>
-      <item>All India Institute of Medical Sciences Jodhpur</item>
-      <item>All India Institute of Medical Sciences Patna</item>
-      <item>All India Institute of Medical Sciences Raipur</item>
-      <item>All India Institute of Medical Sciences Rishikesh</item>
-      <item>Alliance University</item>
-      <item>Amity University</item>
-      <item>Amrita Vishwa Vidyapeetham</item>
-      <item>Anand Agricultural University</item>
-      <item>Andhra University</item>
-      <item>Anna University</item>
-      <item>Annamalai University</item>
-      <item>AP Goyal Shimla University</item>
-      <item>Apeejay Stya University</item>
-      <item>Arni University</item>
-      <item>Arunachal University of Studies</item>
-      <item>Aryabhatta Knowledge University</item>
-      <item>Ashoka University</item>
-      <item>Assam Agricultural University</item>
-      <item>Assam Don Bosco University</item>
-      <item>Assam Down Town University</item>
-      <item>Assam Rajiv Gandhi University of Cooperative Management</item>
-      <item>Assam Science and Technology University</item>
-      <item>Assam Women's University</item>
-      <item>Atal Bihari Vajpayee Hindi Vishwavidyalaya</item>
-      <item>AURO University</item>
-      <item>Avinashilingam University</item>
-      <item>Awadhesh Pratap Singh University</item>
-      <item>Ayush and Health Sciences University of Chhattisgarh</item>
-      <item>Azim Premji University</item>
-      <item>B.R. Ambedkar Bihar University</item>
-      <item>B.S. Abdur Rahman University</item>
-      <item>Baba Farid University of Health Sciences</item>
-      <item>Baba Ghulam Shah Badhshah University</item>
-      <item>Baba Mast Nath University</item>
-      <item>Babasaheb Bhimrao Ambedkar University</item>
-      <item>Babu Banarasi Das University</item>
-      <item>Baddi University of Emerging Sciences and Technologies</item>
-      <item>BAHRA University</item>
-      <item>Banaras Hindu University</item>
-      <item>Banasthali Vidyapith</item>
-      <item>Banda University of Agriculture and Technology, Banda</item>
-      <item>Bangalore University</item>
-      <item>Bankura University</item>
-      <item>Barkatullah University</item>
-      <item>Bastar Vishwavidyalaya</item>
-      <item>Berhampur University</item>
-      <item>Bhagat Phool Singh Mahila Vishwavidyalaya</item>
-      <item>Bhagwant University</item>
-      <item>Bhakta Kavi Narsinh Mehta University</item>
-      <item>Bharat Ratna Dr. B.R. Ambedkar University</item>
-      <item>Bharath Institute of Higher Education and Research</item>
-      <item>Bharathiar University</item>
-      <item>Bharathidasan University</item>
-      <item>Bharati Vidyapeeth University</item>
-      <item>Bhatkhande Music Institute</item>
-      <item>Bhupendra Narayan Mandal University</item>
-      <item>Bidhan Chandra Krishi Vishwavidyalaya</item>
-      <item>Bihar Agricultural University</item>
-      <item>Biju Patnaik University of Technology</item>
-      <item>Bilaspur Vishwavidyalaya</item>
-      <item>Birla Institute of Technology</item>
-      <item>Birla Institute of Technology and Science</item>
-      <item>Birsa Agricultural University</item>
-      <item>BLDE University</item>
-      <item>BML Munjal University</item>
-      <item>Bodoland University</item>
-      <item>Bundelkhand University</item>
-      <item>C. U. Shah University</item>
-      <item>Calorx Teachers University</item>
-      <item>Calorx Teachers' University</item>
-      <item>Career Point University</item>
-      <item>Central Agricultural University</item>
-      <item>Central Institute of Fisheries Education</item>
-      <item>Central University of Gujarat</item>
-      <item>Central University of Haryana</item>
-      <item>Central University of Himachal Pradesh</item>
-      <item>Central University of Jammu</item>
-      <item>Central University of Jharkhand</item>
-      <item>Central University of Karnataka</item>
-      <item>Central University of Kashmir</item>
-      <item>Central University of Kerala</item>
-      <item>Central University of Orissa</item>
-      <item>Central University of Punjab</item>
-      <item>Central University of Rajasthan</item>
-      <item>Central University of South Bihar</item>
-      <item>Central University of Tamil Nadu</item>
-      <item>Central University of Tibetan Studies</item>
-      <item>Centurion University of Technology and Management</item>
-      <item>CEPT University</item>
-      <item>Ch. Bansi Lal University</item>
-      <item>Chanakya National Law University</item>
-      <item>Chandigarh University</item>
-      <item>Chandra Shekhar Azad University of Agriculture and Technology</item>
-      <item>Charotar University of Science and Technology</item>
-      <item>Chaudhary Charan Singh Haryana Agricultural University</item>
-      <item>Chaudhary Charan Singh University</item>
-      <item>Chaudhary Devi Lal University</item>
-      <item>Chaudhary Ranbir Singh University</item>
-      <item>Chennai Mathematical Institute</item>
-      <item>Chhatrapati Shahu Ji Maharaj University</item>
-      <item>Chhattisgarh Kamdhenu Vishwavidyalaya</item>
-      <item>Chhattisgarh Swami Vivekananda Technical University</item>
-      <item>Children's University</item>
-      <item>Chitkara University</item>
-      <item>Christ University</item>
-      <item>CMR University</item>
-      <item>Cochin University of Science and Technology</item>
-      <item>Cooch Behar Panchanan Barma University</item>
-      <item>Cotton College State University</item>
-      <item>CSK Himachal Pradesh Krishi Vishvavidyalaya</item>
-      <item>Dakshina Bharat Hindi Prachar Sabha</item>
-      <item>Damodaram Sanjivayya National Law University</item>
-      <item>Datta Meghe Institute of Medical Sciences</item>
-      <item>Davangere University</item>
-      <item>Dayalbagh Educational Institute</item>
-      <item>Deccan College Post-Graduate and Research Institute</item>
-      <item>Deen Dayal Upadhyay Gorakhpur University</item>
-      <item>Deenbandhu Chhotu Ram University of Science and Technology</item>
-      <item>Delhi Technological University</item>
-      <item>Desh Bhagat University</item>
-      <item>Dev Sanskriti Vishwavidyalaya</item>
-      <item>Devi Ahilya Vishwavidyalaya</item>
-      <item>Dharmsinh Desai University</item>
-      <item>Dhirubhai Ambani Institute of Information and Communication Technology</item>
-      <item>Diamond Harbour Women's University</item>
-      <item>Dibrugarh University</item>
-      <item>DIT University</item>
-      <item>Doon University</item>
-      <item>Dr K.N. Modi University</item>
-      <item>Dr. A.P.J. Abdul Kalam Technical University</item>
-      <item>Dr. B R Ambedkar National Institute of Technology Jalandhar</item>
-      <item>Dr. B.R. Ambedkar University</item>
-      <item>Dr. B.R. Ambedkar University</item>
-      <item>Dr. Babasaheb Ambedkar Marathwada University</item>
-      <item>Dr. Babasaheb Ambedkar Technological University</item>
-      <item>Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth</item>
-      <item>Dr. C.V. Raman University</item>
-      <item>Dr. D.Y. Patil Vidyapeeth</item>
-      <item>Dr. Hari Singh Gour University</item>
-      <item>Dr. M.G.R. Educational and Research Institute</item>
-      <item>Dr. N.T.R. University of Health Sciences</item>
-      <item>Dr. Panjabrao Deshmukh Krishi Vidyapeeth</item>
-      <item>Dr. Ram Manohar Lohia Avadh University</item>
-      <item>Dr. Ram Manohar Lohiya National Law University</item>
-      <item>Dr. Sarvepalli Radhakrishnan Rajasthan Ayurved University</item>
-      <item>Dr. Shakuntala Misra Rehabilitation University</item>
-      <item>Dr. Y.S. Parmar University of Horticulture and Forestry</item>
-      <item>Dr.Y.S.R. Horticultural University</item>
-      <item>Dravidian University</item>
-      <item>EIILM University</item>
-      <item>Eternal University</item>
-      <item>Fakir Mohan University</item>
-      <item>Forest Research Institute</item>
-      <item>Galgotias University</item>
-      <item>Gandhi Institute of Technology and Management</item>
-      <item>Gandhigram Rural University</item>
-      <item>Ganpat University</item>
-      <item>Gauhati University</item>
-      <item>Gautam Buddha University</item>
-      <item>Geetanjali University</item>
-      <item>GLA University</item>
-      <item>Glocal University</item>
-      <item>GLS University</item>
-      <item>GNA University</item>
-      <item>Goa University</item>
-      <item>Gokhale Institute of Politics and Economics</item>
-      <item>Gondwana University</item>
-      <item>Govind Ballabh Pant University of Agriculture and Technology</item>
-      <item>Graphic Era Hill University</item>
-      <item>Graphic Era University</item>
-      <item>GSFC University</item>
-      <item>Gujarat Ayurved University</item>
-      <item>Gujarat Forensic Sciences University</item>
-      <item>Gujarat National Law University</item>
-      <item>Gujarat Technological University</item>
-      <item>Gujarat University</item>
-      <item>Gujarat University of Transplantation Sciences</item>
-      <item>Gujarat Vidyapith</item>
-      <item>Gulbarga University</item>
-      <item>Guru Angad Dev Veterinary and Animal Sciences University</item>
-      <item>Guru Ghasidas Vishwavidyalaya</item>
-      <item>Guru Gobind Singh Indraprastha University</item>
-      <item>Guru Jambheshwar University of Science and Technology</item>
-      <item>Guru Kashi University</item>
-      <item>Guru Nanak Dev University</item>
-      <item>Guru Ravidas Ayurved University</item>
-      <item>Gurukul Kangri Vishwavidyalaya</item>
-      <item>Haridev Joshi University of Journalism and Mass Communication</item>
-      <item>Hemchandracharya North Gujarat University</item>
-      <item>Hemwati Nandan Bahuguna Garhwal University</item>
-      <item>Hemwati Nandan Bahuguna Medical University</item>
-      <item>Hidayatullah National Law University</item>
-      <item>Himachal Pradesh Technical University</item>
-      <item>Himachal Pradesh University</item>
-      <item>Himgiri ZEE University</item>
-      <item>Hindustan Institute of Technology and Science</item>
-      <item>Homi Bhabha National Institute</item>
-      <item>ICFAI University, Dehradun</item>
-      <item>ICFAI University, Himachal Pradesh</item>
-      <item>ICFAI University, Jharkhand</item>
-      <item>ICFAI University, Meghalaya</item>
-      <item>ICFAI University, Mizoram</item>
-      <item>ICFAI University, Nagaland</item>
-      <item>ICFAI University, Raipur</item>
-      <item>ICFAI University, Sikkim</item>
-      <item>ICFAI University, Tripura</item>
-      <item>IEC University</item>
-      <item>IFHE Hyderabad</item>
-      <item>IFTM University</item>
-      <item>IMS Unison University</item>
-      <item>Indian Agricultural Research Institute</item>
-      <item>Indian Institute of Engineering Science and Technology, Shibpur</item>
-      <item>Indian Institute of Foreign Trade</item>
-      <item>Indian Institute of Information Technology Allahabad</item>
-      <item>Indian Institute of Information Technology and Management Gwalior</item>
-      <item>Indian Institute of Information Technology, Design and Manufacturing</item>
-      <item>Indian Institute of Information Technology, Guwahati</item>
-      <item>Indian Institute of Information Technology, Kalyani</item>
-      <item>Indian Institute of Information Technology, Kottayam</item>
-      <item>Indian Institute of Information Technology, Lucknow</item>
-      <item>Indian Institute of Information Technology, Manipur</item>
-      <item>Indian Institute of Information Technology, Sri City</item>
-      <item>Indian Institute of Information Technology, Una</item>
-      <item>Indian Institute of Information Technology, Vadodara</item>
-      <item>Indian Institute of Science</item>
-      <item>Indian Institute of Science Education and Research, Bhopal</item>
-      <item>Indian Institute of Science Education and Research, Kolkata</item>
-      <item>Indian Institute of Science Education and Research, Mohali</item>
-      <item>Indian Institute of Science Education and Research, Pune</item>
-      <item>Indian Institute of Science Education and Research, Thiruvananthapuram</item>
-      <item>Indian Institute of Space Science and Technology</item>
-      <item>Indian Institute of Teacher Education</item>
-      <item>Indian Institute of Technology Bhubaneswar</item>
-      <item>Indian Institute of Technology Bombay</item>
-      <item>Indian Institute of Technology Delhi</item>
-      <item>Indian Institute of Technology Gandhinagar</item>
-      <item>Indian Institute of Technology Guwahati</item>
-      <item>Indian Institute of Technology Hyderabad</item>
-      <item>Indian Institute of Technology Indore</item>
-      <item>Indian Institute of Technology Jodhpur</item>
-      <item>Indian Institute of Technology Kanpur</item>
-      <item>Indian Institute of Technology Kharagpur</item>
-      <item>Indian Institute of Technology Madras</item>
-      <item>Indian Institute of Technology Mandi</item>
-      <item>Indian Institute of Technology Patna</item>
-      <item>Indian Institute of Technology Roorkee</item>
-      <item>Indian Institute of Technology Ropar</item>
-      <item>Indian Institute of Technology, BHU</item>
-      <item>Indian Maritime University</item>
-      <item>Indian School of Mines</item>
-      <item>Indian Statistical Institute</item>
-      <item>Indian Veterinary Research Institute</item>
-      <item>Indira Gandhi Delhi Technical University for Women</item>
-      <item>Indira Gandhi Institute of Development Research</item>
-      <item>Indira Gandhi Institute of Medical Sciences, Sheikhpura</item>
-      <item>Indira Gandhi Krishi Vishwavidyalaya</item>
-      <item>Indira Gandhi National Tribal University</item>
-      <item>Indira Gandhi Technological And Medical Sciences University</item>
-      <item>Indira Gandhi University, Meerpur</item>
-      <item>Indira Kala Sangit Vishwavidyalaya</item>
-      <item>Indraprastha Institute of Information Technology</item>
-      <item>Indus International University</item>
-      <item>Indus University</item>
-      <item>Institute of Advanced Research</item>
-      <item>Institute of Advanced Studies in Education</item>
-      <item>Institute of Chemical Technology</item>
-      <item>Institute of Infrastructure, Technology, Research and Management</item>
-      <item>Integral University</item>
-      <item>International Institute for Population Sciences</item>
-      <item>International Institute of Information Technology Bangalore</item>
-      <item>International Institute of Information Technology, Hyderabad</item>
-      <item>Invertis University</item>
-      <item>Islamic University of Science and Technology</item>
-      <item>ITM University Gwalior</item>
-      <item>ITM University Raipur</item>
-      <item>Jadavpur University</item>
-      <item>Jagadguru Ramanandacharya Rajasthan Sanskrit University</item>
-      <item>Jagadguru Rambhadracharya Handicapped University</item>
-      <item>Jagadguru Sri Shivarathreeswara University</item>
-      <item>Jagan Nath University</item>
-      <item>Jagan Nath University</item>
-      <item>Jagran Lakecity University</item>
-      <item>Jai Narain Vyas University</item>
-      <item>Jai Prakash Vishwavidyalaya</item>
-      <item>Jain University</item>
-      <item>Jain Vishva Bharati Institute</item>
-      <item>Jaipur National University</item>
-      <item>Jamia Hamdard</item>
-      <item>Jamia Millia Islamia</item>
-      <item>Janardan Rai Nagar Rajasthan Vidhyapeeth University</item>
-      <item>Jawaharlal Institute of Postgraduate Medical Education and Research</item>
-      <item>Jawaharlal Nehru Architecture and Fine Arts University</item>
-      <item>Jawaharlal Nehru Centre for Advanced Scientific Research</item>
-      <item>Jawaharlal Nehru Krishi Vishwavidyalaya</item>
-      <item>Jawaharlal Nehru Technological University</item>
-      <item>Jawaharlal Nehru Technological University, Anantapur</item>
-      <item>Jawaharlal Nehru Technological University, Kakinada</item>
-      <item>Jawaharlal Nehru University</item>
-      <item>Jayoti Vidyapeeth Women's University</item>
-      <item>Jaypee Institute of Information Technology</item>
-      <item>Jaypee University of Engineering and Technology</item>
-      <item>Jaypee University of Information Technology</item>
-      <item>Jaypee University, Anoopshahr</item>
-      <item>JECRC University</item>
-      <item>Jharkhand Rai University</item>
-      <item>Jiwaji University</item>
-      <item>JK Lakshmipat University</item>
-      <item>Jodhpur National University</item>
-      <item>JS University</item>
-      <item>Junagadh Agricultural University</item>
-      <item>K L University</item>
-      <item>K.R. Mangalam University</item>
-      <item>Kadi Sarva VishwaVidyalaya</item>
-      <item>Kakatiya University</item>
-      <item>Kalasalingam University</item>
-      <item>Kalinga University</item>
-      <item>Kamdhenu University</item>
-      <item>Kameshwar Singh Darbhanga Sanskrit University</item>
-      <item>Kannada University</item>
-      <item>Kannur University</item>
-      <item>Karnatak University</item>
-      <item>Karnataka Janapada Vishwavidyalaya</item>
-      <item>Karnataka Sanskrit University</item>
-      <item>Karnataka State Dr. Gangubai Hangal Music And Performing Arts University</item>
-      <item>Karnataka State Law University</item>
-      <item>Karnataka State Women's University</item>
-      <item>Karnataka Veterinary, Animal and Fisheries Sciences University</item>
-      <item>Karpagam Academy of Higher Education</item>
-      <item>Karunya University</item>
-      <item>Kavi Kulguru Kalidas Sanskrit Vishwavidyalaya</item>
-      <item>Kavikulguru Kalidas Sanskrit University</item>
-      <item>Kazi Nazrul University</item>
-      <item>Kaziranga University</item>
-      <item>Kerala Agricultural University</item>
-      <item>Kerala Kalamandalam</item>
-      <item>Kerala University of Fisheries and Ocean Studies</item>
-      <item>Kerala University of Health Sciences</item>
-      <item>Kerala Veterinary and Animal Sciences University</item>
-      <item>Khwaja Moinuddin Chishti Urdu, Arabi-Farsi University</item>
-      <item>KIIT University</item>
-      <item>King George's Medical University</item>
-      <item>KLE University</item>
-      <item>Kolhan University</item>
-      <item>Krantiguru Shyamji Krishna Verma Kachchh University</item>
-      <item>Krishna Institute of Medical Sciences</item>
-      <item>Krishna University</item>
-      <item>Kumar Bhaskar Varma Sanskrit And Ancient Studies University</item>
-      <item>Kumaun University</item>
-      <item>Kurukshetra University</item>
-      <item>Kushabhau Thakre Patrakarita Avam Jansanchar University</item>
-      <item>Kuvempu University</item>
-      <item>Lakshmibai National Institute of Physical Education</item>
-      <item>Lakulish Yoga University</item>
-      <item>Lala Lajpat Rai University of Veterinary and Animal Sciences</item>
-      <item>Lalit Narayan Mithila University</item>
-      <item>Lingaya's University</item>
-      <item>Lovely Professional University</item>
-      <item>M. S. Ramaiah University of Applied Sciences</item>
-      <item>Madan Mohan Malaviya University of Technology</item>
-      <item>Madhav University</item>
-      <item>Madhya Pradesh Pashu-Chikitsa Vigyan Vishwavidyalaya</item>
-      <item>Madurai Kamaraj University</item>
-      <item>Magadh University</item>
-      <item>Mahapurusha Srimanta Sankaradeva Viswavidyalaya</item>
-      <item>Maharaja Agrasen University</item>
-      <item>Maharaja Chhatrasal Bundelkhand University</item>
-      <item>Maharaja Ganga Singh University</item>
-      <item>Maharaja Krishnakumarsinhji Bhavnagar University</item>
-      <item>Maharaja Ranjit Singh Punjab Technical University</item>
-      <item>Maharaja Surajmal Brij University</item>
-      <item>Maharana Pratap University of Agriculture and Technology</item>
-      <item>Maharashtra Animal and Fishery Sciences University</item>
-      <item>Maharashtra University of Health Sciences</item>
-      <item>Maharishi Dayanand University</item>
-      <item>Maharishi Mahesh Yogi Vedic Vishwavidyalaya</item>
-      <item>Maharishi Markandeshwar University</item>
-      <item>Maharishi Markandeshwar University</item>
-      <item>Maharishi Markandeshwar University, Solan</item>
-      <item>Maharishi University of Management and Technology</item>
-      <item>Maharshi Dayanand Saraswati University</item>
-      <item>Maharshi Panini Sanskrit Vishwavidyalaya</item>
-      <item>Mahatma Gandhi Antarrashtriya Hindi Vishwavidyalaya</item>
-      <item>Mahatma Gandhi Central University, Motihari</item>
-      <item>Mahatma Gandhi Chitrakoot Gramoday Vishwavidyalaya</item>
-      <item>Mahatma Gandhi Kashi Vidyapeeth</item>
-      <item>Mahatma Gandhi University</item>
-      <item>Mahatma Gandhi University</item>
-      <item>Mahatma Gandhi University</item>
-      <item>Mahatma Gandhi University of Medical Sciences and Technology</item>
-      <item>Mahatma Jyoti Rao Phoole University</item>
-      <item>Mahatma Jyotiba Phule Rohilkhand University</item>
-      <item>Mahatma Phule Krishi Vidyapeeth</item>
-      <item>Makhanlal Chaturvedi Rashtriya Patrakarita Vishwavidyalaya</item>
-      <item>Malaviya National Institute of Technology, Jaipur</item>
-      <item>Manav Bharti University</item>
-      <item>Manav Rachna International University</item>
-      <item>Manav Rachna University</item>
-      <item>Mangalayatan University</item>
-      <item>Mangalore University</item>
-      <item>Manipal University</item>
-      <item>Manipur University</item>
-      <item>Manonmaniam Sundaranar University</item>
-      <item>Martin Luther Christian University</item>
-      <item>MATS University</item>
-      <item>Maulana Abul Kalam Azad University of Technology</item>
-      <item>Maulana Azad National Institute of Technology</item>
-      <item>Maulana Azad National Urdu University</item>
-      <item>Maulana Azad National Urdu University</item>
-      <item>Maulana Mazharul Haque Arabic and Persian University</item>
-      <item>Meenakshi Academy of Higher Education and Research</item>
-      <item>Mewar University</item>
-      <item>MGM Institute of Health Sciences</item>
-      <item>Mizoram University</item>
-      <item>Mody University</item>
-      <item>Mohammad Ali Jauhar University</item>
-      <item>Mohanlal Sukhadia University</item>
-      <item>Monad University</item>
-      <item>Mother Teresa Women's University</item>
-      <item>Motherhood University</item>
-      <item>Motilal Nehru National Institute of Technology</item>
-      <item>MVN University</item>
-      <item>Nagaland University</item>
-      <item>Nalanda University</item>
-      <item>NALSAR University of Law</item>
-      <item>Narendra Dev University of Agriculture and Technology</item>
-      <item>Narsee Monjee Institute of Management and Higher Studies</item>
-      <item>National Dairy Research Institute</item>
-      <item>National Institute of Design</item>
-      <item>National Institute of Fashion Technology</item>
-      <item>National Institute of Food Technology Entrepreneurship and Management</item>
-      <item>National Institute of Mental Health and Neuro Sciences</item>
-      <item>National Institute of Pharmaceutical Education and Research, Ahmedabad</item>
-      <item>National Institute of Pharmaceutical Education and Research, Guwahati</item>
-      <item>National Institute of Pharmaceutical Education and Research, Hajipur</item>
-      <item>National Institute of Pharmaceutical Education and Research, Hyderabad</item>
-      <item>National Institute of Pharmaceutical Education and Research, Kolkata</item>
-      <item>National Institute of Pharmaceutical Education and Research, Mohali</item>
-      <item>National Institute of Pharmaceutical Education and Research, Rae Bareli</item>
-      <item>National Institute of Technology, Agartala</item>
-      <item>National Institute of Technology, Arunachal Pradesh</item>
-      <item>National Institute of Technology, Calicut</item>
-      <item>National Institute of Technology, Delhi</item>
-      <item>National Institute of Technology, Durgapur</item>
-      <item>National Institute of Technology, Goa</item>
-      <item>National Institute of Technology, Hamirpur</item>
-      <item>National Institute of Technology, Jamshedpur</item>
-      <item>National Institute of Technology, Karnataka</item>
-      <item>National Institute of Technology, Kurukshetra</item>
-      <item>National Institute of Technology, Manipur</item>
-      <item>National Institute of Technology, Meghalaya</item>
-      <item>National Institute of Technology, Mizoram</item>
-      <item>National Institute of Technology, Nagaland</item>
-      <item>National Institute of Technology, Patna</item>
-      <item>National Institute of Technology, Puducherry</item>
-      <item>National Institute of Technology, Raipur</item>
-      <item>National Institute of Technology, Rourkela</item>
-      <item>National Institute of Technology, Sikkim</item>
-      <item>National Institute of Technology, Silchar</item>
-      <item>National Institute of Technology, Srinagar</item>
-      <item>National Institute of Technology, Tiruchirappalli</item>
-      <item>National Institute of Technology, Uttarakhand</item>
-      <item>National Institute of Technology, Warangal</item>
-      <item>National Law Institute University</item>
-      <item>National Law School of India University</item>
-      <item>National Law University</item>
-      <item>National Law University and Judicial Academy, Assam</item>
-      <item>National Law University, Jodhpur</item>
-      <item>National Law University, Orissa</item>
-      <item>National University of Educational Planning and Administration</item>
-      <item>National University of Study and Research in Law</item>
-      <item>Nava Nalanda Mahavihara</item>
-      <item>Navrachana University</item>
-      <item>Navsari Agricultural University</item>
-      <item>Nehru Gram Bharati Vishwavidyalaya</item>
-      <item>NIILM University</item>
-      <item>Nilamber-Pitamber University</item>
-      <item>NIMS University</item>
-      <item>Nirma University of Science and Technology</item>
-      <item>NITTE University</item>
-      <item>Nizam's Institute of Medical Sciences</item>
-      <item>Noida International University</item>
-      <item>North Eastern Hill University</item>
-      <item>North Eastern Regional Institute of Science and Technology</item>
-      <item>North Maharashtra University</item>
-      <item>North Orissa University</item>
-      <item>O.P. Jindal Global University</item>
-      <item>Oriental University</item>
-      <item>Orissa University of Agriculture and Technology</item>
-      <item>Osmania University</item>
-      <item>Pacific Medical University</item>
-      <item>Pacific University</item>
-      <item>Padmashree Dr. D.Y. Patil Vidyapith</item>
-      <item>Palamuru University</item>
-      <item>Pandit Deendayal Petroleum University</item>
-      <item>Pandit Deendayal Upadhyaya Shekhawati University</item>
-      <item>Pandit Ravishankar Shukla University</item>
-      <item>Panjab University</item>
-      <item>Parul University</item>
-      <item>Patna University</item>
-      <item>PDPM Indian Institute of Information Technology, Design and Manufacturing</item>
-      <item>PEC University of Technology</item>
-      <item>People's University</item>
-      <item>Periyar Maniammai University</item>
-      <item>Periyar University</item>
-      <item>PES University</item>
-      <item>Pondicherry University</item>
-      <item>Ponnaiyan Ramajayam Institute of Science and Technology</item>
-      <item>Poornima University</item>
-      <item>Post Graduate Institute of Medical Education and Research</item>
-      <item>Potti Sreeramulu Telugu University</item>
-      <item>Pratap University</item>
-      <item>Pravara Institute of Medical Sciences</item>
-      <item>Presidency University</item>
-      <item>Professor Jayashankar Telangana State Agricultural University</item>
-      <item>Pt. Bhagwat Dayal Sharma University of Health Sciences</item>
-      <item>Punjab Agricultural University</item>
-      <item>Punjab Technical University</item>
-      <item>Punjabi University</item>
-      <item>Rabindra Bharati University</item>
-      <item>Raffles University</item>
-      <item>Rai University</item>
-      <item>Raj Rishi Bharthari Matsya University</item>
-      <item>Raja Mansingh Tomar Music and Arts University</item>
-      <item>Rajasthan Technical University Kota</item>
-      <item>Rajasthan University of Health Sciences</item>
-      <item>Rajasthan University of Veterinary and Animal Sciences</item>
-      <item>Rajendra Agricultural University</item>
-      <item>Rajiv Gandhi Institute of Petroleum Technology</item>
-      <item>Rajiv Gandhi National Institute of Youth Development</item>
-      <item>Rajiv Gandhi National University of Law</item>
-      <item>Rajiv Gandhi Proudyogiki Vishwavidyalaya</item>
-      <item>Rajiv Gandhi University</item>
-      <item>Rajiv Gandhi University of Health Sciences</item>
-      <item>Rajiv Gandhi University of Knowledge Technologies</item>
-      <item>Rajmata Vijayaraje Scindia Krishi Vishwavidyalaya</item>
-      <item>Raksha Shakti University</item>
-      <item>Rama University</item>
-      <item>Ramakrishna Mission Vivekananda University</item>
-      <item>Ranchi University</item>
-      <item>Rani Channamma University, Belagavi</item>
-      <item>Rani Durgavati Vishwavidyalaya</item>
-      <item>Rashtrasant Tukadoji Maharaj Nagpur University</item>
-      <item>Rashtriya Sanskrit Sansthan University</item>
-      <item>Rashtriya Sanskrit Vidyapeetha</item>
-      <item>Ravenshaw University</item>
-      <item>Rayalaseema University</item>
-      <item>Rayat-Bahra University</item>
-      <item>REVA University</item>
-      <item>RK University</item>
-      <item>RKDF University</item>
-      <item>Sai Nath University</item>
-      <item>Sam Higginbottom Institute of Agriculture, Technology and Sciences</item>
-      <item>Sambalpur University</item>
-      <item>Sampurnanand Sanskrit Vishvavidyalaya</item>
-      <item>Sangam University</item>
-      <item>Sanjay Gandhi Post Graduate Institute of Medical Sciences</item>
-      <item>Sant Gadge Baba Amravati University</item>
-      <item>Sant Longowal Institute of Engineering and Technology</item>
-      <item>Santosh University</item>
-      <item>Sardar Patel University</item>
-      <item>Sardar Patel University of Police, Security and Criminal Justice</item>
-      <item>Sardar Vallabhbhai National Institute of Technology, Surat</item>
-      <item>Sardar Vallabhbhai Patel University of Agriculture and Technology</item>
-      <item>Sardarkrushinagar Dantiwada Agricultural University</item>
-      <item>Sarguja University</item>
-      <item>Sarvepalli Radhakrishnan University</item>
-      <item>SASTRA University</item>
-      <item>Satavahana University</item>
-      <item>Sathyabama University</item>
-      <item>Saurashtra University</item>
-      <item>Saveetha University</item>
-      <item>Savitribai Phule Pune University</item>
-      <item>School of Planning and Architecture, Bhopal</item>
-      <item>School of Planning and Architecture, Delhi</item>
-      <item>School of Planning and Architecture, Vijayawada</item>
-      <item>Seacom Skills University</item>
-      <item>Sharda University</item>
-      <item>Sher-e-Kashmir University of Agricultural Sciences and Technology of Jammu</item>
-      <item>Sher-e-Kashmir University of Agricultural Sciences and Technology of Kashmir</item>
-      <item>Sher-i-Kashmir Institute of Medical Sciences</item>
-      <item>Shiv Nadar University</item>
-      <item>Shivaji University</item>
-      <item>Shobhit University</item>
-      <item>Shoolini University of Biotechnology and Management Sciences</item>
-      <item>Shree Guru Gobind Singh Tricentenary University</item>
-      <item>Shree Somnath Sanskrit University</item>
-      <item>Shreemati Nathibai Damodar Thackersey Women's University</item>
-      <item>Shri Govind Guru University</item>
-      <item>Shri Guru Ram Rai Education Mission</item>
-      <item>Shri Jagannath Sanskrit Vishvavidyalaya</item>
-      <item>Shri Jagdishprasad Jhabrmal Tibrewala University</item>
-      <item>Shri Lal Bahadur Shastri Rashtriya Sanskrit Vidyapeetha</item>
-      <item>Shri Mata Vaishno Devi University</item>
-      <item>Shri Ramswaroop Memorial University</item>
-      <item>Shri Venkateshwara University</item>
-      <item>Shridhar University</item>
-      <item>Sidho Kanho Birsha University</item>
-      <item>Sido Kanhu Murmu University</item>
-      <item>Sikkim Manipal University</item>
-      <item>Sikkim University</item>
-      <item>Siksha O Anusandhan University</item>
-      <item>Singhania University</item>
-      <item>Sir Padampat Singhania University</item>
-      <item>South Asian University</item>
-      <item>Sree Chitra Thirunal Institute of Medical Sciences and Technology</item>
-      <item>Sree Sankaracharya University of Sanskrit</item>
-      <item>Sri Balaji Vidyapeeth</item>
-      <item>Sri Chandrasekharendra Saraswathi Viswa Mahavidyalaya</item>
-      <item>Sri Dev Suman Uttarakhand University</item>
-      <item>Sri Devaraj Urs Academy of Higher Education and Research</item>
-      <item>Sri Guru Granth Sahib World University</item>
-      <item>Sri Krishnadevaraya University</item>
-      <item>Sri Padmavati Mahila Visvavidyalayam</item>
-      <item>Sri Ramachandra University</item>
-      <item>Sri Sai University</item>
-      <item>Sri Sathya Sai Institute of Higher Learning</item>
-      <item>Sri Satya Sai University of Technology and Medical Sciences</item>
-      <item>Sri Siddhartha Academy of Higher Education</item>
-      <item>Sri Sri University</item>
-      <item>Sri Venkateswara Institute of Medical Sciences</item>
-      <item>Sri Venkateswara University</item>
-      <item>Sri Venkateswara Vedic University</item>
-      <item>Sri Venkateswara Veterinary University</item>
-      <item>Srimanta Sankaradeva University of Health Sciences</item>
-      <item>SRM University</item>
-      <item>SRM University, Sikkim</item>
-      <item>St. Peter's University</item>
-      <item>State University of Performing and Visual Arts</item>
-      <item>Suamandeep Vidyapeeth</item>
-      <item>Sunrise University</item>
-      <item>Suresh Gyan Vihar University</item>
-      <item>Swami Keshwanand Rajasthan Agricultural University</item>
-      <item>Swami Rama Himalayan University</item>
-      <item>Swami Ramanand Teerth Marathwada University</item>
-      <item>Swami Vivekanand Subharti University</item>
-      <item>Swami Vivekanand University</item>
-      <item>Swami Vivekananda Yoga Anusandhana Samsthana</item>
-      <item>Swarnim Gujarat Sports University</item>
-      <item>Symbiosis International University</item>
-      <item>Tamil Nadu Agricultural University</item>
-      <item>Tamil Nadu Dr Ambedkar Law University</item>
-      <item>Tamil Nadu Dr. M.G.R.Medical University</item>
-      <item>Tamil Nadu Fisheries University</item>
-      <item>Tamil Nadu National Law School</item>
-      <item>Tamil Nadu Physical Education and Sports University</item>
-      <item>Tamil Nadu Teacher Education University</item>
-      <item>Tamil Nadu Veterinary and Animal Sciences University</item>
-      <item>Tamil University</item>
-      <item>Tantia University</item>
-      <item>Tata Institute of Fundamental Research</item>
-      <item>Tata Institute of Social Sciences</item>
-      <item>Teerthanker Mahaveer University</item>
-      <item>Telangana University</item>
-      <item>TERI University</item>
-      <item>Tezpur University</item>
-      <item>Thapar Institute of Engineering and Technology</item>
-      <item>The English and Foreign Languages University</item>
-      <item>The IIS University</item>
-      <item>The Indian Law Institute</item>
-      <item>The LNM Institute of Information Technology</item>
-      <item>The Maharaja Sayajirao University of Baroda</item>
-      <item>The National University of Advanced Legal Studies</item>
-      <item>The Northcap University</item>
-      <item>The West Bengal National University of Juridical Sciences</item>
-      <item>Thiruvalluvar University</item>
-      <item>Thunchath Ezhuthachan Malayalam University</item>
-      <item>Tilak Maharashtra Vidyapeeth</item>
-      <item>Tilka Manjhi Bhagalpur University</item>
-      <item>Trans-disciplinary University</item>
-      <item>Tripura University</item>
-      <item>Tumkur University</item>
-      <item>U.P. Pandit Deen Dayal Upadhyaya Pashu Chikitsa Vigyan Vishwavidyalaya Evam Go-Anusandhan Sansthan</item>
-      <item>Uka Tarsadia University</item>
-      <item>University of Agricultural and Horticultural Sciences</item>
-      <item>University of Agricultural Sciences, Bangalore</item>
-      <item>University of Agricultural Sciences, Dharwad</item>
-      <item>University of Agricultural Sciences, Raichur</item>
-      <item>University of Allahabad</item>
-      <item>University of Burdwan</item>
-      <item>University of Calcutta</item>
-      <item>University of Calicut</item>
-      <item>University of Delhi</item>
-      <item>University of Gour Banga</item>
-      <item>University of Horticultural Sciences, Bagalkot</item>
-      <item>University of Hyderabad</item>
-      <item>University of Jammu</item>
-      <item>University of Kalyani</item>
-      <item>University of Kashmir</item>
-      <item>University of Kerala</item>
-      <item>University of Kota</item>
-      <item>University of Lucknow</item>
-      <item>University of Madras</item>
-      <item>University of Mumbai</item>
-      <item>University of Mysore</item>
-      <item>University of North Bengal</item>
-      <item>University of Patanjali</item>
-      <item>University of Petroleum and Energy Studies</item>
-      <item>University of Rajasthan</item>
-      <item>University of Science and Technology, Meghalaya</item>
-      <item>University of Solapur</item>
-      <item>University of Technology and Management</item>
-      <item>Utkal University</item>
-      <item>Utkal University of Culture</item>
-      <item>Uttar Banga Krishi Viswavidyalaya</item>
-      <item>Uttarakhand Ayurved University</item>
-      <item>Uttarakhand Technical University</item>
-      <item>Uttarakhand University of Horticulture and Forestry</item>
-      <item>Uttaranchal Sanskrit University</item>
-      <item>Uttaranchal University</item>
-      <item>Vasantrao Naik Marathwada Agricultural University</item>
-      <item>Veer Bahadur Singh Purvanchal University</item>
-      <item>Veer Kunwar Singh University</item>
-      <item>Veer Narmad South Gujarat University</item>
-      <item>Veer Surendra Sai University of Technology</item>
-      <item>Vel Tech Dr.RR and Dr.SR Technical University</item>
-      <item>Vels University</item>
-      <item>Vidyasagar University</item>
-      <item>Vignan's University</item>
-      <item>Vijayanagara Sri Krishnadevaraya University</item>
-      <item>Vikram University</item>
-      <item>Vikrama Simhapuri University</item>
-      <item>Vinayaka Missions Sikkim University</item>
-      <item>Vinayaka Missions University</item>
-      <item>Vinoba Bhave University</item>
-      <item>Visva-Bharati University</item>
-      <item>Visvesvaraya National Institute of Technology</item>
-      <item>Visvesvaraya Technological University</item>
-      <item>VIT University</item>
-      <item>Vivekananda Global University</item>
-      <item>West Bengal State University</item>
-      <item>West Bengal University of Animal and Fishery Sciences</item>
-      <item>West Bengal University of Health Sciences</item>
-      <item>West Bengal University of Teachers' Training, Education Planning and Administration</item>
-      <item>William Carey University</item>
-      <item>Xavier University Bhubaneswar</item>
-      <item>Yenepoya University</item>
-      <item>YMCA University of Science and Technology</item>
-      <item>Yogi Vemana University</item>
+        <item>Acharya N.G. Ranga Agricultural University</item>
+        <item>Acharya Nagarjuna University</item>
+        <item>Adikavi Nannaya University</item>
+        <item>Ahmedabad University</item>
+        <item>Alagappa University</item>
+        <item>Aliah University</item>
+        <item>Aligarh Muslim University</item>
+        <item>All India Institute of Medical Sciences Bhopal</item>
+        <item>All India Institute of Medical Sciences Bhubaneswar</item>
+        <item>All India Institute of Medical Sciences Delhi</item>
+        <item>All India Institute of Medical Sciences Jodhpur</item>
+        <item>All India Institute of Medical Sciences Patna</item>
+        <item>All India Institute of Medical Sciences Raipur</item>
+        <item>All India Institute of Medical Sciences Rishikesh</item>
+        <item>Alliance University</item>
+        <item>Amity University</item>
+        <item>Amrita Vishwa Vidyapeetham</item>
+        <item>Anand Agricultural University</item>
+        <item>Andhra University</item>
+        <item>Anna University</item>
+        <item>Annamalai University</item>
+        <item>AP Goyal Shimla University</item>
+        <item>Apeejay Stya University</item>
+        <item>Arni University</item>
+        <item>Arunachal University of Studies</item>
+        <item>Aryabhatta Knowledge University</item>
+        <item>Ashoka University</item>
+        <item>Assam Agricultural University</item>
+        <item>Assam Don Bosco University</item>
+        <item>Assam Down Town University</item>
+        <item>Assam Rajiv Gandhi University of Cooperative Management</item>
+        <item>Assam Science and Technology University</item>
+        <item>Assam Women's University</item>
+        <item>Atal Bihari Vajpayee Hindi Vishwavidyalaya</item>
+        <item>AURO University</item>
+        <item>Avinashilingam University</item>
+        <item>Awadhesh Pratap Singh University</item>
+        <item>Ayush and Health Sciences University of Chhattisgarh</item>
+        <item>Azim Premji University</item>
+        <item>B.R. Ambedkar Bihar University</item>
+        <item>B.S. Abdur Rahman University</item>
+        <item>Baba Farid University of Health Sciences</item>
+        <item>Baba Ghulam Shah Badhshah University</item>
+        <item>Baba Mast Nath University</item>
+        <item>Babasaheb Bhimrao Ambedkar University</item>
+        <item>Babu Banarasi Das University</item>
+        <item>Baddi University of Emerging Sciences and Technologies</item>
+        <item>BAHRA University</item>
+        <item>Banaras Hindu University</item>
+        <item>Banasthali Vidyapith</item>
+        <item>Banda University of Agriculture and Technology, Banda</item>
+        <item>Bangalore University</item>
+        <item>Bankura University</item>
+        <item>Barkatullah University</item>
+        <item>Bastar Vishwavidyalaya</item>
+        <item>Berhampur University</item>
+        <item>Bhagat Phool Singh Mahila Vishwavidyalaya</item>
+        <item>Bhagwant University</item>
+        <item>Bhakta Kavi Narsinh Mehta University</item>
+        <item>Bharat Ratna Dr. B.R. Ambedkar University</item>
+        <item>Bharath Institute of Higher Education and Research</item>
+        <item>Bharathiar University</item>
+        <item>Bharathidasan University</item>
+        <item>Bharati Vidyapeeth University</item>
+        <item>Bhatkhande Music Institute</item>
+        <item>Bhupendra Narayan Mandal University</item>
+        <item>Bidhan Chandra Krishi Vishwavidyalaya</item>
+        <item>Bihar Agricultural University</item>
+        <item>Biju Patnaik University of Technology</item>
+        <item>Bilaspur Vishwavidyalaya</item>
+        <item>Birla Institute of Technology</item>
+        <item>Birla Institute of Technology and Science</item>
+        <item>Birsa Agricultural University</item>
+        <item>BLDE University</item>
+        <item>BML Munjal University</item>
+        <item>Bodoland University</item>
+        <item>Bundelkhand University</item>
+        <item>C. U. Shah University</item>
+        <item>Calorx Teachers University</item>
+        <item>Calorx Teachers' University</item>
+        <item>Career Point University</item>
+        <item>Central Agricultural University</item>
+        <item>Central Institute of Fisheries Education</item>
+        <item>Central University of Gujarat</item>
+        <item>Central University of Haryana</item>
+        <item>Central University of Himachal Pradesh</item>
+        <item>Central University of Jammu</item>
+        <item>Central University of Jharkhand</item>
+        <item>Central University of Karnataka</item>
+        <item>Central University of Kashmir</item>
+        <item>Central University of Kerala</item>
+        <item>Central University of Orissa</item>
+        <item>Central University of Punjab</item>
+        <item>Central University of Rajasthan</item>
+        <item>Central University of South Bihar</item>
+        <item>Central University of Tamil Nadu</item>
+        <item>Central University of Tibetan Studies</item>
+        <item>Centurion University of Technology and Management</item>
+        <item>CEPT University</item>
+        <item>Ch. Bansi Lal University</item>
+        <item>Chanakya National Law University</item>
+        <item>Chandigarh University</item>
+        <item>Chandra Shekhar Azad University of Agriculture and Technology</item>
+        <item>Charotar University of Science and Technology</item>
+        <item>Chaudhary Charan Singh Haryana Agricultural University</item>
+        <item>Chaudhary Charan Singh University</item>
+        <item>Chaudhary Devi Lal University</item>
+        <item>Chaudhary Ranbir Singh University</item>
+        <item>Chennai Mathematical Institute</item>
+        <item>Chhatrapati Shahu Ji Maharaj University</item>
+        <item>Chhattisgarh Kamdhenu Vishwavidyalaya</item>
+        <item>Chhattisgarh Swami Vivekananda Technical University</item>
+        <item>Children's University</item>
+        <item>Chitkara University</item>
+        <item>Christ University</item>
+        <item>CMR University</item>
+        <item>Cochin University of Science and Technology</item>
+        <item>Cooch Behar Panchanan Barma University</item>
+        <item>Cotton College State University</item>
+        <item>CSK Himachal Pradesh Krishi Vishvavidyalaya</item>
+        <item>Dakshina Bharat Hindi Prachar Sabha</item>
+        <item>Damodaram Sanjivayya National Law University</item>
+        <item>Datta Meghe Institute of Medical Sciences</item>
+        <item>Davangere University</item>
+        <item>Dayalbagh Educational Institute</item>
+        <item>Deccan College Post-Graduate and Research Institute</item>
+        <item>Deen Dayal Upadhyay Gorakhpur University</item>
+        <item>Deenbandhu Chhotu Ram University of Science and Technology</item>
+        <item>Delhi Technological University</item>
+        <item>Desh Bhagat University</item>
+        <item>Dev Sanskriti Vishwavidyalaya</item>
+        <item>Devi Ahilya Vishwavidyalaya</item>
+        <item>Dharmsinh Desai University</item>
+        <item>Dhirubhai Ambani Institute of Information and Communication Technology</item>
+        <item>Diamond Harbour Women's University</item>
+        <item>Dibrugarh University</item>
+        <item>DIT University</item>
+        <item>Doon University</item>
+        <item>Dr K.N. Modi University</item>
+        <item>Dr. A.P.J. Abdul Kalam Technical University</item>
+        <item>Dr. B R Ambedkar National Institute of Technology Jalandhar</item>
+        <item>Dr. B.R. Ambedkar University</item>
+        <item>Dr. B.R. Ambedkar University</item>
+        <item>Dr. Babasaheb Ambedkar Marathwada University</item>
+        <item>Dr. Babasaheb Ambedkar Technological University</item>
+        <item>Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth</item>
+        <item>Dr. C.V. Raman University</item>
+        <item>Dr. D.Y. Patil Vidyapeeth</item>
+        <item>Dr. Hari Singh Gour University</item>
+        <item>Dr. M.G.R. Educational and Research Institute</item>
+        <item>Dr. N.T.R. University of Health Sciences</item>
+        <item>Dr. Panjabrao Deshmukh Krishi Vidyapeeth</item>
+        <item>Dr. Ram Manohar Lohia Avadh University</item>
+        <item>Dr. Ram Manohar Lohiya National Law University</item>
+        <item>Dr. Sarvepalli Radhakrishnan Rajasthan Ayurved University</item>
+        <item>Dr. Shakuntala Misra Rehabilitation University</item>
+        <item>Dr. Y.S. Parmar University of Horticulture and Forestry</item>
+        <item>Dr.Y.S.R. Horticultural University</item>
+        <item>Dravidian University</item>
+        <item>EIILM University</item>
+        <item>Eternal University</item>
+        <item>Fakir Mohan University</item>
+        <item>Forest Research Institute</item>
+        <item>Galgotias University</item>
+        <item>Gandhi Institute of Technology and Management</item>
+        <item>Gandhigram Rural University</item>
+        <item>Ganpat University</item>
+        <item>Gauhati University</item>
+        <item>Gautam Buddha University</item>
+        <item>Geetanjali University</item>
+        <item>GLA University</item>
+        <item>Glocal University</item>
+        <item>GLS University</item>
+        <item>GNA University</item>
+        <item>Goa University</item>
+        <item>Gokhale Institute of Politics and Economics</item>
+        <item>Gondwana University</item>
+        <item>Govind Ballabh Pant University of Agriculture and Technology</item>
+        <item>Graphic Era Hill University</item>
+        <item>Graphic Era University</item>
+        <item>GSFC University</item>
+        <item>Gujarat Ayurved University</item>
+        <item>Gujarat Forensic Sciences University</item>
+        <item>Gujarat National Law University</item>
+        <item>Gujarat Technological University</item>
+        <item>Gujarat University</item>
+        <item>Gujarat University of Transplantation Sciences</item>
+        <item>Gujarat Vidyapith</item>
+        <item>Gulbarga University</item>
+        <item>Guru Angad Dev Veterinary and Animal Sciences University</item>
+        <item>Guru Ghasidas Vishwavidyalaya</item>
+        <item>Guru Gobind Singh Indraprastha University</item>
+        <item>Guru Jambheshwar University of Science and Technology</item>
+        <item>Guru Kashi University</item>
+        <item>Guru Nanak Dev University</item>
+        <item>Guru Ravidas Ayurved University</item>
+        <item>Gurukul Kangri Vishwavidyalaya</item>
+        <item>Haridev Joshi University of Journalism and Mass Communication</item>
+        <item>Hemchandracharya North Gujarat University</item>
+        <item>Hemwati Nandan Bahuguna Garhwal University</item>
+        <item>Hemwati Nandan Bahuguna Medical University</item>
+        <item>Hidayatullah National Law University</item>
+        <item>Himachal Pradesh Technical University</item>
+        <item>Himachal Pradesh University</item>
+        <item>Himgiri ZEE University</item>
+        <item>Hindustan Institute of Technology and Science</item>
+        <item>Homi Bhabha National Institute</item>
+        <item>ICFAI University, Dehradun</item>
+        <item>ICFAI University, Himachal Pradesh</item>
+        <item>ICFAI University, Jharkhand</item>
+        <item>ICFAI University, Meghalaya</item>
+        <item>ICFAI University, Mizoram</item>
+        <item>ICFAI University, Nagaland</item>
+        <item>ICFAI University, Raipur</item>
+        <item>ICFAI University, Sikkim</item>
+        <item>ICFAI University, Tripura</item>
+        <item>IEC University</item>
+        <item>IFHE Hyderabad</item>
+        <item>IFTM University</item>
+        <item>IMS Unison University</item>
+        <item>Indian Agricultural Research Institute</item>
+        <item>Indian Institute of Engineering Science and Technology, Shibpur</item>
+        <item>Indian Institute of Foreign Trade</item>
+        <item>Indian Institute of Information Technology Allahabad</item>
+        <item>Indian Institute of Information Technology and Management Gwalior</item>
+        <item>Indian Institute of Information Technology, Design and Manufacturing</item>
+        <item>Indian Institute of Information Technology, Guwahati</item>
+        <item>Indian Institute of Information Technology, Kalyani</item>
+        <item>Indian Institute of Information Technology, Kottayam</item>
+        <item>Indian Institute of Information Technology, Lucknow</item>
+        <item>Indian Institute of Information Technology, Manipur</item>
+        <item>Indian Institute of Information Technology, Sri City</item>
+        <item>Indian Institute of Information Technology, Una</item>
+        <item>Indian Institute of Information Technology, Vadodara</item>
+        <item>Indian Institute of Science</item>
+        <item>Indian Institute of Science Education and Research, Bhopal</item>
+        <item>Indian Institute of Science Education and Research, Kolkata</item>
+        <item>Indian Institute of Science Education and Research, Mohali</item>
+        <item>Indian Institute of Science Education and Research, Pune</item>
+        <item>Indian Institute of Science Education and Research, Thiruvananthapuram</item>
+        <item>Indian Institute of Space Science and Technology</item>
+        <item>Indian Institute of Teacher Education</item>
+        <item>Indian Institute of Technology Bhubaneswar</item>
+        <item>Indian Institute of Technology Bombay</item>
+        <item>Indian Institute of Technology Delhi</item>
+        <item>Indian Institute of Technology Gandhinagar</item>
+        <item>Indian Institute of Technology Guwahati</item>
+        <item>Indian Institute of Technology Hyderabad</item>
+        <item>Indian Institute of Technology Indore</item>
+        <item>Indian Institute of Technology Jodhpur</item>
+        <item>Indian Institute of Technology Kanpur</item>
+        <item>Indian Institute of Technology Kharagpur</item>
+        <item>Indian Institute of Technology Madras</item>
+        <item>Indian Institute of Technology Mandi</item>
+        <item>Indian Institute of Technology Patna</item>
+        <item>Indian Institute of Technology Roorkee</item>
+        <item>Indian Institute of Technology Ropar</item>
+        <item>Indian Institute of Technology, BHU</item>
+        <item>Indian Maritime University</item>
+        <item>Indian School of Mines</item>
+        <item>Indian Statistical Institute</item>
+        <item>Indian Veterinary Research Institute</item>
+        <item>Indira Gandhi Delhi Technical University for Women</item>
+        <item>Indira Gandhi Institute of Development Research</item>
+        <item>Indira Gandhi Institute of Medical Sciences, Sheikhpura</item>
+        <item>Indira Gandhi Krishi Vishwavidyalaya</item>
+        <item>Indira Gandhi National Tribal University</item>
+        <item>Indira Gandhi Technological And Medical Sciences University</item>
+        <item>Indira Gandhi University, Meerpur</item>
+        <item>Indira Kala Sangit Vishwavidyalaya</item>
+        <item>Indraprastha Institute of Information Technology</item>
+        <item>Indus International University</item>
+        <item>Indus University</item>
+        <item>Institute of Advanced Research</item>
+        <item>Institute of Advanced Studies in Education</item>
+        <item>Institute of Chemical Technology</item>
+        <item>Institute of Infrastructure, Technology, Research and Management</item>
+        <item>Integral University</item>
+        <item>International Institute for Population Sciences</item>
+        <item>International Institute of Information Technology Bangalore</item>
+        <item>International Institute of Information Technology, Hyderabad</item>
+        <item>Invertis University</item>
+        <item>Islamic University of Science and Technology</item>
+        <item>ITM University Gwalior</item>
+        <item>ITM University Raipur</item>
+        <item>Jadavpur University</item>
+        <item>Jagadguru Ramanandacharya Rajasthan Sanskrit University</item>
+        <item>Jagadguru Rambhadracharya Handicapped University</item>
+        <item>Jagadguru Sri Shivarathreeswara University</item>
+        <item>Jagan Nath University</item>
+        <item>Jagan Nath University</item>
+        <item>Jagran Lakecity University</item>
+        <item>Jai Narain Vyas University</item>
+        <item>Jai Prakash Vishwavidyalaya</item>
+        <item>Jain University</item>
+        <item>Jain Vishva Bharati Institute</item>
+        <item>Jaipur National University</item>
+        <item>Jamia Hamdard</item>
+        <item>Jamia Millia Islamia</item>
+        <item>Janardan Rai Nagar Rajasthan Vidhyapeeth University</item>
+        <item>Jawaharlal Institute of Postgraduate Medical Education and Research</item>
+        <item>Jawaharlal Nehru Architecture and Fine Arts University</item>
+        <item>Jawaharlal Nehru Centre for Advanced Scientific Research</item>
+        <item>Jawaharlal Nehru Krishi Vishwavidyalaya</item>
+        <item>Jawaharlal Nehru Technological University</item>
+        <item>Jawaharlal Nehru Technological University, Anantapur</item>
+        <item>Jawaharlal Nehru Technological University, Kakinada</item>
+        <item>Jawaharlal Nehru University</item>
+        <item>Jayoti Vidyapeeth Women's University</item>
+        <item>Jaypee Institute of Information Technology</item>
+        <item>Jaypee University of Engineering and Technology</item>
+        <item>Jaypee University of Information Technology</item>
+        <item>Jaypee University, Anoopshahr</item>
+        <item>JECRC University</item>
+        <item>Jharkhand Rai University</item>
+        <item>Jiwaji University</item>
+        <item>JK Lakshmipat University</item>
+        <item>Jodhpur National University</item>
+        <item>JS University</item>
+        <item>Junagadh Agricultural University</item>
+        <item>K L University</item>
+        <item>K.R. Mangalam University</item>
+        <item>Kadi Sarva VishwaVidyalaya</item>
+        <item>Kakatiya University</item>
+        <item>Kalasalingam University</item>
+        <item>Kalinga University</item>
+        <item>Kamdhenu University</item>
+        <item>Kameshwar Singh Darbhanga Sanskrit University</item>
+        <item>Kannada University</item>
+        <item>Kannur University</item>
+        <item>Karnatak University</item>
+        <item>Karnataka Janapada Vishwavidyalaya</item>
+        <item>Karnataka Sanskrit University</item>
+        <item>Karnataka State Dr. Gangubai Hangal Music And Performing Arts University</item>
+        <item>Karnataka State Law University</item>
+        <item>Karnataka State Women's University</item>
+        <item>Karnataka Veterinary, Animal and Fisheries Sciences University</item>
+        <item>Karpagam Academy of Higher Education</item>
+        <item>Karunya University</item>
+        <item>Kavi Kulguru Kalidas Sanskrit Vishwavidyalaya</item>
+        <item>Kavikulguru Kalidas Sanskrit University</item>
+        <item>Kazi Nazrul University</item>
+        <item>Kaziranga University</item>
+        <item>Kerala Agricultural University</item>
+        <item>Kerala Kalamandalam</item>
+        <item>Kerala University of Fisheries and Ocean Studies</item>
+        <item>Kerala University of Health Sciences</item>
+        <item>Kerala Veterinary and Animal Sciences University</item>
+        <item>Khwaja Moinuddin Chishti Urdu, Arabi-Farsi University</item>
+        <item>KIIT University</item>
+        <item>King George's Medical University</item>
+        <item>KLE University</item>
+        <item>Kolhan University</item>
+        <item>Krantiguru Shyamji Krishna Verma Kachchh University</item>
+        <item>Krishna Institute of Medical Sciences</item>
+        <item>Krishna University</item>
+        <item>Kumar Bhaskar Varma Sanskrit And Ancient Studies University</item>
+        <item>Kumaun University</item>
+        <item>Kurukshetra University</item>
+        <item>Kushabhau Thakre Patrakarita Avam Jansanchar University</item>
+        <item>Kuvempu University</item>
+        <item>Lakshmibai National Institute of Physical Education</item>
+        <item>Lakulish Yoga University</item>
+        <item>Lala Lajpat Rai University of Veterinary and Animal Sciences</item>
+        <item>Lalit Narayan Mithila University</item>
+        <item>Lingaya's University</item>
+        <item>Lovely Professional University</item>
+        <item>M. S. Ramaiah University of Applied Sciences</item>
+        <item>Madan Mohan Malaviya University of Technology</item>
+        <item>Madhav University</item>
+        <item>Madhya Pradesh Pashu-Chikitsa Vigyan Vishwavidyalaya</item>
+        <item>Madurai Kamaraj University</item>
+        <item>Magadh University</item>
+        <item>Mahapurusha Srimanta Sankaradeva Viswavidyalaya</item>
+        <item>Maharaja Agrasen University</item>
+        <item>Maharaja Chhatrasal Bundelkhand University</item>
+        <item>Maharaja Ganga Singh University</item>
+        <item>Maharaja Krishnakumarsinhji Bhavnagar University</item>
+        <item>Maharaja Ranjit Singh Punjab Technical University</item>
+        <item>Maharaja Surajmal Brij University</item>
+        <item>Maharana Pratap University of Agriculture and Technology</item>
+        <item>Maharashtra Animal and Fishery Sciences University</item>
+        <item>Maharashtra University of Health Sciences</item>
+        <item>Maharishi Dayanand University</item>
+        <item>Maharishi Mahesh Yogi Vedic Vishwavidyalaya</item>
+        <item>Maharishi Markandeshwar University</item>
+        <item>Maharishi Markandeshwar University</item>
+        <item>Maharishi Markandeshwar University, Solan</item>
+        <item>Maharishi University of Management and Technology</item>
+        <item>Maharshi Dayanand Saraswati University</item>
+        <item>Maharshi Panini Sanskrit Vishwavidyalaya</item>
+        <item>Mahatma Gandhi Antarrashtriya Hindi Vishwavidyalaya</item>
+        <item>Mahatma Gandhi Central University, Motihari</item>
+        <item>Mahatma Gandhi Chitrakoot Gramoday Vishwavidyalaya</item>
+        <item>Mahatma Gandhi Kashi Vidyapeeth</item>
+        <item>Mahatma Gandhi University</item>
+        <item>Mahatma Gandhi University</item>
+        <item>Mahatma Gandhi University</item>
+        <item>Mahatma Gandhi University of Medical Sciences and Technology</item>
+        <item>Mahatma Jyoti Rao Phoole University</item>
+        <item>Mahatma Jyotiba Phule Rohilkhand University</item>
+        <item>Mahatma Phule Krishi Vidyapeeth</item>
+        <item>Makhanlal Chaturvedi Rashtriya Patrakarita Vishwavidyalaya</item>
+        <item>Malaviya National Institute of Technology, Jaipur</item>
+        <item>Manav Bharti University</item>
+        <item>Manav Rachna International University</item>
+        <item>Manav Rachna University</item>
+        <item>Mangalayatan University</item>
+        <item>Mangalore University</item>
+        <item>Manipal University</item>
+        <item>Manipur University</item>
+        <item>Manonmaniam Sundaranar University</item>
+        <item>Martin Luther Christian University</item>
+        <item>MATS University</item>
+        <item>Maulana Abul Kalam Azad University of Technology</item>
+        <item>Maulana Azad National Institute of Technology</item>
+        <item>Maulana Azad National Urdu University</item>
+        <item>Maulana Azad National Urdu University</item>
+        <item>Maulana Mazharul Haque Arabic and Persian University</item>
+        <item>Meenakshi Academy of Higher Education and Research</item>
+        <item>Mewar University</item>
+        <item>MGM Institute of Health Sciences</item>
+        <item>Mizoram University</item>
+        <item>Mody University</item>
+        <item>Mohammad Ali Jauhar University</item>
+        <item>Mohanlal Sukhadia University</item>
+        <item>Monad University</item>
+        <item>Mother Teresa Women's University</item>
+        <item>Motherhood University</item>
+        <item>Motilal Nehru National Institute of Technology</item>
+        <item>MVN University</item>
+        <item>Nagaland University</item>
+        <item>Nalanda University</item>
+        <item>NALSAR University of Law</item>
+        <item>Narendra Dev University of Agriculture and Technology</item>
+        <item>Narsee Monjee Institute of Management and Higher Studies</item>
+        <item>National Dairy Research Institute</item>
+        <item>National Institute of Design</item>
+        <item>National Institute of Fashion Technology</item>
+        <item>National Institute of Food Technology Entrepreneurship and Management</item>
+        <item>National Institute of Mental Health and Neuro Sciences</item>
+        <item>National Institute of Pharmaceutical Education and Research, Ahmedabad</item>
+        <item>National Institute of Pharmaceutical Education and Research, Guwahati</item>
+        <item>National Institute of Pharmaceutical Education and Research, Hajipur</item>
+        <item>National Institute of Pharmaceutical Education and Research, Hyderabad</item>
+        <item>National Institute of Pharmaceutical Education and Research, Kolkata</item>
+        <item>National Institute of Pharmaceutical Education and Research, Mohali</item>
+        <item>National Institute of Pharmaceutical Education and Research, Rae Bareli</item>
+        <item>National Institute of Technology, Agartala</item>
+        <item>National Institute of Technology, Arunachal Pradesh</item>
+        <item>National Institute of Technology, Calicut</item>
+        <item>National Institute of Technology, Delhi</item>
+        <item>National Institute of Technology, Durgapur</item>
+        <item>National Institute of Technology, Goa</item>
+        <item>National Institute of Technology, Hamirpur</item>
+        <item>National Institute of Technology, Jamshedpur</item>
+        <item>National Institute of Technology, Karnataka</item>
+        <item>National Institute of Technology, Kurukshetra</item>
+        <item>National Institute of Technology, Manipur</item>
+        <item>National Institute of Technology, Meghalaya</item>
+        <item>National Institute of Technology, Mizoram</item>
+        <item>National Institute of Technology, Nagaland</item>
+        <item>National Institute of Technology, Patna</item>
+        <item>National Institute of Technology, Puducherry</item>
+        <item>National Institute of Technology, Raipur</item>
+        <item>National Institute of Technology, Rourkela</item>
+        <item>National Institute of Technology, Sikkim</item>
+        <item>National Institute of Technology, Silchar</item>
+        <item>National Institute of Technology, Srinagar</item>
+        <item>National Institute of Technology, Tiruchirappalli</item>
+        <item>National Institute of Technology, Uttarakhand</item>
+        <item>National Institute of Technology, Warangal</item>
+        <item>National Law Institute University</item>
+        <item>National Law School of India University</item>
+        <item>National Law University</item>
+        <item>National Law University and Judicial Academy, Assam</item>
+        <item>National Law University, Jodhpur</item>
+        <item>National Law University, Orissa</item>
+        <item>National University of Educational Planning and Administration</item>
+        <item>National University of Study and Research in Law</item>
+        <item>Nava Nalanda Mahavihara</item>
+        <item>Navrachana University</item>
+        <item>Navsari Agricultural University</item>
+        <item>Nehru Gram Bharati Vishwavidyalaya</item>
+        <item>NIILM University</item>
+        <item>Nilamber-Pitamber University</item>
+        <item>NIMS University</item>
+        <item>Nirma University of Science and Technology</item>
+        <item>NITTE University</item>
+        <item>Nizam's Institute of Medical Sciences</item>
+        <item>Noida International University</item>
+        <item>North Eastern Hill University</item>
+        <item>North Eastern Regional Institute of Science and Technology</item>
+        <item>North Maharashtra University</item>
+        <item>North Orissa University</item>
+        <item>O.P. Jindal Global University</item>
+        <item>Oriental University</item>
+        <item>Orissa University of Agriculture and Technology</item>
+        <item>Osmania University</item>
+        <item>Pacific Medical University</item>
+        <item>Pacific University</item>
+        <item>Padmashree Dr. D.Y. Patil Vidyapith</item>
+        <item>Palamuru University</item>
+        <item>Pandit Deendayal Petroleum University</item>
+        <item>Pandit Deendayal Upadhyaya Shekhawati University</item>
+        <item>Pandit Ravishankar Shukla University</item>
+        <item>Panjab University</item>
+        <item>Parul University</item>
+        <item>Patna University</item>
+        <item>PDPM Indian Institute of Information Technology, Design and Manufacturing</item>
+        <item>PEC University of Technology</item>
+        <item>People's University</item>
+        <item>Periyar Maniammai University</item>
+        <item>Periyar University</item>
+        <item>PES University</item>
+        <item>Pondicherry University</item>
+        <item>Ponnaiyan Ramajayam Institute of Science and Technology</item>
+        <item>Poornima University</item>
+        <item>Post Graduate Institute of Medical Education and Research</item>
+        <item>Potti Sreeramulu Telugu University</item>
+        <item>Pratap University</item>
+        <item>Pravara Institute of Medical Sciences</item>
+        <item>Presidency University</item>
+        <item>Professor Jayashankar Telangana State Agricultural University</item>
+        <item>Pt. Bhagwat Dayal Sharma University of Health Sciences</item>
+        <item>Punjab Agricultural University</item>
+        <item>Punjab Technical University</item>
+        <item>Punjabi University</item>
+        <item>Rabindra Bharati University</item>
+        <item>Raffles University</item>
+        <item>Rai University</item>
+        <item>Raj Rishi Bharthari Matsya University</item>
+        <item>Raja Mansingh Tomar Music and Arts University</item>
+        <item>Rajasthan Technical University Kota</item>
+        <item>Rajasthan University of Health Sciences</item>
+        <item>Rajasthan University of Veterinary and Animal Sciences</item>
+        <item>Rajendra Agricultural University</item>
+        <item>Rajiv Gandhi Institute of Petroleum Technology</item>
+        <item>Rajiv Gandhi National Institute of Youth Development</item>
+        <item>Rajiv Gandhi National University of Law</item>
+        <item>Rajiv Gandhi Proudyogiki Vishwavidyalaya</item>
+        <item>Rajiv Gandhi University</item>
+        <item>Rajiv Gandhi University of Health Sciences</item>
+        <item>Rajiv Gandhi University of Knowledge Technologies</item>
+        <item>Rajmata Vijayaraje Scindia Krishi Vishwavidyalaya</item>
+        <item>Raksha Shakti University</item>
+        <item>Rama University</item>
+        <item>Ramakrishna Mission Vivekananda University</item>
+        <item>Ranchi University</item>
+        <item>Rani Channamma University, Belagavi</item>
+        <item>Rani Durgavati Vishwavidyalaya</item>
+        <item>Rashtrasant Tukadoji Maharaj Nagpur University</item>
+        <item>Rashtriya Sanskrit Sansthan University</item>
+        <item>Rashtriya Sanskrit Vidyapeetha</item>
+        <item>Ravenshaw University</item>
+        <item>Rayalaseema University</item>
+        <item>Rayat-Bahra University</item>
+        <item>REVA University</item>
+        <item>RK University</item>
+        <item>RKDF University</item>
+        <item>Sai Nath University</item>
+        <item>Sam Higginbottom Institute of Agriculture, Technology and Sciences</item>
+        <item>Sambalpur University</item>
+        <item>Sampurnanand Sanskrit Vishvavidyalaya</item>
+        <item>Sangam University</item>
+        <item>Sanjay Gandhi Post Graduate Institute of Medical Sciences</item>
+        <item>Sant Gadge Baba Amravati University</item>
+        <item>Sant Longowal Institute of Engineering and Technology</item>
+        <item>Santosh University</item>
+        <item>Sardar Patel University</item>
+        <item>Sardar Patel University of Police, Security and Criminal Justice</item>
+        <item>Sardar Vallabhbhai National Institute of Technology, Surat</item>
+        <item>Sardar Vallabhbhai Patel University of Agriculture and Technology</item>
+        <item>Sardarkrushinagar Dantiwada Agricultural University</item>
+        <item>Sarguja University</item>
+        <item>Sarvepalli Radhakrishnan University</item>
+        <item>SASTRA University</item>
+        <item>Satavahana University</item>
+        <item>Sathyabama University</item>
+        <item>Saurashtra University</item>
+        <item>Saveetha University</item>
+        <item>Savitribai Phule Pune University</item>
+        <item>School of Planning and Architecture, Bhopal</item>
+        <item>School of Planning and Architecture, Delhi</item>
+        <item>School of Planning and Architecture, Vijayawada</item>
+        <item>Seacom Skills University</item>
+        <item>Sharda University</item>
+        <item>Sher-e-Kashmir University of Agricultural Sciences and Technology of Jammu</item>
+        <item>Sher-e-Kashmir University of Agricultural Sciences and Technology of Kashmir</item>
+        <item>Sher-i-Kashmir Institute of Medical Sciences</item>
+        <item>Shiv Nadar University</item>
+        <item>Shivaji University</item>
+        <item>Shobhit University</item>
+        <item>Shoolini University of Biotechnology and Management Sciences</item>
+        <item>Shree Guru Gobind Singh Tricentenary University</item>
+        <item>Shree Somnath Sanskrit University</item>
+        <item>Shreemati Nathibai Damodar Thackersey Women's University</item>
+        <item>Shri Govind Guru University</item>
+        <item>Shri Guru Ram Rai Education Mission</item>
+        <item>Shri Jagannath Sanskrit Vishvavidyalaya</item>
+        <item>Shri Jagdishprasad Jhabrmal Tibrewala University</item>
+        <item>Shri Lal Bahadur Shastri Rashtriya Sanskrit Vidyapeetha</item>
+        <item>Shri Mata Vaishno Devi University</item>
+        <item>Shri Ramswaroop Memorial University</item>
+        <item>Shri Venkateshwara University</item>
+        <item>Shridhar University</item>
+        <item>Sidho Kanho Birsha University</item>
+        <item>Sido Kanhu Murmu University</item>
+        <item>Sikkim Manipal University</item>
+        <item>Sikkim University</item>
+        <item>Siksha O Anusandhan University</item>
+        <item>Singhania University</item>
+        <item>Sir Padampat Singhania University</item>
+        <item>South Asian University</item>
+        <item>Sree Chitra Thirunal Institute of Medical Sciences and Technology</item>
+        <item>Sree Sankaracharya University of Sanskrit</item>
+        <item>Sri Balaji Vidyapeeth</item>
+        <item>Sri Chandrasekharendra Saraswathi Viswa Mahavidyalaya</item>
+        <item>Sri Dev Suman Uttarakhand University</item>
+        <item>Sri Devaraj Urs Academy of Higher Education and Research</item>
+        <item>Sri Guru Granth Sahib World University</item>
+        <item>Sri Krishnadevaraya University</item>
+        <item>Sri Padmavati Mahila Visvavidyalayam</item>
+        <item>Sri Ramachandra University</item>
+        <item>Sri Sai University</item>
+        <item>Sri Sathya Sai Institute of Higher Learning</item>
+        <item>Sri Satya Sai University of Technology and Medical Sciences</item>
+        <item>Sri Siddhartha Academy of Higher Education</item>
+        <item>Sri Sri University</item>
+        <item>Sri Venkateswara Institute of Medical Sciences</item>
+        <item>Sri Venkateswara University</item>
+        <item>Sri Venkateswara Vedic University</item>
+        <item>Sri Venkateswara Veterinary University</item>
+        <item>Srimanta Sankaradeva University of Health Sciences</item>
+        <item>SRM University</item>
+        <item>SRM University, Sikkim</item>
+        <item>St. Peter's University</item>
+        <item>State University of Performing and Visual Arts</item>
+        <item>Suamandeep Vidyapeeth</item>
+        <item>Sunrise University</item>
+        <item>Suresh Gyan Vihar University</item>
+        <item>Swami Keshwanand Rajasthan Agricultural University</item>
+        <item>Swami Rama Himalayan University</item>
+        <item>Swami Ramanand Teerth Marathwada University</item>
+        <item>Swami Vivekanand Subharti University</item>
+        <item>Swami Vivekanand University</item>
+        <item>Swami Vivekananda Yoga Anusandhana Samsthana</item>
+        <item>Swarnim Gujarat Sports University</item>
+        <item>Symbiosis International University</item>
+        <item>Tamil Nadu Agricultural University</item>
+        <item>Tamil Nadu Dr Ambedkar Law University</item>
+        <item>Tamil Nadu Dr. M.G.R.Medical University</item>
+        <item>Tamil Nadu Fisheries University</item>
+        <item>Tamil Nadu National Law School</item>
+        <item>Tamil Nadu Physical Education and Sports University</item>
+        <item>Tamil Nadu Teacher Education University</item>
+        <item>Tamil Nadu Veterinary and Animal Sciences University</item>
+        <item>Tamil University</item>
+        <item>Tantia University</item>
+        <item>Tata Institute of Fundamental Research</item>
+        <item>Tata Institute of Social Sciences</item>
+        <item>Teerthanker Mahaveer University</item>
+        <item>Telangana University</item>
+        <item>TERI University</item>
+        <item>Tezpur University</item>
+        <item>Thapar Institute of Engineering and Technology</item>
+        <item>The English and Foreign Languages University</item>
+        <item>The IIS University</item>
+        <item>The Indian Law Institute</item>
+        <item>The LNM Institute of Information Technology</item>
+        <item>The Maharaja Sayajirao University of Baroda</item>
+        <item>The National University of Advanced Legal Studies</item>
+        <item>The Northcap University</item>
+        <item>The West Bengal National University of Juridical Sciences</item>
+        <item>Thiruvalluvar University</item>
+        <item>Thunchath Ezhuthachan Malayalam University</item>
+        <item>Tilak Maharashtra Vidyapeeth</item>
+        <item>Tilka Manjhi Bhagalpur University</item>
+        <item>Trans-disciplinary University</item>
+        <item>Tripura University</item>
+        <item>Tumkur University</item>
+        <item>U.P. Pandit Deen Dayal Upadhyaya Pashu Chikitsa Vigyan Vishwavidyalaya Evam
+            Go-Anusandhan Sansthan
+        </item>
+        <item>Uka Tarsadia University</item>
+        <item>University of Agricultural and Horticultural Sciences</item>
+        <item>University of Agricultural Sciences, Bangalore</item>
+        <item>University of Agricultural Sciences, Dharwad</item>
+        <item>University of Agricultural Sciences, Raichur</item>
+        <item>University of Allahabad</item>
+        <item>University of Burdwan</item>
+        <item>University of Calcutta</item>
+        <item>University of Calicut</item>
+        <item>University of Delhi</item>
+        <item>University of Gour Banga</item>
+        <item>University of Horticultural Sciences, Bagalkot</item>
+        <item>University of Hyderabad</item>
+        <item>University of Jammu</item>
+        <item>University of Kalyani</item>
+        <item>University of Kashmir</item>
+        <item>University of Kerala</item>
+        <item>University of Kota</item>
+        <item>University of Lucknow</item>
+        <item>University of Madras</item>
+        <item>University of Mumbai</item>
+        <item>University of Mysore</item>
+        <item>University of North Bengal</item>
+        <item>University of Patanjali</item>
+        <item>University of Petroleum and Energy Studies</item>
+        <item>University of Rajasthan</item>
+        <item>University of Science and Technology, Meghalaya</item>
+        <item>University of Solapur</item>
+        <item>University of Technology and Management</item>
+        <item>Utkal University</item>
+        <item>Utkal University of Culture</item>
+        <item>Uttar Banga Krishi Viswavidyalaya</item>
+        <item>Uttarakhand Ayurved University</item>
+        <item>Uttarakhand Technical University</item>
+        <item>Uttarakhand University of Horticulture and Forestry</item>
+        <item>Uttaranchal Sanskrit University</item>
+        <item>Uttaranchal University</item>
+        <item>Vasantrao Naik Marathwada Agricultural University</item>
+        <item>Veer Bahadur Singh Purvanchal University</item>
+        <item>Veer Kunwar Singh University</item>
+        <item>Veer Narmad South Gujarat University</item>
+        <item>Veer Surendra Sai University of Technology</item>
+        <item>Vel Tech Dr.RR and Dr.SR Technical University</item>
+        <item>Vels University</item>
+        <item>Vidyasagar University</item>
+        <item>Vignan's University</item>
+        <item>Vijayanagara Sri Krishnadevaraya University</item>
+        <item>Vikram University</item>
+        <item>Vikrama Simhapuri University</item>
+        <item>Vinayaka Missions Sikkim University</item>
+        <item>Vinayaka Missions University</item>
+        <item>Vinoba Bhave University</item>
+        <item>Visva-Bharati University</item>
+        <item>Visvesvaraya National Institute of Technology</item>
+        <item>Visvesvaraya Technological University</item>
+        <item>VIT University</item>
+        <item>Vivekananda Global University</item>
+        <item>West Bengal State University</item>
+        <item>West Bengal University of Animal and Fishery Sciences</item>
+        <item>West Bengal University of Health Sciences</item>
+        <item>West Bengal University of Teachers' Training, Education Planning and Administration
+        </item>
+        <item>William Carey University</item>
+        <item>Xavier University Bhubaneswar</item>
+        <item>Yenepoya University</item>
+        <item>YMCA University of Science and Technology</item>
+        <item>Yogi Vemana University</item>
         <item>Other</item>
-</array>
+    </array>
 </resources>

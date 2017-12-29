@@ -13,8 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:src="@drawable/logo"
-        android:id="@+id/logo"
-        />
+        android:id="@+id/logo" />
 
     <ImageView
         android:layout_width="30dp"
@@ -25,6 +24,7 @@
         android:id="@+id/username_icon"
 
         />
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/usernameTextInputLayout"
         android:layout_toRightOf="@+id/username_icon"
@@ -35,8 +35,7 @@
         android:layout_marginLeft="10dp"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/email"
@@ -49,8 +48,7 @@
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textSize="16dp"
-            android:textColor="#03353e"
-            />
+            android:textColor="#03353e" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -60,8 +58,8 @@
         android:src="@drawable/password_icon"
         android:layout_below="@+id/usernameTextInputLayout"
         android:id="@+id/password_icon"
-        android:layout_marginTop="14dp"
-        />
+        android:layout_marginTop="14dp" />
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordTextInputLayout"
         android:layout_toRightOf="@+id/password_icon"
@@ -71,8 +69,7 @@
         android:layout_marginLeft="10dp"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
-        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
-        >
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/password"
@@ -84,8 +81,7 @@
             android:inputType="textPassword"
             android:singleLine="true"
             android:textSize="16dp"
-            android:textColor="#03353e"
-            />
+            android:textColor="#03353e" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -96,8 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/login"
         android:layout_below="@+id/passwordTextInputLayout"
@@ -111,8 +107,7 @@
         android:textSize="18dp"
         android:textColor="@color/while_color"
         android:layout_marginTop="10dp"
-        android:background="@drawable/textviewborder"
-        />
+        android:background="@drawable/textviewborder" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,16 +119,16 @@
         android:layout_marginRight="10dp"
         android:id="@+id/forgot"
         android:textSize="14dp"
-        android:textColor="@color/sky_blue_color"
-        />
+        android:textColor="@color/sky_blue_color" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="New on Place Me?"
         android:id="@+id/newp"
-        android:textColor="@color/dark_color"
-        />
+        android:textColor="@color/dark_color" />
+
     <Button
         android:id="@+id/signup"
         android:layout_alignParentBottom="true"
@@ -146,6 +141,5 @@
         android:textAllCaps="false"
         android:textSize="16dp"
         android:text="Sign Up"
-        android:background="@drawable/textviewborder"
-        />
+        android:background="@drawable/textviewborder" />
 </RelativeLayout>
