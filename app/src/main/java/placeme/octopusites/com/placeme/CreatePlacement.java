@@ -100,9 +100,9 @@ public class CreatePlacement extends AppCompatActivity {
 
 
 
-        TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
+//        TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
         TextView createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
-        createnotitxt.setTypeface(Z.getBold(this));
+//        createnotitxt.setTypeface(Z.getBold(this));
         createnotinotitxt.setTypeface(Z.getLight(this));
 
         CheckBoxstudent = (CheckBox) findViewById(R.id.CheckBoxstudent);

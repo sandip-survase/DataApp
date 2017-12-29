@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 
 import org.apache.http.NameValuePair;
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,10 +27,10 @@ public class ViewResume extends AppCompatActivity {
 
     InputStream input = null;
     PDFView pdfView;
-    ImageView download,shortlist;
-    String username="";
+    ImageView download, shortlist;
+    String username = "";
     CheckBox checkboxshortlist;
-
+    String name = "";
 
 
     @Override
@@ -38,13 +40,17 @@ public class ViewResume extends AppCompatActivity {
         setFinishOnTouchOutside(false);
 
         pdfView = (PDFView) findViewById(R.id.pdfView);
-        download= (ImageView) findViewById(R.id.download);
-        checkboxshortlist = (CheckBox)findViewById(R.id.checkboxs);
+        download = (ImageView) findViewById(R.id.download);
+        checkboxshortlist = (CheckBox) findViewById(R.id.checkboxs);
 
 
         username = getIntent().getStringExtra("username");
-        Log.d("accesed", "onCreate: "+username);
-
+        Log.d("accesed", "onCreate: " + username);
+        try {
+            name = Z.Decrypt(username, ViewResume.this);
+        } catch (Exception e) {
+            Log.d("TAG", "onCreate: " + e.getMessage());
+        }
 
 //        final File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "SkySciQPresentationEnglish.pdf");
 //        Log.d("TAG", "onCreate: "+file);
@@ -79,14 +85,43 @@ public class ViewResume extends AppCompatActivity {
         });
 
 
+    }
+
+    void DownloadPDF() {
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority(Z.VPS_IP)
+                .path("CreateNotificationTemp/PDFDownload2")
+                .appendQueryParameter("u", username)
+                .build();
 
 
+//        ********
+        File myDirectory = new File(Environment.getExternalStorageDirectory(), "Place Me");
+        if (!myDirectory.exists()) {
+            myDirectory.mkdirs();
+        }
+
+        String storagePath = Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
+
+        DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir("/Place Me", name + "_resume.pdf");
+
+        Long referese = dm.enqueue(request);
 
 
+//        *******
 
 
+//        DownloadManager localDownloadManager = (DownloadManager) this.getSystemService(DOWNLOAD_SERVICE);
+//        DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+//        localRequest.setNotificationVisibility(1);
+//        localDownloadManager.enqueue(localRequest);
 
-
+        Toast.makeText(this, "Resume Downloaded !", Toast.LENGTH_SHORT).show();
     }
 
     class ViewPDF extends AsyncTask<String, String, String> {
@@ -107,33 +142,10 @@ public class ViewResume extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("TAG", "onPostExecute: ---------view pdf------");
             pdfView.fromStream(input).load();
 
         }
-    }
-
-
-
-
-    void DownloadPDF() {
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("CreateNotificationTemp/PDFDownload2")
-                .appendQueryParameter("u",username)
-                .build();
-
-
-
-
-        DownloadManager localDownloadManager = (DownloadManager) this.getSystemService(DOWNLOAD_SERVICE);
-        DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-        localRequest.setNotificationVisibility(1);
-        localDownloadManager.enqueue(localRequest);
-
-        Toast.makeText(this, "Resume Downloaded !", Toast.LENGTH_SHORT).show();
     }
 
 }

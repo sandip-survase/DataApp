@@ -75,110 +75,112 @@ public class PlacementTab3 extends Fragment {
 
         if (MySharedPreferencesManager.getRole(getActivity()).equals("student") || MySharedPreferencesManager.getRole(getActivity()).equals("alumni")) {
 
+            if (studenttenthmarks != null && studenttwelthordiplomamarks != null && studentugmarks != null) {
+
+                if (studenttenthmarks.equals("0.00")) {
+                    studenttenthview.setText("N/A");
+
+                } else {
+                    studenttenthview.setText(studenttenthmarks);
+
+                }
+
+                if (studenttwelthordiplomamarks.equals("0.00")) {
+                    studenttwelthordiplomaview.setText("N/A");
+
+                } else {
+                    studenttwelthordiplomaview.setText(studenttwelthordiplomamarks);
+
+                }
 
 
-            if(studenttenthmarks.equals("0.00")){
-                studenttenthview.setText("N/A");
+                if (studentugmarks.equals("0.00")) {
+                    studentugview.setText("N/A");
 
-            }else{
-            studenttenthview.setText(studenttenthmarks);
+                } else {
 
-            }
-            if(studenttwelthordiplomamarks.equals("0.00") ){
-                studenttwelthordiplomaview.setText("N/A");
-
-            }else{
-            studenttwelthordiplomaview.setText(studenttwelthordiplomamarks);
-
-            }
-            if(studentugmarks.equals("0.00")){
-                studentugview.setText("N/A");
-
-            }else{
-
-            studentugview.setText(studentugmarks);
-            }
+                    studentugview.setText(studentugmarks);
+                }
 
 
+                Float c10, s10, c12, s12, cu, su;
+                c10 = Float.parseFloat(tenth);
+                c12 = Float.parseFloat(twelthordiploma);
+                cu = Float.parseFloat(ug);
+
+                s10 = Float.parseFloat(studenttenthmarks);
+                s12 = Float.parseFloat(studenttwelthordiplomamarks);
+                su = Float.parseFloat(studentugmarks);
 
 
-            Float c10, s10, c12, s12, cu, su;
-            c10 = Float.parseFloat(tenth);
-            c12 = Float.parseFloat(twelthordiploma);
-            cu = Float.parseFloat(ug);
+                if (s10 >= c10) {
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.check);
+                    tentheligibility.setImageDrawable(myDrawable);
+                    TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
+                    TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
+                    student10txt.setTextColor(Color.GREEN);
+                    studenttenthmarksview.setTextColor(Color.GREEN);
 
-            s10 = Float.parseFloat(studenttenthmarks);
-            s12 = Float.parseFloat(studenttwelthordiplomamarks);
-            su = Float.parseFloat(studentugmarks);
+                } else {
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
+                    tentheligibility.setImageDrawable(myDrawable);
+                    TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
+                    TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
+                    student10txt.setTextColor(Color.RED);
+                    studenttenthmarksview.setTextColor(Color.RED);
+                }
+                if (s12 >= c12) {
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.check);
+                    twelthordiplomaeligibility.setImageDrawable(myDrawable);
+                    TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
+                    TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
+                    student10txt.setTextColor(Color.GREEN);
+                    studenttenthmarksview.setTextColor(Color.GREEN);
 
-            if (s10 >= c10) {
-                Drawable myDrawable = getResources().getDrawable(R.drawable.check);
-                tentheligibility.setImageDrawable(myDrawable);
-                TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
+                } else {
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
+                    twelthordiplomaeligibility.setImageDrawable(myDrawable);
+                    TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
+                    TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
+                    student10txt.setTextColor(Color.RED);
+                    studenttenthmarksview.setTextColor(Color.RED);
+                }
+                if (su >= cu) {
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.check);
+                    ugeligibility.setImageDrawable(myDrawable);
+                    TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
+                    TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
+                    student10txt.setTextColor(Color.GREEN);
+                    studenttenthmarksview.setTextColor(Color.GREEN);
+                } else {
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
+                    ugeligibility.setImageDrawable(myDrawable);
+                    TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
+                    TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
+                    student10txt.setTextColor(Color.RED);
+                    studenttenthmarksview.setTextColor(Color.RED);
+                }
+            } else {
+
+                tentheligibility.setVisibility(View.GONE);
                 TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-                student10txt.setTextColor(Color.GREEN);
-                studenttenthmarksview.setTextColor(Color.GREEN);
+                studenttenthmarksview.setVisibility(View.GONE);
+                twelthordiplomaeligibility.setVisibility(View.GONE);
+                TextView studenttenthmarksview2 = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
+                studenttenthmarksview2.setVisibility(View.GONE);
+                ugeligibility.setVisibility(View.GONE);
+                TextView studenttenthmarksview3 = (TextView) rootView.findViewById(R.id.studentugmarksview);
+                studenttenthmarksview3.setVisibility(View.GONE);
+                TextView studenttenthmarksview4 = (TextView) rootView.findViewById(R.id.student10txt);
+                studenttenthmarksview4.setVisibility(View.GONE);
+                TextView studenttenthmarksview5 = (TextView) rootView.findViewById(R.id.student12txt);
+                studenttenthmarksview5.setVisibility(View.GONE);
+                TextView studenttenthmarksview6 = (TextView) rootView.findViewById(R.id.studentugtxt);
+                studenttenthmarksview6.setVisibility(View.GONE);
 
-            } else {
-                Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
-                tentheligibility.setImageDrawable(myDrawable);
-                TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
-                TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-                student10txt.setTextColor(Color.RED);
-                studenttenthmarksview.setTextColor(Color.RED);
+
             }
-            if (s12 >= c12) {
-                Drawable myDrawable = getResources().getDrawable(R.drawable.check);
-                twelthordiplomaeligibility.setImageDrawable(myDrawable);
-                TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
-                TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-                student10txt.setTextColor(Color.GREEN);
-                studenttenthmarksview.setTextColor(Color.GREEN);
-
-            } else {
-                Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
-                twelthordiplomaeligibility.setImageDrawable(myDrawable);
-                TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
-                TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-                student10txt.setTextColor(Color.RED);
-                studenttenthmarksview.setTextColor(Color.RED);
-            }
-            if (su >= cu) {
-                Drawable myDrawable = getResources().getDrawable(R.drawable.check);
-                ugeligibility.setImageDrawable(myDrawable);
-                TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
-                TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
-                student10txt.setTextColor(Color.GREEN);
-                studenttenthmarksview.setTextColor(Color.GREEN);
-            } else {
-                Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
-                ugeligibility.setImageDrawable(myDrawable);
-                TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
-                TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
-                student10txt.setTextColor(Color.RED);
-                studenttenthmarksview.setTextColor(Color.RED);
-            }
-        } else {
-
-            tentheligibility.setVisibility(View.GONE);
-            TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-            studenttenthmarksview.setVisibility(View.GONE);
-            twelthordiplomaeligibility.setVisibility(View.GONE);
-            TextView studenttenthmarksview2 = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-            studenttenthmarksview2.setVisibility(View.GONE);
-            ugeligibility.setVisibility(View.GONE);
-            TextView studenttenthmarksview3 = (TextView) rootView.findViewById(R.id.studentugmarksview);
-            studenttenthmarksview3.setVisibility(View.GONE);
-            TextView studenttenthmarksview4 = (TextView) rootView.findViewById(R.id.student10txt);
-            studenttenthmarksview4.setVisibility(View.GONE);
-            TextView studenttenthmarksview5 = (TextView) rootView.findViewById(R.id.student12txt);
-            studenttenthmarksview5.setVisibility(View.GONE);
-            TextView studenttenthmarksview6 = (TextView) rootView.findViewById(R.id.studentugtxt);
-            studenttenthmarksview6.setVisibility(View.GONE);
-
-
         }
-
 
         return rootView;
     }

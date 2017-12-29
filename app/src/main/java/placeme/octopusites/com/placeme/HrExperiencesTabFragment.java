@@ -4562,7 +4562,7 @@ public class HrExperiencesTabFragment extends Fragment {
             if (result.equals("success")) {
 
 //                Toast.makeText(getActivity(),"Successfully Saved !",Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
 
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);

@@ -178,23 +178,11 @@ public class PrintProfileTabFragment extends Fragment {
         });
 
         refreshContent();
-//        File myDirectory = new File(getActivity().getFilesDir(), "placemefolder");
-        File myDirectory = new File(Environment.getExternalStorageDirectory(), "placeme");
+        File myDirectory = new File(Environment.getExternalStorageDirectory(), "Place Me");
 
         if (!myDirectory.exists()) {
             myDirectory.mkdirs();
-            Toast.makeText(getActivity(), "folder created", Toast.LENGTH_SHORT).show();
-        } else
-            Toast.makeText(getActivity(), "already exits", Toast.LENGTH_SHORT).show();
-
-
-//        String folder_main = "NewFolderplace";
-//
-//        File f = new File(Environment.getExternalStorageDirectory(), folder_main);
-//        if (!f.exists()) {
-//                        Toast.makeText(getActivity(), "folder created", Toast.LENGTH_SHORT).show();
-//            f.mkdirs();
-//        }
+        }
 
 
         return rootView;
@@ -447,21 +435,17 @@ public class PrintProfileTabFragment extends Fragment {
             String dob = s.getDob();
             String mobile = s.getPhone();
             String hobbies = s.getHobbies();
-            String lang1 = s.getLang1();
+
 
             String addrline1c = s.getAddressline1();
             String addrline2c = s.getAddressline2();
             String addrline3c = s.getAddressline3();
 
-
+            String lang1 = s.getLang1();
             String proj = s.getProj1();
             String strength1 = s.getStrength1();
             String weak1 = s.getWeak1();
-            String certifi = s.getTitle1();
-            String course1 = s.getCourse1();
             String skill1 = s.getSkill1();
-            String ptitle1 = s.getPtitle1();
-            String pubtitle1 = s.getPubtitle1();
 
 
             Log.d("TAG", "onPostExecute: dob -" + dob);
@@ -474,78 +458,58 @@ public class PrintProfileTabFragment extends Fragment {
             Log.d("TAG", "onPostExecute: proj -" + proj);
             Log.d("TAG", "onPostExecute: strength1 -" + strength1);
             Log.d("TAG", "onPostExecute: weak1 -" + weak1);
-            Log.d("TAG", "onPostExecute: certifi -" + certifi);
-            Log.d("TAG", "onPostExecute: course1 -" + course1);
-            Log.d("TAG", "onPostExecute: skill1 -" + skill1);
-            Log.d("TAG", "onPostExecute: ptitle1 -" + ptitle1);
-            Log.d("TAG", "onPostExecute: pubtitle1 -" + pubtitle1);
 
+            if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
+                if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
+                    found_personal = 1;
+                } else
+                    found_personal = 0;
+            }
+            if (lang1 != null) {
+                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                    found_lang = 1;
+                else
+                    found_lang = 0;
+            }
+            if (proj != null) {
+                if (!proj.equals(""))
+                    found_projects = 1;
+                else
+                    found_projects = 0;
+            }
+            if (strength1 != null) {
+                if (!strength1.equals(""))
+                    found_strengths = 1;
+                else
+                    found_strengths = 0;
+            }
+            if (weak1 != null) {
+                if (!weak1.equals(""))
+                    found_weaknesses = 1;
+                else
+                    found_weaknesses = 0;
+            }
 
-            if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
-                found_personal = 1;
-            } else
-                found_personal = 0;
+            if (skill1 != null) {
 
-
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                found_lang = 1;
-            else
-                found_lang = 0;
-
-
-            if (!proj.equals(""))
-                found_projects = 1;
-            else
-                found_projects = 0;
-
-            if (!strength1.equals(""))
-                found_strengths = 1;
-            else
-                found_strengths = 0;
-
-            if (!weak1.equals(""))
-                found_weaknesses = 1;
-            else
-                found_weaknesses = 0;
-
-            if (!certifi.equals(""))
-                found_certificates = 1;
-            else
-                found_certificates = 0;
-
-            if (!course1.equals(""))
-                found_courses = 1;
-            else
-                found_courses = 0;
-
-            if (!skill1.equals(""))
-                found_skills = 1;
-            else
-                found_skills = 0;
-
-            if (!ptitle1.equals(""))
-                found_patents = 1;
-            else
-                found_patents = 0;
-
-            if (!pubtitle1.equals(""))
-                found_publications = 1;
-            else
-                found_publications = 0;
-
+                if (!skill1.equals(""))
+                    found_skills = 1;
+                else
+                    found_skills = 0;
+            }
 
 
             if(found_box1==0){
                 downloadresume.setVisibility(View.VISIBLE);
                 resumeprogress.setVisibility(View.GONE);
 //                    please fill intro information
-                Toast.makeText(getActivity(), " please fill introduction information", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), " Please fill personal details before downloading", Toast.LENGTH_SHORT).show();
             }else{
                 if(found_tenth==0){
                     downloadresume.setVisibility(View.VISIBLE);
                     resumeprogress.setVisibility(View.GONE);
 //                        please fill tenth information
-                    Toast.makeText(getActivity(), " please fill tenth information", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), " Please fill Std. X details before downloading", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
@@ -553,56 +517,56 @@ public class PrintProfileTabFragment extends Fragment {
                         downloadresume.setVisibility(View.VISIBLE);
                         resumeprogress.setVisibility(View.GONE);
 //                        please fill twelth or diploma information
-                        Toast.makeText(getActivity(), " please fill twelth or diploma information", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill Std. XII/Diploma details before downloading", Toast.LENGTH_SHORT).show();
 
                     }else{
                         if(found_ug==0){
                             downloadresume.setVisibility(View.VISIBLE);
                             resumeprogress.setVisibility(View.GONE);
 //                        please fill ug information
-                            Toast.makeText(getActivity(), " please fill gradution information", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), " Please fill your Ug details before downloading", Toast.LENGTH_SHORT).show();
 
                         }else{
                             if(found_projects==0){
                                 downloadresume.setVisibility(View.VISIBLE);
                                 resumeprogress.setVisibility(View.GONE);
 //                        please fill project information
-                                Toast.makeText(getActivity(), " please fill project information", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), " Please fill Project details before downloading", Toast.LENGTH_SHORT).show();
 
                             }else{
                                 if(found_lang==0){
                                     downloadresume.setVisibility(View.VISIBLE);
                                     resumeprogress.setVisibility(View.GONE);
 //                        please fill language information
-                                    Toast.makeText(getActivity(), " please fill language information", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), " Please fill Known languages details before downloading", Toast.LENGTH_SHORT).show();
 
                                 }else{
                                     if(found_skills==0){
                                         downloadresume.setVisibility(View.VISIBLE);
                                         resumeprogress.setVisibility(View.GONE);
 //                        please fill skill information
-                                        Toast.makeText(getActivity(), " please fill skill information", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), " Please fill Skill details before downloading", Toast.LENGTH_SHORT).show();
 
                                     }else{
                                         if(found_careerobj==0){
                                             downloadresume.setVisibility(View.VISIBLE);
                                             resumeprogress.setVisibility(View.GONE);
 //                        please fill career objective information
-                                            Toast.makeText(getActivity(), " please fill career objective information", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), " Please fill Career details before downloading", Toast.LENGTH_SHORT).show();
 
                                         }else{
                                             if(found_strengths==0){
                                                 downloadresume.setVisibility(View.VISIBLE);
                                                 resumeprogress.setVisibility(View.GONE);
 //                        please fill strength information
-                                                Toast.makeText(getActivity(), " please fill strength information", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getActivity(), " Please fill Strength details before downloading", Toast.LENGTH_SHORT).show();
 
                                             }else{
                                                 if(found_weaknesses==0){
                                                     downloadresume.setVisibility(View.VISIBLE);
                                                     resumeprogress.setVisibility(View.GONE);
 //                        please fill weaknesses information
-                                                    Toast.makeText(getActivity(), " please fill weaknesses information", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getActivity(), " Please fill Weaknesses details before downloading", Toast.LENGTH_SHORT).show();
 
                                                 }
                                                 else{
@@ -610,14 +574,14 @@ public class PrintProfileTabFragment extends Fragment {
                                                         downloadresume.setVisibility(View.VISIBLE);
                                                         resumeprogress.setVisibility(View.GONE);
 //                        please fill contact details information
-                                                        Toast.makeText(getActivity(), " please fill contact details information", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getActivity(), " Please fill Contact details before downloading ", Toast.LENGTH_SHORT).show();
 
                                                     }else{
                                                         if(found_personal==0){
                                                             downloadresume.setVisibility(View.VISIBLE);
                                                             resumeprogress.setVisibility(View.GONE);
 //                        please fill personal information
-                                                            Toast.makeText(getActivity(), " please fill personal information", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(getActivity(), " Please fill Personal details before downloading", Toast.LENGTH_SHORT).show();
                                                         }
                                                     }
                                                 }
@@ -650,43 +614,20 @@ public class PrintProfileTabFragment extends Fragment {
 
                 Log.d("TAG", "onPostExecute: uri - " + uri);
 
-//                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-//                localRequest.setNotificationVisibility(1);
-//                localDownloadManager.enqueue(localRequest);
-
 //****************
-                String storagePath = Environment.getExternalStorageDirectory().getPath() + "/placeme/";
+                String storagePath = Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
 
-
-//Log.d("Strorgae in view",""+storagePath);
-//                File f = new File(storagePath);
-//                if (!f.exists()) {
-//                    f.mkdirs();
-//                }
-//storagePath.mkdirs();
-//                String pathname = f.toString();
-//                if (!f.exists()) {
-//                    f.mkdirs();
-//                }
-
-
-//Log.d("Storage ",""+pathname);
                 DownloadManager dm = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
-//                checkImage(uri.getLastPathSegment());
-//                if (!downloaded) {
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
                 if (format.equals("pdf")) {
-                    request.setDestinationInExternalPublicDir("/placeme", "resume.pdf");
+                    request.setDestinationInExternalPublicDir("/Place Me", "resume.pdf");
                 } else {
-                    request.setDestinationInExternalPublicDir("/placeme", "resume.docx");
+                    request.setDestinationInExternalPublicDir("/Place Me", "resume.docx");
                 }
-
-
                 Long referese = dm.enqueue(request);
-                Toast.makeText(getActivity(), "Downloading...", Toast.LENGTH_SHORT).show();
-//                }
+
 
 //                ************
                 downloadresume.setVisibility(View.VISIBLE);
@@ -694,10 +635,6 @@ public class PrintProfileTabFragment extends Fragment {
 
                 Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
             }
-//              else{
-//                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-//            }
-
         }
     }
 }

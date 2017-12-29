@@ -503,7 +503,7 @@ public class AdminInstituteTabFragment extends Fragment {
             if (result.equals("success")) {
 //                save.setVisibility(View.VISIBLE);
 //                saveprogress.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (edittedFlag == 1) {
                     getActivity().setResult(111);
 

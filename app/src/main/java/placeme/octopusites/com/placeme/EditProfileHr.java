@@ -116,21 +116,15 @@ public class EditProfileHr extends AppCompatActivity {
                 }
                 if (currentPosition == 3) {
                     HrExperiencesTabFragment hrExperiencesTabFragment = (HrExperiencesTabFragment) adapter.getItem(3);
-                    if(hrExperiencesTabFragment.editexp == 1){
-                        hrExperiencesTabFragment.save();
-                        Toast.makeText(EditProfileHr.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
-
-                    }else {
-                        Boolean Exp_success = hrExperiencesTabFragment.validate();
-                        if (hrExperiencesTabFragment.edittedFlag == 1) {
-                               if (Exp_success) {
-                                hrExperiencesTabFragment.save();
-                                Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
-                            }
+                    Boolean Exp_success = hrExperiencesTabFragment.validate();
+                    if (hrExperiencesTabFragment.edittedFlag == 1) {
+                        if (Exp_success) {
+                            hrExperiencesTabFragment.save();
+                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                 }
+
                 if (currentPosition == 4) {
                     HrContactTabFragment hrContactTabFragment = (HrContactTabFragment) adapter.getItem(4);
                     Boolean contact_success = hrContactTabFragment.validate();
@@ -180,35 +174,6 @@ public class EditProfileHr extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -226,7 +191,7 @@ public class EditProfileHr extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-        Log.d("TAg", "onActivityResult: editprofilehr "+resultCode);
+        Log.d("TAg", "onActivityResult: editprofilehr " + resultCode);
     }
 
     @Override
@@ -295,11 +260,10 @@ public class EditProfileHr extends AppCompatActivity {
 
                                     }
 
-                                    if(hrExperiencesTabFragment.editexp == 1){
+                                    if (hrExperiencesTabFragment.editexp == 1) {
                                         hrExperiencesTabFragment.save();
-                                        personal_success=true;
-                                    }
-                                    else {
+                                        personal_success = true;
+                                    } else {
                                         if (hrExperiencesTabFragment.edittedFlag == 1) {
                                             hr_exp = hrExperiencesTabFragment.validate();
                                             if (!hr_exp) {
@@ -363,6 +327,34 @@ public class EditProfileHr extends AppCompatActivity {
 
     }
 
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
 
 
 }
