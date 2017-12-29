@@ -85,6 +85,11 @@
         <item name="colorControlActivated">@color/sky_blue_color</item>
     </style>
 
+    <style name="MyCheckBox2" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/while_color</item>
+        <item name="colorControlActivated">@color/sky_blue_color</item>
+    </style>
+
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">12dp</item>
         <item name="android:textAllCaps">false</item>

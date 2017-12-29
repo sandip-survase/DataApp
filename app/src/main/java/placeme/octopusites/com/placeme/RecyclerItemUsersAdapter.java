@@ -59,7 +59,8 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
 
         holder.name.setText(item.getName());
         holder.email.setText(item.getEmail());
-
+        holder.name.setTypeface(Z.getBold(holder.name.getContext()));
+        holder.email.setTypeface(Z.getLight(holder.email.getContext()));
 
         if(item.isSelected())
             holder.checkboxs.setChecked(true);

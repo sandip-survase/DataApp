@@ -66,10 +66,10 @@ public class ViewResume extends AppCompatActivity {
 
                 if (isChecked) {
                     //addin arraylist
-                    Toast.makeText(ViewResume.this, "Shortlisted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewResume.this, "Candidate shortlisted !", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(ViewResume.this, "removed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewResume.this, "Candidate Removed !", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -133,7 +133,7 @@ public class ViewResume extends AppCompatActivity {
         localRequest.setNotificationVisibility(1);
         localDownloadManager.enqueue(localRequest);
 
-        Toast.makeText(this, "pdf downloaded", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Resume Downloaded !", Toast.LENGTH_SHORT).show();
     }
 
 }
