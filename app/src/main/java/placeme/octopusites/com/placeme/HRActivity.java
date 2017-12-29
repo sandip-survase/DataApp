@@ -148,16 +148,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
 
-
-
-
-
-
-
-
-
-
-
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +198,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         MySharedPreferencesManager.save(HRActivity.this, "otp", "no");
         MySharedPreferencesManager.save(HRActivity.this, "activationMessage", "no");
         MySharedPreferencesManager.save(HRActivity.this, "activatedCode", "no");
+
+        new isVerified().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -939,7 +931,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         imagePicker.shouldGenerateThumbnails(false); // Default is true
         requestProfileImage();  //  update thumbanail first time activity Load
 
-
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -961,6 +952,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         tswipe_refresh_layout.setRefreshing(true);
 
         new UpdateFirebaseToken().execute();
+
+
     }
 
     void setserverlisttoadapter(List<RecyclerItemHrPlacement> itemlist) {
@@ -1649,5 +1642,25 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     }
 
 
+    class isVerified extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String username = MySharedPreferencesManager.getUsername(HRActivity.this);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            JSONObject json = jParser.makeHttpRequest(Z.url_IsPlacemeVerified, "GET", params);
+            try {
+                String result = json.getString("info");
+                Log.d("TAG", "isVerified json : " + json);
+                Log.d("TAG", "isVerified save: " + Z.Decrypt(result, HRActivity.this));
+                if (result != null) {
+                    MySharedPreferencesManager.save(HRActivity.this, "placemeverify", result);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
 }

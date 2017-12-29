@@ -245,6 +245,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         MySharedPreferencesManager.save(AdminActivity.this, "activationMessage", "no");
         MySharedPreferencesManager.save(AdminActivity.this, "activatedCode", "no");
 
+        new isVerified().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
         try {
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -1245,6 +1247,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         getNotifications2();
         new UpdateFirebaseToken().execute();
         new GetUnreadMessagesCount().execute();
+
 
     }
 
@@ -2531,7 +2534,29 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     public void refreshUserCount() {
+
         new GetCountOfUsersUnderAdmin().execute();
+    }
+
+    class isVerified extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String username = MySharedPreferencesManager.getUsername(AdminActivity.this);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            JSONObject json = jParser.makeHttpRequest(Z.url_IsPlacemeVerified, "GET", params);
+            try {
+                String result = json.getString("info");
+                Log.d("TAG", "isVerified json : " + json);
+                Log.d("TAG", "isVerified save: " + Z.Decrypt(result, AdminActivity.this));
+                if (result != null) {
+                    MySharedPreferencesManager.save(AdminActivity.this, "placemeverify", result);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
     class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {
@@ -2557,7 +2582,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             if (result == null) {
                 bluePanelTv.setText(Z.users_under_your_supervision);
             } else if (result.equals("0")) {
-                bluePanelTv.setText(Z.users_under_your_supervision);
+                bluePanelTv.setText("0" + Z.users_under_your_supervision);
             } else {
                 bluePanelTv.setText(result + Z.users_under_your_supervision);
             }

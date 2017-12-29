@@ -38,6 +38,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.signature.StringSignature;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -486,6 +487,7 @@ public class HRProfileFragment extends Fragment {
 
 //        new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         refreshContent();
+        Toast.makeText(getActivity(), "" + Z.isAdminHrVerified(getActivity()), Toast.LENGTH_SHORT).show();
 
         return rootView;
     }
@@ -2154,6 +2156,7 @@ public class HRProfileFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d("TAG", "Getsingnature HR : username " + username);
 
             Uri uri = new Uri.Builder()
                     .scheme("http")
@@ -2165,6 +2168,7 @@ public class HRProfileFragment extends Fragment {
             Glide.with(getActivity())
                     .load(uri)
                     .crossFade()
+                    .signature(new StringSignature(signature))
                     .listener(new RequestListener<Uri, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -2179,7 +2183,6 @@ public class HRProfileFragment extends Fragment {
                         }
                     })
                     .into(myprofileimg);
-
 
         }
     }
