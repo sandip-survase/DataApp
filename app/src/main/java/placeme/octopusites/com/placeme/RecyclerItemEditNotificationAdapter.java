@@ -16,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.signature.StringSignature;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,6 +34,7 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
     private ArrayList<RecyclerItemEdit> itemList;
     private String searchText;
     Context mContext;
+    HashMap<String, String> encUser = new HashMap<String, String>();
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -50,12 +53,12 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
             imageView = (ImageView) view.findViewById(R.id.attachment);
             logo = (CircleImageView) view.findViewById(R.id.logo);
 
-
         }
     }
 
     public RecyclerItemEditNotificationAdapter(ArrayList<RecyclerItemEdit> itemList) {
         this.itemList = itemList;
+
     }
 
     public RecyclerItemEditNotificationAdapter(ArrayList<RecyclerItemEdit> itemList, Context mContext) {
@@ -90,16 +93,27 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
             Log.d("Tag", "contex: " + mContext);
             Log.d("Tag", "uploadedby: " + item.getUploadedby());
 
+
+            String value = encUser.get(item.getUploadedby());
+            if (value != null) {
+            } else {
+                encUser.put(item.getUploadedby(), Z.Encrypt(item.getUploadedby(), mContext));
+            }
+
+            Log.d("TAG", "encUser Size: -----------------   " + encUser.size());
+            Log.d("kun", "encUser: -----------------   " + encUser.get(item.getUploadedby()));
+
+
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImageThumbnail")
-                    .appendQueryParameter("u", Z.Encrypt(item.getUploadedby(), mContext))
+                    .appendQueryParameter("u", encUser.get(item.getUploadedby()))
                     .build();
 
             Glide.with(mContext)
                     .load(uri)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .signature(new StringSignature(item.getSignature()))
                     .into(holder.uploadedbyprofile);
 
