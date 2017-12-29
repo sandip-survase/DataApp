@@ -37,29 +37,21 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class ViewPlacement extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     JSONObject json;
     JSONParser jParser = new JSONParser();
-
-
     String username, resultofop;
     String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
     Button registerbutton;
     ProgressBar progressBar;
-
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
     int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
     int found_contact_details = 0, found_personal = 0;
-
-
     String role;
     String fname = "", lname = "";
-
-
     String sPadding = "ISO10126Padding";
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +152,7 @@ public class ViewPlacement extends AppCompatActivity {
                 registerbutton.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 new registerforPlacementTask().execute();
+
 
             }
         });
@@ -295,12 +288,14 @@ public class ViewPlacement extends AppCompatActivity {
                         studenttenthmarks = obj2.percentage;
                         found_tenth = 1;
                     }
+
                     s = json.getString("twelth");
                     if (s.equals("found")) {
                         studenttwelthordiplomamarksobj = json.getString("twelthobj");
                         MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(studenttwelthordiplomamarksobj, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
                         studenttwelthordiplomamarks = obj2.getPercentage();
-                        if (studenttwelthordiplomamarks != null) {
+
+                        if (!studenttwelthordiplomamarks.equals("")) {
                             found_twelth = 1;
                         } else {
                             found_twelth = 0;
@@ -310,6 +305,7 @@ public class ViewPlacement extends AppCompatActivity {
                                 MyProfileDiplomaModal obj3 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
                                 studenttwelthordiplomamarks = obj3.getAggregate();
                                 found_diploma = 1;
+
                             }
                         }
                     }
@@ -482,10 +478,21 @@ public class ViewPlacement extends AppCompatActivity {
             cu = Float.parseFloat(ug);
             int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
 
+            Log.d("Studmarks", "studenttenthmarks: "+studenttenthmarks);
+            Log.d("Studmarks", "studenttwelthordiplomamarks: "+studenttwelthordiplomamarks);
+            Log.d("Studmarks", "studentugmarks: "+studentugmarks);
+            Log.d("Studmarks", "studentpgmarks: "+studentpgmarks);
+
+            Log.d("Studmarks", "stdx: "+stdx);
+            Log.d("Studmarks", "stdxiiordiploma: "+stdxiiordiploma);
+            Log.d("Studmarks", "ug: "+ug);
+
+
+
 
             if (found_tenth == 0) {
 //10 th not filled
-  save.setStudenttenthmarks("0.00");
+                save.setStudenttenthmarks("0.00");
 
             } else {
 
@@ -498,27 +505,17 @@ public class ViewPlacement extends AppCompatActivity {
 
             }
 
-            if (found_twelth == 1) {
-
-                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
-                s12 = Float.parseFloat(studenttwelthordiplomamarks);
-                if (s12 >= c12) {
-                    twelthordiplomaflag = 1;
-                }
-
-            } else   if (found_diploma == 1)  {
-                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
-                s12 = Float.parseFloat(studenttwelthordiplomamarks);
-                if (s12 >= c12) {
-                    twelthordiplomaflag = 1;
-                }
-
-
-            }else{
+            if (found_twelth == 0 && found_diploma == 0) {
+//                        please fill twelth or diploma information
                 save.setStudenttwelthordiplomamarks("0.00");
 
+            }else {
+                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
+                s12 = Float.parseFloat(studenttwelthordiplomamarks);
+                if (s12 >= c12) {
+                    twelthordiplomaflag = 1;
+                }
             }
-
 
 
 
@@ -538,15 +535,20 @@ public class ViewPlacement extends AppCompatActivity {
 
             }
 
-            if (found_pgsem == 0) {
-//studentpgmarks found
+
+            if (found_pgsem == 0 && found_pgyear == 0) {
+//                        please fill twelth or diploma information
                 save.setStudentpgmarks("0.00");
 
-            } else {
+            }else {
                 save.setStudentpgmarks(studentpgmarks);
-
-
+                s12 = Float.parseFloat(studenttwelthordiplomamarks);
+                if (s12 >= c12) {
+                    twelthordiplomaflag = 1;
+                }
             }
+
+
 
 
             LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
@@ -559,7 +561,7 @@ public class ViewPlacement extends AppCompatActivity {
                     new SaveResumedatabase().execute();
                 } else {
                     Toast.makeText(ViewPlacement.this, " Resume not generated", Toast.LENGTH_SHORT).show();
-                    new GetStudentData().execute();
+//                    new GetStudentData().execute();
                 }
 
             } else {

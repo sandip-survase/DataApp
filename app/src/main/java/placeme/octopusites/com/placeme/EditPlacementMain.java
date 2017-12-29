@@ -107,9 +107,8 @@ public class EditPlacementMain extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-
-        TextView createnotitxt=(TextView)findViewById(R.id.createnotitxt);
-        TextView createnotinotitxt=(TextView)findViewById(R.id.createnotinotitxt);
+        TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
+        TextView createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
 
         createnotitxt.setTypeface(Z.getBold(this));
         createnotinotitxt.setTypeface(Z.getBold(this));
@@ -346,7 +345,6 @@ public class EditPlacementMain extends AppCompatActivity {
         PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
         viewPager.setOffscreenPageLimit(3);
 
-
 //            PlaceTab1.datasetters(obj);               //sending Object
 //        PlaceTab1.datasetters(obj);
     }
@@ -378,37 +376,48 @@ public class EditPlacementMain extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        PlacementCreateTab1 PlaceTab1 = (PlacementCreateTab1) adapter.getItem(0);
+        PlacementCreateTab2 PlaceTab2 = (PlacementCreateTab2) adapter.getItem(1);
+        PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        boolean tab1 = PlaceTab1.isTabEditted();
+        boolean tab2 = PlaceTab2.isTabEditted();
+        boolean tab3 = PlaceTab3.isTabEditted();
 
-        alertDialogBuilder
-                .setMessage("Do you want to discard changes ?")
-                .setCancelable(false)
-                .setPositiveButton("Discard",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                EditPlacementMain.super.onBackPressed();
-                            }
-                        })
+        if (edittedFlag == 1 || tab1 || tab2 || tab3) {
 
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-                        dialog.cancel();
-                    }
-                });
+            alertDialogBuilder
+                    .setMessage("Do you want to discard changes ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Discard",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    EditPlacementMain.super.onBackPressed();
+                                }
+                            })
 
-        final AlertDialog alertDialog = alertDialogBuilder.create();
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-            }
-        });
+                            dialog.cancel();
+                        }
+                    });
 
-        alertDialog.show();
+            final AlertDialog alertDialog = alertDialogBuilder.create();
+
+            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialogInterface) {
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                }
+            });
+
+            alertDialog.show();
+        } else
+            EditPlacementMain.super.onBackPressed();
 
     }
 
@@ -525,6 +534,7 @@ public class EditPlacementMain extends AppCompatActivity {
                 Log.d("whomsYears e:", e.getMessage());
                 Toast.makeText(EditPlacementMain.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
+            edittedFlag = 0;
         }
     }
 

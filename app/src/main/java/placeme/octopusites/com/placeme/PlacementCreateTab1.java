@@ -24,6 +24,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +53,10 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
     EditText companyname,cpackage,post,vacancies,lastdateofrr,dateofarrival,bond;
     String sid, scompanyname="",scpackage="",spost="",svacancies="",slastdateofrr="",sdateofarrival="",sbond="",sselected="";
 
-
-
     //flags
     int datepicker1=0;
     int Erroflag=0;
-
-
+    boolean edittedFlag = false;
 
     RelativeLayout courseselector,Streamselector,selectedrl;
     View rootView;
@@ -124,6 +122,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 companynameinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -140,6 +139,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 packageinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -156,6 +156,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 postinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -172,6 +173,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 vacanciesinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -188,6 +190,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 ldrinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -204,6 +207,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 dorinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -220,6 +224,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 bondinput.setError(null);
+                edittedFlag = true;
             }
 
             @Override
@@ -465,7 +470,13 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             }
         }
 
+        edittedFlag = false;
         return rootView;
+    }
+
+    public boolean isTabEditted() {
+
+        return edittedFlag;
     }
 
     String setStreamAdapter(String a) {

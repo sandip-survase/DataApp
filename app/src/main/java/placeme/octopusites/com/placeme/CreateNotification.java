@@ -166,8 +166,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             ab.setTitle("Edit Notification");
             createnotitxt.setText("Modify/Delete Notification");
             createnotinotitxt.setText("Your changes will be broadcasted only to the students and/or alumnis of your institute.");
-            lastmodifiedtxt.setVisibility(View.VISIBLE);
-            trashnotification.setVisibility(View.VISIBLE);
+
 
         } else if (FLAG.equals("fromAdminActivity")) {
             ab.setTitle("Create Notification");
@@ -2485,7 +2484,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 if (!Forwhomefromdb.equals("")) {
                     byte[] ForwhomefromdbEncryptedBytes = SimpleBase64Encoder.decode(Forwhomefromdb);
                     byte[] ForwhomefromdbDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, ForwhomefromdbEncryptedBytes);
-                    Forwhomefromdb = new String(ForwhomefromdbDecryptedBytes);
+                    Forwhomefromdb = Z.Decrypt(Forwhomefromdb, CreateNotification.this);
                     Log.d("Forwhomefromdb", "onPostExecute: " + Forwhomefromdb);
                 }
 
@@ -2500,13 +2499,15 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
                 Log.d("Forwhomefromdb", "after: " + Forwhomefromdb);
 
-
+                if (Forwhomefromdb.contains("STUDENT")) {
+                    stud.setChecked(true);
+                }
                 if (Forwhomefromdb.contains("ALL")) {
                     allum.setChecked(true);
                     batchesTags.setText("ALL");
-                }
-                if (Forwhomefromdb.contains("STUDENT")) {
-                    stud.setChecked(true);
+                } else {
+
+
                 }
 
 
@@ -2522,7 +2523,17 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 Log.d("kun", "onPostExecute: str " + str);
                 str = str.replaceAll("[^-?0-9]+", " ");
                 Log.d("kun", "onPostExecute: " + Arrays.asList(str.trim().split(" ")));
-                Log.d("kun", "onPostExecute: str " + str);
+                Log.d("kun", str);
+                String batchyears[] = str.split(" ");
+
+                Log.d("kun", "after : " + str);
+
+                if (str.length() >= 2) {
+                    allum.setChecked(true);
+                    batchesTags.setTags(batchyears);
+                    showPop = true;
+
+                }
                 //k
 
 
@@ -2539,15 +2550,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 Log.d("TAG1", "after4: " + whomsYears);
                 whomsYears = whomsYears.replace("ALL", "");
 
-                if (whomsYears.length() >= 2) {
-                    allum.setChecked(true);
-                    Log.d("whomsYears3:", whomsYears);
-                    whomsYears = whomsYears.replace(",", " ");
-                    String batchyears[] = whomsYears.split(" ");
-                    batchesTags.setTags(batchyears);
-                    showPop = true;
 
-                }
 
             } catch (Exception e) {
 

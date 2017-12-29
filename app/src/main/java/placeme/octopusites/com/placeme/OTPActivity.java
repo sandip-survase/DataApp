@@ -407,7 +407,6 @@ public class OTPActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             loginFirebase(plainusername, hash);
-            Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
 
         }
     }
