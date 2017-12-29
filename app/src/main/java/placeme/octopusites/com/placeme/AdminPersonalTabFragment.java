@@ -151,7 +151,7 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrline1.setTypeface(Z.getBold(getActivity()));
         paddrline2.setTypeface(Z.getBold(getActivity()));
         paddrline3.setTypeface(Z.getBold(getActivity()));
-
+        dobedittext.setTypeface(Z.getBold(getActivity()));
 
         fnameinput=(TextInputLayout)rootView.findViewById(R.id.fnameinput);
         mnameinput=(TextInputLayout)rootView.findViewById(R.id.mnameinput);
@@ -770,7 +770,7 @@ public class AdminPersonalTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (edittedFlag == 1) {
                     getActivity().setResult(111);
 

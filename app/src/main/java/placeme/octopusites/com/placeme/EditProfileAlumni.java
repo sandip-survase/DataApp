@@ -104,6 +104,8 @@ public class EditProfileAlumni extends AppCompatActivity {
                     if(fragment.edittedFlag==1){
                         if(personal_success){
                             fragment.save();
+                            Toast.makeText(EditProfileAlumni.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 }
@@ -114,16 +116,18 @@ public class EditProfileAlumni extends AppCompatActivity {
 
                         if (project_success) {
                             projFrag.save();
+                            Toast.makeText(EditProfileAlumni.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 if(currentPosition==5) {
                     HrExperiencesTabFragment   expFrag= (HrExperiencesTabFragment) adapter.getItem(5);
-                    Boolean project_success = expFrag.validate();
+                    Boolean Exp_success = expFrag.validate();
                     if (expFrag.edittedFlag == 1) {
-
-                        if (project_success) {
+                        if (Exp_success) {
                             expFrag.save();
+                            Toast.makeText(EditProfileAlumni.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 }
@@ -283,7 +287,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                         } else {
                                             personalflag = 0;
                                             fragment.save();
-                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     if(projFrag.edittedFlag==1){
@@ -298,7 +302,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                         } else {
                                             projFrag.save();
                                             projectflag = 0;
-                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     if(expFrag.edittedFlag==1){
@@ -311,7 +315,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                             }
                                         } else {
                                             expFrag.save();
-                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                             expflag = 0;
                                         }
                                     }

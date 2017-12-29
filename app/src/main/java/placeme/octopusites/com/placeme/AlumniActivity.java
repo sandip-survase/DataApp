@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -63,6 +64,18 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
+import placeme.octopusites.com.placeme.modal.KnownLangs;
+import placeme.octopusites.com.placeme.modal.Modelmyprofileintro;
+import placeme.octopusites.com.placeme.modal.MyProfileCareerObjModal;
+import placeme.octopusites.com.placeme.modal.MyProfileDiplomaModal;
+import placeme.octopusites.com.placeme.modal.MyProfilePersonal;
+import placeme.octopusites.com.placeme.modal.MyProfileStrengthsModal;
+import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
+import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
+import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
+import placeme.octopusites.com.placeme.modal.MyProfileWeaknessesModal;
+import placeme.octopusites.com.placeme.modal.Projects;
+import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
@@ -100,7 +113,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     int unreadMessageCount = 0;
     String sender_uid;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-
+    StudentData studentData = new StudentData();
+    String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
+    int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
 //
 
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
@@ -126,7 +141,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int current_page_notification = 1;
     String[] blanksuggestionList={""};
-
+    String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1 = "", lang1 = "", careerobj, fname = "", resultofop = "", lname = "";
 
     //
     public static final int ALUMNI_DATA_CHANGE_RESULT_CODE = 222;
@@ -196,8 +211,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
     ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
-
-
 
 
     @Override
@@ -1236,10 +1249,206 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             }
         });
 //        tswipe_refresh_layout.setRefreshing(true);
+
+        new GetStudentData().execute();
+
         getNotifications();
         new GetUnreadMessagesCount().execute();
 
     }
+
+    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
+                //shift this to class
+                String studenttenthmarksObj = "", studenttwelthordiplomamarksobj = "", diplomadataobject, ugdataobject = "";
+
+
+                resultofop = json.getString("info");
+                if (resultofop.equals("found")) {
+                    String s = json.getString("intro");
+                    if (s.equals("found")) {
+                        found_box1 = 1;
+                        Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(json.getString("introObj"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        fname = obj2.getFirstname();
+                        lname = obj2.getLastname();
+
+                        studentData.setFname(fname);
+                        studentData.setLname(lname);
+                    }
+                    s = json.getString("tenth");
+                    if (s.equals("found")) {
+
+                        studenttenthmarksObj = json.getString("tenthobj");
+                        MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(studenttenthmarksObj, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        studentData.setPercentage10(obj2.percentage);
+
+                        found_tenth = 1;
+                    }
+
+                    s = json.getString("twelth");
+                    if (s.equals("found")) {
+                        studenttwelthordiplomamarksobj = json.getString("twelthobj");
+                        MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(studenttwelthordiplomamarksobj, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        studentData.setPercentage12(obj2.percentage);
+
+
+                    }
+
+                    s = json.getString("diploma");
+                    if (s.equals("found")) {
+                        found_diploma = 1;
+                        Log.d("TAG", "dataload found_diploma:-" + found_diploma);
+
+                        diplomadataobject = json.getString("diplomaobj");
+
+                        MyProfileDiplomaModal obj2 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        studentData.setAggregatediploma(obj2.aggregate);
+
+                    }
+
+                    s = json.getString("ug");
+                    if (s.equals("found")) {
+                        ugdataobject = json.getString("ugobj");
+                        MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        studentData.setAggregateug(obj2.aggregate);
+
+                        found_ug = 1;
+                    }
+
+
+                    s = json.getString("projects");
+                    if (s.equals("found")) {
+                        found_projects = 1;
+                        ArrayList<Projects> projectsList = (ArrayList<Projects>) fromString(json.getString("projectsdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        Projects obj1 = projectsList.get(0);
+                        proj1 = obj1.getProj1();
+                        domain1 = obj1.getDomain1();
+                        team1 = obj1.getTeam1();
+                        duration1 = obj1.getDuration1();
+
+                        studentData.setProj1(proj1);
+                        studentData.setDomain1(domain1);
+                        studentData.setTeam1(team1);
+                        studentData.setDuration1(duration1);
+
+
+                    }
+                    s = json.getString("knownlang");
+                    if (s.equals("found")) {
+                        found_lang = 1;
+                        ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        KnownLangs obj1 = knownLangsList.get(0);
+                        lang1 = obj1.getKnownlang();
+
+                        studentData.setLang1(lang1);
+
+                    }
+
+                    s = json.getString("skills");
+                    if (s.equals("found")) {
+                        found_skills = 1;
+                        ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        Skills obj1 = skillsList.get(0);
+                        skill1 = obj1.getSkill();
+                        studentData.setSkill1(skill1);
+
+                    }
+
+                    s = json.getString("career");
+                    if (s.equals("found")) {
+                        found_careerobj = 1;
+                        String careerdataobject = json.getString("careerobj");
+                        MyProfileCareerObjModal obj2 = (MyProfileCareerObjModal) fromString(careerdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        careerobj = obj2.careerobj;
+                        studentData.setCareerobj(careerobj);
+                    }
+
+                    s = json.getString("strengths");
+                    if (s.equals("found")) {
+                        found_strengths = 1;
+                        String strengthdataobject = json.getString("strengthsobj");
+
+                        MyProfileStrengthsModal obj2 = (MyProfileStrengthsModal) fromString(strengthdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        strength1 = obj2.sstrength1;
+                        studentData.setStrength1(strength1);
+                    }
+                    s = json.getString("weaknesses");
+                    if (s.equals("found")) {
+                        found_weaknesses = 1;
+                        String weaknessesdataobject = json.getString("weaknessesobj");
+
+                        MyProfileWeaknessesModal obj2 = (MyProfileWeaknessesModal) fromString(weaknessesdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+
+                        weak1 = obj2.sweak1;
+                        studentData.setWeak1(weak1);
+                    }
+
+                    s = json.getString("contact_details");
+                    if (s.equals("found")) {
+                        found_contact_details = 1;
+                    }
+                    s = json.getString("personal");
+                    if (s.equals("found")) {
+                        found_personal = 1;
+                        String personaldataobject = json.getString("personalobj");
+
+                        MyProfilePersonal obj2 = (MyProfilePersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        fname = obj2.fname;
+                        lname = obj2.sname;
+                        dob = obj2.dob;
+                        phone = obj2.mobile;
+                        hobbies = obj2.hobbies;
+                        addressline1 = obj2.addrline1c;
+                        addressline2 = obj2.addrline2c;
+                        addressline3 = obj2.addrline3c;
+
+                        Log.d("TAG", "doInBackground: personal - " + fname);
+                        Log.d("TAG", "doInBackground: personal - " + lname);
+
+
+                        studentData.setFname(fname);
+                        studentData.setLname(lname);
+                        studentData.setDob(dob);
+                        studentData.setPhone(phone);
+                        studentData.setHobbies(hobbies);
+                        studentData.setLang1(lang1);
+                        studentData.setAddressline1(addressline1);
+                        studentData.setAddressline2(addressline2);
+                        studentData.setAddressline3(addressline3);
+
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return map;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+
+
+        }
+    }
+
+
+
+
 
     class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
 

@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -25,21 +24,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import placeme.octopusites.com.placeme.modal.Modelmyprofileintro;
-import placeme.octopusites.com.placeme.modal.MyProfileDiplomaModal;
-import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
-import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
-import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
-import placeme.octopusites.com.placeme.modal.PgSem;
-
-import static placeme.octopusites.com.placeme.AES4all.fromString;
-
 
 public class ViewPlacement extends AppCompatActivity {
 
     JSONObject json;
     JSONParser jParser = new JSONParser();
     String username, resultofop;
+    String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1;
+    String email2 = "", addressline1 = "", phone = "", lang1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "";
+    String nameasten = "", mothername = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
     Button registerbutton;
     ProgressBar progressBar;
@@ -49,6 +42,7 @@ public class ViewPlacement extends AppCompatActivity {
     String role;
     String fname = "", lname = "";
     String sPadding = "ISO10126Padding";
+    StudentData studentData = new StudentData();
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -136,14 +130,14 @@ public class ViewPlacement extends AppCompatActivity {
         save.setLastmodified(lastmodified);
         save.setUploadedby(uploadedby);
 
-        if (MySharedPreferencesManager.getRole(this).equals("student")) {
-            new GetStudentData().execute();
-
-        }
-        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
-            new GetStudentData().execute();
-
-        }
+//        if (MySharedPreferencesManager.getRole(this).equals("student")) {
+//            new GetStudentData().execute();
+//
+//        }
+//        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
+//            new GetStudentData().execute();
+//
+//        }
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,11 +145,22 @@ public class ViewPlacement extends AppCompatActivity {
                 // download resume in database
                 registerbutton.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                new registerforPlacementTask().execute();
+
+                if (role.equals("student")) {
+                    validatedata();
+                } else {
+                    validatedata();
+                }
 
 
             }
         });
+
+//************
+        studentmarks();
+
+
+//        **********
 
 
     }
@@ -178,6 +183,318 @@ public class ViewPlacement extends AppCompatActivity {
         adapter.addFragment(new PlacementTab2(), "Selection Process");
         adapter.addFragment(new PlacementTab3(), "Selection Criteria");
         viewPager.setAdapter(adapter);
+    }
+
+    //    student data************************************************************************************
+    public void studentmarks() {
+
+        StudentData s = new StudentData();
+
+        fname = s.getFname();
+        lname = s.getLname();
+
+        String careerobj = s.getCareerobj();
+
+        String dob = s.getDob();
+        String mobile = s.getPhone();
+        String hobbies = s.getHobbies();
+        String addrline1c = s.getAddressline1();
+        String addrline2c = s.getAddressline2();
+        String addrline3c = s.getAddressline3();
+
+        String lang1 = s.getLang1();
+        String proj = s.getProj1();
+        String strength1 = s.getStrength1();
+        String weak1 = s.getWeak1();
+        String skill1 = s.getSkill1();
+
+        studenttenthmarks = s.getPercentage10();
+        studenttwelthordiplomamarks = s.getPercentage12();
+        studentugmarks = s.getAggregateug();
+
+
+        if (fname != null && lname != null) {
+
+            if (!fname.equals("") && !lname.equals(""))
+                found_box1 = 1;
+            else
+                found_box1 = 0;
+        }
+
+
+        if (studenttenthmarks != null) {
+
+            if (!studenttenthmarks.equals("")) {
+                found_tenth = 1;
+            } else
+                found_tenth = 0;
+        }
+
+        if (studenttwelthordiplomamarks != null) {
+            if (!studenttwelthordiplomamarks.equals("")) {
+                found_twelth = 1;
+            } else {
+                found_twelth = 0;
+                studenttwelthordiplomamarks = s.getAggregatediploma();
+                found_diploma = 1;
+
+            }
+        }
+
+        if (studentugmarks != null) {
+
+            if (!studentugmarks.equals("")) {
+                found_ug = 1;
+            } else
+                found_ug = 0;
+        }
+
+
+        Log.d("TAG", "onPostExecute: dob -" + dob);
+        Log.d("TAG", "onPostExecute: mobile -" + mobile);
+        Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
+        Log.d("TAG", "onPostExecute: lang1 -" + lang1);
+        Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
+        Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
+        Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
+        Log.d("TAG", "onPostExecute: proj -" + proj);
+        Log.d("TAG", "onPostExecute: strength1 -" + strength1);
+        Log.d("TAG", "onPostExecute: weak1 -" + weak1);
+        Log.d("TAG", "onPostExecute: skill1 -" + skill1);
+
+        if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
+            if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
+                found_personal = 1;
+            } else
+                found_personal = 0;
+        }
+
+        if (lang1 != null) {
+
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                found_lang = 1;
+            else
+                found_lang = 0;
+        }
+
+        if (proj != null) {
+            if (!proj.equals(""))
+                found_projects = 1;
+            else
+                found_projects = 0;
+        }
+
+        if (strength1 != null) {
+            if (!strength1.equals(""))
+                found_strengths = 1;
+            else
+                found_strengths = 0;
+        }
+        if (weak1 != null) {
+            if (!weak1.equals(""))
+                found_weaknesses = 1;
+            else
+                found_weaknesses = 0;
+        }
+
+        if (careerobj != null) {
+            if (!careerobj.equals(""))
+                found_careerobj = 1;
+            else
+                found_careerobj = 0;
+        }
+        if (skill1 != null) {
+            if (!skill1.equals(""))
+                found_skills = 1;
+            else
+                found_skills = 0;
+        }
+
+
+//            **********************
+
+        SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
+        Float c10 = 0.0f, s10 = 0.0f, c12 = 0.0f, s12 = 0.0f, cu = 0.0f, su = 0.0f;
+        c10 = Float.parseFloat(stdx);
+        c12 = Float.parseFloat(stdxiiordiploma);
+        cu = Float.parseFloat(ug);
+        int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
+
+        Log.d("Studmarks", "studenttenthmarks: " + studenttenthmarks);
+        Log.d("Studmarks", "studenttwelthordiplomamarks: " + studenttwelthordiplomamarks);
+        Log.d("Studmarks", "studentugmarks: " + studentugmarks);
+        Log.d("Studmarks", "studentpgmarks: " + studentpgmarks);
+
+        Log.d("Studmarks", "stdx: " + stdx);
+        Log.d("Studmarks", "stdxiiordiploma: " + stdxiiordiploma);
+        Log.d("Studmarks", "ug: " + ug);
+
+
+        if (found_tenth == 0) {
+//10 th not filled
+            save.setStudenttenthmarks("0.00");
+
+        } else {
+
+            save.setStudenttenthmarks(studenttenthmarks);
+            s10 = Float.parseFloat(studenttenthmarks);
+            if (s10 >= c10) {
+                tenthflag = 1;
+            }
+
+
+        }
+
+        if (found_twelth == 0 && found_diploma == 0) {
+//                        please fill twelth or diploma information
+            save.setStudenttwelthordiplomamarks("0.00");
+
+        } else {
+            save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
+            s12 = Float.parseFloat(studenttwelthordiplomamarks);
+            if (s12 >= c12) {
+                twelthordiplomaflag = 1;
+            }
+        }
+
+        if (found_ug == 0) {
+            save.setStudentugmarks("0.00");
+
+//udgnot found
+        } else {
+
+            save.setStudentugmarks(studentugmarks);
+            su = Float.parseFloat(studentugmarks);
+
+            if (su >= cu) {
+                ugflag = 1;
+            }
+
+
+        }
+
+
+        if (found_pgsem == 0 && found_pgyear == 0) {
+//                        please fill twelth or diploma information
+            save.setStudentpgmarks("0.00");
+
+        } else {
+            save.setStudentpgmarks(studentpgmarks);
+            s12 = Float.parseFloat(studenttwelthordiplomamarks);
+            if (s12 >= c12) {
+                twelthordiplomaflag = 1;
+            }
+        }
+
+
+        LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
+        if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1) {
+            registerbuttonlayout.setVisibility(View.VISIBLE);
+            registerbutton.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+
+
+        } else {
+            registerbuttonlayout.setVisibility(View.GONE);
+
+        }
+    }
+
+    //*************************************************
+    public void validatedata() {
+
+        if (found_box1 == 0) {
+//                    please fill intro information
+            registerbutton.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(ViewPlacement.this, " Please fill personal details before applying", Toast.LENGTH_SHORT).show();
+        } else {
+            if (found_tenth == 0) {
+//                        please fill tenth information
+                registerbutton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(ViewPlacement.this, " Please fill Std. X details before applying", Toast.LENGTH_SHORT).show();
+
+            } else {
+                if (found_twelth == 0 && found_diploma == 0) {
+//                        please fill twelth or diploma information
+                    registerbutton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(ViewPlacement.this, "Please fill Std. XII/Diploma details before applying", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    if (found_ug == 0) {
+//                        please fill ug information
+                        Toast.makeText(ViewPlacement.this, " Please fill your Ug details before applying", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        if (found_projects == 0) {
+//                        please fill project information
+                            registerbutton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(ViewPlacement.this, " Please fill Project details before applying", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            if (found_lang == 0) {
+//                        please fill language information
+                                registerbutton.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(ViewPlacement.this, " Please fill Known languages details before applying", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                if (found_skills == 0) {
+//                        please fill skill information
+                                    registerbutton.setVisibility(View.VISIBLE);
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(ViewPlacement.this, " Please fill Skill details before applying", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    if (found_careerobj == 0) {
+//                        please fill career objective information
+                                        registerbutton.setVisibility(View.VISIBLE);
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(ViewPlacement.this, " Please fill Career details before applying", Toast.LENGTH_SHORT).show();
+
+                                    } else {
+                                        if (found_strengths == 0) {
+//                        please fill strength information
+                                            registerbutton.setVisibility(View.VISIBLE);
+                                            progressBar.setVisibility(View.GONE);
+                                            Toast.makeText(ViewPlacement.this, " Please fill Strength details before applying", Toast.LENGTH_SHORT).show();
+
+                                        } else {
+                                            if (found_weaknesses == 0) {
+//                        please fill weaknesses information
+                                                registerbutton.setVisibility(View.VISIBLE);
+                                                progressBar.setVisibility(View.GONE);
+                                                Toast.makeText(ViewPlacement.this, " Please fill Weaknesses details before applying", Toast.LENGTH_SHORT).show();
+
+                                            } else {
+                                                if (found_personal == 0) {
+//                        please fill personal information
+                                                    registerbutton.setVisibility(View.VISIBLE);
+                                                    progressBar.setVisibility(View.GONE);
+                                                    Toast.makeText(ViewPlacement.this, " Please fill Personal details before applying", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        }
+
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
+            new SaveResumedatabase().execute();
+
+        }
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -214,14 +531,12 @@ public class ViewPlacement extends AppCompatActivity {
         protected Integer doInBackground(String... urls) {
             try {
 
-
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("id", id));
                 params.add(new BasicNameValuePair("u", username));
                 params.add(new BasicNameValuePair("f", fname));
                 params.add(new BasicNameValuePair("l", lname));
                 params.add(new BasicNameValuePair("lc", companyname));
-
 
                 json = jParser.makeHttpRequest(Z.url_RegisterForPlacement, "GET", params);
                 String s = null;
@@ -253,326 +568,6 @@ public class ViewPlacement extends AppCompatActivity {
 
     }
 
-
-//    student data
-
-    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
-            try {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
-
-
-                //shift this to class
-                String studenttenthmarksObj = "", studenttwelthordiplomamarksobj = "", diplomadataobject, ugdataobject = "";
-
-
-                resultofop = json.getString("info");
-                if (resultofop.equals("found")) {
-                    String s = json.getString("intro");
-                    if (s.equals("found")) {
-                        found_box1 = 1;
-                        Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(json.getString("introObj"), MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
-                        fname = obj2.getFirstname();
-                        lname = obj2.getLastname();
-
-                    }
-                    s = json.getString("tenth");
-                    if (s.equals("found")) {
-
-                        studenttenthmarksObj = json.getString("tenthobj");
-                        MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(studenttenthmarksObj, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
-                        studenttenthmarks = obj2.percentage;
-                        found_tenth = 1;
-                    }
-
-                    s = json.getString("twelth");
-                    if (s.equals("found")) {
-                        studenttwelthordiplomamarksobj = json.getString("twelthobj");
-                        MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(studenttwelthordiplomamarksobj, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
-                        studenttwelthordiplomamarks = obj2.getPercentage();
-
-                        if (!studenttwelthordiplomamarks.equals("")) {
-                            found_twelth = 1;
-                        } else {
-                            found_twelth = 0;
-                            s = json.getString("diploma");
-                            if (s.equals("found")) {
-                                diplomadataobject = json.getString("diplomaobj");
-                                MyProfileDiplomaModal obj3 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
-                                studenttwelthordiplomamarks = obj3.getAggregate();
-                                found_diploma = 1;
-
-                            }
-                        }
-                    }
-
-                    s = json.getString("ug");
-                    if (s.equals("found")) {
-                        ugdataobject = json.getString("ugobj");
-                        MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
-                        studentugmarks = obj2.aggregate;
-                        found_ug = 1;
-                    }
-                    s = json.getString("pgsem");
-                    if (s.equals("found")) {
-
-                        PgSem obj = (PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(ViewPlacement.this), MySharedPreferencesManager.getDigest2(ViewPlacement.this));
-                        studentpgmarks = obj.getAggregatepgsem();
-                        found_pgsem = 1;
-                    }
-
-                    s = json.getString("pgyear");
-                    if (s.equals("found")) {
-                        found_pgyear = 1;
-                    }
-
-                    s = json.getString("projects");
-                    if (s.equals("found")) {
-                        found_projects = 1;
-                    }
-                    s = json.getString("knownlang");
-                    if (s.equals("found")) {
-                        found_lang = 1;
-                    }
-                    s = json.getString("certificates");
-                    if (s.equals("found")) {
-                        found_certificates = 1;
-                    }
-                    s = json.getString("courses");
-                    if (s.equals("found")) {
-                        found_courses = 1;
-                    }
-                    s = json.getString("skills");
-                    if (s.equals("found")) {
-                        found_skills = 1;
-                    }
-                    s = json.getString("honors");
-                    if (s.equals("found")) {
-                        found_honors = 1;
-                    }
-                    s = json.getString("patents");
-                    if (s.equals("found")) {
-                        found_patents = 1;
-                    }
-                    s = json.getString("publications");
-                    if (s.equals("found")) {
-                        found_publications = 1;
-                    }
-                    s = json.getString("career");
-                    if (s.equals("found")) {
-                        found_careerobj = 1;
-                    }
-                    s = json.getString("strengths");
-                    if (s.equals("found")) {
-                        found_strengths = 1;
-                    }
-                    s = json.getString("weaknesses");
-                    if (s.equals("found")) {
-                        found_weaknesses = 1;
-                    }
-                    s = json.getString("locationpreferences");
-                    if (s.equals("found")) {
-                        found_locationpreferences = 1;
-                    }
-                    s = json.getString("contact_details");
-                    if (s.equals("found")) {
-                        found_contact_details = 1;
-                    }
-                    s = json.getString("personal");
-                    if (s.equals("found")) {
-                        found_personal = 1;
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return map;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap result) {
-//            int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
-//            int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
-//            int found_contact_details=0,found_personal=0;
-
-            if (found_box1 == 0) {
-//                    please fill intro information
-                Toast.makeText(ViewPlacement.this, " please fill introduction information", Toast.LENGTH_SHORT).show();
-            } else {
-                if (found_tenth == 0) {
-//                        please fill tenth information
-                    Toast.makeText(ViewPlacement.this, " please fill tenth information", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    if (found_twelth == 0 && found_diploma == 0) {
-//                        please fill twelth or diploma information
-                        Toast.makeText(ViewPlacement.this, " please fill twelth or diploma information", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        if (found_ug == 0) {
-//                        please fill ug information
-                            Toast.makeText(ViewPlacement.this, " please fill gradution information", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            if (found_projects == 0) {
-//                        please fill project information
-                                Toast.makeText(ViewPlacement.this, " please fill project information", Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                if (found_lang == 0) {
-//                        please fill language information
-                                    Toast.makeText(ViewPlacement.this, " please fill language information", Toast.LENGTH_SHORT).show();
-
-                                } else {
-                                    if (found_skills == 0) {
-//                        please fill skill information
-                                        Toast.makeText(ViewPlacement.this, " please fill skill information", Toast.LENGTH_SHORT).show();
-
-                                    } else {
-                                        if (found_careerobj == 0) {
-//                        please fill career objective information
-                                            Toast.makeText(ViewPlacement.this, " please fill career objective information", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            if (found_strengths == 0) {
-//                        please fill strength information
-                                                Toast.makeText(ViewPlacement.this, " please fill strength information", Toast.LENGTH_SHORT).show();
-
-                                            } else {
-                                                if (found_weaknesses == 0) {
-//                        please fill weaknesses information
-                                                    Toast.makeText(ViewPlacement.this, " please fill weaknesses information", Toast.LENGTH_SHORT).show();
-
-                                                } else {
-                                                    if (found_contact_details == 0) {
-//                        please fill contact details information
-                                                        Toast.makeText(ViewPlacement.this, " please fill contact details information", Toast.LENGTH_SHORT).show();
-
-                                                    } else {
-                                                        if (found_personal == 0) {
-//                        please fill personal information
-                                                            Toast.makeText(ViewPlacement.this, " please fill personal information", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    }
-                                                }
-
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
-
-            SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
-            Float c10 = 0.0f, s10 = 0.0f, c12 = 0.0f, s12 = 0.0f, cu = 0.0f, su = 0.0f;
-            c10 = Float.parseFloat(stdx);
-            c12 = Float.parseFloat(stdxiiordiploma);
-            cu = Float.parseFloat(ug);
-            int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
-
-            Log.d("Studmarks", "studenttenthmarks: "+studenttenthmarks);
-            Log.d("Studmarks", "studenttwelthordiplomamarks: "+studenttwelthordiplomamarks);
-            Log.d("Studmarks", "studentugmarks: "+studentugmarks);
-            Log.d("Studmarks", "studentpgmarks: "+studentpgmarks);
-
-            Log.d("Studmarks", "stdx: "+stdx);
-            Log.d("Studmarks", "stdxiiordiploma: "+stdxiiordiploma);
-            Log.d("Studmarks", "ug: "+ug);
-
-
-
-
-            if (found_tenth == 0) {
-//10 th not filled
-                save.setStudenttenthmarks("0.00");
-
-            } else {
-
-                save.setStudenttenthmarks(studenttenthmarks);
-                s10 = Float.parseFloat(studenttenthmarks);
-                if (s10 >= c10) {
-                    tenthflag = 1;
-                }
-
-
-            }
-
-            if (found_twelth == 0 && found_diploma == 0) {
-//                        please fill twelth or diploma information
-                save.setStudenttwelthordiplomamarks("0.00");
-
-            }else {
-                save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
-                s12 = Float.parseFloat(studenttwelthordiplomamarks);
-                if (s12 >= c12) {
-                    twelthordiplomaflag = 1;
-                }
-            }
-
-
-
-            if (found_ug == 0) {
-                save.setStudentugmarks("0.00");
-
-//udgnot found
-            } else {
-
-                save.setStudentugmarks(studentugmarks);
-                su = Float.parseFloat(studentugmarks);
-
-                if (su >= cu) {
-                    ugflag = 1;
-                }
-
-
-            }
-
-
-            if (found_pgsem == 0 && found_pgyear == 0) {
-//                        please fill twelth or diploma information
-                save.setStudentpgmarks("0.00");
-
-            }else {
-                save.setStudentpgmarks(studentpgmarks);
-                s12 = Float.parseFloat(studenttwelthordiplomamarks);
-                if (s12 >= c12) {
-                    twelthordiplomaflag = 1;
-                }
-            }
-
-
-
-
-            LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
-            if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1) {
-                registerbuttonlayout.setVisibility(View.VISIBLE);
-                registerbutton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-
-                if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_contact_details == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
-                    new SaveResumedatabase().execute();
-                } else {
-                    Toast.makeText(ViewPlacement.this, " Resume not generated", Toast.LENGTH_SHORT).show();
-//                    new GetStudentData().execute();
-                }
-
-            } else {
-                registerbuttonlayout.setVisibility(View.GONE);
-
-            }
-
-
-        }
-    }
-
     private class SaveResumedatabase extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -591,6 +586,7 @@ public class ViewPlacement extends AppCompatActivity {
                 Log.d("TAG", "doInBackground: username -" + username);
                 Log.d("TAG", "doInBackground: format -" + format);
                 Log.d("TAG", "doInBackground: template -" + template);
+
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
 
                 params.add(new BasicNameValuePair("username", username));
@@ -612,8 +608,10 @@ public class ViewPlacement extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
 
-                if (result.equals("found"))
-                    Toast.makeText(ViewPlacement.this, "Successfully Register..!", Toast.LENGTH_SHORT).show();
+                if (result.equals("found")) {
+                    new registerforPlacementTask().execute();
+//                       Toast.makeText(ViewPlacement.this, "Successfully Register..!", Toast.LENGTH_SHORT).show();
+                }
                 else
                     Toast.makeText(ViewPlacement.this, "Not Register..!", Toast.LENGTH_SHORT).show();
 

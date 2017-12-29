@@ -529,6 +529,7 @@ public class HRProfileFragment extends Fragment {
         new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((HRActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
+
 //        profileprogress.setVisibility(View.VISIBLE);
 //        profileprogress.setVisibility(View.GONE);
 

@@ -45,8 +45,6 @@ public class EditProfileAdmin extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Profile");
 
-
-
         mViewPager = (ViewPager) findViewById(R.id.container);
 
         tabLayout = (TabLayout) findViewById(R.id.profiletabs);
@@ -102,6 +100,7 @@ public class EditProfileAdmin extends AppCompatActivity {
                     if(fragment.edittedFlag==1){
                         if(personal_success){
                             fragment.save();
+                            Toast.makeText(EditProfileAdmin.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -112,6 +111,8 @@ public class EditProfileAdmin extends AppCompatActivity {
 
                         if(project_success){
                             adminInstituteTabFragment.save();
+                            Toast.makeText(EditProfileAdmin.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 }
@@ -121,6 +122,7 @@ public class EditProfileAdmin extends AppCompatActivity {
                     if(ExperiencesTabFragment.edittedFlag==1){
                         if(project_success){
                             ExperiencesTabFragment.save();
+                            Toast.makeText(EditProfileAdmin.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -131,6 +133,7 @@ public class EditProfileAdmin extends AppCompatActivity {
 
                         if(project_success){
                             ContactTabFragment.save();
+                            Toast.makeText(EditProfileAdmin.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

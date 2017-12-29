@@ -3989,7 +3989,7 @@ public class ProjectsProfileTabFragment extends Fragment {
 
             if (result.equals("success")) {
 //                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
 
                 if (role.equals("student"))
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);

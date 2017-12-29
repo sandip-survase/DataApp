@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +20,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -219,6 +221,7 @@ public class ViewNotification extends AppCompatActivity {
                 attachment3img.setImageDrawable(myDrawable);
             }
         }
+
         if(getIntent().getStringExtra("file4")!=null)
         {
             String filename=getIntent().getStringExtra("file4");
@@ -236,6 +239,7 @@ public class ViewNotification extends AppCompatActivity {
                 attachment4img.setImageDrawable(myDrawable);
             }
         }
+
         if(getIntent().getStringExtra("file5")!=null)
         {
             String filename=getIntent().getStringExtra("file5");
@@ -254,11 +258,7 @@ public class ViewNotification extends AppCompatActivity {
             }
         }
 
-
-
-
         changeReadStatusNotification(getIntent().getStringExtra("id"));
-
 
     }
 
@@ -273,11 +273,33 @@ public class ViewNotification extends AppCompatActivity {
                 .appendQueryParameter("f", filename)
                 .build();
 
-        DownloadManager localDownloadManager = (DownloadManager)ViewNotification.this.getSystemService(DOWNLOAD_SERVICE);
-        DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-        localRequest.setNotificationVisibility(1);
-        localDownloadManager.enqueue(localRequest);
+//        DownloadManager localDownloadManager = (DownloadManager)ViewNotification.this.getSystemService(DOWNLOAD_SERVICE);
+//        DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+//        localRequest.setNotificationVisibility(1);
+//        localDownloadManager.enqueue(localRequest);
+
+//        ********
+        File myDirectory = new File(Environment.getExternalStorageDirectory(), "Place Me");
+        if (!myDirectory.exists()) {
+            myDirectory.mkdirs();
+        }
+
+        String storagePath = Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
+
+        DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir("/Place Me", filename);
+
+        Long referese = dm.enqueue(request);
+
+
+//        *******
+
+
     }
+
+
     Drawable getDrawable(String extension)
     {
         Drawable myDrawable1=null;

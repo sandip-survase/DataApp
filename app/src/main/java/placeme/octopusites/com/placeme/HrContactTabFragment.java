@@ -520,7 +520,7 @@ public class HrContactTabFragment extends Fragment {
             if(result.equals("success"))
             {
                 edittedFlag=0;
-                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
                 if (role.equals("hr"))
                     getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
