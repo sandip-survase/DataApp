@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -92,11 +93,13 @@ public class UserSelection extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             MenuItem itemM = menu.findItem(R.id.action_save);
-
+            SpannableStringBuilder title = new SpannableStringBuilder("Registered");
+            title.setSpan(Z.getBold(UserSelection.this),0, title.length(), 0);
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 //
                     itemM.setVisible(true);
+
                     registerd = true;
                     placed = false;
                     shortlisted = false;

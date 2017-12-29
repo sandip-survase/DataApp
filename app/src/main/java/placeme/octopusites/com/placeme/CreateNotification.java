@@ -73,7 +73,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
     //hiding ui
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
-    ImageView trashnotification;
+
     RelativeLayout file1;
     TextInputEditText title, notiffication;
     CheckBox stud, allum;
@@ -151,7 +151,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         createnotinotitxt.setTypeface(Z.getLight(this));
         lastmodifiedtxt.setTypeface(Z.getLight(this));
 
-        trashnotification = (ImageView) findViewById(R.id.trashnotification);
+
         TextView choosetxt = (TextView) findViewById(R.id.choosetxt);
         choosetxt.setTypeface(Z.getBold(this));
         TextView attachmentstxt = (TextView) findViewById(R.id.attachmentstxt);
@@ -172,7 +172,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             ab.setTitle("Create Notification");
             createnotitxt.setText("Create Notification");
             createnotinotitxt.setText("Your notification will be broadcasted only to the students and/or alumnis of your institute.");
-            trashnotification.setVisibility(View.GONE);
+
             lastmodifiedtxt.setVisibility(View.GONE);
 
         }
@@ -1246,7 +1246,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
 
             } else {
-                Toast.makeText(CreateNotification.this, "File name is same", Toast.LENGTH_LONG).show();
+                Toast.makeText(CreateNotification.this, "File is already uploaded", Toast.LENGTH_LONG).show();
             }
         }
     }

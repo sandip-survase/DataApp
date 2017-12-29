@@ -14,19 +14,19 @@
         android:id="@+id/header"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/dark_color"
         android:layout_height="50dp"
         android:layout_marginRight="5dp"
 
         >
 
         <ImageView
-            android:layout_marginTop="5dp"
             android:id="@+id/download"
             android:layout_weight="1"
-            android:src="@drawable/download"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/download_white"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
 
             />
 
@@ -35,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="5dp"
+            android:theme="@style/MyCheckBox2"
+            android:layout_gravity="center_vertical"
 
             />
     </LinearLayout>

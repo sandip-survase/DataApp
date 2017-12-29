@@ -168,7 +168,7 @@ public class EditNotification extends AppCompatActivity {
 
                     if (!notificationdeleteArraylist.contains(item.getId())) {
                         notificationdeleteArraylist.add(item.getId());
-                        view.setBackgroundColor(Color.parseColor("#999999"));
+                        view.setBackgroundColor(Color.parseColor("#eeeeee"));
                         selectedCount++;
                         setActionBarTitle(selectedCount);
                         selectedPositions[position] = 1;

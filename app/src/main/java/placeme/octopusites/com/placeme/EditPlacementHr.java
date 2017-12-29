@@ -92,8 +92,6 @@ public class EditPlacementHr extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
 
-
-
         try {
 
             String plainusername = Decrypt(username, digest1, digest2);
