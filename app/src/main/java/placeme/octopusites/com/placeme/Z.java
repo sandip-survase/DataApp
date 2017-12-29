@@ -18,7 +18,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class Z {
     //**************************  final **************************
-    public static final String VPS_IP = "162.213.199.3";   // for authority
+    public static final String VPS_IP = "162.213.199.3:8080";   // for authority
     public static final String IP = "http://162.213.199.3/";
     //**************************  final **************************
 
@@ -26,7 +26,9 @@ public class Z {
     public static final String IP_40744 = "http://162.213.199.3:40744/";
     public static final String IP_8081 = "http://104.237.4.236:8081/";
     public static final String IP_1234 = "http://104.237.4.236:1234/";
-    public static final String IP_8086 = "http://162.213.199.3:8080/";
+    public static final String IP_8086 = "http://162.213.199.3/";
+    public static final String IP_8086_local = "http://162.213.199.3:8080/";
+
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
     public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
 
@@ -67,37 +69,37 @@ public class Z {
     public static final String url_ChangePlacementReadStatus = IP_8086 + "CreateNotificationTemp/ChangePlacementReadStatus";
     //                                --------------------adminActivity-----------------
 //placement urls
-    public static final String url_GetPlacementsAdminAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsAdminMetaData";
+    public static final String url_GetPlacementsAdminAdminMetaData = IP_8086_local + "CreateNotificationTemp/GetPlacementsAdminMetaData";
     public static final String url_GetReadStatusOfPlacementsForAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    public static final String url_GetPlacementsAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementsAdmin";
-    public static final String url_ChangePlacementReadStatusAdmin = IP_8086 + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+    public static final String url_GetPlacementsAdmin = IP_8086_local + "CreateNotificationTemp/GetPlacementsAdmin";
+    public static final String url_ChangePlacementReadStatusAdmin = IP_8086_local + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
-    public static final String url_GetNotificationsAdminAdminMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsAdminMetaData";
+    public static final String url_GetNotificationsAdminAdminMetaData = IP_8086_local + "CreateNotificationTemp/GetNotificationsAdminMetaData";
     public static final String url_GetReadStatusOfNotificationsAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    public static final String url_GetNotificationsAdmin = IP_8086 + "CreateNotificationTemp/GetNotificationsAdmin";
+    public static final String url_GetNotificationsAdmin = IP_8086_local + "CreateNotificationTemp/GetNotificationsAdmin";
     public static final String url_ChangeNotificationReadStatusAdmin = IP_8086 + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     //    -------------------------------EditNotification-----------------------------------
-    public static final String url_GetNotificationsByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
+    public static final String url_GetNotificationsByAdminMetaData = IP_8086_local + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
     public static final String url_GetReadStatusOfNotificationsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
-    public static final String url_GetNotificationsSentByAdmin = IP_8086 + "CreateNotificationTemp/GetNotificationsSentByAdmin";
-    public static final String url_DeleteNotification = IP_8086 + "CreateNotificationTemp/DeleteNotification";
+    public static final String url_GetNotificationsSentByAdmin = IP_8086_local + "CreateNotificationTemp/GetNotificationsSentByAdmin";
+    public static final String url_DeleteNotification = IP_8086_local + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
-    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
+    public static final String url_GetPlacementSentByAdminByAdminMetaData = IP_8086_local + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
     public static final String url_GetReadStatusOfPlacementsByAFdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
-    public static final String url_GetPlacementSentByAdmin = IP_8086 + "CreateNotificationTemp/GetPlacementSentByAdmin";
-    public static final String url_Delete_Placements = IP_8086 + "CreateNotificationTemp/DeletePlacement";
+    public static final String url_GetPlacementSentByAdmin = IP_8086_local + "CreateNotificationTemp/GetPlacementSentByAdmin";
+    public static final String url_Delete_Placements = IP_8086_local + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
-    public static final String GetPlacementsCreatedByHrMetadata = IP_8086 + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
-    public static final String url_GetPlacementsCreatedByHr = IP_8086 + "CreateNotificationTemp/GetPlacementsCreatedByHr";
+    public static final String GetPlacementsCreatedByHrMetadata = IP_8086_local + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
+    public static final String url_GetPlacementsCreatedByHr = IP_8086_local + "CreateNotificationTemp/GetPlacementsCreatedByHr";
     //    -------------------------------EditPlacementHr -----------------------------------
-    public static final String url_GetPlacementSentByHr = IP_8086 + "CreateNotificationTemp/GetPlacementSentByHr";
+    public static final String url_GetPlacementSentByHr = IP_8086_local + "CreateNotificationTemp/GetPlacementSentByHr";
     //    -------------------------------EditPlacementMainHr -----------------------------------
-    public static final String url_ModifyPlacementHr = IP_8086 + "CreateNotificationTemp/ModifyPlacementHr";
+    public static final String url_ModifyPlacementHr = IP_8086_local + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static final String url_UploadAttach1 = IP_8086 + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification = IP_8086 + "CreateNotificationTemp/ModifyNotification";
-    public static final String url_GetForWhomeNotification = IP_8086 + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
-    public static final String url_SavefileOnServer = IP_8086 + "CreateNotificationTemp/SavefileOnServer";
+    public static final String url_UploadAttach1 = IP_8086_local + "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification = IP_8086_local + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_GetForWhomeNotification = IP_8086_local + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
+    public static final String url_SavefileOnServer = IP_8086_local + "CreateNotificationTemp/SavefileOnServer";
 
 
     //    -------------------------------CreatePlacement -----------------------------------
@@ -108,7 +110,7 @@ public class Z {
     public static final String url_CreateNotificationHrToEach = IP_8086 + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
     public static final String url_GetForWhomePlacements = IP_8086 + "CreateNotificationTemp/GetForWhomePlacements";
-    public static final String url_ModifyPlacement = IP_8086 + "CreateNotificationTemp/ModifyPlacement";
+    public static final String url_ModifyPlacement = IP_8086_local + "CreateNotificationTemp/ModifyPlacement";
 
 
     //    ---------------------------------------ViewPlacement -----------------------------------
