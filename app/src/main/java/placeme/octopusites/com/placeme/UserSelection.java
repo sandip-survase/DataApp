@@ -93,8 +93,7 @@ public class UserSelection extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             MenuItem itemM = menu.findItem(R.id.action_save);
-            SpannableStringBuilder title = new SpannableStringBuilder("Registered");
-            title.setSpan(Z.getBold(UserSelection.this),0, title.length(), 0);
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 //
