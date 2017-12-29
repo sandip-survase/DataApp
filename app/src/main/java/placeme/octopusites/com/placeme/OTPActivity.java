@@ -245,8 +245,8 @@ public class OTPActivity extends AppCompatActivity {
                 else if (resultofop.equals("already")) {
 
                 }
-                else
-                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
+//                else
+//                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
             }
             if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);

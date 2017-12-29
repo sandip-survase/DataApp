@@ -967,7 +967,11 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     };
     @Override
     public void onBackPressed() {
-        // do nothing
+
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
     }
     public class MyAdapter extends FragmentStatePagerAdapter {
 

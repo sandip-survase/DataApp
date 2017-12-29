@@ -100,8 +100,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     String directory;
     List<String> response;
 
-
     //
+    RelativeLayout admincontrolsrl;
     ArrayList<ArrayList<RecyclerItemUsers>> registeredallListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> placedallListsfromserver = new ArrayList<>();
@@ -174,6 +174,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
 
+        admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
+        admincontrolsrl.setVisibility(View.GONE);
+
         username = MySharedPreferencesManager.getUsername(this);
         String pass = MySharedPreferencesManager.getPassword(HRActivity.this);
         String role = MySharedPreferencesManager.getRole(HRActivity.this);
@@ -195,8 +198,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
         createnotificationtxt.setTypeface(Z.getBold(this));
         editnotificationtxt.setTypeface(Z.getBold(this));
-
-
 
 
 
@@ -227,6 +228,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
+                admincontrolsrl.setVisibility(View.GONE);
                 final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
                 upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 searchView.setBackIcon(upArrow);
@@ -234,7 +236,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
             @Override
             public void onSearchViewClosed() {
-
+                if (navMenuFlag == 3)
+                    admincontrolsrl.setVisibility(View.VISIBLE);
             }
         });
 
@@ -260,6 +263,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
 
+                        admincontrolsrl.setVisibility(View.GONE);
 
                     } else if (navMenuFlag == 2) {
 
@@ -281,6 +285,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
+
+                        admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 3) {
 
                         notificationorplacementflag = 2;
@@ -308,6 +314,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                        initializerecyclerViewPlacements();
 //                        getplacementbyhr();
                         getPlacements2();
+                        admincontrolsrl.setVisibility(View.VISIBLE);
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -320,6 +327,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("Messages");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
 
+                        admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 5) {
                         crop_layout.setVisibility(View.GONE);
                         SettingsFragment fragment = new SettingsFragment();
@@ -331,6 +339,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Settings");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
+                        admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
                         crop_layout.setVisibility(View.GONE);
                         NoDataAvailableFragment fragment = new NoDataAvailableFragment();
@@ -342,6 +351,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Blog");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
+                        admincontrolsrl.setVisibility(View.GONE);
                     } else if (navMenuFlag == 7) {
                         crop_layout.setVisibility(View.GONE);
                         AboutFragment fragment = new AboutFragment();
@@ -353,6 +363,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("About");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
+                        admincontrolsrl.setVisibility(View.GONE);
                     }
                 }
 
@@ -569,8 +580,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 mainfragment.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
                 recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
-                RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
-                rl.setVisibility(View.VISIBLE);
+
+                admincontrolsrl.setVisibility(View.VISIBLE);
 //                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //                fab.setVisibility(View.VISIBLE);
 
@@ -977,6 +988,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     void getplacementbyhr() {
 //        initializerecyclerViewPlacements();
+        new Getplacementbyhr().execute();
     }
 
 

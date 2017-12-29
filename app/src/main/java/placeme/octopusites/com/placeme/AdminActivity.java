@@ -124,7 +124,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String lastupdatedNotification[];
     String notificationreadstatus[];
     int selectedMenuFlag = 1;
-    String[] blanksuggestionList = {""};
     ArrayList<RecyclerItemPlacement> tempListPlacement;
     int unreadcountPlacement = 0;
     int placementcount = 0;
@@ -358,24 +357,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-
-
                 admincontrolsrl.setVisibility(View.GONE);
-
-                if (selectedMenuFlag == 1) {
-                    searchView.setSuggestions(blanksuggestionList);
-                    searchView.setSuggestions(null);
-                } else if (selectedMenuFlag == 2) {
-                    searchView.setSuggestions(blanksuggestionList);
-                    searchView.setSuggestions(null);
-                }
-
-
                 final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
                 upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 searchView.setBackIcon(upArrow);
-
-
             }
 
             @Override

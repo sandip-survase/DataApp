@@ -1227,6 +1227,12 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         getNotifications();
         new UpdateFirebaseToken().execute();
+
+
+        //temp work remove after done
+//        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
+//        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
+//        new CreateFirebaseUser(u,p).execute();
     }
 
     void loginFirebase(String username, String hash) {
@@ -2467,5 +2473,45 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
+
+    // temp work remove after done
+//    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+//
+//        String u, p;
+//        String resultofop=null;
+//        String hash=null;
+//        CreateFirebaseUser(String u, String p) {
+//            this.u = u;
+//            this.p = p;
+//            hash= Z.md5(p + MySharedPreferencesManager.getDigest3(MainActivity.this));
+//        }
+//
+//        protected String doInBackground(String... param) {
+//
+//
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", u));
+//            params.add(new BasicNameValuePair("p", p));
+//            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+//            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
+//            Log.d("TAG", "CreateFirebaseUser json : "+json);
+//            try {
+//                resultofop = json.getString("info");
+//
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return resultofop;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//
+//            loginFirebase(plainusername, hash);
+//            Toast.makeText(MainActivity.this, resultofop, Toast.LENGTH_LONG).show();
+//
+//        }
+//    }
 
 }
