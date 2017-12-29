@@ -176,6 +176,12 @@ public class CreateNotificationHR extends AppCompatActivity {
             }
         }
 
+        if (tempforwhom != null) {
+
+
+
+
+        }
         srole=MySharedPreferencesManager.getRole(this);
         instname=MySharedPreferencesManager.getInstitute(this);
         encUsername=MySharedPreferencesManager.getUsername(this);

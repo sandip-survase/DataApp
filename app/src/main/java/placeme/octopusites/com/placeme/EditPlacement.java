@@ -164,19 +164,15 @@ public class EditPlacement extends AppCompatActivity {
                 RecyclerItemPlacement item = itemListPlacement.get(position);
 
                 if (deleteflag == 1) {
-                    if (selectedPositions[position] == 0) {
-                        view.setBackgroundColor(Color.parseColor("#000000"));
+
+                    if (!notificationdeleteArraylist.contains(item.getId())) {
+                        notificationdeleteArraylist.add(item.getId());
+                        view.setBackgroundColor(Color.parseColor("#eeeeee"));
                         selectedCount++;
                         setActionBarTitle(selectedCount);
                         selectedPositions[position] = 1;
                         selectedViews[position] = view;
-                        if (!notificationdeleteArraylist.contains(item.getId())) {
-                            notificationdeleteArraylist.add(item.getId());
-                        }
-
-
                     } else {
-
                         notificationdeleteArraylist.remove(item.getId());
                         view.setBackgroundColor(Color.TRANSPARENT);
                         selectedCount--;
@@ -185,7 +181,6 @@ public class EditPlacement extends AppCompatActivity {
                         selectedViews[position] = null;
                         if (selectedCount == 0)
                             goBack();
-
                     }
                 } else {
 
@@ -266,22 +261,21 @@ public class EditPlacement extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                if (deleteflag == 0) {
                     RecyclerItemPlacement item = itemListPlacement.get(position);
+                if (deleteflag == 0) {
 
 
                     if (!notificationdeleteArraylist.contains(item.getId())) {
                         notificationdeleteArraylist.add(item.getId());
                     }
+
                     myVib.vibrate(40);
                     hideSearchMenu();
                     deleteflag = 1;
                     setDeleteActionbar();
-                    view.setBackgroundColor(Color.parseColor("#000000"));
+                    view.setBackgroundColor(Color.parseColor("#eeeeee"));
                     selectedCount++;
                     setActionBarTitle(selectedCount);
-                    selectedPositions[position] = 1;
-                    selectedViews[position] = view;
                 }
 
             }
@@ -362,10 +356,12 @@ public class EditPlacement extends AppCompatActivity {
 
 
         //seting data to adapter
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout.setRefreshing(true);
+
         getPlacements();
 
 
-        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -656,16 +652,19 @@ public class EditPlacement extends AppCompatActivity {
 
 
         Log.d("tag2", "itemListPlacement size ===========" + itemListPlacement.size());
-
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
 
 //        mAdapterPlacement = new RecyclerPlacementsAdapter(itemListPlacement,EditPlacement.this);
         itemListPlacement.addAll(itemList2);
-//        recyclerViewPlacement.setAdapter(mAdapterPlacement);
-//        mAdapterPlacement2 = new RecyclerItemAdapterPlacement2(itemListPlacementnew,AdminActivity.this);
-
+        selectedPositions = new int[total_no_of_placements];
+        selectedViews = new View[total_no_of_placements];
+//
+        recyclerViewPlacement.getRecycledViewPool().clear();
         mAdapterPlacement.notifyDataSetChanged();
+
 
 
 
@@ -684,7 +683,7 @@ public class EditPlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
 
             try {
-                json = jParser.makeHttpRequest(Z.url_GetPlacementsAdminAdminMetaData, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_GetPlacementSentByAdminByAdminMetaData, "GET", params);
 
 
                 placementpages = Integer.parseInt(json.getString("pages"));
@@ -817,14 +816,11 @@ public class EditPlacement extends AppCompatActivity {
             protected void onPostExecute(Void param) {
 
 
-                tswipe_refresh_layout.setVisibility(View.VISIBLE);
-                tswipe_refresh_layout.setRefreshing(false);
                 if (!isLastPageLoadedPlacement){
 
 
                     setplacementListtoadapter(placementListfromserver);
                 }
-                tswipe_refresh_layout.setRefreshing(false);
 
 
             }

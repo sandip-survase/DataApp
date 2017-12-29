@@ -433,6 +433,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                         mainfragment.setVisibility(View.GONE);
                         tswipe_refresh_layout.setVisibility(View.VISIBLE);
+                        tswipe_refresh_layout.setRefreshing(true);
                         createPlacementOrNotification.setText("Create Notification");
                         editPlacementOrNotification.setText("Edit Notification");
                         recyclerViewNotification.setVisibility(View.VISIBLE);
@@ -1242,6 +1243,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         });
 
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(true);
         new GetNotificationsReadStatus().execute();
         new GetPlacementsReadStatus().execute();
         getNotifications2();
@@ -1850,7 +1853,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         if (lastPageFlagNotification == 1)
             isLastPageLoadedNotification = true;
 
+
+        recyclerViewNotification.getRecycledViewPool().clear();
         mAdapterNotificationEdit.notifyDataSetChanged();
+
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
@@ -2667,6 +2673,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
+
+        recyclerViewPlacement.getRecycledViewPool().clear();
         itemListPlacementnew.addAll(itemList2);
 
         mAdapterPlacement.notifyDataSetChanged();

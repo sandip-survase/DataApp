@@ -69,12 +69,11 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 public class HRActivity extends AppCompatActivity implements ImagePickerCallback {
 
     public static final int HR_DATA_CHANGE_RESULT_CODE = 444;
-
-    File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
     public static final String Intro = "intro";
+    File Imgfile;
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     int notificationorplacementflag = 0;
@@ -109,6 +108,24 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     Toolbar toolbar;
     SwipeRefreshLayout tswipe_refresh_layout;
     TextView createnotificationtxt, editnotificationtxt;
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
+    boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
+    int lastPageFlagPlacement = 0;
+    int placementpages = 0;
+    int[] called_pages_placement;
+    int total_no_of_placements;
+    int unreadcountPlacement = 0;
+    TextView notificationcounttxt;
+    RelativeLayout notificationcountrl;
+    TextView placementcounttxt;
+    RelativeLayout placementcountrl;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+    boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
+    int lastPageFlagNotification = 0;
+    int notificationpages = 0;
+    int[] called_pages_notification;
+    int total_no_of_notifications;
+    int unreadcountNotification = 0;
     private String username = "";
     private List<RecyclerItem> itemList = new ArrayList<>();
     private RecyclerItemAdapter mAdapter;
@@ -121,34 +138,19 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
     private TextView toolbar_title;
-
-
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
-    private RecyclerItemAdapterPlacement mAdapterPlacement;
-    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
-
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
-    boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
-    int lastPageFlagPlacement = 0;
+    //new
+    private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
+    private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
+    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
+    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
+    private int page_to_call_notification = 1;
 
-    int placementpages = 0;
-    int[] called_pages_placement;
-    int total_no_of_placements;    int unreadcountPlacement = 0;
-
-    TextView notificationcounttxt;
-    RelativeLayout notificationcountrl;
-    TextView placementcounttxt;
-    RelativeLayout placementcountrl;
-
-    String username1;
-
-
-
-    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -188,7 +190,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
         createnotificationtxt.setTypeface(Z.getBold(this));
         editnotificationtxt.setTypeface(Z.getBold(this));
-
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
@@ -273,7 +274,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                            getNotifications();
+                        getNotifications();
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
@@ -509,9 +510,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 drawer.closeDrawer(GravityCompat.START);
 
 
-                mainfragment.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-                recyclerViewPlacemetsHr.setVisibility(View.GONE);
+
                 RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                 rl.setVisibility(View.VISIBLE);
 //                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -570,9 +569,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 drawer.closeDrawer(GravityCompat.START);
 
                 mainfragment.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.GONE);
-                recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
-
                 admincontrolsrl.setVisibility(View.VISIBLE);
 //                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //                fab.setVisibility(View.VISIBLE);
@@ -759,16 +755,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
         pt7.setTypeface(Z.getLight(HRActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
-
-        mAdapter = new RecyclerItemAdapter(itemList);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
 
 
         mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
@@ -780,8 +769,16 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr.setAdapter(mAdapter2);
 
 
+        mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew, HRActivity.this);
+        recyclerView.setHasFixedSize(true);
+        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManagerNotification);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapterNotificationEdit);
+
+
         //temp work remove after
-        addNotificationdatatoAdapter();
 
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
@@ -898,18 +895,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         try {
 
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            plainusername = new String(demo1DecryptedBytes1);
-//            r.setPlainusername(plainusername);
+            plainusername = Z.Decrypt(username, HRActivity.this);
 
-            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
-            byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
-            String data = new String(demo2DecryptedBytes1);
+            String data = Z.Decrypt(pass, HRActivity.this);
             String hash = md5(data + MySharedPreferencesManager.getDigest3(HRActivity.this));
 
 //           loginFirebase(plainusername,hash);
@@ -948,9 +937,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
 
-        getPlacements2();
-        tswipe_refresh_layout.setRefreshing(true);
 
+        Log.d("VisibilityCheck", "onCreate: ");
+        tswipe_refresh_layout.setRefreshing(true);
+        getNotifications();
         new UpdateFirebaseToken().execute();
 
 
@@ -979,9 +969,23 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         new GetPlacementsReadStatus().execute();
     }
 
-    void getplacementbyhr() {
-//        initializerecyclerViewPlacements();
-        new Getplacementbyhr().execute();
+    void getNotifications() {
+
+        itemListNotificationNew.clear();
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+//metadata read count and read status
+
+        new GetNotificationsReadStatus().execute();
+
+
+//        new Getplacementbyhr().execute();
+
+
     }
 
 
@@ -1186,6 +1190,45 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    public void requestProfileImage() {
+        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
+//        new GetProfileImage().execute();
+        downloadImage();
+
+    }
+
+    void addTempPlacements() {
+
+        Log.d("tag", "addTempPlacements:Accessed ");
+        for (int i = 0; i < 10; i++) {
+            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
+            itemList2.add(item2);
+
+
+        }
+    }
+
+    void setserverlisttoadapter2(ArrayList<RecyclerItemEdit> itemlist) {
+
+        itemListNotificationNew.addAll(itemlist);
+        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
+
+
+        recyclerView.getRecycledViewPool().clear();
+        mAdapterNotificationEdit.notifyDataSetChanged();
+
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+
+    }
+
+    // thumbanail
+
     class Getsingnature extends AsyncTask<String, String, String> {
         String signature = "";
 
@@ -1220,27 +1263,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     .into(profile);
         }
     }
-
-    public void requestProfileImage() {
-        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
-//        new GetProfileImage().execute();
-        downloadImage();
-
-    }
-
-    void addTempPlacements() {
-
-        Log.d("tag", "addTempPlacements:Accessed ");
-        for (int i = 0; i < 10; i++) {
-            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
-            itemList2.add(item2);
-
-
-        }
-    }
-
-    // thumbanail
-
 
     class CompressTask extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
@@ -1281,13 +1303,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.d("TAG", "onError: "+e.getMessage());
+                            Log.d("TAG", "onError: " + e.getMessage());
                         }
                     });
             return true;
         }
     }
-
 
     class UploadProfile extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
@@ -1454,24 +1475,17 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
     }
 
-
     class Getplacementbyhr extends AsyncTask<String, String, String> {
 
         private static final String TAG = "Getplacementbyhr";
         ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
 
         protected String doInBackground(String... param) {
+
+            username = MySharedPreferencesManager.getUsername(HRActivity.this);
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username1));       //0
-
-
-//            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            digest1 = MySharedPreferencesManager.getDigest1(getBaseContext());
-            digest2 = MySharedPreferencesManager.getDigest2(getBaseContext());
-            Log.d("itemlistfromserver", "digest1: " + digest1);
-            Log.d("itemlistfromserver", "digest2: " + digest2);
-
+            params.add(new BasicNameValuePair("u", username));       //0
 
             json = jParser.makeHttpRequest(Z.url_GetPlacementsCreatedByHr, "GET", params);
             try {
@@ -1520,6 +1534,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
     }
+
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         JSONObject json;
@@ -1554,14 +1569,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
     }
 
-
     class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
-
+            username = MySharedPreferencesManager.getUsername(HRActivity.this);
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+            Log.d("HRTag", "doInBackground: username" + username);
             params.add(new BasicNameValuePair("u", username));       //0
 
             try {
@@ -1571,8 +1586,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-
 
 
             } catch (Exception e) {
@@ -1607,7 +1620,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             String r = null;
 
 
-
             ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1625,7 +1637,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
 
-
             } catch (Exception e) {
             }
 
@@ -1640,7 +1651,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         }
     }
-
 
     class isVerified extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
@@ -1662,5 +1672,92 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             return null;
         }
     }
+
+    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_GetNotificationsHrMetadata, "GET", params);
+
+                notificationpages = Integer.parseInt(json.getString("pages"));
+                called_pages_notification = new int[notificationpages];
+                total_no_of_notifications = Integer.parseInt(json.getString("count"));
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+
+//
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                notificationcountrl.setVisibility(View.VISIBLE);
+                notificationcounttxt.setText(unreadcountNotification + "");
+                if (unreadcountNotification == 0) {
+                    notificationcountrl.setVisibility(View.GONE);
+                }
+
+
+                new GetNotifications2().execute();
+
+
+            } catch (Exception e) {
+                Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+    }
+
+    class GetNotifications2 extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            Log.d("class", "accessed");
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsHr, "GET", params);
+            try {
+
+                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            setserverlisttoadapter2(itemlistfromserver);
+
+        }
+
+
+    }
+
 
 }

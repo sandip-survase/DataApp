@@ -265,7 +265,7 @@ public class EditNotification extends AppCompatActivity {
                     hideSearchMenu();
                     deleteflag = 1;
                     setDeleteActionbar();
-                    view.setBackgroundColor(Color.parseColor("#999999"));
+                    view.setBackgroundColor(Color.parseColor("#eeeeee"));
                     selectedCount++;
                     setActionBarTitle(selectedCount);
 
@@ -505,6 +505,7 @@ public class EditNotification extends AppCompatActivity {
             deleteflag = 0;
             showSearchMenu();
             selectedCount = 0;
+            getNotifications2();
 
         } else
             super.onBackPressed();
@@ -734,7 +735,9 @@ public class EditNotification extends AppCompatActivity {
             isLastPageLoadedNotification = true;
 
         itemListNotificationNew.addAll(itemlist);
+        recyclerViewNotification.getRecycledViewPool().clear();
         mAdapterNotificationEdit.notifyDataSetChanged();
+
         selectedPositions = new int[total_no_of_notifications];
         selectedViews = new View[total_no_of_notifications];
 //

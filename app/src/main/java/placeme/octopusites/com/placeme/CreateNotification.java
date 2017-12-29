@@ -254,7 +254,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTypeface(Z.getLight(CreateNotification.this));
-
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(Color.GRAY);
@@ -691,7 +690,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                         } else {
                             //NOTIFICATION FOR NONE
-                            forwhom = forwhom + "(NONE)";
+                            forwhom = forwhom + "";
                             Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                         }
@@ -793,7 +792,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
             if (FLAG.equals("fromeditactivity")) {
                 sizeondialogshow1.setText("");
-
+                sizeondialogshow1.setVisibility(View.GONE);
             } else {
 //                String s = map2.get(t1.getText().toString());
                 String finalsize;
@@ -872,6 +871,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
             if (FLAG.equals("fromeditactivity")) {
                 sizeondialogshow1.setText("");
+                sizeondialogshow1.setVisibility(View.GONE);
 
             } else {
 //          String s = map2.get(t1.getText().toString());
@@ -949,6 +949,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
             if (FLAG.equals("fromeditactivity")) {
                 sizeondialogshow1.setText("");
+                sizeondialogshow1.setVisibility(View.GONE);
 
             } else {
 
@@ -1028,6 +1029,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             if (FLAG.equals("fromeditactivity")) {
                 sizeondialogshow1.setText("");
+                sizeondialogshow1.setVisibility(View.GONE);
 
             } else {
 
@@ -1105,6 +1107,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
             if (FLAG.equals("fromeditactivity")) {
                 sizeondialogshow1.setText("");
+                sizeondialogshow1.setVisibility(View.GONE);
 
             } else {
 
@@ -1358,7 +1361,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
         } catch (Exception e) {
-            Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }
@@ -1466,8 +1469,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         @Override
         protected void onPostExecute(String result) {
 
-//            Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
-//            CreateNotification.super.onBackPressed();
+            Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
+            CreateNotification.super.onBackPressed();
 
 
 //            if(result.equals("success"))
@@ -1595,24 +1598,9 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         @Override
         protected void onPostExecute(String result) {
 
-//            Toast.makeText(CreateNotification.this, "ugh" + result, Toast.LENGTH_SHORT).show();
-////            AdminActivity.getNotifications();
-//            CreateNotification.super.onBackPressed();
-//            if(result.equals("success"))
-//            {
-//                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//
-////                Intent returnIntent = new Intent();
-////                returnIntent.putExtra("result", result);
-////                if(edittedFlag==1){
-////                    setResult(111);
-////                }
-//                CreateNotification.super.onBackPressed();
-//            }
-//            else {
-//                Toast.makeText(CreateNotification.this,result,Toast.LENGTH_SHORT).show();
-//
-//            }
+            Toast.makeText(CreateNotification.this,result, Toast.LENGTH_SHORT).show();
+            CreateNotification.super.onBackPressed();
+
         }
     }
 
@@ -1627,11 +1615,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected String doInBackground(String... strings) {
+            try {
             File atach1 = new File(filePath);
             lenght = atach1.length();
-            username = "sunny.gh.gm@gmail.com";
+            username =Z.Decrypt(encUsername,CreateNotification.this) ;
 //            username = encUsername;
-            try {
+
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
@@ -1767,29 +1756,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             return null;
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                Log.d("response;", response.get(0));
-                if (response.contains(" \"file\": \"created\"")) {
-                    Toast.makeText(CreateNotification.this, response.get(0), Toast.LENGTH_LONG).show();
-//                        prg1.setIndeterminateDrawable(compleatesprogress);
-
-                    prg1.setProgressDrawable(compleatesprogress);
-//                        pr/g1.
-
-
-                } else
-                    Toast.makeText(CreateNotification.this, response.get(0), Toast.LENGTH_LONG).show();
-
-
-            } catch (Exception e) {
-                Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
-
-            }
-
-        }
 
         @Override
         protected void onProgressUpdate(String... progress) {
@@ -1815,11 +1781,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected String doInBackground(String... strings) {
+            try {
             File atach1 = new File(filePath);
             lenght = atach1.length();
-            username = "sunny.gh.gm@gmail.com";
+            username =Z.Decrypt(encUsername,CreateNotification.this) ;
 //            username = encUsername;
-            try {
+
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
@@ -1980,11 +1947,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected String doInBackground(String... strings) {
+            try {
             File atach1 = new File(filePath);
             lenght = atach1.length();
-            username = "sunny.gh.gm@gmail.com";
-//            username = encUsername;
-            try {
+            username =Z.Decrypt(encUsername,CreateNotification.this) ;
+
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
@@ -2144,11 +2111,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected String doInBackground(String... strings) {
+            try {
             File atach1 = new File(filePath);
             lenght = atach1.length();
-            username = "sunny.gh.gm@gmail.com";
-//            username = encUsername;
-            try {
+            username =Z.Decrypt(encUsername,CreateNotification.this) ;
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
@@ -2305,11 +2271,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected String doInBackground(String... strings) {
+            try {
             File atach1 = new File(filePath);
             lenght = atach1.length();
-            username = "sunny.gh.gm@gmail.com";
-//            username = encUsername;
-            try {
+            username =Z.Decrypt(encUsername,CreateNotification.this) ;
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";

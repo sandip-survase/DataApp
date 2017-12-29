@@ -49,24 +49,24 @@ public class Z {
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
 // -------------------------------------------MainActivity(student)-----------------------------------------------
-    public static final String url_getnotificationsmetadata = IP_8086 + "CreateNotificationTemp/GetNotificationsMetaData";
-    public static final String url_getnotificationsreadstatus = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotifications";
-    public static final String url_getnotifications = IP_8086 + "CreateNotificationTemp/GetNotifications";
-    public static final String url_changenotificationsreadstatus = IP_8086 + "CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static final String url_getnotificationsmetadata = IP_8086_local + "CreateNotificationTemp/GetNotificationsMetaData";
+    public static final String url_getnotificationsreadstatus = IP_8086_local + "CreateNotificationTemp/GetReadStatusOfNotifications";
+    public static final String url_getnotifications = IP_8086_local + "CreateNotificationTemp/GetNotifications";
+    public static final String url_changenotificationsreadstatus = IP_8086_local + "CreateNotificationTemp/ChangeNotificationReadStatus";
 
-    public static final String url_getplacementsmetadata = IP_8086 + "CreateNotificationTemp/GetPlacementsMetaData";
-    public static final String url_getplacementsreadstatus = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacements";
-    public static final String url_changeplacementsreadstatus = IP_8086 + "CreateNotificationTemp/ChangePlacementReadStatus";
-    public static final String url_getplacements = IP_8086 + "CreateNotificationTemp/GetPlacements";
+    public static final String url_getplacementsmetadata = IP_8086_local + "CreateNotificationTemp/GetPlacementsMetaData";
+    public static final String url_getplacementsreadstatus = IP_8086_local + "CreateNotificationTemp/GetReadStatusOfPlacements";
+    public static final String url_changeplacementsreadstatus = IP_8086_local + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_getplacements = IP_8086_local + "CreateNotificationTemp/GetPlacements";
     //                           --------------------alumniActivity(alumni)----------------------------------------------
-    public static final String url_GetNotificationsAlumniAlumniMetaData = IP_8086 + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
-    public static final String url_GetReadStatusOfNotificationsAlumni = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
-    public static final String url_GetNotificationsAlumni = IP_8086 + "CreateNotificationTemp/GetNotificationsAlumni";
-    public static final String url_ChangeNotificationReadStatus = IP_8086 + "CreateNotificationTemp/ChangeNotificationReadStatus";
-    public static final String url_GetPlacementsAlumniAlumniMetaData = IP_8086 + "CreateNotificationTemp/GetPlacementsAlumniMetaData";
-    public static final String url_GetReadStatusOfPlacementsAlumni = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
-    public static final String url_GetPlacementsAlumni = IP_8086 + "CreateNotificationTemp/GetPlacementsAlumni";
-    public static final String url_ChangePlacementReadStatus = IP_8086 + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_GetNotificationsAlumniAlumniMetaData = IP_8086_local + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
+    public static final String url_GetReadStatusOfNotificationsAlumni = IP_8086_local + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
+    public static final String url_GetNotificationsAlumni = IP_8086_local + "CreateNotificationTemp/GetNotificationsAlumni";
+    public static final String url_ChangeNotificationReadStatus = IP_8086_local + "CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static final String url_GetPlacementsAlumniAlumniMetaData = IP_8086_local + "CreateNotificationTemp/GetPlacementsAlumniMetaData";
+    public static final String url_GetReadStatusOfPlacementsAlumni = IP_8086_local + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
+    public static final String url_GetPlacementsAlumni = IP_8086_local + "CreateNotificationTemp/GetPlacementsAlumni";
+    public static final String url_ChangePlacementReadStatus = IP_8086_local + "CreateNotificationTemp/ChangePlacementReadStatus";
     //                                --------------------adminActivity-----------------
 //placement urls
     public static final String url_GetPlacementsAdminAdminMetaData = IP_8086_local + "CreateNotificationTemp/GetPlacementsAdminMetaData";
@@ -91,6 +91,12 @@ public class Z {
     //    -------------------------------hractivity -----------------------------------
     public static final String GetPlacementsCreatedByHrMetadata = IP_8086_local + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
     public static final String url_GetPlacementsCreatedByHr = IP_8086_local + "CreateNotificationTemp/GetPlacementsCreatedByHr";
+
+    public static final String url_GetNotificationsHrMetadata = IP_8086_local + "CreateNotificationTemp/GetNotificationsHrMetadata";
+    public static final String url_GetNotificationsHr = IP_8086_local + "CreateNotificationTemp/GetNotificationsHr";
+
+
+
     //    -------------------------------EditPlacementHr -----------------------------------
     public static final String url_GetPlacementSentByHr = IP_8086_local + "CreateNotificationTemp/GetPlacementSentByHr";
     //    -------------------------------EditPlacementMainHr -----------------------------------
@@ -103,26 +109,27 @@ public class Z {
 
 
     //    -------------------------------CreatePlacement -----------------------------------
-    public static final String url_CreatePlacements = IP_8086 + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements = IP_8086_local + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
-    public static final String url_CreatePlacementsHr = IP_8086 + "CreateNotificationTemp/CreatePlacementsHr";
+    public static final String url_CreatePlacementsHr = IP_8086_local + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
-    public static final String url_CreateNotificationHrToEach = IP_8086 + "CreateNotificationTemp/CreateNotificationHrToEach";
+    public static final String url_CreateNotificationHrToEach = IP_8086_local + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
-    public static final String url_GetForWhomePlacements = IP_8086 + "CreateNotificationTemp/GetForWhomePlacements";
+    public static final String url_GetForWhomePlacements = IP_8086_local + "CreateNotificationTemp/GetForWhomePlacements";
     public static final String url_ModifyPlacement = IP_8086_local + "CreateNotificationTemp/ModifyPlacement";
 
 
     //    ---------------------------------------ViewPlacement -----------------------------------
-    public static final String url_RegisterForPlacement = IP_8086 + "CreateNotificationTemp/RegisterForPlacementss";
-    public static final String url_GetStudentMarksInfo = IP_8086 + "CreateNotificationTemp/GetStudentMarksInfo";
-    public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
+    public static final String url_RegisterForPlacement = IP_8086_local + "CreateNotificationTemp/RegisterForPlacementss";
+    public static final String url_GetStudentMarksInfo = IP_8086_local + "CreateNotificationTemp/GetStudentMarksInfo";
+    public static final String url_SaveResume = IP_8086_local + "GenerateResumeWithJODConverter3/SaveResume";
 
 
     //----------------------------------------EditPlacementMain -----------------------------------
-    public static final String url_SaveShortListedUsers = IP_8086 + "CreateNotificationTemp/SaveShortListedUsers";
-    public static final String url_SavePlacedUsers = IP_8086 + "CreateNotificationTemp/SavePlacedUsers";
-    public static final String url_SaveRegistereduserStatus = IP_8086 + "CreateNotificationTemp/SaveRegistereduserStatus";
+    public static final String url_SaveShortListedUsers = IP_8086_local + "CreateNotificationTemp/SaveShortListedUsers";
+    public static final String url_SavePlacedUsers = IP_8086_local + "CreateNotificationTemp/SavePlacedUsers";
+    public static final String url_SaveRegistereduserStatus = IP_8086_local + "CreateNotificationTemp/SaveRegistereduserStatus";
+
     public static final int USER_DATA_CHANGE_RESULT_CODE = 888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";

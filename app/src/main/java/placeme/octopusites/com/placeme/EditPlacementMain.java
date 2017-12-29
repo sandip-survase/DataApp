@@ -669,8 +669,8 @@ public class EditPlacementMain extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-//            Toast.makeText(EditPlacementMain.this,result,Toast.LENGTH_SHORT).show();
-//            EditPlacementMain.super.onBackPressed();
+            Toast.makeText(EditPlacementMain.this,result,Toast.LENGTH_SHORT).show();
+            EditPlacementMain.super.onBackPressed();
 
 
         }
