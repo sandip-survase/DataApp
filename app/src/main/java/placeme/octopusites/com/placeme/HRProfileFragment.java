@@ -93,7 +93,6 @@ public class HRProfileFragment extends Fragment {
     ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit, exp1, exp2, exp3;
     RelativeLayout box1, edutab1, editprofilerl, exptab1, exptab2, exptab3, noexptab;
     String username = "", resultofop = "", ucode = "";
-    //
     int lang_count = 0, exps_count = 0, courses_count = 0, skills_count = 0, patent_count = 0, public_count = 0, honor_count = 0, strength_count = 0, weakness_count = 0, location_count = 0;
     String fname = "", lname = "", country = "", state = "", city = "", designation = "", phone = "";
     int found_intro_box = 0, found_contact_details = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0;
@@ -104,8 +103,7 @@ public class HRProfileFragment extends Fragment {
     String ptitle1 = "", pappno1 = "", pinventor1 = "", pissue1 = "", pfiling1 = "", purl1 = "", pdescription1 = "", ptitle2 = "", pappno2 = "", pinventor2 = "", pissue2 = "", pfiling2 = "", purl2 = "", pdescription2 = "", ptitle3 = "", pappno3 = "", pinventor3 = "", pissue3 = "", pfiling3 = "", purl3 = "", pdescription3 = "", ptitle4 = "", pappno4 = "", pinventor4 = "", pissue4 = "", pfiling4 = "", purl4 = "", pdescription4 = "", ptitle5 = "", pappno5 = "", pinventor5 = "", pissue5 = "", pfiling5 = "", purl5 = "", pdescription5 = "", ptitle6 = "", pappno6 = "", pinventor6 = "", pissue6 = "", pfiling6 = "", purl6 = "", pdescription6 = "", ptitle7 = "", pappno7 = "", pinventor7 = "", pissue7 = "", pfiling7 = "", purl7 = "", pdescription7 = "", ptitle8 = "", pappno8 = "", pinventor8 = "", pissue8 = "", pfiling8 = "", purl8 = "", pdescription8 = "", ptitle9 = "", pappno9 = "", pinventor9 = "", pissue9 = "", pfiling9 = "", purl9 = "", pdescription9 = "", ptitle10 = "", pappno10 = "", pinventor10 = "", pissue10 = "", pfiling10 = "", purl10 = "", pdescription10 = "", pselectedcountry1 = "", pselectedcountry2 = "", pselectedcountry3 = "", pselectedcountry4 = "", pselectedcountry5 = "", pselectedcountry6 = "", pselectedcountry7 = "", pselectedcountry8 = "", pselectedcountry9 = "", pselectedcountry10 = "", issuedorpending1 = "", issuedorpending2 = "", issuedorpending3 = "", issuedorpending4 = "", issuedorpending5 = "", issuedorpending6 = "", issuedorpending7 = "", issuedorpending8 = "", issuedorpending9 = "", issuedorpending10 = "";
     String pubtitle1 = "", publication1 = "", author1 = "", puburl1 = "", pubdescription1 = "", pubtitle2 = "", publication2 = "", author2 = "", puburl2 = "", pubdescription2 = "", pubtitle3 = "", publication3 = "", author3 = "", puburl3 = "", pubdescription3 = "", pubtitle4 = "", publication4 = "", author4 = "", puburl4 = "", pubdescription4 = "", pubtitle5 = "", publication5 = "", author5 = "", puburl5 = "", pubdescription5 = "", pubtitle6 = "", publication6 = "", author6 = "", puburl6 = "", pubdescription6 = "", pubtitle7 = "", publication7 = "", author7 = "", puburl7 = "", pubdescription7 = "", pubtitle8 = "", publication8 = "", author8 = "", puburl8 = "", pubdescription8 = "", pubtitle9 = "", publication9 = "", author9 = "", puburl9 = "", pubdescription9 = "", pubtitle10 = "", publication10 = "", author10 = "", puburl10 = "", pubdescription10 = "", publicationdate1 = "", publicationdate2 = "", publicationdate3 = "", publicationdate4 = "", publicationdate5 = "", publicationdate6 = "", publicationdate7 = "", publicationdate8 = "", publicationdate9 = "", publicationdate10 = "";
     String lang1 = "", proficiency1 = "", lang2 = "", proficiency2 = "", lang3 = "", proficiency3 = "", lang4 = "", proficiency4 = "", lang5 = "", proficiency5 = "", lang6 = "", proficiency6 = "", lang7 = "", proficiency7 = "", lang8 = "", proficiency8 = "", lang9 = "", proficiency9 = "", lang10 = "", proficiency10 = "";
-    //
-    String languages[], codes[];
+
     JSONParser jParser = new JSONParser();
     JSONParser jParserlang = new JSONParser();
     JSONObject json, jsonlang;
@@ -113,12 +111,8 @@ public class HRProfileFragment extends Fragment {
     int found_box1 = 0, found_lang = 0, found_exp = 0;
     int count;
     int percentProfile = 0;
-    String CompanyName = "", CompanyEmail = "", CompanyWeb = "", Companyphone = "", CompanyAltPhone = "", CompanyCIIN = "", CompanyNature = "", Companyaddl1 = "", Companyaddl2 = "", Companyaddl3 = "";
     String usernamestr = "", CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", Companyaddl1str = "", Companyaddl2str = "", Companyaddl3str = "";
-    //    String lang1, lang2, lang3, lang4, lang5, lang6, lang7, lang8, lang9, lang10;
-    String langstr1, langstr2, langstr3, langstr4, langstr5, langstr6, langstr7, langstr8, langstr9, langstr10;
-    String profecc1, profecc2, profecc3, profecc4, profecc5, profecc6, profecc7, profecc8, profecc9, profecc10;
-    String profeccstr1, profeccstr2, profeccstr3, profeccstr4, profeccstr5, profeccstr6, profeccstr7, profeccstr8, profeccstr9, profeccstr10;
+
     String posts1 = "", posts2 = "", posts3 = "", posts4 = "", posts5 = "", posts6 = "", posts7 = "", posts8 = "", posts9 = "", posts10 = "";
     String inst1s1 = "", inst1s2 = "", inst1s3 = "", inst1s4 = "", inst1s5 = "", inst1s6 = "", inst1s7 = "", inst1s8 = "", inst1s9 = "", inst1s10 = "";
     String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
@@ -132,22 +126,7 @@ public class HRProfileFragment extends Fragment {
     View rootView, box2;
     private String signature = "";
 
-    public static String getUserCountry(Context context) {
-        try {
-            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            final String simCountry = tm.getSimCountryIso();
-            if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
-                return simCountry.toUpperCase(Locale.US);
-            } else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
-                String networkCountry = tm.getNetworkCountryIso();
-                if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
-                    return networkCountry.toUpperCase(Locale.US);
-                }
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
+
 
     public void bottomupbox2(Activity activity, View view) {
 
@@ -182,7 +161,6 @@ public class HRProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_hr_profile, container, false);
 
-
         hashMap = new HashMap<>();
         hashMap.put("Jan", 1);
         hashMap.put("Feb", 2);
@@ -199,54 +177,41 @@ public class HRProfileFragment extends Fragment {
 
         box1 = (RelativeLayout) rootView.findViewById(R.id.box1);
         box2 = rootView.findViewById(R.id.box2);
-
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
-
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
         myprofilloc = (TextView) rootView.findViewById(R.id.myprofilloc);
         myprofilemail = (TextView) rootView.findViewById(R.id.myprofilemail);
-
         myprofilepercenttxt = (TextView) rootView.findViewById(R.id.myprofilepercenttxt);
         editprofiletxt = (TextView) rootView.findViewById(R.id.editprofiletxt);
-
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
         expboxtxt = (TextView) rootView.findViewById(R.id.expboxtxt);
         contactboxtxt = (TextView) rootView.findViewById(R.id.contactboxtxt);
         edutab1 = (RelativeLayout) rootView.findViewById(R.id.edutab1);
-
         profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
         ImageView box2pencil = (ImageView) rootView.findViewById(R.id.box2pencil);
         caddinst = (TextView) rootView.findViewById(R.id.caddinst);
         instcontactaddr = (TextView) rootView.findViewById(R.id.instcontactaddr);
-
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
-
-
         myprofilecource = (TextView) rootView.findViewById(R.id.myprofilecource);
         instemailtxt = (TextView) rootView.findViewById(R.id.instemailtxt);
         instwebtxt = (TextView) rootView.findViewById(R.id.instwebtxt);
         instteletxt = (TextView) rootView.findViewById(R.id.instteletxt);
-
         myprofileclgname = (TextView) rootView.findViewById(R.id.myprofileclgname);
         instcontactemail = (TextView) rootView.findViewById(R.id.instcontactemail);
         instwebsite = (TextView) rootView.findViewById(R.id.instwebsite);
         insttelephone = (TextView) rootView.findViewById(R.id.insttelephone);
-
-
         acc2txt = (TextView) rootView.findViewById(R.id.acc2txt);
         acc4txt = (TextView) rootView.findViewById(R.id.acc4txt);
         acc5txt = (TextView) rootView.findViewById(R.id.acc5txt);
         acc6txt = (TextView) rootView.findViewById(R.id.acc6txt);
         acc7txt = (TextView) rootView.findViewById(R.id.acc7txt);
-
-
         acc2txttxt = (TextView) rootView.findViewById(R.id.acc2txttxt);
         acc4txttxt = (TextView) rootView.findViewById(R.id.acc4txttxt);
         acc5txttxt = (TextView) rootView.findViewById(R.id.acc5txttxt);
@@ -265,9 +230,6 @@ public class HRProfileFragment extends Fragment {
         myprofileexp3name = (TextView) rootView.findViewById(R.id.myprofileexp3name);
         myprofileexpfromto3 = (TextView) rootView.findViewById(R.id.myprofileexpfromto2);
 
-//        TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
-
-
         nametxt = (TextView) rootView.findViewById(R.id.nametxt);
         emailtxt = (TextView) rootView.findViewById(R.id.emailtxt);
         mobiletxt = (TextView) rootView.findViewById(R.id.mobiletxt);
@@ -282,13 +244,10 @@ public class HRProfileFragment extends Fragment {
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
         noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
 
-
         noexptxt.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
-
-//        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
 
         myprofiledu.setTypeface(Z.getBold(getActivity()));
         myprofilloc.setTypeface(Z.getLight(getActivity()));
@@ -351,7 +310,6 @@ public class HRProfileFragment extends Fragment {
 
         editprofilerl = (RelativeLayout) rootView.findViewById(R.id.editprofilerl);
 
-
         noexptab = (RelativeLayout) rootView.findViewById(R.id.noexptab);
         exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
 
@@ -360,13 +318,6 @@ public class HRProfileFragment extends Fragment {
         exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exp2 = (ImageView) rootView.findViewById(R.id.exp2);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
-
-
-//        eduedit=(ImageView)rootView.findViewById(R.id.eduedit);
-//        projectsedit=(ImageView)rootView.findViewById(R.id.projectsedit);
-//        accomplishmentsedit=(ImageView)rootView.findViewById(R.id.accomplishmentsedit);
-//        careeredit=(ImageView)rootView.findViewById(R.id.careeredit);
-//        contactedit=(ImageView)rootView.findViewById(R.id.contactedit);
 
         if (!ShouldAnimateProfile.shouldAnimate) {
             Z.bottomupbox1(getActivity(), box1);
@@ -395,27 +346,17 @@ public class HRProfileFragment extends Fragment {
         sPadding = "ISO10126Padding";
 
         try {
-//            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//            String sPadding = "ISO10126Padding";
-
-
             byte[] usernameEncryptedBytes = SimpleBase64Encoder.decode(username);
             byte[] usernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, usernameEncryptedBytes);
             plainusername = new String(usernameDecryptedBytes);
-//            Log.d(HRlog,"username -"+plainusername);
-//            Log.d(HRlog,"role -"+ role);
-
             myprofilemail.setText(plainusername);
             contactpersonalemail.setText(plainusername);
             myprofilrole.setText(role.toUpperCase());
-//            Toast.makeText(getActivity(),plainusername+ "  \n"+role, Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-//            Toast.makeText(getActivity(), "excetion - "+e.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.d(HRlog, "exception " + e.getMessage());
+            Log.d("cricket", "Match 1 lost : " + e.getMessage());
+            e.printStackTrace();
         }
-
 
         introedit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -451,7 +392,6 @@ public class HRProfileFragment extends Fragment {
             }
         });
 
-
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -470,7 +410,6 @@ public class HRProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 startActivityForResult(new Intent(getActivity(), EditProfileHr.class), 0);
             }
         });
@@ -480,58 +419,30 @@ public class HRProfileFragment extends Fragment {
             public void onRefresh() {
 
                 new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                //  ((MainActivity)getActivity()).requestProfileImage();
             }
         });
 
-
-//        new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         refreshContent();
-        Toast.makeText(getActivity(), "" + Z.isAdminHrVerified(getActivity()), Toast.LENGTH_SHORT).show();
-
+        Log.d("cricket", "virender sehwag opening to bat");
         return rootView;
     }
 
-
     @Override
     public void onAttach(final Activity activity) {
-
         super.onAttach(activity);
-
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
-
         super.onPrepareOptionsMenu(menu);
-
         menu.clear();
-    }
-
-
-    public String GetCountryZipCode() {
-        String CountryID = "";
-        String CountryZipCode = "";
-        CountryID = getUserCountry(getContext());
-        String[] rl = this.getResources().getStringArray(R.array.CountryCodes);
-        for (int i = 0; i < rl.length; i++) {
-            String[] g = rl[i].split(",");
-            if (g[1].trim().equals(CountryID.trim())) {
-                CountryZipCode = g[0];
-                break;
-            }
-        }
-        return CountryZipCode;
     }
 
     public void refreshContent() {
         new GetHRData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((HRActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
-
-//        profileprogress.setVisibility(View.VISIBLE);
-//        profileprogress.setVisibility(View.GONE);
 
     }
 
@@ -572,7 +483,6 @@ public class HRProfileFragment extends Fragment {
         builder.show();
     }
 
-
     public void setVisibilityExpbox() {
         int exp_count = 0;
 
@@ -597,7 +507,6 @@ public class HRProfileFragment extends Fragment {
         if (!fromdates10.equals(""))
             exp_count++;
 
-        Log.d(HRlog, "exp count " + exp_count);
 
         if (exp_count > 3) {
             extraexpcount.setVisibility(View.VISIBLE);
@@ -649,24 +558,6 @@ public class HRProfileFragment extends Fragment {
 
         }
 
-
-//        exptab2.setVisibility(View.VISIBLE);
-//        exp2.setVisibility(View.VISIBLE);
-//
-//        exptab3.setVisibility(View.VISIBLE);
-//        exp3.setVisibility(View.VISIBLE);
-//
-//        if (exp_count == 1 || exp_count == 0) {
-//            exptab2.setVisibility(View.GONE);
-//            exp2.setVisibility(View.GONE);
-//
-//            exptab3.setVisibility(View.GONE);
-//            exp3.setVisibility(View.GONE);
-//        }
-//        if (exp_count == 2) {
-//            exptab3.setVisibility(View.GONE);
-//            exp3.setVisibility(View.GONE);
-//        }
     }
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
@@ -701,10 +592,6 @@ public class HRProfileFragment extends Fragment {
         }
 
         return animation;
-    }
-
-    public void showprofileprogress() {
-        profileprogress.setVisibility(View.VISIBLE);
     }
 
     public void hideprofileprogress() {
@@ -772,12 +659,9 @@ public class HRProfileFragment extends Fragment {
     }
 
     public void populateHrInfo() {
-//        TreeMap<Integer,Integer> continuseWork=new TreeMap<>(Collections.reverseOrder());
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
-
-//        boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
-
+        Log.d("cricket", " kapil Dev massive inning");
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
@@ -848,13 +732,6 @@ public class HRProfileFragment extends Fragment {
                     exp1txt.setText(posts1);
                     myprofileexp1name.setText(inst1s1);
                     int[] YM = expYearMonth(fromdates1, todates1);
-//                    if(YM[1]==0)
-//                    myprofileexpfromto.setText("Currently Working | " + YM[0] + " year");
-//                    else if(YM[0]==0)
-//                        myprofileexpfromto.setText("Currently Working | " + YM[1] + " month");
-//                    else
-//                        myprofileexpfromto.setText("Currently Working | " + YM[0] + " year - "+YM[1] + " month");
-//                    hrinfobox1=true;
 
                     if (YM[0] == 1)
                         YEAR = "year";
@@ -864,7 +741,6 @@ public class HRProfileFragment extends Fragment {
                         MONTH = "month";
                     else
                         MONTH = "months";
-
 
                     if (YM[1] == 0)
                         myprofileexpfromto.setText("Currently Working | " + YM[0] + " " + YEAR);
@@ -1469,10 +1345,7 @@ public class HRProfileFragment extends Fragment {
                 }
             }
 
-
         }
-
-        // from-to exp ----------------------------
 
         if (!todates1.equals("") && !fromdates1.equals("")) {
             fulltodate1 = alltoDatestoInt(todates1);
@@ -2147,7 +2020,6 @@ public class HRProfileFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
             } catch (Exception ex) {
@@ -2157,8 +2029,6 @@ public class HRProfileFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "Getsingnature HR : username " + username);
-
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
@@ -2187,90 +2057,27 @@ public class HRProfileFragment extends Fragment {
 
         }
     }
-
-    public static class FireMissilesDialogFragment extends DialogFragment {
-
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Choose Action").setItems(items, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                    if (which == 0) {
-                        startActivity(new Intent(getContext(), ViewProfileImage.class));
-                    } else if (which == 1) {
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 0);
-                    } else if (which == 2) {
-
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case DialogInterface.BUTTON_POSITIVE:
-
-                                        break;
-
-                                    case DialogInterface.BUTTON_NEGATIVE:
-                                        dialog.cancel();
-                                        break;
-                                }
-                            }
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                                .setNegativeButton("No", dialogClickListener).show();
-
-                    }
-                }
-            });
-            return builder.create();
-        }
-    }
-
-    // **********************************************************
     private class GetHRData extends AsyncTask<String, Void, Bitmap> {
-
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
-
-
             try {
-
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-
                 json = jParser.makeHttpRequest(Z.load_HR_data, "GET", params);
-
                 String s = "";
-
-                Log.d("TAG", "doInBackground: before dataobject");
-
                 resultofop = json.getString("info");
 
-
-                Log.d("TAG", "doInBackground: resultofop - " + resultofop);
-
                 if (resultofop.equals("found")) {
-                    ucode = json.getString("ucode");
+                    Log.d("cricket", "sachin tendulkar opening to bat");
 
+                    ucode = json.getString("ucode");
                     s = json.getString("intro");
 
-                    Log.d("TAG", "doInBackground: intro " + s);
-
                     if (s.equals("found")) {
+                        Log.d("cricket", "virat kohli coming to bat");
                         found_intro_box = 1;
-                        Log.d("TAG", "dataobject====found_intro_box: " + found_intro_box);
                         dataobject = json.getString("introObj");
-                        Log.d("TAG", "dataobject====: " + dataobject);
-
                         ModalHrIntro obj2 = (ModalHrIntro) fromString(dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
-
                         fname = obj2.firstname;
                         lname = obj2.lastname;
                         designation = obj2.designationValue;
@@ -2278,13 +2085,7 @@ public class HRProfileFragment extends Fragment {
                         state = obj2.selectedState;
                         city = obj2.selectedCity;
 
-                        Log.d("TAG", "dataobject====: fname -" + fname);
-                        Log.d("TAG", "dataobject====: lname -" + lname);
-
                         hrData.setFname(fname);
-
-//                    hrdata.setMname(mname);
-
                         hrData.setLname(lname);
                         hrData.setDesignation(designation);
                         hrData.setCountry(country);
@@ -2294,18 +2095,11 @@ public class HRProfileFragment extends Fragment {
 
                     s = json.getString("companyBox");
 
-                    Log.d("TAG", "doInBackground: intro " + s);
                     if (s.equals("found")) {
+                        Log.d("cricket", "Rishabh pant coming to bat");
                         found_box1 = 1;
-                        Log.d("TAG", "dataobject===================found_box1: " + found_box1);
-
                         companydataobject = json.getString("companyBoxObj");
-                        Log.d("TAG", "decrept_company: before fromstring decodede - " + companydataobject);
-
                         CompanyDetailsModal objstr = (CompanyDetailsModal) fromString(companydataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
-                        Log.d("TAG", "decrept_company objstr :-" + objstr.ComName + "   " + objstr.ComMail + "" + objstr.ComWeb + "  " + objstr.ComPhone + "   " + objstr.ComAlterPhone + "   " + objstr.ComCIIN + "   " + objstr.ComAdd1 + "   " + objstr.ComAdd2 + "   " + objstr.ComAdd3);
-
                         CompanyNamestr = objstr.ComName;
                         CompanyEmailstr = objstr.ComMail;
                         CompanyWebstr = objstr.ComWeb;
@@ -2316,7 +2110,6 @@ public class HRProfileFragment extends Fragment {
                         Companyaddl1str = objstr.ComAdd1;
                         Companyaddl2str = objstr.ComAdd2;
                         Companyaddl3str = objstr.ComAdd3;
-
 
                         hrData.setCompanyName(CompanyNamestr);
                         hrData.setCompanyEmail(CompanyEmailstr);
@@ -2330,18 +2123,12 @@ public class HRProfileFragment extends Fragment {
                         hrData.setCompanyaddl2(Companyaddl2str);
                         hrData.setCompanyaddl3(Companyaddl3str);
 
-                        Log.d("TAG", "decrept_company: - " + CompanyNaturestr);
-
-                        Log.d("TAG", "dataobject===================: " + dataobject);
-
                     }
 
-
                     s = json.getString("knownlang");
-                    Log.d("TAG", "knownlang: " + s);
                     if (s.equals("found")) {
                         found_lang = 1;
-
+                        Log.d("cricket", " ajinkya rahane coming to bat");
                         ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         KnownLangs obj1 = knownLangsList.get(0);
@@ -2417,7 +2204,7 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("skills");
                     if (s.equals("found")) {
                         found_skills = 1;
-
+                        Log.d("cricket", " Ab divillers  coming to bat");
                         ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Skills obj1 = skillsList.get(0);
@@ -2598,7 +2385,7 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("honors");
                     if (s.equals("found")) {
                         found_honors = 1;
-
+                        Log.d("cricket", " hardik pandya coming to bat");
                         ArrayList<Honors> honorsList = (ArrayList<Honors>) fromString(json.getString("honorsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Honors obj1 = honorsList.get(0);
@@ -2723,7 +2510,7 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("patents");
                     if (s.equals("found")) {
                         found_patents = 1;
-
+                        Log.d("cricket", " shreyash ayyar  coming to bat");
                         ArrayList<Patents> patentsList = (ArrayList<Patents>) fromString(json.getString("patentsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Patents obj1 = patentsList.get(0);
@@ -2948,7 +2735,7 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("publications");
                     if (s.equals("found")) {
                         found_publications = 1;
-
+                        Log.d("cricket", " ambati rayadu  coming to bat");
                         ArrayList<Publications> publicationsList = (ArrayList<Publications>) fromString(json.getString("publicationsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Publications obj1 = publicationsList.get(0);
@@ -3113,8 +2900,8 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("experiences");
                     if (s.equals("found")) {
                         found_exp = 1;
+                        Log.d("cricket", " kapil dev coming to bat");
                         experiencesataobject = json.getString("experiencesdata");
-                        Log.d("TAG", "doInBackground:  experiencesataobject- " + experiencesataobject);
 
                         ArrayList<Experiences> ExperiencesList = (ArrayList<Experiences>) fromString(experiencesataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
@@ -3178,9 +2965,6 @@ public class HRProfileFragment extends Fragment {
                         inst1s10 = obj10.getInst();
                         fromdates10 = obj10.getFromdate();
                         todates10 = obj10.getTodate();
-
-                        Log.d("TAG", "doInbackground:  todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
-
                         a.setPost1e(posts1);
                         a.setInst1e(inst1s1);
                         a.setFromdate1e(fromdates1);
@@ -3259,7 +3043,7 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("contact_details");
                     if (s.equals("found")) {
                         found_contact_details = 1;
-
+                        Log.d("cricket", " Dinesh kartik coming to bat");
                         contact_details_dataobject = json.getString("contact_detailsdata");
 
                         AdminContactDetailsModal obj2 = (AdminContactDetailsModal) fromString(contact_details_dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -3275,17 +3059,6 @@ public class HRProfileFragment extends Fragment {
                         addressline2 = obj2.getAddressline2();
                         addressline3 = obj2.getAddressline3();
 
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + fname);
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + lname);
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + email2);
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + lname);
-                        Log.d("TAG", "doInBackground: telephone contact_detailsdata-" + telephone);
-                        Log.d("TAG", "doInBackground: phone contact_detailsdata-" + phone);
-                        Log.d("TAG", "doInBackground: mobile2 contact_detailsdata-" + mobile2);
-                        Log.d("TAG", "doInBackground: addressline1 contact_detailsdata-" + addressline1);
-                        Log.d("TAG", "doInBackground: addressline2 contact_detailsdata-" + addressline2);
-                        Log.d("TAG", "doInBackground: addressline3 contact_detailsdata-" + addressline3);
-
                         studentData.setFname(fname);
                         studentData.setLname(lname);
                         studentData.setEmail2(email2);
@@ -3300,35 +3073,28 @@ public class HRProfileFragment extends Fragment {
                 }
 
             } catch (Exception e) {
+                Log.d("cricket", "Match 2 lost : " + e.getMessage());
                 e.printStackTrace();
-                Log.d(HRlog, "Exception **** " + e.getMessage());
             }
             return map;
         }
 
         protected void onPostExecute(Bitmap result) {
-
-            swipe_refresh_layout.setRefreshing(false);
-
-            downloadImage();
-
             try {
-
-                Log.d(HRlog, "onPostExecute: decrepted methods() ");
-
-
                 populateData();
+                swipe_refresh_layout.setRefreshing(false);
+                downloadImage();
 
             } catch (Exception e) {
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("cricket", "Match 3 lost : " + e.getMessage());
+                e.printStackTrace();
             }
 
         }
 
-
         void populateData() {
             setVisibilityExpbox();
-
+            Log.d("cricket", "sachin tendulkar massive inning");
             percentProfile = 0;
 
             if (!ucode.equals(""))
@@ -3336,6 +3102,7 @@ public class HRProfileFragment extends Fragment {
 
             if (found_intro_box == 1) {
                 if (!fname.equals("") && !lname.equals("")) {
+                    Log.d("cricket", "virat kohli massive inning");
 
                     String firstLetterCapFirstname = fname.substring(0, 1).toUpperCase() + fname.substring(1);
                     String firstLetterCapLastname = lname.substring(0, 1).toUpperCase() + lname.substring(1);
@@ -3345,17 +3112,16 @@ public class HRProfileFragment extends Fragment {
                     percentProfile++;
                 }
 
-                if (!country.equals("null") && !state.equals("null") && !city.equals("null") && !country.equals("") && !state.equals("") && !city.equals("")) {
+                if (!country.equals("") && !state.equals("") && !city.equals("") && !country.equals("") && !state.equals("") && !city.equals("")) {
                     myprofilloc.setText(city + ", " + state + ", " + country);
                 }
-                if (!designation.equals("null") && !designation.equals("")) {
-                    Log.d("TAG", "populateData: designation " + designation);
+                if (!designation.equals("") && !designation.equals("")) {
                     myprofiledu.setText(designation);
                 }
             }
             if (found_lang == 1) {
                 if (!lang1.equals("- Select Language -")) {
-
+                    Log.d("cricket", " ajinkya rahane massive inning");
                     if (!lang1.equals("") && !lang1.equals("- Select Language -"))
                         acc2txttxt.setText(lang1);
                     if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
@@ -3371,7 +3137,7 @@ public class HRProfileFragment extends Fragment {
             }
 
             if (found_contact_details == 1) {
-
+                Log.d("cricket", " Dinesh kartik massive inning");
                 if (!addressline1.equals("") && !addressline2.equals("") && !addressline3.equals("")) {
                     contactaddr.setText(addressline1 + ", " + addressline2 + ", " + addressline3);
                     percentProfile++;
@@ -3388,7 +3154,7 @@ public class HRProfileFragment extends Fragment {
             }
             if (found_skills == 1) {
                 if (!skill1.equals("")) {
-
+                    Log.d("cricket", " Ab divillers  massive inning");
                     if (!skill1.equals(""))
                         acc4txttxt.setText(skill1);
                     if (!skill1.equals("") && !skill2.equals(""))
@@ -3397,7 +3163,6 @@ public class HRProfileFragment extends Fragment {
                         acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
                     if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
                         acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
-                    Log.d("TAG", skill1 + ", " + skill2 + ", " + skill3 + "  and " + skills_count + " more");
                     percentProfile++;
                 } else {
                     acc4txttxt.setText("No skills filled.");
@@ -3405,7 +3170,7 @@ public class HRProfileFragment extends Fragment {
             }
             if (found_honors == 1) {
                 if (!htitle1.equals("")) {
-
+                    Log.d("cricket", " hardik pandya massive inning");
                     if (!htitle1.equals(""))
                         acc5txttxt.setText(htitle1);
                     if (!htitle1.equals("") && !htitle2.equals(""))
@@ -3422,7 +3187,7 @@ public class HRProfileFragment extends Fragment {
             }
             if (found_patents == 1) {
                 if (!ptitle1.equals("")) {
-
+                    Log.d("cricket", " shreyash ayyar  massive inning");
                     if (!ptitle1.equals(""))
                         acc6txttxt.setText(ptitle1);
                     if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -3439,6 +3204,7 @@ public class HRProfileFragment extends Fragment {
 
             if (found_publications == 1) {
                 if (!pubtitle1.equals("")) {
+                    Log.d("cricket", " ambati rayadu  massive inning");
                     if (!pubtitle1.equals(""))
                         acc7txttxt.setText(pubtitle1);
                     if (!pubtitle1.equals("") && !pubtitle2.equals(""))
@@ -3454,12 +3220,10 @@ public class HRProfileFragment extends Fragment {
             }
 
             if (found_box1 == 1) {
+                Log.d("cricket", "Rishabh pant massive inning");
                 if (CompanyNamestr != "") {
                     myprofileclgname.setText(CompanyNamestr);
                 }
-//                if (Companyaddl1str != "" && Companyaddl2str != "" && Companyaddl3str != "") {
-//                    myprofileclgname.setText(Companyaddl1str + ", " + Companyaddl2str + ", " + Companyaddl3str);
-//                }
                 if (CompanyEmailstr != "") {
                     instcontactemail.setText(CompanyEmailstr);
                 }
@@ -3477,19 +3241,10 @@ public class HRProfileFragment extends Fragment {
                 percentProfile++;
 
             }
-
-
             populateHrInfo();
 
             if (hrinfobox1 == true)
                 percentProfile++;
-
-//            if (hrinfobox2 == true)
-//                percentProfile++;
-//
-//            if (hrinfobox3 == true)
-//                percentProfile++;
-//
 
             float R = (1000 - 0) / (9 - 0);
             float y = (percentProfile - 0) * R + 0;
@@ -3500,30 +3255,21 @@ public class HRProfileFragment extends Fragment {
             progressAnimator.setInterpolator(new LinearInterpolator());
             progressAnimator.start();
 
-
-            // hr
         }
-
-
     }
 
     class DeleteProfile extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.remove_profile, "GET", params);
-
             try {
-
                 resultofop = json.getString("info");
-
             } catch (Exception ex) {
+                Log.d("cricket", "Match 4 lost " + ex.getMessage());
+                ex.printStackTrace();
 
             }
-
             return resultofop;
         }
 
@@ -3539,7 +3285,6 @@ public class HRProfileFragment extends Fragment {
 
             else if (resultofop.equals("notfound"))
                 Toast.makeText(getActivity(), "No Profile Picture..!", Toast.LENGTH_LONG).show();
-
 
         }
     }

@@ -12,7 +12,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -55,7 +58,7 @@ public class PrintProfileTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-
+    String fname = "", lname = "", studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
     String username,resultofop="";
     RadioGroup radioGroupFormat;
     RadioButton radioButtonWord,radioButtonPdf;
@@ -172,7 +175,7 @@ public class PrintProfileTabFragment extends Fragment {
                 Log.d("tag", "format - : "+format);
 //                Log.d("tag","temp id -"+temp);
 
-                new GetStudentData().execute();
+                validatedata();
 
             }
         });
@@ -317,125 +320,16 @@ public class PrintProfileTabFragment extends Fragment {
         }
     }
 
-    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
-            try {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
-
-                resultofop = json.getString("info");
-                if (resultofop.equals("found")) {
-
-                    String s = json.getString("intro");
-                    if (s.equals("found")) {
-                        found_box1 = 1;
-                    }
-                    s = json.getString("tenth");
-                    if (s.equals("found")) {
-                        found_tenth = 1;
-                    }
-                    s = json.getString("twelth");
-                    if (s.equals("found")) {
-                        found_twelth = 1;
-                    }
-                    s = json.getString("diploma");
-                    if (s.equals("found")) {
-                        found_diploma = 1;
-                    }
-                    s = json.getString("ug");
-                    if (s.equals("found")) {
-                        found_ug = 1;
-                    }
-                    s = json.getString("pgsem");
-
-                    if (s.equals("found")) {
-                        found_pgsem = 1;
-                    }
-
-                    s = json.getString("pgyear");
-                    if (s.equals("found")) {
-                        found_pgyear = 1;
-                    }
-
-                    s = json.getString("projects");
-                    if (s.equals("found")) {
-                        found_projects = 1;
-                    }
-                    s = json.getString("knownlang");
-                    if (s.equals("found")) {
-                        found_lang = 1;
-                    }
-                    s = json.getString("certificates");
-                    if (s.equals("found")) {
-                        found_certificates = 1;
-                    }
-                    s = json.getString("courses");
-                    if (s.equals("found")) {
-                        found_courses = 1;
-                    }
-                    s = json.getString("skills");
-                    if (s.equals("found")) {
-                        found_skills = 1;
-                    }
-                    s = json.getString("honors");
-                    if (s.equals("found")) {
-                        found_honors = 1;
-                    }
-                    s = json.getString("patents");
-                    if (s.equals("found")) {
-                        found_patents = 1;
-                    }
-                    s = json.getString("publications");
-                    if (s.equals("found")) {
-                        found_publications = 1;
-                    }
-                    s = json.getString("career");
-                    if (s.equals("found")) {
-                        found_careerobj = 1;
-                    }
-                    s = json.getString("strengths");
-                    if (s.equals("found")) {
-                        found_strengths = 1;
-                    }
-                    s = json.getString("weaknesses");
-                    if (s.equals("found")) {
-                        found_weaknesses = 1;
-                    }
-                    s = json.getString("locationpreferences");
-                    if (s.equals("found")) {
-                        found_locationpreferences = 1;
-                    }
-                    s = json.getString("contact_details");
-                    if (s.equals("found")) {
-                        found_contact_details = 1;
-                    }
-                    s = json.getString("personal");
-                    if (s.equals("found")) {
-
-
-                        found_personal = 1;
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return map;
-        }
-        @Override
-        protected void onPostExecute(Bitmap result) {
-//            int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
-//            int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
-//            int found_contact_details=0,found_personal=0;
-
+    public void validatedata() {
             StudentData s = new StudentData();
+        fname = s.getFname();
+        lname = s.getLname();
+
+        String careerobj = s.getCareerobj();
 
             String dob = s.getDob();
             String mobile = s.getPhone();
             String hobbies = s.getHobbies();
-
 
             String addrline1c = s.getAddressline1();
             String addrline2c = s.getAddressline2();
@@ -446,18 +340,58 @@ public class PrintProfileTabFragment extends Fragment {
             String strength1 = s.getStrength1();
             String weak1 = s.getWeak1();
             String skill1 = s.getSkill1();
+        studenttenthmarks = s.getPercentage10();
+        studenttwelthordiplomamarks = s.getPercentage12();
+        studentugmarks = s.getAggregateug();
+
+        Log.d("TAG", "onPostExecute: dob -" + dob);
+        Log.d("TAG", "onPostExecute: mobile -" + mobile);
+        Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
+        Log.d("TAG", "onPostExecute: lang1 -" + lang1);
+        Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
+        Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
+        Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
+        Log.d("TAG", "onPostExecute: proj -" + proj);
+        Log.d("TAG", "onPostExecute: strength1 -" + strength1);
+        Log.d("TAG", "onPostExecute: weak1 -" + weak1);
+        Log.d("TAG", "onPostExecute: skill1 -" + skill1);
 
 
-            Log.d("TAG", "onPostExecute: dob -" + dob);
-            Log.d("TAG", "onPostExecute: mobile -" + mobile);
-            Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
-            Log.d("TAG", "onPostExecute: lang1 -" + lang1);
-            Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
-            Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
-            Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
-            Log.d("TAG", "onPostExecute: proj -" + proj);
-            Log.d("TAG", "onPostExecute: strength1 -" + strength1);
-            Log.d("TAG", "onPostExecute: weak1 -" + weak1);
+        if (fname != null && lname != null) {
+
+            if (!fname.equals("") && !lname.equals(""))
+                found_box1 = 1;
+            else
+                found_box1 = 0;
+        }
+
+
+        if (studenttenthmarks != null) {
+
+            if (!studenttenthmarks.equals("")) {
+                found_tenth = 1;
+            } else
+                found_tenth = 0;
+        }
+
+        if (studenttwelthordiplomamarks != null) {
+            if (!studenttwelthordiplomamarks.equals("")) {
+                found_twelth = 1;
+            } else {
+                found_twelth = 0;
+                studenttwelthordiplomamarks = s.getAggregatediploma();
+                found_diploma = 1;
+
+            }
+        }
+
+        if (studentugmarks != null) {
+
+            if (!studentugmarks.equals("")) {
+                found_ug = 1;
+            } else
+                found_ug = 0;
+        }
 
             if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
                 if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
@@ -498,95 +432,208 @@ public class PrintProfileTabFragment extends Fragment {
                     found_skills = 0;
             }
 
+        if (careerobj != null) {
+            if (!careerobj.equals(""))
+                found_careerobj = 1;
+            else
+                found_careerobj = 0;
+        }
+
 
             if(found_box1==0){
                 downloadresume.setVisibility(View.VISIBLE);
                 resumeprogress.setVisibility(View.GONE);
+                Snackbar.make(downloadresume.getRootView(), "Please fill personal details", Snackbar.LENGTH_LONG)
+                        .setAction("OPEN", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(getActivity(), MyProfileIntro.class));
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                        .setDuration(10000)
+                        .show();
 //                    please fill intro information
-                Toast.makeText(getActivity(), " Please fill personal details before downloading", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), " Please fill personal details before downloading", Toast.LENGTH_SHORT).show();
             }else{
                 if(found_tenth==0){
                     downloadresume.setVisibility(View.VISIBLE);
                     resumeprogress.setVisibility(View.GONE);
+                    Snackbar.make(downloadresume.getRootView(), "Please fill Std. X details", Snackbar.LENGTH_LONG)
+                            .setAction("OPEN", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    startActivity(new Intent(getActivity(), MyProfileTenth.class));
+                                }
+                            })
+                            .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                            .setDuration(10000)
+                            .show();
 //                        please fill tenth information
-                    Toast.makeText(getActivity(), " Please fill Std. X details before downloading", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), " Please fill Std. X details before downloading", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
                     if(found_twelth==0 && found_diploma==0){
                         downloadresume.setVisibility(View.VISIBLE);
                         resumeprogress.setVisibility(View.GONE);
+                        Snackbar.make(downloadresume.getRootView(), "Please fill Std. XII/Diplom details", Snackbar.LENGTH_LONG)
+                                .setAction("OPEN", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        startActivity(new Intent(getActivity(), MyProfileTwelthOrDiploma.class));
+                                    }
+                                })
+                                .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                .setDuration(10000)
+                                .show();
 //                        please fill twelth or diploma information
-                        Toast.makeText(getActivity(), "Please fill Std. XII/Diploma details before downloading", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Please fill Std. XII/Diploma details before downloading", Toast.LENGTH_SHORT).show();
 
                     }else{
                         if(found_ug==0){
                             downloadresume.setVisibility(View.VISIBLE);
                             resumeprogress.setVisibility(View.GONE);
+                            Snackbar.make(downloadresume.getRootView(), "Please fill Std. Ug details", Snackbar.LENGTH_LONG)
+                                    .setAction("OPEN", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            startActivity(new Intent(getActivity(), MyProfileUg.class));
+                                        }
+                                    })
+                                    .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                    .setDuration(10000)
+                                    .show();
 //                        please fill ug information
-                            Toast.makeText(getActivity(), " Please fill your Ug details before downloading", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), " Please fill your Ug details before downloading", Toast.LENGTH_SHORT).show();
 
                         }else{
                             if(found_projects==0){
                                 downloadresume.setVisibility(View.VISIBLE);
                                 resumeprogress.setVisibility(View.GONE);
+                                Snackbar.make(downloadresume.getRootView(), "Please fill Project details", Snackbar.LENGTH_LONG)
+                                        .setAction("OPEN", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                startActivity(new Intent(getActivity(), MyProfileProjects.class));
+                                            }
+                                        })
+                                        .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                        .setDuration(10000)
+                                        .show();
 //                        please fill project information
-                                Toast.makeText(getActivity(), " Please fill Project details before downloading", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getActivity(), " Please fill Project details before downloading", Toast.LENGTH_SHORT).show();
 
                             }else{
                                 if(found_lang==0){
                                     downloadresume.setVisibility(View.VISIBLE);
                                     resumeprogress.setVisibility(View.GONE);
+                                    Snackbar.make(downloadresume.getRootView(), "Please fill Known languages details", Snackbar.LENGTH_LONG)
+                                            .setAction("OPEN", new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    startActivity(new Intent(getActivity(), MyProfileKnownLang.class));
+                                                }
+                                            })
+                                            .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                            .setDuration(10000)
+                                            .show();
 //                        please fill language information
-                                    Toast.makeText(getActivity(), " Please fill Known languages details before downloading", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getActivity(), " Please fill Known languages details before downloading", Toast.LENGTH_SHORT).show();
 
                                 }else{
                                     if(found_skills==0){
                                         downloadresume.setVisibility(View.VISIBLE);
                                         resumeprogress.setVisibility(View.GONE);
 //                        please fill skill information
-                                        Toast.makeText(getActivity(), " Please fill Skill details before downloading", Toast.LENGTH_SHORT).show();
+                                        Snackbar.make(downloadresume.getRootView(), "Please fill Skill details", Snackbar.LENGTH_LONG)
+                                                .setAction("OPEN", new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        startActivity(new Intent(getActivity(), MyProfileSkills.class));
+                                                    }
+                                                })
+                                                .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                .setDuration(10000)
+                                                .show();
+//                                        Toast.makeText(getActivity(), " Please fill Skill details before downloading", Toast.LENGTH_SHORT).show();
 
                                     }else{
                                         if(found_careerobj==0){
                                             downloadresume.setVisibility(View.VISIBLE);
                                             resumeprogress.setVisibility(View.GONE);
+                                            Snackbar.make(downloadresume.getRootView(), "Please fill Career details", Snackbar.LENGTH_LONG)
+                                                    .setAction("OPEN", new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            startActivity(new Intent(getActivity(), MyProfileCareerObj.class));
+                                                        }
+                                                    })
+                                                    .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                    .setDuration(10000)
+                                                    .show();
 //                        please fill career objective information
-                                            Toast.makeText(getActivity(), " Please fill Career details before downloading", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getActivity(), " Please fill Career details before downloading", Toast.LENGTH_SHORT).show();
 
                                         }else{
                                             if(found_strengths==0){
                                                 downloadresume.setVisibility(View.VISIBLE);
                                                 resumeprogress.setVisibility(View.GONE);
+                                                Snackbar.make(downloadresume.getRootView(), "Please fill Strength details", Snackbar.LENGTH_LONG)
+                                                        .setAction("OPEN", new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                startActivity(new Intent(getActivity(), MyProfileStrengths.class));
+                                                            }
+                                                        })
+                                                        .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                        .setDuration(10000)
+                                                        .show();
 //                        please fill strength information
-                                                Toast.makeText(getActivity(), " Please fill Strength details before downloading", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(getActivity(), " Please fill Strength details before downloading", Toast.LENGTH_SHORT).show();
 
                                             }else{
                                                 if(found_weaknesses==0){
                                                     downloadresume.setVisibility(View.VISIBLE);
                                                     resumeprogress.setVisibility(View.GONE);
+                                                    Snackbar.make(downloadresume.getRootView(), "Please fill Weaknesses details", Snackbar.LENGTH_LONG)
+                                                            .setAction("OPEN", new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View view) {
+                                                                    startActivity(new Intent(getActivity(), MyProfileWeaknesses.class));
+                                                                }
+                                                            })
+                                                            .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                            .setDuration(10000)
+                                                            .show();
 //                        please fill weaknesses information
-                                                    Toast.makeText(getActivity(), " Please fill Weaknesses details before downloading", Toast.LENGTH_SHORT).show();
+//                                                    Toast.makeText(getActivity(), " Please fill Weaknesses details before downloading", Toast.LENGTH_SHORT).show();
 
-                                                }
-                                                else{
-                                                    if(found_contact_details==0){
-                                                        downloadresume.setVisibility(View.VISIBLE);
-                                                        resumeprogress.setVisibility(View.GONE);
-//                        please fill contact details information
-                                                        Toast.makeText(getActivity(), " Please fill Contact details before downloading ", Toast.LENGTH_SHORT).show();
-
-                                                    }else{
+                                                } else {
                                                         if(found_personal==0){
                                                             downloadresume.setVisibility(View.VISIBLE);
                                                             resumeprogress.setVisibility(View.GONE);
 //                        please fill personal information
-                                                            Toast.makeText(getActivity(), " Please fill Personal details before downloading", Toast.LENGTH_SHORT).show();
+                                                            Snackbar.make(downloadresume.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
+                                                                    .setAction("OPEN", new View.OnClickListener() {
+                                                                        @Override
+                                                                        public void onClick(View view) {
+                                                                            String role = MySharedPreferencesManager.getRole(getActivity());
+                                                                            if (role.equals("student")) {
+                                                                                startActivity(new Intent(getActivity(), EditProfile.class));
+                                                                            } else
+                                                                                startActivity(new Intent(getActivity(), EditProfileAlumni.class));
+                                                                        }
+                                                                    })
+                                                                    .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                                    .setDuration(10000)
+                                                                    .show();
+//                                                            Toast.makeText(getActivity(), " Please fill Personal details before downloading", Toast.LENGTH_SHORT).show();
                                                         }
-                                                    }
                                                 }
-
                                             }
+
+
                                         }
                                     }
                                 }
@@ -597,7 +644,7 @@ public class PrintProfileTabFragment extends Fragment {
                 }
             }
 
-            if( found_box1 == 1 && found_tenth==1 && (found_diploma==1 || found_twelth==1 )&& found_ug==1 && found_projects==1 && found_lang==1 && found_contact_details==1 && found_skills==1 && found_careerobj==1 && found_strengths==1 && found_weaknesses==1 && found_personal==1){
+        if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);
 
@@ -635,6 +682,5 @@ public class PrintProfileTabFragment extends Fragment {
 
                 Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
             }
-        }
     }
 }

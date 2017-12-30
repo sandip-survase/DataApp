@@ -44,9 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="Number of Aptitude Tests"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:padding="4dp"
+                android:textSize="12dp"
                 android:id="@+id/aptitxt" />
 
             <TextView
@@ -54,11 +53,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_color"
                 android:id="@+id/companyaptiview"
-                android:layout_below="@+id/aptitxt"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:text="1"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -74,9 +72,8 @@
                 android:layout_height="wrap_content"
                 android:text="Number of Group Discussions"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:padding="4dp"
+                android:textSize="12dp"
                 android:id="@+id/companygdtxt" />
 
             <TextView
@@ -84,12 +81,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_color"
                 android:id="@+id/companygdview"
-                android:layout_below="@+id/companygdtxt"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
 
                 android:gravity="center"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:text="1"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -105,9 +101,8 @@
                 android:layout_height="wrap_content"
                 android:text="Number of Technical Tests"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:padding="4dp"
+                android:textSize="12dp"
                 android:id="@+id/companytechtesttxt" />
 
             <TextView
@@ -115,12 +110,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_color"
                 android:id="@+id/companytechtestview"
-                android:layout_below="@+id/companytechtesttxt"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
 
                 android:gravity="center"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:text="1"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -136,9 +130,8 @@
                 android:layout_height="wrap_content"
                 android:text="Number of Technical Interviews"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:padding="4dp"
+                android:textSize="12dp"
                 android:id="@+id/companytechinterviewtxt" />
 
             <TextView
@@ -146,7 +139,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_color"
                 android:id="@+id/companytechinterviewview"
-                android:layout_below="@+id/companytechinterviewtxt"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
 
@@ -200,9 +192,8 @@
                 android:layout_height="wrap_content"
                 android:text="Number of HR Interviews"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:padding="4dp"
+                android:textSize="12dp"
                 android:id="@+id/companyhrinterviewtxt" />
 
             <TextView
@@ -210,12 +201,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_color"
                 android:id="@+id/companyhrinterviewview"
-                android:layout_below="@+id/companyhrinterviewtxt"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-
                 android:gravity="center"
-                android:textSize="14dp"
+                android:layout_below="@+id/companyhrinterviewtxt"
+                android:textSize="16dp"
                 android:text="1"
                 android:textStyle="bold" />
 
