@@ -45,7 +45,6 @@ public class MyProfileContact extends AppCompatActivity {
     StudentData s = new StudentData();
     TextInputEditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
     String sfname = "", slname = "", semail2 = "", saddressline1 = "", saddressline2 = "", saddressline3 = "", sphone = "", smobile = "", smobile2 = "";
-    String encfname, enclname, encemail2, encaddressline1, encaddressline2, encaddressline3, encphone, encmobile, encmobile2;
     String plainusername = "";
     String strobj="";
 
@@ -137,23 +136,7 @@ public class MyProfileContact extends AppCompatActivity {
 
             }
         });
-//        email.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 //
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                edittedFlag = 1;
-////                emailinput.setError(null);
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
         email2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -181,7 +164,6 @@ public class MyProfileContact extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
                 addressline1input.setError(null);
-//                addressline1.setError(null);
             }
 
             @Override
@@ -282,10 +264,7 @@ public class MyProfileContact extends AppCompatActivity {
 //
         TextView addresstxt = (TextView) findViewById(R.id.addresstxt);
         TextView contactnotxt = (TextView) findViewById(R.id.contactnotxt);
-//        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-//        addresstxt.setTypeface(custom_font1);
-//        contactnotxt.setTypeface(custom_font1);
-
+//
         fname.setTypeface(Z.getBold(this));
         lname.setTypeface(Z.getBold(this));
 
@@ -417,9 +396,6 @@ public class MyProfileContact extends AppCompatActivity {
         smobile = mobile.getText().toString();
         smobile2 = mobile2.getText().toString();
 
-//        Log.d("TAG", "validateandSave: sfname - "+sfname);
-//        Log.d("TAG", "validateandSave: sphone - "+sphone);
-
         int errorflag = 0;
 
         if (sfname.length() < 2) {
@@ -436,18 +412,10 @@ public class MyProfileContact extends AppCompatActivity {
             else {
                 errorflag = 0;
                 lnameTextInputLayout.setError(null);
-//                if(semail2.length()<5){
-//                    emai2input.setError("Kindly enter valid Email");
-//                    errorflag = 1;
-//                }
-//acsfvvsfsd
-//                else {
-//                    errorflag = 0;
-//                    emai2input.setError(null);
+//
                 if(saddressline1.length()<2){
                     errorflag = 1;
                     addressline1input.setError("Kindly enter valid Address");
-//                        addressline1.setError("Kindly enter valid Address");
                 }
                 else {
                     errorflag = 0;
@@ -487,11 +455,9 @@ public class MyProfileContact extends AppCompatActivity {
                 AdminContactDetailsModal obj = new AdminContactDetailsModal(sfname, slname, plainusername, semail2, saddressline1, saddressline2, saddressline3, sphone, smobile, smobile2);
 
                 strobj = OtoString(obj, digest1, digest2);
-                Log.d("encstrobj", "strobj: " + strobj);
                 new SaveDetails().execute();
 
             } catch (Exception e) {
-                Toast.makeText(MyProfileContact.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
 
@@ -606,13 +572,13 @@ public class MyProfileContact extends AppCompatActivity {
                 else if (role.equals("hr"))
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
                 else  {
-                    Log.d("TAG", "onPostExecute: admin");
                     setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
                 }
                 MyProfileContact.super.onBackPressed();
 
-            } else
-                Toast.makeText(MyProfileContact.this, result, Toast.LENGTH_SHORT).show();
+            }
+            Toast.makeText(MyProfileContact.this, "Try again !", Toast.LENGTH_SHORT).show();
+
 
         }
     }

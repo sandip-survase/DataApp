@@ -227,7 +227,6 @@ public class EditProfile extends AppCompatActivity {
         if (resultCode == AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE)
             setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
 
-        Log.d("TAG", "onActivityResult: editprofile " + resultCode);
 
     }
 

@@ -1144,17 +1144,14 @@ public class MyProfileStrengths extends AppCompatActivity {
                 strength10.setText("");
             }
 
-            Log.d("TAG", "deleteLang: strength1 1");
 
             sstrength1 = strength1.getText().toString();
 
             if(sstrength1.equals("")){
-                Log.d("TAG", "deleteLang: strength1 1");
                 editstrength =1;
             }
 
             if(editstrength==1){
-                Log.d("TAG", "deleteLang: strength1 - "+editstrength);
                 encstrength();
             }
 
@@ -1162,17 +1159,7 @@ public class MyProfileStrengths extends AppCompatActivity {
     }
     void validateandSave()
     {
-//        strength1.setError(null);
-//        strength2.setError(null);
-//        strength3.setError(null);
-//        strength4.setError(null);
-//        strength5.setError(null);
-//        strength6.setError(null);
-//        strength7.setError(null);
-//        strength8.setError(null);
-//        strength9.setError(null);
-//        strength10.setError(null);
-
+//
         sstrength1=strength1.getText().toString();
         sstrength2=strength2.getText().toString();
         sstrength3=strength3.getText().toString();
@@ -1184,19 +1171,14 @@ public class MyProfileStrengths extends AppCompatActivity {
         sstrength9=strength9.getText().toString();
         sstrength10=strength10.getText().toString();
 
-//        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//        String sPadding = "ISO10126Padding";
-
+//
         int errorflag=0;
         if(editstrength==1){
 
-            Log.d("TAG", "validateandSave: editstrength if - "+editstrength);
             encstrength();
 
         }
         else {
-            Log.d("TAG", "validateandSave: editstrength else - "+editstrength);
             if (strengthcount == 0) {
                 if (sstrength1.length() < 2) {
                     errorflag = 1;
@@ -1531,10 +1513,10 @@ public class MyProfileStrengths extends AppCompatActivity {
         {
             MyProfileStrengthsModal obj2 = new MyProfileStrengthsModal(sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10);
             encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileStrengths.this),MySharedPreferencesManager.getDigest2(MyProfileStrengths.this));
-            Log.d("TAG", "validateandSave: encobj - "+encobj);
             new SaveStrengths().execute();
 
-        }catch (Exception e){Toast.makeText(MyProfileStrengths.this,e.getMessage(),Toast.LENGTH_LONG).show();}
+        } catch (Exception e) {
+        }
 
     }
     class SaveStrengths extends AsyncTask<String, String, String> {
@@ -1583,7 +1565,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 MyProfileStrengths.super.onBackPressed();
             }
             else
-                Toast.makeText(MyProfileStrengths.this,result,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileStrengths.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

@@ -159,7 +159,6 @@ public class MyProfilePg extends AppCompatActivity {
         yearofpassingpgsem = (EditText) findViewById(R.id.yearofpassingpgsem);
 
         othersemcourse = (EditText) findViewById(R.id.othersemcourse);
-        Log.d("TAG", "lagech: " + othersemcourse.getText().toString());
 
         pmarkssem1input = (TextInputLayout) findViewById(R.id.pmarkssem1input);
         ppercentsem1input = (TextInputLayout) findViewById(R.id.ppercentsem1input);
@@ -296,10 +295,7 @@ public class MyProfilePg extends AppCompatActivity {
         CourseListWithIds = getResources().getStringArray(R.array.pgcourses);
         CourseList = new String[CourseListWithIds.length];
 
-        Log.d("TAG", "Course without ID: " + CourseListWithIds[2]);
-
         for (int i = 0; i < CourseListWithIds.length; i++) {
-            Log.d("TAG", "Course without ID: " + CourseList[i]);
             String temp[] = CourseListWithIds[i].split(",");
             CourseList[i] = temp[1];
 
@@ -311,7 +307,6 @@ public class MyProfilePg extends AppCompatActivity {
         for (int i = 0; i < StramsListWithIds.length; i++) {
             String temp[] = StramsListWithIds[i].split(",");
             StramsList[i] = temp[1];
-            Log.d("TAG", "streams without ID: " + StramsList[i]);
 
         }
 
@@ -321,8 +316,6 @@ public class MyProfilePg extends AppCompatActivity {
                 selectedCoursepgsem = (String) parent.getItemAtPosition(position);
                 courseSem=selectedCoursepgsem;
 
-                Log.d(alumniLog, "onItemSelected: " + selectedCoursepgsem);
-
                 String toCompare = selectedCoursepgsem;
 
                 int index = 0;
@@ -331,7 +324,6 @@ public class MyProfilePg extends AppCompatActivity {
                         index = i;
                 }
                 toCompare = CourseListWithIds[index];
-                Log.d("TAG", "toCompare : " + toCompare);
                 tosettoStreamslist.clear();
 
                 setStreamAdapter(toCompare);
@@ -517,7 +509,6 @@ public class MyProfilePg extends AppCompatActivity {
                 }
 
                 toCompare = CourseListWithIds[index];
-                Log.d("TAG", "toCompare : " + toCompare);
                 tosettoStreamslist.clear();
 
                 setStreamyearAdapter(toCompare);
@@ -525,7 +516,6 @@ public class MyProfilePg extends AppCompatActivity {
 
                     otheryearcourseinput.setVisibility(View.VISIBLE);
                 } else {
-//                    new GetStreamsYear().execute();
                     otheryearcourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -545,11 +535,9 @@ public class MyProfilePg extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStreampgsem = (String) parent.getItemAtPosition(position);
                 streamSem=selectedStreampgsem;
-                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - " + selectedStreampgsem);
                 TextInputLayout othersemstreaminput = (TextInputLayout) findViewById(R.id.othersemstreaminput);
 
                 if (selectedStreampgsem.equals("Other")) {
-                    Log.d("TAG", " selectedStreampgsem Other - " + selectedStreampgsem);
                     othersemstreaminput.setVisibility(View.VISIBLE);
                 } else {
 
@@ -573,10 +561,8 @@ public class MyProfilePg extends AppCompatActivity {
 
                 streamYear=selectedStreampgyear;
 
-                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - " + selectedStreampgyear);
                 TextInputLayout othersemstreaminput = (TextInputLayout) findViewById(R.id.otheryearstreaminput);
                 if (selectedStreampgyear.equals("Other")) {
-                    Log.d("TAG", " setOnItemSelectedListener Other - " + selectedStreampgyear);
                     othersemstreaminput.setVisibility(View.VISIBLE);
                 } else {
 
@@ -1729,9 +1715,6 @@ public class MyProfilePg extends AppCompatActivity {
         aggregatepgsem = s.getAggregatepgsem();
         selectedCoursepgsem = s.getCoursepgsem();
 
-//        if (s.getStreampgsem() != null)
-//            selectedStreampgsem = s.getStreampgsem();
-
         selectedUniversitypgsem = s.getUniversitypgsem();
         oldUniversitysem = selectedUniversitypgsem;
         schoolnamepgsemester = s.getCollegenamepgsem();
@@ -1751,19 +1734,10 @@ public class MyProfilePg extends AppCompatActivity {
         schoolnamepgyears = s.getCollegenamepgyear();
         monthandyearofpassingpgyear = s.getYearofpassingpgyear();
 
-//        if (selectedCoursepgyear == null) {
-//            selectedCoursepgyear = "";
-//        }
         selectedStreampgsem = s.getStreampgsem();
         selectedStreampgyear = s.getStreampgyear();
         selectedUniversitypgyear = s.getUniversitypgyear();
 //
-//        if (selectedStreampgyear == null) {
-//            selectedStreampgyear = "";
-//        }
-//        if (selectedStreampgyear == null) {
-//            selectedStreampgyear = "";
-//        }
 
         if (selectedStreampgsem == null || selectedStreampgsem.equals("- Select Stream -")) {
             oldStreamsem = "- Select Stream -";
@@ -1949,10 +1923,8 @@ public class MyProfilePg extends AppCompatActivity {
                 for (int i = 1; i < universities.length - 1; i++)
                     if (selectedUniversitypgsem.equals(universities[i])) {
                         foundboard = 1;
-                        Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                         break;
                     }
-                Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgsem);
                 if (foundboard == 1)
                     pgsemuniversity.setSelection(adapter2.getPosition(selectedUniversitypgsem));
                 else {
@@ -1960,7 +1932,6 @@ public class MyProfilePg extends AppCompatActivity {
                     if (selectedUniversitypgsem.equals("")) {
                         pgsemuniversity.setSelection(adapter2.getPosition("- Select University -"));
                         othersemuniversity.setVisibility(View.GONE);
-//                    otherboardd.setText(selectedBoarddiploma);
                     } else {
                         pgsemuniversity.setSelection(adapter2.getPosition("Other"));
                         othersemuniversity.setVisibility(View.VISIBLE);
@@ -1979,10 +1950,8 @@ public class MyProfilePg extends AppCompatActivity {
             for (int i = 1; i < universities.length - 1; i++)
                 if (selectedUniversitypgyear.equals(universities[i])) {
                     foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                     break;
                 }
-            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversitypgyear);
             if (foundboard == 1)
                 pgyearuniversity.setSelection(adapter2.getPosition(selectedUniversitypgyear));
             else {
@@ -1990,7 +1959,6 @@ public class MyProfilePg extends AppCompatActivity {
                 if (selectedUniversitypgyear.equals("")) {
                     pgyearuniversity.setSelection(adapter2.getPosition("- Select University -"));
                     otheryearuniversity.setVisibility(View.GONE);
-//                    otherboardd.setText(selectedBoarddiploma);
                 } else {
                     pgyearuniversity.setSelection(adapter2.getPosition("Other"));
                     otheryearuniversity.setVisibility(View.VISIBLE);
@@ -2017,7 +1985,6 @@ public class MyProfilePg extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                Log.d("TAG", "afterTextChanged: " + othersemcourse.getText().toString());
 
             }
         });
@@ -2034,7 +2001,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             String courseArray[] = a.split(",");
             int courseIndex = Integer.parseInt(courseArray[0]);
-            Log.d("TAG", "courseIndex: " + courseIndex);
 
             int index = 0;
             tosettoStreamslist.add("- Select Stream -");
@@ -2120,7 +2086,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             String courseArray[] = a.split(",");
             int courseIndex = Integer.parseInt(courseArray[0]);
-            Log.d("TAG", "courseIndex: " + courseIndex);
 
             int index = 0;
             tosettoStreamslist.add("- Select Stream -");
@@ -2195,8 +2160,6 @@ public class MyProfilePg extends AppCompatActivity {
 
     }
 
-//    ******************************************
-
     private void disableScrollbars(ScrollView scrollView) {
         if (scrollView != null) {
 
@@ -2241,8 +2204,6 @@ public class MyProfilePg extends AppCompatActivity {
 
     void validateandSave() {
 
-        Log.d("TAG", "validateandSave: welcome - ");
-
         if (pattern.equals("sem")) {
             setBlankYear();
             markssem1 = pmarkssem1.getText().toString();
@@ -2266,8 +2227,6 @@ public class MyProfilePg extends AppCompatActivity {
             aggregatepgsem = pgsemaggregate.getText().toString();
             schoolnamepgsemester = schoolnamepgsem.getText().toString();
             monthandyearofpassingpgsem = yearofpassingpgsem.getText().toString();
-
-            Log.d("TAG", "validateandSave: in semester");
 
             int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0;
             if (markssem1.length() < 1) {
@@ -2375,12 +2334,10 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                         } else {
                                                                                             if (selectedCoursepgsem.equals("Other")) {
 
-                                                                                                Log.d("TAG", "aatala: " + othersemcourse.getText().toString());
 
 
                                                                                                 otherspecifiedcoursepgsem = othersemcourse.getText().toString();
 
-//                                                                                                Toast.makeText(this, " otherspecifiedcoursepgsem " + otherspecifiedcoursepgsem, Toast.LENGTH_SHORT).show();
                                                                                                 if (otherspecifiedcoursepgsem.length() < 3) {
                                                                                                     errorflag2 = 1;
                                                                                                     othersemcourseinput.setError("Kindly enter valid course.");
@@ -2487,8 +2444,6 @@ public class MyProfilePg extends AppCompatActivity {
                     else
                         universitySem = selectedUniversitypgsem;
 
-                    Log.d("TAG", "validateandSave: setBlankYear courseSem - " + courseSem);
-                    Log.d("TAG", "validateandSave: setBlankYear universitySem - " + universitySem);
 
                     PgSem objSem = new PgSem(markssem1, outofsem1, percentsem1, markssem2, outofsem2, percentsem2, markssem3, outofsem3, percentsem3, markssem4, outofsem4, percentsem4, markssem5, outofsem5, percentsem5, markssem6, outofsem6, percentsem6, schoolnamepgsemester, aggregatepgsem, monthandyearofpassingpgsem, courseSem, selectedStreampgsem, universitySem);
                     String encObjStringSem = OtoString(objSem, MySharedPreferencesManager.getDigest1(MyProfilePg.this), MySharedPreferencesManager.getDigest2(MyProfilePg.this));
@@ -2500,13 +2455,11 @@ public class MyProfilePg extends AppCompatActivity {
 
                 } catch (Exception e) {
                     Toast.makeText(MyProfilePg.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    Log.d(alumniLog, "exception -" + e.getMessage());
                 }
             }
         } else if (pattern.equals("year")) {
 
             setBlankSem();
-            Log.d("TAG", "validateandSave: after blank sem");
 
             marksyear1 = pmarksyear1.getText().toString();
             outofyear1 = poutofyear1.getText().toString();
@@ -2688,15 +2641,12 @@ public class MyProfilePg extends AppCompatActivity {
                     String encObjStringSem = OtoString(objSem, MySharedPreferencesManager.getDigest1(MyProfilePg.this), MySharedPreferencesManager.getDigest2(MyProfilePg.this));
                     PgYear objYear = new PgYear(marksyear1, outofyear1, percentyear1, marksyear2, outofyear2, percentyear2, marksyear3, outofyear3, percentyear3, aggregatepgyear, schoolnamepgyears, monthandyearofpassingpgyear, courseYear, streamYear, universityYear);
                     String encObjStringYear = OtoString(objYear, MySharedPreferencesManager.getDigest1(MyProfilePg.this), MySharedPreferencesManager.getDigest2(MyProfilePg.this));
-                    Log.d("TAG", "validateandSave: encObjStringSem :-" + encObjStringSem);
-                    Log.d("TAG", "validateandSave: encObjStringYear :-" + encObjStringYear);
 
                     new SaveDataPgYear().execute(encObjStringYear);
                     new SaveDataPgSem().execute(encObjStringSem);
 
                 } catch (Exception e) {
 
-                    Log.d("TAG", "validateandSave: exception " + e.getMessage());
 
                 }
             }
@@ -2844,18 +2794,11 @@ public class MyProfilePg extends AppCompatActivity {
 
         pgyearcourse.setSelection(0);
         pgyearstream.setSelection(0);
-//        dcourse.setSelection(adapter4.getPosition("- Select Course -"));
     }
 
     @Override
     public void onBackPressed() {
 
-        Log.d("TAG", "onBackPressed : courseSem =" + courseSem);
-        Log.d("TAG", "onBackPressed : streamSem =" + streamSem);
-        Log.d("TAG", "onBackPressed : universitySem =" + universitySem);
-        Log.d("TAG", "onBackPressed : courseYear =" + courseYear);
-        Log.d("TAG", "onBackPressed : streamYear =" + streamYear);
-        Log.d("TAG", "onBackPressed : universityYear =" +universityYear );
 
 
         if(edittedFlag==1||!oldCoursesem.equals(courseSem)||!oldStreamsem.equals(streamSem)||!oldUniversitysem.equals(universitySem)||!oldCourseyear.equals(courseYear)||!oldStreamyear.equals(streamYear)||!oldUniversityyear.equals(universityYear)) {
@@ -2905,11 +2848,8 @@ public class MyProfilePg extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("d", param[0]));    //1
 
-            Log.d("TAG", "doInBackground: username =" + username);
-            Log.d("TAG", "doInBackground: username =" + param[0]);
 
             json = jParser.makeHttpRequest(Z.url_savedata_pg_sem, "GET", params);
-            Log.d("TAG", "doInBackground: json =" + json);
             try {
                 r = json.getString("info");
 
@@ -2922,7 +2862,6 @@ public class MyProfilePg extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "onPostExecute: SaveDataPgSem result - " + result);
             if (result.equals("success")) {
 
                 if (!markssem1.equals(""))
@@ -2933,52 +2872,9 @@ public class MyProfilePg extends AppCompatActivity {
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-//                s.setMarkssem1pgsem(markssem1);
-//                s.setOutofsem1pgsem(outofsem1);
-//                s.setPercentagesem1pgsem(percentsem1);
-//                s.setMarkssem2pgsem(markssem2);
-//                s.setOutofsem2pgsem(outofsem2);
-//                s.setPercentagesem2pgsem(percentsem2);
-//                s.setMarkssem3pgsem(markssem3);
-//                s.setOutofsem3pgsem(outofsem3);
-//                s.setPercentagesem3pgsem(percentsem3);
-//                s.setMarkssem4pgsem(markssem4);
-//                s.setOutofsem4pgsem(outofsem4);
-//                s.setPercentagesem4pgsem(percentsem4);
-//                s.setMarkssem5pgsem(markssem5);
-//                s.setOutofsem5pgsem(outofsem5);
-//                s.setPercentagesem5pgsem(percentsem5);
-//                s.setMarkssem6pgsem(markssem6);
-//                s.setOutofsem6pgsem(outofsem6);
-//                s.setPercentagesem6pgsem(percentsem6);
-//                s.setAggregatepgsem(aggregatepgsem);
-//                s.setCoursepgsem(selectedCoursepgsem);
-//                s.setStreampgsem(selectedStreampgsem);
-//                s.setUniversitypgsem(selectedUniversitypgsem);
-//                s.setCollegenamepgsem(schoolnamepgsemester);
-//                s.setYearofpassingpgsem(monthandyearofpassingpgsem);
-//                s.setMarksyear1pgyear(marksyear1);
-//                s.setOutofyear1pgyear(outofyear1);
-//                s.setPercentageyear1pgyear(percentyear1);
-//                s.setMarksyear2pgyear(marksyear2);
-//                s.setOutofyear2pgyear(outofyear2);
-//                s.setPercentageyear2pgyear(percentyear2);
-//                s.setMarksyear3pgyear(marksyear3);
-//                s.setOutofyear3pgyear(outofyear3);
-//                s.setPercentageyear3pgyear(percentyear3);
-//                s.setAggregatepgyear(aggregatepgyear);
-//                s.setCoursepgyear(selectedCoursepgyear);
-//                s.setStreampgyear(selectedStreampgyear);
-//                s.setUniversitypgyear(selectedUniversitypgyear);
-//                s.setCollegenamepgyear(schoolnamepgyears);
-//                s.setYearofpassingpgyear(monthandyearofpassingpgyear);
-
-            }
-//            else
-//                Toast.makeText(MyProfilePg.this,"Try again!",Toast.LENGTH_SHORT).show();
-
-//                MyProfilePg.super.onBackPressed();
+            } else
+                Toast.makeText(MyProfilePg.this, "Try again !", Toast.LENGTH_SHORT).show();
+//
         }
     }
 
@@ -2992,7 +2888,6 @@ public class MyProfilePg extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("d", param[0]));    //0
 
-            Log.d("TAG", "doInBackground: " + param[0]);
             json = jParser.makeHttpRequest(Z.url_savedata_pg_year, "GET", params);
             try {
                 r = json.getString("info");
@@ -3006,7 +2901,6 @@ public class MyProfilePg extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "onPostExecute: SaveDataPgYear result - " + result);
             if (result.equals("success")) {
                 if (!marksyear1.equals(""))
                     Toast.makeText(MyProfilePg.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
@@ -3017,8 +2911,6 @@ public class MyProfilePg extends AppCompatActivity {
 
                 MyProfilePg.super.onBackPressed();
             }
-//             else
-//            Toast.makeText(MyProfilePg.this,"Try again!",Toast.LENGTH_SHORT).show();
 
         }
     }

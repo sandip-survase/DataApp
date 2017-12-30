@@ -132,9 +132,6 @@ public class PersonalProfileTabFragment extends Fragment  {
         casteedittext = (EditText) rootView.findViewById(R.id.cast);
         prnedittext = (EditText) rootView.findViewById(R.id.prn);
         languagesknownedittext = (EditText) rootView.findViewById(R.id.knownlang);
-
-
-//        save=(Button)rootView.findViewById(R.id.savepersonal);
         personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
 
         bloodgrpspinner = (Spinner) rootView.findViewById(R.id.bloodgrp);
@@ -511,8 +508,7 @@ public class PersonalProfileTabFragment extends Fragment  {
                 caddrline1input.setError(null);
                 String Editvalue = "";
                 Editvalue = caddrline1.getText().toString();
-                Log.d("TAG", "onTextChanged: Editvalue- " + Editvalue);
-                Log.d("TAG", "onTextChanged: addrline1c -" + addrline1c);
+
                 if (addrline1c != null) {
                     if (!addrline1c.equals(Editvalue)) {
 
@@ -666,8 +662,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public boolean isEnabled(int position) {
                 if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
+
                     return false;
                 } else {
                     return true;
@@ -706,8 +701,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public boolean isEnabled(int position) {
                 if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
+
                     return false;
                 } else {
                     return true;
@@ -752,8 +746,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public boolean isEnabled(int position) {
                 if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
+
                     return false;
                 } else {
                     return true;
@@ -794,8 +787,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
-                // If user change the default selection
-                // First item is disable and it is used for hint
+
                 if (position > 0) {
 
                     if (position == 1)
@@ -829,8 +821,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
-                // If user change the default selection
-                // First item is disable and it is used for hint
+
                 if (position > 0) {
 
                     if (position == 1)
@@ -856,8 +847,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
-                // If user change the default selection
-                // First item is disable and it is used for hint
+
                 if (position > 0) {
 
                     if (position == 1)
@@ -889,9 +879,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-//                    addrline1p=addrline1c;
-//                    addrline2p=addrline2c;
-//                    addrline3p=addrline3c;
+//
 
                     addrline1p = caddrline1.getText().toString();
                     addrline2p = caddrline2.getText().toString();
@@ -981,10 +969,6 @@ public class PersonalProfileTabFragment extends Fragment  {
         lang9 = s.getLang9();
         lang10 = s.getLang10();
 
-        Log.d("TAG", "onCreateView: lang1 - "+lang1);
-        Log.d("TAG", "onCreateView: lang2 - "+lang2);
-        Log.d("TAG", "onCreateView: lang3 - "+lang3);
-        Log.d("TAG", "onCreateView: lang4 - "+lang4);
 
 
         addrline1c = s.getAddressline1();
@@ -1004,7 +988,7 @@ public class PersonalProfileTabFragment extends Fragment  {
 
         }
         if (mname != null) {
-//            Toast.makeText(getActivity(), "mname"+mname, Toast.LENGTH_SHORT).show();
+//
             if (!mname.equals(""))
                 mnameedittext.setText(mname);
 
@@ -1039,8 +1023,7 @@ public class PersonalProfileTabFragment extends Fragment  {
                     dob = outputDateStrlastdateofreg;
                     dobedittext.setText(dob);
                 } catch (Exception e) {
-//                    Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
-//                    dobedittext.setError("Invalid Date");
+//
                 }
             }
         }
@@ -1239,11 +1222,6 @@ public class PersonalProfileTabFragment extends Fragment  {
             }
         }
 
-
-
-
-
-
         if (handicapped != null) {
             if (handicapped.equals("notapplicable"))
                 radioButtonHandicappedNo.setChecked(true);
@@ -1349,8 +1327,6 @@ public class PersonalProfileTabFragment extends Fragment  {
 
         if (fnameedittext != null) {
             refreshKnowLang();
-            Log.d("TAG", "setUserVisibleHint: ");
-//            edittedFlag = 0;
         }
     }
 
@@ -1359,10 +1335,8 @@ public class PersonalProfileTabFragment extends Fragment  {
         super.onResume();
         if (fnameedittext != null) {
             refreshKnowLang();
-//            edittedFlag = 0;
         }
 
-        Log.d("TAG", "onresume: ");
     }
 
     public Boolean validate() {
@@ -1410,14 +1384,12 @@ public class PersonalProfileTabFragment extends Fragment  {
             tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
             gender = tempradiobutton.getText().toString().trim();
         } catch (Exception e) {
-//            errorflag = 1;
-//            Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
+//
         }
 
         selectedId = radioGroupHandicapped.getCheckedRadioButtonId();
         tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
         handicapped = tempradiobutton.getText().toString().trim();
-//        if (handicapped.equals("Handicapped(NO)"))
         if (handicapped.equals("NO"))
             handicapped = "notapplicable";
 //        else if (handicapped.equals("Handicapped(YES)"))
@@ -1431,22 +1403,13 @@ public class PersonalProfileTabFragment extends Fragment  {
         if (sports.equals("Sports(NA)"))
             sports = "notapplicable";
         else if (sports.equals("Sports(State)")) {
-            Log.d("TAG", "validate: MATCH");
             sports = "state";
         } else if (sports.equals("Sports(National)"))
             sports = "national";
         else if (sports.equals("Sports(International)"))
             sports = "international";
 
-//        if (sports.equals("NA"))
-//            sports = "notapplicable";
-//        else if (sports.equals("State")) {
-//            sports = "state";
-//        } else if (sports.equals("National"))
-//            sports = "national";
-//        else if (sports.equals("International"))
-//            sports = "international";
-
+//
 
         selectedId = radioGroupDefenceex.getCheckedRadioButtonId();
         tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
@@ -1468,8 +1431,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             outputDateStrlastdateofreg = outputFormat.format(date);
             dob = outputDateStrlastdateofreg;
         } catch (Exception e) {
-//            Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
-//            dobedittext.setError("Invalid Date");
+//
         }
 
 
@@ -1523,26 +1485,17 @@ public class PersonalProfileTabFragment extends Fragment  {
 
         try {
 
-            Log.d("TAG", "save: fname - " + fname);
-            Log.d("TAG", "save: mname - " + mname);
-            Log.d("TAG", "save: sname - " + sname);
-            Log.d("TAG", "save: digest1 - " + digest1);
-            Log.d("TAG", "save: digest2 - " + digest2);
 
             MyProfilePersonal obj = new MyProfilePersonal(fname, mname, sname, nameasten, alternateemail, mothername, dob, gender, phone, mobile, alternatemobile, mothertongue, hobbies, bloodgroup, category, religion, caste, prn, addrline1c, addrline2c, addrline3c, addrline1p, addrline2p, addrline3p, handicapped, sports, defenceex);
             encobj = OtoString(obj, digest1, digest2);
 
 
-//             encobj =OtoString(obj,MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
-
             MyProfilePersonal obj2 = (MyProfilePersonal) fromString(encobj, digest1, digest2);
 
-            Log.d("TAG", "save: " + obj2.fname + " " + obj2.sname);
 
             new MyAsyncTask().execute(encobj);
 
         } catch (Exception e) {
-            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
 
@@ -1621,7 +1574,6 @@ public class PersonalProfileTabFragment extends Fragment  {
             params.add(new BasicNameValuePair("u", username));        //0
             params.add(new BasicNameValuePair("d", encobj));        //1
 
-                Log.d("student", "onCreateView: " + Myrole);
                 json = jParser.makeHttpRequest(Z.savepersonalinfo, "GET", params);
 
             try {
@@ -1637,15 +1589,7 @@ public class PersonalProfileTabFragment extends Fragment  {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
-                if (role.equals("student")) {
-                    Log.d("TAG", "onPostExecute: role - "+role);
-//                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                }
-                else {
-                    Log.d("TAG", "onPostExecute: role - "+role);
-//                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-                }
+
                 edittedFlag = 0;
             } else {
                 Toast.makeText(getActivity(), "Try again", Toast.LENGTH_SHORT).show();
@@ -1685,11 +1629,6 @@ public class PersonalProfileTabFragment extends Fragment  {
             s.setLang9(lang9);
             s.setLang10(lang10);
 
-            Log.d("TAG", "onCreateView: lang1 - " + lang1);
-            Log.d("TAG", "onCreateView: lang2 - " + lang2);
-            Log.d("TAG", "onCreateView: lang3 - " + lang3);
-            Log.d("TAG", "onCreateView: lang4 - " + lang4);
-
 
             s.setAddressline1(addrline1c);
             s.setAddressline2(addrline2c);
@@ -1700,11 +1639,6 @@ public class PersonalProfileTabFragment extends Fragment  {
             s.setHandicapped(handicapped);
             s.setSports(sports);
             s.setDefenceex(defenceex);
-
-
-
-
-
 
         }
 

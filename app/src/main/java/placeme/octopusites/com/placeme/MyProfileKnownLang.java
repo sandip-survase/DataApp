@@ -83,15 +83,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-//        Window window = MyProfileKnownLang.this.getWindow();
-//
-//        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
-//        if(sdklevel>=21) {
-//
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.setStatusBarColor(MyProfileKnownLang.this.getResources().getColor(R.color.background));
-//        }
 
         TextView knowntxt=(TextView)findViewById(R.id.knowntxt);
         knowntxt.setTypeface(Z.getBold(this));
@@ -439,9 +430,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         };
 
-//        textChangeListerners
-
-
         knownlang1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -582,7 +570,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         });
 
-//proficiency
 
         proficiency1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1453,12 +1440,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             sproficiency1=proficiency1.getSelectedItem().toString();
            if(sknownlang1.equals("- Select Language -"))
            {
-               Log.d("TAG", "deleteLang: lang 1");
                editelang =1;
            }
 
            if(editelang==1){
-               Log.d("TAG", "deleteLang: editlang - "+editelang);
                savelang();
            }
 
@@ -1859,10 +1844,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
         sproficiency9=proficiency9.getSelectedItem().toString();
         sknownlang10=knownlang10.getSelectedItem().toString();
         sproficiency10=proficiency10.getSelectedItem().toString();
-
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         int errorflag=0;
 
@@ -2400,7 +2381,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
             new SaveLanguages().execute();
 
 
-        }catch (Exception e){Toast.makeText(MyProfileKnownLang.this,e.getMessage(),Toast.LENGTH_LONG).show();}
+        } catch (Exception e) {
+        }
 
     }
     class SaveLanguages extends AsyncTask<String, String, String> {
@@ -2441,7 +2423,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("admin"))
                     setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
-                Log.d("TAG", "onPostExecute: after set result");
 
                 s.setLang1(sknownlang1);
                 s.setProficiency1(sproficiency1);
@@ -2465,7 +2446,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 s.setProficiency10(sproficiency10);
 
                 MyProfileKnownLang.super.onBackPressed();
-            }
+            } else
+                Toast.makeText(MyProfileKnownLang.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 

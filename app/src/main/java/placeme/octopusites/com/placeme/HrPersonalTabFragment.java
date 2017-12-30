@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -67,11 +68,7 @@ public class HrPersonalTabFragment extends Fragment {
     String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encdesignation;
     TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,designinputlayout, emailinputlayout, citystaecountryinputlayout;
 
-    String countries[], states[], cities[];
 
-    List<String> countrieslist = new ArrayList<String>();
-    List<String> stateslist = new ArrayList<String>();
-    List<String> citieslist = new ArrayList<String>();
 
     HrData hr = new HrData();
 
@@ -340,12 +337,10 @@ public class HrPersonalTabFragment extends Fragment {
 
         if(persnolerrorflag == 0)
         {
-            Log.d("hrlog", "validate: if "+persnolerrorflag);
             return true;
 
         }
         else{
-            Log.d("hrlog", "validate: if else "+persnolerrorflag);
             return false;
         }
 
@@ -357,7 +352,6 @@ public class HrPersonalTabFragment extends Fragment {
         try {
             ModalHrIntro obj2 = new ModalHrIntro(firstname, lastname, designationValue, selectedCity, selectedState, selectedCountry);
             encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-            Log.d("TAG", "validateandSave: encobj - " + encobj);
             new SaveData().execute();
 
         } catch (Exception e) {
@@ -390,7 +384,9 @@ public class HrPersonalTabFragment extends Fragment {
 
             if (result.equals("success")) {
                 edittedFlagp=0;
-            }
+            } else
+                Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
+
 
             getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
         }

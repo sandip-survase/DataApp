@@ -60,11 +60,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     TextInputLayout marks12input, outof12input, schoolname12input, otherstream12input, otherboardinput, yearofpassing12inpute, marksdsem1input, doutofsem1input, dpercentsem1input, marksdsem2input, doutofsem2input, dpercentsem2inpute, marksdsem3input, doutofsem3input, dpercentsem3input, marksdsem4input, doutofsem4inpute, dpercentsem4inpute, marksdsem5input, doutofsem5input, dpercentsem5input, marksdsem6input, doutofsem6input, dpercentsem6input, daggregateinput, othercourseinput, otherboarddinput, schoolnamedinput, yearofpassingdinput;
     TextInputLayout percent12input;
     String selectedBoard12 = "", selectedBoarddiploma = "", selectedStream12 = "", monthandyearofpassing12 = "", monthandyearofpassingdiploma = "";
-    String encselectedboard12 = "", encselectedboarddiploma = "", encselectedstream12 = "", encmonthandyearofpassing12 = "", encmonthandyearofpassingdiploma = "";
     Spinner stream12, board12;
-
     Spinner dcourse, duniversity;
-
     String username, role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
@@ -72,9 +69,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     int edittedFlag = 0;
     String marksobtained = "", outofmarks = "", percentage = "", schoolnametwelth = "", schoolnamediploma = "", otherspecifiedboard = "", otherspecifiedstream = "", otherspecifiedcourse = "";
-    String encmarksobtained, encoutofmarks, encpercentage, encschoolname12, encschoolnamediploma;
     String markssem1 = "", outofsem1 = "", percentsem1 = "", markssem2 = "", outofsem2 = "", percentsem2 = "", markssem3 = "", outofsem3 = "", percentsem3 = "", markssem4 = "", outofsem4 = "", percentsem4 = "", markssem5 = "", outofsem5 = "", percentsem5 = "", markssem6 = "", outofsem6 = "", percentsem6 = "", aggregate = "";
-    String encmarkssem1, encoutofsem1, encpercentsem1, encmarkssem2, encoutofsem2, encpercentsem2, encmarkssem3, encoutofsem3, encpercentsem3, encmarkssem4, encoutofsem4, encpercentsem4, encmarkssem5, encoutofsem5, encpercentsem5, encmarkssem6, encoutofsem6, encpercentsem6, encaggregat, encselectedcourse;
     RelativeLayout layouttoshow, layouttohide;
     RadioGroup radioGrouptwelthdiploma;
     RadioButton radioButtonTwelth, radioButtonDiploma;
@@ -82,11 +77,9 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     EditText yearofpassing12, yearofpassingd;
 
     int coursecount = 0;
-    List<String> courseslist = new ArrayList<String>();
     String[] courses;
     String selectedCourse = "";
     StudentData s = new StudentData();
-    int isCourseSet = 0;
     String oldStream12 = "", oldBoard12 = "", oldBoarddiploma = "", oldCourse = "";
 
     String selectedboardBytes1 = null;
@@ -179,7 +172,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         schoolnamedinput = (TextInputLayout) findViewById(R.id.schoolnamedinput);
         yearofpassingdinput = (TextInputLayout) findViewById(R.id.yearofpassingdinput);
         percent12input = (TextInputLayout) findViewById(R.id.percent12input);
-//        otherboardinput = (TextInputLayout) findViewById(R.id.othercourseinput);
 
         marks12.setTypeface(Z.getBold(this));
         outof12.setTypeface(Z.getBold(this));
@@ -243,7 +235,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         yearofpassingdinput.setTypeface(Z.getLight(this));
         percent12input.setTypeface(Z.getLight(this));
 
-//        new GetCourses().execute();
 
         coursecount = getResources().getStringArray(R.array.dcourses).length;
         courses = new String[coursecount];
@@ -287,16 +278,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         }
     };
 
-
         dcourse.setAdapter(adapter4);
-
-
-
-
-
-
-
-
 
         dmarkssem1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -312,20 +294,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
-//                    String s1=dmarkssem1.getText().toString();
-//                    String s2=doutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
                 doutofsem1input.setError(null);
 
@@ -369,22 +337,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=dmarkssem1.getText().toString();
-//                    String s2=doutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem1input.setError(null);
 
                 try {
@@ -428,24 +380,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
-//
-//                try {
-//
-//                    String s1=dmarkssem2.getText().toString();
-//                    String s2=doutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 doutofsem2input.setError(null);
 
@@ -626,10 +560,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 try {
                     double percentage = 0;
                     String s1 = dmarkssem4.getText().toString();
-//                    String s2 = doutofsem4.getText().toString();
                     String s2 = outofsem4;
-                    Log.d("TAG", "afterTextChanged: main --------------- " + doutofsem4);
-                    Log.d("TAG", "afterTextChanged: main********* " + s2);
 
 
                     if (!s1.equals("") && !s2.equals("")) {
@@ -1146,10 +1077,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             }
         };
 
-
-        ;
         duniversity.setAdapter(dataAdapter3);
-
 
         duniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1158,7 +1086,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboarddinput);
                 if (selectedBoarddiploma.equals("Other")) {
 
-                    Log.d("TAG", "onItemSelected: other - " + selectedBoarddiploma);
                     otherboardinput.setVisibility(View.VISIBLE);
                     otherboardd.setVisibility(View.VISIBLE);
 
@@ -1315,12 +1242,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCourse = (String) parent.getItemAtPosition(position);
-
-                Log.d("TAG", "onItemSelected: selectedCourse- "+selectedCourse);
                 if (selectedCourse.equals("Other")) {
-
                     othercourseinput.setVisibility(View.VISIBLE);
-
                 } else {
 
                     othercourseinput.setVisibility(View.GONE);
@@ -1335,7 +1258,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             }
         });
-
 
         yearofpassing12.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1745,10 +1667,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             for (int i = 1; i < dboards.length - 1; i++)
                 if (selectedBoarddiploma.equals(dboards[i])) {
                     foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                     break;
                 }
-            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedBoarddiploma);
             if (foundboard == 1)
                 duniversity.setSelection(dataAdapter3.getPosition(selectedBoarddiploma));
             else {
@@ -1756,7 +1676,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 if (selectedBoarddiploma.equals("")) {
                     duniversity.setSelection(dataAdapter3.getPosition("- Select Board -"));
                     otherboardd.setVisibility(View.GONE);
-//                    otherboardd.setText(selectedBoarddiploma);
                 } else {
                     duniversity.setSelection(dataAdapter3.getPosition("Other"));
                     otherboardd.setVisibility(View.VISIBLE);
@@ -1780,7 +1699,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                         break;
                     }
 
-                Log.d("TAG", "onCreate: selectedCourse - " + selectedCourse);
 
                 if (foundcourse == 1)
                     dcourse.setSelection(adapter4.getPosition(selectedCourse));
@@ -1788,7 +1706,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     if (selectedCourse.equals("")) {
                         dcourse.setSelection(adapter4.getPosition("- Select Course -"));
                         othercourse.setVisibility(View.GONE);
-//                    othercourse.setText(selectedBoarddiploma);
                     } else {
 
                         dcourse.setSelection(adapter4.getPosition("Other"));
@@ -1911,7 +1828,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     new SaveDataDiploma().execute();
 
                 } catch (Exception e) {
-                    Toast.makeText(this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -1920,27 +1836,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             setBlankTwelth();
 
-//            dmarkssem1.setError(null);
-//            doutofsem1.setError(null);
-//            dpercentsem1.setError(null);
-//            dmarkssem2.setError(null);
-//            doutofsem2.setError(null);
-//            dpercentsem2.setError(null);
-//            dmarkssem3.setError(null);
-//            doutofsem3.setError(null);
-//            dpercentsem3.setError(null);
-//            dmarkssem4.setError(null);
-//            doutofsem4.setError(null);
-//            dpercentsem4.setError(null);
-//            dmarkssem5.setError(null);
-//            doutofsem5.setError(null);
-//            dpercentsem5.setError(null);
-//            dmarkssem6.setError(null);
-//            doutofsem6.setError(null);
-//            dpercentsem6.setError(null);
-//            daggregate.setError(null);
-//            schoolnamed.setError(null);
-//            yearofpassingd.setError(null);
 
             markssem1 = dmarkssem1.getText().toString();
             outofsem1 = doutofsem1.getText().toString();
@@ -1952,9 +1847,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             outofsem3 = doutofsem3.getText().toString();
             percentsem3 = dpercentsem3.getText().toString();
             markssem4 = dmarkssem4.getText().toString();
-            Log.d("TAG", "Befor: set per " + dpercentsem4.getText().toString());
             outofsem4 = doutofsem4.getText().toString();
-            Log.d("TAG", "after: set per " + dpercentsem4.getText().toString());
             percentsem4 = dpercentsem4.getText().toString();
             markssem5 = dmarkssem5.getText().toString();
             outofsem5 = doutofsem5.getText().toString();
@@ -2059,20 +1952,17 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                                                                 } else {
                                                                                     errorflag1 = 0;
                                                                                     float aggg = 0;
-                                                                                    Log.d("TAG", "validateandSave: try  aggregate");
                                                                                     if (!aggregate.equals(""))
                                                                                         aggg = Float.parseFloat(aggregate);
 
                                                                                     if (aggg <= 0 || aggg >= 100) {
                                                                                         errorflag1 = 1;
-                                                                                        Log.d("TAG", "validateandSave: simple  aggregate");
                                                                                         daggregateinput.setError("Kindly enter valid Aggregate");
                                                                                     }
                                                                                     else {
                                                                                         errorflag1 = 0;
                                                                                         if (selectedCourse == null || selectedCourse.equals("- Select Course -")) {
                                                                                             errorflag1 = 1;
-                                                                                            Log.d("TAG", "validateandSave: selectedCourse ");
                                                                                             daggregateinput.setError(null);
                                                                                             Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Course", Toast.LENGTH_LONG).show();
                                                                                         } else {
@@ -2142,9 +2032,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     else
                         selecteddiplomaboardBytes1 = selectedBoarddiploma;
 
-
-                    Log.d("TAG", "validateandSave: validate save 2 ()");
-
                     new SaveDataDiploma().execute();
                     new SaveDataTwelth().execute();
 
@@ -2176,8 +2063,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
         board12.setSelection(0);
         stream12.setSelection(0);
-
-
 
         s.setMarks12("");
         s.setOutof12("");
@@ -2279,7 +2164,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
 
         } catch (Exception e) {
-            Log.d("TAG", "setBlankDelpoma: " + e.getMessage());
         }
 
     }
@@ -2361,24 +2245,13 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             MyProfileTwelthModal obj = new MyProfileTwelthModal(marksobtained, outofmarks, percentage, schoolnametwelth, selectedstreamBytes1, selectedboardBytes1, monthandyearofpassing12);
 
-            Log.d("params", "marksobtained: " + marksobtained);
-            Log.d("params", "outofmarks: " + outofmarks);
-            Log.d("params", "percentage: " + percentage);
-            Log.d("params", "schoolnametwelth: " + schoolnametwelth);
-            Log.d("params", "selectedstreamBytes1: " + selectedstreamBytes1);
-            Log.d("params", "monthandyearofpassing12: " + monthandyearofpassing12);
-            Log.d("params", "selectedboardBytes1: " + selectedboardBytes1);
-
-
             try {
                 digest1 = MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this);
                 digest2 = MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this);
 
                 strobj = OtoString(obj, digest1, digest2);
-                Log.d("encstrobj", "strobj twelth: " + strobj);
 
             } catch (Exception e) {
-                Log.d("TAG", "validateandSave: - " + e.getMessage());
             }
 
             String r = null;
@@ -2405,19 +2278,10 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 if (!marksobtained.equals(""))
                     Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-
                 if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-//                if(pattern.equals("twelth")) {
-//                    setBlankDelpoma();
-//                }
-//                if(pattern.equals("diploma")) {
-//                    setBlankTwelth();
-//                }
-
 
                 // fill student obj with update value
                 s.setMarks12(marksobtained);
@@ -2438,19 +2302,13 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            Log.d("TAG", "doInBackground: SaveDataDiploma selectedboardBytes1 -"+selectedboardBytes1);
-            Log.d("TAG", "doInBackground: SaveDataDiploma selectedcourseBytes1 -"+selectedcourseBytes1);
-
             MyProfileDiplomaModal obj2 = new MyProfileDiplomaModal(markssem1, outofsem1, percentsem1, markssem2, outofsem2, percentsem2, markssem3, outofsem3, percentsem3, markssem4, outofsem4, percentsem4, markssem5, outofsem5, percentsem5, markssem6, outofsem6, percentsem6, aggregate, selectedcourseBytes1, selecteddiplomaboardBytes1, schoolnamediploma, monthandyearofpassingdiploma);
 
             try {
-                Log.d("encstrobj", "diploma before try block: ");
                 strobj2 = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this), MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this));
-                Log.d("encstrobj", "diploma before: " + strobj2);
-                Log.d("encstrobj", "diploma strobj: " + strobj2);
 
             } catch (Exception e) {
-                Log.d("TAG", "validateandSave: - " + e.getMessage());
+
             }
 
             String r = null;
@@ -2461,7 +2319,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             json = jParser.makeHttpRequest(Z.url_savedata_diploma, "GET", params);
             try {
                 r = json.getString("info");
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2484,8 +2341,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-
-
                 s.setMarkssem1diploma(markssem1);
                 s.setOutofsem1diploma(outofsem1);
                 s.setPercentagesem1diploma(percentsem1);
@@ -2499,7 +2354,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 s.setOutofsem4diploma(outofsem4);
 
                 s.setPercentagesem4diploma(percentsem4);
-                Log.d("TAG", "onPostExecute: " + percentsem4);
                 s.setMarkssem5diploma(markssem5);
                 s.setOutofsem5diploma(outofsem5);
                 s.setPercentagesem5diploma(percentsem5);
@@ -2511,7 +2365,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 s.setCollegenamediploma(schoolnamediploma);
                 s.setYearofpassingdiploma(monthandyearofpassingdiploma);
 
-            }
+            } else
+                Toast.makeText(MyProfileTwelthOrDiploma.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 }

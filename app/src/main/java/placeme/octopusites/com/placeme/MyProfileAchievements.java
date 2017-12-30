@@ -296,11 +296,6 @@ public class MyProfileAchievements extends AppCompatActivity {
         yearofhonor10.setTypeface(Z.getBold(this));
 
 
-
-
-
-
-
         titleinput1.setTypeface(Z.getLight(this));
         issuerinput1.setTypeface(Z.getLight(this));
         decrinput1.setTypeface(Z.getLight(this));
@@ -2649,12 +2644,10 @@ public class MyProfileAchievements extends AppCompatActivity {
 
 
             if(stitle1.equals("") && sissuer1.equals("") && sdescription1.equals("") && syearofhonor1.equals("") ){
-                Log.d("TAG", "deleteLang: lang 1");
                 editachieve =1;
             }
 
             if(editachieve==1){
-                Log.d("TAG", "deleteLang: editcertfi - "+editachieve);
                 encachieve();
             }
 
@@ -2692,8 +2685,6 @@ public class MyProfileAchievements extends AppCompatActivity {
         monthList.add("Nov");
         monthList.add("Dec");
 
-//        for(int i=1975;i<=2017;i++)
-//            yearList.add(""+i);
 
         Calendar currentCalendar = Calendar.getInstance();
         for (int i = 1975; i <= currentCalendar.get(Calendar.YEAR); i++)
@@ -2849,10 +2840,6 @@ public class MyProfileAchievements extends AppCompatActivity {
         sissuer10 = issuer10.getText().toString();
         sdescription10 = description10.getText().toString();
         syearofhonor10 = yearofhonor10.getText().toString();
-
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
 
@@ -3889,7 +3876,6 @@ public class MyProfileAchievements extends AppCompatActivity {
             new SaveHonors().execute(encObjString);
 
         } catch (Exception e) {
-            Toast.makeText(MyProfileAchievements.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }
@@ -3918,7 +3904,6 @@ public class MyProfileAchievements extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
         return super.onCreateOptionsMenu(menu);
-
 
     }
 
@@ -4043,7 +4028,7 @@ public class MyProfileAchievements extends AppCompatActivity {
 
                 MyProfileAchievements.super.onBackPressed();
             } else
-                Toast.makeText(MyProfileAchievements.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileAchievements.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

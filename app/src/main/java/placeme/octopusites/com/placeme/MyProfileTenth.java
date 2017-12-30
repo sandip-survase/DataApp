@@ -182,23 +182,6 @@ public class MyProfileTenth extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-//                try {
-//
-//                    String s1 = marks10.getText().toString();
-//                    String s2 = outof10.getText().toString();
-//                    if (!s1.equals("") && !s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100 / n2);
-//
-//                        if (percentage >= 0 && percentage <= 100)
-//                            percent10.setText("" + (new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                } catch (Exception e) {
-//                }
-
                 marks10_outOf.setError(null);
 
                 try {
@@ -463,8 +446,6 @@ public class MyProfileTenth extends AppCompatActivity {
             }
         });
         edittedFlag = 0;
-        //Toast.makeText(MyProfileTenth.this,edittedFlag+"",Toast.LENGTH_LONG).show();
-
     }
 
     void setMonthYear(String selectedMonth, String selectedYear) {
@@ -472,13 +453,6 @@ public class MyProfileTenth extends AppCompatActivity {
     }
 
     void validateandSave() {
-//        marks10.setError(null);
-//        outof10.setError(null);
-//        percent10.setError(null);
-//        schoolname10.setError(null);
-//        otherboard.setError(null);
-//        yearofpassing10.setError(null);
-
         int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
 
         marksobtained = marks10.getText().toString();
@@ -538,23 +512,8 @@ public class MyProfileTenth extends AppCompatActivity {
                     selectboard = selectedBoard;
 
                 }
-
-
-
-
-
-
-                Log.d("TAG", "validateandSave: before objstr" + marksobtained + " " + outofmarks + " " + percentage + " " + schoolname + " " + monthandyearofpassing + " " + selectboard);
-
                 MyProfileTenthModal obj2 = new MyProfileTenthModal(marksobtained, outofmarks, percentage, schoolname, monthandyearofpassing, selectboard);
-
-                Log.d("TAG", "validateandSave: " + obj2.marksobtained + " " + obj2.outofmarks + " " + obj2.percentage + " " + obj2.schoolname + " " + obj2.monthandyearofpassing + " " + obj2.selectedBoard);
-//                Log.d("TAG", "validateandSave: "+obj2.marksobtained+" "+);
-
                 encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileTenth.this), MySharedPreferencesManager.getDigest2(MyProfileTenth.this));
-                Log.d("TAG", "validateandSave: encobj - " + encobj);
-
-
                 new SaveData().execute();
 
             } catch (Exception e) {
@@ -586,8 +545,6 @@ public class MyProfileTenth extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
         return super.onCreateOptionsMenu(menu);
-
-
     }
 
     @Override
@@ -631,8 +588,6 @@ public class MyProfileTenth extends AppCompatActivity {
     }
 
     class SaveData extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
 
             String r = null;
@@ -667,10 +622,10 @@ public class MyProfileTenth extends AppCompatActivity {
                 s.setSchoolname10(schoolname);
                 s.setYearofpassing10(monthandyearofpassing);
                 s.setBoard10(selectedBoard);
-//                oldBoard=selectedBoard;
 
                 MyProfileTenth.super.onBackPressed();
-            }
+            } else
+                Toast.makeText(MyProfileTenth.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 

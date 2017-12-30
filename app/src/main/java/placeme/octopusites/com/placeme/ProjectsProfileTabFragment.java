@@ -79,7 +79,6 @@ public class ProjectsProfileTabFragment extends Fragment {
         projtxt.setTypeface(Z.getBold(getActivity()));
         TextView addmoreprojecttxt=(TextView) rootView.findViewById(R.id.addmoreprojecttxt);
         addmoreprojecttxt.setTypeface(Z.getBold(getActivity()));
-        Log.d("dfgs", "onCreateView:COUNT2 " + projectscount2);
 
 
 //        Toast.makeText(getActivity(), "onCrreate", Toast.LENGTH_SHORT).show();
@@ -1223,14 +1222,10 @@ public class ProjectsProfileTabFragment extends Fragment {
 
 
 
-        demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        sPadding = "ISO10126Padding";
         sproj1 = s.getProj1();
         sdomain1 = s.getDomain1();
         steam1 = s.getTeam1();
         sduration1 = s.getDuration1();
-        Log.d("TAG", "onCreateView: *** project2 - " + s.getProj2());
         sproj2 = s.getProj2();
         sdomain2 = s.getDomain2();
         steam2 = s.getTeam2();
@@ -1416,227 +1411,6 @@ public class ProjectsProfileTabFragment extends Fragment {
         return rootView;
     }
 
-/*
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Toast.makeText(getActivity(), "pause ", Toast.LENGTH_SHORT).show();
-        Log.d("count", "onPause: ---------------------------------- start count "+projectscount);
-//        projectscount--;
-
-        RelativeLayout projectr2 = (RelativeLayout) rootView.findViewById(R.id.projectrl2);
-        RelativeLayout projectr3 = (RelativeLayout) rootView.findViewById(R.id.projectrl3);
-        RelativeLayout projectr4 = (RelativeLayout) rootView.findViewById(R.id.projectrl4);
-        RelativeLayout projectr5 = (RelativeLayout) rootView.findViewById(R.id.projectrl5);
-        RelativeLayout projectr6 = (RelativeLayout) rootView.findViewById(R.id.projectrl6);
-        RelativeLayout projectr7 = (RelativeLayout) rootView.findViewById(R.id.projectrl7);
-        RelativeLayout projectr8 = (RelativeLayout) rootView.findViewById(R.id.projectrl8);
-        RelativeLayout projectr9 = (RelativeLayout) rootView.findViewById(R.id.projectrl9);
-        RelativeLayout projectrl0 = (RelativeLayout) rootView.findViewById(R.id.projectrl10);
-
-
-//        if(projectscount==1){
-//            RelativeLayout projectr2 = (RelativeLayout) rootView.findViewById(R.id.projectrl2);
-//            projectr2.setVisibility(View.VISIBLE);
-//        }
-//        if(projectscount==2){
-//            RelativeLayout projectr3 = (RelativeLayout) rootView.findViewById(R.id.projectrl3);
-//            projectr3.setVisibility(View.VISIBLE);
-//        }
-//        if(projectscount==3){
-//            RelativeLayout projectr4 = (RelativeLayout) rootView.findViewById(R.id.projectrl4);
-//            projectr4.setVisibility(View.VISIBLE);
-//        }
-//        if(projectscount==4){
-//            RelativeLayout projectr5 = (RelativeLayout) rootView.findViewById(R.id.projectrl5);
-//            projectr5.setVisibility(View.VISIBLE);
-//        }
-//        if(projectscount==5){
-//            RelativeLayout projectr6 = (RelativeLayout) rootView.findViewById(R.id.projectrl6);
-//            projectr6.setVisibility(View.VISIBLE);
-//        }
-
-
-
-
-        if (projectr2.getVisibility() == View.VISIBLE) {
-            if (proj2.getText().toString().equals("") && domain2.getText().toString().equals("") && team2.getText().toString().equals("") && duration2.getText().toString().equals("")) {
-//                RelativeLayout projectr2 = (RelativeLayout) rootView.findViewById(R.id.projectrl2);
-//                projectr2.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-
-        if (projectr3.getVisibility() == View.VISIBLE) {
-            if (proj3.getText().toString().equals("") && domain3.getText().toString().equals("") && team3.getText().toString().equals("") && duration3.getText().toString().equals("")) {
-//                RelativeLayout projectr3 = (RelativeLayout) rootView.findViewById(R.id.projectrl3);
-//                projectr3.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-        if (projectr4.getVisibility() == View.VISIBLE) {
-            if (proj4.getText().toString().equals("") && domain4.getText().toString().equals("") && team4.getText().toString().equals("") && duration4.getText().toString().equals("")) {
-//                RelativeLayout projectr4 = (RelativeLayout) rootView.findViewById(R.id.projectrl4);
-//                projectr4.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-        if (projectr5.getVisibility() == View.VISIBLE) {
-            if (proj5.getText().toString().equals("") || domain5.getText().toString().equals("") || team5.getText().toString().equals("") || duration5.getText().toString().equals("")) {
-//                RelativeLayout projectr5 = (RelativeLayout) rootView.findViewById(R.id.projectrl5);
-//                projectr5.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-        if (projectr6.getVisibility() == View.VISIBLE) {
-            if (proj6.getText().toString().equals("") || domain6.getText().toString().equals("") || team6.getText().toString().equals("") || duration6.getText().toString().equals("")) {
-//                RelativeLayout projectr6 = (RelativeLayout) rootView.findViewById(R.id.projectrl6);
-//                projectr6.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-        if (projectr7.getVisibility() == View.VISIBLE) {
-            if (proj7.getText().toString().equals("") || domain7.getText().toString().equals("") || team7.getText().toString().equals("") || duration7.getText().toString().equals("")) {
-//                RelativeLayout projectr7 = (RelativeLayout) rootView.findViewById(R.id.projectrl7);
-//                projectr7.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-        if (projectr8.getVisibility() == View.VISIBLE) {
-            if (proj8.getText().toString().equals("") || domain8.getText().toString().equals("") || team8.getText().toString().equals("") || duration8.getText().toString().equals("")) {
-//                RelativeLayout projectr8 = (RelativeLayout) rootView.findViewById(R.id.projectrl8);
-//                projectr8.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-        if (projectr9.getVisibility() == View.VISIBLE) {
-            if (proj9.getText().toString().equals("") || domain9.getText().toString().equals("") || team9.getText().toString().equals("") || duration9.getText().toString().equals("")) {
-//                RelativeLayout projectr9 = (RelativeLayout) rootView.findViewById(R.id.projectrl9);
-//                projectr9.setVisibility(View.GONE);
-                projectscount--;
-                Log.d("count", "onPause: count "+projectscount);
-            }
-        }
-
-
-    }
-*/
-//    public void setCount() {
-//
-//        projectscount2 = 0;
-//
-//        RelativeLayout projectr2 = (RelativeLayout) rootView.findViewById(R.id.projectrl2);
-//        RelativeLayout projectr3 = (RelativeLayout) rootView.findViewById(R.id.projectrl3);
-//        RelativeLayout projectr4 = (RelativeLayout) rootView.findViewById(R.id.projectrl4);
-//        RelativeLayout projectr5 = (RelativeLayout) rootView.findViewById(R.id.projectrl5);
-//        RelativeLayout projectr6 = (RelativeLayout) rootView.findViewById(R.id.projectrl6);
-//        RelativeLayout projectr7 = (RelativeLayout) rootView.findViewById(R.id.projectrl7);
-//        RelativeLayout projectr8 = (RelativeLayout) rootView.findViewById(R.id.projectrl8);
-//        RelativeLayout projectr9 = (RelativeLayout) rootView.findViewById(R.id.projectrl9);
-//        RelativeLayout projectrl0 = (RelativeLayout) rootView.findViewById(R.id.projectrl10);
-//
-//        if (projectr2.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 1;
-//            Log.d("cherck", "onCreateView:COUNT2 "+projectscount2);
-//
-//        }
-//
-//        if (projectr3.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 2;
-//        }
-//        if (projectr4.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 3;
-//        }
-//        if (projectr5.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 4;
-//        }
-//        if (projectr6.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 5;
-//        }
-//        if (projectr7.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 6;
-//        }
-//        if (projectr8.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 7;
-//        }
-//        if (projectr9.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 8;
-//        }
-//        if (projectrl0.getVisibility() == View.VISIBLE) {
-//            projectscount2 = 9;
-//        }
-//        Toast.makeText(getActivity(), "count " + projectscount, Toast.LENGTH_SHORT).show();
-//    }
-//    public  void  showproject(){
-//        RelativeLayout projectr2 = (RelativeLayout) rootView.findViewById(R.id.projectrl2);
-//        RelativeLayout projectr3 = (RelativeLayout) rootView.findViewById(R.id.projectrl3);
-//        RelativeLayout projectr4 = (RelativeLayout) rootView.findViewById(R.id.projectrl4);
-//        RelativeLayout projectr5 = (RelativeLayout) rootView.findViewById(R.id.projectrl5);
-//        RelativeLayout projectr6 = (RelativeLayout) rootView.findViewById(R.id.projectrl6);
-//        RelativeLayout projectr7 = (RelativeLayout) rootView.findViewById(R.id.projectrl7);
-//        RelativeLayout projectr8 = (RelativeLayout) rootView.findViewById(R.id.projectrl8);
-//        RelativeLayout projectr9 = (RelativeLayout) rootView.findViewById(R.id.projectrl9);
-//        RelativeLayout projectrl0 = (RelativeLayout) rootView.findViewById(R.id.projectrl10);
-//
-//        if(projectscount==1){
-//            projectr8.setVisibility(View.VISIBLE);
-//
-//        }
-//        if(projectscount==2){
-//            projectr3.setVisibility(View.VISIBLE);
-//
-//        }
-//        if(projectscount==3){
-//            projectr4.setVisibility(View.VISIBLE);
-//
-//        }if(projectscount==4){
-//            projectr5.setVisibility(View.VISIBLE);
-//
-//        }if(projectscount==5){
-//            projectr6.setVisibility(View.VISIBLE);
-//
-//        }if(projectscount==6){
-//            projectr7.setVisibility(View.VISIBLE);
-//
-//        }if(projectscount==7){
-//            projectr8.setVisibility(View.VISIBLE);
-//
-//        }
-//    }
-
-
-    //    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        // Make sure that we are currently visible
-//        if (this.isVisible()) {
-//        }
-//        if (!isVisibleToUser) {
-//            Toast.makeText(getActivity(), "hide", Toast.LENGTH_SHORT).show();
-//            if (proj2.getText().toString().equals("") && domain2.getText().toString().equals("") && team2.getText().toString().equals("") && duration2.getText().toString().equals("")) {
-//                RelativeLayout projectr2 = (RelativeLayout) rootView.findViewById(R.id.projectrl2);
-//                projectr2.setVisibility(View.GONE);
-//                projectscount--;
-//            } else if (proj3.getText().toString().equals("") && domain3.getText().toString().equals("") && team3.getText().toString().equals("") && duration3.getText().toString().equals("")) {
-//                RelativeLayout projectr3 = (RelativeLayout) rootView.findViewById(R.id.projectrl3);
-//                projectr3.setVisibility(View.GONE);
-//                projectscount--;
-//            } else if (proj4.getText().toString().equals("") && domain4.getText().toString().equals("") && team4.getText().toString().equals("") && duration4.getText().toString().equals("")) {
-//                RelativeLayout projectr4 = (RelativeLayout) rootView.findViewById(R.id.projectrl4);
-//                projectr4.setVisibility(View.GONE);
-//                projectscount--;
-//            }
-//
-//        }
-//    }
 
     public boolean myvalidate() {
         errorflag = 0;
@@ -2443,380 +2217,6 @@ public class ProjectsProfileTabFragment extends Fragment {
 
     }
 
-    //fun
-
-//    public Boolean validate() {
-//
-//        errorflag = 0;
-//
-//        projinput1.setError(null);
-//        domaininput1.setError(null);
-//        teaminput1.setError(null);
-//        durationinput1.setError(null);
-//        projinput2.setError(null);
-//        domaininput2.setError(null);
-//        teaminput2.setError(null);
-//        durationinput2.setError(null);
-//        projinput3.setError(null);
-//        domaininput3.setError(null);
-//        teaminput3.setError(null);
-//        durationinput3.setError(null);
-//        projinput4.setError(null);
-//        domaininput4.setError(null);
-//        teaminput4.setError(null);
-//        durationinput4.setError(null);
-//        projinput5.setError(null);
-//        domaininput5.setError(null);
-//        teaminput5.setError(null);
-//        durationinput5.setError(null);
-//        projinput6.setError(null);
-//        domaininput6.setError(null);
-//        teaminput6.setError(null);
-//        durationinput6.setError(null);
-//        projinput7.setError(null);
-//        domaininput7.setError(null);
-//        teaminput7.setError(null);
-//        durationinput7.setError(null);
-//        projinput8.setError(null);
-//        domaininput8.setError(null);
-//        teaminput8.setError(null);
-//        durationinput8.setError(null);
-//        projinput9.setError(null);
-//        domaininput9.setError(null);
-//        teaminput9.setError(null);
-//        durationinput9.setError(null);
-//        projinput10.setError(null);
-//        domaininput10.setError(null);
-//        teaminput10.setError(null);
-//        durationinput10.setError(null);
-//
-//        sproj1 = proj1.getText().toString();
-//        sdomain1 = domain1.getText().toString();
-//        steam1 = team1.getText().toString();
-//        sduration1 = duration1.getText().toString();
-//        sproj2 = proj2.getText().toString();
-//        sdomain2 = domain2.getText().toString();
-//        steam2 = team2.getText().toString();
-//        sduration2 = duration2.getText().toString();
-//        sproj3 = proj3.getText().toString();
-//        sdomain3 = domain3.getText().toString();
-//        steam3 = team3.getText().toString();
-//        sduration3 = duration3.getText().toString();
-//        sproj4 = proj4.getText().toString();
-//        sdomain4 = domain4.getText().toString();
-//        steam4 = team4.getText().toString();
-//        sduration4 = duration4.getText().toString();
-//        sproj5 = proj5.getText().toString();
-//        sdomain5 = domain5.getText().toString();
-//        steam5 = team5.getText().toString();
-//        sduration5 = duration5.getText().toString();
-//        sproj6 = proj6.getText().toString();
-//        sdomain6 = domain6.getText().toString();
-//        steam6 = team6.getText().toString();
-//        sduration6 = duration6.getText().toString();
-//        sproj7 = proj7.getText().toString();
-//        sdomain7 = domain7.getText().toString();
-//        steam7 = team7.getText().toString();
-//        sduration7 = duration7.getText().toString();
-//        sproj8 = proj8.getText().toString();
-//        sdomain8 = domain8.getText().toString();
-//        steam8 = team8.getText().toString();
-//        sduration8 = duration8.getText().toString();
-//        sproj9 = proj9.getText().toString();
-//        sdomain9 = domain9.getText().toString();
-//        steam9 = team9.getText().toString();
-//        sduration9 = duration9.getText().toString();
-//        sproj10 = proj10.getText().toString();
-//        sdomain10 = domain10.getText().toString();
-//        steam10 = team10.getText().toString();
-//        sduration10 = duration10.getText().toString();
-//
-//        if(editproj==1){
-//            save();
-//        }
-//        else {
-//        if (projectscount == 0) {
-//            if (sproj1.length() < 3) {
-//                errorflag = 1;
-//                proj1.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain1.length() < 3) {
-//                    errorflag = 1;
-//                    domain1.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam1.length() < 1) {
-//                        errorflag = 1;
-//                        team1.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration1.length() < 1) {
-//                            errorflag = 1;
-//                            duration1.setError("Kindly enter valid duration in months");
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 1) {
-////            if (sproj1.length() < 3) {
-////                errorflag = 1;
-////                proj1.setError("Kindly enter valid project name");
-////            } else {
-////                errorflag = 0;
-////                if (sdomain1.length() < 3) {
-////                    errorflag = 1;
-////                    domain1.setError("Kindly enter valid domain");
-////                } else {
-////                    errorflag = 0;
-////                    if (steam1.length() < 1) {
-////                        errorflag = 1;
-////                        team1.setError("Kindly enter valid team size");
-////                    } else {
-////                        errorflag = 0;
-////                        if (sduration1.length() < 1) {
-////                            errorflag = 1;
-////                            duration1.setError("Kindly enter valid duration in months");
-////                        } else {
-////                            errorflag = 0;
-//            if (sproj2.length() < 3) {
-//                errorflag = 1;
-//                proj2.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain2.length() < 3) {
-//                    errorflag = 1;
-//                    domain2.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam2.length() < 1) {
-//                        errorflag = 1;
-//                        team2.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration2.length() < 1) {
-//                            errorflag = 1;
-//                            duration2.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//
-//
-//                }
-//
-//            }
-//
-//
-//        }
-//
-//        if (projectscount == 2) {
-//            if (sproj3.length() < 3) {
-//                errorflag = 1;
-//                proj3.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain3.length() < 3) {
-//                    errorflag = 1;
-//                    domain3.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam3.length() < 1) {
-//                        errorflag = 1;
-//                        team3.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration3.length() < 1) {
-//                            errorflag = 1;
-//                            duration3.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 3) {
-//            if (sproj4.length() < 3) {
-//                errorflag = 1;
-//                proj4.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain4.length() < 3) {
-//                    errorflag = 1;
-//                    domain4.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam4.length() < 1) {
-//                        errorflag = 1;
-//                        team4.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration4.length() < 1) {
-//                            errorflag = 1;
-//                            duration4.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 4) {
-//            if (sproj5.length() < 3) {
-//                errorflag = 1;
-//                proj5.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain5.length() < 3) {
-//                    errorflag = 1;
-//                    domain5.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam5.length() < 1) {
-//                        errorflag = 1;
-//                        team5.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration5.length() < 1) {
-//                            errorflag = 1;
-//                            duration5.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 5) {
-//            if (sproj6.length() < 3) {
-//                errorflag = 1;
-//                proj6.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain6.length() < 3) {
-//                    errorflag = 1;
-//                    domain6.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam6.length() < 1) {
-//                        errorflag = 1;
-//                        team6.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration6.length() < 1) {
-//                            errorflag = 1;
-//                            duration6.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 6) {
-//            if (sproj7.length() < 3) {
-//                errorflag = 1;
-//                proj7.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain7.length() < 3) {
-//                    errorflag = 1;
-//                    domain7.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam7.length() < 1) {
-//                        errorflag = 1;
-//                        team7.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration7.length() < 1) {
-//                            errorflag = 1;
-//                            duration7.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 7) {
-//            if (sproj8.length() < 3) {
-//                errorflag = 1;
-//                proj8.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain8.length() < 3) {
-//                    errorflag = 1;
-//                    domain8.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam8.length() < 1) {
-//                        errorflag = 1;
-//                        team8.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration8.length() < 1) {
-//                            errorflag = 1;
-//                            duration8.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 8) {
-//            if (sproj9.length() < 3) {
-//                errorflag = 1;
-//                proj9.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain9.length() < 3) {
-//                    errorflag = 1;
-//                    domain9.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam9.length() < 1) {
-//                        errorflag = 1;
-//                        team9.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration9.length() < 1) {
-//                            errorflag = 1;
-//                            duration9.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        if (projectscount == 9) {
-//            if (sproj10.length() < 3) {
-//                errorflag = 1;
-//                proj10.setError("Kindly enter valid project name");
-//            } else {
-//                errorflag = 0;
-//                if (sdomain10.length() < 3) {
-//                    errorflag = 1;
-//                    domain10.setError("Kindly enter valid domain");
-//                } else {
-//                    errorflag = 0;
-//                    if (steam10.length() < 1) {
-//                        errorflag = 1;
-//                        team10.setError("Kindly enter valid team size");
-//                    } else {
-//                        errorflag = 0;
-//                        if (sduration10.length() < 1) {
-//                            errorflag = 1;
-//                            duration10.setError("Kindly enter valid duration in months");
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//        }
-//        if (errorflag == 0)
-//            return true;
-//        else
-//            return false;
-//    }
-
     public void save() {
 
         try {
@@ -2831,7 +2231,6 @@ public class ProjectsProfileTabFragment extends Fragment {
             Projects obj9 = new Projects(sproj9, sdomain9, steam9, sduration9);
             Projects obj10 = new Projects(sproj10, sdomain10, steam10, sduration10);
 
-            Log.d("TAG", "objects created");
 
             projectsList.add(obj1);
             projectsList.add(obj2);
@@ -2844,14 +2243,12 @@ public class ProjectsProfileTabFragment extends Fragment {
             projectsList.add(obj9);
             projectsList.add(obj10);
 
-            Log.d("TAG", "objects added in arraylist");
 
             String encObjString = OtoString(projectsList, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
             new SaveProjects().execute(encObjString);
 
         } catch (Exception e) {
-            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -3022,7 +2419,6 @@ public class ProjectsProfileTabFragment extends Fragment {
                 }
             }
         }
-//        Toast.makeText(MyProfileProjects.this,"delete "+d,Toast.LENGTH_LONG).show();
         if (d == 10) {
             proj10.setText("");
             domain10.setText("");
@@ -3913,12 +3309,10 @@ public class ProjectsProfileTabFragment extends Fragment {
             sduration1 = duration1.getText().toString();
 
             if(sproj1.equals("") && sdomain1.equals("") && steam1.equals("") && sduration1.equals("")){
-                Log.d("TAG", "deleteLang: strength1 1");
                 editproj =1;
             }
 
             if(editproj==1){
-                Log.d("TAG", "deleteLang: strength1 - "+editproj);
                 save();
             }
 
@@ -3971,7 +3365,6 @@ public class ProjectsProfileTabFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
 
-            Log.d("TAG", "encrypted objec string2: " + param[0]);
             params.add(new BasicNameValuePair("d", param[0]));       //0
 
             json = jParser.makeHttpRequest(Z.url_saveprojects, "GET", params);
@@ -3988,15 +3381,15 @@ public class ProjectsProfileTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-//                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
 
                 if (role.equals("student"))
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 edittedFlag = 0;
-            }
+            } else
+                Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
+
         }
 
     }

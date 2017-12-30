@@ -331,11 +331,9 @@ public class HrIntro extends AppCompatActivity {
 
                 ModalHrIntro obj2 = new ModalHrIntro(firstname, lastname, designationValue, selectedCity, selectedState, selectedCountry);
                 encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(HrIntro.this), MySharedPreferencesManager.getDigest2(HrIntro.this));
-                Log.d("TAG", "validateandSave: encobj - " + encobj);
                 new SaveData().execute();
 
             } catch (Exception e) {
-                Log.d("TAG", "validateandSave: Exception -  " + e.getMessage());
             }
         }
 
@@ -421,7 +419,6 @@ public class HrIntro extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            Log.d("TAG", "doInBackground: HRintro activity-----------------------------------");
             json = jParser.makeHttpRequest(Z.url_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
@@ -447,7 +444,8 @@ public class HrIntro extends AppCompatActivity {
                 hr.setCity(selectedCity);
 
                 HrIntro.super.onBackPressed();
-            }
+            } else
+                Toast.makeText(HrIntro.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 

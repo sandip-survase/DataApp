@@ -282,13 +282,6 @@ public class MyProfilePatents extends AppCompatActivity {
                 statusradiotxt10= (TextView) findViewById(R.id.statusradiotxt10);
 
 
-
-
-
-
-
-
-
         titleinput1 = (TextInputLayout) findViewById(R.id.titleinput1);
         appnoinput1 = (TextInputLayout) findViewById(R.id.appnoinput1);
         inventorinput1 = (TextInputLayout) findViewById(R.id.inventorinput1);
@@ -765,7 +758,6 @@ public class MyProfilePatents extends AppCompatActivity {
                         filinginput10.setVisibility(View.GONE);
                         issueinput10.setVisibility(View.VISIBLE);
                         filing10.setText("");
-                        Log.d("TAG", "onCheckedChanged: filinginput10.setVisibility(View.GONE)");
                         break;
                     case R.id.radioButtonPending10:
                         issuedorpending10 = "pending";
@@ -773,7 +765,6 @@ public class MyProfilePatents extends AppCompatActivity {
 //                        filing10.setVisibility(View.VISIBLE);
                         issue10.setText("");
                         issueinput10.setVisibility(View.GONE);
-                        Log.d("TAG", "onCheckedChanged: filinginput10.setVisibility(View.VISIBLE);");
                         break;
                 }
             }
@@ -933,16 +924,6 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                String temp = appno2.getText().toString();
-//                Log.d("TAG", "afterTextChanged: temp - "+temp);
-//
-//                Log.d("TAG", "afterTextChanged: appnoinput2 - "+appnoinput2.getError());
-//                if(appnoinput2.getError()!=null)
-//                if(appnoinput2.getError().equals("Kindly enter valid application number")){
-//                    appnoinput2.requestFocus();
-//                    appno2.requestFocus();
-//                    Log.d("TAG", "afterTextChanged: in if request");
-//                }
 
             }
         });
@@ -4789,12 +4770,10 @@ public class MyProfilePatents extends AppCompatActivity {
 
 
             if(stitle1.equals("") && sappno1.equals("") && sinventor1.equals("") && sissue1.equals("") && sfiling1.equals("")){
-                Log.d("TAG", "deleteLang: lang 1");
                 editpatent =1;
             }
 
             if(editpatent==1){
-                Log.d("TAG", "deleteLang: editcertfi - "+editpatent);
                 encpatent();
             }
         }
@@ -6990,7 +6969,6 @@ public class MyProfilePatents extends AppCompatActivity {
 
 
         } catch (Exception e) {
-            Toast.makeText(MyProfilePatents.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -7323,7 +7301,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
                 MyProfilePatents.super.onBackPressed();
             } else
-                Toast.makeText(MyProfilePatents.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfilePatents.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

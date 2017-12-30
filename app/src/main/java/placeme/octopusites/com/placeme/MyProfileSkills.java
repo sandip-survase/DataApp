@@ -368,7 +368,6 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editeskills=0;
-                Log.d("TAG", "onClick: skill count - "+skillcount);
                 if (skillcount == 0) {
 
                     if(skill1.getText().toString()!=null)
@@ -774,7 +773,6 @@ public class MyProfileSkills extends AppCompatActivity {
                     {
                         if(!skill16.getText().toString().equals("")&&!proficiency16.getSelectedItem().toString().equals("- Proficiency -"))
                         {
-                            Log.d("TAG", "onClick: skill 17");
                             View v = (View) findViewById(R.id.skillline16);
                             v.setVisibility(View.VISIBLE);
 
@@ -802,7 +800,6 @@ public class MyProfileSkills extends AppCompatActivity {
                     {
                         if(!skill17.getText().toString().equals("")&&!proficiency17.getSelectedItem().toString().equals("- Proficiency -"))
                         {
-                            Log.d("TAG", "onClick: skill 18");
                             View v = (View) findViewById(R.id.skillline17);
                             v.setVisibility(View.VISIBLE);
 
@@ -829,7 +826,6 @@ public class MyProfileSkills extends AppCompatActivity {
                         if(!skill18.getText().toString().equals("")&&!proficiency18.getSelectedItem().toString().equals("- Proficiency -"))
                         {
 
-                            Log.d("TAG", "onClick: skill 19");
                             View v = (View) findViewById(R.id.skillline18);
                             v.setVisibility(View.VISIBLE);
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.skillrl19);
@@ -854,7 +850,6 @@ public class MyProfileSkills extends AppCompatActivity {
                         if(!skill19.getText().toString().equals("")&&!proficiency19.getSelectedItem().toString().equals("- Proficiency -"))
                         {
 
-                            Log.d("TAG", "onClick: skill 20");
                             View v = (View) findViewById(R.id.skillline19);
                             v.setVisibility(View.VISIBLE);
 
@@ -1669,8 +1664,6 @@ public class MyProfileSkills extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency1 = (String) parent.getItemAtPosition(position);
 
-                Log.d("TAG", "onItemSelected: " + sproficiency1);
-
                 if (s.getSproficiency1()!=null && !s.getSproficiency1().equals(sproficiency1)) {
                     proficiencyEdittedFlog = 1;
                 }
@@ -2030,7 +2023,6 @@ public class MyProfileSkills extends AppCompatActivity {
         View v = (View) findViewById(R.id.skillline19);
 
         if (v.getVisibility() == View.VISIBLE) {
-            Log.d("TAG", "deleteSkill: skillline19");
 
             View v1 = (View) findViewById(R.id.skillline19);
             v1.setVisibility(View.GONE);
@@ -2053,7 +2045,6 @@ public class MyProfileSkills extends AppCompatActivity {
             v = (View) findViewById(R.id.skillline18);
             if (v.getVisibility() == View.VISIBLE) {
 
-                Log.d("TAG", "deleteSkill: skillline18");
 
                 View v1 = (View) findViewById(R.id.skillline18);
                 v1.setVisibility(View.GONE);
@@ -2070,7 +2061,6 @@ public class MyProfileSkills extends AppCompatActivity {
                 v = (View) findViewById(R.id.skillline17);
                 if (v.getVisibility() == View.VISIBLE) {
 
-                    Log.d("TAG", "deleteSkill: skillline17");
 
                     View v1 = (View) findViewById(R.id.skillline17);
                     v1.setVisibility(View.GONE);
@@ -2087,7 +2077,6 @@ public class MyProfileSkills extends AppCompatActivity {
                     v = (View) findViewById(R.id.skillline16);
                     if (v.getVisibility() == View.VISIBLE) {
 
-                        Log.d("TAG", "deleteSkill: skillline16");
 
                         View v1 = (View) findViewById(R.id.skillline16);
                         v1.setVisibility(View.GONE);
@@ -4515,20 +4504,12 @@ public class MyProfileSkills extends AppCompatActivity {
             sproficiency1=proficiency1.getSelectedItem().toString();
             if(sskill1.equals("")  )
             {
-                Log.d("TAG", "deleteLang: lang 1");
                 editeskills =1;
             }
 
             if(editeskills==1){
-                Log.d("TAG", "deleteLang: editlang - "+editeskills);
                 encskills();
             }
-
-
-//          *********************
-
-
-
 
         }
 
@@ -4543,27 +4524,7 @@ public class MyProfileSkills extends AppCompatActivity {
     }
 
     void validateandSave() {
-//        skill1.setError(null);
-//        skill2.setError(null);
-//        skill3.setError(null);
-//        skill4.setError(null);
-//        skill5.setError(null);
-//        skill6.setError(null);
-//        skill7.setError(null);
-//        skill8.setError(null);
-//        skill9.setError(null);
-//        skill10.setError(null);
-//        skill11.setError(null);
-//        skill12.setError(null);
-//        skill13.setError(null);
-//        skill14.setError(null);
-//        skill15.setError(null);
-//        skill16.setError(null);
-//        skill17.setError(null);
-//        skill18.setError(null);
-//        skill19.setError(null);
-//        skill20.setError(null);
-
+//
         sskill1 = skill1.getText().toString();
         sskill2 = skill2.getText().toString();
         sskill3 = skill3.getText().toString();
@@ -4584,7 +4545,7 @@ public class MyProfileSkills extends AppCompatActivity {
         sskill18 = skill18.getText().toString();
         sskill19 = skill19.getText().toString();
         sskill20 = skill20.getText().toString();
-// getting data from Spinner
+
         sproficiency1 = proficiency1.getSelectedItem().toString();
         sproficiency2 = proficiency2.getSelectedItem().toString();
         sproficiency3 = proficiency3.getSelectedItem().toString();
@@ -4606,9 +4567,6 @@ public class MyProfileSkills extends AppCompatActivity {
         sproficiency19 = proficiency19.getSelectedItem().toString();
         sproficiency20 = proficiency20.getSelectedItem().toString();
 
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
 
@@ -7157,7 +7115,6 @@ public class MyProfileSkills extends AppCompatActivity {
 
             new SaveSkills().execute(encObjString);
         } catch (Exception e) {
-            Toast.makeText(MyProfileSkills.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -7239,7 +7196,8 @@ public class MyProfileSkills extends AppCompatActivity {
                 s.setSkill20(sskill20);
                 s.setSproficiency20(sproficiency20);
                 MyProfileSkills.super.onBackPressed();
-            }
+            } else
+                Toast.makeText(MyProfileSkills.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -7275,7 +7233,6 @@ public class MyProfileSkills extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Log.d("TAG", "proficiencyEdittedFlog   " + proficiencyEdittedFlog + "\n edittedFlag  " + edittedFlag);
 
         if (edittedFlag == 1 || proficiencyEdittedFlog == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

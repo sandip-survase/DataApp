@@ -21,9 +21,6 @@ public class AdminAccomplishments extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Accomplishments");
         ab.setDisplayHomeAsUpEnabled(true);
-
-
-
         username=getIntent().getStringExtra("username");
 
 
@@ -104,6 +101,5 @@ public class AdminAccomplishments extends AppCompatActivity {
         else
             setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
-        Log.d("TAG", "AdminAccomplishments: editprofile "+resultCode);
     }
 }

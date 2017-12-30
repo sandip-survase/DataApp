@@ -1078,12 +1078,10 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             sweak1 = weak1.getText().toString();
 
             if(sweak1.equals("")){
-                Log.d("TAG", "deleteLang: strength1 1");
                 editweak=1;
             }
 
             if(editweak==1){
-                Log.d("TAG", "deleteLang: strength1 - "+editweak);
                 encweak();
             }
 
@@ -1091,16 +1089,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
     }
 
     void validateandSave() {
-//        weak1.setError(null);
-//        weak2.setError(null);
-//        weak3.setError(null);
-//        weak4.setError(null);
-//        weak5.setError(null);
-//        weak6.setError(null);
-//        weak7.setError(null);
-//        weak8.setError(null);
-//        weak9.setError(null);
-//        weak10.setError(null);
+//
 
         sweak1 = weak1.getText().toString();
         sweak2 = weak2.getText().toString();
@@ -1113,9 +1102,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         sweak9 = weak9.getText().toString();
         sweak10 = weak10.getText().toString();
 
-//        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//        String sPadding = "ISO10126Padding";
+//
 
         int errorflag = 0;
         if(editweak==1){
@@ -1455,11 +1442,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             MyProfileWeaknessesModal obj2 = new MyProfileWeaknessesModal(sweak1, sweak2, sweak3, sweak4, sweak5, sweak6, sweak7, sweak8, sweak9, sweak10);;
 
             encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileWeaknesses.this),MySharedPreferencesManager.getDigest2(MyProfileWeaknesses.this));
-            Log.d("TAG", "validateandSave: encobj - "+encobj);
             new SaveWeak().execute();
 
         } catch (Exception e) {
-            Toast.makeText(MyProfileWeaknesses.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -1508,7 +1493,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
 
                 MyProfileWeaknesses.super.onBackPressed();
             } else
-                Toast.makeText(MyProfileWeaknesses.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileWeaknesses.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

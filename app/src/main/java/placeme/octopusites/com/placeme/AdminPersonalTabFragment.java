@@ -63,17 +63,11 @@ public class AdminPersonalTabFragment extends Fragment {
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
-
-
-    int countrycount = 0, statecount = 0, citycount = 0;
     String firstname = "", lastname = "", instname = "";
     String oldCountry = "", oldState = "", oldCity = "";
     String countries[], states[], cities[];
     Spinner country, state, city;
-    List<String> countrieslist = new ArrayList<String>();
-    List<String> stateslist = new ArrayList<String>();
-    List<String> citieslist = new ArrayList<String>();
-    String selectedCountry = "", selectedState = "", selectedCity = "";
+
     String encUsername, encRole, encemail, encFname, encLname, encCountry, encState, encCity, encInst;
     //    Button save;
     String username, plainusername;
@@ -132,8 +126,6 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrline2 = (EditText) rootView.findViewById(R.id.paddrline2);
         paddrline3 = (EditText) rootView.findViewById(R.id.paddrline3);
 
-//        save = (Button) rootView.findViewById(R.id.savepersonal);
-//        personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
 
         fnameedittext.setTypeface(Z.getBold(getActivity()));
         mnameedittext.setTypeface(Z.getBold(getActivity()));
@@ -634,13 +626,6 @@ public class AdminPersonalTabFragment extends Fragment {
         edittedFlag = 0;
 
 
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//            }
-//        });
         return rootView;
 
     }
@@ -674,8 +659,7 @@ public class AdminPersonalTabFragment extends Fragment {
             outputDateStrlastdateofreg = outputFormat.format(date);
             dob = outputDateStrlastdateofreg;
         } catch (Exception e) {
-//            Toast.makeText(getContext(), "Kindly enter vali date of birth", Toast.LENGTH_SHORT).show();
-//            dobinput.setError("Kindly enter valid date of birth");
+//
         }
 
         int selectedId;
@@ -686,8 +670,7 @@ public class AdminPersonalTabFragment extends Fragment {
             gender = tempradiobutton.getText().toString().trim();
 
         } catch (Exception e) {
-//            errorflag1 = 1;
-//            Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
+//
         }
 
 
@@ -721,26 +704,12 @@ public class AdminPersonalTabFragment extends Fragment {
         if (errorflag1 == 0) {
             try {
 
-                Log.d("TAG", "save: fname - "+fname);
-                Log.d("TAG", "save: mname - "+mname);
-                Log.d("TAG", "save: lname - "+sname);
-                Log.d("TAG", "save: alternateemail - "+alternateemail);
-                Log.d("TAG", "save: sinst - "+sinst);
-                Log.d("TAG", "save: dob - "+dob);
-                Log.d("TAG", "save: gender - "+gender);
-                Log.d("TAG", "save: addrline1c - "+addrline1c);
-                Log.d("TAG", "save: addrline2c - "+addrline2c);
-                Log.d("TAG", "save: addrline3c - "+addrline3c);
-
-
                 AdminPersonal obj = new AdminPersonal(fname, mname, sname, alternateemail, sinst, dob, gender, addrline1c, addrline2c, addrline3c, addrline1p, addrline2p, addrline3p);
                 encobj = OtoString(obj, digest1, digest2);
-                Log.d("TAG", "save: encobj - "+encobj);
                 new SaveData().execute();
 
 
             } catch (Exception e) {
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         }
@@ -770,18 +739,15 @@ public class AdminPersonalTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (edittedFlag == 1) {
                     getActivity().setResult(111);
 
                 }
                 edittedFlag = 0;
-//                personalprogress.setVisibility(View.GONE);
-//                save.setVisibility(View.VISIBLE);
-            } else {
-                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
 
-            }
+
         }
     }
 

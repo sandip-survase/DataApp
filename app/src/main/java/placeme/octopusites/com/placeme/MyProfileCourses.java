@@ -1053,7 +1053,6 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                Log.d("TAG", "onClick: id before " + todateinput1);
                 showDateDialog(todate1,todateinput1, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
@@ -2664,7 +2663,6 @@ public class MyProfileCourses extends AppCompatActivity {
 
             }
         } else if (d == 1) {
-            Log.d("TAG", "deleteCourse: d== 1");
 
             sname10 = name10.getText().toString();
             sinst10 = inst10.getText().toString();
@@ -2869,7 +2867,6 @@ public class MyProfileCourses extends AppCompatActivity {
             }
 
             if(editecourse==1){
-                Log.d("TAG", "doInBackground: editecourse - "+editecourse);
                 savecours();
             }
         }
@@ -4477,10 +4474,6 @@ public class MyProfileCourses extends AppCompatActivity {
     public void savecours(){
         try {
 
-            Log.d("TAG", "doInBackground: course1 -"+sname1);
-            Log.d("TAG", "doInBackground: inst1 - "+sinst1);
-            Log.d("TAG", "doInBackground: fromdate1 -"+sfromdate1);
-            Log.d("TAG", "doInBackground: todate1 - "+stodate1);
 
 
             Courses obj1 = new Courses(sname1, sinst1, sfromdate1, stodate1);
@@ -4510,7 +4503,6 @@ public class MyProfileCourses extends AppCompatActivity {
 
             new SaveCourses().execute(encObjString);
         } catch (Exception e) {
-            Toast.makeText(MyProfileCourses.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }
@@ -4663,7 +4655,7 @@ public class MyProfileCourses extends AppCompatActivity {
 
                 MyProfileCourses.super.onBackPressed();
             } else
-                Toast.makeText(MyProfileCourses.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileCourses.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

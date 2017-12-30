@@ -49,29 +49,18 @@ public class MyProfileIntro extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
-    String strobj = "";
     Modelmyprofileintro obj;
     ArrayList<String> listAll = new ArrayList<String>();
-    int countrycount = 0, statecount = 0, citycount = 0;
     String firstname = "", lastname = "", CityStateCountry = "";
-
-    String oldCountry = "", oldState = "", oldCity = "";
-    String countries[], states[], cities[];
-    //    Spinner country,state,city;
-    List<String> countrieslist = new ArrayList<String>();
-    List<String> stateslist = new ArrayList<String>();
-    List<String> citieslist = new ArrayList<String>();
     String selectedCountry = "", selectedState = "", selectedCity = "";
-    String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encobj;
-    int edittedFlag = 0, isCountrySet = 0, isStateSet = 0, isCitySet = 0;
+    String encUsername, encRole, encobj;
+    int edittedFlag = 0;
     StudentData s = new StudentData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_intro);
-
-
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
@@ -151,9 +140,6 @@ public class MyProfileIntro extends AppCompatActivity {
         role.setText(rolestr.substring(0, 1).toUpperCase() + rolestr.substring(1));
         email.setText(plainUsername);
         encUsername = username;
-//        encUsername=MySharedPreferencesManager.getUsername(this);
-        Log.d("TAG", "encUsername: " + encUsername);
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listAll);
         citystaecountry.setAdapter(adapter);
@@ -196,6 +182,8 @@ public class MyProfileIntro extends AppCompatActivity {
 
 
         });
+
+
         lname.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -217,6 +205,7 @@ public class MyProfileIntro extends AppCompatActivity {
 
 
         });
+
 
         edittedFlag = 0;
 
@@ -307,20 +296,15 @@ public class MyProfileIntro extends AppCompatActivity {
                 }
 
             }
-
-
         }
-
 
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0) {
             try {
                 Modelmyprofileintro obj2 = new Modelmyprofileintro(firstname, lastname, selectedCity, selectedState, selectedCountry);
                 encobj = OtoString(obj2, digest1, digest2);
-                Log.d("TAG", "validateandSave: encobj - " + encobj);
                 new SaveData().execute(encobj);
 
             } catch (Exception e) {
-                Log.d("TAG", "validateandSave: Exception -  " + e.getMessage());
             }
         }
 
@@ -353,7 +337,6 @@ public class MyProfileIntro extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
 
         if (edittedFlag == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -401,15 +384,11 @@ public class MyProfileIntro extends AppCompatActivity {
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsername));//0
-            Log.d("TAG", "encUsername: " + encUsername);
             params.add(new BasicNameValuePair("ci", encobj));       //1
-            Log.d("TAG", "encobj: " + encobj);
-
 
             json = jParser.makeHttpRequest(Z.url_SaveIntro, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: r -" + r);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -421,8 +400,6 @@ public class MyProfileIntro extends AppCompatActivity {
 
             if (result.equals("success")) {
                 Toast.makeText(MyProfileIntro.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-
-
                 String role = MySharedPreferencesManager.getRole(MyProfileIntro.this);
                 if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
@@ -439,7 +416,7 @@ public class MyProfileIntro extends AppCompatActivity {
 
                 MyProfileIntro.super.onBackPressed();
             } else
-                Toast.makeText(MyProfileIntro.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileIntro.this, "Try again !", Toast.LENGTH_SHORT).show();
 
 
         }

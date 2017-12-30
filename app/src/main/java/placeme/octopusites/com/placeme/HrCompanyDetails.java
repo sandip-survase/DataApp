@@ -193,7 +193,6 @@ public class HrCompanyDetails extends AppCompatActivity {
                 pos = position;
                 CompanyType = Nature[position];
                 newnature = CompanyType;
-                Log.d("TAG", "onItemSelected: - " + CompanyType);
 
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
@@ -542,22 +541,17 @@ public class HrCompanyDetails extends AppCompatActivity {
 
 
                 ArrayList<CompanyDetailsModal> modalList = new ArrayList<>();
-//                String ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3;
 
                 CompanyDetailsModal obj2 = new CompanyDetailsModal(ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3, CompanyType);
 
-                Log.d("TAG", "validateandSave:-" + obj2.ComName + "   " + obj2.ComMail + "" + obj2.ComWeb + "  " + obj2.ComPhone + "   " + obj2.ComAlterPhone + "   " + obj2.ComCIIN + "   " + obj2.ComAdd1 + "   " + obj2.ComAdd2 + "   " + obj2.ComAdd3 + "   " + obj2.CompanyNature);
 
-                Log.d("TAG", "validateandSave: - modallist size " + modalList.size());
                 encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(HrCompanyDetails.this), MySharedPreferencesManager.getDigest2(HrCompanyDetails.this));
 
-                Log.d("TAG", "validateandSave: encobj - " + encobj);
 
                 new SaveDataHr().execute();
 
             } catch (Exception company) {
 
-                Toast.makeText(this, company.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -637,7 +631,9 @@ public class HrCompanyDetails extends AppCompatActivity {
                 setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
                 HrCompanyDetails.super.onBackPressed();
 
-            }
+            } else
+                Toast.makeText(HrCompanyDetails.this, "Try again !", Toast.LENGTH_SHORT).show();
+
         }
     }
 }

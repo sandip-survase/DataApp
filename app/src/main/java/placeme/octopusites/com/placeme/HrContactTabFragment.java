@@ -42,7 +42,6 @@ public class HrContactTabFragment extends Fragment {
     String digest1, digest2;
 
     String hrfname = "", hrlname = "", hremail2 = "", hraddressline1 = "", hraddressline2 = "", hraddressline3 = "", hrphone = "", hrmobile = "", hrmobile2 = "";
-    String encfname,enclname,encemail2,encaddressline1,encaddressline2,encaddressline3,encphone,encmobile,encmobile2;
     String plainusername = "";
     String strobj="";
     int edittedFlag=0;
@@ -113,10 +112,6 @@ public class HrContactTabFragment extends Fragment {
         mobile.setTypeface(Z.getBold(getActivity()));
         mobile2.setTypeface(Z.getBold(getActivity()));
 
-//        saveContactDetailsButton= (Button) rootView.findViewById(R.id.saveContactDetailsButton);
-//        contactDetailsProgress= (ProgressBar) rootView.findViewById(R.id.contactDetailsProgress);
-
-
         email.setFocusable(false);
         email.setFocusableInTouchMode(false);
         email.setClickable(false);
@@ -153,15 +148,6 @@ public class HrContactTabFragment extends Fragment {
         hrmobile2 = s.getMobile2();
 
 
-//        hrfname = hrData.getFname();
-//        hrlname = hrData.getLname();
-//        hrmobile = hrData.getMobile();
-//        hremail2 = hrData.getEmail2();
-//        hraddressline1 = hrData.getAddressline1();
-//        hraddressline2 = hrData.getAddressline2();
-//        hraddressline3 = hrData.getAddressline3();
-//        hrphone = hrData.getPhone();
-//        hrmobile2 = hrData.getMobile2();
 
         if(hrfname!=null) {
             if (hrfname.length() > 1) {
@@ -384,17 +370,6 @@ public class HrContactTabFragment extends Fragment {
         });
 
 
-
-//        saveContactDetailsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                saveContactDetailsButton.setVisibility(View.GONE);
-//                contactDetailsProgress.setVisibility(View.VISIBLE);
-//                validateandSave();
-//            }
-//        });
-
-
         edittedFlag=0;
 
         return rootView;
@@ -484,11 +459,10 @@ public class HrContactTabFragment extends Fragment {
 
             AdminContactDetailsModal obj = new AdminContactDetailsModal(hrfname, hrlname, plainusername, hremail2, hraddressline1, hraddressline2, hraddressline3, hrphone, hrmobile, hrmobile2);
             strobj = OtoString(obj, digest1, digest2);
-            Log.d("encstrobj", "strobj: " + strobj);
             new SaveHrContactDetailsTask().execute();
 
         }catch (Exception e){
-            Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_LONG).show();}
+        }
 
     }
 
@@ -531,7 +505,7 @@ public class HrContactTabFragment extends Fragment {
 
             }
             else
-                Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
 
 
         }

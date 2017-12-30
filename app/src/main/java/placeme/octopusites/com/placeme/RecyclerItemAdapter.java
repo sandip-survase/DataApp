@@ -133,7 +133,6 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
 
         //
         try {
-            Log.d("uploadedbysfdsdf", ": "+item.getUploadedby());
             String s1=item.getUploadedby();
             String s1Plain= Decrypt(s1,"I09jdG9wdXMxMkl0ZXMjJQ==","I1BsYWNlMTJNZSMlJSopXg==");
             if(  s1Plain.equals("sandipsurvase1993@gmail.com")   ){

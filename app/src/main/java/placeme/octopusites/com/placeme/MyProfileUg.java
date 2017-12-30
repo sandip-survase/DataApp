@@ -230,14 +230,10 @@ public class MyProfileUg extends AppCompatActivity {
         TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
         ugtxt.setTypeface(Z.getBold(this));
 
-
         CourseListWithIds = getResources().getStringArray(R.array.courses);
         CourseList = new String[CourseListWithIds.length];
 
-        Log.d("TAG", "Course without ID: " + CourseListWithIds[2]);
-
         for (int i = 0; i < CourseListWithIds.length; i++) {
-            Log.d("TAG", "Course without ID: " + CourseList[i]);
             String temp[] = CourseListWithIds[i].split(",");
             CourseList[i] = temp[1];
 
@@ -249,7 +245,6 @@ public class MyProfileUg extends AppCompatActivity {
         for (int i = 0; i < StramsListWithIds.length; i++) {
             String temp[] = StramsListWithIds[i].split(",");
             StramsList[i] = temp[1];
-            Log.d("TAG", "streams without ID: " + StramsList[i]);
 
         }
 
@@ -258,13 +253,9 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCourse = (String) parent.getItemAtPosition(position);
-                Log.d("tag", "onItemSelected: " + selectedCourse);
-                Log.d("TAG", "onItemSelected: ucourse edittedFlag -"+edittedFlag);
 
                 String toCompare = selectedCourse;
                 tempcourse = toCompare;
-
-                Log.d("tag", "toCompare: " + toCompare);
 
                 int index = 0;
                 for (int i = 0; i < CourseList.length; i++) {
@@ -272,7 +263,6 @@ public class MyProfileUg extends AppCompatActivity {
                         index = i;
                 }
                 toCompare = CourseListWithIds[index];
-                Log.d("TAG", "toCompare : " + toCompare);
                 tosettoStreamslist.clear();
 
                 setStreamAdapter(toCompare);
@@ -347,7 +337,6 @@ public class MyProfileUg extends AppCompatActivity {
                 tempstream=selectedStream;
 
                 TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.otherstreaminput);
-                Log.d("TAG", "onItemSelected: ustream edittedFlag -"+edittedFlag);
                 if(selectedStream.equals("Other")) {
 
                     otherboardinput.setVisibility(View.VISIBLE);
@@ -417,9 +406,7 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedUniversity = (String) parent.getItemAtPosition(position);
-                Log.d("TAG", "onItemSelected: uuniversity edittedFlag -"+edittedFlag);
                 tempuniversity =selectedUniversity;
-
 
                 TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.otheruniversityinput);
                 if (selectedUniversity.equals("Other")) {
@@ -736,10 +723,6 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
-
-
-
                 uoutofsem4input.setError(null);
 
                 try {
@@ -1013,8 +996,6 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
-
                 uoutofsem7input.setError(null);
                 try {
                     double percentage = 0;
@@ -1106,9 +1087,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
-
 
                 uoutofsem8input.setError(null);
                 try {
@@ -1273,12 +1251,6 @@ public class MyProfileUg extends AppCompatActivity {
             }
         });
 
-
-
-
-
-//        new GetCourses().execute();
-//        new GetUniversities().execute();
 
         yearofpassingu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1513,10 +1485,8 @@ public class MyProfileUg extends AppCompatActivity {
                 for (int i = 1; i < universities.length - 1; i++)
                     if (selectedUniversity.equals(universities[i])) {
                         foundboard = 1;
-                        Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                         break;
                     }
-                Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedUniversity);
                 if (foundboard == 1)
                     uuniversity.setSelection(adapter2.getPosition(selectedUniversity));
                 else {
@@ -1524,7 +1494,6 @@ public class MyProfileUg extends AppCompatActivity {
                     if (selectedUniversity.equals("")) {
                         uuniversity.setSelection(adapter2.getPosition("- Select University -"));
                         otheruniversity.setVisibility(View.GONE);
-//                    otherboardd.setText(selectedBoarddiploma);
                     } else {
                         uuniversity.setSelection(adapter2.getPosition("Other"));
                         otheruniversity.setVisibility(View.VISIBLE);
@@ -1552,7 +1521,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             String courseArray[] = a.split(",");
             int courseIndex = Integer.parseInt(courseArray[0]);
-            Log.d("TAG", "courseIndex: " + courseIndex);
 
             int index = 0;
             tosettoStreamslist.add("- Select Stream -");
@@ -1634,7 +1602,6 @@ public class MyProfileUg extends AppCompatActivity {
             }
 
         } catch (Exception e) {
-            Log.d("TAG", "setStreamAdapter: "+e.getMessage());
 
         }
         return null;
@@ -1679,38 +1646,7 @@ public class MyProfileUg extends AppCompatActivity {
     }
     void validateandSave()
     {
-//        umarkssem1.setError(null);
-//        uoutofsem1.setError(null);
-//        upercentsem1.setError(null);
-//        umarkssem2.setError(null);
-//        uoutofsem2.setError(null);
-//        upercentsem2.setError(null);
-//        umarkssem3.setError(null);
-//        uoutofsem3.setError(null);
-//        upercentsem3.setError(null);
-//        umarkssem4.setError(null);
-//        uoutofsem4.setError(null);
-//        upercentsem4.setError(null);
-//        umarkssem5.setError(null);
-//        uoutofsem5.setError(null);
-//        upercentsem5.setError(null);
-//        umarkssem6.setError(null);
-//        uoutofsem6.setError(null);
-//        upercentsem6.setError(null);
-//        umarkssem7.setError(null);
-//        uoutofsem7.setError(null);
-//        upercentsem7.setError(null);
-//        umarkssem8.setError(null);
-//        uoutofsem8.setError(null);
-//        upercentsem8.setError(null);
-//        uaggregate.setError(null);
-//        othercourse.setError(null);
-//        otherstream.setError(null);
-//        otheruniversity.setError(null);
-//        schoolnameu.setError(null);
-//        yearofpassingu.setError(null);
-
-
+//
         markssem1 = umarkssem1.getText().toString();
         outofsem1 = uoutofsem1.getText().toString();
         percentsem1 = upercentsem1.getText().toString();
@@ -1862,8 +1798,6 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                         errorflag1 = 0;
                                                                                                         float aggg=0;
 
-                                                                                                        Log.d("TAG", "validateandSave: try  aggregate");
-
 
                                                                                                         if(!aggregate.equals(""))
                                                                                                             aggg = Float.parseFloat(aggregate);
@@ -1975,7 +1909,6 @@ public class MyProfileUg extends AppCompatActivity {
         }
         if(errorflag1==0&&errorflag2==0&&errorflag3==0&&errorflag4==0&&errorflag5==0)
         {
-            Log.d("TAG", "validateandSave: all flag 0");
             try {
 
                 if (selectedStream.equals("Other"))
@@ -1999,12 +1932,10 @@ public class MyProfileUg extends AppCompatActivity {
                         ,courseug,streamug,universityug);
 
                 encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileUg.this),MySharedPreferencesManager.getDigest2(MyProfileUg.this));
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
 
                 new SaveDataUg().execute();
 
             }catch (Exception e){
-                Log.d("TAG", "validateandSave: exce - "+e.getMessage());
             }
         }
 
@@ -2015,7 +1946,6 @@ public class MyProfileUg extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            Log.d("TAG", "doInBackground: in dobackground");
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));    //0
@@ -2023,7 +1953,6 @@ public class MyProfileUg extends AppCompatActivity {
             json = jParser.makeHttpRequest(Z.url_savedata_ug, "GET", params);
             try {
                 r = json.getString("info");
-
 
             }catch (Exception e){e.printStackTrace();}
             return r;
@@ -2035,7 +1964,6 @@ public class MyProfileUg extends AppCompatActivity {
             if(result.equals("success"))
             {
                 Toast.makeText(MyProfileUg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "doInBackground: in dobackground");
 
 
                 if(role.equals("student"))
@@ -2074,7 +2002,6 @@ public class MyProfileUg extends AppCompatActivity {
                 MyProfileUg.super.onBackPressed();
             }
             else {
-                Log.d("TAG", "doInBackground: in dobackground");
                 Toast.makeText(MyProfileUg.this, "try again", Toast.LENGTH_SHORT).show();
             }
         }
@@ -2082,10 +2009,6 @@ public class MyProfileUg extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Log.d("TAG", "onBackPressed: tempcourse -"+tempcourse);
-        Log.d("TAG", "onBackPressed: universityug -"+tempuniversity);
-        Log.d("TAG", "onBackPressed: "+oldCourse);
-        Log.d("TAG", "onBackPressed: "+oldUniversity);
 
         if(edittedFlag==1 || !oldCourse.equals(tempcourse)|| !oldUniversity.equals(tempuniversity) || !oldStream.equals(tempstream))
         {

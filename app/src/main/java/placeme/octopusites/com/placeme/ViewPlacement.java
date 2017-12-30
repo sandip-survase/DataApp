@@ -132,14 +132,7 @@ public class ViewPlacement extends AppCompatActivity {
         save.setLastmodified(lastmodified);
         save.setUploadedby(uploadedby);
 
-//        if (MySharedPreferencesManager.getRole(this).equals("student")) {
-//            new GetStudentData().execute();
 //
-//        }
-//        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
-//            new GetStudentData().execute();
-//
-//        }
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,17 +243,6 @@ public class ViewPlacement extends AppCompatActivity {
         }
 
 
-        Log.d("TAG", "onPostExecute: dob -" + dob);
-        Log.d("TAG", "onPostExecute: mobile -" + mobile);
-        Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
-        Log.d("TAG", "onPostExecute: lang1 -" + lang1);
-        Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
-        Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
-        Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
-        Log.d("TAG", "onPostExecute: proj -" + proj);
-        Log.d("TAG", "onPostExecute: strength1 -" + strength1);
-        Log.d("TAG", "onPostExecute: weak1 -" + weak1);
-        Log.d("TAG", "onPostExecute: skill1 -" + skill1);
 
         if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
             if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
@@ -320,14 +302,6 @@ public class ViewPlacement extends AppCompatActivity {
         cu = Float.parseFloat(ug);
         int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
 
-        Log.d("Studmarks", "studenttenthmarks: " + studenttenthmarks);
-        Log.d("Studmarks", "studenttwelthordiplomamarks: " + studenttwelthordiplomamarks);
-        Log.d("Studmarks", "studentugmarks: " + studentugmarks);
-        Log.d("Studmarks", "studentpgmarks: " + studentpgmarks);
-
-        Log.d("Studmarks", "stdx: " + stdx);
-        Log.d("Studmarks", "stdxiiordiploma: " + stdxiiordiploma);
-        Log.d("Studmarks", "ug: " + ug);
 
 
         if (found_tenth == 0) {
@@ -699,10 +673,6 @@ public class ViewPlacement extends AppCompatActivity {
                 }
 
 
-                Log.d("TAG", "doInBackground: username -" + username);
-                Log.d("TAG", "doInBackground: format -" + format);
-                Log.d("TAG", "doInBackground: template -" + template);
-
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
 
                 params.add(new BasicNameValuePair("username", username));
@@ -712,11 +682,9 @@ public class ViewPlacement extends AppCompatActivity {
                 json = jParser.makeHttpRequest(Z.url_SaveResume, "GET", params);
 
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: result -" + r);
 
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: exception - " + e.getMessage());
             }
             return r;
         }
@@ -726,7 +694,6 @@ public class ViewPlacement extends AppCompatActivity {
 
                 if (result.equals("found")) {
                     new registerforPlacementTask().execute();
-//                       Toast.makeText(ViewPlacement.this, "Successfully Register..!", Toast.LENGTH_SHORT).show();
                 }
                 else
                     Toast.makeText(ViewPlacement.this, "Not Register..!", Toast.LENGTH_SHORT).show();

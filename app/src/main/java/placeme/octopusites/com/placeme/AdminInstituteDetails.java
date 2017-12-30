@@ -410,16 +410,13 @@ public class AdminInstituteDetails extends AppCompatActivity {
                 /////******************object work*******************////////
                 //one field is to be stored in adminintro
                 try {
-                    Log.d("TAG", "validateandSave: instreg - "+instreg);
                     obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg,instcaddrline1,instcaddrline2,instcaddrline3);
 //
                     digest1 = MySharedPreferencesManager.getDigest1(this);
                     digest2 = MySharedPreferencesManager.getDigest2(this);
 
                     strobj = OtoString(obj, digest1, digest2);
-                    Log.d("TAG", "validateandSave: - " + strobj);
                 } catch (Exception e) {
-                    Log.d("TAG", "validateandSave: - " + e.getMessage());
                 }
                 new SaveData().execute();
 
@@ -509,7 +506,6 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             json = jParser.makeHttpRequest(Z.url_SaveAdminInstituteData, "GET", params);
             try {
-//                Log.d("Reversecheck", "doInBackground: "+json.getString("dataobj"));
                 r = json.getString("info");
 
 
@@ -538,7 +534,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
                 }
                 AdminInstituteDetails.super.onBackPressed();
             } else {
-                Toast.makeText(AdminInstituteDetails.this, "not saved" + result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminInstituteDetails.this, "Try again !" + result, Toast.LENGTH_SHORT).show();
 
             }
         }

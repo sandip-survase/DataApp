@@ -199,16 +199,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 pos = position;
                 CompanyType = Nature[position];
-                Log.d("TAG", "onItemSelected: CompanyType - " + CompanyType);
-                Log.d("TAG", "onItemSelected: CompanyNaturestr - " + CompanyNaturestr);
 
-//                if (CompanyNaturestr != null) {
-//                    if (!CompanyNaturestr.equals(CompanyType)) {
-//                        flag1 = 1;
-//                        Log.d("TAG", "onItemSelected: flag1 - " + flag1);
-//                    }
-//
-//                }
 
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
@@ -273,11 +264,6 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
         }
 
-//        if (CompanyNaturestr != null) {
-//            if (!CompanyNaturestr.equals("")) {
-//                Company_Nature.setSelection(dataAdapter.getPosition(CompanyNaturestr));
-//            }
-//        }
 
 
         if (CompanyNaturestr != null) {
@@ -480,7 +466,6 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             }
         });
 
-        Log.d("TAG", "onCreateView: flag1 - " + flag1);
 
 
         flag1 = 0;
@@ -563,13 +548,9 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             try {
                 ArrayList<CompanyDetailsModal> modalList = new ArrayList<>();
                 CompanyDetailsModal obj2 = new CompanyDetailsModal(ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3, CompanyType);
-                Log.d("TAG", "validateandSave:-" + obj2.ComName + "   " + obj2.ComMail + "" + obj2.ComWeb + "  " + obj2.ComPhone + "   " + obj2.ComAlterPhone + "   " + obj2.ComCIIN + "   " + obj2.ComAdd1 + "   " + obj2.ComAdd2 + "   " + obj2.ComAdd3 + "   " + obj2.CompanyNature);
-                Log.d("TAG", "validateandSave: - modallist size " + modalList.size());
                 encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-                Log.d("TAG", "validateandSave: encobj - " + encobj);
                 new SaveDataHr().execute();
             } catch (Exception company) {
-                Toast.makeText(getActivity(), company.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -630,7 +611,8 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                 flag1 = 0;
                 h.setCompanyNature(CompanyType);
                 getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-            }
+            } else
+                Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 }

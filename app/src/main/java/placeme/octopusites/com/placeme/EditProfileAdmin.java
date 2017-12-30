@@ -247,7 +247,6 @@ public class EditProfileAdmin extends AppCompatActivity {
                                     HrExperiencesTabFragment ExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
                                     HrContactTabFragment ContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
 
-                                    Log.d("TAG", "onClick: click save button");
 
                                     Boolean personal_success = true;
                                     Boolean institute_success = true;

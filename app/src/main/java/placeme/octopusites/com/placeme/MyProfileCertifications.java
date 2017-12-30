@@ -945,12 +945,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    Log.d("TAG", "onCheckedChanged: switch1 -"+switch1.isChecked());
                     certienddate1.setVisibility(View.GONE);
                     enddate1.setVisibility(View.GONE);
                     enddate1.setText("");
                 } else {
-                    Log.d("TAG", "onCheckedChanged: switch1 -"+switch1.isChecked());
                     certienddate1.setVisibility(View.VISIBLE);
                     enddate1.setVisibility(View.VISIBLE);
                 }
@@ -963,12 +961,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    Log.d("TAG", "onCheckedChanged: switch2 -"+switch2.isChecked());
                     certienddate2.setVisibility(View.GONE);
                     enddate2.setVisibility(View.GONE);
                     enddate2.setText("");
                 } else {
-                    Log.d("TAG", "onCheckedChanged: switch2 -"+switch2.isChecked());
                     certienddate2.setVisibility(View.VISIBLE);
                     enddate2.setVisibility(View.VISIBLE);
                 }
@@ -1966,7 +1962,6 @@ public class MyProfileCertifications extends AppCompatActivity {
         stitle4 = s.getTitle4();
         sissuer4 = s.getIssuer4();
 
-        Log.d("TAG", "doInBackground: sissuer4 - " + sissuer4);
 
         slicense4 = s.getLicense4();
         sstartdate4 = s.getStartdate4certificate();
@@ -4039,7 +4034,6 @@ public class MyProfileCertifications extends AppCompatActivity {
             new SaveCertificates().execute(encObjString);
 
         } catch (Exception e) {
-            Log.d("TAG", "validateandSave:  " + e.getMessage());
         }
 
     }
@@ -5494,12 +5488,10 @@ public class MyProfileCertifications extends AppCompatActivity {
             switch9.setChecked(blnswitch10);
 
             if (stitle1.equals("") && sissuer1.equals("") && slicense1.equals("") && sstartdate1.equals("") && senddate1.equals("") && !blnswitch1) {
-                Log.d("TAG", "deleteLang: lang 1");
                 editcertfi = 1;
             }
 
             if (editcertfi == 1) {
-                Log.d("TAG", "deleteLang: editcertfi - " + editcertfi);
                 savecertifi();
             }
 
@@ -5823,7 +5815,7 @@ public class MyProfileCertifications extends AppCompatActivity {
 
                 MyProfileCertifications.super.onBackPressed();
             } else
-                Toast.makeText(MyProfileCertifications.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileCertifications.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

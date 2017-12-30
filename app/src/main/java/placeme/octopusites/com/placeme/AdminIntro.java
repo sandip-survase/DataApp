@@ -86,12 +86,7 @@ public class AdminIntro extends AppCompatActivity {
 
         TextView loctxt=(TextView)findViewById(R.id.loctxt);
         loctxt.setTypeface(Z.getBold(this));
-//        country=(Spinner)findViewById(R.id.country);
-//        state=(Spinner)findViewById(R.id.state);
-//        city=(Spinner)findViewById(R.id.city);
-
-//        new GetCountries().execute();
-
+//
 
         fname=(TextInputEditText)findViewById(R.id.fname);
         lname=(TextInputEditText)findViewById(R.id.lname);
@@ -405,18 +400,7 @@ public class AdminIntro extends AppCompatActivity {
                         }
                     }
 
-//                if (selectedCountry.contains("Select")) {
-//                    Toast.makeText(AdminIntro.this, "Select Country", Toast.LENGTH_SHORT).show();
-//                    errorflag1 = 1;
-//                } else {
-//                    if (selectedState.contains("Select")) {
-//                        Toast.makeText(AdminIntro.this, "Select State", Toast.LENGTH_SHORT).show();
-//                        errorflag2 = 1;
-//                    } else if (selectedCity.contains("Select")) {
-//                        Toast.makeText(AdminIntro.this, "Select City", Toast.LENGTH_SHORT).show();
-//                        errorflag3 = 1;
-//                    }
-//                }
+//
 
                 }
             }
@@ -430,24 +414,18 @@ public class AdminIntro extends AppCompatActivity {
                 String mname = a.getMname();
                 String phone = a.getPhone();
 
-                Log.d("TAG", "mname: - "+mname);
-                Log.d("TAG", "phone: - "+phone);
-
                 obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
                 try{
                     strobj =OtoString(obj,digest1,digest2);
-                    Log.d("encstrobj", "strobj: "+strobj);
 
                 }
                 catch (Exception e){
-                    Log.d("TAG", "validateandSave: - "+e.getMessage());
                 }
 
 
                 new SaveData().execute();
 
             } catch (Exception e) {
-                Log.d("TAG", "validateandSave: - "+e.getMessage());
 
             }
         }
@@ -467,13 +445,10 @@ public class AdminIntro extends AppCompatActivity {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",encUsername));    //0
-            Log.d("TAG", "encUsername: "+encUsername);
             params.add(new BasicNameValuePair("obj",strobj));       //1
-            Log.d("TAG", "strobj: "+encobj);
             json = jParser.makeHttpRequest(Z.url_SaveAdminIntro, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", " result r:-: "+r);
 
             }catch (Exception e){e.printStackTrace();}
             return r;
@@ -491,10 +466,8 @@ public class AdminIntro extends AppCompatActivity {
                     setResult(111);
                 }
                 AdminIntro.super.onBackPressed();
-            }
-            else {
-                Toast.makeText(AdminIntro.this,result,Toast.LENGTH_SHORT).show();
-            }
+            } else
+                Toast.makeText(AdminIntro.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 

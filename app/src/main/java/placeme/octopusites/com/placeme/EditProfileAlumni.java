@@ -249,7 +249,6 @@ public class EditProfileAlumni extends AppCompatActivity {
         if (resultCode == AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE)
             setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
 
-        Log.d("TAG", "onActivityResult: result "+resultCode);
 
     }
 
@@ -319,9 +318,7 @@ public class EditProfileAlumni extends AppCompatActivity {
                                             expflag = 0;
                                         }
                                     }
-                                    Log.d("edit", "onClick: personal_success- " + personal_success);
-                                    Log.d("edit", "onClick: project_success- " + project_success);
-                                    Log.d("edit", "onClick: hr_exp- " + hr_exp);
+
 
                                     if (personal_success && project_success && hr_exp) {
                                         Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();

@@ -111,10 +111,7 @@ public class AdminInstituteTabFragment extends Fragment {
         caddrline3.setTypeface(Z.getBold(getActivity()));
         loctxt.setTypeface(Z.getBold(getActivity()));
 
-//        save=(Button)rootView.findViewById(R.id.savepersonal);
-//        saveprogress=(ProgressBar) rootView.findViewById(R.id.personalprogress);
-
-
+//
         instname = a.getInstitute();
         instemail = a.getInstemail();
         instweb = a.getInstweb();
@@ -424,11 +421,8 @@ public class AdminInstituteTabFragment extends Fragment {
                 digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
                 strobj = OtoString(obj, digest1, digest2);
-                Log.d("TAG", "validateandSave: - " + strobj);
 
                 new SaveData().execute();
-//                save.setVisibility(View.GONE);
-//                saveprogress.setVisibility(View.VISIBLE);
 
 
             } catch (Exception e) {
@@ -501,19 +495,16 @@ public class AdminInstituteTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-//                save.setVisibility(View.VISIBLE);
-//                saveprogress.setVisibility(View.GONE);
-//                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (edittedFlag == 1) {
                     getActivity().setResult(111);
 
                 }
                 edittedFlag = 0;
 
-            } else {
-                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
 
-            }
+
         }
     }
 }

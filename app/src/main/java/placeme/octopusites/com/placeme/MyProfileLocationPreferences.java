@@ -568,24 +568,17 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             slocation1 = location1.getText().toString();
 
             if(slocation1.equals("")){
-                Log.d("TAG", "deleteLang: strength1 1");
                 editlocation=1;
             }
 
             if(editlocation==1){
-                Log.d("TAG", "deleteLang: strength1 - "+editlocation);
                 enclocation();
             }
         }
     }
 
     void validateandSave() {
-//        location1.setError(null);
-//        location2.setError(null);
-//        location3.setError(null);
-//        location4.setError(null);
-//        location5.setError(null);
-
+//
 
         slocation1 = location1.getText().toString();
         slocation2 = location2.getText().toString();
@@ -593,9 +586,6 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         slocation4 = location4.getText().toString();
         slocation5 = location5.getText().toString();
 
-//        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//        String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
 
@@ -703,13 +693,11 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             MyProfileLocationModal obj2 = new MyProfileLocationModal(slocation1, slocation2, slocation3, slocation4, slocation5);
 
             encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileLocationPreferences.this), MySharedPreferencesManager.getDigest2(MyProfileLocationPreferences.this));
-            Log.d("TAG", "validateandSave: encobj - " + encobj);
 
             new SaveLocations().execute();
 
 
         } catch (Exception e) {
-            Toast.makeText(MyProfileLocationPreferences.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
     @Override
@@ -835,7 +823,7 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
 
                 MyProfileLocationPreferences.super.onBackPressed();
             } else
-                Toast.makeText(MyProfileLocationPreferences.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileLocationPreferences.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

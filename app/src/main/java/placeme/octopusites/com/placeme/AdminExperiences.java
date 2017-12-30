@@ -434,7 +434,6 @@ public class AdminExperiences extends AppCompatActivity {
 //getters
         try {
 
-            Log.d("TAG", "onCreate: getters() ");
 
             spost1 = a.getPost1e();
             sinst1 = a.getInst1e();
@@ -762,7 +761,9 @@ public class AdminExperiences extends AppCompatActivity {
 
                 }
             }
-        }catch (Exception e){Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_LONG).show();}
+        } catch (Exception e) {
+
+        }
 
         map.put("Jan", 1);
         map.put("Feb", 2);
@@ -1197,7 +1198,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -1262,7 +1262,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -1327,7 +1326,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
 
@@ -1393,7 +1391,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -1458,7 +1455,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -1523,7 +1519,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -1587,7 +1582,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -1650,7 +1644,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -1714,7 +1707,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -1782,7 +1774,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -1851,7 +1842,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -1920,7 +1910,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -1990,7 +1979,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -2060,7 +2048,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -2127,7 +2114,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -2196,7 +2182,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -2262,7 +2247,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -2327,7 +2311,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -2394,7 +2377,6 @@ public class AdminExperiences extends AppCompatActivity {
                         }
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -2459,11 +2441,9 @@ public class AdminExperiences extends AppCompatActivity {
                             fromdateinput10.setError(null);
 
                         }
-                        Toast.makeText(AdminExperiences.this, ""+stodate10, Toast.LENGTH_SHORT).show();
 
                     }
                 } catch(Exception e){
-                    Toast.makeText(AdminExperiences.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -5144,12 +5124,10 @@ public class AdminExperiences extends AppCompatActivity {
 
 
             if(spost1.equals("") && sinst1.equals("") && sfromdate1.equals("") && stodate1.equals("")){
-                Log.d("TAG", "deleteLang: strength1 1");
                 editexp =1;
             }
 
             if(editexp==1){
-                Log.d("TAG", "deleteLang: strength1 - "+editexp);
                 save1();
             }
 
@@ -7224,7 +7202,6 @@ public class AdminExperiences extends AppCompatActivity {
                 new SaveExperiences().execute(encObjString);
             }
         } catch (Exception e) {
-            Toast.makeText(AdminExperiences.this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
 
     }
@@ -7263,15 +7240,10 @@ public class AdminExperiences extends AppCompatActivity {
                     setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
 
-//                if(edittedFlag!=0) {
-//                    setResult(111);
-//                    setResult();
-//                }
-
                 AdminExperiences.super.onBackPressed();
             }
             else
-                Toast.makeText(AdminExperiences.this,result,Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminExperiences.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

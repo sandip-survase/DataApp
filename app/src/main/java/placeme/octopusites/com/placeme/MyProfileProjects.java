@@ -45,7 +45,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
     EditText proj1,domain1,team1,duration1,proj2,domain2,team2,duration2,proj3,domain3,team3,duration3,proj4,domain4,team4,duration4,proj5,domain5,team5,duration5,proj6,domain6,team6,duration6,proj7,domain7,team7,duration7,proj8,domain8,team8,duration8,proj9,domain9,team9,duration9,proj10,domain10,team10,duration10;
     TextInputLayout projinput1, domaininput1, teaminput1, durationinput1, projinput2, domaininput2, teaminput2, durationinput2, projinput3, domaininput3, teaminput3, durationinput3, projinput4, domaininput4, teaminput4, durationinput4, projinput5, domaininput5, teaminput5, durationinput5, projinput6, domaininput6, teaminput6, durationinput6, projinput7, domaininput7, teaminput7, durationinput7, projinput8, domaininput8, teaminput8, durationinput8, projinput9, domaininput9, teaminput9, durationinput9, projinput10, domaininput10, teaminput10, durationinput10;
     String sproj1="",sdomain1="",steam1="",sduration1="",sproj2="",sdomain2="",steam2="",sduration2="",sproj3="",sdomain3="",steam3="",sduration3="",sproj4="",sdomain4="",steam4="",sduration4="",sproj5="",sdomain5="",steam5="",sduration5="",sproj6="",sdomain6="",steam6="",sduration6="",sproj7="",sdomain7="",steam7="",sduration7="",sproj8="",sdomain8="",steam8="",sduration8="",sproj9="",sdomain9="",steam9="",sduration9="",sproj10="",sdomain10="",steam10="",sduration10="";
-    String encproj1,encdomain1,encteam1,encduration1,encproj2,encdomain2,encteam2,encduration2,encproj3,encdomain3,encteam3,encduration3,encproj4,encdomain4,encteam4,encduration4,encproj5,encdomain5,encteam5,encduration5,encproj6,encdomain6,encteam6,encduration6,encproj7,encdomain7,encteam7,encduration7,encproj8,encdomain8,encteam8,encduration8,encproj9,encdomain9,encteam9,encduration9,encproj10,encdomain10,encteam10,encduration10;
     View trash1selectionview,trash2selectionview,trash3selectionview,trash4selectionview,trash5selectionview,trash6selectionview,trash7selectionview,trash8selectionview,trash9selectionview,trash10selectionview;
     TextView addmoreprojecttxt;
     int edittedFlag=0;;
@@ -342,9 +341,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
         teaminput10.setTypeface(Z.getLight(this));
         durationinput10.setTypeface(Z.getLight(this));
-
-
-
 
         proj1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1530,9 +1526,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         steam10=team10.getText().toString();
         sduration10=duration10.getText().toString();
 
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
+
 
         int errorflag=0;
 
@@ -2260,7 +2254,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             Projects obj9=new Projects(sproj9,sdomain9,steam9,sduration9);
             Projects obj10=new Projects(sproj10,sdomain10,steam10,sduration10);
 
-            Log.d("TAG", "objects created");
 
             projectsList.add(obj1);
             projectsList.add(obj2);
@@ -2273,12 +2266,12 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             projectsList.add(obj9);
             projectsList.add(obj10);
 
-            Log.d("TAG", "objects added in arraylist");
-
             String encObjString=OtoString(projectsList,MySharedPreferencesManager.getDigest1(MyProfileProjects.this),MySharedPreferencesManager.getDigest2(MyProfileProjects.this));
 
             new SaveProjects().execute(encObjString);
-        }catch (Exception e){Toast.makeText(MyProfileProjects.this,"error:-"+e.getMessage(),Toast.LENGTH_LONG).show();}
+        } catch (Exception e) {
+
+        }
 
     }
 
@@ -2291,7 +2284,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
 
-            Log.d("TAG", "encrypted objec string2: "+param[0]);
             params.add(new BasicNameValuePair("d",param[0]));       //0
 
             json = jParser.makeHttpRequest(Z.url_saveprojects, "GET", params);
@@ -2327,7 +2319,8 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                 MyProfileProjects.super.onBackPressed();
 
 
-            }
+            } else
+                Toast.makeText(MyProfileProjects.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -2501,9 +2494,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
                                             projectscount--;
 
-//                                            Log.d("alumni",""+projectscount);
                                         }
-//                                        if(projectscount==0)
                                         else
                                         {
                                             proj1.setText("");
@@ -2519,7 +2510,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                 }
             }
         }
-//        Toast.makeText(MyProfileProjects.this,"delete "+d,Toast.LENGTH_LONG).show();
         if(d==10)
         {
             proj10.setText("");
@@ -3104,7 +3094,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         }
         else if(d==2)
         {
-            Log.d("alumni", "deleteProject: delete proj 2");
 
             sproj10=proj10.getText().toString();
             sdomain10=domain10.getText().toString();
@@ -3270,7 +3259,6 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         }
         else if(d==1)
         {
-            Log.d("alumni", "deleteProject: delete proj 1");
             sproj10=proj10.getText().toString();
             sdomain10=domain10.getText().toString();
             steam10=team10.getText().toString();
@@ -3456,12 +3444,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             sduration1 = duration1.getText().toString();
 
             if(sproj1.equals("") && sdomain1.equals("") && steam1.equals("") && sduration1.equals("")){
-                Log.d("TAG", "deleteLang: strength1 1");
                 editproj =1;
             }
 
             if(editproj==1){
-                Log.d("TAG", "deleteLang: strength1 - "+editproj);
                 save();
             }
 

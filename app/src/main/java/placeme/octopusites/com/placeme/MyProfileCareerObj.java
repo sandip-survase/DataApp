@@ -287,12 +287,11 @@ public class MyProfileCareerObj extends AppCompatActivity {
                 MyProfileCareerObjModal obj2 = new MyProfileCareerObjModal(careerobj);;
 
                 encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileCareerObj.this),MySharedPreferencesManager.getDigest2(MyProfileCareerObj.this));
-                Log.d("TAG", "doInBackground: user : "+username);
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
 
                 new SaveCareerObj2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-            }catch (Exception e){Toast.makeText(MyProfileCareerObj.this,e.getMessage(),Toast.LENGTH_LONG).show();}
+            } catch (Exception e) {
+            }
         }
 
     }
@@ -301,14 +300,12 @@ public class MyProfileCareerObj extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            Log.d("TAG", "inside doInBackground: ");
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("c",encobj));
 
             json = jParser.makeHttpRequest(Z.url_savecareerobj, "GET", params);
-            Log.d("TAG", "SaveCareerObj json : "+json);
             try {
                 r = json.getString("info");
 
@@ -334,7 +331,8 @@ public class MyProfileCareerObj extends AppCompatActivity {
                 MyProfileCareerObj.super.onBackPressed();
             }
             else
-                Toast.makeText(MyProfileCareerObj.this,result,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileCareerObj.this, "Try again !", Toast.LENGTH_SHORT).show();
+
 
         }
     }

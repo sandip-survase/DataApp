@@ -223,10 +223,6 @@ public class MyProfilePublications extends AppCompatActivity {
 
 
 
-
-
-
-
         title1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1528,10 +1524,6 @@ public class MyProfilePublications extends AppCompatActivity {
         descriptioninput10.setTypeface(Z.getLight(this));
 
 
-
-
-
-
         addmorepublication = (View) findViewById(R.id.addmorepublication);
         addmorepublication.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1715,7 +1707,6 @@ public class MyProfilePublications extends AppCompatActivity {
         sauthor2 = s.getAuthor2();
         spublicationdate2 = s.getPublicationdate2();
         surl2 = s.getPuburl2();
-        Log.d("TAG", "onCreate: surl2  -"+surl2);
         sdescription2 = s.getPubdescription2();
         stitle3 = s.getPubtitle3();
         spublication3 = s.getPublication3();
@@ -3366,12 +3357,10 @@ public class MyProfilePublications extends AppCompatActivity {
             description10.setText("");
 
             if(stitle1.equals("") && spublication1.equals("") && sauthor1.equals("") && spublicationdate1.equals("")){
-                Log.d("TAG", "deleteLang: lang 1");
                 editpublic =1;
             }
 
             if(editpublic==1){
-                Log.d("TAG", "deleteLang: editcertfi - "+editpublic);
                 encpublic();
             }
 
@@ -3503,10 +3492,6 @@ public class MyProfilePublications extends AppCompatActivity {
         spublicationdate10 = publicationdate10.getText().toString();
         surl10 = url10.getText().toString();
         sdescription10 = description10.getText().toString();
-
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
 
         if(editpublic==1)
@@ -4861,7 +4846,6 @@ public class MyProfilePublications extends AppCompatActivity {
             new SavePublications().execute(encObjString);
 
         } catch (Exception e) {
-            Toast.makeText(MyProfilePublications.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -5132,7 +5116,7 @@ public class MyProfilePublications extends AppCompatActivity {
 
                 MyProfilePublications.super.onBackPressed();
             } else
-                Toast.makeText(MyProfilePublications.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfilePublications.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
     }

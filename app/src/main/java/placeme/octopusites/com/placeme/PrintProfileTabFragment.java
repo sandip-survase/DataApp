@@ -14,8 +14,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -136,11 +134,7 @@ public class PrintProfileTabFragment extends Fragment {
                 } else
                     template = temptemplate;
 
-
-
-
                 MySharedPreferencesManager.save(getActivity(),"template",template+"");
-                Log.d("TAG", "onClick: radio button  template - "+template);
 
             }
 
@@ -170,10 +164,7 @@ public class PrintProfileTabFragment extends Fragment {
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);
                 //start downloading resumr
-                Log.d("tag","template id -"+resumeIds[selectedResumeTemplate]+"");
-                Log.d("tag", "username - : "+username);
-                Log.d("tag", "format - : "+format);
-//                Log.d("tag","temp id -"+temp);
+
 
                 validatedata();
 
@@ -344,17 +335,6 @@ public class PrintProfileTabFragment extends Fragment {
         studenttwelthordiplomamarks = s.getPercentage12();
         studentugmarks = s.getAggregateug();
 
-        Log.d("TAG", "onPostExecute: dob -" + dob);
-        Log.d("TAG", "onPostExecute: mobile -" + mobile);
-        Log.d("TAG", "onPostExecute: hobbies -" + hobbies);
-        Log.d("TAG", "onPostExecute: lang1 -" + lang1);
-        Log.d("TAG", "onPostExecute: addrline1c -" + addrline1c);
-        Log.d("TAG", "onPostExecute: addrline2c -" + addrline2c);
-        Log.d("TAG", "onPostExecute: addrline3c -" + addrline3c);
-        Log.d("TAG", "onPostExecute: proj -" + proj);
-        Log.d("TAG", "onPostExecute: strength1 -" + strength1);
-        Log.d("TAG", "onPostExecute: weak1 -" + weak1);
-        Log.d("TAG", "onPostExecute: skill1 -" + skill1);
 
 
         if (fname != null && lname != null) {
@@ -453,8 +433,6 @@ public class PrintProfileTabFragment extends Fragment {
                         .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                         .setDuration(10000)
                         .show();
-//                    please fill intro information
-//                Toast.makeText(getActivity(), " Please fill personal details before downloading", Toast.LENGTH_SHORT).show();
             }else{
                 if(found_tenth==0){
                     downloadresume.setVisibility(View.VISIBLE);
@@ -469,8 +447,6 @@ public class PrintProfileTabFragment extends Fragment {
                             .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                             .setDuration(10000)
                             .show();
-//                        please fill tenth information
-//                    Toast.makeText(getActivity(), " Please fill Std. X details before downloading", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
@@ -487,8 +463,6 @@ public class PrintProfileTabFragment extends Fragment {
                                 .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                 .setDuration(10000)
                                 .show();
-//                        please fill twelth or diploma information
-//                        Toast.makeText(getActivity(), "Please fill Std. XII/Diploma details before downloading", Toast.LENGTH_SHORT).show();
 
                     }else{
                         if(found_ug==0){
@@ -504,8 +478,6 @@ public class PrintProfileTabFragment extends Fragment {
                                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                     .setDuration(10000)
                                     .show();
-//                        please fill ug information
-//                            Toast.makeText(getActivity(), " Please fill your Ug details before downloading", Toast.LENGTH_SHORT).show();
 
                         }else{
                             if(found_projects==0){
@@ -521,8 +493,6 @@ public class PrintProfileTabFragment extends Fragment {
                                         .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                         .setDuration(10000)
                                         .show();
-//                        please fill project information
-//                                Toast.makeText(getActivity(), " Please fill Project details before downloading", Toast.LENGTH_SHORT).show();
 
                             }else{
                                 if(found_lang==0){
@@ -538,14 +508,11 @@ public class PrintProfileTabFragment extends Fragment {
                                             .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                             .setDuration(10000)
                                             .show();
-//                        please fill language information
-//                                    Toast.makeText(getActivity(), " Please fill Known languages details before downloading", Toast.LENGTH_SHORT).show();
 
                                 }else{
                                     if(found_skills==0){
                                         downloadresume.setVisibility(View.VISIBLE);
                                         resumeprogress.setVisibility(View.GONE);
-//                        please fill skill information
                                         Snackbar.make(downloadresume.getRootView(), "Please fill Skill details", Snackbar.LENGTH_LONG)
                                                 .setAction("OPEN", new View.OnClickListener() {
                                                     @Override
@@ -556,7 +523,6 @@ public class PrintProfileTabFragment extends Fragment {
                                                 .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                 .setDuration(10000)
                                                 .show();
-//                                        Toast.makeText(getActivity(), " Please fill Skill details before downloading", Toast.LENGTH_SHORT).show();
 
                                     }else{
                                         if(found_careerobj==0){
@@ -572,8 +538,6 @@ public class PrintProfileTabFragment extends Fragment {
                                                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                     .setDuration(10000)
                                                     .show();
-//                        please fill career objective information
-//                                            Toast.makeText(getActivity(), " Please fill Career details before downloading", Toast.LENGTH_SHORT).show();
 
                                         }else{
                                             if(found_strengths==0){
@@ -589,8 +553,6 @@ public class PrintProfileTabFragment extends Fragment {
                                                         .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                         .setDuration(10000)
                                                         .show();
-//                        please fill strength information
-//                                                Toast.makeText(getActivity(), " Please fill Strength details before downloading", Toast.LENGTH_SHORT).show();
 
                                             }else{
                                                 if(found_weaknesses==0){
@@ -606,14 +568,11 @@ public class PrintProfileTabFragment extends Fragment {
                                                             .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                             .setDuration(10000)
                                                             .show();
-//                        please fill weaknesses information
-//                                                    Toast.makeText(getActivity(), " Please fill Weaknesses details before downloading", Toast.LENGTH_SHORT).show();
 
                                                 } else {
                                                         if(found_personal==0){
                                                             downloadresume.setVisibility(View.VISIBLE);
                                                             resumeprogress.setVisibility(View.GONE);
-//                        please fill personal information
                                                             Snackbar.make(downloadresume.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
                                                                     .setAction("OPEN", new View.OnClickListener() {
                                                                         @Override
@@ -628,7 +587,6 @@ public class PrintProfileTabFragment extends Fragment {
                                                                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                                     .setDuration(10000)
                                                                     .show();
-//                                                            Toast.makeText(getActivity(), " Please fill Personal details before downloading", Toast.LENGTH_SHORT).show();
                                                         }
                                                 }
                                             }
@@ -648,8 +606,6 @@ public class PrintProfileTabFragment extends Fragment {
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);
 
-                Log.d("TAG", "onPostExecute: template befpre uri " + template);
-//                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = new Uri.Builder()
                         .scheme("http")
                         .authority(Z.VPS_IP)
@@ -659,7 +615,6 @@ public class PrintProfileTabFragment extends Fragment {
                         .appendQueryParameter("template", template + "")
                         .build();
 
-                Log.d("TAG", "onPostExecute: uri - " + uri);
 
 //****************
                 String storagePath = Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
