@@ -112,53 +112,52 @@ public class PlacementTab3 extends Fragment {
                 s12 = Float.parseFloat(studenttwelthordiplomamarks);
                 su = Float.parseFloat(studentugmarks);
 
-
                 if (s10 >= c10) {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.check);
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.eligible_icon);
                     tentheligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-                    student10txt.setTextColor(Color.GREEN);
-                    studenttenthmarksview.setTextColor(Color.GREEN);
+                    student10txt.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 } else {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.not_eligible_icon);
                     tentheligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-                    student10txt.setTextColor(Color.RED);
-                    studenttenthmarksview.setTextColor(Color.RED);
+                    student10txt.setTextColor(getResources().getColor(R.color.dark_color));
+                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 if (s12 >= c12) {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.check);
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.eligible_icon);
                     twelthordiplomaeligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-                    student10txt.setTextColor(Color.GREEN);
-                    studenttenthmarksview.setTextColor(Color.GREEN);
+                    student10txt.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 } else {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.not_eligible_icon);
                     twelthordiplomaeligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-                    student10txt.setTextColor(Color.RED);
-                    studenttenthmarksview.setTextColor(Color.RED);
+                    student10txt.setTextColor(getResources().getColor(R.color.dark_color));
+                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 if (su >= cu) {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.check);
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.eligible_icon);
                     ugeligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
-                    student10txt.setTextColor(Color.GREEN);
-                    studenttenthmarksview.setTextColor(Color.GREEN);
+                    student10txt.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.incorrect);
+                    Drawable myDrawable = getResources().getDrawable(R.drawable.not_eligible_icon);
                     ugeligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
-                    student10txt.setTextColor(Color.RED);
-                    studenttenthmarksview.setTextColor(Color.RED);
+                    student10txt.setTextColor(getResources().getColor(R.color.dark_color));
+                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.dark_color));
                 }
             } else {
 

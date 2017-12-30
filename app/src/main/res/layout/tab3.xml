@@ -44,7 +44,7 @@
                 android:textColor="@color/sky_blue_color"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:id="@+id/aptitxt" />
 
             <RelativeLayout
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_color"
                     android:text="Company Criteria"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:textColor="@color/dark_color"
                     android:id="@+id/companytenthmarksview"
                     android:layout_below="@+id/company10txt"
-                    android:textSize="12dp"
+                    android:textSize="16dp"
                     android:text="60"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -77,20 +77,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0f0"
+                    android:textColor="@color/sky_blue_color"
                     android:layout_below="@+id/companytenthmarksview"
                     android:id="@+id/student10txt"
                     android:text="Marks Obtained"
-                    android:textSize="12dp"
+                    android:textSize="16dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0f0"
+                    android:textColor="@color/sky_blue_color"
                     android:id="@+id/studenttenthmarksview"
                     android:layout_below="@+id/student10txt"
-                    android:textSize="12dp"
+                    android:textSize="18dp"
                     android:text="85"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -103,7 +103,8 @@
                 android:id="@+id/eligibilitytenth"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/check"
+                android:backgroundTint="@color/sky_blue_color"
+                android:src="@drawable/eligible_icon"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
 
@@ -122,7 +123,7 @@
                 android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:id="@+id/ugtxt" />
 
             <RelativeLayout
@@ -138,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_color"
                     android:text="Company Criteria"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -147,7 +148,7 @@
                     android:textColor="@color/dark_color"
                     android:id="@+id/companyugmarksview"
                     android:layout_below="@+id/companyugtxt"
-                    android:textSize="12dp"
+                    android:textSize="16dp"
                     android:text="60"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -155,20 +156,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#f00"
+                    android:textColor="@color/sky_blue_color"
                     android:layout_below="@+id/companyugmarksview"
                     android:id="@+id/studentugtxt"
                     android:text="Marks Obtained"
-                    android:textSize="12dp"
+                    android:textSize="16dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#f00"
+                    android:textColor="@color/sky_blue_color"
                     android:id="@+id/studentugmarksview"
                     android:layout_below="@+id/studentugtxt"
-                    android:textSize="12dp"
+                    android:textSize="18dp"
                     android:text="67"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -181,7 +182,8 @@
                 android:id="@+id/eligibilityug"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/incorrect"
+                android:backgroundTint="@color/sky_blue_color"
+                android:src="@drawable/not_eligible_icon"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
 
@@ -200,7 +202,7 @@
                 android:textColor="@color/sky_blue_color"
                 android:paddingTop="2dp"
                 android:paddingLeft="4dp"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:id="@+id/diplomatxt" />
 
             <RelativeLayout
@@ -216,7 +218,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_color"
                     android:text="Company Criteria"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -225,7 +227,7 @@
                     android:textColor="@color/dark_color"
                     android:id="@+id/companytwelthordiplomamarksview"
                     android:layout_below="@+id/company12txt"
-                    android:textSize="12dp"
+                    android:textSize="16dp"
                     android:text="60"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -233,20 +235,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0f0"
+                    android:textColor="@color/sky_blue_color"
                     android:layout_below="@+id/companytwelthordiplomamarksview"
                     android:id="@+id/student12txt"
                     android:text="Marks Obtained"
-                    android:textSize="12dp"
+                    android:textSize="16dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0f0"
+                    android:textColor="@color/sky_blue_color"
                     android:id="@+id/studenttwelthordiplomamarksview"
                     android:layout_below="@+id/student12txt"
-                    android:textSize="12dp"
+                    android:textSize="18dp"
                     android:text="80"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -259,7 +261,8 @@
                 android:id="@+id/eligibilitytwelthordiploma"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/check"
+                android:src="@drawable/eligible_icon"
+                android:backgroundTint="@color/sky_blue_color"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
         </RelativeLayout>

@@ -1,6 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +12,13 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemUsersAdapter.MyViewHolder> {
@@ -23,6 +30,7 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
         public TextView name, email;
         public CheckBox checkboxs;
         public ImageView resumeSelectioview;
+        public CircleImageView profileImage;
 
 
         public MyViewHolder(View view) {
@@ -31,12 +39,12 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
             email = (TextView) view.findViewById(R.id.email);
             checkboxs = (CheckBox) view.findViewById(R.id.checkboxs);
             resumeSelectioview = (ImageView) view.findViewById(R.id.resumeSelectioview);
-
+            profileImage = (CircleImageView) view.findViewById(R.id.uploadedbyprofile);
         }
     }
 
 
-    public RecyclerItemUsersAdapter(ArrayList<RecyclerItemUsers> itemList,Context mContext,int flag) {
+    public RecyclerItemUsersAdapter(ArrayList<RecyclerItemUsers> itemList, Context mContext, int flag) {
         this.itemList = itemList;
         this.mContext = mContext;
         this.flag = flag;
@@ -53,23 +61,38 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        Log.d("TAG2", "flag: "+flag);
+        Log.d("TAG2", "flag: " + flag);
 
         final RecyclerItemUsers item = itemList.get(position);
+        try {
 
-        holder.name.setText(item.getName());
-        holder.email.setText(item.getEmail());
-        holder.name.setTypeface(Z.getBold(holder.name.getContext()));
-        holder.email.setTypeface(Z.getLight(holder.email.getContext()));
+            holder.name.setText(item.getName());
+            holder.email.setText(Z.Decrypt(item.getEmail(), mContext));
+            holder.name.setTypeface(Z.getBold(holder.name.getContext()));
+            holder.email.setTypeface(Z.getLight(holder.email.getContext()));
 
-        if(item.isSelected())
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImageThumbnail")
+                    .appendQueryParameter("u", item.getEmail())
+                    .build();
+
+            Glide.with(mContext)
+                    .load(uri)
+                    .signature(new StringSignature(Z.Decrypt(item.getEmail(), mContext)))
+                    .into(holder.profileImage);
+
+        } catch (Exception e) {
+        }
+
+        if (item.isSelected())
             holder.checkboxs.setChecked(true);
         else
             holder.checkboxs.setChecked(false);
 
-        if(flag==3)
+        if (flag == 3)
             holder.checkboxs.setVisibility(View.GONE);
-
 
 
         holder.resumeSelectioview.setOnClickListener(new View.OnClickListener() {
@@ -91,9 +114,9 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
                     item.setSelected(false);
 
                 }
-                if(flag==1)
+                if (flag == 1)
                     ((UserSelection) mContext).showCount(item);
-                else if(flag==2)
+                else if (flag == 2)
                     ((UserSelection) mContext).showCount2(item);
 
             }
