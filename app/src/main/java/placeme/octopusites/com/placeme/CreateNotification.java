@@ -69,7 +69,6 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 public class CreateNotification extends AppCompatActivity implements TagsEditText.TagsEditListener {
 
 
-    private static final String LINE_FEED = "\r\n";
     final List<String> yearList = new ArrayList<String>();
     //hiding ui
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
@@ -83,8 +82,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     String instname = "";
     AdminData a = new AdminData();
     int errorflag = 0;
-    int attachmentcount = 0;
-    int attach1 = 0, attach2 = 0, attach3 = 0, attach4 = 0, attach5 = 0;
     int forstudflag = 0, forallumflag = 0;
     TextInputLayout batches, titleinput, notificationinput;
     RelativeLayout yearspinner;
@@ -103,12 +100,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     LinkedHashMap<String, String> map2 = new LinkedHashMap<>();
     TextView t1, t2, t3, t4, t5, t6;
-    String name = "", vallue = "", name2 = "", value2 = "";
+    String name = "";
     List<String> response = new ArrayList<String>();
-    int progress, progress2, progress3, progress4, progress5;
-    int data_for_progressbar, data_for_progressbar1, data_for_progressbar2, data_for_progressbar3, data_for_progressbar4;
+
     ProgressBar prg1, prg2, prg3, prg4, prg5;
-    int completefile = 0;
     ScrollView scrollview;
     String filenameparam1 = "", filenameparam2 = "", filenameparam3 = "", filenameparam4 = "", filenameparam5 = "";
     String FLAG = "";
@@ -116,17 +111,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     HashMap<String, String> map3 = new HashMap();
     String File1index = "", File2index = "", File3index = "", File4index = "", File5index = "";
     String Forwhomefromdb = "";
-    Drawable compleatesprogress;
     ArrayAdapter<String> dataAdapter;
     ArrayList<String> TagCreateList = new ArrayList<>();
     int edittedFlag = 0, containsall = 0;
     String digest1, digest2;
     boolean fileinprogress1 = false, fileinprogress2 = false, fileinprogress3 = false, fileinprogress4 = false, fileinprogress5 = false;
-    private String charset = "UTF-8";
-    private String boundary;
-    private HttpURLConnection httpConn;
-    private OutputStream outputStream;
-    private PrintWriter writer;
+
     private TagsEditText batchesTags;
 
     @Override
@@ -184,7 +174,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         t3 = (TextView) findViewById(R.id.filename3);
         t4 = (TextView) findViewById(R.id.filename4);
         t5 = (TextView) findViewById(R.id.filename5);
-        final Context context = this;
 
 
         a1 = new ArrayList<>();
@@ -233,8 +222,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         batchesTags.setHint("Enter the Batches");
         batchesTags.setTagsListener(this);
         batchesTags.setTagsWithSpacesEnabled(true);
-//        mTagsEditText.setAdapter(new ArrayAdapter<>(this,
-//                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.fruits)));
         batchesTags.setThreshold(1);
         batchesTags.setFocusable(false);
 
@@ -244,7 +231,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             yearList.add("" + i);
 
 
-//        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
         dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, yearList) {
             @Override
             public View getDropDownView(int position, View convertView,
@@ -566,8 +552,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 if (!ssfile2.equals("null")) {
                     a1.add(ssfile2);
                     map3.put(ssfile2, "filename2");
-
-//                map2.put(filename,lenght+"");
                     filecounter++;
                     refresh();
                     batchesTags.dismissDropDown();
@@ -581,7 +565,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 if (!ssfile3.equals("null")) {
                     a1.add(ssfile3);
                     map3.put(ssfile3, "filename3");
-//                map2.put(filename,lenght+"");
                     filecounter++;
                     refresh();
                     batchesTags.dismissDropDown();
@@ -594,7 +577,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 if (!ssfile4.equals("null")) {
                     a1.add(ssfile4);
                     map3.put(ssfile4, "filename4");
-//                map2.put(filename,lenght+"");
                     filecounter++;
                     refresh();
                     batchesTags.dismissDropDown();
@@ -607,7 +589,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 if (!ssfile5.equals("null")) {
                     a1.add(ssfile5);
                     map3.put(ssfile5, "filename5");
-//                map2.put(filename,lenght+"");
                     filecounter++;
                     refresh();
                     batchesTags.dismissDropDown();
@@ -638,19 +619,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             e.printStackTrace();
         }
 
-
-//        attchrl1.setVisibility(View.VISIBLE);
-//        attchrl2.setVisibility(View.VISIBLE);
-//        attchrl3.setVisibility(View.VISIBLE);
-//        attchrl4.setVisibility(View.VISIBLE);
-//        attchrl5.setVisibility(View.VISIBLE);
-//        prg1.setIndeterminate(true);
-//        prg2.setIndeterminate(true);
-//        prg3.setIndeterminate(true);
-//        prg4.setIndeterminate(true);
-//        prg5.setIndeterminate(true);
-
-
     }
 
 
@@ -661,7 +629,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             case R.id.action_save:
 
                 try {
-
 
                     stitle = title.getText().toString();
                     snotiffication = notiffication.getText().toString();
@@ -676,7 +643,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         batchesArraylist2.add(batchesArray[i]);
                     }
                     String sunny = "";
-//                       sunny=  mTagsEditText.getText().toString();
                     sunny = android.text.TextUtils.join(",", batchesArraylist2);
                     Log.d("sunny", "afterTextChanged3: " + sunny);
 
@@ -754,7 +720,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-//                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 break;
             case android.R.id.home:
@@ -776,7 +741,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         alertDialogBuilder
                 .setTitle("Do you want to remove this attachment ?")
-//               .setMessage("Filename:"+filename+"          Size:"+lenght/1024+"MB")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -793,7 +757,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     refresh();
 
                                 } catch (Exception e) {
-//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
                             }
@@ -870,7 +833,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     refresh();
 
                                 } catch (Exception e) {
-//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -883,13 +845,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         dialog.cancel();
                     }
                 });
-//        alertDialogBuilder .setView(R.layout.custom_dialog);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.custom_dialog, null);
         alertDialogBuilder.setView(dialogView);
         TextView filenameondialogshow1 = (TextView) dialogView.findViewById(R.id.dialogfilename);
         try {
-//            String n = a1.get(1);
             String n = t2.getText().toString();
             filenameondialogshow1.setText(n);
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
@@ -898,7 +858,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 sizeondialogshow1.setVisibility(View.GONE);
 
             } else {
-//          String s = map2.get(t1.getText().toString());
                 String s = map2.get(a1.get(1));
                 long size = Long.parseLong(s);
                 String finalsize;
@@ -914,7 +873,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             }
         } catch (Exception e) {
-//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -950,7 +908,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                                     refresh();
                                 } catch (Exception e) {
-//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -979,8 +936,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             } else {
 
-
-//          String s = map2.get(t1.getText().toString());
                 String s = map2.get(a1.get(2));
                 long size = Long.parseLong(s);
                 String finalsize;
@@ -996,7 +951,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             }
         } catch (Exception e) {
-//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -1030,7 +984,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     refresh();
 
                                 } catch (Exception e) {
-//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -1043,7 +996,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         dialog.cancel();
                     }
                 });
-//        alertDialogBuilder .setView(R.layout.custom_dialog);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.custom_dialog, null);
         alertDialogBuilder.setView(dialogView);
@@ -1061,7 +1013,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             } else {
 
 
-//          String s = map2.get(t1.getText().toString());
                 String s = map2.get(a1.get(3));
                 long size = Long.parseLong(s);
                 String finalsize;
@@ -1077,7 +1028,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             }
         } catch (Exception e) {
-//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -1095,7 +1045,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         alertDialogBuilder
                 .setTitle("Do you want to remove this attachment ?")
-//               .setMessage("Filename:"+filename+"          Size:"+lenght/1024+"MB")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -1109,7 +1058,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     fileinprogress5=false;
                                     refresh();
                                 } catch (Exception e) {
-//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -1221,7 +1169,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             filePath = f.getAbsolutePath();
             // Do anything with file
             lenght = f.length();
-//            Toast.makeText(MainActivity.this, "File lenght:" + lenght, Toast.LENGTH_LONG).show();
 
             if (lenght > 16777216) {
                 Toast.makeText(CreateNotification.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
@@ -1294,12 +1241,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam5 = "";
 
                     attchrl1.requestFocus();
-
-//                    scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-//                    mTagsEditText.dismissDropDown();
-
-
-                }
+               }
             } catch (Exception e) {
                 attchrl1.setVisibility(View.GONE);
                 t1.setText("");
@@ -1315,14 +1257,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam5 = "";
 
                     attchrl2.requestFocus();
-
-//                    scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-//                    mTagsEditText.ropDown();
-
-
-                }
+          }
             } catch (Exception e) {
-//                Toast.makeText(CreateNotification.this,  "2"+e.getMessage(), Toast.LENGTH_LONG).show();
                 attchrl2.setVisibility(View.GONE);
                 t2.setText("");
             }
@@ -1335,12 +1271,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam4 = "";
                     filenameparam5 = "";
                     attchrl3.requestFocus();
-
-//                    scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-//                    mTagsEditText.dismissDropDown();
-
-
-                }
+        }
             } catch (Exception e) {
                 t3.setText("");
                 attchrl3.setVisibility(View.GONE);
@@ -1355,11 +1286,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam5 = "";
 
                     attchrl4.requestFocus();
-//                    scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-//                    mTagsEditText.dismissDropDown();
-
-
-                }
+          }
             } catch (Exception e) {
                 attchrl4.setVisibility(View.GONE);
                 t4.setText("");
@@ -1372,20 +1299,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     t5.setText(a1.get(4));
                     filenameparam5 = (a1.get(4));
                     attchrl5.requestFocus();
-
-//                    scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-//                    mTagsEditText.dismissDropDown();
-
-
-                }
+         }
             } catch (Exception e) {
                 attchrl5.setVisibility(View.GONE);
                 t5.setText("");
             }
-
-
-        } catch (Exception e) {
-//            Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
+     } catch (Exception e) {
         }
 
     }
@@ -1405,11 +1324,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
     @Override
     public void onEditingFinished() {
-//        Log.d(TAG,"OnEditing finished");
-//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(mTagsEditText.getWindowToken(), 0);
-//        //mTagsEditText.clearFocus();
-    }
+   }
 
     class SaveData extends AsyncTask<String, String, String> {
         @Override
@@ -1495,23 +1410,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
             CreateNotification.super.onBackPressed();
-
-
-//            if(result.equals("success"))
-//            {
-//                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//
-////                Intent returnIntent = new Intent();
-////                returnIntent.putExtra("result", result);
-////                if(edittedFlag==1){
-////                    setResult(111);
-////                }
-//                CreateNotification.super.onBackPressed();
-//            }
-//            else {
-//                Toast.makeText(CreateNotification.this,result,Toast.LENGTH_SHORT).show();
-//
-//            }
         }
     }
 
@@ -1628,608 +1526,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         }
     }
 
-    //    class ShowProgress extends AsyncTask<String, String, String> {
-//        String getstatus = null;
-//
-//        protected void onPreExecute() {
-//
-//            File atach1 = new File(filePath);
-//            lenght = atach1.length();
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            try {
-//                File atach1 = new File(filePath);
-//                lenght = atach1.length();
-//                username = Z.Decrypt(encUsername, CreateNotification.this);
-////            username = encUsername;
-//
-//                if (atach1 != null) {
-//
-//                    MultipartUtility multipart = null;
-//                    try {
-//                        prg1.setIndeterminate(true);
-//
-//                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-//                        Log.d("TAG", "UploadProfile : input  username " + username);
-//                        multipart.addFormField("u", username);
-//                        if (filename != "") {
-//                            multipart.addFormField("f", filename);
-//                            multipart.addFilePart("uf", atach1);
-//                            Log.d("TAG", "onSuccess: f name- " + filename);
-//                        } else
-//                            multipart.addFormField("f", "null");
-//                        response = multipart.finish();
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        Log.d("TAG", "exp : " + e.getMessage());
-//
-//                    }
-//
-//                } else
-//                {
-//                    Log.d("TAG", "file null");
-//
-//                }
-//
-//
-//            } catch (Exception ex) {
-//
-//            }
-//                return null;
-//
-//        }
-//
-//
-//        @Override
-//        protected void onProgressUpdate(String... progress) {
-//            super.onProgressUpdate(progress);
-//            Log.d("file1test", "progressOnUpdate1:" + data_for_progressbar + "");
-//
-//
-////            prg1.setProgress(data_for_progressbar);
-//
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            try {
-//
-//                if (response != null && response.get(0).contains("created")) {
-//                    Log.d("filestatus","created");
-//                    prg1.setIndeterminate(false);
-//                    prg1.setProgress(100);
-//
-//
-//                } else if (response != null && response.get(0).contains("null")) {
-//                    Log.d("filestatus","null");
-//
-//
-//                }else{
-//                    Log.d("filestatus","file not created");
-//
-//                }
-//
-//            } catch (Exception e) {
-//
-//                Log.d("whomsYears e:", e.getMessage());
-//            }
-//        }
-//
-//    }
-//
-//    class ShowProgress2 extends AsyncTask<String, String, String> {
-//        String getstatus = null;
-//
-//        protected void onPreExecute() {
-//
-//            File atach1 = new File(filePath);
-//            lenght = atach1.length();
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            try {
-//                File atach1 = new File(filePath);
-//                lenght = atach1.length();
-//                username = Z.Decrypt(encUsername, CreateNotification.this);
-////            username = encUsername;
-//
-//                if (atach1 != null) {
-//
-//                    MultipartUtility multipart = null;
-//                    try {
-//                        prg2.setIndeterminate(true);
-//
-//                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-//                        Log.d("TAG", "UploadProfile : input  username " + username);
-//                        multipart.addFormField("u", username);
-//                        if (filename != "") {
-//                            multipart.addFormField("f", filename);
-//                            multipart.addFilePart("uf", atach1);
-//                            Log.d("TAG", "onSuccess: f name- " + filename);
-//                        } else
-//                            multipart.addFormField("f", "null");
-//                        response = multipart.finish();
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        Log.d("TAG", "exp : " + e.getMessage());
-//
-//                    }
-//
-//                } else
-//                {
-//                    Log.d("TAG", "file null");
-//
-//                }
-//
-//
-//            } catch (Exception ex) {
-//
-//            }
-//            return null;
-//
-//        }
-//
-//
-//        @Override
-//        protected void onProgressUpdate(String... progress) {
-//            super.onProgressUpdate(progress);
-//            Log.d("file1test", "progressOnUpdate1:" + data_for_progressbar + "");
-//
-//
-////            prg1.setProgress(data_for_progressbar);
-//
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            try {
-//
-//                if (response != null && response.get(0).contains("created")) {
-//                    Log.d("filestatus","created");
-//                    prg2.setIndeterminate(false);
-//                    prg2.setProgress(100);
-//
-//
-//                } else if (response != null && response.get(0).contains("null")) {
-//                    Log.d("filestatus","null");
-//
-//
-//                }else{
-//                    Log.d("filestatus","file not created");
-//
-//                }
-//
-//            } catch (Exception e) {
-//
-//                Log.d("whomsYears e:", e.getMessage());
-//            }
-//        }
-//
-//    }
-//
-//    class ShowProgress3 extends AsyncTask<String, String, String> {
-//        String getstatus = null;
-//
-//        protected void onPreExecute() {
-//
-//            File atach1 = new File(filePath);
-//            lenght = atach1.length();
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            try {
-//                File atach1 = new File(filePath);
-//                lenght = atach1.length();
-//                username = Z.Decrypt(encUsername, CreateNotification.this);
-////            username = encUsername;
-//
-//                if (atach1 != null) {
-//
-//                    MultipartUtility multipart = null;
-//                    try {
-//                        prg3.setIndeterminate(true);
-//
-//                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-//                        Log.d("TAG", "UploadProfile : input  username " + username);
-//                        multipart.addFormField("u", username);
-//                        if (filename != "") {
-//                            multipart.addFormField("f", filename);
-//                            multipart.addFilePart("uf", atach1);
-//                            Log.d("TAG", "onSuccess: f name- " + filename);
-//                        } else
-//                            multipart.addFormField("f", "null");
-//                        response = multipart.finish();
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        Log.d("TAG", "exp : " + e.getMessage());
-//
-//                    }
-//
-//                } else
-//                {
-//                    Log.d("TAG", "file null");
-//
-//                }
-//
-//
-//            } catch (Exception ex) {
-//
-//            }
-//            return null;
-//
-//        }
-//
-//
-//        @Override
-//        protected void onProgressUpdate(String... progress) {
-//            super.onProgressUpdate(progress);
-//            Log.d("file1test", "progressOnUpdate1:" + data_for_progressbar + "");
-//
-//
-////            prg1.setProgress(data_for_progressbar);
-//
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            try {
-//
-//                if (response != null && response.get(0).contains("created")) {
-//                    Log.d("filestatus","created");
-//                    prg3.setIndeterminate(false);
-//                    prg3.setProgress(100);
-//
-//
-//                } else if (response != null && response.get(0).contains("null")) {
-//                    Log.d("filestatus","null");
-//
-//
-//                }else{
-//                    Log.d("filestatus","file not created");
-//
-//                }
-//
-//            } catch (Exception e) {
-//
-//                Log.d("whomsYears e:", e.getMessage());
-//            }
-//        }
-//
-//    }
-//
-//    class ShowProgress4 extends AsyncTask<String, String, String> {
-//
-//        protected void onPreExecute() {
-//
-//            File atach1 = new File(filePath);
-//            lenght = atach1.length();
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            try {
-//                File atach1 = new File(filePath);
-//                lenght = atach1.length();
-//                username = Z.Decrypt(encUsername, CreateNotification.this);
-////            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-//                // creates a unique boundary based on time stamp
-//                boundary = "===" + System.currentTimeMillis() + "===";
-//                URL url = new URL(Z.url_SavefileOnServer);
-//                httpConn = (HttpURLConnection) url.openConnection();
-//                httpConn.setUseCaches(false);
-//                httpConn.setDoOutput(true);    // indicates POST method
-//                httpConn.setDoInput(true);
-//                httpConn.setRequestProperty("Content-Type",
-//                        "multipart/form-data; boundary=" + boundary);
-//                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-//                httpConn.setRequestProperty("Test", "Bonjour");
-//                outputStream = httpConn.getOutputStream();
-//                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-//                        true);
-//                //formfieldpart//     multipart.addFormField("u", username);
-//                name = "u";
-//                vallue = username;
-//                writer.append("--" + boundary).append(LINE_FEED);
-//                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-//                        .append(LINE_FEED);
-//                writer.append("Content-Type: text/plain; charset=" + charset).append(
-//                        LINE_FEED);
-//                writer.append(LINE_FEED);
-//                writer.append(vallue).append(LINE_FEED);
-//                writer.flush();
-//                if (filename != "") {
-//                    name2 = "f";
-//                    value2 = filename;
-//                    writer.append("--" + boundary).append(LINE_FEED);
-//                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-//                            .append(LINE_FEED);
-//                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-//                            LINE_FEED);
-//                    writer.append(LINE_FEED);
-//                    writer.append(value2).append(LINE_FEED);
-//                    writer.flush();
-//                    //multipart part// multipart.addFilePart("uf", sourceFile);
-//
-//                    String fieldName = "uf", uploadFile = "";
-//                    //        String fileName = uploadFile.getName();
-//                    writer.append("--" + boundary).append(LINE_FEED);
-//                    writer.append(
-//                            "Content-Disposition: form-data; name=\"" + fieldName
-//                                    + "\"; filename=\"" + filename + "\"")
-//                            .append(LINE_FEED);
-//                    writer.append(
-//                            "Content-Type: "
-//                                    + URLConnection.guessContentTypeFromName(filename))
-//                            .append(LINE_FEED);
-//                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-//                    writer.append(LINE_FEED);
-//                    writer.flush();
-//                    FileInputStream inputStream = new FileInputStream(atach1);
-//                    byte[] buffer = new byte[4096];
-//                    int bytesRead = 0;
-////                  long totalSize= 15710566;
-//                    long totalSize = lenght;
-//
-//                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-//                        outputStream.write(buffer, 0, bytesRead);
-//                        //progres
-//                        Log.d("bytes", "" + bytesRead);
-//                        progress4 += bytesRead;
-//                        data_for_progressbar3 = (int) ((progress4 * 100) / totalSize);
-//                        publishProgress("lavda");
-//                    }
-//                    outputStream.flush();
-//                    inputStream.close();
-//
-//                    writer.append(LINE_FEED);
-//                    writer.flush();
-/////finishPart
-//                    writer.append(LINE_FEED).flush();
-//                    writer.append("--" + boundary + "--").append(LINE_FEED);
-//                    writer.close();
-//
-//// checks server's status code first
-//                    int status = httpConn.getResponseCode();
-//                    if (status == HttpURLConnection.HTTP_OK) {
-//                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-//                                httpConn.getInputStream()));
-//                        String line = null;
-//                        while ((line = reader.readLine()) != null) {
-//                            response.add(line);
-//                        }
-//                        reader.close();
-//                        httpConn.disconnect();
-//
-//                    } else {
-//                        throw new IOException("Server returned non-OK status: " + status);
-//                    }
-//
-//                } else
-////        multipart.addFormField("f", "");
-//                    name2 = "f";
-//                value2 = "";
-//                writer.append("--" + boundary).append(LINE_FEED);
-//                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-//                        .append(LINE_FEED);
-//                writer.append("Content-Type: text/plain; charset=" + charset).append(
-//                        LINE_FEED);
-//                writer.append(LINE_FEED);
-//                writer.append(value2).append(LINE_FEED);
-//                writer.flush();
-//                ///finishPart
-//                writer.append(LINE_FEED).flush();
-//                writer.append("--" + boundary + "--").append(LINE_FEED);
-//                writer.close();
-//
-////            response = multipart.finish();
-//
-//// checks server's status code first
-//                int status = httpConn.getResponseCode();
-//                if (status == HttpURLConnection.HTTP_OK) {
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-//                            httpConn.getInputStream()));
-//                    String line = null;
-//                    while ((line = reader.readLine()) != null) {
-//                        response.add(line);
-//                    }
-//                    reader.close();
-//                    httpConn.disconnect();
-//                } else {
-//                    throw new IOException("Server returned non-OK status: " + status);
-//                }
-//
-//
-//            } catch (Exception ex) {
-//
-//            }
-//
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onProgressUpdate(String... progress4) {
-//            super.onProgressUpdate(progress4);
-//            Log.d("LAst", "progressOnUpdate4:" + data_for_progressbar3 + "");
-//            prg4.setProgress(data_for_progressbar3);
-//
-//        }
-//
-//    }
-//
-//    class ShowProgress5 extends AsyncTask<String, String, String> {
-//
-//        protected void onPreExecute() {
-//
-//            File atach1 = new File(filePath);
-//            lenght = atach1.length();
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            try {
-//                File atach1 = new File(filePath);
-//                lenght = atach1.length();
-//                username = Z.Decrypt(encUsername, CreateNotification.this);
-////            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-//                // creates a unique boundary based on time stamp
-//                boundary = "===" + System.currentTimeMillis() + "===";
-//                URL url = new URL(Z.url_SavefileOnServer);
-//                httpConn = (HttpURLConnection) url.openConnection();
-//                httpConn.setUseCaches(false);
-//                httpConn.setDoOutput(true);    // indicates POST method
-//                httpConn.setDoInput(true);
-//                httpConn.setRequestProperty("Content-Type",
-//                        "multipart/form-data; boundary=" + boundary);
-//                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-//                httpConn.setRequestProperty("Test", "Bonjour");
-//                outputStream = httpConn.getOutputStream();
-//                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-//                        true);
-//                //formfieldpart//     multipart.addFormField("u", username);
-//                name = "u";
-//                vallue = username;
-//                writer.append("--" + boundary).append(LINE_FEED);
-//                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-//                        .append(LINE_FEED);
-//                writer.append("Content-Type: text/plain; charset=" + charset).append(
-//                        LINE_FEED);
-//                writer.append(LINE_FEED);
-//                writer.append(vallue).append(LINE_FEED);
-//                writer.flush();
-//                if (filename != "") {
-//                    name2 = "f";
-//                    value2 = filename;
-//                    writer.append("--" + boundary).append(LINE_FEED);
-//                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-//                            .append(LINE_FEED);
-//                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-//                            LINE_FEED);
-//                    writer.append(LINE_FEED);
-//                    writer.append(value2).append(LINE_FEED);
-//                    writer.flush();
-//                    //multipart part// multipart.addFilePart("uf", sourceFile);
-//
-//                    String fieldName = "uf", uploadFile = "";
-//                    //        String fileName = uploadFile.getName();
-//                    writer.append("--" + boundary).append(LINE_FEED);
-//                    writer.append(
-//                            "Content-Disposition: form-data; name=\"" + fieldName
-//                                    + "\"; filename=\"" + filename + "\"")
-//                            .append(LINE_FEED);
-//                    writer.append(
-//                            "Content-Type: "
-//                                    + URLConnection.guessContentTypeFromName(filename))
-//                            .append(LINE_FEED);
-//                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-//                    writer.append(LINE_FEED);
-//                    writer.flush();
-//                    FileInputStream inputStream = new FileInputStream(atach1);
-//                    byte[] buffer = new byte[4096];
-//                    int bytesRead = 0;
-////                  long totalSize= 15710566;
-//                    long totalSize = lenght;
-//
-//                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-//                        outputStream.write(buffer, 0, bytesRead);
-//                        //progres
-//                        Log.d("bytes", "" + bytesRead);
-//                        progress5 += bytesRead;
-//                        data_for_progressbar4 = (int) ((progress5 * 100) / totalSize);
-//                        publishProgress("lavda");
-//                    }
-//                    outputStream.flush();
-//                    inputStream.close();
-//
-//                    writer.append(LINE_FEED);
-//                    writer.flush();
-/////finishPart
-//                    writer.append(LINE_FEED).flush();
-//                    writer.append("--" + boundary + "--").append(LINE_FEED);
-//                    writer.close();
-//
-//// checks server's status code first
-//                    int status = httpConn.getResponseCode();
-//                    if (status == HttpURLConnection.HTTP_OK) {
-//                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-//                                httpConn.getInputStream()));
-//                        String line = null;
-//                        while ((line = reader.readLine()) != null) {
-//                            response.add(line);
-//                        }
-//                        reader.close();
-//                        httpConn.disconnect();
-//                    } else {
-//                        throw new IOException("Server returned non-OK status: " + status);
-//                    }
-//
-//                } else
-////        multipart.addFormField("f", "");
-//                    name2 = "f";
-//                value2 = "";
-//                writer.append("--" + boundary).append(LINE_FEED);
-//                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-//                        .append(LINE_FEED);
-//                writer.append("Content-Type: text/plain; charset=" + charset).append(
-//                        LINE_FEED);
-//                writer.append(LINE_FEED);
-//                writer.append(value2).append(LINE_FEED);
-//                writer.flush();
-//                ///finishPart
-//                writer.append(LINE_FEED).flush();
-//                writer.append("--" + boundary + "--").append(LINE_FEED);
-//                writer.close();
-//
-////            response = multipart.finish();
-//
-//// checks server's status code first
-//                int status = httpConn.getResponseCode();
-//                if (status == HttpURLConnection.HTTP_OK) {
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-//                            httpConn.getInputStream()));
-//                    String line = null;
-//                    while ((line = reader.readLine()) != null) {
-//                        response.add(line);
-//                    }
-//                    reader.close();
-//                    httpConn.disconnect();
-//                } else {
-//                    throw new IOException("Server returned non-OK status: " + status);
-//                }
-//
-//
-//            } catch (Exception ex) {
-//
-//            }
-//
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onProgressUpdate(String... progress5) {
-//            super.onProgressUpdate(progress5);
-//            Log.d("LAst", "progressOnUpdate4:" + data_for_progressbar4 + "");
-//            prg5.setProgress(data_for_progressbar4);
-//
-//
-//        }
-//
-//    }
-    class ShowProgress1 extends AsyncTask<String, String, String> {
+   class ShowProgress1 extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -2540,7 +1837,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 File atach1 = new File(filePath);
                 lenght = atach1.length();
                 username = Z.Decrypt(encUsername, CreateNotification.this);
-//            username = encUsername;
 
                 if (atach1 != null) {
 
