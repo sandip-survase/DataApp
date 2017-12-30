@@ -46,7 +46,6 @@ public class Z {
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
 //======================================= login =====================================
 
-
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
 // -------------------------------------------MainActivity(student)-----------------------------------------------

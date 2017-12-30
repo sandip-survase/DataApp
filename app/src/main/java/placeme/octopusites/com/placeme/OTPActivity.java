@@ -385,9 +385,7 @@ public class OTPActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
             loginFirebase(plainusername, hash);
-
         }
     }
 

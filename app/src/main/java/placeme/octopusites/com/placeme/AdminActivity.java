@@ -2544,6 +2544,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new GetCountOfUsersUnderAdmin().execute();
     }
 
+    public void setUserCount() {
+        bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
+    }
+
     class isVerified extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             String username = MySharedPreferencesManager.getUsername(AdminActivity.this);

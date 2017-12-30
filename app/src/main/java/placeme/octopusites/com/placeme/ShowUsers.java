@@ -197,6 +197,32 @@ public class ShowUsers extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode== Z.USER_DATA_CHANGE_RESULT_CODE){
             refreshContent();
+
+        }
+    }
+
+    class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            String username = MySharedPreferencesManager.getUsername(ShowUsers.this);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            json = jParser.makeHttpRequest(Z.url_GetCountOfUsersUnderAdmin, "GET", params);
+            try {
+                r = json.getString("count");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null) {
+                Z.CountOfUsersUnderAdmin = result;
+            }
         }
     }
 
