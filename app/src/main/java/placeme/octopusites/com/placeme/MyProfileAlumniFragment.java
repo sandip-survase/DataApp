@@ -117,7 +117,6 @@ public class MyProfileAlumniFragment extends Fragment {
     TextView myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3;
     TextView extraprojectscount, noexptxt,extraexpcount;
-
     JSONParser jParser = new JSONParser();
     JSONParser jParserlang = new JSONParser();
     JSONObject json, jsonlang;
@@ -129,12 +128,10 @@ public class MyProfileAlumniFragment extends Fragment {
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding;
-    //    AlumniData alumniData = new AlumniData();
     StudentData studentData = new StudentData();
     HrData hrData = new HrData();
     AdminData a = new AdminData();
     HashMap<String, Integer> hashMap;
-    //    kunal
     String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "", phone = "";
     String proj1 = "", domain1 = "", team1 = "", duration1 = "", proj2 = "", domain2 = "", team2 = "", duration2 = "", proj3 = "", domain3 = "", team3 = "", duration3 = "", proj4 = "", domain4 = "", team4 = "", duration4 = "", proj5 = "", domain5 = "", team5 = "", duration5 = "", proj6 = "", domain6 = "", team6 = "", duration6 = "", proj7 = "", domain7 = "", team7 = "", duration7 = "", proj8 = "", domain8 = "", team8 = "", duration8 = "", proj9 = "", domain9 = "", team9 = "", duration9 = "", proj10 = "", domain10 = "", team10 = "", duration10 = "";
     String strength1 = "", strength2 = "", strength3 = "", strength4 = "", strength5 = "", strength6 = "", strength7 = "", strength8 = "", strength9 = "", strength10 = "";
@@ -147,7 +144,6 @@ public class MyProfileAlumniFragment extends Fragment {
     ;
     String ptitle1 = "", pappno1 = "", pinventor1 = "", pissue1 = "", pfiling1 = "", purl1 = "", pdescription1 = "", ptitle2 = "", pappno2 = "", pinventor2 = "", pissue2 = "", pfiling2 = "", purl2 = "", pdescription2 = "", ptitle3 = "", pappno3 = "", pinventor3 = "", pissue3 = "", pfiling3 = "", purl3 = "", pdescription3 = "", ptitle4 = "", pappno4 = "", pinventor4 = "", pissue4 = "", pfiling4 = "", purl4 = "", pdescription4 = "", ptitle5 = "", pappno5 = "", pinventor5 = "", pissue5 = "", pfiling5 = "", purl5 = "", pdescription5 = "", ptitle6 = "", pappno6 = "", pinventor6 = "", pissue6 = "", pfiling6 = "", purl6 = "", pdescription6 = "", ptitle7 = "", pappno7 = "", pinventor7 = "", pissue7 = "", pfiling7 = "", purl7 = "", pdescription7 = "", ptitle8 = "", pappno8 = "", pinventor8 = "", pissue8 = "", pfiling8 = "", purl8 = "", pdescription8 = "", ptitle9 = "", pappno9 = "", pinventor9 = "", pissue9 = "", pfiling9 = "", purl9 = "", pdescription9 = "", ptitle10 = "", pappno10 = "", pinventor10 = "", pissue10 = "", pfiling10 = "", purl10 = "", pdescription10 = "", pselectedcountry1 = "", pselectedcountry2 = "", pselectedcountry3 = "", pselectedcountry4 = "", pselectedcountry5 = "", pselectedcountry6 = "", pselectedcountry7 = "", pselectedcountry8 = "", pselectedcountry9 = "", pselectedcountry10 = "", issuedorpending1 = "", issuedorpending2 = "", issuedorpending3 = "", issuedorpending4 = "", issuedorpending5 = "", issuedorpending6 = "", issuedorpending7 = "", issuedorpending8 = "", issuedorpending9 = "", issuedorpending10 = "";
     String pubtitle1 = "", publication1 = "", author1 = "", puburl1 = "", pubdescription1 = "", pubtitle2 = "", publication2 = "", author2 = "", puburl2 = "", pubdescription2 = "", pubtitle3 = "", publication3 = "", author3 = "", puburl3 = "", pubdescription3 = "", pubtitle4 = "", publication4 = "", author4 = "", puburl4 = "", pubdescription4 = "", pubtitle5 = "", publication5 = "", author5 = "", puburl5 = "", pubdescription5 = "", pubtitle6 = "", publication6 = "", author6 = "", puburl6 = "", pubdescription6 = "", pubtitle7 = "", publication7 = "", author7 = "", puburl7 = "", pubdescription7 = "", pubtitle8 = "", publication8 = "", author8 = "", puburl8 = "", pubdescription8 = "", pubtitle9 = "", publication9 = "", author9 = "", puburl9 = "", pubdescription9 = "", pubtitle10 = "", publication10 = "", author10 = "", puburl10 = "", pubdescription10 = "", publicationdate1 = "", publicationdate2 = "", publicationdate3 = "", publicationdate4 = "", publicationdate5 = "", publicationdate6 = "", publicationdate7 = "", publicationdate8 = "", publicationdate9 = "", publicationdate10 = "";
-    ;
     String course1 = "", inst1 = "", fromdate1 = "", todate1 = "", course2 = "", inst2 = "", fromdate2 = "", todate2 = "", course3 = "", inst3 = "", fromdate3 = "", todate3 = "", course4 = "", inst4 = "", fromdate4 = "", todate4 = "", course5 = "", inst5 = "", fromdate5 = "", todate5 = "", course6 = "", inst6 = "", fromdate6 = "", todate6 = "", course7 = "", inst7 = "", fromdate7 = "", todate7 = "", course8 = "", inst8 = "", fromdate8 = "", todate8 = "", course9 = "", inst9 = "", fromdate9 = "", todate9 = "", course10 = "", inst10 = "", fromdate10 = "", todate10 = "";
     int found_contact_details = 0, found_projects = 0;
     int found_certificates = 0, found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
@@ -155,11 +151,8 @@ public class MyProfileAlumniFragment extends Fragment {
     private String signature = "";
     private String mname = "";
     private ProgressBar profileprogress, updateProgress;
-
     public MyProfileAlumniFragment() {
-
     }
-
     public static String getUserCountry(Context context) {
         try {
             final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -176,9 +169,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         return null;
     }
-
     public void bottomupbox2(Activity activity, View view) {
-
         Animation animation1 =
                 AnimationUtils.loadAnimation(activity,
                         R.anim.bottom_up_box2);
@@ -186,9 +177,7 @@ public class MyProfileAlumniFragment extends Fragment {
         animation1.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 profileprogress.setVisibility(View.VISIBLE);
@@ -196,34 +185,25 @@ public class MyProfileAlumniFragment extends Fragment {
                 box2section.setVisibility(View.VISIBLE);
                 editprofiletxt.setVisibility(View.VISIBLE);
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_my_profile_alumni, container, false);
-
         box1 = (RelativeLayout) rootView.findViewById(R.id.box1);
         box2 = rootView.findViewById(R.id.box2);
         ImageView box2pencil = (ImageView) rootView.findViewById(R.id.box2pencil);
-
         username = MySharedPreferencesManager.getUsername(getActivity());
         String pass = MySharedPreferencesManager.getPassword(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         role = MySharedPreferencesManager.getRole(getActivity());
-
         TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
         TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
-
-
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
@@ -283,11 +263,9 @@ public class MyProfileAlumniFragment extends Fragment {
         weaknessestxt = (TextView) rootView.findViewById(R.id.weaknesses);
         locationpreferences = (TextView) rootView.findViewById(R.id.locationpreferences);
         contactaddr1 = (TextView) rootView.findViewById(R.id.contactaddr);
-
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         contactemail = (TextView) rootView.findViewById(R.id.contactemail);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
-
         extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
         extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
         noexptxt= (TextView) rootView.findViewById(R.id.noexptxt);
@@ -300,54 +278,37 @@ public class MyProfileAlumniFragment extends Fragment {
         projtab1 = (RelativeLayout) rootView.findViewById(R.id.projtab1);
         noprojtab = (RelativeLayout) rootView.findViewById(R.id.noprojtab);
         noexptab = (RelativeLayout) rootView.findViewById(R.id.noexptab);
-
-
         exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
         exptab2 = (RelativeLayout) rootView.findViewById(R.id.exptab2);
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
-
         exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exp2 = (ImageView) rootView.findViewById(R.id.exp2);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
-
         TextView expboxtxt = (TextView) rootView.findViewById(R.id.expboxtxt);
-
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
-
-//        exp
-
         exp1txt = (TextView) rootView.findViewById(R.id.exp1txt);
-
         myprofileexp1name = (TextView) rootView.findViewById(R.id.myprofileexp1name);
         myprofileexpfromto = (TextView) rootView.findViewById(R.id.myprofileexpfromto);
-
         exp2txt = (TextView) rootView.findViewById(R.id.exp2txt);
         myprofileexp2name = (TextView) rootView.findViewById(R.id.myprofileexp2name);
         myprofileexpfromto2 = (TextView) rootView.findViewById(R.id.myprofileexpfromto1);
-
         exp3txt = (TextView) rootView.findViewById(R.id.exp3txt);
         myprofileexp3name = (TextView) rootView.findViewById(R.id.myprofileexp3name);
         myprofileexpfromto3 = (TextView) rootView.findViewById(R.id.myprofileexpfromto2);
-
         myprofileclgname4 = (TextView) rootView.findViewById(R.id.myprofileclgname4);
         myprofileclgyearofpassing4 = (TextView) rootView.findViewById(R.id.myprofileclgyearofpassing4);
-
         noexptxt.setTypeface(Z.getBold(getActivity()));
-
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto.setTypeface(Z.getLight(getActivity()));
-
         exp2txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp2name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto2.setTypeface(Z.getLight(getActivity()));
-
         exp3txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp3name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto3.setTypeface(Z.getLight(getActivity()));
-
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
         myprofiledu.setTypeface(Z.getBold(getActivity()));
@@ -368,7 +329,6 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileproj1.setTypeface(Z.getBold(getActivity()));
         myprofileproj2.setTypeface(Z.getBold(getActivity()));
         myprofileproj3.setTypeface(Z.getBold(getActivity()));
-
         acc1txt.setTypeface(Z.getLight(getActivity()));
         acc2txt.setTypeface(Z.getLight(getActivity()));
         acc3txt.setTypeface(Z.getLight(getActivity()));
@@ -383,10 +343,8 @@ public class MyProfileAlumniFragment extends Fragment {
         nametxt.setTypeface(Z.getBold(getActivity()));
         mobiletxt.setTypeface(Z.getLight(getActivity()));
         emailtxt.setTypeface(Z.getLight(getActivity()));
-
         extraexpcount.setTypeface(Z.getLight(getActivity()));
         extraprojectscount.setTypeface(Z.getLight(getActivity()));
-
         myprofileclgname.setTypeface(Z.getLight(getActivity()));
         myprofileclgyearofpassing.setTypeface(Z.getLight(getActivity()));
         myprofileclgname2.setTypeface(Z.getLight(getActivity()));
@@ -395,7 +353,6 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileclgyearofpassing3.setTypeface(Z.getLight(getActivity()));
         myprofileclgname4.setTypeface(Z.getLight(getActivity()));
         myprofileclgyearofpassing4.setTypeface(Z.getLight(getActivity()));
-
         myprofiledomain1.setTypeface(Z.getLight(getActivity()));
         myprofileduration1.setTypeface(Z.getLight(getActivity()));
         myprofiledomain2.setTypeface(Z.getLight(getActivity()));
@@ -419,8 +376,6 @@ public class MyProfileAlumniFragment extends Fragment {
         contactmobile.setTypeface(Z.getBold(getActivity()));
         contactemail.setTypeface(Z.getBold(getActivity()));
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
-
-
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
         eduedit = (ImageView) rootView.findViewById(R.id.eduedit);
         projectsedit = (ImageView) rootView.findViewById(R.id.projectsedit);
@@ -430,8 +385,6 @@ public class MyProfileAlumniFragment extends Fragment {
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
         profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
-
-
         if (!ShouldAnimateProfile.shouldAnimate) {
             Z.bottomupbox1(getActivity(), box1);
             bottomupbox2(getActivity(), box2);
@@ -448,7 +401,6 @@ public class MyProfileAlumniFragment extends Fragment {
             box2section.setVisibility(View.VISIBLE);
             editprofiletxt.setVisibility(View.VISIBLE);
         }
-
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
         sPadding = "ISO10126Padding";
@@ -456,12 +408,12 @@ public class MyProfileAlumniFragment extends Fragment {
             byte[] usernameEncryptedBytes = SimpleBase64Encoder.decode(username);
             byte[] usernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, usernameEncryptedBytes);
             plainusername = new String(usernameDecryptedBytes);
-
             myprofilemail.setText(plainusername);
             myprofilrole.setText(role.toUpperCase());
             contactemail.setText(plainusername);
-
         } catch (Exception e) {
+            Log.d("cricket", "Match 1 lost : " + e.getMessage());
+            e.printStackTrace();
         }
 
         introedit.setOnClickListener(new View.OnClickListener() {
@@ -488,14 +440,12 @@ public class MyProfileAlumniFragment extends Fragment {
                 startActivityForResult(new Intent(getActivity(), MyProfileAccomplishments.class), 0);
             }
         });
-
         expedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(new Intent(getActivity(), AdminExperiences.class), 0);
             }
         });
-
         careeredit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -508,33 +458,25 @@ public class MyProfileAlumniFragment extends Fragment {
                 startActivityForResult(new Intent(getActivity(), MyProfileContact.class), 0);
             }
         });
-
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), ViewProfileImage.class));
             }
         });
-
         iv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog();
             }
         });
-
         editprofilerl = (RelativeLayout) rootView.findViewById(R.id.editprofilerl);
         editprofilerl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 startActivityForResult(new Intent(getActivity(), EditProfileAlumni.class), 0);
             }
         });
-
-
-
         hashMap = new HashMap<>();
         hashMap.put("Jan", 1);
         hashMap.put("Feb", 2);
@@ -548,8 +490,6 @@ public class MyProfileAlumniFragment extends Fragment {
         hashMap.put("Oct", 10);
         hashMap.put("Nov", 11);
         hashMap.put("Dec", 12);
-
-
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -557,32 +497,23 @@ public class MyProfileAlumniFragment extends Fragment {
                 ((AlumniActivity) getActivity()).requestProfileImage();
             }
         });
-
-
         refreshContent();
 
+        Log.d("cricket", "virender sehwag opening to bat");
         return rootView;
     }
-
     @Override
     public void onAttach(final Activity activity) {
-
         super.onAttach(activity);
-
         setHasOptionsMenu(true);
     }
-
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
-
         super.onPrepareOptionsMenu(menu);
-
         menu.clear();
     }
-
     public void setVisibilityExpbox() {
         int exp_count = 0;
-
         if (!fromdates1.equals(""))
             exp_count++;
         if (!fromdates2.equals(""))
@@ -603,108 +534,76 @@ public class MyProfileAlumniFragment extends Fragment {
             exp_count++;
         if (!fromdates10.equals(""))
             exp_count++;
-
-//        Log.d(HRlog, "exp count " + exp_count);
-
         if (exp_count > 3) {
             extraexpcount.setVisibility(View.VISIBLE);
             extraexpcount.setText("and " + exps_count + " more");
         }
         else
             extraexpcount.setVisibility(View.GONE);
-
-
         if (!fromdates1.equals("")) {
-
             exptab1.setVisibility(View.VISIBLE);
             exp1.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
-
             exptab2.setVisibility(View.GONE);
             exp2.setVisibility(View.GONE);
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
-
         }
         else {
             exptab1.setVisibility(View.GONE);
             exp1.setVisibility(View.GONE);
             noexptab.setVisibility(View.VISIBLE);
-
             exptab2.setVisibility(View.GONE);
             exp2.setVisibility(View.GONE);
-
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
-
         }
-
-
         if (!fromdates2.equals("")) {
             exptab2.setVisibility(View.VISIBLE);
             exp2.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
-
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
         }
-
         if (!fromdates3.equals("")) {
-
             exptab3.setVisibility(View.VISIBLE);
             exp3.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
-
         }
-
     }
-
-
     void populateData() {
+        Log.d("cricket", "sachin tendulkar massive inning");
         setVisibilityExpbox();
-
         percentProfile = 0;
         if (ucode != null) {
             if (!ucode.equals(""))
                 myprofilepreview.setText(ucode);
         }
-
         if (phone != null) {
             if (!phone.equals("")) {
                 contactmobile.setText(phone);
             }
         }
-
         if (found_box1 == 1) {
+            Log.d("cricket", "virat kohli massive inning");
             percentProfile++;
             if (!fname.equals("") && !lname.equals("")) {
                 String firstLetterCapFirstname = fname.substring(0, 1).toUpperCase() + fname.substring(1);
                 String firstLetterCapLastname = lname.substring(0, 1).toUpperCase() + lname.substring(1);
                 myprofilename.setText(firstLetterCapFirstname + " " + firstLetterCapLastname);
                 nametxt.setText(fname + " " + lname);
-
             }
-//            if (!fname.equals("") && lname.equals("")) {
-//                myprofilename.setText(fname);
-//
-//            }
             if (!country.equals("") && !state.equals("") && !city.equals("")) {
                 myprofilloc.setText(city + ", " + state + ", " + country);
-
             }
-
         }
-
         if (found_tenth == 1) {
             if (!board10.equals("")) {
-//                noedutab
-
+                Log.d("cricket", " Sourav ganguly massive inning");
                 noedutab.setVisibility(View.GONE);
                 edutab3.setVisibility(View.VISIBLE);
-
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
-
                 map.put("Jan", 1);
                 map.put("Feb", 2);
                 map.put("Mar", 3);
@@ -717,27 +616,20 @@ public class MyProfileAlumniFragment extends Fragment {
                 map.put("Oct", 10);
                 map.put("Nov", 11);
                 map.put("Dec", 12);
-
                 Date date = new Date();
-
                 SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
                 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
                 String currentMonth = sdfm.format(date);
                 String currentYears = sdfy.format(date);
-
                 String month = "", years = "";
-
                 for (int i = 0; i < yearofpassing10.length() - 6; i++) {
                     month += yearofpassing10.charAt(i);
                 }
                 for (int i = 5; i < yearofpassing10.length(); i++) {
                     years += yearofpassing10.charAt(i);
                 }
-
                 int currentYear = Integer.parseInt(currentYears);
                 int year = Integer.parseInt(years);
-
                 if (currentYear > year)
                     myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
                 else if (currentYear == year) {
@@ -751,7 +643,6 @@ public class MyProfileAlumniFragment extends Fragment {
                     myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
                     myprofiledu.setText("Std. X  (" + board10 + ")");
                 }
-
                 if (!schoolname10.equals(""))
                     myprofileclgname3.setText(schoolname10);
                 if (!yearofpassing10.equals(""))
@@ -760,16 +651,12 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         }
         if (found_twelth == 1) {
-            Log.d("TAG", "populateData: welcome to twelth");
-
+            Log.d("cricket", " Rohit Sharma coming to bat");
             if (!schoolname12.equals("")) {
-
                 noedutab.setVisibility(View.GONE);
                 edutab2.setVisibility(View.VISIBLE);
-
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
-
                 map.put("Jan", 1);
                 map.put("Feb", 2);
                 map.put("Mar", 3);
@@ -782,27 +669,20 @@ public class MyProfileAlumniFragment extends Fragment {
                 map.put("Oct", 10);
                 map.put("Nov", 11);
                 map.put("Dec", 12);
-
                 Date date = new Date();
-
                 SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
                 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
                 String currentMonth = sdfm.format(date);
                 String currentYears = sdfy.format(date);
-
                 String month = "", years = "";
-
                 for (int i = 0; i < yearofpassing12.length() - 6; i++) {
                     month += yearofpassing12.charAt(i);
                 }
                 for (int i = 5; i < yearofpassing12.length(); i++) {
                     years += yearofpassing12.charAt(i);
                 }
-
                 int currentYear = Integer.parseInt(currentYears);
                 int year = Integer.parseInt(years);
-
                 if (currentYear > year)
                     myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
                 else if (currentYear == year) {
@@ -825,15 +705,12 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         }
         if (found_diploma == 1) {
-            Log.d("TAG", "populateData: welcome to diploma");
             if (!collegenamediploma.equals("")) {
-
+                Log.d("cricket", " VVS laxman  massive inning");
                 noedutab.setVisibility(View.GONE);
                 edutab2.setVisibility(View.VISIBLE);
-
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
-
                 map.put("Jan", 1);
                 map.put("Feb", 2);
                 map.put("Mar", 3);
@@ -846,24 +723,18 @@ public class MyProfileAlumniFragment extends Fragment {
                 map.put("Oct", 10);
                 map.put("Nov", 11);
                 map.put("Dec", 12);
-
                 Date date = new Date();
-
                 SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
                 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
                 String currentMonth = sdfm.format(date);
                 String currentYears = sdfy.format(date);
-
                 String month = "", years = "";
-
                 for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
                     month += yearofpassingdiploma.charAt(i);
                 }
                 for (int i = 5; i < yearofpassingdiploma.length(); i++) {
                     years += yearofpassingdiploma.charAt(i);
                 }
-
                 int currentYear = Integer.parseInt(currentYears);
                 int year = Integer.parseInt(years);
                 if (currentYear > year)
@@ -889,14 +760,12 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_ug == 1) {
             if (!collegenameug.equals("")) {
-
+                Log.d("cricket", "  Rahul Dravid massive inning");
                 noedutab.setVisibility(View.GONE);
                 edutab1.setVisibility(View.VISIBLE);
-
                 percentProfile++;
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
-
                 map.put("Jan", 1);
                 map.put("Feb", 2);
                 map.put("Mar", 3);
@@ -909,27 +778,20 @@ public class MyProfileAlumniFragment extends Fragment {
                 map.put("Oct", 10);
                 map.put("Nov", 11);
                 map.put("Dec", 12);
-
                 Date date = new Date();
-
                 SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
                 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
                 String currentMonth = sdfm.format(date);
                 String currentYears = sdfy.format(date);
-
                 String month = "", years = "";
-
                 for (int i = 0; i < yearofpassingug.length() - 6; i++) {
                     month += yearofpassingug.charAt(i);
                 }
                 for (int i = 5; i < yearofpassingug.length(); i++) {
                     years += yearofpassingug.charAt(i);
                 }
-
                 int currentYear = Integer.parseInt(currentYears);
                 int year = Integer.parseInt(years);
-
                 if (currentYear > year) {
                     myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
                 } else if (currentYear == year) {
@@ -939,33 +801,26 @@ public class MyProfileAlumniFragment extends Fragment {
                         myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
                         myprofiledu.setText(courseug + " (" + streamug + ")");
                     }
-
                 } else {
                     myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
                     myprofiledu.setText(courseug + " (" + streamug + ")");
                 }
-
                 myprofileclgname.setText(collegenameug);
                 myprofileclgyearofpassing.setText(yearofpassingug);
-
-
                 ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
                 RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
                 insti4.setVisibility(View.GONE);
                 edutab4.setVisibility(View.GONE);
             }
         }
-
         if (found_pgsem == 1) {
-            Log.d("TAG", "populateData: universitypgsem" + universitypgsem);
+            Log.d("cricket", " VVS laxman  massive inning");
             if (!collegenamepgsem.equals("")) {
-
+                percentProfile++;
                 noedutab.setVisibility(View.GONE);
                 edutab4.setVisibility(View.VISIBLE);
-
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
-
                 map.put("Jan", 1);
                 map.put("Feb", 2);
                 map.put("Mar", 3);
@@ -978,17 +833,12 @@ public class MyProfileAlumniFragment extends Fragment {
                 map.put("Oct", 10);
                 map.put("Nov", 11);
                 map.put("Dec", 12);
-
                 Date date = new Date();
-
                 SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
                 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
                 String currentMonth = sdfm.format(date);
                 String currentYears = sdfy.format(date);
-
                 String month = "", years = "";
-
                 for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
                     month += yearofpassingpgsem.charAt(i);
                 }
@@ -997,11 +847,8 @@ public class MyProfileAlumniFragment extends Fragment {
                 }
                 int currentYear = Integer.parseInt(currentYears);
                 int year = Integer.parseInt(years);
-
-
                 if (currentYear > year)
                     myprofilecource4.setText("Attended " + coursepgsem + " at");
-
                 else if (currentYear == year) {
                     if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource4.setText("Attended " + coursepgsem + " at");
@@ -1013,10 +860,8 @@ public class MyProfileAlumniFragment extends Fragment {
                     myprofilecource4.setText("Attending " + coursepgsem + " at");
                     myprofiledu.setText(coursepgsem);
                 }
-
                 myprofileclgname4.setText(collegenamepgsem);
                 myprofileclgyearofpassing4.setText(yearofpassingpgsem);
-
                 ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
                 RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
                 insti4.setVisibility(View.VISIBLE);
@@ -1024,17 +869,13 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         }
         if (found_pgyear == 1) {
-            Log.d("TAG", "populateData: universitypgyear" + universitypgyear);
             if (!collegenamepgyear.equals("")) {
-
-
+                percentProfile++;
+                Log.d("cricket", " VVS Sunil Gavskar  massive inning");
                 noedutab.setVisibility(View.GONE);
                 edutab4.setVisibility(View.VISIBLE);
-
-
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
-
                 map.put("Jan", 1);
                 map.put("Feb", 2);
                 map.put("Mar", 3);
@@ -1047,17 +888,12 @@ public class MyProfileAlumniFragment extends Fragment {
                 map.put("Oct", 10);
                 map.put("Nov", 11);
                 map.put("Dec", 12);
-
                 Date date = new Date();
-
                 SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
                 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
                 String currentMonth = sdfm.format(date);
                 String currentYears = sdfy.format(date);
-
                 String month = "", years = "";
-
                 for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
                     month += yearofpassingpgyear.charAt(i);
                 }
@@ -1066,7 +902,6 @@ public class MyProfileAlumniFragment extends Fragment {
                 }
                 int currentYear = Integer.parseInt(currentYears);
                 int year = Integer.parseInt(years);
-
                 if (currentYear > year)
                     myprofilecource4.setText("Attended " + coursepgyear + " at");
                 else if (currentYear == year) {
@@ -1080,53 +915,39 @@ public class MyProfileAlumniFragment extends Fragment {
                     myprofilecource4.setText("Attending " + coursepgsem + " at");
                     myprofiledu.setText(coursepgyear);
                 }
-
                 myprofileclgname4.setText(collegenamepgyear);
                 myprofileclgyearofpassing4.setText(yearofpassingpgyear);
-
                 ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
                 RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
                 insti4.setVisibility(View.VISIBLE);
                 edutab4.setVisibility(View.VISIBLE);
             }
         }
-//            kunal
-
         if (found_contact_details == 1) {
-
             percentProfile++;
+            Log.d("cricket", " Dinesh kartik massive inning");
             if (!addressline1.equals("") && !addressline2.equals("") && !addressline3.equals("")) {
                 contactaddr1.setText(addressline1 + ", " + addressline2 + ", " + addressline3);
                 percentProfile++;
             }
-
-            // setting email and phone from intro box
         }
-
-        // projects
-
         if (found_projects == 1) {
             percentProfile++;
+            Log.d("cricket", " suresh raina massive inning");
             if (!proj1.equals("")) {
-
                 myprofileproj1.setText(proj1);
                 myprofiledomain1.setText(domain1);
                 myprofileduration1.setText(duration1 + " Months");
-
                 ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
                  projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
                 ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
                  projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
                 gear2.setVisibility(View.GONE);
                 projtab2.setVisibility(View.GONE);
-
                 gear3.setVisibility(View.GONE);
                 projtab3.setVisibility(View.GONE);
-
                 noprojtab.setVisibility(View.GONE);
                 projtab1.setVisibility(View.VISIBLE);
-
             }
             else
             {
@@ -1136,56 +957,42 @@ public class MyProfileAlumniFragment extends Fragment {
                 projtab3.setVisibility(View.GONE);
                 extraprojectscount.setVisibility(View.GONE);
             }
-
-
             if (!proj2.equals("")) {
                 myprofileproj2.setText(proj2);
                 myprofiledomain2.setText(domain2);
                 myprofileduration2.setText(duration2 + " Months");
-
                 ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
                  projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
                 ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
                  projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
                 gear3.setVisibility(View.GONE);
                 projtab3.setVisibility(View.GONE);
-
                 noprojtab.setVisibility(View.GONE);
             }
             if (!proj3.equals("")) {
                 myprofileproj3.setText(proj3);
                 myprofiledomain3.setText(domain3);
                 myprofileduration3.setText(duration3 + " Months");
-
                 ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
                  projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
                 ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
                  projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
-
                 gear3.setVisibility(View.VISIBLE);
                 projtab3.setVisibility(View.VISIBLE);
-
                 noprojtab.setVisibility(View.GONE);
                 if (!proj4.equals("")) {
                     extraprojectscount.setVisibility(View.VISIBLE);
                     extraprojectscount.setText("and " + proj_count + " more");
                 }
-
             }
         }
-
-        // career details
-
-
         if (found_lang == 1) {
             if (!lang1.equals("- Select Language -")) {
-
+                Log.d("cricket", " ajinkya rahane massive inning");
                 if (!lang1.equals("") && !lang1.equals("- Select Language -"))
                     acc1txttxt.setText(lang1);
                 if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
@@ -1200,9 +1007,9 @@ public class MyProfileAlumniFragment extends Fragment {
                 acc1txttxt.setText("No known languages filled.");
             }
         }
-
         if (found_certificates == 1) {
             if (!title1.equals("")){
+                Log.d("cricket", " cheteshwar pujara massive inning");
             if (!title1.equals(""))
                 acc2txttxt.setText(title1);
             if (!title1.equals("") && !title2.equals(""))
@@ -1218,11 +1025,9 @@ public class MyProfileAlumniFragment extends Fragment {
                 acc2txttxt.setText("No certifications filled.");
             }
         }
-
-
         if (found_courses == 1) {
             if (!title1.equals("")){
-
+                Log.d("cricket", " kl rahul  massive inning");
                 if (!course1.equals(""))
                 acc3txttxt.setText(course1);
             if (!course1.equals("") && !course2.equals(""))
@@ -1240,6 +1045,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_skills == 1) {
             if(!skill1.equals("")) {
+                Log.d("cricket", " Ab divillers  massive inning");
             if (!skill1.equals(""))
                 acc4txttxt.setText(skill1);
             if (!skill1.equals("") && !skill2.equals(""))
@@ -1257,6 +1063,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_honors == 1) {
             if(!htitle1.equals("")) {
+                Log.d("cricket", " hardik pandya massive inning");
             if (!htitle1.equals(""))
                 acc5txttxt.setText(htitle1);
             if (!htitle1.equals("") && !htitle2.equals(""))
@@ -1274,6 +1081,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_patents == 1) {
             if(!ptitle1.equals("")) {
+                Log.d("cricket", " shreyash ayyar  massive inning");
             if (!ptitle1.equals(""))
                 acc6txttxt.setText(ptitle1);
             if (!ptitle1.equals("") && !ptitle2.equals(""))
@@ -1291,7 +1099,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_publications == 1) {
             if(!pubtitle1.equals("")) {
-
+                Log.d("cricket", " ambati rayadu  massive inning");
                 if (!pubtitle1.equals(""))
                 acc7txttxt.setText(pubtitle1);
             if (!pubtitle1.equals("") && !pubtitle2.equals(""))
@@ -1309,12 +1117,14 @@ public class MyProfileAlumniFragment extends Fragment {
 
     }
         if (found_careerobj == 1) {
+            Log.d("cricket", "yuvraj singh massive inning");
             if (!careerobj.equals(""))
                 careerobjtxttxt.setText(careerobj);
             percentProfile++;
         }
         if (found_strengths == 1) {
             if(!strength1.equals("")) {
+                Log.d("cricket", "Mahendra singh dhoni massive inning");
             if (!strength1.equals(""))
                 strengthstxt.setText(strength1);
             if (!strength1.equals("") && !strength2.equals(""))
@@ -1332,7 +1142,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_weaknesses == 1) {
             if(!weak1.equals("")) {
-
+                Log.d("cricket", " guatam gambhir massive inning");
                 if (!weak1.equals(""))
                 weaknessestxt.setText(weak1);
             if (!weak1.equals("") && !weak2.equals(""))
@@ -1350,7 +1160,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         if (found_locationpreferences == 1) {
             if(!location1.equals("")) {
-
+                Log.d("cricket", " shikhar dhawan massive inning");
                 if (!location1.equals(""))
                 locationpreferences.setText(location1);
             if (!location1.equals("") && !location2.equals(""))
@@ -1366,21 +1176,11 @@ public class MyProfileAlumniFragment extends Fragment {
             }
 
         }
-
         populateHrInfo();
-
-
         if (hrinfobox1 == true)
             percentProfile++;
 
-        if (hrinfobox2 == true)
-            percentProfile++;
-
-        if (hrinfobox3 == true)
-            percentProfile++;
-
-
-        float R = (1000 - 0) / (24 - 0);
+        float R = (1000 - 0) / (19 - 0);
         float y = (percentProfile - 0) * R + 0;
         int val = Math.round(y);
 
@@ -1388,7 +1188,6 @@ public class MyProfileAlumniFragment extends Fragment {
         progressAnimator.setDuration(1000);
         progressAnimator.setInterpolator(new LinearInterpolator());
         progressAnimator.start();
-
 
     }
 
@@ -1453,27 +1252,16 @@ public class MyProfileAlumniFragment extends Fragment {
     }
 
     public void populateHrInfo() {
-//        TreeMap<Integer,Integer> continuseWork=new TreeMap<>(Collections.reverseOrder());
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
-
-        Log.d(alumniLog, "populateHrInfo: post - " + posts1);
-        Log.d(alumniLog, "populateHrInfo: inst - " + inst1);
-        Log.d(alumniLog, "populateHrInfo: from date - " + fromdate1);
-        Log.d(alumniLog, "populateHrInfo: todate - " + todate1);
-
-//        boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
-
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
-        Log.d("TAG", "populateHrInfo: before todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
         int fulltodate1 = 0, fulltodate2 = 0, fulltodate3 = 0, fulltodate4 = 0, fulltodate5 = 0, fulltodate6 = 0, fulltodate7 = 0, fulltodate8 = 0, fulltodate9 = 0, fulltodate10 = 0;
-
         String MONTH = "";
         String YEAR = "";
 
-        // continus working then we hav to fromdate not todate
+        Log.d("cricket", " kapil Dev massive inning");
         if (todates1.equals("") && !fromdates1.equals("")) {
             fulltodate1 = alltoDatestoInt(fromdates1);
             continuseWork.put(fulltodate1, 1);
@@ -1523,26 +1311,15 @@ public class MyProfileAlumniFragment extends Fragment {
             fulltodate10 = alltoDatestoInt(fromdates10);
             continuseWork.put(fulltodate10, 10);
         }
-
-        Log.d("TAG", "populateHrInfo: after todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
-
-        //for continuous working
         for (Map.Entry<Integer, Integer> entry : continuseWork.entrySet()) {
             int fullDatekey = entry.getKey();
-            int expItemIndex = entry.getValue();          // post+index  all set
+            int expItemIndex = entry.getValue();
 
             if (expItemIndex == 1) {
                 if (hrinfobox1 == false) {
                     exp1txt.setText(posts1);
                     myprofileexp1name.setText(inst1s1);
                     int[] YM = expYearMonth(fromdates1, todates1);
-//                    if(YM[1]==0)
-//                    myprofileexpfromto.setText("Currently Working | " + YM[0] + " year");
-//                    else if(YM[0]==0)
-//                        myprofileexpfromto.setText("Currently Working | " + YM[1] + " month");
-//                    else
-//                        myprofileexpfromto.setText("Currently Working | " + YM[0] + " year - "+YM[1] + " month");
-//                    hrinfobox1=true;
 
                     if (YM[0] == 1)
                         YEAR = "year";
@@ -2155,10 +1932,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     return;
                 }
             }
-
-
         }
-        // from-to exp ----------------------------
 
         if (!todates1.equals("") && !fromdates1.equals("")) {
             fulltodate1 = alltoDatestoInt(todates1);
@@ -2818,35 +2592,11 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         }
     }
-
-
-    public String GetCountryZipCode() {
-        String CountryID = "";
-        String CountryZipCode = "";
-        CountryID = getUserCountry(getContext());
-        String[] rl = this.getResources().getStringArray(R.array.CountryCodes);
-        for (int i = 0; i < rl.length; i++) {
-            String[] g = rl[i].split(",");
-            if (g[1].trim().equals(CountryID.trim())) {
-                CountryZipCode = g[0];
-                break;
-            }
-        }
-        return CountryZipCode;
-    }
-
-    public void showprofileprogress() {
-        profileprogress.setVisibility(View.VISIBLE);
-    }
-
     public void refreshContent() {
-
         new GetAlumniData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((AlumniActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
-
     }
-
     public void showUpdateProgress() {
         updateProgress.setVisibility(View.VISIBLE);
     }
@@ -2890,8 +2640,6 @@ public class MyProfileAlumniFragment extends Fragment {
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
-
-        // HW layer support only exists on API 11+
         if (Build.VERSION.SDK_INT >= 11) {
             if (animation == null && nextAnim != 0) {
                 animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
@@ -2914,8 +2662,6 @@ public class MyProfileAlumniFragment extends Fragment {
                     public void onAnimationRepeat(Animation animation) {
 
                     }
-
-
                 });
             }
         }
@@ -2927,86 +2673,27 @@ public class MyProfileAlumniFragment extends Fragment {
 
         new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
-
-    public static class FireMissilesDialogFragment extends DialogFragment {
-
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Choose Action").setItems(items, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                    if (which == 0) {
-                        startActivity(new Intent(getContext(), ViewProfileImage.class));
-                    } else if (which == 1) {
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 0);
-                    } else if (which == 2) {
-
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case DialogInterface.BUTTON_POSITIVE:
-
-                                        break;
-
-                                    case DialogInterface.BUTTON_NEGATIVE:
-                                        dialog.cancel();
-                                        break;
-                                }
-                            }
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                                .setNegativeButton("No", dialogClickListener).show();
-
-                    }
-                }
-            });
-            return builder.create();
-        }
-    }
-
     private class GetAlumniData extends AsyncTask<String, Void, Bitmap> {
-
-
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
             try {
 
-
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-
                 json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
-
                 String s = "";
-
                 resultofop = json.getString("info");
-
-
-                Log.d("TAG", "info " + resultofop);
-                Log.d("TAG", "json " + json);
-
                 if (resultofop.equals("found")) {
+                    Log.d("cricket", "sachin tendulkar opening to bat");
                     ucode = json.getString("ucode");
                     String encphone = json.getString("phone");
-
                     phone=Z.Decrypt(encphone,getContext());
-
                     s = json.getString("intro");
                     if (s.equals("found")) {
+                        Log.d("cricket", "virat kohli coming to bat");
                         found_box1 = 1;
-                        Log.d("TAG", "found_box1===:-" + found_box1);
                         dataobject = json.getString("introObj");
-
                         Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         fname = obj2.getFirstname();
                         lname = obj2.getLastname();
                         country = obj2.getSelectedCountry();
@@ -3019,33 +2706,23 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setCountry(country);
                         studentData.setState(state);
                         studentData.setCity(city);
-//                        Log.d("TAG", "doInBackground: country -"+country);
-//                        Log.d("TAG", "doInBackground: state -"+state);
-//                        Log.d("TAG", "doInBackground: city -"+city);
-//                        Log.d("TAG", "dataobject===: " + dataobject);
                     }
 
                     s = json.getString("career");
                     if (s.equals("found")) {
+                        Log.d("cricket", "yuvraj singh coming to bat");
                         found_careerobj = 1;
-
                         careerdataobject = json.getString("careerobj");
                         MyProfileCareerObjModal obj2 = (MyProfileCareerObjModal) fromString(careerdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         careerobj = obj2.careerobj;
                         studentData.setCareerobj(careerobj);
-
-
                     }
                     s = json.getString("strengths");
                     if (s.equals("found")) {
+                        Log.d("cricket", "Mahendra singh dhoni coming to bat");
                         found_strengths = 1;
-
-
                         strengthdataobject = json.getString("strengthsobj");
-
                         MyProfileStrengthsModal obj2 = (MyProfileStrengthsModal) fromString(strengthdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         strength1 = obj2.sstrength1;
                         strength2 = obj2.sstrength2;
                         strength3 = obj2.sstrength3;
@@ -3086,14 +2763,10 @@ public class MyProfileAlumniFragment extends Fragment {
                     }
                     s = json.getString("weaknesses");
                     if (s.equals("found")) {
+                        Log.d("cricket", " guatam gambhir coming to bat");
                         found_weaknesses = 1;
-
-
                         weaknessesdataobject = json.getString("weaknessesobj");
-
                         MyProfileWeaknessesModal obj2 = (MyProfileWeaknessesModal) fromString(weaknessesdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
-
                         weak1 = obj2.sweak1;
                         weak2 = obj2.sweak2;
                         weak3 = obj2.sweak3;
@@ -3104,8 +2777,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         weak8 = obj2.sweak8;
                         weak9 = obj2.sweak9;
                         weak10 = obj2.sweak10;
-
-
                         studentData.setWeak1(weak1);
                         studentData.setWeak2(weak2);
                         studentData.setWeak3(weak3);
@@ -3139,17 +2810,15 @@ public class MyProfileAlumniFragment extends Fragment {
 
                     s = json.getString("locationpreferences");
                     if (s.equals("found")) {
+                        Log.d("cricket", " shikhar dhawan coming to bat");
                         found_locationpreferences = 1;
-
                         locationpreferencesdataobject = json.getString("locationpreferencesobj");
-
                         MyProfileLocationModal obj2 = (MyProfileLocationModal) fromString(locationpreferencesdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
                         location1 = obj2.slocation1;
                         location2 = obj2.slocation2;
                         location3 = obj2.slocation3;
                         location4 = obj2.slocation4;
                         location5 = obj2.slocation5;
-
                         studentData.setLocation1(location1);
                         studentData.setLocation2(location2);
                         studentData.setLocation3(location3);
@@ -3161,17 +2830,13 @@ public class MyProfileAlumniFragment extends Fragment {
 
                         if (!location5.equals(""))
                             location_count = 2;
-
                     }
-
                     s = json.getString("tenth");
                     if (s.equals("found")) {
+                        Log.d("cricket", " Sourav ganguly coming to bat");
                         found_tenth = 1;
-
                         tenthdataobject = json.getString("tenthobj");
-
                         MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(tenthdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         yearofpassing10 = obj2.monthandyearofpassing;
                         board10 = obj2.selectedBoard;
                         schoolname10 = obj2.schoolname;
@@ -3185,30 +2850,21 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setSchoolname10(obj2.schoolname);
                         studentData.setYearofpassing10(obj2.monthandyearofpassing);
                         studentData.setBoard10(obj2.selectedBoard);
-
-
                     }
-
-
                     s = json.getString("ug");
                     if (s.equals("found")) {
+                        Log.d("cricket", " Rahul Dravid coming to bat");
                         found_ug = 1;
-                        Log.d("TAG", "found_ug===:-" + found_ug);
-
                         ugdataobject = json.getString("ugobj");
-
                         MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         yearofpassingug = obj2.monthandyearofpassing;
                         collegenameug = obj2.schoolname;
                         universityug = obj2.selectedUniversity;
                         courseug = obj2.selectedCourse;
                         streamug = obj2.selectedStream;
-
                         studentData.setYearofpassingug(yearofpassingpgyear);
                         studentData.setCollegenameug(collegenameug);
                         studentData.setUniversityug(universityug);
-
                         studentData.setMarkssem1ug(obj2.markssem1);
                         studentData.setOutofsem1ug(obj2.outofsem1);
                         studentData.setPercentagesem1ug(obj2.percentsem1);
@@ -3236,25 +2892,18 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setAggregateug(obj2.aggregate);
                         studentData.setCollegenameug(obj2.schoolname);
                         studentData.setYearofpassingug(obj2.monthandyearofpassing);
-
                         studentData.setCourseug(obj2.selectedCourse);
                         studentData.setStreamug(obj2.selectedStream);
-
-                        Log.d("TAG", "ugdataobject===: " + ugdataobject);
                     }
                     s = json.getString("twelth");
                     if (s.equals("found")) {
+                        Log.d("cricket", " Rohit Sharma coming to bat");
                         found_twelth = 1;
-                        Log.d("TAG", "found_twelth===:-" + found_twelth);
-
                         twelthdataobject = json.getString("twelthobj");
-
                         MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(twelthdataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         yearofpassing12 = obj2.monthandyearofpassing12;
                         schoolname12 = obj2.schoolnametwelth;
                         board12 = obj2.selectedboardBytes1;
-
                         studentData.setMarks12(obj2.marksobtained);
                         studentData.setOutof12(obj2.outofmarks);
                         studentData.setPercentage12(obj2.percentage);
@@ -3263,29 +2912,18 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setBoard12(obj2.selectedboardBytes1);
                         studentData.setYearofpassing12(obj2.monthandyearofpassing12);
 
-//                        Log.d("TAG", "twelthdataobject===: " + twelthdataobject);
-//                        Log.d("TAG", " twelthdataobject yearofpassing12===: " + yearofpassing12);
-//                        Log.d("TAG", " twelthdataobject schoolname12===: " + schoolname12);
-//                        Log.d("TAG", " twelthdataobject board12===: " + board12);
-
-
                     }
 
                     s = json.getString("diploma");
                     if (s.equals("found")) {
+                        Log.d("cricket", " VVS laxman  coming to bat");
                         found_diploma = 1;
-                        Log.d("TAG", "found_diploma===:-" + found_diploma);
-
                         diplomadataobject = json.getString("diplomaobj");
-
                         MyProfileDiplomaModal obj2 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         yearofpassingdiploma = obj2.monthandyearofpassingdiploma;
                         collegenamediploma = obj2.schoolnamediploma;
                         universitydiploma = obj2.selectedboardBytes1;
                         coursediploma = obj2.selectedcourseBytes1;
-
-
                         studentData.setMarkssem1diploma(obj2.markssem1);
                         studentData.setOutofsem1diploma(obj2.outofsem1);
                         studentData.setPercentagesem1diploma(obj2.percentsem1);
@@ -3309,16 +2947,12 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setCollegenamediploma(obj2.schoolnamediploma);
                         studentData.setYearofpassingdiploma(obj2.monthandyearofpassingdiploma);
                         studentData.setCoursediploma(obj2.selectedcourseBytes1);
-
-
-                        Log.d("TAG", "diplomadataobject===: " + diplomadataobject);
                     }
                     s = json.getString("pgsem");
                     if (s.equals("found")) {
+                        Log.d("cricket", " VVS laxman  coming to bat");
                         found_pgsem = 1;
-
                         PgSem obj = (PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         markssem1pgsem = obj.getMarkssem1();
                         outofsem1pgsem = obj.getOutofsem1();
                         percentagesem1pgsem = obj.getPercentsem1();
@@ -3343,12 +2977,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         universitypgsem = obj.getSelectedUniversitypgsem();
                         collegenamepgsem = obj.getSchoolnamepgsemester();
                         yearofpassingpgsem = obj.getMonthandyearofpassingpgsem();
-
-
-                        Log.d("TAG", "doInBackground: universitypgsem - " + universitypgsem);
-                        Log.d("TAG", "doInBackground: collegenamepgsem - " + collegenamepgsem);
-
-
                         studentData.setMarkssem1pgsem(markssem1pgsem);
                         studentData.setOutofsem1pgsem(outofsem1pgsem);
                         studentData.setPercentagesem1pgsem(percentagesem1pgsem);
@@ -3373,15 +3001,12 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setUniversitypgsem(universitypgsem);
                         studentData.setCollegenamepgsem(collegenamepgsem);
                         studentData.setYearofpassingpgsem(yearofpassingpgsem);
-
-
                     }
                     s = json.getString("pgyear");
                     if (s.equals("found")) {
+                        Log.d("cricket", " VVS Sunil Gavskar  coming to bat");
                         found_pgyear = 1;
-
                         PgYear obj = (PgYear) fromString(json.getString("pgyeardata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         marksyear1pgyear = obj.getMarksyear1();
                         outofyear1pgyear = obj.getOutofyear1();
                         percentageyear1pgyear = obj.getPercentyear1();
@@ -3397,12 +3022,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         universitypgyear = obj.getSelectedUniversitypgyear();
                         collegenamepgyear = obj.getSchoolnamepgyears();
                         yearofpassingpgyear = obj.getMonthandyearofpassingpgyear();
-//
-//                        Log.d("TAG", "doInBackground: coursepgyear - " + coursepgyear);
-//                        Log.d("TAG", "doInBackground: streampgyear - " + streampgyear);
-//                        Log.d("TAG", "doInBackground: collegenamepgyear - " + collegenamepgyear);
-//                        Log.d("TAG", "doInBackground: yearofpassingpgyear - " + yearofpassingpgyear);
-
                         studentData.setMarksyear1pgyear(marksyear1pgyear);
                         studentData.setOutofyear1pgyear(outofyear1pgyear);
                         studentData.setPercentageyear1pgyear(percentageyear1pgyear);
@@ -3419,16 +3038,11 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setCollegenamepgyear(collegenamepgyear);
                         studentData.setYearofpassingpgyear(yearofpassingpgyear);
                     }
-
-
                     s = json.getString("projects");
-
-
                     if (s.equals("found")) {
+                        Log.d("cricket", " suresh raina coming to bat");
                         found_projects = 1;
-
                         ArrayList<Projects> projectsList = (ArrayList<Projects>) fromString(json.getString("projectsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
-
                         Projects obj1 = projectsList.get(0);
                         Projects obj2 = projectsList.get(1);
                         Projects obj3 = projectsList.get(2);
@@ -3439,7 +3053,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         Projects obj8 = projectsList.get(7);
                         Projects obj9 = projectsList.get(8);
                         Projects obj10 = projectsList.get(9);
-
 
                         proj1 = obj1.getProj1();
                         domain1 = obj1.getDomain1();
@@ -3549,10 +3162,9 @@ public class MyProfileAlumniFragment extends Fragment {
 
                     }
                     s = json.getString("knownlang");
-                    Log.d("TAG", "knownlang: " + s);
                     if (s.equals("found")) {
                         found_lang = 1;
-
+                        Log.d("cricket", " ajinkya rahane coming to bat");
                         ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         KnownLangs obj1 = knownLangsList.get(0);
@@ -3629,7 +3241,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("certificates");
                     if (s.equals("found")) {
                         found_certificates = 1;
-
+                        Log.d("cricket", " cheteshwar pujara coming to bat");
                         ArrayList<Certificates> certificatesList = (ArrayList<Certificates>) fromString(json.getString("certificatesdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Certificates obj1 = certificatesList.get(0);
@@ -3793,7 +3405,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("courses");
                     if (s.equals("found")) {
                         found_courses = 1;
-
+                        Log.d("cricket", " kl rahul  coming to bat");
                         ArrayList<Courses> coursesList = (ArrayList<Courses>) fromString(json.getString("coursesdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Courses obj1 = coursesList.get(0);
@@ -3922,7 +3534,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("skills");
                     if (s.equals("found")) {
                         found_skills = 1;
-
+                        Log.d("cricket", " Ab divillers  coming to bat");
                         ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Skills obj1 = skillsList.get(0);
@@ -4102,7 +3714,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("honors");
                     if (s.equals("found")) {
                         found_honors = 1;
-
+                        Log.d("cricket", " hardik pandya coming to bat");
                         ArrayList<Honors> honorsList = (ArrayList<Honors>) fromString(json.getString("honorsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Honors obj1 = honorsList.get(0);
@@ -4229,7 +3841,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("patents");
                     if (s.equals("found")) {
                         found_patents = 1;
-
+                        Log.d("cricket", " shreyash ayyar  coming to bat");
                         ArrayList<Patents> patentsList = (ArrayList<Patents>) fromString(json.getString("patentsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Patents obj1 = patentsList.get(0);
@@ -4454,7 +4066,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("publications");
                     if (s.equals("found")) {
                         found_publications = 1;
-
+                        Log.d("cricket", " ambati rayadu  coming to bat");
                         ArrayList<Publications> publicationsList = (ArrayList<Publications>) fromString(json.getString("publicationsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Publications obj1 = publicationsList.get(0);
@@ -4617,8 +4229,8 @@ public class MyProfileAlumniFragment extends Fragment {
                     }
                     s = json.getString("personal");
                     if (s.equals("found")) {
+                        Log.d("cricket", " manish pandey  coming to bat");
                         found_personal = 1;
-                        Log.d("TAG", "found_personal===:-" + found_personal);
                         personaldataobject = json.getString("personalobj");
                         MyProfilePersonal obj2 = (MyProfilePersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
@@ -4651,10 +4263,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         handicapped = obj2.handicapped;
                         sports = obj2.sports;
                         defenceex = obj2.defenceex;
-
-                        Log.d("TAG", "doInBackground: personal personalobj- " + fname);
-                        Log.d("TAG", "doInBackground: personal personalobj- " + lname);
-
 
                         studentData.setFname(fname);
                         studentData.setMname(mname);
@@ -4698,7 +4306,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     s = json.getString("contact_details");
                     if (s.equals("found")) {
                         found_contact_details = 1;
-
+                        Log.d("cricket", " Dinesh kartik coming to bat");
                         contact_details_dataobject = json.getString("contact_detailsdata");
 
                         AdminContactDetailsModal obj2 = (AdminContactDetailsModal) fromString(contact_details_dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
@@ -4713,15 +4321,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         addressline2 = obj2.getAddressline2();
                         addressline3 = obj2.getAddressline3();
 
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + fname);
-                        Log.d("TAG", "doInBackground: personal contact_detailsdata- " + lname);
-                        Log.d("TAG", "doInBackground: telephone contact_detailsdata-" + telephone);
-                        Log.d("TAG", "doInBackground: phone contact_detailsdata-" + phone);
-                        Log.d("TAG", "doInBackground: mobile2 contact_detailsdata-" + mobile2);
-                        Log.d("TAG", "doInBackground: addressline1 contact_detailsdata-" + addressline1);
-                        Log.d("TAG", "doInBackground: addressline2 contact_detailsdata-" + addressline2);
-                        Log.d("TAG", "doInBackground: addressline3 contact_detailsdata-" + addressline3);
-
                         studentData.setFname(fname);
                         studentData.setLname(lname);
                         studentData.setEmail2(email2);
@@ -4734,10 +4333,9 @@ public class MyProfileAlumniFragment extends Fragment {
                     }
                     s = json.getString("experiences");
                     if (s.equals("found")) {
+                        Log.d("cricket", " kapil dev coming to bat");
                         found_exp = 1;
                         experiencesataobject = json.getString("experiencesdata");
-                        Log.d("TAG", "doInBackground:  experiencesataobject- " + experiencesataobject);
-
                         ArrayList<Experiences> ExperiencesList = (ArrayList<Experiences>) fromString(experiencesataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Experiences obj1 = ExperiencesList.get(0);
@@ -4800,8 +4398,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         inst1s10 = obj10.getInst();
                         fromdates10 = obj10.getFromdate();
                         todates10 = obj10.getTodate();
-
-                        Log.d("TAG", "doInbackground:  todates1  :- " + todates1 + " & fromdates1 :-" + fromdates1);
 
                         a.setPost1e(posts1);
                         a.setInst1e(inst1s1);
@@ -4874,48 +4470,41 @@ public class MyProfileAlumniFragment extends Fragment {
 
                         if (!posts10.equals(""))
                             exps_count = 7;
-
                     }
-
-
                 }
 
-
             } catch (Exception e) {
-
+                Log.d("cricket", "Match 2 lost : " + e.getMessage());
                 e.printStackTrace();
-//                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d(alumniLog, "exc msg " + e.getMessage());
             }
             return map;
         }
 
         protected void onPostExecute(Bitmap result) {
+            try {
+                updateProgress.setVisibility(View.GONE);
+                populateData();
+                downloadImage();
+                swipe_refresh_layout.setRefreshing(false);
+            } catch (Exception e) {
+                Log.d("cricket", "Match 3 lost : " + e.getMessage());
+                e.printStackTrace();
 
-            updateProgress.setVisibility(View.GONE);
-            populateData();
-            downloadImage();
-
-            swipe_refresh_layout.setRefreshing(false);
-
-
+            }
         }
     }
 
     class DeleteProfile extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.url_remove_profile, "GET", params);
-
             try {
-
                 resultofop = json.getString("info");
 
             } catch (Exception ex) {
+                Log.d("cricket", "Match 4 lost " + ex.getMessage());
+                ex.printStackTrace();
 
             }
 
@@ -4946,7 +4535,6 @@ public class MyProfileAlumniFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            Log.d("TAG", "doInBackground: Getsingnature json "+json);
             try {
                 signature = json.getString("lastupdated");
             } catch (Exception ex) {}
@@ -4955,10 +4543,6 @@ public class MyProfileAlumniFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "downloadImage signature : "+signature);
-//        String t = String.valueOf(System.currentTimeMillis());
-
-            Log.d("TAG", "downloadImage: GetImage username "+username);
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
@@ -4976,7 +4560,6 @@ public class MyProfileAlumniFragment extends Fragment {
                             updateProgress.setVisibility(View.GONE);
                             return false;
                         }
-
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                             updateProgress.setVisibility(View.GONE);

@@ -7,12 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -44,11 +42,6 @@ import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,8 +51,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
-
-import javax.sql.DataSource;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import placeme.octopusites.com.placeme.modal.AdminContactDetailsModal;
@@ -75,26 +66,24 @@ import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
-import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
 
 public class AdminProfileFragment extends Fragment {
 
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     CircleImageView myprofileimg;
     ImageButton iv_camera;
-    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt,noexptxt;
+    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, noexptxt;
     RelativeLayout editprofilerl;
-    RelativeLayout box1,exptab1,exptab2, exptab3,noexptab;
+    RelativeLayout box1, exptab1, exptab2, exptab3, noexptab;
     View box2;
     String experiencesataobject = "";
     int val1 = 0, val2 = 0;
-    TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt,extraexpcount;
-    TextView myprofilecource, instteletxt, insttelephone, instwebsite,caddinst,instcontactaddr, acc2txt, acc2txttxt, acc4txt, acc5txt, acc6txt, acc7txt, acc5txttxt, acc6txttxt, acc7txttxt;
+    TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt, extraexpcount;
+    TextView myprofilecource, instteletxt, insttelephone, instwebsite, caddinst, instcontactaddr, acc2txt, acc2txttxt, acc4txt, acc5txt, acc6txt, acc7txt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, exp2txt, myprofileexpfromto2, myprofileexp2name, exp3txt, myprofileexpfromto3, myprofileexp3name, emailtxt, myprofileclgname, nametxt, mobiletxt, contactpersonalemail, contactaddr, contactprofesionalemail, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview;
     ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit;
     ImageView diamond1, diamond2, diamond3;
-    ImageView exp1,exp2, exp3;
-    //sssss
+    ImageView exp1, exp2, exp3;
     AdminData a = new AdminData();
     StudentData studentData = new StudentData();
     ProgressBar updateProgress;
@@ -110,7 +99,6 @@ public class AdminProfileFragment extends Fragment {
     int found_contact_details = 0, found_personal = 0, found_exp = 0, found_admin_personal = 0;
     int intfromdat1 = 0, inttodate1 = 0, intfromdate2 = 0, inttodate2 = 0;
 
-
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "", inst = "";
     String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
     String lang1 = "", proficiency1 = "", lang2 = "", proficiency2 = "", lang3 = "", proficiency3 = "", lang4 = "", proficiency4 = "", lang5 = "", proficiency5 = "", lang6 = "", proficiency6 = "", lang7 = "", proficiency7 = "", lang8 = "", proficiency8 = "", lang9 = "", proficiency9 = "", lang10 = "", proficiency10 = "";
@@ -121,33 +109,17 @@ public class AdminProfileFragment extends Fragment {
     String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile = "", mobile2 = "";
     String post1 = "", inst1 = "", post2 = "", inst2 = "", post3 = "", inst3 = "", post4 = "", inst4 = "", post5 = "", inst5 = "", post6 = "", inst6 = "", post7 = "", inst7 = "", post8 = "", inst8 = "", post9 = "", inst9 = "", post10 = "", inst10 = "";
     String fromdate1 = "", todate1 = "", fromdate2 = "", todate2 = "", fromdate3 = "", todate3 = "", fromdate4 = "", todate4 = "", fromdate5 = "", todate5 = "", fromdate6 = "", todate6 = "", fromdate7 = "", todate7 = "", fromdate8 = "", todate8 = "", fromdate9 = "", todate9 = "", fromdate10 = "", todate10 = "";
-    String dob = "", gender = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", personaldataobject = "",ucode="";
+    String dob = "", gender = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", personaldataobject = "", ucode = "";
     boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
-    int lang_count=0,skills_count=0,patent_count=0,public_count=0,honor_count=0,exps_count=0;
-
+    int lang_count = 0, skills_count = 0, patent_count = 0, public_count = 0, honor_count = 0, exps_count = 0;
 
     int percentProfile = 0;
     View rootView;
 
     HashMap<String, Integer> hashMap;
 
-    public static String getUserCountry(Context context) {
-        try {
-            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            final String simCountry = tm.getSimCountryIso();
-            if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
-                return simCountry.toUpperCase(Locale.US);
-            } else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
-                String networkCountry = tm.getNetworkCountryIso();
-                if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
-                    return networkCountry.toUpperCase(Locale.US);
-                }
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
-    public void bottomupbox2(Activity activity, View view){
+
+    public void bottomupbox2(Activity activity, View view) {
 
         Animation animation1 =
                 AnimationUtils.loadAnimation(activity,
@@ -162,7 +134,7 @@ public class AdminProfileFragment extends Fragment {
             @Override
             public void onAnimationEnd(Animation animation) {
                 profileprogress.setVisibility(View.VISIBLE);
-                View box2section=rootView.findViewById(R.id.box2section);
+                View box2section = rootView.findViewById(R.id.box2section);
                 box2section.setVisibility(View.VISIBLE);
                 editprofiletxt.setVisibility(View.VISIBLE);
             }
@@ -174,13 +146,14 @@ public class AdminProfileFragment extends Fragment {
         });
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_admin_profile, container, false);
 
-        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
-        box2=rootView.findViewById(R.id.box2);
+        box1 = (RelativeLayout) rootView.findViewById(R.id.box1);
+        box2 = rootView.findViewById(R.id.box2);
 
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
@@ -216,9 +189,9 @@ public class AdminProfileFragment extends Fragment {
         myprofilloc = (TextView) rootView.findViewById(R.id.myprofilloc);
         myprofilemail = (TextView) rootView.findViewById(R.id.myprofilemail);
 
-        extraexpcount= (TextView) rootView.findViewById(R.id.extraexpcount);
+        extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
 
-        ImageView insteditpencil=(ImageView) rootView.findViewById(R.id.insteditpencil);
+        ImageView insteditpencil = (ImageView) rootView.findViewById(R.id.insteditpencil);
         myprofilepercenttxt = (TextView) rootView.findViewById(R.id.myprofilepercenttxt);
         editprofiletxt = (TextView) rootView.findViewById(R.id.editprofiletxt);
 
@@ -229,7 +202,7 @@ public class AdminProfileFragment extends Fragment {
         contactboxtxt = (TextView) rootView.findViewById(R.id.contactboxtxt);
 
 
-        noexptab= (RelativeLayout) rootView.findViewById(R.id.noexptab);
+        noexptab = (RelativeLayout) rootView.findViewById(R.id.noexptab);
 
         exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
         exp1 = (ImageView) rootView.findViewById(R.id.exp1);
@@ -239,8 +212,6 @@ public class AdminProfileFragment extends Fragment {
 
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
-
-//        TextView noedudetailstxt=(TextView)rootView.findViewById(R.id.noedudetailstxt);
 
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
@@ -257,15 +228,14 @@ public class AdminProfileFragment extends Fragment {
         instwebsite = (TextView) rootView.findViewById(R.id.instwebsite);
         insttelephone = (TextView) rootView.findViewById(R.id.insttelephone);
 
-        caddinst= (TextView) rootView.findViewById(R.id.caddinst);
-        instcontactaddr= (TextView) rootView.findViewById(R.id.instcontactaddr);
+        caddinst = (TextView) rootView.findViewById(R.id.caddinst);
+        instcontactaddr = (TextView) rootView.findViewById(R.id.instcontactaddr);
 
         acc2txt = (TextView) rootView.findViewById(R.id.acc2txt);
         acc4txt = (TextView) rootView.findViewById(R.id.acc4txt);
         acc5txt = (TextView) rootView.findViewById(R.id.acc5txt);
         acc6txt = (TextView) rootView.findViewById(R.id.acc6txt);
         acc7txt = (TextView) rootView.findViewById(R.id.acc7txt);
-
 
         acc2txttxt = (TextView) rootView.findViewById(R.id.acc2txttxt);
         acc4txttxt = (TextView) rootView.findViewById(R.id.acc4txttxt);
@@ -341,8 +311,6 @@ public class AdminProfileFragment extends Fragment {
         acc6txttxt.setTypeface(Z.getBold(getActivity()));
         acc7txttxt.setTypeface(Z.getBold(getActivity()));
 
-//        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
-
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto.setTypeface(Z.getLight(getActivity()));
@@ -354,7 +322,6 @@ public class AdminProfileFragment extends Fragment {
         exp3txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp3name.setTypeface(Z.getLight(getActivity()));
         myprofileexpfromto3.setTypeface(Z.getLight(getActivity()));
-//
 
         nametxt.setTypeface(Z.getBold(getActivity()));
         emailtxt.setTypeface(Z.getLight(getActivity()));
@@ -370,23 +337,19 @@ public class AdminProfileFragment extends Fragment {
         expedit = (ImageView) rootView.findViewById(R.id.expedit);
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
 
-
-        if(!ShouldAnimateProfile.shouldAnimate)
-        {
-            Z.bottomupbox1(getActivity(),box1);
-            bottomupbox2(getActivity(),box2);
-            Z.bottomupbox4(getActivity(),eduboxtxt);
-            Z.fade(getActivity(),myprofileimg);
-            Z.fade(getActivity(),iv_camera);
-            Z.bottomupbox3(getActivity(),eduboxtxt);
-            Z.bottomupbox3(getActivity(),insteditpencil);
-            Z.fadeandmovedown(getActivity(),myprofilepreview);
-            ShouldAnimateProfile.shouldAnimate=true;
-        }
-        else
-        {
+        if (!ShouldAnimateProfile.shouldAnimate) {
+            Z.bottomupbox1(getActivity(), box1);
+            bottomupbox2(getActivity(), box2);
+            Z.bottomupbox4(getActivity(), eduboxtxt);
+            Z.fade(getActivity(), myprofileimg);
+            Z.fade(getActivity(), iv_camera);
+            Z.bottomupbox3(getActivity(), eduboxtxt);
+            Z.bottomupbox3(getActivity(), insteditpencil);
+            Z.fadeandmovedown(getActivity(), myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate = true;
+        } else {
             profileprogress.setVisibility(View.VISIBLE);
-            View box2section=rootView.findViewById(R.id.box2section);
+            View box2section = rootView.findViewById(R.id.box2section);
             box2section.setVisibility(View.VISIBLE);
             editprofiletxt.setVisibility(View.VISIBLE);
         }
@@ -444,8 +407,6 @@ public class AdminProfileFragment extends Fragment {
             }
         });
 
-
-
         swipe_refresh_layout.setRefreshing(true);
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -454,7 +415,6 @@ public class AdminProfileFragment extends Fragment {
                 ((AdminActivity) getActivity()).requestProfileImage();
             }
         });
-
 
         myprofilrole.setText("TPO");
 
@@ -469,9 +429,13 @@ public class AdminProfileFragment extends Fragment {
             myprofilemail.setText(plainusername);
             contactemail.setText(plainusername);
         } catch (Exception e) {
+            Log.d("cricket", "Match 1 lost : " + e.getMessage());
+            e.printStackTrace();
+
         }
-        Toast.makeText(getActivity(), "" + Z.isAdminHrVerified(getActivity()), Toast.LENGTH_SHORT).show();
+
         refreshContent();
+        Log.d("cricket", "virender sehwag opening to bat");
         return rootView;
     }
 
@@ -507,20 +471,7 @@ public class AdminProfileFragment extends Fragment {
         updateProgress.setVisibility(View.VISIBLE);
     }
 
-    public String GetCountryZipCode() {
-        String CountryID = "";
-        String CountryZipCode = "";
-        CountryID = getUserCountry(getContext());
-        String[] rl = this.getResources().getStringArray(R.array.CountryCodes);
-        for (int i = 0; i < rl.length; i++) {
-            String[] g = rl[i].split(",");
-            if (g[1].trim().equals(CountryID.trim())) {
-                CountryZipCode = g[0];
-                break;
-            }
-        }
-        return CountryZipCode;
-    }
+
 
     void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -533,7 +484,6 @@ public class AdminProfileFragment extends Fragment {
                         dialog.cancel();
                         ((AdminActivity) getActivity()).requestCropImage();
                     } catch (Exception e) {
-                        Toast.makeText(getActivity(), " error" + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                 } else if (which == 1) {
@@ -565,14 +515,14 @@ public class AdminProfileFragment extends Fragment {
 
     void populateData() {
         setVisibilityExpbox();
-
-
-        if(ucode!=null) {
+        Log.d("cricket", "sachin tendulkar massive inning");
+        if (ucode != null) {
             if (!ucode.equals(""))
                 myprofilepreview.setText(ucode);
         }
 
         if (found_AdminIntro == 1) {
+            Log.d("cricket", "virat kohli massive inning");
             if (!fname.equals("") && !lname.equals("")) {
                 myprofilename.setText(fname + " " + lname);
                 nametxt.setText(fname + " " + lname);
@@ -586,7 +536,7 @@ public class AdminProfileFragment extends Fragment {
             }
         }
         if (found_institute == 1) {
-
+            Log.d("cricket", "ishan kishan massive inning");
             if (!instname.equals("")) {
                 myprofileclgname.setText(instname);
                 myprofiledu.setText(instname);
@@ -595,7 +545,6 @@ public class AdminProfileFragment extends Fragment {
 
             if (!instemail.equals("")) {
                 instcontactemail.setText(instemail);
-//                contactpersonalemail.setText(instemail);
             }
 
             if (!instweb.equals("")) {
@@ -610,113 +559,108 @@ public class AdminProfileFragment extends Fragment {
                 instcontactaddr.setText(instcaddrline1 + " " + instcaddrline2 + " " + instcaddrline3);
             }
 
-
         }
         if (found_contact_details == 1) {
+            Log.d("cricket", " Dinesh kartik massive inning");
             if (!addressline1.equals("")) {
                 contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
             }
-                if (!email2.equals("")) {
-                    contactprofesionalemail.setText(email2);
-                }
-                if (!plainusername.equals("")) {
-                    contactpersonalemail.setText(plainusername);
-                }
-                if (!mobile.equals("")) {
-                    contactmobile.setText(mobile);
-                }
-//                contactpersonalemail.setText(plainusername);
-                percentProfile++;
+            if (!email2.equals("")) {
+                contactprofesionalemail.setText(email2);
+            }
+            if (!plainusername.equals("")) {
+                contactpersonalemail.setText(plainusername);
+            }
+            if (!mobile.equals("")) {
+                contactmobile.setText(mobile);
+            }
+            percentProfile++;
 
         }
-
-
         if (found_lang == 1) {
             if (!lang1.equals("- Select Language -")) {
-
+                Log.d("cricket", " ajinkya rahane massive inning");
                 if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                acc2txttxt.setText(lang1);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                acc2txttxt.setText(lang1 + ", " + lang2);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-                acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
-            percentProfile++;
-        }
-            else {
+                    acc2txttxt.setText(lang1);
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                    acc2txttxt.setText(lang1 + ", " + lang2);
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                    acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
+                    acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and " + lang_count + " more");
+                percentProfile++;
+            } else {
                 acc2txttxt.setText("No known languages filled.");
             }
         }
 
         if (found_skills == 1) {
-            if(!skill1.equals("")) {
-            if (!skill1.equals(""))
-                acc4txttxt.setText(skill1);
-            if (!skill1.equals("") && !skill2.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2);
-            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and "+ skills_count +" more");
-            percentProfile++;
-        }
-            else {
+            if (!skill1.equals("")) {
+                Log.d("cricket", " Ab divillers  massive inning");
+                if (!skill1.equals(""))
+                    acc4txttxt.setText(skill1);
+                if (!skill1.equals("") && !skill2.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2);
+                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and " + skills_count + " more");
+                percentProfile++;
+            } else {
                 acc4txttxt.setText("No skills filled.");
             }
         }
 
         if (found_honors == 1) {
-            if(!htitle1.equals("")) {
-            if (!htitle1.equals(""))
-                acc5txttxt.setText(htitle1);
-            if (!htitle1.equals("") && !htitle2.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2);
-            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and "+ honor_count +" more");
-            percentProfile++;
+            if (!htitle1.equals("")) {
+                Log.d("cricket", " hardik pandya massive inning");
+                if (!htitle1.equals(""))
+                    acc5txttxt.setText(htitle1);
+                if (!htitle1.equals("") && !htitle2.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2);
+                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and " + honor_count + " more");
+                percentProfile++;
 
-        }
-            else {
+            } else {
                 acc5txttxt.setText("No awards filled.");
             }
 
         }
         if (found_patents == 1) {
-            if(!ptitle1.equals("")) {
-            if (!ptitle1.equals(""))
-                acc6txttxt.setText(ptitle1);
-            if (!ptitle1.equals("") && !ptitle2.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
-            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
-            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and "+ patent_count +" more");
-            percentProfile++;
+            if (!ptitle1.equals("")) {
+                Log.d("cricket", " shreyash ayyar  massive inning");
+                if (!ptitle1.equals(""))
+                    acc6txttxt.setText(ptitle1);
+                if (!ptitle1.equals("") && !ptitle2.equals(""))
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2);
+                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
+                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and " + patent_count + " more");
+                percentProfile++;
 
-        }
-            else {
+            } else {
                 acc6txttxt.setText("No patents filled.");
             }
 
         }
         if (found_publications == 1) {
-            if(!pubtitle1.equals("")) {
-
+            if (!pubtitle1.equals("")) {
+                Log.d("cricket", " ambati rayadu  massive inning");
                 if (!pubtitle1.equals(""))
-                acc7txttxt.setText(pubtitle1);
-            if (!pubtitle1.equals("") && !pubtitle2.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
-            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
-            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ public_count +" more");
-            percentProfile++;
+                    acc7txttxt.setText(pubtitle1);
+                if (!pubtitle1.equals("") && !pubtitle2.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
+                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
+                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and " + public_count + " more");
+                percentProfile++;
 
-        }
-            else {
+            } else {
                 acc7txttxt.setText("No publications filled.");
             }
 
@@ -726,12 +670,6 @@ public class AdminProfileFragment extends Fragment {
 
         if (hrinfobox1 == true)
             percentProfile++;
-
-//        if (hrinfobox2 == true)
-//            percentProfile++;
-//
-//        if (hrinfobox3 == true)
-//            percentProfile++;
 
     }
 
@@ -761,17 +699,13 @@ public class AdminProfileFragment extends Fragment {
         if (!fromdate10.equals(""))
             exp_count++;
 
-        if(exp_count>3){
+        if (exp_count > 3) {
             extraexpcount.setVisibility(View.VISIBLE);
-            extraexpcount.setText("and "+ exps_count +" more");
-        }
-        else
+            extraexpcount.setText("and " + exps_count + " more");
+        } else
             extraexpcount.setVisibility(View.GONE);
 
-        Log.d(HRlog, "exp count " + exp_count);
-
-
-        if (!fromdate1.equals("")){
+        if (!fromdate1.equals("")) {
             exptab1.setVisibility(View.VISIBLE);
             exp1.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
@@ -781,8 +715,7 @@ public class AdminProfileFragment extends Fragment {
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
 
-        }
-        else {
+        } else {
             exptab1.setVisibility(View.GONE);
             exp1.setVisibility(View.GONE);
             noexptab.setVisibility(View.VISIBLE);
@@ -795,8 +728,7 @@ public class AdminProfileFragment extends Fragment {
 
         }
 
-        if (!fromdate2.equals(""))
-        {
+        if (!fromdate2.equals("")) {
             exptab2.setVisibility(View.VISIBLE);
             exp2.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
@@ -805,7 +737,7 @@ public class AdminProfileFragment extends Fragment {
             exp3.setVisibility(View.GONE);
         }
 
-        if (!fromdate3.equals("")){
+        if (!fromdate3.equals("")) {
 
             exptab3.setVisibility(View.VISIBLE);
             exp3.setVisibility(View.VISIBLE);
@@ -875,12 +807,9 @@ public class AdminProfileFragment extends Fragment {
     }
 
     public void populateExperiencesInfo() {
-//        TreeMap<Integer,Integer> continuseWork=new TreeMap<>(Collections.reverseOrder());
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
-
-//        boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
-
+        Log.d("cricket", " kapil Dev massive inning");
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
@@ -890,7 +819,6 @@ public class AdminProfileFragment extends Fragment {
         String MONTH = "";
         String YEAR = "";
 
-        // continus working then we hav to fromdate not todate
         if (todate1.equals("") && !fromdate1.equals("")) {
             fulltodate1 = alltoDatestoInt(fromdate1);
             continuseWork.put(fulltodate1, 1);
@@ -951,13 +879,6 @@ public class AdminProfileFragment extends Fragment {
                     exp1txt.setText(post1);
                     myprofileexp1name.setText(inst1);
                     int[] YM = expYearMonth(fromdate1, todate1);
-//                    if(YM[1]==0)
-//                    myprofileexpfromto.setText("Currently Working | " + YM[0] + " year");
-//                    else if(YM[0]==0)
-//                        myprofileexpfromto.setText("Currently Working | " + YM[1] + " month");
-//                    else
-//                        myprofileexpfromto.setText("Currently Working | " + YM[0] + " year - "+YM[1] + " month");
-//                    hrinfobox1=true;
 
                     if (YM[0] == 1)
                         YEAR = "year";
@@ -1571,11 +1492,7 @@ public class AdminProfileFragment extends Fragment {
                     return;
                 }
             }
-
-
         }
-
-        // from-to exp ----------------------------
 
         if (!todate1.equals("") && !fromdate1.equals("")) {
             fulltodate1 = alltoDatestoInt(todate1);
@@ -2238,8 +2155,6 @@ public class AdminProfileFragment extends Fragment {
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
-
-        // HW layer support only exists on API 11+
         if (Build.VERSION.SDK_INT >= 11) {
             if (animation == null && nextAnim != 0) {
                 animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
@@ -2263,7 +2178,6 @@ public class AdminProfileFragment extends Fragment {
 
                     }
 
-                    // ...other AnimationListener methods go here...
                 });
             }
         }
@@ -2271,33 +2185,28 @@ public class AdminProfileFragment extends Fragment {
         return animation;
     }
 
-
-
     public void downloadImage() {
 
         new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     class Getsingnature extends AsyncTask<String, String, String> {
-    String signature="";
+        String signature = "";
+
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            Log.d("TAG", "doInBackground: Getsingnature json "+json);
             try {
                 signature = json.getString("lastupdated");
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+            }
             return signature;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "downloadImage signature : "+signature);
-            Log.d("TAG", "downloadImage: GetImage username "+username);
-
-
 
             Uri uri = new Uri.Builder()
                     .scheme("http")
@@ -2329,7 +2238,6 @@ public class AdminProfileFragment extends Fragment {
         }
     }
 
-    //ssss
     private class GetAdminData extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -2340,16 +2248,12 @@ public class AdminProfileFragment extends Fragment {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
                 json = jParser.makeHttpRequest(Z.load_Admin_data, "GET", params);
-
-
                 resultofop = json.getString("info");
-
-                Log.d("tag", "JSON resultofop - " + resultofop);
-
                 if (resultofop.equals("found")) {
+                    Log.d("cricket", "sachin tendulkar opening to bat");
                     ucode = json.getString("ucode");
                     String s = json.getString("AdminIntro");
-                    Log.d("===JSON===", "" + s);
+
                     if (s.equals("found")) {
                         found_AdminIntro = 1;
                         String AdminIntroObj = json.getString("AdminIntroObj");
@@ -2363,53 +2267,19 @@ public class AdminProfileFragment extends Fragment {
                         city = obj1.getCity();
                         inst = obj1.getInstitute();
 
-                        Log.d("++AdminintroBlock", "+++++++++++++++++++++++");
-                        Log.d("++AdminintroBlock", "fname " + fname);
-                        Log.d("++AdminintroBlock", "mname " + mname);
-                        Log.d("++AdminintroBlock", "lname " + lname);
-                        Log.d("++AdminintroBlock", "country " + country);
-                        Log.d("++AdminintroBlock", "state " + state);
-                        Log.d("++AdminintroBlock", "city " + city);
-                        Log.d("++AdminintroBlock", "inst " + inst);
-                        if (!phone.equals("null")) {
-
-                            a.setPhone(phone);
-                            phone = "+" + GetCountryZipCode() + " " + new String(phone);
-                            //setting in populate
-//                            contactmobile.setText(phone);
-                        }
-                        if (!fname.equals("null")) {
-                            a.setFname(fname);
-                        }
-                        if (!mname.equals("null")) {
-                            a.setMname(mname);
-                        }
-                        if (!lname.equals("null")) {
-
-                            a.setLname(lname);
-                        }
-                        if (!inst.equals("null")) {
-
-                            a.setInstitute(inst);
-                        }
-                        if (!country.equals("null")) {
-
-                            a.setCountry(country);
-                        }
-                        if (!state.equals("null")) {
-
-                            a.setState(state);
-                        }
-                        if (!city.equals("null")) {
-                            a.setCity(city);
-                        }
-
+                        a.setPhone(phone);
+                        a.setFname(fname);
+                        a.setMname(mname);
+                        a.setLname(lname);
+                        a.setInstitute(inst);
+                        a.setCountry(country);
+                        a.setState(state);
+                        a.setCity(city);
                     }
                     s = json.getString("AdminInstitute");
                     if (s.equals("found")) {
+                        Log.d("cricket", "ishan kishan opening to bat");
                         found_institute = 1;
-
-                        Log.d("Institute Data--: ", "doInBackground: found_institute - " + found_institute);
                         String AdminInstituteobj = json.getString("AdminInstituteobj");
                         AdminInstituteModal obj2 = (AdminInstituteModal) fromString(AdminInstituteobj, digest1, digest2);
 
@@ -2419,56 +2289,27 @@ public class AdminProfileFragment extends Fragment {
                         instphone = obj2.getInstphone();
                         instaltrphone = obj2.getInstaltrphone();
                         universityname = obj2.getUnivname();
-                        instreg =obj2.getInstregno();
+                        instreg = obj2.getInstregno();
 
                         instcaddrline1 = obj2.getInstcaddrline1();
                         instcaddrline2 = obj2.getInstcaddrline2();
                         instcaddrline3 = obj2.getInstcaddrline3();
-
-
-                        Log.d("--Institute Data--", "+++++++++++++++++ ");
-                        Log.d("--Institute Data--", "instname: " + instname);
-                        Log.d("--Institute Data--", "instemail: " + instemail);
-                        Log.d("--Institute Data--", "instweb: " + instweb);
-                        Log.d("--Institute Data--", "instphone: " + instphone);
-                        Log.d("--Institute Data--", "instaltrphone: " + instaltrphone);
-                        Log.d("--Institute Data--", "universityname: " + universityname);
-                        Log.d("--Institute Data--", "instreg: " + instreg);
-
-                        if (!instname.equals("null")) {
-                            a.setInstitute(instname);
-                        }
-                        if (!instemail.equals("null")) {
-                            a.setInstemail(instemail);
-
-                        }
-                        if (!instweb.equals("null")) {
-                            a.setInstweb(instweb);
-                        }
-                        if (!instphone.equals("null")) {
-                            a.setInstphone(instphone);
-                        }
-                        if (!instaltrphone.equals("null")) {
-                            a.setInstaltrphone(instaltrphone);
-                        }
-                        if (!universityname.equals("null")) {
-                            a.setUnivname(universityname);
-                        }
-                        if (!instreg.equals("null")) {
-                            a.setInstregno(instreg);
-                        }
-
+                        a.setInstitute(instname);
+                        a.setInstemail(instemail);
+                        a.setInstweb(instweb);
+                        a.setInstphone(instphone);
+                        a.setInstaltrphone(instaltrphone);
+                        a.setUnivname(universityname);
+                        a.setInstregno(instreg);
                         a.setInstcaddrline1(instcaddrline1);
                         a.setInstcaddrline2(instcaddrline2);
                         a.setInstcaddrline3(instcaddrline3);
-
                     }
 
                     s = json.getString("knownlang");
-                    Log.d("TAG", "knownlang: " + s);
                     if (s.equals("found")) {
                         found_lang = 1;
-
+                        Log.d("cricket", " ajinkya rahane coming to bat");
                         ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         KnownLangs obj1 = knownLangsList.get(0);
@@ -2525,26 +2366,26 @@ public class AdminProfileFragment extends Fragment {
                         studentData.setProficiency10(proficiency10);
 
 
-                        if(!lang4.equals("") && !lang4.equals("- Select Language -"))
-                            lang_count =1;
-                        if(!lang5.equals("") && !lang5.equals("- Select Language -"))
-                            lang_count=2;
-                        if(!lang6.equals("") && !lang6.equals("- Select Language -"))
-                            lang_count=3;
-                        if(!lang7.equals("") && !lang7.equals("- Select Language -"))
-                            lang_count=4;
-                        if(!lang8.equals("") && !lang8.equals("- Select Language -"))
-                            lang_count=5;
-                        if(!lang9.equals("") && !lang9.equals("- Select Language -"))
-                            lang_count=6;
-                        if(!lang10.equals("") && !lang10.equals("- Select Language -"))
-                            lang_count=7;
+                        if (!lang4.equals("") && !lang4.equals("- Select Language -"))
+                            lang_count = 1;
+                        if (!lang5.equals("") && !lang5.equals("- Select Language -"))
+                            lang_count = 2;
+                        if (!lang6.equals("") && !lang6.equals("- Select Language -"))
+                            lang_count = 3;
+                        if (!lang7.equals("") && !lang7.equals("- Select Language -"))
+                            lang_count = 4;
+                        if (!lang8.equals("") && !lang8.equals("- Select Language -"))
+                            lang_count = 5;
+                        if (!lang9.equals("") && !lang9.equals("- Select Language -"))
+                            lang_count = 6;
+                        if (!lang10.equals("") && !lang10.equals("- Select Language -"))
+                            lang_count = 7;
 
                     }
                     s = json.getString("skills");
                     if (s.equals("found")) {
                         found_skills = 1;
-
+                        Log.d("cricket", " Ab divillers  coming to bat");
                         ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Skills obj1 = skillsList.get(0);
@@ -2669,63 +2510,61 @@ public class AdminProfileFragment extends Fragment {
                         studentData.setSkill20(skill20);
                         studentData.setSproficiency20(sproficiency20);
 
-                        if(!skill4.equals(""))
-                            skills_count=1;
+                        if (!skill4.equals(""))
+                            skills_count = 1;
 
-                        if(!skill5.equals(""))
-                            skills_count=2;
+                        if (!skill5.equals(""))
+                            skills_count = 2;
 
-                        if(!skill6.equals(""))
-                            skills_count=3;
+                        if (!skill6.equals(""))
+                            skills_count = 3;
 
-                        if(!skill7.equals(""))
-                            skills_count=4;
+                        if (!skill7.equals(""))
+                            skills_count = 4;
 
-                        if(!skill8.equals(""))
-                            skills_count=5;
+                        if (!skill8.equals(""))
+                            skills_count = 5;
 
-                        if(!skill9.equals(""))
-                            skills_count=6;
+                        if (!skill9.equals(""))
+                            skills_count = 6;
 
-                        if(!skill10.equals(""))
-                            skills_count=7;
+                        if (!skill10.equals(""))
+                            skills_count = 7;
 
-                        if(!skill11.equals(""))
-                            skills_count=8;
+                        if (!skill11.equals(""))
+                            skills_count = 8;
 
-                        if(!skill12.equals(""))
-                            skills_count=9;
+                        if (!skill12.equals(""))
+                            skills_count = 9;
 
-                        if(!skill13.equals(""))
-                            skills_count=10;
+                        if (!skill13.equals(""))
+                            skills_count = 10;
 
-                        if(!skill14.equals(""))
-                            skills_count=11;
+                        if (!skill14.equals(""))
+                            skills_count = 11;
 
-                        if(!skill15.equals(""))
-                            skills_count=12;
+                        if (!skill15.equals(""))
+                            skills_count = 12;
 
-                        if(!skill16.equals(""))
-                            skills_count=13;
+                        if (!skill16.equals(""))
+                            skills_count = 13;
 
-                        if(!skill17.equals(""))
-                            skills_count=14;
+                        if (!skill17.equals(""))
+                            skills_count = 14;
 
-                        if(!skill18.equals(""))
-                            skills_count=15;
+                        if (!skill18.equals(""))
+                            skills_count = 15;
 
-                        if(!skill19.equals(""))
-                            skills_count=16;
+                        if (!skill19.equals(""))
+                            skills_count = 16;
 
-                        if(!skill20.equals(""))
-                            skills_count=17;
-
-
+                        if (!skill20.equals(""))
+                            skills_count = 17;
                     }
                     s = json.getString("honors");
                     if (s.equals("found")) {
                         found_honors = 1;
-
+                        Log.d("cricket", " hardik pandya coming to bat");
                         ArrayList<Honors> honorsList = (ArrayList<Honors>) fromString(json.getString("honorsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Honors obj1 = honorsList.get(0);
@@ -2830,26 +2669,26 @@ public class AdminProfileFragment extends Fragment {
                         studentData.setHdescription10(hdescription10);
                         studentData.setYearofhonor10(yearofhonor10);
 
-                        if(!htitle4.equals(""))
-                            honor_count=1;
-                        if(!htitle5.equals(""))
-                            honor_count=2;
-                        if(!htitle6.equals(""))
-                            honor_count=3;
-                        if(!htitle7.equals(""))
-                            honor_count=4;
-                        if(!htitle8.equals(""))
-                            honor_count=5;
-                        if(!htitle9.equals(""))
-                            honor_count=6;
-                        if(!htitle10.equals(""))
-                            honor_count=7;
+                        if (!htitle4.equals(""))
+                            honor_count = 1;
+                        if (!htitle5.equals(""))
+                            honor_count = 2;
+                        if (!htitle6.equals(""))
+                            honor_count = 3;
+                        if (!htitle7.equals(""))
+                            honor_count = 4;
+                        if (!htitle8.equals(""))
+                            honor_count = 5;
+                        if (!htitle9.equals(""))
+                            honor_count = 6;
+                        if (!htitle10.equals(""))
+                            honor_count = 7;
                     }
 
                     s = json.getString("patents");
                     if (s.equals("found")) {
                         found_patents = 1;
-
+                        Log.d("cricket", " shreyash ayyar  coming to bat");
                         ArrayList<Patents> patentsList = (ArrayList<Patents>) fromString(json.getString("patentsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Patents obj1 = patentsList.get(0);
@@ -3054,26 +2893,26 @@ public class AdminProfileFragment extends Fragment {
                         studentData.setPselectedcountry10(pselectedcountry10);
                         studentData.setIssuedorpending10(issuedorpending10);
 
-                        if(!ptitle4.equals(""))
-                            patent_count=1;
-                        if(!ptitle5.equals(""))
-                            patent_count=2;
-                        if(!ptitle6.equals(""))
-                            patent_count=3;
-                        if(!ptitle7.equals(""))
-                            patent_count=4;
-                        if(!ptitle8.equals(""))
-                            patent_count=5;
-                        if(!ptitle9.equals(""))
-                            patent_count=6;
-                        if(!ptitle10.equals(""))
-                            patent_count=7;
+                        if (!ptitle4.equals(""))
+                            patent_count = 1;
+                        if (!ptitle5.equals(""))
+                            patent_count = 2;
+                        if (!ptitle6.equals(""))
+                            patent_count = 3;
+                        if (!ptitle7.equals(""))
+                            patent_count = 4;
+                        if (!ptitle8.equals(""))
+                            patent_count = 5;
+                        if (!ptitle9.equals(""))
+                            patent_count = 6;
+                        if (!ptitle10.equals(""))
+                            patent_count = 7;
                     }
 
                     s = json.getString("publications");
                     if (s.equals("found")) {
                         found_publications = 1;
-
+                        Log.d("cricket", " ambati rayadu  coming to bat");
                         ArrayList<Publications> publicationsList = (ArrayList<Publications>) fromString(json.getString("publicationsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         Publications obj1 = publicationsList.get(0);
@@ -3217,27 +3056,27 @@ public class AdminProfileFragment extends Fragment {
                         studentData.setPuburl10(puburl10);
                         studentData.setPubdescription10(pubdescription10);
 
-                        if(!pubtitle4.equals(""))
-                            public_count=1;
-                        if(!pubtitle5.equals(""))
-                            public_count=2;
-                        if(!pubtitle6.equals(""))
-                            public_count=3;
-                        if(!pubtitle7.equals(""))
-                            public_count=4;
-                        if(!pubtitle8.equals(""))
-                            public_count=5;
-                        if(!pubtitle9.equals(""))
-                            public_count=6;
-                        if(!pubtitle10.equals(""))
-                            public_count=7;
+                        if (!pubtitle4.equals(""))
+                            public_count = 1;
+                        if (!pubtitle5.equals(""))
+                            public_count = 2;
+                        if (!pubtitle6.equals(""))
+                            public_count = 3;
+                        if (!pubtitle7.equals(""))
+                            public_count = 4;
+                        if (!pubtitle8.equals(""))
+                            public_count = 5;
+                        if (!pubtitle9.equals(""))
+                            public_count = 6;
+                        if (!pubtitle10.equals(""))
+                            public_count = 7;
                     }
 
                     s = json.getString("experiences");
                     if (s.equals("found")) {
                         found_exp = 1;
+                        Log.d("cricket", " kapil dev coming to bat");
                         experiencesataobject = json.getString("experiencesdata");
-                        Log.d("TAG", "doInBackground:  experiencesataobject- " + experiencesataobject);
 
                         ArrayList<Experiences> ExperiencesList = (ArrayList<Experiences>) fromString(experiencesataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
@@ -3302,8 +3141,6 @@ public class AdminProfileFragment extends Fragment {
                         fromdate10 = obj10.getFromdate();
                         todate10 = obj10.getTodate();
 
-                        Log.d("TAG", "doInbackground:  todates1  :- " + todate1 + " & fromdates1 :-" + fromdate1);
-
                         a.setPost1e(post1);
                         a.setInst1e(inst1);
                         a.setFromdate1e(fromdate1);
@@ -3354,33 +3191,32 @@ public class AdminProfileFragment extends Fragment {
                         a.setFromdate10e(fromdate10);
                         a.setTodate10e(todate10);
 
-                        if(!post4.equals(""))
-                            exps_count=1;
+                        if (!post4.equals(""))
+                            exps_count = 1;
 
-                        if(!post5.equals(""))
-                            exps_count=2;
+                        if (!post5.equals(""))
+                            exps_count = 2;
 
-                        if(!post6.equals(""))
-                            exps_count=3;
+                        if (!post6.equals(""))
+                            exps_count = 3;
 
-                        if(!post7.equals(""))
-                            exps_count=4;
+                        if (!post7.equals(""))
+                            exps_count = 4;
 
-                        if(!post8.equals(""))
-                            exps_count=5;
+                        if (!post8.equals(""))
+                            exps_count = 5;
 
-                        if(!post9.equals(""))
-                            exps_count=6;
+                        if (!post9.equals(""))
+                            exps_count = 6;
 
-                        if(!post10.equals(""))
-                            exps_count=7;
-
+                        if (!post10.equals(""))
+                            exps_count = 7;
 
                     }
                     s = json.getString("personal");
                     if (s.equals("found")) {
                         found_personal = 1;
-                        Log.d("TAG", "found_personal===:-" + found_personal);
+                        Log.d("cricket", " manish pandey  coming to bat");
                         personaldataobject = json.getString("personalobj");
                         AdminPersonal obj2 = (AdminPersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
@@ -3397,10 +3233,6 @@ public class AdminProfileFragment extends Fragment {
                         paddrline1 = obj2.addrline1p;
                         paddrline2 = obj2.addrline2p;
                         paddrline3 = obj2.addrline3p;
-
-                        Log.d("TAG", "doInBackground: personal personalobj- " + fname);
-                        Log.d("TAG", "doInBackground: personal personalobj- " + lname);
-
 
                         a.setFname(fname);
                         a.setMname(mname);
@@ -3423,10 +3255,9 @@ public class AdminProfileFragment extends Fragment {
                     }
 
                     s = json.getString("contact_details");
-                    Log.d("--contactdetails Data--", "+++++++++++++++++ ");
-                    Log.d("--contactdetails json--", " " + s);
                     if (s.equals("found")) {
                         found_contact_details = 1;
+                        Log.d("cricket", " Dinesh kartik coming to bat");
                         String contactdetailsobj = json.getString("contact_detailsdata");
 
                         AdminContactDetailsModal obj3 = (AdminContactDetailsModal) fromString(contactdetailsobj, digest1, digest2);
@@ -3441,17 +3272,6 @@ public class AdminProfileFragment extends Fragment {
                         mobile = obj3.getMobile();
                         mobile2 = obj3.getMobile2();
 
-                        Log.d("--contactdetails --", "fname " + fname);
-                        Log.d("--contactdetails --", "lname " + lname);
-                        Log.d("--contactdetails --", "email2 " + email2);
-                        Log.d("--contactdetails --", "addressline1 " + addressline1);
-                        Log.d("--contactdetails --", "addressline2 " + addressline2);
-
-                        Log.d("--contactdetails --", "addressline3 " + addressline3);
-                        Log.d("--contactdetails --", "telephone " + telephone);
-                        Log.d("--contactdetails --", "mobile " + mobile);
-                        Log.d("--contactdetails json--", "mobile2 " + mobile2);
-
                         studentData.setFname(fname);
                         studentData.setLname(lname);
                         studentData.setEmail2(email2);
@@ -3461,13 +3281,11 @@ public class AdminProfileFragment extends Fragment {
                         studentData.setAddressline1(addressline1);
                         studentData.setAddressline2(addressline2);
                         studentData.setAddressline3(addressline3);
-
                     }
-
-
                 }
 
             } catch (Exception e) {
+                Log.d("cricket", "Match 2 lost : " + e.getMessage());
                 e.printStackTrace();
             }
             return map;
@@ -3477,16 +3295,10 @@ public class AdminProfileFragment extends Fragment {
         protected void onPostExecute(Bitmap result) {
             swipe_refresh_layout.setRefreshing(false);
             updateProgress.setVisibility(View.GONE);
-//
-//            myprofileimg.setImageBitmap(result);
             swipe_refresh_layout.setVisibility(View.VISIBLE);
-
-
             try {
-
                 populateData();
                 myprofileimg.setImageBitmap(result);
-                //show progress
                 float R = (1000 - 0) / (9 - 0);
                 float y = (percentProfile - 0) * R + 0;
                 val1 = Math.round(y);
@@ -3495,41 +3307,19 @@ public class AdminProfileFragment extends Fragment {
                 progressAnimator.setDuration(1000);
                 progressAnimator.setInterpolator(new LinearInterpolator());
                 progressAnimator.start();
-//                new GetImage().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 downloadImage();
 
             } catch (Exception e) {
-
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("cricket", "Match 3 lost : " + e.getMessage());
+                e.printStackTrace();
 
             }
 
         }
 
-        private InputStream getHttpConnection(String urlString)
-                throws IOException {
-            InputStream stream = null;
-            URL url = new URL(urlString);
-            URLConnection connection = url.openConnection();
-
-            try {
-                HttpURLConnection httpConnection = (HttpURLConnection) connection;
-                httpConnection.setRequestMethod("GET");
-                httpConnection.connect();
-
-                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    stream = httpConnection.getInputStream();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return stream;
-        }
     }
 
     class DeleteProfile extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -3541,7 +3331,8 @@ public class AdminProfileFragment extends Fragment {
                 resultofop = json.getString("info");
 
             } catch (Exception ex) {
-
+                Log.d("cricket", "Match 4 lost " + ex.getMessage());
+                ex.printStackTrace();
             }
 
             return resultofop;

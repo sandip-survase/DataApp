@@ -109,7 +109,6 @@ public class PlacementTab3 extends Fragment {
                     studentugview.setText(studentugmarks);
                 }
 
-
                 Float c10, s10, c12, s12, cu, su;
                 c10 = Float.parseFloat(tenth);
                 c12 = Float.parseFloat(twelthordiploma);
