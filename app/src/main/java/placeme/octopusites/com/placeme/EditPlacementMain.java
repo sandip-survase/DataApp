@@ -302,6 +302,8 @@ public class EditPlacementMain extends AppCompatActivity {
                         TagCreateArray = TagCreateList.toArray(TagCreateArray);
                         batchesTagsedittext.setTags(TagCreateArray);
 
+
+
                         Toast.makeText(EditPlacementMain.this, "Batch " + temp + " is already present", Toast.LENGTH_SHORT).show();
 
 
