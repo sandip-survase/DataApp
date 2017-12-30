@@ -218,6 +218,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ShouldAnimateProfile.isInside = true;
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(MainActivity.this));
@@ -324,8 +326,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                    {
 //                        messagecountrl.setVisibility(View.GONE);
 //                    }
-                    new GetNotificationsReadStatus().execute();
-                    new GetPlacementsReadStatus().execute();
+                    getNotifications();
+                    getPlacements();
+
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)

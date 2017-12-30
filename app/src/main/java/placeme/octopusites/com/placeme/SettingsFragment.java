@@ -126,6 +126,7 @@ public class SettingsFragment extends Fragment {
                 editor.putString("passKey", null);
                 editor.commit();
 
+                ShouldAnimateProfile.isInside = false;
                 startActivity(new Intent(getActivity(),LoginActivity.class));
                 getActivity().finish();
 

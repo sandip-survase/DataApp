@@ -314,7 +314,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         try {
             welcomepasswordwelcometextviewcontext1.setText("Welcome back " + Decrypt(foundFname, digest1, digest2) + " !");
         } catch (Exception e) {
-            Log.d("TAG", "fname: " + e.getMessage());
+            e.printStackTrace();
+            Log.d("TAG", "exp:" + e.getMessage());
         }
 
 
@@ -413,7 +414,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         Z.fadeandmovedown(this, lnameTextInputLayout);
         Z.fadeandmovedown(this, mobileTextInputLayout);
 
-        Log.d("TAG", "role: animation called page 2");
 
         fnameTextInputLayout.setTypeface(Z.getLight(this));
         lnameTextInputLayout.setTypeface(Z.getLight(this));
@@ -714,7 +714,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Log.d("TAG", "onCreate: Welcome called");
+
 
         fa = Typeface.createFromAsset(this.getAssets(), "fonts/fa.ttf");
         bold = Typeface.createFromAsset(this.getAssets(), "fonts/nunitobold.ttf");
@@ -722,9 +722,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
-
-        Log.d("TAG", "onCreate: welcome shared digest1 : "+digest1);
-        Log.d("TAG", "onCreate: welcome shared digest2 : "+digest2);
 
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
@@ -794,26 +791,20 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             device_id = telephonyManager.getDeviceId();
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        Log.d("TAG", "onCreate: **************** aid : " + android_id);
         //--------------------------------------------------- NEXT BUTTON ---------------------------------------------//
-
-//       path 1. existing user
-//       path 2. new user
-//       path 3. user through admin
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Log.d("TAG", "onClick: currentposition -------------------------------- " + currentPosition);
-                Log.d("TAG", "onClick: path ------------------- " + path);
+                Log.d("TAG", "race :" + path);
 
                 if (currentPosition == 0) {                       //---------------------------------  0
                     plainUsername = usernameedittext.getText().toString().trim();
 
-                    Log.d("TAG", "plainUsername: " + plainUsername);
                     boolean usernameflag = false;
                     if (plainUsername.equals("")) {
                         usernameflag = true;
@@ -838,7 +829,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     if (path == 1)     // existing user
                     {
                         passwordstr = passwordedittext.getText().toString();
-                        Log.d("TAG", "onClick: plain password : " + passwordstr);
                         if (passwordstr.equals("")) {
                             welcomepasswordTextInputLayout.setError("Kindly provide your password");
                         } else {
@@ -859,7 +849,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 attemptLogin(encUsersName, encPassword);
 
                             } catch (Exception e) {
-                                Log.d("TAG", "onClick: pass exp " + e.getMessage());
+                                e.printStackTrace();
+                                Log.d("TAG", "exp:" + e.getMessage());
                             }
                         }
                     } else if (path == 2)        // new user
@@ -898,11 +889,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 addBottomDots(2, 4);
 
                             } catch (Exception e) {
-                                Log.d("TAG", "onClick: EXp " + e.getMessage());
+                                e.printStackTrace();
+                                Log.d("TAG", "exp:" + e.getMessage());
                             }
                         }
                     }
-                } else if (currentPosition == 2)                                 //---------------------------------  2
+                } else if (currentPosition == 2)
                 {
                     if (path == 2) {
                         Toast.makeText(Welcome.this, "Please select your role !", Toast.LENGTH_SHORT).show();
@@ -958,7 +950,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
                                 encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
                             } catch (Exception e) {
-                                Log.d("TAG", "onClick: EXp " + e.getMessage());
+                                e.printStackTrace();
+                                Log.d("TAG", "exp:" + e.getMessage());
                             }
                             if (genrateCodeFlag == true) {
                                 //save pref  password instcode
@@ -975,12 +968,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 MySharedPreferencesManager.save(Welcome.this, "lname", enclname);
                                 MySharedPreferencesManager.save(Welcome.this, "phone", encmobile);
 
-                                Log.d("TAG", "save to shared encPassword " + encPassword);
-                                Log.d("TAG", "save to shared SELECTED_ROLE " + SELECTED_ROLE);
-                                Log.d("TAG", "save to shared encUsersName " + encUsersName);
-                                Log.d("TAG", "save to shared fname " + encfname);
-                                Log.d("TAG", "save to shared lname " + enclname);
-                                Log.d("TAG", "save to shared phone " + encmobile);
 
                                 new SendActivationCode().execute();
                             } else {
@@ -1022,16 +1009,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
 
-                Log.d("TAG", "doInBackground: plain role ========================  " + SELECTED_ROLE);
-                Log.d("TAG", "doInBackground: fname " + fname);
-                Log.d("TAG", "doInBackground: lname " + lname);
-                Log.d("TAG", "doInBackground: mobile " + mobile);
-                Log.d("TAG", "doInBackground: passwordstr " + confrimpass);
-                Log.d("TAG", "doInBackground: instOrEmailstr " + instOrEmailstr);
-                Log.d("TAG", "doInBackground: plainUsername " + plainUsername);
-                Log.d("TAG", "doInBackground: plainUsername " + plainUsername);
-
-
                 byte[] fnameBytes = fname.getBytes("UTF-8");
                 byte[] lnameBytes = lname.getBytes("UTF-8");
                 byte[] mobileBytes = mobile.getBytes("UTF-8");
@@ -1039,9 +1016,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 byte[] instOrEmailstrBytes = instOrEmailstr.getBytes("UTF-8");
                 byte[] usernameBytes = plainUsername.getBytes("UTF-8");
                 byte[] roleBytes = SELECTED_ROLE.getBytes("UTF-8");
-
-                Log.d("TAG", "doInBackground: Aftrer Bytes role ========================  " + SELECTED_ROLE);
-
                 byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
                 encUsersName = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
                 byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
@@ -1060,7 +1034,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: exp " + e.getMessage());
+                e.printStackTrace();
+                Log.d("TAG", "exp:" + e.getMessage());
             }
 
             String r = null;
@@ -1073,15 +1048,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("ie", encinstOrEmail));    // 5
             params.add(new BasicNameValuePair("p", encPassword));        // 6
             params.add(new BasicNameValuePair("id", android_id));        // 7
-
-
-            try {
-                Log.d("TAG", "sending fname" + Decrypt(encfname, digest1, digest2));
-                Log.d("TAG", "sending lname" + Decrypt(enclname, digest1, digest2));
-                Log.d("TAG", "sending mobile" + Decrypt(encmobile, digest1, digest2));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
             JSONObject json = jParser.makeHttpRequest(Z.url_SaveWelcomeIntroData, "GET", params);
             if (json != null) {
@@ -1103,7 +1069,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             if (notNull) {
 
                 if (result.equals("success")) {
-                    Log.d("TAG", "onPostExecute: SaveData role " + SELECTED_ROLE);
 
                     MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);       //0
                     MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);     //1
@@ -1127,13 +1092,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected Boolean doInBackground(String... param) {
 
             String inputUcode = param[0];
-            Log.d("TAG", "checkUcode: " + inputUcode);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", inputUcode));       //0
-
             JSONObject json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
-            Log.d("TAG", "checkUcode json : " + json);
-
             if (json != null) {
                 try {
                     result = json.getString("info");
@@ -1173,9 +1134,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("f", encfname));           //1
             params.add(new BasicNameValuePair("l", enclname));           //2
             params.add(new BasicNameValuePair("m", encmobile));          //3
-
-            Log.d("TAG", "doInBackground: enc role ========================  " + encrole);
-
             JSONObject json = jParser.makeHttpRequest(Z.url_SaveStudentFnameLnameMobile, "GET", params);
             if (json != null) {
                 try {
@@ -1231,7 +1189,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
             try {
                 resultofop = json.getString("info");
-                Log.d("TAG", " CreateFirebaseUser json : " + json);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1242,9 +1199,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         @Override
         protected void onPostExecute(String result) {
 
-
             String salt = MySharedPreferencesManager.getDigest3(Welcome.this);
-            Log.d("TAG", "plain salt " + salt);
 
             String hash = md5(passwordstr + salt);
             loginFirebase(plainUsername, hash);
@@ -1261,11 +1216,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                             if (task.isSuccessful()) {
                                 Toast.makeText(Welcome.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("TAG", "Successfully logged in to Firebase ===================  ");
-
+                                Log.d("TAG", "bhajala");
 
                             } else {
                                 Toast.makeText(Welcome.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                                Log.d("TAG", "nay bhajala");
                             }
                         }
                     });
@@ -1434,23 +1389,20 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: 1 " + e.getMessage());
+                e.printStackTrace();
+                Log.d("TAG", "exp 143:" + e.getMessage());
             }
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encProMail));              //0
             params.add(new BasicNameValuePair("f", encfname));                  //1
             params.add(new BasicNameValuePair("l", enclname));                  //2
-
             JSONObject json = jParser.makeHttpRequest(Z.url_SendActivationCode, "GET", params);
-
             if (json != null) {
                 try {
                     result = json.getString("info");
-                    Log.d("TAG2", "SendActivationCode json: " + json);
-
                 } catch (Exception e) {
-                    Log.d("TAG", "doInBackground: 2 " + e.getMessage());
+                    e.printStackTrace();
                 }
             } else
                 return false;
@@ -1497,41 +1449,35 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected Boolean doInBackground(String... param) {
             try {
 
-                Log.d("TAG", "digest1: " + digest1);
-                Log.d("TAG", "digest2: " + digest2);
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
 
-                Log.d("TAG", "input ValidateUser plain---" + plainUsername);
                 byte[] usernameBytes = plainUsername.getBytes("UTF-8");
                 byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
                 encUsersName = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-                Log.d("TAG", "input ValidateUser enc: " + encUsersName);
-
                 MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
             } catch (Exception e) {
-                Log.d("TAG", "ValidateUser doInBackground enc exp " + e.getMessage());
+                e.printStackTrace();
+                Log.d("TAG", "exp wife:" + e.getMessage());
             }
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));       //0
 
             JSONObject json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
-            Log.d("TAG", "ValidateUser json: " + json);
 
             if (json != null ) {
                 try {
-
                     result = json.getString("info");
                     if (result != null)
                         if (result.equals("found"))
                             foundFname = json.getString("fname");
 
-
                 } catch (Exception e) {
-                    Log.d("TAG", "ValidateUser json  exp :  " + e.getMessage());
+                    e.printStackTrace();
+                    Log.d("TAG", "exp wifebaby:" + e.getMessage());
                 }
             } else
                 return false;
@@ -1565,7 +1511,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                         myViewPagerAdapter.addFrag(new WelcomePasswordFragment());
                         myViewPagerAdapter.notifyDataSetChanged();
-                        Log.d("TAG", "onPostExecute: pasword frag added");
                         viewPager.setCurrentItem(1);
                         addBottomDots(1, 2);
                     }
@@ -1604,8 +1549,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     void attemptLogin(String u, String p) {
 
-        Log.d("TAG", "login using:  " + u + "/n" + p);
-
         UserLoginTask userLoginTask = new UserLoginTask(u, p);
         userLoginTask.execute();
 
@@ -1616,7 +1559,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         private final String mEmail;
         private final String mPassword;
-
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -1631,26 +1573,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
-                    Log.d("TAG", "UserLoginTask user input : " + mEmail + " \t pass : " + mPassword);
-//                params.add(new BasicNameValuePair("t", new SharedPrefUtil(Welcome.this.getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(Z.url_login, "GET", params);
-                    Log.d("TAG", "UserLoginTask json" + json);
                     String s = null;
 
                     s = json.getString("info");
-
-                    Log.d("TAG", "UserLoginTask json: " + json);
-                    Log.d("TAG", "result   " + s);
-
                     resultofop = s;
 
-//                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedpreferences.edit();
-//
-//                    editor.putString("role", s);
-//                    editor.commit();
-
-                    Log.d("TAG", "UserLoginTask : role ---------------------------------- " + s);
                     if (!s.equals("notactivated"))
                         MySharedPreferencesManager.save(Welcome.this, "role", s);
                     else {
@@ -1679,10 +1607,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         return 5;
                     }
                     if (s.equals("notactivated")) {             // throughAdmin
-                        Log.d("TAG", "------------------------------------------ user notactivated ");
+                        Log.d("TAG", "dead");
 
                         String throughAdmin = json.getString("throughAdmin");
-                        Log.d("TAG, ", "------------------------------------------  user throughAdmin = " + throughAdmin);
+                        Log.d("TAG, ", "dady");
 
 
                         if (throughAdmin != null && throughAdmin.equals("yes")) {
@@ -1707,19 +1635,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 byte[] lnameEncryptedBytes = SimpleBase64Encoder.decode(adminlname);
                                 byte[] lnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, lnameEncryptedBytes);
                                 adminlname = new String(lnameDecryptedBytes);
-
-//                                Log.d("TAG", "doInBackground: plain inst "+adminInstitute);
-//                                Log.d("TAG", "doInBackground: plain fname "+adminfname);
-//                                Log.d("TAG", "doInBackground: plain lname "+adminlname);
                                 returnCode = 7;
                                 return 7;
                             } catch (Exception e) {
-                                Log.d("TAG", "doInBackground: exp " + e.getMessage());
+                                e.printStackTrace();
+                                Log.d("TAG", "exp ex:" + e.getMessage());
                             }
 
 
                         } else {
-                            Log.d("TAG", "doInBackground: else");
                             String role = json.getString("role");
                             if (!s.equals("notactivated"))
                                 MySharedPreferencesManager.save(Welcome.this, "role", s);
@@ -1737,7 +1661,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
             } catch (Exception e) {
-                Log.d("exp", e.getMessage());
+                Log.d("exp ex:", e.getMessage());
                 e.printStackTrace();
             }
             return returnCode;
@@ -1786,26 +1710,21 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 //                            r.setUsername(EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "role", "student");
-                            Log.d("TAG", "launching mainactivity..");
+                            Log.d("TAG", "loving 56");
                             startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
+                            Log.d("TAG", "loving 287");
                             MySharedPreferencesManager.save(Welcome.this, "role", "admin");
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("admin");
-//                            r.setUsername(EmailCred);
                             startActivity(new Intent(Welcome.this, AdminActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
+                            Log.d("TAG", "loving 311");
                             MySharedPreferencesManager.save(Welcome.this, "role", "hr");
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
-
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("hr");
-//                            r.setUsername(EmailCred);
                             startActivity(new Intent(Welcome.this, HRActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else if (success == 5) {
@@ -1813,9 +1732,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             MySharedPreferencesManager.save(Welcome.this, "role", "alumni");
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
 
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("alumni");
-//                            r.setUsername(EmailCred);
                             startActivity(new Intent(Welcome.this, AlumniActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         }
@@ -1837,7 +1753,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 WelcomePasswordFragment fragment = (WelcomePasswordFragment) myViewPagerAdapter.getItem(1);
                 passwordedittext.setText("");
             } else {
-                WelcomePasswordFragment fragment = (WelcomePasswordFragment) myViewPagerAdapter.getItem(1);
                 passwordedittext.setText("");
 
             }
@@ -1853,7 +1768,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         protected Boolean doInBackground(String... param) {
 
-            String r = null;
+
             String platform="Android ("+getDeviceName()+")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));    //0
@@ -1861,8 +1776,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             JSONObject json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
             if (json != null) {
                 try {
-                    r = json.getString("info");
-
+                    String r = json.getString("info");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1872,10 +1786,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             return true;
         }
 
-        @Override
-        protected void onPostExecute(Boolean result) {
-            Log.d("TAG", "SaveSessionDetails json null: ");
-        }
     }
 
 
@@ -1913,8 +1823,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
-        Log.d("TAG", "onActivityResult: hr activity " + resultCode);
 
         if (requestCode == 1111) {
             WelcomeRoleModal obj = new WelcomeRoleModal();
@@ -1961,9 +1869,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 beginCrop(result.getData());
 
             } catch (Exception e) {
+                e.printStackTrace();
                 crop_layout.setVisibility(View.GONE);
-
-
             }
         } else if (resultCode == RESULT_CANCELED) {
             crop_layout.setVisibility(View.GONE);
@@ -1975,10 +1882,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             handleCrop(resultCode, result);
         }
 
-//    if(requestCode==HRProfileFragment.COMPANY_DEATAILS_CHANGE_REQUEST)
-//    {
-//
-//    }
     }
 
     public void requestCropImage() {
@@ -2028,9 +1931,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     class CompressTask extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
             File sourceFile = new File(filepath);
-            try {
-                Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
-            } catch (Exception e) {}
+
             Luban.compress(Welcome.this, sourceFile)
                     .setMaxSize(256)                // limit the final image size（unit：Kb）
                     .putGear(Luban.CUSTOM_GEAR)
@@ -2040,10 +1941,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         }
                         @Override
                         public void onSuccess(File file) {
-                            try {
-                                Log.d("TAG", "After compress :   " + file.length() / 1024 + " kb");
-                            } catch (Exception e) {
-                            }
+
                             if (file.exists()) {
                                 String filepath = file.getAbsolutePath();
                                 String filename = "";
@@ -2053,7 +1951,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                     directory += filepath.charAt(i);
                                 for (int i = index + 1; i < filepath.length(); i++)
                                     filename += filepath.charAt(i);
-                                Log.d("TAG", "before : f name- " + filename);
                                 Imgfile = file;
 
                                 new UploadProfile().execute();
@@ -2062,7 +1959,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.d("TAG", "onError: "+e.getMessage());
+                            Log.d("TAG", "karina exp:" + e.getMessage());
                         }
                     });
             return true;
@@ -2083,19 +1980,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 MultipartUtility multipart = null;
                 try {
                     multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                    Log.d("TAG", "UploadProfile : input  username " + encUsersName);
                     multipart.addFormField("u", encUsersName);
                     if (filename != "") {
                         multipart.addFormField("f", filename);
                         multipart.addFilePart("uf", Imgfile);
-                        Log.d("TAG", "onSuccess: f name- " + filename);
                     } else
                         multipart.addFormField("f", "null");
                     response = multipart.finish();
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Log.d("TAG", "exp : " + e.getMessage());
+                    Log.d("TAG", "fb exp:" + e.getMessage());
 
                 }
 
@@ -2111,7 +2006,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             crop_layout.setVisibility(View.GONE);
             updateProgress.setVisibility(View.GONE);
             if(result) {
-                Log.d("TAG", "UploadProfile : response2 " + response);
+
                 if (response != null && response.get(0).contains("success")) {
                     MySharedPreferencesManager.save(Welcome.this, "crop", "no");
                     requestProfileImage();
@@ -2146,16 +2041,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     }
 
     public void requestProfileImage() {
-        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
-//        new GetProfileImage().execute();
         downloadImage();
-
     }
 
     private void downloadImage() {
-
-        String t = String.valueOf(System.currentTimeMillis());
-
         Uri uri = new Uri.Builder()
                 .scheme("http")
                 .authority(Z.VPS_IP)
@@ -2189,7 +2078,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         if (currentPosition != 0) {
             currentPosition--;
             viewPager.setCurrentItem(currentPosition);
-            //dot coding
+
 
             switch (currentPosition) {
                 case 0: {
@@ -2224,6 +2113,5 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             super.onBackPressed();
     }
 
-    //end prfile image
 
 }

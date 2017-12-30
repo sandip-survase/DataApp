@@ -209,6 +209,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        ShouldAnimateProfile.isInside = true;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -2589,7 +2590,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             } else if (result.equals("0")) {
                 bluePanelTv.setText("0" + Z.users_under_your_supervision);
             } else {
-                bluePanelTv.setText(result + Z.users_under_your_supervision);
+                Z.CountOfUsersUnderAdmin = result;
+                bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
             }
         }
     }

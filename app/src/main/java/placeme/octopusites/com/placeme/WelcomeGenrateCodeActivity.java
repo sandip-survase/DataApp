@@ -105,9 +105,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         headerMsgcode.setTypeface(Z.getBold(this));
         genratedCode.setTypeface(Z.getRighteous(this));
 
-
-
-
     }
 
     public void setWelComeInstituteView(View v) {
@@ -345,7 +342,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     }
 
 
-    public void setWelComeCompanyView(View v) {     // --------------   WelComeCompanyView
+    public void setWelComeCompanyView(View v) {
 
         WelComeCompanyView = v;
         companyName = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyName);
@@ -357,8 +354,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         CIN = (TextInputEditText) WelComeCompanyView.findViewById(R.id.CIN);
         otherNature = (TextInputEditText) WelComeCompanyView.findViewById(R.id.otherNature);
         countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
-
-
 
         companyName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -505,10 +500,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
 
         countrycount = getResources().getStringArray(R.array.countries_array).length;
@@ -681,7 +672,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"otp","no");
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","yes");
         ROLE = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
-        Log.d("TAG", "WelcomeGenrateCodeActivity shared role ---------  "+ROLE);
 
         digest1=MySharedPreferencesManager.getDigest1(WelcomeGenrateCodeActivity.this);
         digest2=MySharedPreferencesManager.getDigest2(WelcomeGenrateCodeActivity.this);
@@ -691,8 +681,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             device_id = telephonyManager.getDeviceId();
         }catch (Exception e){}
-
-        Log.d("TAG", "onCreate: **************** aid : "+android_id);
 
         viewPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -726,10 +714,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             }
         });
 
-
-
         if (ROLE != null && ROLE.equals("admin")) {
-
+            Log.d("TAG", "1+1=222");
             myViewPagerAdapter = new MyAdapter(getSupportFragmentManager());
             myViewPagerAdapter.addFrag(new WelcomeInstituteDetailsFragment());
             myViewPagerAdapter.addFrag(new WelcomeShowGeneratedCodeFragment());
@@ -738,7 +724,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             addBottomDots(0, 2);
 
         } else if (ROLE != null && ROLE.equals("hr")) {            // OR
-
+            Log.d("TAG", "1+1=321");
             myViewPagerAdapter = new MyAdapter(getSupportFragmentManager());
             myViewPagerAdapter.addFrag(new WelcomeCompanyDetailsFragment());
             myViewPagerAdapter.addFrag(new WelcomeShowGeneratedCodeFragment());
@@ -748,6 +734,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         } else {
             Toast.makeText(this, "Role is not admin or hr", Toast.LENGTH_LONG).show();
+            Log.d("TAG", "1+1=000");
         }
 
 
@@ -756,13 +743,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (ROLE != null && ROLE.equals("admin")) {                             //  admin
-                    Log.d("TAG", "onClick: curent pos " + currentPosition);
+                    Log.d("TAG", "ctc" + currentPosition);
 
                     if (currentPosition == 0) {
                         errorFlagInstitute = false;
                         sInstituteName = instituteName.getText().toString();
                         sInstituteAddress = instituteAddress.getText().toString();
-                        Log.d("TAG", "onClick: sInstituteAddress " + sInstituteAddress);
                         sInstituteEmail = instituteEmail.getText().toString();
                         sInstitutewebsite = institutewebsite.getText().toString();
                         sInstitutephone = institutephone.getText().toString();
@@ -835,7 +821,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                         sCompanyAlternatephone = companyAlternatephone.getText().toString();
                         sOtherNature = otherNature.getText().toString();
                         nature = CompanyType;
-                        Log.d("TAG", "onClick: --------- "+nature);
                         COUNTRY = countryAutoBoxCompany.getText().toString();
 
                         if (sCompanyName.length() < 2) {
@@ -1107,8 +1092,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 byte[] countryEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, countryBytes);
                 enccountry = new String(SimpleBase64Encoder.encode(countryEncryptedBytes));
 
-                // previous data
-
                 encUsername = MySharedPreferencesManager.getUsername(WelcomeGenrateCodeActivity.this);
                 encPassword = MySharedPreferencesManager.getPassword(WelcomeGenrateCodeActivity.this);
                 encFirstName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "fname");
@@ -1117,25 +1100,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 encrole = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
                 encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "proEmail");
 
-                Log.d("TAG", "encUsername:              " + encUsername);
-                Log.d("TAG", "encFirstName:             " + encFirstName);
-                Log.d("TAG", "encLastName:              " + encLastName);
-                Log.d("TAG", "encPassword:              " + encPassword);
-                Log.d("TAG", "encAdminPhone:            " + encAdminPhone);
-                Log.d("TAG", "encProfessionalEmail:     " + encProfessionalEmail);
-                Log.d("TAG", "encInstituteName:         " + encInstituteName);
-                Log.d("TAG", "encInstituteAddress:      " + encInstituteAddress);
-                Log.d("TAG", "encInstituteEmail:        " + encInstituteEmail);
-                Log.d("TAG", "encInstweb:               " + encInstituteInstitutewebsite);
-                Log.d("TAG", "encInstitutephone:        " + encInstitutephone);
-                Log.d("TAG", "encInstAlterphone:        " + encInstituteAlternatephone);
-                Log.d("TAG", "encUniversity:            " + encUniversity);
-                Log.d("TAG", "encRegNumber:             " + encRegNumber);
-                Log.d("TAG", "enccountry:               " + enccountry);
-                Log.d("TAG", "COUNTRY:                  " + COUNTRY);
 
             } catch (Exception e) {
-                Log.d("TAG", "SaveInstititeData doInBackground: exp " + e.getMessage());
+                e.printStackTrace();
+                Log.d("TAG", "master exp:" + e.getMessage());
             }
 
             String r = null;
@@ -1162,7 +1130,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: save comp data "+json);
                 if (r.equals("success")) {
                     CODE = json.getString("ucode");
                 }
@@ -1176,11 +1143,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-//                Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
-
                 new CreateFirebaseUser(encUsername,encPassword).execute();
-
-                Log.d("TAG", "admin code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -1202,22 +1165,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
             try {
-                Log.d("TAG", "start comp data");
 
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
-
-                Log.d("TAG", "sCompanyName:             " + sCompanyName);
-                Log.d("TAG", "sCompanyAddress:          " + sCompanyAddress);
-                Log.d("TAG", "sCompanyEmail:            " + sCompanyEmail);
-                Log.d("TAG", "sCompanyWebsite:          " + sCompanyWebsite);
-                Log.d("TAG", "sCompanyPhone:            " + sCompanyPhone);
-                Log.d("TAG", "sCompanyAlterphone:       " + sCompanyAlternatephone);
-                Log.d("TAG", "sCIN:                     " + sCIN);
-                Log.d("TAG", "nature:                   " + nature);
-                Log.d("TAG", "COUNTRY:                  " + COUNTRY);
-
                 byte[] CompanyNameBytes = sCompanyName.getBytes("UTF-8");
                 byte[] CompanyAddressBytes = sCompanyAddress.getBytes("UTF-8");
                 byte[] CompanyEmailBytes = sCompanyEmail.getBytes("UTF-8");
@@ -1227,34 +1178,24 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 byte[] encCINBytes = sCIN.getBytes("UTF-8");
                 byte[] NatureBytes = nature.getBytes("UTF-8");
                 byte[] countryBytes = COUNTRY.getBytes("UTF-8");
-
                 byte[] sCompanyNameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, CompanyNameBytes);
                 encCompanyName = new String(SimpleBase64Encoder.encode(sCompanyNameEncryptedBytes));
-
                 byte[] sCompanyAddressEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, CompanyAddressBytes);
                 encCompanyAddress = new String(SimpleBase64Encoder.encode(sCompanyAddressEncryptedBytes));
-
                 byte[] sCompanyEmailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, CompanyEmailBytes);
                 encCompanyEmail = new String(SimpleBase64Encoder.encode(sCompanyEmailEncryptedBytes));
-
                 byte[] sCompanyWebsiteEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, CompanyWebsiteBytes);
                 encCompanyWebsite = new String(SimpleBase64Encoder.encode(sCompanyWebsiteEncryptedBytes));
-
                 byte[] sCompanyPhoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, CompanyPhoneBytes);
                 encCompanyPhone = new String(SimpleBase64Encoder.encode(sCompanyPhoneEncryptedBytes));
-
                 byte[] sCompanyAlternatephoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, CompanyAlternatePhoneBytes);
                 encCompanyAlternatephone = new String(SimpleBase64Encoder.encode(sCompanyAlternatephoneEncryptedBytes));
-
                 byte[] sCINeEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, encCINBytes);
                 encCIN = new String(SimpleBase64Encoder.encode(sCINeEncryptedBytes));
-
                 byte[] sotherNatureEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, NatureBytes);
                 encOtherNature = new String(SimpleBase64Encoder.encode(sotherNatureEncryptedBytes));
-
                 byte[] countryEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, countryBytes);
                 enccountry = new String(SimpleBase64Encoder.encode(countryEncryptedBytes));
-
                 encUsername = MySharedPreferencesManager.getUsername(WelcomeGenrateCodeActivity.this);
                 encPassword = MySharedPreferencesManager.getPassword(WelcomeGenrateCodeActivity.this);
                 encFirstName = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "fname");
@@ -1262,17 +1203,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 encAdminPhone = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "phone");
                 encProfessionalEmail = MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this, "proEmail");
 
-                Log.d("TAG", "shared encUsername:          " + encUsername);
-                Log.d("TAG", "shared encFirstName:         " + encPassword);
-                Log.d("TAG", "shared encLastName:          " + encFirstName);
-                Log.d("TAG", "shared encPassword:          " + encLastName);
-                Log.d("TAG", "shared encAdminPhone:        " + encAdminPhone);
-                Log.d("TAG", "shared proEmail:              " + encProfessionalEmail);
-                Log.d("TAG", "shared role              " + ROLE);
-
-
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: exp " + e.getMessage());
+                e.printStackTrace();
+                Log.d("TAG", "job exp:" + e.getMessage());
             }
 
 
@@ -1319,8 +1252,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                 new CreateFirebaseUser(encUsername,encPassword).execute();
 
-//                Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -1346,7 +1277,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         CreateFirebaseUser(String u, String p) {
             this.u = u;
             this.p = p;
-            Log.d("TAG", "CreateFirebaseUser input : "+u+"   "+p);
         }
 
         protected String doInBackground(String... param) {
@@ -1357,7 +1287,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
             json = jsonParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-            Log.d("TAG", "CreateFirebaseUser json : "+json);
             try {
                 resultofop = json.getString("info");
 
@@ -1369,8 +1298,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            Log.d("TAG", "CreateFirebaseUser onPostExecute: "+resultofop);
 
             String plainusername = null;
             String plainPassword = null;
@@ -1389,8 +1316,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         }
     }
 
-
-
     void loginFirebase(String username, String hash) {
 
         FirebaseAuth.getInstance()
@@ -1401,8 +1326,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
                         if (task.isSuccessful()) {
+                            Log.d("TAG", "bhajala");
                             Toast.makeText(WelcomeGenrateCodeActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
                         } else {
+                            Log.d("TAG", "nay bhajala");
                             Toast.makeText(WelcomeGenrateCodeActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -1413,26 +1340,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     public static String md5(String input) {
 
         String md5 = null;
-
         if (null == input) return null;
-
         try {
-
-            //Create MessageDigest object for MD5
             MessageDigest digest = MessageDigest.getInstance("MD5");
-
-            //Update input string in message digest
             digest.update(input.getBytes(), 0, input.length());
-
-            //Converts message digest value in base 16 (hex)
             md5 = new BigInteger(1, digest.digest()).toString(16);
-
         } catch (NoSuchAlgorithmException e) {
-
             e.printStackTrace();
         }
         return md5;
     }
-
-
 }

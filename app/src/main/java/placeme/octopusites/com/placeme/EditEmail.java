@@ -184,7 +184,6 @@ public class EditEmail extends AppCompatActivity {
 
             json = jParser.makeHttpRequest(Z.url_VerifyOTPEditEmail, "GET", params);
 
-            Log.d("TAG", "verifyotp json : "+json);
             try {
                 r = json.getString("info");
 
@@ -221,21 +220,16 @@ public class EditEmail extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
             String resultofop=null;
-
-            Log.d("TAG", "inside ChangeEmailInFireBaseTask: ");
-
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             params.add(new BasicNameValuePair("nu", encnewemail));
-            Log.d("TAG", "ChangeEmailInFireBaseTask input old : "+username);
-            Log.d("TAG", "ChangeEmailInFireBaseTask input new : "+encnewemail);
+            Log.d("TAG", "Change Old wife input: " + username);
+            Log.d("TAG", "Change to gf input : " + encnewemail);
 
             json = jParser.makeHttpRequest(Z.url_ChangeUsernameFireBase, "GET", params);
 
             try {
                 resultofop = json.getString("info");
-                Log.d("TAG", "ChangeEmailInFireBaseTask json : "+json);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -267,14 +261,7 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("e",encnewemail));             //1
             params.add(new BasicNameValuePair("p",encaccountpassword));             //2
-            try {
-                Log.d("TAG", "username: "+Z.Decrypt(username, EditEmail.this));
-                Log.d("TAG", "new username: "+Z.Decrypt(encnewemail, EditEmail.this));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             json = jParser.makeHttpRequest(Z.url_editemail, "GET", params);
-            Log.d("TAG", "SaveEditedEmail json : "+json);
             try {
                 r = json.getString("info");
             }catch (Exception e){e.printStackTrace();}

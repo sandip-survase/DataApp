@@ -201,10 +201,6 @@ public class AddUsersActivity extends AppCompatActivity {
                         .withHiddenFiles(true) // Show hidden files and folders
                         .start();
 
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.setType("file/*");
-//                startActivityForResult(intent, 123);
-
             }
         });
         attchrl1.setOnClickListener(new View.OnClickListener() {
@@ -224,7 +220,6 @@ public class AddUsersActivity extends AppCompatActivity {
 
         alertDialogBuilder
                 .setTitle("Do you want to remove this attachment ?")
-//               .setMessage("Filename:"+filename+"          Size:"+lenght/1024+"MB")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -283,7 +278,7 @@ public class AddUsersActivity extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
             String encUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
-            Log.d("TAG", "delete :filename "+plainFilename+"\nuser"+encUsername);
+            Log.d("TAG", "murder");
             filename=plainFilename;
 
             try {
@@ -298,7 +293,8 @@ public class AddUsersActivity extends AppCompatActivity {
                 encfilename = new String(SimpleBase64Encoder.encode(filenameEncryptedBytes));
 
             }catch (Exception e){
-                Log.d("TAG", "doInBackground: "+e.getMessage());
+                e.printStackTrace();
+                Log.d("TAG", "murder exp:" + e.getMessage());
             }
 
             String result = null;
@@ -317,11 +313,6 @@ public class AddUsersActivity extends AppCompatActivity {
             return result;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            Log.d("TAG", "onPostExecute: result "+result);
-
-        }
     }
 
 
@@ -334,23 +325,12 @@ public class AddUsersActivity extends AppCompatActivity {
 
                 if(userEmail.contains("@")) {
 
-
-
-
-
-
                     try {
                         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                         String sPadding = "ISO10126Padding";
 
-
-//                        byte[] adminUsernameBytes = adminUsername.getBytes("UTF-8");
-
                         byte[] userEmailBytes = userEmail.getBytes("UTF-8");
-
-//                        byte[] adminUsernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, adminUsernameBytes);
-//                        encadminUsername = new String(SimpleBase64Encoder.encode(adminUsernameEncryptedBytes));
 
                         byte[] userEmailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, userEmailBytes);
                         encuserEmail = new String(SimpleBase64Encoder.encode(userEmailEncryptedBytes));
@@ -359,7 +339,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Log.d("TAG", "validate: AddUsersActivity");
+                        Log.d("TAG", "baby:" + e.getMessage());
                     }
                 } else
                     adduserinput.setError("Kindly enter valid email address");
@@ -379,7 +359,7 @@ public class AddUsersActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(this, "multi selected "+filename+"\n"+adminUsername, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "multi selected "+filename+"\n"+adminUsername);
+                Log.d("TAG", "landa");
 
                 try {
                     byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -395,7 +375,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d("TAG", "validate: AddUsersActivity");
+                    Log.d("TAG", "baby:" + e.getMessage());
                 }
 
             }
@@ -411,10 +391,7 @@ public class AddUsersActivity extends AppCompatActivity {
             filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
             File f = new File(filePath);
             filePath = f.getAbsolutePath();
-            // Do anything with file
             lenght = f.length();
-//            Toast.makeText(MainActivity.this, "File lenght:" + lenght, Toast.LENGTH_LONG).show();
-
             if (lenght > 16777216) {
                 Toast.makeText(AddUsersActivity.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
                 filesame = 1;
@@ -430,7 +407,6 @@ public class AddUsersActivity extends AppCompatActivity {
 
             String fileName[]=filename.split("\\.");
             if(fileName.length==2) {
-                Log.d("TAG", "onActivityResult:  " + fileName[0] + " two " + fileName[1]);
                 if (fileName[1].equals("xls") || fileName[1].equals("xlsx")) {
                     filesame = 0;
                 } else {
@@ -448,12 +424,8 @@ public class AddUsersActivity extends AppCompatActivity {
 
                 new ShowProgress().execute();
 
-
-
             }
-//          else {
-//                Toast.makeText(AddUsersActivity.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
-//            }
+
         }
     }
 
@@ -472,11 +444,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
             File atach1 = new File(filePath);
             lenght= atach1.length();
-//            username ="sunny.gh.gm@gmail.com";
-
             String username = encadminUsername;
-
-
 
             try {
 
@@ -490,14 +458,11 @@ public class AddUsersActivity extends AppCompatActivity {
                 encfilename = new String(SimpleBase64Encoder.encode(filenameEncryptedBytes));
 
             }catch (Exception e){
-                Log.d("TAG", "doInBackground: "+e.getMessage());
+                Log.d("TAG", "marksheet exp:" + e.getMessage());
             }
             String filename=encfilename;
-//            Log.d("TAG", "upload  user "+username+"\nfile "+filename);
 
             try {
-//            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-                // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
                 URL url = new URL(Z.url_uploadSingleFile);
                 httpConn = (HttpURLConnection) url.openConnection();
@@ -511,7 +476,7 @@ public class AddUsersActivity extends AppCompatActivity {
                 outputStream = httpConn.getOutputStream();
                 writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
                         true);
-                //formfieldpart//     multipart.addFormField("u", username);
+
                 name="u";
                 vallue = username;
                 writer.append("--" + boundary).append(LINE_FEED);
@@ -552,12 +517,10 @@ public class AddUsersActivity extends AppCompatActivity {
                     FileInputStream inputStream = new FileInputStream(atach1);
                     byte[] buffer = new byte[4096];
                     int bytesRead = 0;
-//                  long totalSize= 15710566;
                     long totalSize= lenght;
 
                     while ((bytesRead = inputStream.read(buffer)) != -1) {
                         outputStream.write(buffer, 0, bytesRead);
-                        //progres
                         Log.d("bytes",""+bytesRead);
                         progress += bytesRead;
                         data_for_progressbar=(int)((progress*100)/totalSize);
@@ -568,12 +531,10 @@ public class AddUsersActivity extends AppCompatActivity {
 
                     writer.append(LINE_FEED);
                     writer.flush();
-///finishPart
                     writer.append(LINE_FEED).flush();
                     writer.append("--" + boundary + "--").append(LINE_FEED);
                     writer.close();
 
-// checks server's status code first
                     int status = httpConn.getResponseCode();
                     if (status == HttpURLConnection.HTTP_OK) {
                         BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -590,7 +551,6 @@ public class AddUsersActivity extends AppCompatActivity {
                     }
 
                 }else
-//        multipart.addFormField("f", "");
                     name2 ="f";
                 value2 = "";
                 writer.append("--" + boundary).append(LINE_FEED);
@@ -606,9 +566,6 @@ public class AddUsersActivity extends AppCompatActivity {
                 writer.append("--" + boundary + "--").append(LINE_FEED);
                 writer.close();
 
-//            response = multipart.finish();
-
-// checks server's status code first
                 int status = httpConn.getResponseCode();
                 if (status == HttpURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -635,18 +592,6 @@ public class AddUsersActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try{ Log.d("TAG;",response.get(0));
-//                if(response.contains(" \"file\": \"created\"")){
-////                    Toast.makeText(AddUsersActivity.this,response.get(0), Toast.LENGTH_LONG).show();
-//////                        prg1.setIndeterminateDrawable(compleatesprogress);
-////
-////                    prg1.setProgressDrawable(compleatesprogress);
-//////                        pr/g1.
-////
-//
-//                }else
-//                    Toast.makeText(AddUsersActivity.this,response.get(0), Toast.LENGTH_LONG).show();
-//
-//
             }
             catch (Exception e){
                 Toast.makeText(AddUsersActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -657,8 +602,6 @@ public class AddUsersActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... progress) {
             super.onProgressUpdate(progress);
-            Log.d("LAst","progressOnUpdate1:"+data_for_progressbar+"");
-//
             prg1.setProgress(data_for_progressbar);
         }
 
@@ -684,13 +627,13 @@ public class AddUsersActivity extends AppCompatActivity {
             Log.d("TAG", "onPostExecute: result "+result);
 
             if (result.equals("success")) {
-                Toast.makeText(AddUsersActivity.this, "Successfully Created..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddUsersActivity.this, "User successfully Created!", Toast.LENGTH_SHORT).show();
                 setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
 
             } else if (result.equals("userExist")) {
                 Toast.makeText(AddUsersActivity.this, "User already exist on Placeme", Toast.LENGTH_LONG).show();
             } else if(result.equals("Missing domain")){
-                Toast.makeText(AddUsersActivity.this, "Check email Address", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddUsersActivity.this, "Kindly check email Address", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(AddUsersActivity.this, "Fail to create user", Toast.LENGTH_SHORT).show();
@@ -700,8 +643,6 @@ public class AddUsersActivity extends AppCompatActivity {
 
 
     class CreateMultipleUser extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
 
             String result = null;
@@ -709,15 +650,10 @@ public class AddUsersActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encadminUsername));    //0
             params.add(new BasicNameValuePair("f", encfilename));//1
 
-            Log.d("TAG", "mul encuser "+encadminUsername);
-            Log.d("TAG", "mul encfile "+encfilename);
-
             json = jParser.makeHttpRequest(Z.url_createMultipleUser_admin, "GET", params);
 
             try {
                 result = json.getString("info");
-//                Log.d("TAG", "multiple user  total = "+json.getString("totallistcount")+"\ncreate = "+json.getString("createduser")+"\nfail = "+json.getString("failuser"));
-//                Log.d("TAG", " path"+json.getString("filepath"));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -725,26 +661,7 @@ public class AddUsersActivity extends AppCompatActivity {
             return result;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            Log.d("TAG", "onPostExecute: result ----------------  "+result);
-
-//            if (result.equals("success")) {
-//                Toast.makeText(AddUsersActivity.this, "Successfully Created..!", Toast.LENGTH_SHORT).show();
-//
-//            } else if (result.equals("userExist")) {
-//                Toast.makeText(AddUsersActivity.this, "User already exist on Placeme", Toast.LENGTH_LONG).show();
-//            } else if(result.equals("Missing domain")){
-//                Toast.makeText(AddUsersActivity.this, "Check email Address", Toast.LENGTH_SHORT).show();
-//            }
-//            else{
-//                Toast.makeText(AddUsersActivity.this, "Fail to create user", Toast.LENGTH_SHORT).show();
-//
-//            }
-        }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -754,42 +671,4 @@ public class AddUsersActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        AddUsersActivity.super.onBackPressed();
-
-
-
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//
-//        alertDialogBuilder
-//                .setMessage("Do you want to discard changes ?")
-//                .setCancelable(false)
-//                .setPositiveButton("Discard",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                AddUsersActivity.super.onBackPressed();
-//                            }
-//                        })
-//
-//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//        final AlertDialog alertDialog = alertDialogBuilder.create();
-//
-//        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//            @Override
-//            public void onShow(DialogInterface dialogInterface) {
-//                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-//                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-//            }
-//        });
-//
-//        alertDialog.show();
-
-    }
 }

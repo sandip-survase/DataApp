@@ -59,7 +59,7 @@ public class NoInternet extends AppCompatActivity {
             public void onReceive(Context context, Intent intent) {
                 mainContext = context;
 
-                Log.d("TAG", "onReceive: ======== ");
+                Log.d("TAG", "mom called");
                 if (intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE")) {
                     check();
                 }
@@ -82,7 +82,6 @@ public class NoInternet extends AppCompatActivity {
 
 
     public void check() {
-        Log.d("TAG", "check: called");
         try {
 
             new Echo().execute().get(5, TimeUnit.SECONDS);
@@ -102,7 +101,7 @@ public class NoInternet extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             String echo_number = "" + new Random().nextInt();
-            Log.d("TAG", "echo send " + echo_number);
+            Log.d("TAG", "kill process s: " + echo_number);
 
             params.add(new BasicNameValuePair("e", echo_number));
             JSONParser jParser = new JSONParser();
@@ -111,7 +110,7 @@ public class NoInternet extends AppCompatActivity {
             if (json != null) {
                 try {
                     String info = json.getString("info");
-                    Log.d("TAG", "echo received " + info);
+                    Log.d("TAG", "kill process r:" + info);
 
                     if (info.equals(echo_number)) {
                         return true;
@@ -131,7 +130,7 @@ public class NoInternet extends AppCompatActivity {
             if (aVoid) {
                 Toast.makeText(NoInternet.this, "system online", Toast.LENGTH_SHORT).show();
                 if (fromSplashScreen == true && mainContext != null) {
-                    Log.d("TAG", "onPostExecute: splash called =-=-=-=-==-=-=-=-=-=-=-");
+                    Log.d("TAG", "towords om");
                     Intent intent = new Intent(mainContext, SplashScreen.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);       // cleat stack histry new fresh call
                     LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
@@ -148,7 +147,7 @@ public class NoInternet extends AppCompatActivity {
 
 
     public void TryAgain() {
-        Log.d("TAG", "check: called");
+
         try {
 
             new TryAgainTask().execute().get(5, TimeUnit.SECONDS);
@@ -169,7 +168,7 @@ public class NoInternet extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             String echo_number = "" + new Random().nextInt();
-            Log.d("TAG", "echo send " + echo_number);
+            Log.d("TAG", "kill process s:" + echo_number);
 
             params.add(new BasicNameValuePair("e", echo_number));
             JSONParser jParser = new JSONParser();
@@ -178,7 +177,7 @@ public class NoInternet extends AppCompatActivity {
             if (json != null) {
                 try {
                     String info = json.getString("info");
-                    Log.d("TAG", "echo received " + info);
+                    Log.d("TAG", "kill process r:" + info);
 
                     if (info.equals(echo_number)) {
                         return true;
@@ -194,13 +193,13 @@ public class NoInternet extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean aVoid) {
-            Log.d("TAG", "TryAgain onPostExecute: " + aVoid);
+            Log.d("TAG", "TryAgain : " + aVoid);
             progressbar.setVisibility(View.GONE);
             refreshButton.setVisibility(View.VISIBLE);
             if (aVoid) {
                 Toast.makeText(NoInternet.this, "system online", Toast.LENGTH_SHORT).show();
                 if (fromSplashScreen == true && mainContext != null) {
-                    Log.d("TAG", "onPostExecute: splash called =-=-=-=-==-=-=-=-=-=-=-");
+                    Log.d("TAG", "towords om");
                     Intent intent = new Intent(mainContext, SplashScreen.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);       // cleat stack histry new fresh call
                     LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
@@ -228,35 +227,7 @@ public class NoInternet extends AppCompatActivity {
 
     }
 
-    //
-//
-//    public void check() {
-//        if (isOnline()) {
-////            super.onBackPressed();
-////            Toast.makeText(this, "lets go..!", Toast.LENGTH_SHORT).show();
-//            if(fromSplashScreen==true && mainContext!=null){
-//                Toast.makeText(mainContext, "from splash", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(mainContext,SplashScreen.class));
-//                finish();
-//            }else {
-//                Toast.makeText(mainContext, "back", Toast.LENGTH_SHORT).show();
-//                super.onBackPressed();
-//            }
-//        }
-//    }
-//
-//    private boolean isOnline() {
-//        try {
-//            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//            NetworkInfo netInfo = cm.getActiveNetworkInfo();
-//            //should check null because in airplane mode it will be null
-//            return (netInfo != null && netInfo.isConnected());
-//        } catch (NullPointerException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
-//
+
     @Override
     public void onPause() {
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);

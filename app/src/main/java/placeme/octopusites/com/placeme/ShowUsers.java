@@ -70,12 +70,9 @@ public class ShowUsers extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         username=MySharedPreferencesManager.getUsername(ShowUsers.this);
-        Log.d("TAG", "onCreate: userName "+username);
         demoKeyBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest1(ShowUsers.this));
         demoIVBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest2(ShowUsers.this));
         sPadding = "ISO10126Padding";
-
-
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
@@ -198,7 +195,6 @@ public class ShowUsers extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("TAG", "onActivityResult: ------------------------------------ " + resultCode);
         if(resultCode== Z.USER_DATA_CHANGE_RESULT_CODE){
             refreshContent();
         }
@@ -242,15 +238,10 @@ public class ShowUsers extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            Log.d("TAG", "GetRegisteredUsersUnderAdmin: input username  " + username);
-
             json = jParser.makeHttpRequest(Z.url_GetRegisteredUsersUnderAdmin, "GET", params);
-            Log.d("TAG", "GetRegisteredUsersUnderAdmin: json  " + json);
-
 
             try {
                 String info = json.getString("info");
-                Log.d("TAG", "doInBackground: info "+info);
                 if (info.equals("success")) {
                     count = Integer.parseInt(json.getString("count"));
                     Log.d("TAG", "count -----------------------------   "+count);
@@ -266,7 +257,7 @@ public class ShowUsers extends AppCompatActivity {
                 String o=json.getString("object");
                 ArrayList<UserDetails> userDetails= (ArrayList<UserDetails>) fromString(o,MySharedPreferencesManager.getDigest1(ShowUsers.this),MySharedPreferencesManager.getDigest2(ShowUsers.this));
 
-                    Log.d("TAG", "doInBackground: ------------------------------- size "+userDetails.size());
+                    Log.d("TAG", "--------------- size " + userDetails.size());
 
                     for (int i = 0; i < count; i++) {
 
@@ -276,19 +267,13 @@ public class ShowUsers extends AppCompatActivity {
                         lnames[i] = userDetails.get(i).getLname();
                         isactivated[i] = userDetails.get(i).getIsactivated();
                         encUsersName[i]=Z.Encrypt(registerUsersName[i],ShowUsers.this);
-
-                        Log.d("TAG", "doInBackground:  registerUsersName[i] "+ registerUsersName[i]);
-                        Log.d("TAG", "doInBackground:  userType[i] "+ userType[i]);
-                        Log.d("TAG", "doInBackground:  fnames[i] "+ fnames[i]);
-                        Log.d("TAG", "doInBackground:  lnames[i] "+ lnames[i]);
-                        Log.d("TAG", "doInBackground:  isactivated[i] "+ isactivated[i]);
                     }
 
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d("TAG", "doInBackground: exp "+e.getMessage());
+                Log.d("TAG", "get money exp:" + e.getMessage());
             }
             return "";
         }
@@ -400,7 +385,6 @@ public class ShowUsers extends AppCompatActivity {
             active=isactivated[i];
             strsignature=signature[i];
 
-            Log.d("TAG", "addUsersdatatoAdapter: fname array = "+fnames[i]);
             if(fnames[i]!=null && lnames[i]!=null) {
                 if (!fnames[i].equals("") && !lnames[i].equals(""))
                     fullname = fnames[i] + " " + lnames[i];
@@ -413,8 +397,6 @@ public class ShowUsers extends AppCompatActivity {
             else
                 strisactivated="Not Activated";
 
-
-//            RecyclerItemUsersAdmin item = new RecyclerItemUsersAdmin(i, "Abc " + i, "abc" + i + "@gmail.com ", "Student", "Placed in Cognizant");
             RecyclerItemUsersAdmin item = new RecyclerItemUsersAdmin(encusername,fullname,username,role,strisactivated,strsignature);
 
             itemList.add(item);

@@ -221,6 +221,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumni);
 
+        ShouldAnimateProfile.isInside = true;
+
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
 

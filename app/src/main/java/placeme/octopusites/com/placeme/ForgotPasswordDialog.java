@@ -44,13 +44,10 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_dialog);
 
-
-
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
         android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
-
 
         forgotemailinput=(TextInputLayout)findViewById(R.id.forgotemailinput);
         forgottxt=(TextView)findViewById(R.id.forgottxt);
@@ -88,8 +85,6 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             public void onClick(View view) {
 
                 boolean flag=false;
-                Log.d("TAG", "flag1: "+flag);
-
                 enteredemailorphone=forgotedittext.getText().toString();
                 if(enteredemailorphone.length()>4 && enteredemailorphone.contains("@")){
                     String checkemail=MySharedPreferencesManager.getUsername(ForgotPasswordDialog.this);
@@ -119,11 +114,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
                     flag=true;
                 }
 
-                Log.d("TAG", "flag: "+flag);
-
                     if(flag==false) {
-
-
                         try {
                             byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                             byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -137,6 +128,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
                             reset.setVisibility(View.GONE);
 
                         } catch (Exception e) {
+                            e.printStackTrace();
                         }
 
                         new ForgotPassword().execute();
@@ -154,7 +146,6 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encemailorphone));
 //            params.add(new BasicNameValuePair("aid", android_id));
             json = jParser.makeHttpRequest(Z.url_ForgotPassword, "GET", params);
-            Log.d("TAG", "forgot password json: "+json);
             try {
                 resultofop = json.getString("info");
                 encUsername=json.getString("info2");
@@ -176,7 +167,6 @@ public class ForgotPasswordDialog extends AppCompatActivity {
                 startActivity(new Intent(ForgotPasswordDialog.this,OTP2Activity.class));
                 finish();
             }
-
 
             reset.setVisibility(View.VISIBLE);
             forgotprogress.setVisibility(View.GONE);

@@ -166,15 +166,11 @@ public class AlumniRoleSelected extends AppCompatActivity {
     }
     class checkUcode extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-
             String inputUcode = param[0];
-            Log.d("TAG", "checkUcode: " + inputUcode);
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", inputUcode));       //0
-
             json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
-            Log.d("TAG", "checkUcode json : " + json);
             try {
                 r = json.getString("info");
             } catch (Exception e) {

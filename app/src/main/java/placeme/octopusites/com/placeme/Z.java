@@ -35,6 +35,7 @@ public class Z {
 
     public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE = "Fail to upload image!\nPlease try again";
+    public static String CountOfUsersUnderAdmin = "0";
 
     //======================================= login =====================================
     public static final String url_Welcome = IP + "AESTest/Welcome";

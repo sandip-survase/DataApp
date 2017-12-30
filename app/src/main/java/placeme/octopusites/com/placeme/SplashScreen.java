@@ -46,8 +46,7 @@ public class SplashScreen extends AppCompatActivity {
     JSONObject json;
     String resultofop = "";
     String digest1, digest2, digest3;
-    String country = "", regionName = "", city = "", isp = "", countryCode = "", query = "";
-    String enccountry, encregionName, enccity, encisp, enccountryCode, encquery;
+    String country = "", regionName = "", city = "", query = "";
     String username;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
@@ -96,7 +95,8 @@ public class SplashScreen extends AppCompatActivity {
         poweredbyid.setTypeface(Z.getLight(this));
         companynamesplash.setTypeface(Z.getBold(this));
 
-        Log.d("TAG", "build ver : " + BuildConfig.VERSION_NAME);
+        Log.d("TAG", "noti : " + BuildConfig.VERSION_NAME);
+        ShouldAnimateProfile.isInside = false;
 
         new GetDigestEcho().execute();
 

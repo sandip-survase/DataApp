@@ -82,7 +82,7 @@ public class OTPActivity extends AppCompatActivity {
         resend = (TextView) findViewById(R.id.resend);
 
         String activationMessage = MySharedPreferencesManager.getData(OTPActivity.this, "activationMessage");
-        Log.d("TAG", "onCreate : activationMessage " + activationMessage);
+
         if (activationMessage != null && activationMessage.equals("yes")) {
             activationMessageflag = true;
             entertxt.setText("Enter Activation Code");
@@ -91,9 +91,7 @@ public class OTPActivity extends AppCompatActivity {
             otptxt.setText("Enter Activation code sent on your professional email..!");
             resend.setText("Resend Code");
         }
-        Log.d("TAG", "onCreate : activationMessageflag " + activationMessageflag);
-
-
+        Log.d("TAG", "papoose" + activationMessageflag);
 
         resendotp = (TextView) findViewById(R.id.resend);
         resendotp.setOnClickListener(new View.OnClickListener() {
@@ -175,23 +173,17 @@ public class OTPActivity extends AppCompatActivity {
             if (activationMessageflag == true) {
                 encUsernameVerify = MySharedPreferencesManager.getData(OTPActivity.this, "proEmail");
             }
-            Log.d("TAG", "doInBackground: proEmail : " + encUsernameVerify);
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encUsernameVerify));
             params.add(new BasicNameValuePair("eo", encOTP));
-            Log.d("TAG", "otp input encuser " + encUsernameVerify);
-            Log.d("TAG", "otp input encotp " + encOTP);
-
             json = jParser.makeHttpRequest(Z.url_verifyotp, "GET", params);
-            Log.d("TAG", "doInBackground: verfy OTP sevlet call");
-            Log.d("TAG", "otp verify json : " + json);
+
             try {
                 resultofop = json.getString("info");
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d("TAG", "doInBackground: exp " + e.getMessage());
+                Log.d("TAG", "wife tp " + e.getMessage());
             }
             return "";
         }
@@ -200,12 +192,9 @@ public class OTPActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (resultofop.equals("success")) {
-                //clear expired otp
                 new ClearOTPTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-
                 if (activationMessageflag == false) {
-                    Log.d("TAG", "onPostExecute: activation 1 flag" + activationMessageflag);
+                    Log.d("TAG", "por bala" + activationMessageflag);
                     //create new firebase user
 
                     MySharedPreferencesManager.save(OTPActivity.this, Z.USERNAME_KEY,encUsername);
@@ -221,7 +210,6 @@ public class OTPActivity extends AppCompatActivity {
 
 
                     if (role.equals("student")) {
-                        Log.d("TAG", "onPostExecute: firebase inpute username = "+u+ "          pass "+p);
                         new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
@@ -249,10 +237,8 @@ public class OTPActivity extends AppCompatActivity {
 //                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
             }
             if (resultofop.equals("success") && activationMessageflag == true) {
-                Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);
+                Log.d("TAG", "por bala" + activationMessageflag);
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
-                Log.d("TAG", "OTP onPostExecute: sahrd role ^^^^ "+role);
-
                 String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                 String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
@@ -305,8 +291,6 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encUsername));
             params.add(new BasicNameValuePair("f", encfname));
             params.add(new BasicNameValuePair("l", enclname));
-            Log.d("TAG", "doInBackground: resend otp usrename " + encUsername);
-
             json = jParser.makeHttpRequest(Z.url_resendotp, "GET", params);
             try {
                 resultofop = json.getString("info");
@@ -349,7 +333,6 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encUsername));
 
             json = jParser.makeHttpRequest(Z.url_AddStudentUnderAdmin, "GET", params);
-            Log.d("TAG", "AddStudentUnderAdmin json : "+json);
             try {
                 resultofop = json.getString("info");
 
@@ -392,11 +375,8 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
             json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-            Log.d("TAG", "CreateFirebaseUser json : "+json);
             try {
                 resultofop = json.getString("info");
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

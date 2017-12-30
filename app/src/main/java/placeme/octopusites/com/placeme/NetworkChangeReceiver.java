@@ -47,7 +47,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
 
             } else {
-                Log.d("TAG", "App is NOT on Foreground ");
+                Log.d("TAG", "kunal la gf nay");
             }
 
 
@@ -58,7 +58,6 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
 
     public void isNoInternetVisible() {
-        Log.d("TAG", "isNoInternetVisible: called ******************");
 
         ActivityManager mngr = (ActivityManager) mContext.getSystemService(mContext.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> taskList = mngr.getRunningTasks(10);
@@ -68,23 +67,13 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
             }
         }
 
-        Log.d("TAG", "test  " + this.getClass().getName());
-
-//        for(int i=0;i<taskList.size();i++){
-//            Log.d("TAG", "task: "+i+" "+taskList.get(i).topActivity.getClassName());
-//        }
-
-//        if(taskList.get(0).numActivities == 1 &&
-//                taskList.get(0).topActivity.getClassName().equals(this.getClass().getName())) {
-//            Log.d("TAG", "This is last activity in the stack "+this.getClass().getName());
-//        }
     }
 
     private boolean isOnline(Context context) {
         try {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
-            //should check null because in airplane mode it will be null
+
             return (netInfo != null && netInfo.isConnected());
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -109,8 +98,6 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
     public void check() {
 
-        Log.d("TAG", "check: called");
-
         try {
 
             new Echo().execute().get(5, TimeUnit.SECONDS);
@@ -130,16 +117,16 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         protected Boolean doInBackground(Void... voids) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             String echo_number = "" + new Random().nextInt();
-            Log.d("TAG", "echo send " + echo_number);
+            Log.d("TAG", "kill process s:" + echo_number);
 
             params.add(new BasicNameValuePair("e", echo_number));
             JSONParser jParser = new JSONParser();
-            JSONObject json = jParser.makeHttpRequest("http://104.237.4.236:8086/AESTest/CheckInternet", "GET", params);
+            JSONObject json = jParser.makeHttpRequest(Z.url_CheckInternet, "GET", params);
 
             if (json != null) {
                 try {
                     String info = json.getString("info");
-                    Log.d("TAG", "echo received " + info);
+                    Log.d("TAG", "kill process r:" + info);
 
                     if (info.equals(echo_number)) {
                         return true;
@@ -166,19 +153,6 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
         }
     }
-
-
-//    public boolean isRunning(Context ctx) {
-//        ActivityManager activityManager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
-//        List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
-//
-//        for (ActivityManager.RunningTaskInfo task : tasks) {
-//            if (ctx.getPackageName().equalsIgnoreCase(task.baseActivity.getPackageName()))
-//                return true;
-//        }
-//
-//        return false;
-//    }
 
 
 }

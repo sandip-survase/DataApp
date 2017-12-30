@@ -235,12 +235,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("a", encnewpass));
 
             json = jParser.makeHttpRequest(Z.url_changepass, "GET", params);
-
-            Log.d("TAG", "change password json "+json);
             try {
                 resultofop = json.getString("info");
                 json.put("chge pass json : ",json);
-
 
             }catch (Exception e){e.printStackTrace();}
             return "";

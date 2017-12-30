@@ -159,6 +159,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hr);
 
+        ShouldAnimateProfile.isInside = true;
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(HRActivity.this));

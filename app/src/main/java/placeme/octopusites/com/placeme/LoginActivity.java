@@ -39,15 +39,11 @@ public class LoginActivity extends AppCompatActivity {
     Button login, signup;
     ProgressBar loginprogress;
     TextView forgotpassword;
-
     private String EmailCred = "";
     JSONParser jParser = new JSONParser();
-
     JSONObject json;
     String resultofop = "";
-    //private static String url_sessiondetails = "http://ip-api.com/json";
-    String country = "", regionName = "", city = "", isp = "", countryCode = "", query = "";
-    String enccountry, encregionName, enccity, encisp, enccountryCode, encquery;
+    String country = "", city = "", isp = "", countryCode = "", query = "";
     String digest1, digest2;
     TextInputLayout usernameTextInputLayout, passwordTextInputLayout;
 
@@ -55,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Log.d("TAG", "onCreate: LoginActivity called");
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -104,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         usernameTextInputLayout.setTypeface(Z.getLight(this));
         passwordTextInputLayout.setTypeface(Z.getLight(this));
 
-
         login = (Button) findViewById(R.id.login);
         login.setTypeface(Z.getBold(this));
         loginprogress = (ProgressBar) findViewById(R.id.loginprogress);
@@ -131,17 +124,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
                 username = usernameedittext.getText().toString();
                 password = passwordedittext.getText().toString();
-
-
                 int flag1 = 0, flag2 = 0;
 
                 if (username.equals("")) {
@@ -183,8 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                         byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(usernameenc);
                         byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
                         String plainusername = new String(demo1DecryptedBytes1);
-                        Log.d("login", "onClick: plain " + plainusername);
-                        //
+
                         MySharedPreferencesManager.save(LoginActivity.this, Z.USERNAME_KEY, usernameenc);
                         MySharedPreferencesManager.save(LoginActivity.this, Z.PASSWORD_KEY, passwordenc);
 
@@ -230,58 +218,49 @@ public class LoginActivity extends AppCompatActivity {
         protected Integer doInBackground(Void... args) {
             try {
 
-                    List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("u", mEmail));
-                    params.add(new BasicNameValuePair("p", mPassword));
-                    json = jParser.makeHttpRequest(Z.url_login, "GET", params);
-                Log.d("TAG", "loginActivity json : " + json);
-                    String s = null;
-
-                    s = json.getString("info");
-
-
-                    resultofop = s;
-                    Log.d("Msg", json.getString("info"));
-
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", mEmail));
+                params.add(new BasicNameValuePair("p", mPassword));
+                json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                String s = null;
+                s = json.getString("info");
+                resultofop = s;
                 MySharedPreferencesManager.save(LoginActivity.this, "role", s);
 
-                    if (s.equals("student")) {
+                if (s.equals("student")) {
 
-                        EmailCred = mEmail;
+                    EmailCred = mEmail;
 
+                    return 1;
+                } else if (s.equals("admin")) {
 
-                        return 1;
-                    } else if (s.equals("admin")) {
+                    EmailCred = mEmail;
 
-                        EmailCred = mEmail;
+                    return 3;
+                } else if (s.equals("hr")) {
 
-
-                        return 3;
-                    } else if (s.equals("hr")) {
-
-                        EmailCred = mEmail;
+                    EmailCred = mEmail;
 
 
-                        return 4;
-                    } else if (s.equals("alumni")) {
+                    return 4;
+                } else if (s.equals("alumni")) {
 
-                        EmailCred = mEmail;
-                        return 5;
-                    }
-                    if (s.equals("notactivated")) {
+                    EmailCred = mEmail;
+                    return 5;
+                }
+                if (s.equals("notactivated")) {
 
-                        String role = json.getString("role");
-                        Log.d("Msg role ", role);
+                    String role = json.getString("role");
+                    Log.d("TAG", "dead");
+                    MySharedPreferencesManager.save(LoginActivity.this, "role", role);
+                    EmailCred = mEmail;
 
-                        MySharedPreferencesManager.save(LoginActivity.this, "role", role);
-                        EmailCred = mEmail;
-
-                        return 6;
-                    }
+                    return 6;
+                }
 
 
             } catch (Exception e) {
-                Log.d("exp", e.getMessage());
+                Log.d("exp ul", e.getMessage());
                 e.printStackTrace();
             }
             return 0;
@@ -296,49 +275,51 @@ public class LoginActivity extends AppCompatActivity {
 
         void processOutput(final int success) {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (success == 1) {
-                            new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this, "role", "student");
-                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
+            Log.d("TAG", "1+1= " + success);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (success == 1) {
+                        new SaveSessionDetails().execute();
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", "student");
+                        MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("student");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
-                        } else if (success == 3) {
-                            new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this, "role", "admin");
-                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    } else if (success == 3) {
+                        new SaveSessionDetails().execute();
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", "admin");
+                        MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("admin");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                            finish();
-                        } else if (success == 4) {
-                            new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this, "role", "hr");
-                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
+                        startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                        finish();
+                    } else if (success == 4) {
+                        new SaveSessionDetails().execute();
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", "hr");
+                        MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("hr");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(LoginActivity.this, HRActivity.class));
-                            finish();
-                        } else if (success == 5) {
-                            new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(LoginActivity.this, "role", "alumni");
-                            MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
+                        startActivity(new Intent(LoginActivity.this, HRActivity.class));
+                        finish();
+                    } else if (success == 5) {
+                        new SaveSessionDetails().execute();
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", "alumni");
+                        MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
 
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("alumni");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(LoginActivity.this, AlumniActivity.class));
-                            finish();
-                        }
+                        startActivity(new Intent(LoginActivity.this, AlumniActivity.class));
+                        finish();
                     }
-                }).start();
+                }
+            }).start();
 
             if (success == 6) {
                 Toast.makeText(LoginActivity.this, "You are already registered but not verified. Enter OTP sent on your registered email address", Toast.LENGTH_LONG).show();
@@ -369,14 +350,12 @@ public class LoginActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.d("TAG", "SaveSessionDetails called : **********************" + encUsername);
             String r = null;
             String platform = "Android (" + getDeviceName() + ")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsername));           //0
             params.add(new BasicNameValuePair("m", platform));      //1
             json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
-            Log.d("TAG", "SaveSessionDetails json : " + json);
             try {
                 r = json.getString("info");
 
@@ -384,10 +363,6 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
         }
     }
 
