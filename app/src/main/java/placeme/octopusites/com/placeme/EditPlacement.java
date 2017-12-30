@@ -156,7 +156,7 @@ public class EditPlacement extends AppCompatActivity {
         recyclerViewPlacement.setItemAnimator(new DefaultItemAnimator());
         recyclerViewPlacement.setAdapter(mAdapterPlacement);
 
-        String Tag = "EditPlacementAlumni";
+        String Tag = "EditPlacement";
         set1.setActivityFromtag(Tag);
         recyclerViewPlacement.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewPlacement, new RecyclerTouchListener.ClickListener() {
             @Override

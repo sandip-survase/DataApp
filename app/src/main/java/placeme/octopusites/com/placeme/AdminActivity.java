@@ -1245,7 +1245,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(true);
-        new GetNotificationsReadStatus().execute();
         new GetPlacementsReadStatus().execute();
         getNotifications2();
         new UpdateFirebaseToken().execute();

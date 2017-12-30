@@ -33,6 +33,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -461,13 +462,14 @@ public class EditPlacementMain extends AppCompatActivity {
 
     class GetForwhome extends AsyncTask<String, String, String> {
 
+
         protected String doInBackground(String... param) {
 
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", sid)); //0
 
-            json = jParser.makeHttpRequest(Z.url_GetForWhomePlacements, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetForWhomeNotification, "GET", params);
             try {
                 Forwhomefromdb = json.getString("forwhom");
 
@@ -487,19 +489,32 @@ public class EditPlacementMain extends AppCompatActivity {
                 if (!Forwhomefromdb.equals("")) {
                     byte[] ForwhomefromdbEncryptedBytes = SimpleBase64Encoder.decode(Forwhomefromdb);
                     byte[] ForwhomefromdbDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, ForwhomefromdbEncryptedBytes);
-                    Forwhomefromdb = new String(ForwhomefromdbDecryptedBytes);
+                    Forwhomefromdb = Z.Decrypt(Forwhomefromdb, EditPlacementMain.this);
                     Log.d("Forwhomefromdb", "onPostExecute: " + Forwhomefromdb);
                 }
 
-                if (Forwhomefromdb.contains("ALL")) {
-                    allumiselector.setVisibility(View.VISIBLE);
-                    CheckBoxsAlumni.setChecked(true);
-                    batchesTagsedittext.setText("ALL");
+                String tempu = Decrypt(encUsername, digest1, digest2);
+                Log.d("Forwhomefromdb", "tempu: " + tempu);
+
+
+                if (Forwhomefromdb.contains(tempu)) {
+
+                    Forwhomefromdb = Forwhomefromdb.replace(tempu, "");
+
                 }
-                if (Forwhomefromdb.contains("ADMIN"))          //CHANGE IT TO sTUDENT
-                {
+                Log.d("Forwhomefromdb", "after: " + Forwhomefromdb);
+
+                if (Forwhomefromdb.contains("STUDENT")) {
                     CheckBoxstudent.setChecked(true);
                 }
+                if (Forwhomefromdb.contains("ALL")) {
+                    CheckBoxsAlumni.setChecked(true);
+                    batchesTagsedittext.setText("ALL");
+                } else {
+
+
+                }
+
 
                 int index1 = Forwhomefromdb.indexOf("(");
                 int index2 = Forwhomefromdb.indexOf(")");
@@ -507,25 +522,39 @@ public class EditPlacementMain extends AppCompatActivity {
                 for (int i = index1 + 1; i < index2; i++) {
                     whomsYears += Forwhomefromdb.charAt(i);
                 }
+
+                //k
+                String str = whomsYears;
+                Log.d("kun", "onPostExecute: str " + str);
+                str = str.replaceAll("[^-?0-9]+", " ");
+                Log.d("kun", "onPostExecute: " + Arrays.asList(str.trim().split(" ")));
+                Log.d("kun", str);
+                String batchyears[] = str.split(" ");
+
+                Log.d("kun", "after : " + str);
+
+                if (str.length() >= 2) {
+                    CheckBoxsAlumni.setChecked(true);
+                    batchesTagsedittext.setTags(batchyears);
+                    showPop = true;
+
+                }
+                //k
+
+
 //                String testStr="STUDENT";
+                String testStr = "STUDENT";
                 Log.d("TAG1", "before: " + whomsYears);
                 whomsYears = whomsYears.replace(Z.Decrypt(encUsername, EditPlacementMain.this), "");
                 Log.d("TAG1", "after1: " + whomsYears);
                 whomsYears = whomsYears.replace("STUDENT,", "");
                 Log.d("TAG1", "after2: " + whomsYears);
                 whomsYears = whomsYears.replace("STUDENT", "");
+                whomsYears = whomsYears.replace(",STUDENT", "");
+
                 Log.d("TAG1", "after4: " + whomsYears);
                 whomsYears = whomsYears.replace("ALL", "");
 
-                if (whomsYears.length() >= 2) {
-                    CheckBoxsAlumni.setChecked(true);
-                    Log.d("whomsYears3:", whomsYears);
-                    whomsYears = whomsYears.replace(",", " ");
-                    String batchyears[] = whomsYears.split(" ");
-                    allumiselector.setVisibility(View.VISIBLE);
-                    batchesTagsedittext.setTags(batchyears);
-
-                }
 
             } catch (Exception e) {
 

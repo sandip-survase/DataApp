@@ -185,6 +185,8 @@ public class PlacementTab3 extends Fragment {
 
 
             }
+        }else {
+
         }
 
         return rootView;

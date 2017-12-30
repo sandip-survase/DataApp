@@ -220,11 +220,13 @@
                 >
 
                 <ProgressBar
+                    android:id="@+id/PROGRESS_BAR"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
-                    android:id="@+id/PROGRESS_BAR"
+                    android:indeterminateOnly="false"
+                    android:indeterminateDrawable="@drawable/uploadfileprogress"
                     android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
@@ -267,11 +269,13 @@
                 >
 
                 <ProgressBar
+                    android:id="@+id/PROGRESS_BAR2"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
-                    android:id="@+id/PROGRESS_BAR2"
+                    android:indeterminateOnly="false"
+                    android:indeterminateDrawable="@drawable/uploadfileprogress"
                     android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
@@ -314,11 +318,13 @@
                 >
 
                 <ProgressBar
+                    android:id="@+id/PROGRESS_BAR3"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
-                    android:id="@+id/PROGRESS_BAR3"
+                    android:indeterminateOnly="false"
+                    android:indeterminateDrawable="@drawable/uploadfileprogress"
                     android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
@@ -365,11 +371,13 @@
                 >
 
                 <ProgressBar
+                    android:id="@+id/PROGRESS_BAR4"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
-                    android:id="@+id/PROGRESS_BAR4"
+                    android:indeterminateOnly="false"
+                    android:indeterminateDrawable="@drawable/uploadfileprogress"
                     android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView
@@ -414,11 +422,13 @@
                 >
 
                 <ProgressBar
+                    android:id="@+id/PROGRESS_BAR5"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:max="100"
-                    android:id="@+id/PROGRESS_BAR5"
+                    android:indeterminateOnly="false"
+                    android:indeterminateDrawable="@drawable/uploadfileprogress"
                     android:progressDrawable="@drawable/uploadfileprogress" />
 
                 <TextView

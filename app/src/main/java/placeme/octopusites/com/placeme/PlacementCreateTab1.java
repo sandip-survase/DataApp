@@ -393,7 +393,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
         String activitytag = getdata.getActivityFromtag();
         Log.d("activitytag", "onCreateView: "+activitytag);
-        if (activitytag.contains("EditPlacementAlumni")) {
+        if (activitytag.contains("EditPlacement")) {
             sid = getdata.getId();
             scompanyname = getdata.getCompanyname();
             scpackage = getdata.getCpackage();
@@ -404,6 +404,9 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             sbond = getdata.getBond();
             sselected = getdata.getSelectedcourceforplacement();
 
+            if(scpackage.contains("LPA")){
+                scpackage=scpackage.replace("LPA","");
+            }
 
             if (scompanyname.length() > 0) {
                 companyname.setText(scompanyname);
@@ -442,7 +445,10 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             sbond = getdata.getBond();
             sselected = getdata.getSelectedcourceforplacement();
 
-
+            if(scpackage.contains("LPA")){
+                scpackage=scpackage.replace("LPA","");
+            }
+ 
             if (scompanyname.length() > 0) {
                 companyname.setText(scompanyname);
             }
@@ -735,12 +741,14 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
         scompanyname=obj.getCompanyname();
         scpackage=obj.getCpackage();
+
         spost=obj.getPost();
         svacancies=obj.getVacancies();
         slastdateofrr=obj.getLastdateofregistration();
         sdateofarrival=obj.getDateofarrival();
         sbond=obj.getBond();
         sselected=obj.getForwhichcourse();
+
         Log.d("Tags", "datasetters: "+scompanyname);
         Log.d("Tags", "datasetters: "+scpackage);
         Log.d("Tags", "datasetters: "+spost);

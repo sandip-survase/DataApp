@@ -383,7 +383,7 @@ public class CreatePlacement extends AppCompatActivity {
                             PlaceTab3.validate();
                         } else {
 
-                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
                             //call ENCRYPT ND SAVE save method
                             encrypt();
                         }
@@ -632,8 +632,9 @@ public class CreatePlacement extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-//            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
-//            CreatePlacement.super.onBackPressed();
+            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
+            CreatePlacement.super.onBackPressed();
+
 //            if(result.equals("success"))
 //            {
 //                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();

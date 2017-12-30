@@ -118,12 +118,17 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
         });
 
 
+
         RelativeLayout admincontrolsrl2=(RelativeLayout)findViewById(R.id.admincontrolsrl2);
         RelativeLayout editnotificationrl2=(RelativeLayout)findViewById(R.id.editnotificationrl2);
 
         admincontrolsrl2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                PlacementEditData settag = new PlacementEditData();
+
+                String Tag = "adminActivity";
+                settag.setActivityFromtag(Tag);
                 startActivity(new Intent(AdminActions.this,CreatePlacement.class));
             }
         });

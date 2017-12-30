@@ -70,10 +70,9 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
     private static final String LINE_FEED = "\r\n";
-
+    final List<String> yearList = new ArrayList<String>();
     //hiding ui
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
-
     RelativeLayout file1;
     TextInputEditText title, notiffication;
     CheckBox stud, allum;
@@ -93,8 +92,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     JSONObject json;
     JSONParser jParser = new JSONParser();
     boolean showPop = false;
-    final List<String> yearList = new ArrayList<String>();
-
     //attachment work
     int filecounter = 0;
     int filesame = 0;
@@ -124,6 +121,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     ArrayList<String> TagCreateList = new ArrayList<>();
     int edittedFlag = 0, containsall = 0;
     String digest1, digest2;
+    boolean fileinprogress1 = false, fileinprogress2 = false, fileinprogress3 = false, fileinprogress4 = false, fileinprogress5 = false;
     private String charset = "UTF-8";
     private String boundary;
     private HttpURLConnection httpConn;
@@ -437,6 +435,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 notificationinput.setError(null);
                 edittedFlag = 1;
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -549,6 +548,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             //call
             new GetForwhome().execute();
+
             if (ssfile1 != null) {
                 if (!ssfile1.equals("null")) {
                     a1.add(ssfile1);
@@ -639,6 +639,18 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         }
 
 
+//        attchrl1.setVisibility(View.VISIBLE);
+//        attchrl2.setVisibility(View.VISIBLE);
+//        attchrl3.setVisibility(View.VISIBLE);
+//        attchrl4.setVisibility(View.VISIBLE);
+//        attchrl5.setVisibility(View.VISIBLE);
+//        prg1.setIndeterminate(true);
+//        prg2.setIndeterminate(true);
+//        prg3.setIndeterminate(true);
+//        prg4.setIndeterminate(true);
+//        prg5.setIndeterminate(true);
+
+
     }
 
 
@@ -649,6 +661,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             case R.id.action_save:
 
                 try {
+
 
                     stitle = title.getText().toString();
                     snotiffication = notiffication.getText().toString();
@@ -707,31 +720,41 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         errorflag = 1;
                     } else if (errorflag == 0) {
 
-                        encRole = Z.Encrypt(srole, CreateNotification.this);
-                        encTitle = Z.Encrypt(stitle, CreateNotification.this);
-                        encNotiffication = Z.Encrypt(snotiffication, CreateNotification.this);
-                        encforwhom = Z.Encrypt(forwhom, CreateNotification.this);
-                        encfilenameparam1 = Z.Encrypt(filenameparam1, CreateNotification.this);
-                        encfilenameparam2 = Z.Encrypt(filenameparam2, CreateNotification.this);
-                        encfilenameparam3 = Z.Encrypt(filenameparam3, CreateNotification.this);
-                        encfilenameparam4 = Z.Encrypt(filenameparam4, CreateNotification.this);
-                        encfilenameparam5 = Z.Encrypt(filenameparam5, CreateNotification.this);
-                        File1index = map3.get(filenameparam1);
-                        File2index = map3.get(filenameparam2);
-                        File3index = map3.get(filenameparam3);
-                        File4index = map3.get(filenameparam4);
-                        File5index = map3.get(filenameparam5);
+                        if (!fileinprogress1 && !fileinprogress2 && !fileinprogress3 && !fileinprogress4 && !fileinprogress5) {
 
-                        if (FLAG.equals("EditNotification")) {
-                            new Modify().execute();
-                        } else if (FLAG.equals("fromAdminActivity")) {
-                            Log.d("Tag", "here: ");
-                            new SaveData().execute();
+                            Toast.makeText(this, "files ok", Toast.LENGTH_SHORT).show();
+                            encRole = Z.Encrypt(srole, CreateNotification.this);
+                            encTitle = Z.Encrypt(stitle, CreateNotification.this);
+                            encNotiffication = Z.Encrypt(snotiffication, CreateNotification.this);
+                            encforwhom = Z.Encrypt(forwhom, CreateNotification.this);
+                            encfilenameparam1 = Z.Encrypt(filenameparam1, CreateNotification.this);
+                            encfilenameparam2 = Z.Encrypt(filenameparam2, CreateNotification.this);
+                            encfilenameparam3 = Z.Encrypt(filenameparam3, CreateNotification.this);
+                            encfilenameparam4 = Z.Encrypt(filenameparam4, CreateNotification.this);
+                            encfilenameparam5 = Z.Encrypt(filenameparam5, CreateNotification.this);
+                            File1index = map3.get(filenameparam1);
+                            File2index = map3.get(filenameparam2);
+                            File3index = map3.get(filenameparam3);
+                            File4index = map3.get(filenameparam4);
+                            File5index = map3.get(filenameparam5);
+
+                            if (FLAG.equals("EditNotification")) {
+                                new Modify().execute();
+                            } else if (FLAG.equals("fromAdminActivity")) {
+                                Log.d("Tag", "here: ");
+                                new SaveData().execute();
+                            }
+
+
+                        } else {
+                            Toast.makeText(this, "file upload is in progress", Toast.LENGTH_SHORT).show();
                         }
+
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 break;
             case android.R.id.home:
@@ -766,10 +789,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     filenameparam1 = "";
                                     ssfile1 = "";
                                     filecounter--;
+                                    fileinprogress1=false;
                                     refresh();
 
                                 } catch (Exception e) {
-                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
                             }
@@ -811,7 +835,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
 
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -841,12 +865,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     a1.remove(f2);
                                     filenameparam2 = "";
                                     ssfile2 = "";
-
                                     filecounter--;
+                                    fileinprogress2=false;
                                     refresh();
 
                                 } catch (Exception e) {
-                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -890,7 +914,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -922,9 +946,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     filenameparam3 = "";
                                     ssfile3 = "";
                                     filecounter--;
+                                    fileinprogress3=false;
+
                                     refresh();
                                 } catch (Exception e) {
-                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -970,7 +996,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -1000,10 +1026,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     ssfile4 = "";
 
                                     filenameparam4 = "";
+                                    fileinprogress4=false;
                                     refresh();
 
                                 } catch (Exception e) {
-                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -1050,7 +1077,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -1078,11 +1105,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     a1.remove(f5);
                                     filenameparam5 = "";
                                     ssfile5 = "";
-
                                     filecounter--;
+                                    fileinprogress5=false;
                                     refresh();
                                 } catch (Exception e) {
-                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(CreateNotification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -1146,7 +1173,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         if (edittedFlag == 1) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
             alertDialogBuilder
                     .setMessage("Do you want to discard changes ?")
                     .setCancelable(false)
@@ -1220,6 +1246,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
             if (filesame != 1) {
+                int THREAD_POOL_EXECUTOR2 = 5;
+
                 a1.add(filename);
                 map.put(filename, filePath);
                 map2.put(filename, lenght + "");
@@ -1227,24 +1255,20 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 refresh();
                 batchesTags.dismissDropDown();
                 if (filecounter == 1) {
-                    new ShowProgress().execute();
-
+                    new ShowProgress1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
-
                 if (filecounter == 2) {
-                    new ShowProgress2().execute();
-
+                    new ShowProgress2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
                 if (filecounter == 3) {
-                    new ShowProgress3().execute();
-
+                    new ShowProgress3().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
                 if (filecounter == 4) {
-                    new ShowProgress4().execute();
+                    new ShowProgress4().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 }
                 if (filecounter == 5) {
-                    new ShowProgress5().execute();
+                    new ShowProgress5().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 }
 
@@ -1598,154 +1622,651 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(CreateNotification.this,result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
             CreateNotification.super.onBackPressed();
 
         }
     }
 
-    class ShowProgress extends AsyncTask<String, String, String> {
-
-        protected void onPreExecute() {
-
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            super.onPreExecute();
-        }
+    //    class ShowProgress extends AsyncTask<String, String, String> {
+//        String getstatus = null;
+//
+//        protected void onPreExecute() {
+//
+//            File atach1 = new File(filePath);
+//            lenght = atach1.length();
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            try {
+//                File atach1 = new File(filePath);
+//                lenght = atach1.length();
+//                username = Z.Decrypt(encUsername, CreateNotification.this);
+////            username = encUsername;
+//
+//                if (atach1 != null) {
+//
+//                    MultipartUtility multipart = null;
+//                    try {
+//                        prg1.setIndeterminate(true);
+//
+//                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+//                        Log.d("TAG", "UploadProfile : input  username " + username);
+//                        multipart.addFormField("u", username);
+//                        if (filename != "") {
+//                            multipart.addFormField("f", filename);
+//                            multipart.addFilePart("uf", atach1);
+//                            Log.d("TAG", "onSuccess: f name- " + filename);
+//                        } else
+//                            multipart.addFormField("f", "null");
+//                        response = multipart.finish();
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        Log.d("TAG", "exp : " + e.getMessage());
+//
+//                    }
+//
+//                } else
+//                {
+//                    Log.d("TAG", "file null");
+//
+//                }
+//
+//
+//            } catch (Exception ex) {
+//
+//            }
+//                return null;
+//
+//        }
+//
+//
+//        @Override
+//        protected void onProgressUpdate(String... progress) {
+//            super.onProgressUpdate(progress);
+//            Log.d("file1test", "progressOnUpdate1:" + data_for_progressbar + "");
+//
+//
+////            prg1.setProgress(data_for_progressbar);
+//
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            try {
+//
+//                if (response != null && response.get(0).contains("created")) {
+//                    Log.d("filestatus","created");
+//                    prg1.setIndeterminate(false);
+//                    prg1.setProgress(100);
+//
+//
+//                } else if (response != null && response.get(0).contains("null")) {
+//                    Log.d("filestatus","null");
+//
+//
+//                }else{
+//                    Log.d("filestatus","file not created");
+//
+//                }
+//
+//            } catch (Exception e) {
+//
+//                Log.d("whomsYears e:", e.getMessage());
+//            }
+//        }
+//
+//    }
+//
+//    class ShowProgress2 extends AsyncTask<String, String, String> {
+//        String getstatus = null;
+//
+//        protected void onPreExecute() {
+//
+//            File atach1 = new File(filePath);
+//            lenght = atach1.length();
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            try {
+//                File atach1 = new File(filePath);
+//                lenght = atach1.length();
+//                username = Z.Decrypt(encUsername, CreateNotification.this);
+////            username = encUsername;
+//
+//                if (atach1 != null) {
+//
+//                    MultipartUtility multipart = null;
+//                    try {
+//                        prg2.setIndeterminate(true);
+//
+//                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+//                        Log.d("TAG", "UploadProfile : input  username " + username);
+//                        multipart.addFormField("u", username);
+//                        if (filename != "") {
+//                            multipart.addFormField("f", filename);
+//                            multipart.addFilePart("uf", atach1);
+//                            Log.d("TAG", "onSuccess: f name- " + filename);
+//                        } else
+//                            multipart.addFormField("f", "null");
+//                        response = multipart.finish();
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        Log.d("TAG", "exp : " + e.getMessage());
+//
+//                    }
+//
+//                } else
+//                {
+//                    Log.d("TAG", "file null");
+//
+//                }
+//
+//
+//            } catch (Exception ex) {
+//
+//            }
+//            return null;
+//
+//        }
+//
+//
+//        @Override
+//        protected void onProgressUpdate(String... progress) {
+//            super.onProgressUpdate(progress);
+//            Log.d("file1test", "progressOnUpdate1:" + data_for_progressbar + "");
+//
+//
+////            prg1.setProgress(data_for_progressbar);
+//
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            try {
+//
+//                if (response != null && response.get(0).contains("created")) {
+//                    Log.d("filestatus","created");
+//                    prg2.setIndeterminate(false);
+//                    prg2.setProgress(100);
+//
+//
+//                } else if (response != null && response.get(0).contains("null")) {
+//                    Log.d("filestatus","null");
+//
+//
+//                }else{
+//                    Log.d("filestatus","file not created");
+//
+//                }
+//
+//            } catch (Exception e) {
+//
+//                Log.d("whomsYears e:", e.getMessage());
+//            }
+//        }
+//
+//    }
+//
+//    class ShowProgress3 extends AsyncTask<String, String, String> {
+//        String getstatus = null;
+//
+//        protected void onPreExecute() {
+//
+//            File atach1 = new File(filePath);
+//            lenght = atach1.length();
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            try {
+//                File atach1 = new File(filePath);
+//                lenght = atach1.length();
+//                username = Z.Decrypt(encUsername, CreateNotification.this);
+////            username = encUsername;
+//
+//                if (atach1 != null) {
+//
+//                    MultipartUtility multipart = null;
+//                    try {
+//                        prg3.setIndeterminate(true);
+//
+//                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+//                        Log.d("TAG", "UploadProfile : input  username " + username);
+//                        multipart.addFormField("u", username);
+//                        if (filename != "") {
+//                            multipart.addFormField("f", filename);
+//                            multipart.addFilePart("uf", atach1);
+//                            Log.d("TAG", "onSuccess: f name- " + filename);
+//                        } else
+//                            multipart.addFormField("f", "null");
+//                        response = multipart.finish();
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        Log.d("TAG", "exp : " + e.getMessage());
+//
+//                    }
+//
+//                } else
+//                {
+//                    Log.d("TAG", "file null");
+//
+//                }
+//
+//
+//            } catch (Exception ex) {
+//
+//            }
+//            return null;
+//
+//        }
+//
+//
+//        @Override
+//        protected void onProgressUpdate(String... progress) {
+//            super.onProgressUpdate(progress);
+//            Log.d("file1test", "progressOnUpdate1:" + data_for_progressbar + "");
+//
+//
+////            prg1.setProgress(data_for_progressbar);
+//
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            try {
+//
+//                if (response != null && response.get(0).contains("created")) {
+//                    Log.d("filestatus","created");
+//                    prg3.setIndeterminate(false);
+//                    prg3.setProgress(100);
+//
+//
+//                } else if (response != null && response.get(0).contains("null")) {
+//                    Log.d("filestatus","null");
+//
+//
+//                }else{
+//                    Log.d("filestatus","file not created");
+//
+//                }
+//
+//            } catch (Exception e) {
+//
+//                Log.d("whomsYears e:", e.getMessage());
+//            }
+//        }
+//
+//    }
+//
+//    class ShowProgress4 extends AsyncTask<String, String, String> {
+//
+//        protected void onPreExecute() {
+//
+//            File atach1 = new File(filePath);
+//            lenght = atach1.length();
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            try {
+//                File atach1 = new File(filePath);
+//                lenght = atach1.length();
+//                username = Z.Decrypt(encUsername, CreateNotification.this);
+////            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
+//                // creates a unique boundary based on time stamp
+//                boundary = "===" + System.currentTimeMillis() + "===";
+//                URL url = new URL(Z.url_SavefileOnServer);
+//                httpConn = (HttpURLConnection) url.openConnection();
+//                httpConn.setUseCaches(false);
+//                httpConn.setDoOutput(true);    // indicates POST method
+//                httpConn.setDoInput(true);
+//                httpConn.setRequestProperty("Content-Type",
+//                        "multipart/form-data; boundary=" + boundary);
+//                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
+//                httpConn.setRequestProperty("Test", "Bonjour");
+//                outputStream = httpConn.getOutputStream();
+//                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
+//                        true);
+//                //formfieldpart//     multipart.addFormField("u", username);
+//                name = "u";
+//                vallue = username;
+//                writer.append("--" + boundary).append(LINE_FEED);
+//                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
+//                        .append(LINE_FEED);
+//                writer.append("Content-Type: text/plain; charset=" + charset).append(
+//                        LINE_FEED);
+//                writer.append(LINE_FEED);
+//                writer.append(vallue).append(LINE_FEED);
+//                writer.flush();
+//                if (filename != "") {
+//                    name2 = "f";
+//                    value2 = filename;
+//                    writer.append("--" + boundary).append(LINE_FEED);
+//                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
+//                            .append(LINE_FEED);
+//                    writer.append("Content-Type: text/plain; charset=" + charset).append(
+//                            LINE_FEED);
+//                    writer.append(LINE_FEED);
+//                    writer.append(value2).append(LINE_FEED);
+//                    writer.flush();
+//                    //multipart part// multipart.addFilePart("uf", sourceFile);
+//
+//                    String fieldName = "uf", uploadFile = "";
+//                    //        String fileName = uploadFile.getName();
+//                    writer.append("--" + boundary).append(LINE_FEED);
+//                    writer.append(
+//                            "Content-Disposition: form-data; name=\"" + fieldName
+//                                    + "\"; filename=\"" + filename + "\"")
+//                            .append(LINE_FEED);
+//                    writer.append(
+//                            "Content-Type: "
+//                                    + URLConnection.guessContentTypeFromName(filename))
+//                            .append(LINE_FEED);
+//                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
+//                    writer.append(LINE_FEED);
+//                    writer.flush();
+//                    FileInputStream inputStream = new FileInputStream(atach1);
+//                    byte[] buffer = new byte[4096];
+//                    int bytesRead = 0;
+////                  long totalSize= 15710566;
+//                    long totalSize = lenght;
+//
+//                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                        outputStream.write(buffer, 0, bytesRead);
+//                        //progres
+//                        Log.d("bytes", "" + bytesRead);
+//                        progress4 += bytesRead;
+//                        data_for_progressbar3 = (int) ((progress4 * 100) / totalSize);
+//                        publishProgress("lavda");
+//                    }
+//                    outputStream.flush();
+//                    inputStream.close();
+//
+//                    writer.append(LINE_FEED);
+//                    writer.flush();
+/////finishPart
+//                    writer.append(LINE_FEED).flush();
+//                    writer.append("--" + boundary + "--").append(LINE_FEED);
+//                    writer.close();
+//
+//// checks server's status code first
+//                    int status = httpConn.getResponseCode();
+//                    if (status == HttpURLConnection.HTTP_OK) {
+//                        BufferedReader reader = new BufferedReader(new InputStreamReader(
+//                                httpConn.getInputStream()));
+//                        String line = null;
+//                        while ((line = reader.readLine()) != null) {
+//                            response.add(line);
+//                        }
+//                        reader.close();
+//                        httpConn.disconnect();
+//
+//                    } else {
+//                        throw new IOException("Server returned non-OK status: " + status);
+//                    }
+//
+//                } else
+////        multipart.addFormField("f", "");
+//                    name2 = "f";
+//                value2 = "";
+//                writer.append("--" + boundary).append(LINE_FEED);
+//                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
+//                        .append(LINE_FEED);
+//                writer.append("Content-Type: text/plain; charset=" + charset).append(
+//                        LINE_FEED);
+//                writer.append(LINE_FEED);
+//                writer.append(value2).append(LINE_FEED);
+//                writer.flush();
+//                ///finishPart
+//                writer.append(LINE_FEED).flush();
+//                writer.append("--" + boundary + "--").append(LINE_FEED);
+//                writer.close();
+//
+////            response = multipart.finish();
+//
+//// checks server's status code first
+//                int status = httpConn.getResponseCode();
+//                if (status == HttpURLConnection.HTTP_OK) {
+//                    BufferedReader reader = new BufferedReader(new InputStreamReader(
+//                            httpConn.getInputStream()));
+//                    String line = null;
+//                    while ((line = reader.readLine()) != null) {
+//                        response.add(line);
+//                    }
+//                    reader.close();
+//                    httpConn.disconnect();
+//                } else {
+//                    throw new IOException("Server returned non-OK status: " + status);
+//                }
+//
+//
+//            } catch (Exception ex) {
+//
+//            }
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(String... progress4) {
+//            super.onProgressUpdate(progress4);
+//            Log.d("LAst", "progressOnUpdate4:" + data_for_progressbar3 + "");
+//            prg4.setProgress(data_for_progressbar3);
+//
+//        }
+//
+//    }
+//
+//    class ShowProgress5 extends AsyncTask<String, String, String> {
+//
+//        protected void onPreExecute() {
+//
+//            File atach1 = new File(filePath);
+//            lenght = atach1.length();
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            try {
+//                File atach1 = new File(filePath);
+//                lenght = atach1.length();
+//                username = Z.Decrypt(encUsername, CreateNotification.this);
+////            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
+//                // creates a unique boundary based on time stamp
+//                boundary = "===" + System.currentTimeMillis() + "===";
+//                URL url = new URL(Z.url_SavefileOnServer);
+//                httpConn = (HttpURLConnection) url.openConnection();
+//                httpConn.setUseCaches(false);
+//                httpConn.setDoOutput(true);    // indicates POST method
+//                httpConn.setDoInput(true);
+//                httpConn.setRequestProperty("Content-Type",
+//                        "multipart/form-data; boundary=" + boundary);
+//                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
+//                httpConn.setRequestProperty("Test", "Bonjour");
+//                outputStream = httpConn.getOutputStream();
+//                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
+//                        true);
+//                //formfieldpart//     multipart.addFormField("u", username);
+//                name = "u";
+//                vallue = username;
+//                writer.append("--" + boundary).append(LINE_FEED);
+//                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
+//                        .append(LINE_FEED);
+//                writer.append("Content-Type: text/plain; charset=" + charset).append(
+//                        LINE_FEED);
+//                writer.append(LINE_FEED);
+//                writer.append(vallue).append(LINE_FEED);
+//                writer.flush();
+//                if (filename != "") {
+//                    name2 = "f";
+//                    value2 = filename;
+//                    writer.append("--" + boundary).append(LINE_FEED);
+//                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
+//                            .append(LINE_FEED);
+//                    writer.append("Content-Type: text/plain; charset=" + charset).append(
+//                            LINE_FEED);
+//                    writer.append(LINE_FEED);
+//                    writer.append(value2).append(LINE_FEED);
+//                    writer.flush();
+//                    //multipart part// multipart.addFilePart("uf", sourceFile);
+//
+//                    String fieldName = "uf", uploadFile = "";
+//                    //        String fileName = uploadFile.getName();
+//                    writer.append("--" + boundary).append(LINE_FEED);
+//                    writer.append(
+//                            "Content-Disposition: form-data; name=\"" + fieldName
+//                                    + "\"; filename=\"" + filename + "\"")
+//                            .append(LINE_FEED);
+//                    writer.append(
+//                            "Content-Type: "
+//                                    + URLConnection.guessContentTypeFromName(filename))
+//                            .append(LINE_FEED);
+//                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
+//                    writer.append(LINE_FEED);
+//                    writer.flush();
+//                    FileInputStream inputStream = new FileInputStream(atach1);
+//                    byte[] buffer = new byte[4096];
+//                    int bytesRead = 0;
+////                  long totalSize= 15710566;
+//                    long totalSize = lenght;
+//
+//                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                        outputStream.write(buffer, 0, bytesRead);
+//                        //progres
+//                        Log.d("bytes", "" + bytesRead);
+//                        progress5 += bytesRead;
+//                        data_for_progressbar4 = (int) ((progress5 * 100) / totalSize);
+//                        publishProgress("lavda");
+//                    }
+//                    outputStream.flush();
+//                    inputStream.close();
+//
+//                    writer.append(LINE_FEED);
+//                    writer.flush();
+/////finishPart
+//                    writer.append(LINE_FEED).flush();
+//                    writer.append("--" + boundary + "--").append(LINE_FEED);
+//                    writer.close();
+//
+//// checks server's status code first
+//                    int status = httpConn.getResponseCode();
+//                    if (status == HttpURLConnection.HTTP_OK) {
+//                        BufferedReader reader = new BufferedReader(new InputStreamReader(
+//                                httpConn.getInputStream()));
+//                        String line = null;
+//                        while ((line = reader.readLine()) != null) {
+//                            response.add(line);
+//                        }
+//                        reader.close();
+//                        httpConn.disconnect();
+//                    } else {
+//                        throw new IOException("Server returned non-OK status: " + status);
+//                    }
+//
+//                } else
+////        multipart.addFormField("f", "");
+//                    name2 = "f";
+//                value2 = "";
+//                writer.append("--" + boundary).append(LINE_FEED);
+//                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
+//                        .append(LINE_FEED);
+//                writer.append("Content-Type: text/plain; charset=" + charset).append(
+//                        LINE_FEED);
+//                writer.append(LINE_FEED);
+//                writer.append(value2).append(LINE_FEED);
+//                writer.flush();
+//                ///finishPart
+//                writer.append(LINE_FEED).flush();
+//                writer.append("--" + boundary + "--").append(LINE_FEED);
+//                writer.close();
+//
+////            response = multipart.finish();
+//
+//// checks server's status code first
+//                int status = httpConn.getResponseCode();
+//                if (status == HttpURLConnection.HTTP_OK) {
+//                    BufferedReader reader = new BufferedReader(new InputStreamReader(
+//                            httpConn.getInputStream()));
+//                    String line = null;
+//                    while ((line = reader.readLine()) != null) {
+//                        response.add(line);
+//                    }
+//                    reader.close();
+//                    httpConn.disconnect();
+//                } else {
+//                    throw new IOException("Server returned non-OK status: " + status);
+//                }
+//
+//
+//            } catch (Exception ex) {
+//
+//            }
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(String... progress5) {
+//            super.onProgressUpdate(progress5);
+//            Log.d("LAst", "progressOnUpdate4:" + data_for_progressbar4 + "");
+//            prg5.setProgress(data_for_progressbar4);
+//
+//
+//        }
+//
+//    }
+    class ShowProgress1 extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
+            prg1.setIndeterminate(true);
             try {
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            username =Z.Decrypt(encUsername,CreateNotification.this) ;
+                File atach1 = new File(filePath);
+                lenght = atach1.length();
+                username = Z.Decrypt(encUsername, CreateNotification.this);
 //            username = encUsername;
 
-//            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-                // creates a unique boundary based on time stamp
-                boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(Z.url_SavefileOnServer);
-                httpConn = (HttpURLConnection) url.openConnection();
-                httpConn.setUseCaches(false);
-                httpConn.setDoOutput(true);    // indicates POST method
-                httpConn.setDoInput(true);
-                httpConn.setRequestProperty("Content-Type",
-                        "multipart/form-data; boundary=" + boundary);
-                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-                httpConn.setRequestProperty("Test", "Bonjour");
-                outputStream = httpConn.getOutputStream();
-                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                        true);
-                //formfieldpart//     multipart.addFormField("u", username);
-                name = "u";
-                vallue = username;
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(vallue).append(LINE_FEED);
-                writer.flush();
-                if (filename != "") {
-                    name2 = "f";
-                    value2 = filename;
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                            .append(LINE_FEED);
-                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-                            LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.append(value2).append(LINE_FEED);
-                    writer.flush();
-                    //multipart part// multipart.addFilePart("uf", sourceFile);
+                if (atach1 != null) {
 
-                    String fieldName = "uf", uploadFile = "";
-                    //        String fileName = uploadFile.getName();
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append(
-                            "Content-Disposition: form-data; name=\"" + fieldName
-                                    + "\"; filename=\"" + filename + "\"")
-                            .append(LINE_FEED);
-                    writer.append(
-                            "Content-Type: "
-                                    + URLConnection.guessContentTypeFromName(filename))
-                            .append(LINE_FEED);
-                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.flush();
-                    FileInputStream inputStream = new FileInputStream(atach1);
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = 0;
-//                  long totalSize= 15710566;
-                    long totalSize = lenght;
+                    MultipartUtility multipart = null;
+                    try {
+                        prg1.setIndeterminate(true);
+                        fileinprogress1 = true;
 
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                        //progres
-                        Log.d("bytes", "" + bytesRead);
-                        progress += bytesRead;
-                        data_for_progressbar = (int) ((progress * 100) / totalSize);
-                        publishProgress("lavda");
-                    }
-                    outputStream.flush();
-                    inputStream.close();
+                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+                        Log.d("TAG", "UploadProfile1 : input  username " + username);
+                        multipart.addFormField("u", username);
+                        if (filename != "") {
+                            multipart.addFormField("f", filename);
+                            multipart.addFilePart("uf", atach1);
+                            Log.d("TAG", "onSuccess: f name- " + filename);
+                        } else
+                            multipart.addFormField("f", "null");
+                        response = multipart.finish();
 
-                    writer.append(LINE_FEED);
-                    writer.flush();
-///finishPart
-                    writer.append(LINE_FEED).flush();
-                    writer.append("--" + boundary + "--").append(LINE_FEED);
-                    writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("TAG", "exp : " + e.getMessage());
 
-// checks server's status code first
-                    int status = httpConn.getResponseCode();
-                    if (status == HttpURLConnection.HTTP_OK) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                httpConn.getInputStream()));
-                        String line = null;
-                        while ((line = reader.readLine()) != null) {
-                            response.add(line);
-                        }
-                        reader.close();
-                        httpConn.disconnect();
-
-                    } else {
-                        throw new IOException("Server returned non-OK status: " + status);
                     }
 
-                } else
-//        multipart.addFormField("f", "");
-                    name2 = "f";
-                value2 = "";
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(value2).append(LINE_FEED);
-                writer.flush();
-                ///finishPart
-                writer.append(LINE_FEED).flush();
-                writer.append("--" + boundary + "--").append(LINE_FEED);
-                writer.close();
-
-//            response = multipart.finish();
-
-// checks server's status code first
-                int status = httpConn.getResponseCode();
-                if (status == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            httpConn.getInputStream()));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        response.add(line);
-                    }
-                    reader.close();
-                    httpConn.disconnect();
                 } else {
-                    throw new IOException("Server returned non-OK status: " + status);
+                    Log.d("TAG", "file null");
+
                 }
 
 
@@ -1756,327 +2277,147 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             return null;
         }
 
-
         @Override
-        protected void onProgressUpdate(String... progress) {
-            super.onProgressUpdate(progress);
-            Log.d("LAst", "progressOnUpdate1:" + data_for_progressbar + "");
-//
+        protected void onPostExecute(String result) {
+            Log.d("response", ":onPostExecute response1 :" + response);
 
-            prg1.setProgress(data_for_progressbar);
+            if (response != null && response.get(0).contains("created")) {
+                Log.d("filestatus1", "created");
+                prg1.setIndeterminate(false);
+                prg1.setProgress(100);
+                fileinprogress1 = false;
 
+
+            } else if (response != null && response.get(0).contains("null")) {
+                Log.d("filestatus1", "null");
+                fileinprogress1 = false;
+
+
+            } else {
+                Log.d("filestatus1", "file not created");
+                fileinprogress1 = false;
+
+
+            }
 
         }
-
     }
 
     class ShowProgress2 extends AsyncTask<String, String, String> {
 
-        protected void onPreExecute() {
-
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            super.onPreExecute();
-        }
-
         @Override
         protected String doInBackground(String... strings) {
+            prg2.setIndeterminate(true);
             try {
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            username =Z.Decrypt(encUsername,CreateNotification.this) ;
+                File atach1 = new File(filePath);
+                lenght = atach1.length();
+                username = Z.Decrypt(encUsername, CreateNotification.this);
 //            username = encUsername;
 
-//            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-                // creates a unique boundary based on time stamp
-                boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(Z.url_SavefileOnServer);
-                httpConn = (HttpURLConnection) url.openConnection();
-                httpConn.setUseCaches(false);
-                httpConn.setDoOutput(true);    // indicates POST method
-                httpConn.setDoInput(true);
-                httpConn.setRequestProperty("Content-Type",
-                        "multipart/form-data; boundary=" + boundary);
-                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-                httpConn.setRequestProperty("Test", "Bonjour");
-                outputStream = httpConn.getOutputStream();
-                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                        true);
-                //formfieldpart//     multipart.addFormField("u", username);
-                name = "u";
-                vallue = username;
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(vallue).append(LINE_FEED);
-                writer.flush();
-                if (filename != "") {
-                    name2 = "f";
-                    value2 = filename;
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                            .append(LINE_FEED);
-                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-                            LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.append(value2).append(LINE_FEED);
-                    writer.flush();
-                    //multipart part// multipart.addFilePart("uf", sourceFile);
+                if (atach1 != null) {
+
+                    MultipartUtility multipart = null;
+                    try {
+                        prg2.setIndeterminate(true);
+                        fileinprogress2 = true;
 
 
-                    String fieldName = "uf", uploadFile = "";
-                    //        String fileName = uploadFile.getName();
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append(
-                            "Content-Disposition: form-data; name=\"" + fieldName
-                                    + "\"; filename=\"" + filename + "\"")
-                            .append(LINE_FEED);
-                    writer.append(
-                            "Content-Type: "
-                                    + URLConnection.guessContentTypeFromName(filename))
-                            .append(LINE_FEED);
-                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.flush();
-                    FileInputStream inputStream = new FileInputStream(atach1);
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = 0;
-//                  long totalSize= 15710566;
-                    long totalSize = lenght;
+                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+                        Log.d("TAG", "UploadProfile2 : input  username " + username);
+                        multipart.addFormField("u", username);
+                        if (filename != "") {
+                            multipart.addFormField("f", filename);
+                            multipart.addFilePart("uf", atach1);
+                            Log.d("TAG", "onSuccess: f name- " + filename);
+                        } else
+                            multipart.addFormField("f", "null");
+                        response = multipart.finish();
 
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                        //progres
-                        Log.d("bytes", "" + bytesRead);
-                        progress2 += bytesRead;
-                        data_for_progressbar1 = (int) ((progress2 * 100) / totalSize);
-                        publishProgress("lavda");
-                    }
-                    outputStream.flush();
-                    inputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("TAG", "exp : " + e.getMessage());
 
-                    writer.append(LINE_FEED);
-                    writer.flush();
-///finishPart
-                    writer.append(LINE_FEED).flush();
-                    writer.append("--" + boundary + "--").append(LINE_FEED);
-                    writer.close();
-
-// checks server's status code first
-                    int status = httpConn.getResponseCode();
-                    if (status == HttpURLConnection.HTTP_OK) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                httpConn.getInputStream()));
-                        String line = null;
-                        while ((line = reader.readLine()) != null) {
-                            response.add(line);
-                        }
-                        reader.close();
-                        httpConn.disconnect();
-
-                    } else {
-                        throw new IOException("Server returned non-OK status: " + status);
                     }
 
-                } else
-//        multipart.addFormField("f", "");
-                    name2 = "f";
-                value2 = "";
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(value2).append(LINE_FEED);
-                writer.flush();
-                ///finishPart
-                writer.append(LINE_FEED).flush();
-                writer.append("--" + boundary + "--").append(LINE_FEED);
-                writer.close();
-
-//            response = multipart.finish();
-
-// checks server's status code first
-                int status = httpConn.getResponseCode();
-                if (status == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            httpConn.getInputStream()));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        response.add(line);
-                    }
-                    reader.close();
-                    httpConn.disconnect();
                 } else {
-                    throw new IOException("Server returned non-OK status: " + status);
+                    Log.d("TAG", "file null");
+
                 }
 
 
             } catch (Exception ex) {
 
             }
-
             return null;
+
         }
 
         @Override
-        protected void onProgressUpdate(String... progress2) {
-            super.onProgressUpdate(progress2);
-            Log.d("LAst", "progressOnUpdate2:" + data_for_progressbar1 + "");
-//
+        protected void onPostExecute(String result) {
+            Log.d("response", ":onPostExecute response2 :" + response);
 
-            prg2.setProgress(data_for_progressbar1);
 
+            if (response != null && response.get(0).contains("created")) {
+                Log.d("filestatus2", "created");
+                prg2.setIndeterminate(false);
+                prg2.setProgress(100);
+                fileinprogress2 = false;
+
+
+            } else if (response != null && response.get(0).contains("null")) {
+                Log.d("filestatus2", "null");
+                fileinprogress2 = false;
+
+
+            } else {
+                Log.d("filestatus2", "file not created");
+                fileinprogress2 = false;
+
+
+            }
 
         }
-
     }
 
     class ShowProgress3 extends AsyncTask<String, String, String> {
 
-        protected void onPreExecute() {
-
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            super.onPreExecute();
-        }
-
         @Override
         protected String doInBackground(String... strings) {
+
             try {
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            username =Z.Decrypt(encUsername,CreateNotification.this) ;
+                File atach1 = new File(filePath);
+                lenght = atach1.length();
+                username = Z.Decrypt(encUsername, CreateNotification.this);
+//            username = encUsername;
 
-//            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-                // creates a unique boundary based on time stamp
-                boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(Z.url_SavefileOnServer);
-                httpConn = (HttpURLConnection) url.openConnection();
-                httpConn.setUseCaches(false);
-                httpConn.setDoOutput(true);    // indicates POST method
-                httpConn.setDoInput(true);
-                httpConn.setRequestProperty("Content-Type",
-                        "multipart/form-data; boundary=" + boundary);
-                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-                httpConn.setRequestProperty("Test", "Bonjour");
-                outputStream = httpConn.getOutputStream();
-                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                        true);
-                //formfieldpart//     multipart.addFormField("u", username);
-                name = "u";
-                vallue = username;
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(vallue).append(LINE_FEED);
-                writer.flush();
-                if (filename != "") {
-                    name2 = "f";
-                    value2 = filename;
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                            .append(LINE_FEED);
-                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-                            LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.append(value2).append(LINE_FEED);
-                    writer.flush();
-                    //multipart part// multipart.addFilePart("uf", sourceFile);
+                if (atach1 != null) {
 
-                    String fieldName = "uf", uploadFile = "";
-                    //        String fileName = uploadFile.getName();
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append(
-                            "Content-Disposition: form-data; name=\"" + fieldName
-                                    + "\"; filename=\"" + filename + "\"")
-                            .append(LINE_FEED);
-                    writer.append(
-                            "Content-Type: "
-                                    + URLConnection.guessContentTypeFromName(filename))
-                            .append(LINE_FEED);
-                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.flush();
-                    FileInputStream inputStream = new FileInputStream(atach1);
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = 0;
-//                  long totalSize= 15710566;
-                    long totalSize = lenght;
+                    MultipartUtility multipart = null;
+                    try {
+                        prg3.setIndeterminate(true);
+                        fileinprogress3 = true;
 
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                        //progres
-                        Log.d("bytes", "" + bytesRead);
-                        progress3 += bytesRead;
-                        data_for_progressbar2 = (int) ((progress3 * 100) / totalSize);
-                        publishProgress("lavda");
-                    }
-                    outputStream.flush();
-                    inputStream.close();
 
-                    writer.append(LINE_FEED);
-                    writer.flush();
-///finishPart
-                    writer.append(LINE_FEED).flush();
-                    writer.append("--" + boundary + "--").append(LINE_FEED);
-                    writer.close();
+                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+                        Log.d("TAG", "UploadProfile3 : input  username " + username);
+                        multipart.addFormField("u", username);
+                        if (filename != "") {
+                            multipart.addFormField("f", filename);
+                            multipart.addFilePart("uf", atach1);
+                            Log.d("TAG", "onSuccess: f name- " + filename);
+                        } else
+                            multipart.addFormField("f", "null");
+                        response = multipart.finish();
 
-// checks server's status code first
-                    int status = httpConn.getResponseCode();
-                    if (status == HttpURLConnection.HTTP_OK) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                httpConn.getInputStream()));
-                        String line = null;
-                        while ((line = reader.readLine()) != null) {
-                            response.add(line);
-                        }
-                        reader.close();
-                        httpConn.disconnect();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("TAG", "exp : " + e.getMessage());
 
-                    } else {
-                        throw new IOException("Server returned non-OK status: " + status);
                     }
 
-                } else
-//        multipart.addFormField("f", "");
-                    name2 = "f";
-                value2 = "";
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(value2).append(LINE_FEED);
-                writer.flush();
-                ///finishPart
-                writer.append(LINE_FEED).flush();
-                writer.append("--" + boundary + "--").append(LINE_FEED);
-                writer.close();
-
-//            response = multipart.finish();
-
-// checks server's status code first
-                int status = httpConn.getResponseCode();
-                if (status == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            httpConn.getInputStream()));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        response.add(line);
-                    }
-                    reader.close();
-                    httpConn.disconnect();
                 } else {
-                    throw new IOException("Server returned non-OK status: " + status);
+                    Log.d("TAG", "file null");
+
                 }
 
 
@@ -2084,340 +2425,185 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             }
 
+
             return null;
+
         }
 
         @Override
-        protected void onProgressUpdate(String... progress3) {
-            super.onProgressUpdate(progress3);
-            Log.d("LAst", "progressOnUpdate3:" + data_for_progressbar2 + "");
-//
+        protected void onPostExecute(String result) {
+            Log.d("response", ":onPostExecute response3 :" + response);
 
-            prg3.setProgress(data_for_progressbar2);
+            if (response != null && response.get(0).contains("created")) {
+                Log.d("filestatus3", "created");
+                prg3.setIndeterminate(false);
+                prg3.setProgress(100);
+                fileinprogress3 = false;
 
+
+            } else if (response != null && response.get(0).contains("null")) {
+                Log.d("filestatus3", "null");
+                fileinprogress3 = false;
+
+
+            } else {
+                Log.d("filestatus3", "file not created");
+                fileinprogress3 = false;
+
+
+            }
 
         }
-
     }
 
     class ShowProgress4 extends AsyncTask<String, String, String> {
 
-        protected void onPreExecute() {
-
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            super.onPreExecute();
-        }
-
         @Override
         protected String doInBackground(String... strings) {
+
+
             try {
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            username =Z.Decrypt(encUsername,CreateNotification.this) ;
-//            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-                // creates a unique boundary based on time stamp
-                boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(Z.url_SavefileOnServer);
-                httpConn = (HttpURLConnection) url.openConnection();
-                httpConn.setUseCaches(false);
-                httpConn.setDoOutput(true);    // indicates POST method
-                httpConn.setDoInput(true);
-                httpConn.setRequestProperty("Content-Type",
-                        "multipart/form-data; boundary=" + boundary);
-                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-                httpConn.setRequestProperty("Test", "Bonjour");
-                outputStream = httpConn.getOutputStream();
-                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                        true);
-                //formfieldpart//     multipart.addFormField("u", username);
-                name = "u";
-                vallue = username;
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(vallue).append(LINE_FEED);
-                writer.flush();
-                if (filename != "") {
-                    name2 = "f";
-                    value2 = filename;
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                            .append(LINE_FEED);
-                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-                            LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.append(value2).append(LINE_FEED);
-                    writer.flush();
-                    //multipart part// multipart.addFilePart("uf", sourceFile);
+                File atach1 = new File(filePath);
+                lenght = atach1.length();
+                username = Z.Decrypt(encUsername, CreateNotification.this);
+//            username = encUsername;
 
-                    String fieldName = "uf", uploadFile = "";
-                    //        String fileName = uploadFile.getName();
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append(
-                            "Content-Disposition: form-data; name=\"" + fieldName
-                                    + "\"; filename=\"" + filename + "\"")
-                            .append(LINE_FEED);
-                    writer.append(
-                            "Content-Type: "
-                                    + URLConnection.guessContentTypeFromName(filename))
-                            .append(LINE_FEED);
-                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.flush();
-                    FileInputStream inputStream = new FileInputStream(atach1);
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = 0;
-//                  long totalSize= 15710566;
-                    long totalSize = lenght;
+                if (atach1 != null) {
 
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                        //progres
-                        Log.d("bytes", "" + bytesRead);
-                        progress4 += bytesRead;
-                        data_for_progressbar3 = (int) ((progress4 * 100) / totalSize);
-                        publishProgress("lavda");
-                    }
-                    outputStream.flush();
-                    inputStream.close();
+                    MultipartUtility multipart = null;
+                    try {
+                        prg4.setIndeterminate(true);
+                        fileinprogress4 = true;
 
-                    writer.append(LINE_FEED);
-                    writer.flush();
-///finishPart
-                    writer.append(LINE_FEED).flush();
-                    writer.append("--" + boundary + "--").append(LINE_FEED);
-                    writer.close();
 
-// checks server's status code first
-                    int status = httpConn.getResponseCode();
-                    if (status == HttpURLConnection.HTTP_OK) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                httpConn.getInputStream()));
-                        String line = null;
-                        while ((line = reader.readLine()) != null) {
-                            response.add(line);
-                        }
-                        reader.close();
-                        httpConn.disconnect();
+                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+                        Log.d("TAG", "UploadProfile4 : input  username " + username);
+                        multipart.addFormField("u", username);
+                        if (filename != "") {
+                            multipart.addFormField("f", filename);
+                            multipart.addFilePart("uf", atach1);
+                            Log.d("TAG", "onSuccess: f name- " + filename);
+                        } else
+                            multipart.addFormField("f", "null");
+                        response = multipart.finish();
 
-                    } else {
-                        throw new IOException("Server returned non-OK status: " + status);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("TAG", "exp : " + e.getMessage());
+
                     }
 
-                } else
-//        multipart.addFormField("f", "");
-                    name2 = "f";
-                value2 = "";
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(value2).append(LINE_FEED);
-                writer.flush();
-                ///finishPart
-                writer.append(LINE_FEED).flush();
-                writer.append("--" + boundary + "--").append(LINE_FEED);
-                writer.close();
-
-//            response = multipart.finish();
-
-// checks server's status code first
-                int status = httpConn.getResponseCode();
-                if (status == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            httpConn.getInputStream()));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        response.add(line);
-                    }
-                    reader.close();
-                    httpConn.disconnect();
                 } else {
-                    throw new IOException("Server returned non-OK status: " + status);
+                    Log.d("TAG", "file null");
+
                 }
 
 
             } catch (Exception ex) {
 
-            }
 
+            }
             return null;
+
         }
 
         @Override
-        protected void onProgressUpdate(String... progress4) {
-            super.onProgressUpdate(progress4);
-            Log.d("LAst", "progressOnUpdate4:" + data_for_progressbar3 + "");
-            prg4.setProgress(data_for_progressbar3);
+        protected void onPostExecute(String result) {
+            if (response != null && response.get(0).contains("created")) {
+                Log.d("filestatus4", "created");
+                prg4.setIndeterminate(false);
+                prg4.setProgress(100);
+                fileinprogress4 = false;
+
+
+            } else if (response != null && response.get(0).contains("null")) {
+                Log.d("filestatus4", "null");
+                fileinprogress4 = false;
+
+
+            } else {
+                Log.d("filestatus4", "file not created");
+                fileinprogress4 = false;
+
+
+            }
+
 
         }
-
     }
 
     class ShowProgress5 extends AsyncTask<String, String, String> {
 
-        protected void onPreExecute() {
-
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            super.onPreExecute();
-        }
-
         @Override
         protected String doInBackground(String... strings) {
             try {
-            File atach1 = new File(filePath);
-            lenght = atach1.length();
-            username =Z.Decrypt(encUsername,CreateNotification.this) ;
-//            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
-                // creates a unique boundary based on time stamp
-                boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(Z.url_SavefileOnServer);
-                httpConn = (HttpURLConnection) url.openConnection();
-                httpConn.setUseCaches(false);
-                httpConn.setDoOutput(true);    // indicates POST method
-                httpConn.setDoInput(true);
-                httpConn.setRequestProperty("Content-Type",
-                        "multipart/form-data; boundary=" + boundary);
-                httpConn.setRequestProperty("User-Agent", "PlaceMe Agent");
-                httpConn.setRequestProperty("Test", "Bonjour");
-                outputStream = httpConn.getOutputStream();
-                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                        true);
-                //formfieldpart//     multipart.addFormField("u", username);
-                name = "u";
-                vallue = username;
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(vallue).append(LINE_FEED);
-                writer.flush();
-                if (filename != "") {
-                    name2 = "f";
-                    value2 = filename;
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                            .append(LINE_FEED);
-                    writer.append("Content-Type: text/plain; charset=" + charset).append(
-                            LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.append(value2).append(LINE_FEED);
-                    writer.flush();
-                    //multipart part// multipart.addFilePart("uf", sourceFile);
+                File atach1 = new File(filePath);
+                lenght = atach1.length();
+                username = Z.Decrypt(encUsername, CreateNotification.this);
+//            username = encUsername;
 
-                    String fieldName = "uf", uploadFile = "";
-                    //        String fileName = uploadFile.getName();
-                    writer.append("--" + boundary).append(LINE_FEED);
-                    writer.append(
-                            "Content-Disposition: form-data; name=\"" + fieldName
-                                    + "\"; filename=\"" + filename + "\"")
-                            .append(LINE_FEED);
-                    writer.append(
-                            "Content-Type: "
-                                    + URLConnection.guessContentTypeFromName(filename))
-                            .append(LINE_FEED);
-                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-                    writer.append(LINE_FEED);
-                    writer.flush();
-                    FileInputStream inputStream = new FileInputStream(atach1);
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = 0;
-//                  long totalSize= 15710566;
-                    long totalSize = lenght;
+                if (atach1 != null) {
 
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                        //progres
-                        Log.d("bytes", "" + bytesRead);
-                        progress5 += bytesRead;
-                        data_for_progressbar4 = (int) ((progress5 * 100) / totalSize);
-                        publishProgress("lavda");
-                    }
-                    outputStream.flush();
-                    inputStream.close();
+                    MultipartUtility multipart = null;
+                    try {
+                        prg5.setIndeterminate(true);
+                        fileinprogress5 = true;
 
-                    writer.append(LINE_FEED);
-                    writer.flush();
-///finishPart
-                    writer.append(LINE_FEED).flush();
-                    writer.append("--" + boundary + "--").append(LINE_FEED);
-                    writer.close();
 
-// checks server's status code first
-                    int status = httpConn.getResponseCode();
-                    if (status == HttpURLConnection.HTTP_OK) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                httpConn.getInputStream()));
-                        String line = null;
-                        while ((line = reader.readLine()) != null) {
-                            response.add(line);
-                        }
-                        reader.close();
-                        httpConn.disconnect();
-                    } else {
-                        throw new IOException("Server returned non-OK status: " + status);
+                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
+                        Log.d("TAG", "UploadProfile5 : input  username " + username);
+                        multipart.addFormField("u", username);
+                        if (filename != "") {
+                            multipart.addFormField("f", filename);
+                            multipart.addFilePart("uf", atach1);
+                            Log.d("TAG", "onSuccess: f name- " + filename);
+                        } else
+                            multipart.addFormField("f", "null");
+                        response = multipart.finish();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("TAG", "exp : " + e.getMessage());
+
                     }
 
-                } else
-//        multipart.addFormField("f", "");
-                    name2 = "f";
-                value2 = "";
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + name2 + "\"")
-                        .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(value2).append(LINE_FEED);
-                writer.flush();
-                ///finishPart
-                writer.append(LINE_FEED).flush();
-                writer.append("--" + boundary + "--").append(LINE_FEED);
-                writer.close();
-
-//            response = multipart.finish();
-
-// checks server's status code first
-                int status = httpConn.getResponseCode();
-                if (status == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            httpConn.getInputStream()));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        response.add(line);
-                    }
-                    reader.close();
-                    httpConn.disconnect();
                 } else {
-                    throw new IOException("Server returned non-OK status: " + status);
+                    Log.d("TAG", "file null");
+
                 }
 
 
             } catch (Exception ex) {
 
-            }
 
+            }
             return null;
+
         }
 
         @Override
-        protected void onProgressUpdate(String... progress5) {
-            super.onProgressUpdate(progress5);
-            Log.d("LAst", "progressOnUpdate4:" + data_for_progressbar4 + "");
-            prg5.setProgress(data_for_progressbar4);
+        protected void onPostExecute(String result) {
 
+            if (response != null && response.get(0).contains("created")) {
+                Log.d("filestatus5", "created");
+                prg5.setIndeterminate(false);
+                prg5.setProgress(100);
+                fileinprogress5 = false;
+
+
+            } else if (response != null && response.get(0).contains("null")) {
+                Log.d("filestatus5", "null");
+                fileinprogress5 = false;
+
+
+            } else {
+                Log.d("filestatus5", "file not created");
+                fileinprogress5 = false;
+
+
+            }
 
         }
-
     }
 
     class GetForwhome extends AsyncTask<String, String, String> {
@@ -2514,7 +2700,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                 Log.d("TAG1", "after4: " + whomsYears);
                 whomsYears = whomsYears.replace("ALL", "");
-
 
 
             } catch (Exception e) {

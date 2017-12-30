@@ -18,7 +18,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class Z {
     //**************************  final **************************
-    public static final String VPS_IP = "162.213.199.3:8080";   // for authority
+    public static final String VPS_IP = "162.213.199.3";   // for authority
     public static final String IP = "http://162.213.199.3/";
     //**************************  final **************************
 
