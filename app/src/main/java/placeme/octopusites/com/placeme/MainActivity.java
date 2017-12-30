@@ -218,8 +218,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ShouldAnimateProfile.isInside = true;
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(MainActivity.this));
@@ -326,9 +324,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                    {
 //                        messagecountrl.setVisibility(View.GONE);
 //                    }
-                    getNotifications();
-                    getPlacements();
-
+                    new GetNotificationsReadStatus().execute();
+                    new GetPlacementsReadStatus().execute();
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
@@ -1265,8 +1262,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
         //temp work remove after done
-//        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
-//        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
+        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
+        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
 //        new CreateFirebaseUser(u,p).execute();
     }
 
