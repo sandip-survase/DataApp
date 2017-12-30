@@ -132,8 +132,8 @@ public class PlacementTab3 extends Fragment {
                     tentheligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.student10txt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-                    student10txt.setTextColor(getResources().getColor(R.color.dark_color));
-                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.dark_color));
+                    student10txt.setTextColor(Color.parseColor("#8b0000"));
+                    studenttenthmarksview.setTextColor(Color.parseColor("#8b0000"));
                 }
                 if (s12 >= c12) {
                     Drawable myDrawable = getResources().getDrawable(R.drawable.eligible_icon);
@@ -148,8 +148,8 @@ public class PlacementTab3 extends Fragment {
                     twelthordiplomaeligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.student12txt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-                    student10txt.setTextColor(getResources().getColor(R.color.dark_color));
-                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.dark_color));
+                    student10txt.setTextColor(Color.parseColor("#8b0000"));
+                    studenttenthmarksview.setTextColor(Color.parseColor("#8b0000"));
                 }
                 if (su >= cu) {
                     Drawable myDrawable = getResources().getDrawable(R.drawable.eligible_icon);
@@ -163,8 +163,8 @@ public class PlacementTab3 extends Fragment {
                     ugeligibility.setImageDrawable(myDrawable);
                     TextView student10txt = (TextView) rootView.findViewById(R.id.studentugtxt);
                     TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studentugmarksview);
-                    student10txt.setTextColor(getResources().getColor(R.color.dark_color));
-                    studenttenthmarksview.setTextColor(getResources().getColor(R.color.dark_color));
+                    student10txt.setTextColor(Color.parseColor("#8b0000"));
+                    studenttenthmarksview.setTextColor(Color.parseColor("#8b0000"));
                 }
             } else {
 
