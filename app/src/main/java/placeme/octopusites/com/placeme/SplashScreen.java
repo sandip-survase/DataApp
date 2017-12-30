@@ -103,13 +103,7 @@ public class SplashScreen extends AppCompatActivity {
 
         try {
             new GetDigestEcho().execute().get(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            showNoInternet();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            showNoInternet();
-        } catch (TimeoutException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             showNoInternet();
         }
@@ -146,7 +140,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public void showNoInternet() {
         Intent i = new Intent(SplashScreen.this, NoInternet.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
         i.putExtra("splash", true);
         startActivity(i);
     }
@@ -378,8 +372,6 @@ public class SplashScreen extends AppCompatActivity {
 
                 s = json.getString("info");
                 resultofop = s;
-                Log.d("Msg", json.getString("info"));
-
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -477,11 +469,7 @@ public class SplashScreen extends AppCompatActivity {
 
             String echo_number = "" + new Random().nextInt();
 
-            Log.d("TAG", "doInBackground: user " + username);
-            Log.d("TAG", "doInBackground: aid " + android_id);
-            Log.d("TAG", "doInBackground: did " + device_id);
-
-            Log.d("TAG", "splash echo send " + echo_number);
+            Log.d("TAG", "kill process s:" + echo_number);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
@@ -490,8 +478,6 @@ public class SplashScreen extends AppCompatActivity {
             params.add(new BasicNameValuePair("e", echo_number));
 
             JSONObject json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
-            Log.d("TAG", "GetDigest: json -------  GetDigest ------------ " + json);
-
 
             try {
 
@@ -503,7 +489,7 @@ public class SplashScreen extends AppCompatActivity {
                         String receivedEcho = json.getString("num");
 
                         if (receivedEcho != null && receivedEcho.equals(echo_number)) {
-                            Log.d("TAG", "splash echo recevied : " + receivedEcho);
+                            Log.d("TAG", "kill process r: " + receivedEcho);
 
 
                             if (info != null && info.equals("success")) {
@@ -537,7 +523,7 @@ public class SplashScreen extends AppCompatActivity {
                     return 2;  // no internet
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: exception in splashScreen" + e.getMessage());
+                Log.d("TAG", "exp die" + e.getMessage());
                 e.printStackTrace();
                 return 3;    // server prob or null or exception
             }
@@ -700,14 +686,11 @@ public class SplashScreen extends AppCompatActivity {
 
                 String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
                 String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
-                Log.d("TAG", "splashScreen token\n" + token);
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
-                Log.d("TAG", "token json splash: " + json);
-
                 resultofop = json.getString("info");
 
             } catch (Exception e) {
@@ -719,7 +702,7 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (resultofop.equals("success")) {
-                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+                Log.d("TAG", "got navin gf");
             }
         }
     }

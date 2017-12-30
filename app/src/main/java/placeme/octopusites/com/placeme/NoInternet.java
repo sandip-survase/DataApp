@@ -151,12 +151,11 @@ public class NoInternet extends AppCompatActivity {
 
             new TryAgainTask().execute().get(5, TimeUnit.SECONDS);
 
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
+            Toast.makeText(NoInternet.this, "No internet", Toast.LENGTH_SHORT).show();
+            progressbar.setVisibility(View.GONE);
+            refreshButton.setVisibility(View.VISIBLE);
         }
 
     }
