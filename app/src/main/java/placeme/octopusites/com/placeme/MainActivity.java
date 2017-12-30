@@ -2695,6 +2695,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
+
         itemListPlacementnew.addAll(itemList2);
 
         mAdapterPlacement.notifyDataSetChanged();
