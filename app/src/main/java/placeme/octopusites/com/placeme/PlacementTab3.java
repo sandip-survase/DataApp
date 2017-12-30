@@ -21,7 +21,7 @@ public class PlacementTab3 extends Fragment {
     TextView company10txt, student10txt, companyugtxt, studentugtxt, company12txt, student12txt;
     String studenttenthmarks, studentugmarks, studenttwelthordiplomamarks;
     ImageView tentheligibility, twelthordiplomaeligibility, ugeligibility;
-
+    TextView aptitxt,diplomatxt,ugtxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -36,6 +36,13 @@ public class PlacementTab3 extends Fragment {
         studenttenthmarks = save.getStudenttenthmarks();
         studenttwelthordiplomamarks = save.getStudenttwelthordiplomamarks();
         studentugmarks = save.getStudentugmarks();
+
+        aptitxt=(TextView)rootView.findViewById(R.id.aptitxt);
+        diplomatxt=(TextView)rootView.findViewById(R.id.diplomatxt);
+        ugtxt=(TextView)rootView.findViewById(R.id.ugtxt);
+        aptitxt.setTypeface(Z.getLight(getActivity()));
+        diplomatxt.setTypeface(Z.getLight(getActivity()));
+        ugtxt.setTypeface(Z.getLight(getActivity()));
 
         company10txt = (TextView) rootView.findViewById(R.id.company10txt);
         student10txt = (TextView) rootView.findViewById(R.id.student10txt);
@@ -64,9 +71,9 @@ public class PlacementTab3 extends Fragment {
         tenthview.setTypeface(Z.getBold(getActivity()));
         twelthordiplomaview.setTypeface(Z.getBold(getActivity()));
         ugview.setTypeface(Z.getBold(getActivity()));
-        studenttenthview.setTypeface(Z.getBold(getActivity()));
-        studenttwelthordiplomaview.setTypeface(Z.getBold(getActivity()));
-        studentugview.setTypeface(Z.getBold(getActivity()));
+        studenttenthview.setTypeface(Z.getRighteous(getActivity()));
+        studenttwelthordiplomaview.setTypeface(Z.getRighteous(getActivity()));
+        studentugview.setTypeface(Z.getRighteous(getActivity()));
 
         tenthview.setText(tenth);
         twelthordiplomaview.setText(twelthordiploma);

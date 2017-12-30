@@ -42,8 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="10th"
                 android:textColor="@color/sky_blue_color"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="2dp"
+                android:padding="4dp"
                 android:textSize="12dp"
                 android:id="@+id/aptitxt" />
 
@@ -69,7 +68,7 @@
                     android:textColor="@color/dark_color"
                     android:id="@+id/companytenthmarksview"
                     android:layout_below="@+id/company10txt"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:text="60"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -81,7 +80,7 @@
                     android:layout_below="@+id/companytenthmarksview"
                     android:id="@+id/student10txt"
                     android:text="Marks Obtained"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -121,8 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="UG"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
+                android:padding="4dp"
                 android:textSize="12dp"
                 android:id="@+id/ugtxt" />
 
@@ -148,7 +146,7 @@
                     android:textColor="@color/dark_color"
                     android:id="@+id/companyugmarksview"
                     android:layout_below="@+id/companyugtxt"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:text="60"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -160,7 +158,7 @@
                     android:layout_below="@+id/companyugmarksview"
                     android:id="@+id/studentugtxt"
                     android:text="Marks Obtained"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -200,8 +198,7 @@
                 android:layout_height="wrap_content"
                 android:text="12th / Diploma"
                 android:textColor="@color/sky_blue_color"
-                android:paddingTop="2dp"
-                android:paddingLeft="4dp"
+                android:padding="4dp"
                 android:textSize="12dp"
                 android:id="@+id/diplomatxt" />
 
@@ -227,7 +224,7 @@
                     android:textColor="@color/dark_color"
                     android:id="@+id/companytwelthordiplomamarksview"
                     android:layout_below="@+id/company12txt"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:text="60"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
@@ -239,7 +236,7 @@
                     android:layout_below="@+id/companytwelthordiplomamarksview"
                     android:id="@+id/student12txt"
                     android:text="Marks Obtained"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
