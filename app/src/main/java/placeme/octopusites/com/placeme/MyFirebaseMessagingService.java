@@ -11,17 +11,24 @@ import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_HIGH;
 import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_MAX;
@@ -65,7 +72,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } else {
             Log.d(TAG, "remoteMessage.getNotification() NULL");
         }
-
 
         int showFlag = 0;
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -336,6 +342,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     name1 = helper.getName(sender);
 
                     Intent intent = new Intent(this, MessageActivity.class);
+                    intent.putExtra("splash", "MessageActivity");
                     intent.putExtra("fname", name1.get(0));
                     intent.putExtra("lname", name1.get(1));
                     intent.putExtra("uploadedby", name1.get(2));
@@ -422,18 +429,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     } else {
                         Log.d(TAG, "chat room not active: ");
 
-
                         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         manager.notify(0, builder.build());
 
                         Intent pushNotification = new Intent("pushNotificationChat");
                         LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
 
-
                     }
 
                 }
-
 
             } else {
                 Log.e(TAG, "payload not present..");
@@ -445,7 +449,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
     }
-
 
 }
 

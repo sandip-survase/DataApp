@@ -66,7 +66,6 @@ public class NoInternet extends AppCompatActivity {
             }
 
         };
-//
         registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
