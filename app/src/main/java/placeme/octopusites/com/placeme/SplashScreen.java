@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
 
@@ -98,7 +101,18 @@ public class SplashScreen extends AppCompatActivity {
         Log.d("TAG", "noti : " + BuildConfig.VERSION_NAME);
         ShouldAnimateProfile.isInside = false;
 
-        new GetDigestEcho().execute();
+        try {
+            new GetDigestEcho().execute().get(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            showNoInternet();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            showNoInternet();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+            showNoInternet();
+        }
 
 
 //        CaocConfig.Builder.create().backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
@@ -128,6 +142,13 @@ public class SplashScreen extends AppCompatActivity {
 //        } catch (Exception e) {
 //
 //        }
+    }
+
+    public void showNoInternet() {
+        Intent i = new Intent(SplashScreen.this, NoInternet.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        i.putExtra("splash", true);
+        startActivity(i);
     }
 
 
@@ -242,83 +263,83 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     void processOutput(final int success) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    if (success == 1) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (success == 1) {
 
-                        new SaveSessionDetails().execute();
+                    new SaveSessionDetails().execute();
 
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                MySharedPreferencesManager.save(SplashScreen.this, "role", "student");
-                                MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            MySharedPreferencesManager.save(SplashScreen.this, "role", "student");
+                            MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-                                startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                                finish();
-                            }
-                        }, 1000);
+                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                            finish();
+                        }
+                    }, 1000);
 
-                    } else if (success == 3) {
-                        new SaveSessionDetails().execute();
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                MySharedPreferencesManager.save(SplashScreen.this, "role", "admin");
-                                MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
+                } else if (success == 3) {
+                    new SaveSessionDetails().execute();
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            MySharedPreferencesManager.save(SplashScreen.this, "role", "admin");
+                            MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-                                startActivity(new Intent(SplashScreen.this, AdminActivity.class));
-                                finish();
-                            }
-                        }, 1000);
+                            startActivity(new Intent(SplashScreen.this, AdminActivity.class));
+                            finish();
+                        }
+                    }, 1000);
 
-                    } else if (success == 4) {
-                        new SaveSessionDetails().execute();
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                MySharedPreferencesManager.save(SplashScreen.this, "role", "hr");
-                                MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
+                } else if (success == 4) {
+                    new SaveSessionDetails().execute();
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            MySharedPreferencesManager.save(SplashScreen.this, "role", "hr");
+                            MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-                                startActivity(new Intent(SplashScreen.this, HRActivity.class));
-                                finish();
-                            }
-                        }, 1000);
-                    } else if (success == 5) {
-                        new SaveSessionDetails().execute();
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                MySharedPreferencesManager.save(SplashScreen.this, "role", "alumni");
-                                MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
+                            startActivity(new Intent(SplashScreen.this, HRActivity.class));
+                            finish();
+                        }
+                    }, 1000);
+                } else if (success == 5) {
+                    new SaveSessionDetails().execute();
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            MySharedPreferencesManager.save(SplashScreen.this, "role", "alumni");
+                            MySharedPreferencesManager.save(SplashScreen.this, "nameKey", EmailCred);
 
-                                startActivity(new Intent(SplashScreen.this, AlumniActivity.class));
-                                finish();
-                            }
-                        }, 1000);
-                    } else if (success == 6) {
+                            startActivity(new Intent(SplashScreen.this, AlumniActivity.class));
+                            finish();
+                        }
+                    }, 1000);
+                } else if (success == 6) {
 
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                                finish();
-                            }
-                        }, 1000);
-                    } else {
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                            finish();
+                        }
+                    }, 1000);
+                } else {
 
 
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                                finish();
-                            }
-                        }, 1000);
-                    }
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            finish();
+                        }
+                    }, 1000);
                 }
-            }).start();
+            }
+        }).start();
 
     }
 
@@ -348,57 +369,57 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... args) {
             try {
-                    List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("u", mEmail));
-                    params.add(new BasicNameValuePair("p", mPassword));
-                    JSONObject json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", mEmail));
+                params.add(new BasicNameValuePair("p", mPassword));
+                JSONObject json = jParser.makeHttpRequest(Z.url_login, "GET", params);
 
-                    String s = null;
+                String s = null;
 
-                    s = json.getString("info");
-                    resultofop = s;
-                    Log.d("Msg", json.getString("info"));
-
-
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("role", s);
-                    editor.putString("pref1", "yes");
-                    editor.putString("pref2", "yes");
-                    editor.putString("pref3", "yes");
-                    editor.putString("pref4", "yes");
-                    editor.putString("pref5", "yes");
-                    editor.commit();
-
-                    if (s.equals("notactivated")) {
-
-                        EmailCred = mEmail;
-
-                        return 6;
-                    }
-                    if (s.equals("student")) {
-
-                        EmailCred = mEmail;
-
-                        return 1;
-                    } else if (s.equals("admin")) {
-
-                        EmailCred = mEmail;
+                s = json.getString("info");
+                resultofop = s;
+                Log.d("Msg", json.getString("info"));
 
 
-                        return 3;
-                    } else if (s.equals("hr")) {
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                        EmailCred = mEmail;
+                editor.putString("role", s);
+                editor.putString("pref1", "yes");
+                editor.putString("pref2", "yes");
+                editor.putString("pref3", "yes");
+                editor.putString("pref4", "yes");
+                editor.putString("pref5", "yes");
+                editor.commit();
+
+                if (s.equals("notactivated")) {
+
+                    EmailCred = mEmail;
+
+                    return 6;
+                }
+                if (s.equals("student")) {
+
+                    EmailCred = mEmail;
+
+                    return 1;
+                } else if (s.equals("admin")) {
+
+                    EmailCred = mEmail;
 
 
-                        return 4;
-                    } else if (s.equals("alumni")) {
+                    return 3;
+                } else if (s.equals("hr")) {
 
-                        EmailCred = mEmail;
-                        return 5;
-                    }
+                    EmailCred = mEmail;
+
+
+                    return 4;
+                } else if (s.equals("alumni")) {
+
+                    EmailCred = mEmail;
+                    return 5;
+                }
 
 
             } catch (Exception e) {
@@ -442,7 +463,6 @@ public class SplashScreen extends AppCompatActivity {
     class GetDigestEcho extends AsyncTask<String, String, Integer> {
 
         String info = null, versionName = null, versionType = null;
-
 
         protected Integer doInBackground(String... param) {
 
@@ -503,7 +523,6 @@ public class SplashScreen extends AppCompatActivity {
 
                                 versionName = Z.Decrypt(versionName, SplashScreen.this);
                                 versionType = Z.Decrypt(versionType, SplashScreen.this);
-
 
 
                             } else
