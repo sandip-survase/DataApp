@@ -69,7 +69,7 @@
                     android:id="@+id/companytenthmarksview"
                     android:layout_below="@+id/company10txt"
                     android:textSize="14dp"
-                    android:text="60"
+                    android:text="N/A"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
 
@@ -90,7 +90,7 @@
                     android:id="@+id/studenttenthmarksview"
                     android:layout_below="@+id/student10txt"
                     android:textSize="18dp"
-                    android:text="85"
+                    android:text="N/A"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
 
@@ -147,7 +147,7 @@
                     android:id="@+id/companyugmarksview"
                     android:layout_below="@+id/companyugtxt"
                     android:textSize="14dp"
-                    android:text="60"
+                    android:text="N/A"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
 
@@ -168,7 +168,7 @@
                     android:id="@+id/studentugmarksview"
                     android:layout_below="@+id/studentugtxt"
                     android:textSize="18dp"
-                    android:text="67"
+                    android:text="N/A"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
 
@@ -181,7 +181,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:backgroundTint="@color/sky_blue_color"
-                android:src="@drawable/not_eligible_icon"
+                android:src="@drawable/eligible_icon"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
 
@@ -225,7 +225,7 @@
                     android:id="@+id/companytwelthordiplomamarksview"
                     android:layout_below="@+id/company12txt"
                     android:textSize="14dp"
-                    android:text="60"
+                    android:text="N/A"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
 
@@ -246,7 +246,7 @@
                     android:id="@+id/studenttwelthordiplomamarksview"
                     android:layout_below="@+id/student12txt"
                     android:textSize="18dp"
-                    android:text="80"
+                    android:text="N/A"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true" />
 

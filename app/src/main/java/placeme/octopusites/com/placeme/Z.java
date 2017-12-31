@@ -157,7 +157,7 @@ public class Z {
 
     public static final String url_getsession = IP + "AESTest/GetSessionDetails";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
-    public static final String url_editemail = IP_8086 + "AESTest/EditEmail";
+    public static final String url_editemail = IP + "AESTest/EditEmail";
 
     //**************************************   AESTest   *****************************************
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";

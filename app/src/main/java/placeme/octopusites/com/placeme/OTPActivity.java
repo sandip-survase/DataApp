@@ -262,21 +262,21 @@ public class OTPActivity extends AppCompatActivity {
     void loginFirebase(String username, String hash) {
 
         FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username, hash)
-                .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-
-
-                        } else {
-                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                .signInWithEmailAndPassword(username, hash);
+//                .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//
+//
+//                        } else {
+//                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
     }
 
     class ResendOTP extends AsyncTask<String, String, String> {
