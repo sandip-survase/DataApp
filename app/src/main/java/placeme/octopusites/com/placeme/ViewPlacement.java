@@ -162,7 +162,7 @@ public class ViewPlacement extends AppCompatActivity {
         });
 
 //************
-//        studentmarks();
+        studentmarks();
 
 
 //        **********notification crash solution
