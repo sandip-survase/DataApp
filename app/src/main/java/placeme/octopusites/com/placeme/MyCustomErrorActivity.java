@@ -41,7 +41,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     String abd="";
     TextView ohsnapmsg,ohsnapmsg2;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +121,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
             StringBuilder log=new StringBuilder();
             String line = "";
             while ((line = bufferedReader.readLine()) != null) {
-                if(line.contains("TAG"))
+                if (line.contains("TAG") || line.contains("cricket"))
                     log.append(line+"\n");
             }
 
