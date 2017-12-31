@@ -460,7 +460,6 @@ public class AdminProfileFragment extends Fragment {
     public void refreshContent() {
         new GetAdminData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((AdminActivity) getActivity()).requestProfileImage();
-        ((AdminActivity) getActivity()).setUserCount();
         updateProgress.setVisibility(View.VISIBLE);
 
 

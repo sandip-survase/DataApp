@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,13 +46,14 @@ public class OTPActivity extends AppCompatActivity {
     String resultofop = "";
     TextView resendotp;
     ProgressBar otpprogress;
-    TextInputLayout otplayout;
+
     String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
     String plainusername, hash;
     ImageView otpClose;
+    TextInputLayout otplayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class OTPActivity extends AppCompatActivity {
 
         setFinishOnTouchOutside(false);
 
-        otplayout=(TextInputLayout)findViewById(R.id.otplayout);
+        otplayout = (TextInputLayout) findViewById(R.id.otplayout);
         otpedittext = (TextInputEditText) findViewById(R.id.otp);
         otpClose = (ImageView) findViewById(R.id.otpClose);
         verify = (Button) findViewById(R.id.submitotp);
@@ -103,8 +106,8 @@ public class OTPActivity extends AppCompatActivity {
             }
         });
 
-        encUsername=MySharedPreferencesManager.getUsername(this);
-        encpassword=MySharedPreferencesManager.getPassword(this);
+        encUsername = MySharedPreferencesManager.getUsername(this);
+        encpassword = MySharedPreferencesManager.getPassword(this);
 
         try {
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -123,7 +126,7 @@ public class OTPActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
 
-        MySharedPreferencesManager.save(this,"otp", "yes");
+        MySharedPreferencesManager.save(this, "otp", "yes");
 
         entertxt.setTypeface(Z.getBold(this));
         otptxt.setTypeface(Z.getLight(this));
@@ -138,7 +141,7 @@ public class OTPActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 enteredOTP = otpedittext.getText().toString();
-                if(enteredOTP.length()<6)
+                if (enteredOTP.length() < 6)
                     otplayout.setError("Kindly enter valid OTP");
                 else {
                     verify.setVisibility(View.GONE);
@@ -159,6 +162,24 @@ public class OTPActivity extends AppCompatActivity {
 
                     new VerifyOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
+            }
+        });
+
+
+        otpedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                otplayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }
@@ -190,24 +211,20 @@ public class OTPActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            new ClearOTPTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            if (resultofop.equals("success") && activationMessageflag == false) {
 
-            if (resultofop.equals("success")) {
-                new ClearOTPTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                if (activationMessageflag == false) {
                     Log.d("TAG", "por bala" + activationMessageflag);
-                    //create new firebase user
 
-                    MySharedPreferencesManager.save(OTPActivity.this, Z.USERNAME_KEY,encUsername);
-                    MySharedPreferencesManager.save(OTPActivity.this, Z.PASSWORD_KEY,encpassword);
-                    MySharedPreferencesManager.save(OTPActivity.this,"otp", "no");
+                MySharedPreferencesManager.save(OTPActivity.this, Z.USERNAME_KEY, encUsername);
+                MySharedPreferencesManager.save(OTPActivity.this, Z.PASSWORD_KEY, encpassword);
+                MySharedPreferencesManager.save(OTPActivity.this, "otp", "no");
 
                     String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-
                     Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
-
 
                     if (role.equals("student")) {
                         new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -226,17 +243,17 @@ public class OTPActivity extends AppCompatActivity {
                         startActivity(new Intent(OTPActivity.this, HRActivity.class));
                         finish();
                     }
-                } else if (resultofop.equals("fail"))
-                    Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
-                else if (resultofop.equals("expired"))
-                    Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
-                else if (resultofop.equals("already")) {
 
-                }
+//              }    else if (resultofop.equals("fail"))
+//                    Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
+//                else if (resultofop.equals("expired"))
+//                    Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
+//                else if (resultofop.equals("already")) {
+//
+//                }
 //                else
 //                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
-            }
-            if (resultofop.equals("success") && activationMessageflag == true) {
+            } else if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "por bala" + activationMessageflag);
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
@@ -246,10 +263,14 @@ public class OTPActivity extends AppCompatActivity {
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
-            } else if (resultofop.equals("fail") && activationMessageflag == true) {
-                Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
-            } else if (resultofop.equals("expired") && activationMessageflag == true)
-                Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
+            } else if (resultofop.equals("fail")) {
+                otplayout.setError("Incorrect OTP");
+//                Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
+            } else if (resultofop.equals("expired"))
+                otplayout.setError("OTP expired.Please request OTP again.");
+//                Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(OTPActivity.this, "Try again", Toast.LENGTH_SHORT).show();
 
 
             verify.setVisibility(View.VISIBLE);
@@ -319,6 +340,7 @@ public class OTPActivity extends AppCompatActivity {
             jParser.makeHttpRequest(Z.url_ClearOTP, "GET", params);
             return "";
         }
+
         @Override
         protected void onPostExecute(String result) {
         }
@@ -360,15 +382,15 @@ public class OTPActivity extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
 
-            String fname=MySharedPreferencesManager.getData(OTPActivity.this,"fname");
-            String lname=MySharedPreferencesManager.getData(OTPActivity.this,"lname");
-            String encfullName=fname+" "+lname;
-            String encPhone=MySharedPreferencesManager.getData(OTPActivity.this,"phone");
+            String fname = MySharedPreferencesManager.getData(OTPActivity.this, "fname");
+            String lname = MySharedPreferencesManager.getData(OTPActivity.this, "lname");
+            String encfullName = fname + " " + lname;
+            String encPhone = MySharedPreferencesManager.getData(OTPActivity.this, "phone");
 
-            if(encfullName==null)
-                encfullName="Name_Not_Found_From_shared";
-            if(encPhone==null)
-                encPhone="Phone_Not_Found_From_shared";
+            if (encfullName == null)
+                encfullName = "Name_Not_Found_From_shared";
+            if (encPhone == null)
+                encPhone = "Phone_Not_Found_From_shared";
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", u));

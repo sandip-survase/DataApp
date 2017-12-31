@@ -198,6 +198,7 @@ public class ShowUsers extends AppCompatActivity {
         if(resultCode== Z.USER_DATA_CHANGE_RESULT_CODE){
             refreshContent();
 
+
         }
     }
 
@@ -222,6 +223,7 @@ public class ShowUsers extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result != null) {
                 Z.CountOfUsersUnderAdmin = result;
+                Log.d("TAG", "onPostExecute: count " + result);
             }
         }
     }
@@ -229,6 +231,7 @@ public class ShowUsers extends AppCompatActivity {
     public void refreshContent(){
         swipeRefreshLayout.setRefreshing(true);
         new GetRegisteredUsersUnderAdmin().execute();
+        new GetCountOfUsersUnderAdmin().execute();
 
     }
 
@@ -260,11 +263,11 @@ public class ShowUsers extends AppCompatActivity {
 
 
         protected String doInBackground(String... param) {
-
-
+            Log.d("TAG", "doInBackground: inside asynk " + username);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.url_GetRegisteredUsersUnderAdmin, "GET", params);
+            Log.d("TAG", "GetRegisteredUsersUnderAdmin : json " + json);
 
             try {
                 String info = json.getString("info");

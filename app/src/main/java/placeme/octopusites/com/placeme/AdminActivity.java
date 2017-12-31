@@ -1689,6 +1689,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotificationChat"));
+        setUserCount();
+        Log.d("TAG", "onResume: ");
 
     }
 
@@ -2546,6 +2548,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     public void setUserCount() {
         bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
+        Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
     }
 
     class isVerified extends AsyncTask<String, String, String> {
