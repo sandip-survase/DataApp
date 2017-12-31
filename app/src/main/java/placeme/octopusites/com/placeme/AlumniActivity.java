@@ -231,6 +231,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         toolbar_title.setTypeface(Z.getRighteous(AlumniActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+        toolbar_title.setText("Notifications");
 
 
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
@@ -976,6 +977,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         Drawable myDrawable = getResources().getDrawable(R.drawable.notification_icon_selected);
         notificationi.setImageDrawable(myDrawable);
+
 
         TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
         pt.setTypeface(Z.getBold(AlumniActivity.this));

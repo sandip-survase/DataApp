@@ -144,7 +144,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         protected void onPostExecute(Boolean aVoid) {
 
             if (aVoid)
-                Toast.makeText(mContext, "system online", Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "lov u all");
             else {
                 Intent i = new Intent(mContext, NoInternet.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);

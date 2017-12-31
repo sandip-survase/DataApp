@@ -139,8 +139,8 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     public void showNoInternet() {
+        Log.d("TAG", "showNoInternet: 142");
         Intent i = new Intent(SplashScreen.this, NoInternet.class);
-//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
         i.putExtra("splash", true);
         startActivity(i);
     }
@@ -561,10 +561,8 @@ public class SplashScreen extends AppCompatActivity {
                 case 2: {
 
                     Intent i = new Intent(SplashScreen.this, NoInternet.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
                     i.putExtra("splash", true);
                     startActivity(i);
-
                     break;
 
                 }

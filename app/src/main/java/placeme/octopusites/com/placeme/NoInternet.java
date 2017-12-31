@@ -42,7 +42,7 @@ public class NoInternet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_internet);
-
+        Log.d("TAG", "onCreate: ");
 
         refreshButton = (Button) findViewById(R.id.refreshButton);
         msg = (TextView) findViewById(R.id.msg);
@@ -79,6 +79,12 @@ public class NoInternet extends AppCompatActivity {
         });
     }
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+//        Log.d("TAG", "onResume: ");
+//    }
 
     public void check() {
         try {
@@ -225,10 +231,16 @@ public class NoInternet extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onPause() {
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+//    @Override
+//    public void onPause() {
+//        Log.d("TAG", "onPause: ");
+//        super.onPause();
+//    }
 
-        super.onPause();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+        Log.d("TAG", "onDestroy: ");
     }
 }
