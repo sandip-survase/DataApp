@@ -1265,7 +1265,7 @@ public class MyProfileAlumniFragment extends Fragment {
         String MONTH = "";
         String YEAR = "";
 
-        Log.d("cricket", " kapil Dev massive inning");
+        Log.d("cricket", " Ravidra jadeja massive inning");
         if (todates1.equals("") && !fromdates1.equals("")) {
             fulltodate1 = alltoDatestoInt(fromdates1);
             continuseWork.put(fulltodate1, 1);
@@ -4337,7 +4337,7 @@ public class MyProfileAlumniFragment extends Fragment {
                     }
                     s = json.getString("experiences");
                     if (s.equals("found")) {
-                        Log.d("cricket", " kapil dev coming to bat");
+                        Log.d("cricket", " Ravidra jadeja coming to bat");
                         found_exp = 1;
                         experiencesataobject = json.getString("experiencesdata");
                         ArrayList<Experiences> ExperiencesList = (ArrayList<Experiences>) fromString(experiencesataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));

@@ -32,9 +32,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-//import cat.ereza.customactivityoncrash.config.CaocConfig;
-
-//import cat.ereza.customactivityoncrash.config.CaocConfig;
+import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -109,16 +107,16 @@ public class SplashScreen extends AppCompatActivity {
         }
 
 
-//        CaocConfig.Builder.create().backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
-//                //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
-////                .showErrorDetails(false) //default: true
-////                .showRestartButton(false) //default: true
-//                .trackActivities(true) //default: false
-////                .minTimeBetweenCrashesMs(2000) //default: 3000
-////                .errorDrawable(R.mipmap.ic_launcher) //default: bug image
-//                .restartActivity(SplashScreen.class) //default: null (your app's launch activity)
-//                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
-//                .apply();
+        CaocConfig.Builder.create().backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
+                //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
+//                .showErrorDetails(false) //default: true
+//                .showRestartButton(false) //default: true
+                .trackActivities(true) //default: false
+//                .minTimeBetweenCrashesMs(2000) //default: 3000
+//                .errorDrawable(R.mipmap.ic_launcher) //default: bug image
+                .restartActivity(SplashScreen.class) //default: null (your app's launch activity)
+                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
+                .apply();
 
 //        try {
 //            if (!Z.CheckInternet()) {

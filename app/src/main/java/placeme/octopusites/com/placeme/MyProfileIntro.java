@@ -135,6 +135,7 @@ public class MyProfileIntro extends AppCompatActivity {
         try {
             plainUsername = Decrypt(username, digest1, digest2);
         } catch (Exception e) {
+            Log.d("cricket", "MPI DG odi match lost - " + e.getMessage());
             e.printStackTrace();
         }
         role.setText(rolestr.substring(0, 1).toUpperCase() + rolestr.substring(1));
@@ -208,6 +209,7 @@ public class MyProfileIntro extends AppCompatActivity {
 
 
         edittedFlag = 0;
+        Log.d("cricket", "MPI OC odi match");
 
     }
 
@@ -231,6 +233,7 @@ public class MyProfileIntro extends AppCompatActivity {
 
                     }
                 } catch (JSONException e) {
+                    Log.d("cricket", "MPI  BCSCL match lost - " + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -248,6 +251,7 @@ public class MyProfileIntro extends AppCompatActivity {
             is.close();
             json = new String(buffer, "UTF-8");
         } catch (IOException ex) {
+            Log.d("cricket", "MPI GJ odi match lost - " + ex.getMessage());
             ex.printStackTrace();
             return json;
         }
@@ -300,11 +304,14 @@ public class MyProfileIntro extends AppCompatActivity {
 
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0) {
             try {
+                Log.d("cricket", "MPI V&S odi match");
                 Modelmyprofileintro obj2 = new Modelmyprofileintro(firstname, lastname, selectedCity, selectedState, selectedCountry);
                 encobj = OtoString(obj2, digest1, digest2);
                 new SaveData().execute(encobj);
 
             } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("cricket", "MPI V&S odi match lost - " + e.getMessage());
             }
         }
 
@@ -386,18 +393,21 @@ public class MyProfileIntro extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));//0
             params.add(new BasicNameValuePair("ci", encobj));       //1
 
+            Log.d("cricket", "MPI DIB odi match");
             json = jParser.makeHttpRequest(Z.url_SaveIntro, "GET", params);
             try {
                 r = json.getString("info");
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.d("cricket", "MPI DIB odi match lost - " + e.getMessage());
+
             }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("cricket", "MPI OPE odi match");
             if (result.equals("success")) {
                 Toast.makeText(MyProfileIntro.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                 String role = MySharedPreferencesManager.getRole(MyProfileIntro.this);

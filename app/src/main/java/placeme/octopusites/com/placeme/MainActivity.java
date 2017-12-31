@@ -446,9 +446,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
-
-//                    int i=4/0;
-
+                        int i = 4 / 0;
 
                     } else if (navMenuFlag == 2) {
 

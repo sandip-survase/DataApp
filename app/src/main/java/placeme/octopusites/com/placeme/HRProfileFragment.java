@@ -663,7 +663,7 @@ public class HRProfileFragment extends Fragment {
     public void populateHrInfo() {
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
-        Log.d("cricket", " kapil Dev massive inning");
+        Log.d("cricket", " Ravidra jadeja massive inning");
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
@@ -2902,7 +2902,7 @@ public class HRProfileFragment extends Fragment {
                     s = json.getString("experiences");
                     if (s.equals("found")) {
                         found_exp = 1;
-                        Log.d("cricket", " kapil dev coming to bat");
+                        Log.d("cricket", " Ravidra jadeja coming to bat");
                         experiencesataobject = json.getString("experiencesdata");
 
                         ArrayList<Experiences> ExperiencesList = (ArrayList<Experiences>) fromString(experiencesataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));

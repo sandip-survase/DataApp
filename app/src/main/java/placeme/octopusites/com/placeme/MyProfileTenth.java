@@ -446,6 +446,7 @@ public class MyProfileTenth extends AppCompatActivity {
             }
         });
         edittedFlag = 0;
+        Log.d("cricket", "MPT OC odi match");
     }
 
     void setMonthYear(String selectedMonth, String selectedYear) {
@@ -504,7 +505,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
-
+                Log.d("cricket", "MPT V&S odi match");
                 if (selectedBoard.equals("Other")) {
                     selectboard = otherspecifiedboard;
                 }
@@ -594,7 +595,7 @@ public class MyProfileTenth extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", encobj));        //1
-
+            Log.d("cricket", "MPT DIB odi match");
             json = jParser.makeHttpRequest(Z.url_SaveTenth, "GET", params);
             try {
                 r = json.getString("info");
