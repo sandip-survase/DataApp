@@ -1485,7 +1485,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         crop_layout.setVisibility(View.GONE);
         tswipe_refresh_layout.setVisibility(View.GONE);
         mainfragment.setVisibility(View.VISIBLE);
-        Toast.makeText(AdminActivity.this, s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdminActivity.this, "Try Again !", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -1908,7 +1908,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
             } catch (Exception e) {
-                Toast.makeText(AdminActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(AdminActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
 
@@ -2533,7 +2533,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
             String status = MySharedPreferencesManager.getData(AdminActivity.this, "fireLoginStatus");
-            Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
             MySharedPreferencesManager.removeKey(AdminActivity.this, "fireLoginStatus");
         }

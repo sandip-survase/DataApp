@@ -1215,11 +1215,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
                             if (task.isSuccessful()) {
-                                Toast.makeText(Welcome.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Welcome.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
                                 Log.d("TAG", "bhajala");
 
                             } else {
-                                Toast.makeText(Welcome.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Welcome.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                                 Log.d("TAG", "nay bhajala");
                             }
                         }

@@ -209,7 +209,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(HRActivity.this, query, Toast.LENGTH_LONG).show();
+//                Toast.makeText(HRActivity.this, query, Toast.LENGTH_LONG).show();
 
                 return false;
             }
@@ -833,7 +833,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     i1.putExtra("lastdateofreg", item.getLastdateofreg());
                     startActivity(i1);
                 } catch (Exception e) {
-                    Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -907,7 +907,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             new LoginFirebaseTask().execute(plainusername, hash);
 
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
 
@@ -1167,7 +1167,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         crop_layout.setVisibility(View.GONE);
         // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
         mainfragment.setVisibility(View.VISIBLE);
-        Toast.makeText(HRActivity.this, s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(HRActivity.this, "Try Again !", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -1471,7 +1471,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         @Override
         protected void onPostExecute(String result) {
             String status = MySharedPreferencesManager.getData(HRActivity.this, "fireLoginStatus");
-            Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
             MySharedPreferencesManager.removeKey(HRActivity.this, "fireLoginStatus");
         }
@@ -1718,7 +1718,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
             } catch (Exception e) {
-                Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
 

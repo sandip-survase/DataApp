@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             loginFirebase(plainusername, hash);
 
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         MySharedPreferencesManager.save(MainActivity.this, "otp", "no");
@@ -1476,11 +1476,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
 
                         } else {
-                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -2155,7 +2155,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         crop_layout.setVisibility(View.GONE);
         tswipe_refresh_layout.setVisibility(View.GONE);
         mainfragment.setVisibility(View.VISIBLE);
-        Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Try Again !", Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -2563,7 +2564,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
             String status = MySharedPreferencesManager.getData(MainActivity.this, "fireLoginStatus");
-            Toast.makeText(MainActivity.this, status, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, status, Toast.LENGTH_SHORT).show();
             // remove value from shared
             MySharedPreferencesManager.removeKey(MainActivity.this, "fireLoginStatus");
         }
@@ -2662,7 +2663,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
             } catch (Exception e) {
-                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
 

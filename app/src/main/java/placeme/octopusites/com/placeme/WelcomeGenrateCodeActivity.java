@@ -733,7 +733,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             addBottomDots(0, 2);
 
         } else {
-            Toast.makeText(this, "Role is not admin or hr", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "Role is not admin or hr", Toast.LENGTH_LONG).show();
             Log.d("TAG", "1+1=000");
         }
 
@@ -851,7 +851,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             errorFlagCompany = true;
                         }else  if (CompanyType != null && CompanyType.equals("-Select Company Nature-")) {
                             errorFlagCompany = true;
-                            Toast.makeText(WelcomeGenrateCodeActivity.this, "select company nature", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Please select company nature", Toast.LENGTH_SHORT).show();
                         } if (CompanyType != null && !CompanyType.equals("")) {
                             if (CompanyType.equals("Other")) {
                                 if (sOtherNature.length() < 2) {
@@ -1312,7 +1312,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             String hash=md5(plainPassword + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this));
 
             loginFirebase(plainusername, hash);
-            Toast.makeText(WelcomeGenrateCodeActivity.this, "fire "+resultofop, Toast.LENGTH_LONG).show();
+//            Toast.makeText(WelcomeGenrateCodeActivity.this, "fire "+resultofop, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -1327,10 +1327,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Log.d("TAG", "bhajala");
-                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d("TAG", "nay bhajala");
-                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
