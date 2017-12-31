@@ -224,7 +224,7 @@ public class OTPActivity extends AppCompatActivity {
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-                    Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
                     if (role.equals("student")) {
                         new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
