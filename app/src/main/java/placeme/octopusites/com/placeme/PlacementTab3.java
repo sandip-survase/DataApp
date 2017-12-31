@@ -166,9 +166,15 @@ public class PlacementTab3 extends Fragment {
                     studenttenthmarksview.setTextColor(Color.parseColor("#8b0000"));
                 }
             } else {
+
                 studenttenthview.setText("N/A");
                 studenttwelthordiplomaview.setText("N/A");
                 studentugview.setText("N/A");
+
+                Drawable myDrawable = getResources().getDrawable(R.drawable.not_eligible_icon);
+                tentheligibility.setImageDrawable(myDrawable);
+                twelthordiplomaeligibility.setImageDrawable(myDrawable);
+                ugeligibility.setImageDrawable(myDrawable);
 
 
             }
