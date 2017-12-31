@@ -539,7 +539,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-//                    Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
                 tv.setTypeface(Z.getBold(WelcomeGenrateCodeActivity.this));
 
                 if (position == 0) {

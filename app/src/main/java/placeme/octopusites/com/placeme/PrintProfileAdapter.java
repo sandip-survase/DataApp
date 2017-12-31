@@ -109,8 +109,8 @@ public class PrintProfileAdapter extends RecyclerView.Adapter<PrintProfileAdapte
         if(item.getTitle().contains("-pro"))
         {
             String title=item.getTitle().replace("-pro","");
-            Typeface custom_font10 = Typeface.createFromAsset(holder.thumbnail.getContext().getAssets(),  "fonts/hint.ttf");
-            holder.protxt.setTypeface(custom_font10);
+
+            holder.protxt.setTypeface(Z.getBold(holder.protxt.getContext()));
             holder.procard.setVisibility(View.VISIBLE);
             holder.title.setText(title);
         }

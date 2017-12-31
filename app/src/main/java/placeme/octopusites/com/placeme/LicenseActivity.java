@@ -436,11 +436,6 @@ public class LicenseActivity extends AppCompatActivity {
         license23 = (TextView) findViewById(R.id.license23);
         content23 = (TextView) findViewById(R.id.content23);
 
-//        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-//        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/ubuntu.ttf");
-//        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/arimo.ttf");
-//        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/meriitalic.ttf");
-//        Typeface custom_font5 = Typeface.createFromAsset(getAssets(),  "fonts/righteous.ttf");
 
         Typeface custom_font6 = Z.getLight(this);
         Typeface custom_font7 = Z.getBold(this);

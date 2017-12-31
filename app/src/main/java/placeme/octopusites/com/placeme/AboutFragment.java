@@ -28,8 +28,6 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_about, container, false);
 
-//        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/cabinsemibold.ttf");
-//        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/maven.ttf");
 
         TextView aboutplacemetxt=(TextView)rootView.findViewById(R.id.aboutplacemetxt);
         TextView versiontxt=(TextView)rootView.findViewById(R.id.versiontxt);

@@ -266,7 +266,7 @@ public class ViewNotification extends AppCompatActivity {
     {
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .encodedAuthority(Z.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("CreateNotificationTemp/DownloadAttachmentFiles")
                 .appendQueryParameter("u", username)
                 .appendQueryParameter("id", id)
