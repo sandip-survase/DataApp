@@ -70,7 +70,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     //                                --------------------adminActivity-----------------
 //placement urls
     public static final String url_GetPlacementsAdminAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsForAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
+    public static final String url_GetReadStatusOfPlacementsForAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
     public static final String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
     public static final String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
@@ -80,12 +80,12 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_ChangeNotificationReadStatusAdmin = IP + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     //    -------------------------------EditNotification-----------------------------------
     public static final String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
-    public static final String url_GetReadStatusOfNotificationsByAdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
+    public static final String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
     public static final String url_GetNotificationsSentByAdmin = IP + "CreateNotificationTemp/GetNotificationsSentByAdmin";
     public static final String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
     public static final String url_GetPlacementSentByAdminByAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
-    public static final String url_GetReadStatusOfPlacementsByAFdmin = IP_8086 + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
+    public static final String url_GetReadStatusOfPlacementsByAFdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
     public static final String url_GetPlacementSentByAdmin = IP + "CreateNotificationTemp/GetPlacementSentByAdmin";
     public static final String url_Delete_Placements = IP + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
@@ -161,7 +161,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
-    public static final String url_save_bug = IP_8086 + "ProfileObjects/Save_Bug";
+    public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
     public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
     public static final String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";
