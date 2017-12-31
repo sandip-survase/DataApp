@@ -290,17 +290,25 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
-                    Intent i1 = new Intent(AdminActivity.this, CreateNotification.class);
-                    i1.putExtra("flag", "fromAdminActivity");
-                    startActivity(i1);
-
-//                    startActivity(new Intent(AdminActivity.this,CreateNotification.class));
+                    if (Z.isAdminHrVerified(AdminActivity.this)) {
+                        Intent i1 = new Intent(AdminActivity.this, CreateNotification.class);
+                        i1.putExtra("flag", "fromAdminActivity");
+                        startActivity(i1);
+                    } else {
+                        Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
 
 
                 } else if (notificationorplacementflag == 2) {
-                    String Tag = "adminActivity";
-                    settag.setActivityFromtag(Tag);
-                    startActivity(new Intent(AdminActivity.this, CreatePlacement.class));
+
+                    if (Z.isAdminHrVerified(AdminActivity.this)) {
+                        String Tag = "adminActivity";
+                        settag.setActivityFromtag(Tag);
+                        startActivity(new Intent(AdminActivity.this, CreatePlacement.class));
+                    } else {
+                        Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
+
 
                 }
             }
@@ -309,10 +317,21 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             @Override
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
-                    startActivity(new Intent(AdminActivity.this, EditNotification.class));
-                } else if (notificationorplacementflag == 2) {
+                    if (Z.isAdminHrVerified(AdminActivity.this)) {
+                        startActivity(new Intent(AdminActivity.this, EditNotification.class));
 
-                    startActivity(new Intent(AdminActivity.this, EditPlacement.class));
+                    } else {
+                        Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
+
+
+                } else if (notificationorplacementflag == 2) {
+                    if (Z.isAdminHrVerified(AdminActivity.this)) {
+                        startActivity(new Intent(AdminActivity.this, EditPlacement.class));
+
+                    } else {
+                        Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
 
                 }
             }
@@ -470,9 +489,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                         getPlacements2();
 
-//                     recyclerViewNotification.setVisibility(View.GONE);
-//                     recyclerViewPlacement.setVisibility(View.VISIBLE);
-
                         admincontrolsrl.setVisibility(View.VISIBLE);
 
                     } else if (navMenuFlag == 4) {
@@ -563,13 +579,13 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         messagecount = (TextView) hView.findViewById(R.id.messagecount);
         messagecountrl = (RelativeLayout) hView.findViewById(R.id.messagecountrl);
 
-        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
-        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
-        View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v5 = (View) hView.findViewById(R.id.settingselectionview);
-        View v6 = (View) hView.findViewById(R.id.blogselectionview);
-        View v7 = (View) hView.findViewById(R.id.abtselectionview);
-        View v8 = (View) hView.findViewById(R.id.chatselectionview);
+        View v1 = hView.findViewById(R.id.prifileselectionview);
+        View v2 = hView.findViewById(R.id.notificationselectionview);
+        View v3 = hView.findViewById(R.id.placementselectionview);
+        View v5 = hView.findViewById(R.id.settingselectionview);
+        View v6 = hView.findViewById(R.id.blogselectionview);
+        View v7 = hView.findViewById(R.id.abtselectionview);
+        View v8 = hView.findViewById(R.id.chatselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
@@ -1815,30 +1831,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     void getNotifications2() {
 
-        itemListNotificationNew.clear();
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-//metadata read count and read status
-
         new GetNotificationsReadStatus().execute();
-
-
-
-//        new Getplacementbyhr().execute();
-
-
     }
-
-
-//placements methods and classes
-
     void getPlacements2() {
-        itemListPlacementnew.clear();
-        tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
@@ -2633,6 +2634,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
 
+            itemListNotificationNew.clear();
             setserverlisttoadapter(itemlistfromserver);
 
         }
@@ -2670,7 +2672,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
 
-
+            itemListPlacementnew.clear();
             setplacementListtoadapter(placementListfromserver);
 
         }

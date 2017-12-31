@@ -38,7 +38,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -79,7 +78,6 @@ import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 import placeme.octopusites.com.placeme.modal.MyProfileWeaknessesModal;
-import placeme.octopusites.com.placeme.modal.PgSem;
 import placeme.octopusites.com.placeme.modal.Projects;
 import placeme.octopusites.com.placeme.modal.Skills;
 
@@ -218,6 +216,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ShouldAnimateProfile.isInside = true;
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(MainActivity.this));
@@ -324,8 +324,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                    {
 //                        messagecountrl.setVisibility(View.GONE);
 //                    }
-                    new GetNotificationsReadStatus().execute();
-                    new GetPlacementsReadStatus().execute();
+                    getNotifications();
+                    getPlacements();
+
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
@@ -446,7 +447,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
-                        int i = 4 / 0;
+
+//                    int i=4/0;
+
 
                     } else if (navMenuFlag == 2) {
 
@@ -594,13 +597,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         messagecount = (TextView) hView.findViewById(R.id.messagecount);
         messagecountrl = (RelativeLayout) hView.findViewById(R.id.messagecountrl);
 
-        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
-        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
-        View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v5 = (View) hView.findViewById(R.id.settingselectionview);
-        View v6 = (View) hView.findViewById(R.id.blogselectionview);
-        View v7 = (View) hView.findViewById(R.id.abtselectionview);
-        View v8 = (View) hView.findViewById(R.id.chatselectionview);
+        View v1 = hView.findViewById(R.id.prifileselectionview);
+        View v2 = hView.findViewById(R.id.notificationselectionview);
+        View v3 = hView.findViewById(R.id.placementselectionview);
+        View v5 = hView.findViewById(R.id.settingselectionview);
+        View v6 = hView.findViewById(R.id.blogselectionview);
+        View v7 = hView.findViewById(R.id.abtselectionview);
+        View v8 = hView.findViewById(R.id.chatselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
@@ -1227,8 +1230,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onRefresh() {
 
-                itemListNotificationNew.clear();
-                itemListPlacementnew.clear();
                 if (selectedMenuFlag == 1) {
                     getNotifications();
                 } else if (selectedMenuFlag == 2) {
@@ -1249,19 +1250,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
 
-//        tswipe_refresh_layout.setRefreshing(true);
-//
-//        new GetUnreadCountOfNotificationAndPlacement().execute();
-        new GetUnreadMessagesCount().execute();
-
-
         getNotifications();
+        new GetUnreadMessagesCount().execute();
         new UpdateFirebaseToken().execute();
 
 
         //temp work remove after done
-        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
-        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
+//        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
+//        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
 //        new CreateFirebaseUser(u,p).execute();
     }
 
@@ -1736,23 +1732,18 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
     void getNotifications() {
-        itemListNotificationNew.clear();
-        tswipe_refresh_layout.setRefreshing(true);
+
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-
         new GetNotificationsReadStatus().execute();
     }
 
     void getPlacements() {
         Log.d("pbacktrack", "getPlacements: accessed ");
-        itemListPlacementnew.clear();
-
-        tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
@@ -1832,8 +1823,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 }
 
 
-                tswipe_refresh_layout.setRefreshing(false);
-//                new GetLastUpdatedNotification().execute();
             }
         }.execute();
     }
@@ -2068,6 +2057,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
 
+            itemListNotificationNew.clear();
             setserverlisttoadapter(itemlistfromserver);
 
         }
@@ -2107,7 +2097,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         protected void onPostExecute(String result) {
 
-
+            itemListPlacementnew.clear();
             setplacementListtoadapter(placementListfromserver);
 
         }
@@ -2677,7 +2667,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         if (lastPageFlagNotification == 1)
             isLastPageLoadedNotification = true;
 
+        recyclerViewNotification.getRecycledViewPool().clear();
         mAdapterNotificationEdit.notifyDataSetChanged();
+
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
@@ -2688,13 +2680,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
         Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+        itemListPlacementnew.addAll(itemList2);
 
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
 
-        itemListPlacementnew.addAll(itemList2);
-
+        recyclerViewPlacement.getRecycledViewPool().clear();
         mAdapterPlacement.notifyDataSetChanged();
+
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
@@ -2704,45 +2697,5 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-
-    // temp work remove after done
-//    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-//
-//        String u, p;
-//        String resultofop=null;
-//        String hash=null;
-//        CreateFirebaseUser(String u, String p) {
-//            this.u = u;
-//            this.p = p;
-//            hash= Z.md5(p + MySharedPreferencesManager.getDigest3(MainActivity.this));
-//        }
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("u", u));
-//            params.add(new BasicNameValuePair("p", p));
-//            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-//            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-//            Log.d("TAG", "CreateFirebaseUser json : "+json);
-//            try {
-//                resultofop = json.getString("info");
-//
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return resultofop;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            loginFirebase(plainusername, hash);
-//            Toast.makeText(MainActivity.this, resultofop, Toast.LENGTH_LONG).show();
-//
-//        }
-//    }
 
 }

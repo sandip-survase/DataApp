@@ -62,7 +62,6 @@ import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
@@ -396,12 +395,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         downloadImage();
 
-        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
-        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
-        View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v5 = (View) hView.findViewById(R.id.settingselectionview);
-        View v6 = (View) hView.findViewById(R.id.blogselectionview);
-        View v7 = (View) hView.findViewById(R.id.abtselectionview);
+        View v1 = hView.findViewById(R.id.prifileselectionview);
+        View v2 = hView.findViewById(R.id.notificationselectionview);
+        View v3 = hView.findViewById(R.id.placementselectionview);
+        View v5 = hView.findViewById(R.id.settingselectionview);
+        View v6 = hView.findViewById(R.id.blogselectionview);
+        View v7 = hView.findViewById(R.id.abtselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
@@ -854,20 +853,28 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
-                    //CreateNotification
-                    Intent i1 = new Intent(HRActivity.this, CreateNotificationHR.class);
-                    i1.putExtra("flag", "HrActivity");
-                    startActivity(i1);
 
-//                    startActivity(new Intent(AdminActivity.this,CreateNotification.class));
+                    if (Z.isAdminHrVerified(HRActivity.this)) {
+                        //CreateNotification
+                        Intent i1 = new Intent(HRActivity.this, CreateNotificationHR.class);
+                        i1.putExtra("flag", "HrActivity");
+                        startActivity(i1);
+                    } else {
+                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
 
 
                 } else if (notificationorplacementflag == 2) {
-                    //CreatePlacement
-                    String Tag = "HrActivity";
-                    PlacementEditData settag = new PlacementEditData();
-                    settag.setActivityFromtag(Tag);
-                    startActivity(new Intent(HRActivity.this, CreatePlacementHr.class));
+                    if (Z.isAdminHrVerified(HRActivity.this)) {
+                        //CreatePlacement
+                        String Tag = "HrActivity";
+                        PlacementEditData settag = new PlacementEditData();
+                        settag.setActivityFromtag(Tag);
+                        startActivity(new Intent(HRActivity.this, CreatePlacementHr.class));
+                    } else {
+                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
+
 
                 }
             }
@@ -877,18 +884,29 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
-                    //EditNotification
-                    String Tag = "HrActivity";
-                    PlacementEditData settag = new PlacementEditData();
-                    settag.setActivityFromtag(Tag);
-                    startActivity(new Intent(HRActivity.this, EditNotification.class));
-                } else if (notificationorplacementflag == 2) {
-                    //EditPlacement
 
-                    String Tag = "HrActivityEdit";
-                    PlacementEditData settag = new PlacementEditData();
-                    settag.setActivityFromtag(Tag);
-                    startActivity(new Intent(HRActivity.this, EditPlacementHr.class));
+                    if (Z.isAdminHrVerified(HRActivity.this)) {
+                        //EditNotification
+                        String Tag = "HrActivity";
+                        PlacementEditData settag = new PlacementEditData();
+                        settag.setActivityFromtag(Tag);
+                        startActivity(new Intent(HRActivity.this, EditNotification.class));
+                    } else {
+                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
+
+
+                } else if (notificationorplacementflag == 2) {
+                    if (Z.isAdminHrVerified(HRActivity.this)) {
+                        //EditPlacement
+                        String Tag = "HrActivityEdit";
+                        PlacementEditData settag = new PlacementEditData();
+                        settag.setActivityFromtag(Tag);
+                        startActivity(new Intent(HRActivity.this, EditPlacementHr.class));
+                    } else {
+                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                    }
+
 
                 }
 

@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -75,8 +74,6 @@ public class ViewPlacement extends AppCompatActivity {
         String uploadedby_enc = getIntent().getStringExtra("uploadedby");
 
         uploadedby = uploadedby_enc;
-
-
         registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
         registerbutton.setTypeface(Z.getBold(this));
         progressBar = (ProgressBar) findViewById(R.id.registerforplacementprogress);

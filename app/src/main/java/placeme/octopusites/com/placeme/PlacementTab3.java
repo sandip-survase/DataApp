@@ -166,26 +166,29 @@ public class PlacementTab3 extends Fragment {
                     studenttenthmarksview.setTextColor(Color.parseColor("#8b0000"));
                 }
             } else {
-
-                tentheligibility.setVisibility(View.GONE);
-                TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
-                studenttenthmarksview.setVisibility(View.GONE);
-                twelthordiplomaeligibility.setVisibility(View.GONE);
-                TextView studenttenthmarksview2 = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
-                studenttenthmarksview2.setVisibility(View.GONE);
-                ugeligibility.setVisibility(View.GONE);
-                TextView studenttenthmarksview3 = (TextView) rootView.findViewById(R.id.studentugmarksview);
-                studenttenthmarksview3.setVisibility(View.GONE);
-                TextView studenttenthmarksview4 = (TextView) rootView.findViewById(R.id.student10txt);
-                studenttenthmarksview4.setVisibility(View.GONE);
-                TextView studenttenthmarksview5 = (TextView) rootView.findViewById(R.id.student12txt);
-                studenttenthmarksview5.setVisibility(View.GONE);
-                TextView studenttenthmarksview6 = (TextView) rootView.findViewById(R.id.studentugtxt);
-                studenttenthmarksview6.setVisibility(View.GONE);
+                studenttenthview.setText("N/A");
+                studenttwelthordiplomaview.setText("N/A");
+                studentugview.setText("N/A");
 
 
             }
-        }else {
+        } else {
+            tentheligibility.setVisibility(View.GONE);
+            TextView studenttenthmarksview = (TextView) rootView.findViewById(R.id.studenttenthmarksview);
+            studenttenthmarksview.setVisibility(View.GONE);
+            twelthordiplomaeligibility.setVisibility(View.GONE);
+            TextView studenttenthmarksview2 = (TextView) rootView.findViewById(R.id.studenttwelthordiplomamarksview);
+            studenttenthmarksview2.setVisibility(View.GONE);
+            ugeligibility.setVisibility(View.GONE);
+            TextView studenttenthmarksview3 = (TextView) rootView.findViewById(R.id.studentugmarksview);
+            studenttenthmarksview3.setVisibility(View.GONE);
+            TextView studenttenthmarksview4 = (TextView) rootView.findViewById(R.id.student10txt);
+            studenttenthmarksview4.setVisibility(View.GONE);
+            TextView studenttenthmarksview5 = (TextView) rootView.findViewById(R.id.student12txt);
+            studenttenthmarksview5.setVisibility(View.GONE);
+            TextView studenttenthmarksview6 = (TextView) rootView.findViewById(R.id.studentugtxt);
+            studenttenthmarksview6.setVisibility(View.GONE);
+
 
         }
 
