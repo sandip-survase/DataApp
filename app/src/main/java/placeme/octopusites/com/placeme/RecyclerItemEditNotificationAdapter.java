@@ -118,7 +118,6 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
                     .into(holder.uploadedbyprofile);
 
 
-            Log.d("Tag", "uri : " + uri.toString());
             Log.d("Tag", "signature : " + item.getSignature());
 
 
