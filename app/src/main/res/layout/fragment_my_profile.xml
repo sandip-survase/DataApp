@@ -23,15 +23,25 @@
                 >
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text=""
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/instcodetxt"
+                    android:textSize="10dp"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
                     android:id="@+id/myprofilepreview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/instcodetxt"
+                    android:layout_marginTop="3dp"
                     android:text="Institute/Company Code"
-                    android:textColor="#03353e"
-                    android:textSize="16dp" />
+                    android:textColor="@color/dark_color"
+                    android:textSize="18dp" />
 
                 <FrameLayout
                     android:id="@+id/profile_rl"

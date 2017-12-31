@@ -78,7 +78,7 @@ public class AdminProfileFragment extends Fragment {
     View box2;
     String experiencesataobject = "";
     int val1 = 0, val2 = 0;
-    TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt, extraexpcount;
+    TextView instcodetxt,editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt, extraexpcount;
     TextView myprofilecource, instteletxt, insttelephone, instwebsite, caddinst, instcontactaddr, acc2txt, acc2txttxt, acc4txt, acc5txt, acc6txt, acc7txt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, exp2txt, myprofileexpfromto2, myprofileexp2name, exp3txt, myprofileexpfromto3, myprofileexp3name, emailtxt, myprofileclgname, nametxt, mobiletxt, contactpersonalemail, contactaddr, contactprofesionalemail, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview;
     ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit;
@@ -188,7 +188,7 @@ public class AdminProfileFragment extends Fragment {
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
         myprofilloc = (TextView) rootView.findViewById(R.id.myprofilloc);
         myprofilemail = (TextView) rootView.findViewById(R.id.myprofilemail);
-
+        instcodetxt=(TextView) rootView.findViewById(R.id.instcodetxt);
         extraexpcount = (TextView) rootView.findViewById(R.id.extraexpcount);
 
         ImageView insteditpencil = (ImageView) rootView.findViewById(R.id.insteditpencil);
@@ -276,7 +276,8 @@ public class AdminProfileFragment extends Fragment {
         myprofilepreview.setTypeface(Z.getBold(getActivity()));
         myprofilename.setTypeface(Z.getBold(getActivity()));
         myprofilrole.setTypeface(Z.getBold(getActivity()));
-
+        instcodetxt.setTypeface(Z.getLight(getActivity()));
+        instcodetxt.setText("Institute Code");
         myprofiledu.setTypeface(Z.getBold(getActivity()));
         myprofilloc.setTypeface(Z.getLight(getActivity()));
         myprofilemail.setTypeface(Z.getLight(getActivity()));

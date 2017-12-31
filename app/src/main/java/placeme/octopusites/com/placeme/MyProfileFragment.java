@@ -76,7 +76,7 @@ public class MyProfileFragment extends Fragment {
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3, myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
-    TextView trytxt, extraprojectscount;
+    TextView instcodetxt,trytxt, extraprojectscount;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, careeredit, contactedit;
     RelativeLayout editprofilerl;
     String username = "", ucode = "", resultofop = "", dataobject = "", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "";
@@ -181,6 +181,7 @@ public class MyProfileFragment extends Fragment {
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
+        instcodetxt=(TextView) rootView.findViewById(R.id.instcodetxt);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
         myprofilloc = (TextView) rootView.findViewById(R.id.myprofilloc);
@@ -280,6 +281,8 @@ public class MyProfileFragment extends Fragment {
         myprofileduration3.setTypeface(Z.getLight(getActivity()));
         extraprojectscount.setTypeface(Z.getLight(getActivity()));
         accomplishmentsboxtxt.setTypeface(Z.getBold(getActivity()));
+        instcodetxt.setTypeface(Z.getLight(getActivity()));
+        instcodetxt.setText("Institute Code");
         acc1txt.setTypeface(Z.getLight(getActivity()));
         acc1txttxt.setTypeface(Z.getBold(getActivity()));
         acc2txt.setTypeface(Z.getLight(getActivity()));

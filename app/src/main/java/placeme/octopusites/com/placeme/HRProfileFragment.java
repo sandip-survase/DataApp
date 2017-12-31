@@ -85,7 +85,7 @@ public class HRProfileFragment extends Fragment {
     ProgressBar profileprogress, updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
     String dataobject = "", companydataobject = "", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "", twelthdataobject = "", diplomadataobject = "", experiencesataobject;
-    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, extraexpcount,noexptxt;
+    TextView instcodetxt, myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, extraexpcount,noexptxt;
     TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, caddinst, instcontactaddr, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt;
     TextView myprofilecource, instteletxt, insttelephone, instwebsite, acc2txt, acc2txttxt, acc4txt, acc5txt, acc6txt, acc7txt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3, emailtxt, myprofileclgname, nametxt, mobiletxt, contactpersonalemail, contactaddr, contactprofesionalemail, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview;
@@ -180,6 +180,7 @@ public class HRProfileFragment extends Fragment {
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
+        instcodetxt = (TextView) rootView.findViewById(R.id.instcodetxt);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
         myprofilloc = (TextView) rootView.findViewById(R.id.myprofilloc);
@@ -259,7 +260,8 @@ public class HRProfileFragment extends Fragment {
         accomplishmentsboxtxt.setTypeface(Z.getBold(getActivity()));
         contactboxtxt.setTypeface(Z.getBold(getActivity()));
         caddinst.setTypeface(Z.getLight(getActivity()));
-
+        instcodetxt.setTypeface(Z.getLight(getActivity()));
+        instcodetxt.setText("Company Code");
         extraexpcount.setTypeface(Z.getLight(getActivity()));
         myprofilecource.setTypeface(Z.getLight(getActivity()));
         instemailtxt.setTypeface(Z.getLight(getActivity()));

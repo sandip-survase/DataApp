@@ -113,7 +113,7 @@ public class MyProfileAlumniFragment extends Fragment {
     int found_intro_box = 0, found_tenth_box = 0;
     int proj_count = 0, exps_count = 0, lang_count = 0, cert_count = 0, courses_count = 0, skills_count = 0, patent_count = 0, public_count = 0, honor_count = 0, strength_count = 0, weakness_count = 0, location_count = 0;
     int percentProfile = 0;
-    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3;
+    TextView instcodetxt,myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3;
     TextView myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3;
     TextView extraprojectscount, noexptxt,extraexpcount;
@@ -204,6 +204,7 @@ public class MyProfileAlumniFragment extends Fragment {
         role = MySharedPreferencesManager.getRole(getActivity());
         TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
         TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
+        instcodetxt = (TextView) rootView.findViewById(R.id.instcodetxt);
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera = (ImageButton) rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
@@ -299,6 +300,9 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileexpfromto3 = (TextView) rootView.findViewById(R.id.myprofileexpfromto2);
         myprofileclgname4 = (TextView) rootView.findViewById(R.id.myprofileclgname4);
         myprofileclgyearofpassing4 = (TextView) rootView.findViewById(R.id.myprofileclgyearofpassing4);
+
+        instcodetxt.setTypeface(Z.getLight(getActivity()));
+        instcodetxt.setText("Institute Code");
         noexptxt.setTypeface(Z.getBold(getActivity()));
         exp1txt.setTypeface(Z.getBold(getActivity()));
         myprofileexp1name.setTypeface(Z.getLight(getActivity()));
