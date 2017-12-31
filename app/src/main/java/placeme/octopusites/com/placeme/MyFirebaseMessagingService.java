@@ -1,5 +1,6 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -72,6 +73,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } else {
             Log.d(TAG, "remoteMessage.getNotification() NULL");
         }
+
+
+        if (isAppOnForeground(getApplicationContext()))
+            Log.d("kun", "on");
+        else
+            Log.d("kun", "off");
+
+        Log.d("kun", " in " + ShouldAnimateProfile.isInside);
 
         int showFlag = 0;
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -448,6 +457,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
         }
 
+    }
+
+    private boolean isAppOnForeground(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+        if (appProcesses == null) {
+            return false;
+        }
+        final String packageName = context.getPackageName();
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -163,7 +163,7 @@ public class Z {
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
-    public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
+    public static final String url_save_bug = IP_8086 + "ProfileObjects/Save_Bug";
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
     public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
     public static final String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";

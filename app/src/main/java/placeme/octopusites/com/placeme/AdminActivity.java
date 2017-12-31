@@ -210,6 +210,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         setContentView(R.layout.activity_admin);
 
         ShouldAnimateProfile.isInside = true;
+        Z.CountOfUsersUnderAdmin = "0";
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
