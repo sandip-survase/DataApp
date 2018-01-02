@@ -118,8 +118,25 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         university = (TextInputEditText) WelComeInstituteView.findViewById(R.id.university);
         regNumber = (TextInputEditText) WelComeInstituteView.findViewById(R.id.regNumber);
         countryAutoBox = (AutoCompleteTextView) WelComeInstituteView.findViewById(R.id.countryAutoBox);
+        countryinputlayout = (TextInputLayout) WelComeInstituteView.findViewById(R.id.countryinputlayout);
 
 
+        countryAutoBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                countryinputlayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         instituteName.addTextChangedListener(new TextWatcher() {
 
@@ -131,6 +148,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 instituteNameTextInputLayout.setError(null);
+
             }
 
             @Override
@@ -188,6 +206,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 websiteTextInputLayout.setError(null);
+
             }
 
             @Override
@@ -677,8 +696,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         try {
             android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
-            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-            device_id = telephonyManager.getDeviceId();
+//            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//            device_id = telephonyManager.getDeviceId();
         }catch (Exception e){}
 
         viewPager.setOnTouchListener(new View.OnTouchListener() {
@@ -758,30 +777,48 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                         if (sInstituteName.length() < 2) {
                             errorFlagInstitute = true;
+                            instituteNameTextInputLayout.clearFocus();
+                            instituteName.requestFocus();
                             instituteNameTextInputLayout.setError("Enter valid Institute name");
                         } else if (COUNTRY.length() < 1) {
                             errorFlagInstitute = true;
+                            countryAutoBox.clearFocus();
+                            countryAutoBox.requestFocus();
                             countryinputlayout.setError("select country");
                         } else if (sInstituteAddress.length() < 5) {
                             errorFlagInstitute = true;
+                            instituteAddress.clearFocus();
+                            instituteAddress.requestFocus();
                             addressTextInputLayout.setError("Enter valid address");
                         } else if (!sInstituteEmail.contains("@")) {
                             errorFlagInstitute = true;
+                            instituteEmail.clearFocus();
+                            instituteEmail.requestFocus();
                             instituteEmailTextInputLayout.setError("Invalid Email");
                         } else if (!sInstitutewebsite.contains(".")) {
                             errorFlagInstitute = true;
+                            institutewebsite.clearFocus();
+                            institutewebsite.requestFocus();
                             websiteTextInputLayout.setError("Enter valid Website url");
                         } else if (sInstitutephone.length() < 8) {
                             errorFlagInstitute = true;
+                            institutephone.clearFocus();
+                            institutephone.requestFocus();
                             phoneTextInputLayout.setError("Invalid phone number");
                         }else if(instituteAlternatephone.length()>0 && instituteAlternatephone.length()<8){
                             errorFlagInstitute = true;
+                            alternatePhoneTextInputLayout.clearFocus();
+                            alternatePhoneTextInputLayout.requestFocus();
                             alternatePhoneTextInputLayout.setError("Invalid phone number");
                         } else if (sUniversity.length() < 2) {
                             errorFlagInstitute = true;
+                            university.clearFocus();
+                            university.requestFocus();
                             univercityTextInputLayout.setError("Enter Valid University Name");
                         } else if (sRegNumber.length() < 2) {
                             errorFlagInstitute = true;
+                            regNumber.clearFocus();
+                            regNumber.requestFocus();
                             regNumTextInputLayout.setError("Invalid Registration Number");
                         } else if (COUNTRY.length() > 1) {
                             boolean flag = false;
@@ -793,6 +830,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             }
                             if (flag == false) {
                                 errorFlagInstitute = true;
+                                countryAutoBox.clearFocus();
+                                countryAutoBox.requestFocus();
                                 countryinputlayout.setError("please select country from suggestions");
                             }
                         }
@@ -824,27 +863,43 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                         if (sCompanyName.length() < 2) {
                             errorFlagCompany = true;
+                            companyName.clearFocus();
+                            companyName.requestFocus();
                             companyNameTextInputLayout.setError("Kindly provide valid company name");
                         }else if (COUNTRY.length() < 1) {
                             errorFlagCompany = true;
+                            countryAutoBoxCompany.clearFocus();
+                            countryAutoBoxCompany.requestFocus();
                             companycountryinputlayout.setError("Kindly provide country name");
                         } else if (sCompanyAddress.length() < 2 ) {
                             errorFlagCompany = true;
+                            companyAddress.clearFocus();
+                            companyAddress.requestFocus();
                             companyaddressTextInputLayout.setError("Kindly provide valid address");
                         } else if (!sCompanyEmail.contains("@")) {
                             errorFlagCompany = true;
+                            companyEmail.clearFocus();
+                            companyEmail.requestFocus();
                             companyemailTextInputLayout.setError("Kindly provide valid email");
                         } else if (!sCompanyWebsite.contains(".")) {
                             errorFlagCompany = true;
+                            companyWebsite.clearFocus();
+                            companyWebsite.requestFocus();
                             companywebsiteTextInputLayout.setError("Kindly provide valid website");
                         } else if (sCompanyPhone.length() < 8) {
                             errorFlagCompany = true;
+                            companyPhone.clearFocus();
+                            companyPhone.requestFocus();
                             companyphoneTextInputLayout.setError("Kindly provide correct phone number");
                         }else if(companyAlternatephone.length()>0 && companyAlternatephone.length()<8){
                             errorFlagCompany = true;
+                            companyAlternatephone.clearFocus();
+                            companyAlternatephone.requestFocus();
                             companyalternatePhoneTextInputLayout.setError("Kindly provide correct phone number");
                         } else if (sCIN.length() < 3) {
                             errorFlagCompany = true;
+                            CIN.clearFocus();
+                            CIN.requestFocus();
                             companyCINTextInputLayout.setError("KIndly provide valid CIN (Company Identification Number)");
                         } else  if (CompanyType== null) {
                             errorFlagCompany = true;
@@ -855,11 +910,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             if (CompanyType.equals("Other")) {
                                 if (sOtherNature.length() < 2) {
                                     errorFlagCompany = true;
+                                    otherNature.clearFocus();
+                                    otherNature.requestFocus();
                                     ocompanytherNatureTextInputLayout.setError("Kindly provide valid company nature");
                                 } else
                                     nature = sOtherNature;
                             }
-                        }if (COUNTRY.length() > 1) {
+                        }
+                        if (COUNTRY.length() > 0 && errorFlagCompany == false) {
                             boolean flag = false;
                             for (String compareCountry : countrieslist) {
                                 if (compareCountry.equals(COUNTRY)) {
@@ -869,6 +927,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             }
                             if (flag == false) {
                                 errorFlagCompany = true;
+                                countryAutoBoxCompany.clearFocus();
+                                countryAutoBoxCompany.requestFocus();
                                 companycountryinputlayout.setError("Please select country from suggestions");
                             }
                         }
