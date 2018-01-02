@@ -369,12 +369,12 @@ public class SplashScreen extends AppCompatActivity {
                 String s = null;
 
                 s = json.getString("info");
+                Log.d("TAG", "doInBackground: logintask : " + s);
                 resultofop = s;
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                editor.putString("role", s);
                 editor.putString("pref1", "yes");
                 editor.putString("pref2", "yes");
                 editor.putString("pref3", "yes");
@@ -391,23 +391,25 @@ public class SplashScreen extends AppCompatActivity {
                 if (s.equals("student")) {
 
                     EmailCred = mEmail;
+                    MySharedPreferencesManager.save(SplashScreen.this, "role", s);
 
                     return 1;
                 } else if (s.equals("admin")) {
 
                     EmailCred = mEmail;
-
+                    MySharedPreferencesManager.save(SplashScreen.this, "role", s);
 
                     return 3;
                 } else if (s.equals("hr")) {
 
                     EmailCred = mEmail;
-
+                    MySharedPreferencesManager.save(SplashScreen.this, "role", s);
 
                     return 4;
                 } else if (s.equals("alumni")) {
 
                     EmailCred = mEmail;
+                    MySharedPreferencesManager.save(SplashScreen.this, "role", s);
                     return 5;
                 }
 

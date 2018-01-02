@@ -1,11 +1,14 @@
 package placeme.octopusites.com.placeme;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -72,7 +75,39 @@ public class OTPActivity extends AppCompatActivity {
         otpClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(OTPActivity.this);
+
+                alertDialogBuilder
+                        .setMessage("Your sign up data will get lost. Do you want to continue?")
+                        .setCancelable(false)
+                        .setPositiveButton("yes",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        finish();
+                                    }
+                                })
+
+                        .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.cancel();
+                            }
+                        });
+
+                final AlertDialog alertDialog = alertDialogBuilder.create();
+
+                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(OTPActivity.this));
+                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(OTPActivity.this));
+                    }
+                });
+
+                alertDialog.show();
+
             }
         });
 

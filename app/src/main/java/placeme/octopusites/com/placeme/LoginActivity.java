@@ -224,28 +224,33 @@ public class LoginActivity extends AppCompatActivity {
                 json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                 String s = null;
                 s = json.getString("info");
+                Log.d("TAG", "loginActivity login task : " + s);
                 resultofop = s;
-                MySharedPreferencesManager.save(LoginActivity.this, "role", s);
+
 
                 if (s.equals("student")) {
 
                     EmailCred = mEmail;
+                    MySharedPreferencesManager.save(LoginActivity.this, "role", s);
 
                     return 1;
                 } else if (s.equals("admin")) {
 
                     EmailCred = mEmail;
+                    MySharedPreferencesManager.save(LoginActivity.this, "role", s);
 
                     return 3;
                 } else if (s.equals("hr")) {
 
                     EmailCred = mEmail;
+                    MySharedPreferencesManager.save(LoginActivity.this, "role", s);
 
 
                     return 4;
                 } else if (s.equals("alumni")) {
 
                     EmailCred = mEmail;
+                    MySharedPreferencesManager.save(LoginActivity.this, "role", s);
                     return 5;
                 }
                 if (s.equals("notactivated")) {
@@ -253,6 +258,7 @@ public class LoginActivity extends AppCompatActivity {
                     String role = json.getString("role");
                     Log.d("TAG", "dead");
                     MySharedPreferencesManager.save(LoginActivity.this, "role", role);
+                    Log.d("TAG", "doInBackground: role : " + role);
                     EmailCred = mEmail;
 
                     return 6;
