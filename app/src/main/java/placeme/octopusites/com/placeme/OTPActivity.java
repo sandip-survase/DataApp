@@ -101,7 +101,7 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 resendotp.setVisibility(View.GONE);
-
+                Toast.makeText(OTPActivity.this, "" + MySharedPreferencesManager.getRole(OTPActivity.this), Toast.LENGTH_SHORT).show();
                 new ResendOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         });
@@ -302,14 +302,19 @@ public class OTPActivity extends AppCompatActivity {
 
     class ResendOTP extends AsyncTask<String, String, String> {
 
-
         protected String doInBackground(String... param) {
+
+            String encUsernameResendOTP = encUsername;
+
+            if (activationMessageflag == true) {
+                encUsernameResendOTP = MySharedPreferencesManager.getData(OTPActivity.this, "proEmail");
+            }
 
             String encfname = MySharedPreferencesManager.getData(OTPActivity.this, "fname");
             String enclname = MySharedPreferencesManager.getData(OTPActivity.this, "lname");
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("ud", encUsername));
+            params.add(new BasicNameValuePair("ud", encUsernameResendOTP));
             params.add(new BasicNameValuePair("f", encfname));
             params.add(new BasicNameValuePair("l", enclname));
             json = jParser.makeHttpRequest(Z.url_resendotp, "GET", params);

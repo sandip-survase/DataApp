@@ -785,14 +785,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         viewPager.setCurrentItem(0);
         addBottomDots(0, 2);
 
-
-        try {
             android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
-            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-            device_id = telephonyManager.getDeviceId();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+//        try {
+//            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//            device_id = telephonyManager.getDeviceId();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         //--------------------------------------------------- NEXT BUTTON ---------------------------------------------//
 
