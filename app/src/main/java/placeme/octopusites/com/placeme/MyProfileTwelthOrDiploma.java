@@ -2030,6 +2030,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                         selectedcourseBytes1 = otherspecifiedcourse;
                     else
                         selectedcourseBytes1 = selectedCourse;
+
                     if (selectedBoarddiploma.equals("Other"))
                         selecteddiplomaboardBytes1 = otherspecifiedboard;
                     else
@@ -2367,6 +2368,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 s.setUniversitydiploma(selectedBoarddiploma);
                 s.setCollegenamediploma(schoolnamediploma);
                 s.setYearofpassingdiploma(monthandyearofpassingdiploma);
+                s.setCoursediploma(selectedcourseBytes1);
+                s.setUniversitydiploma(selecteddiplomaboardBytes1);
 
             } else
                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Try again !", Toast.LENGTH_SHORT).show();

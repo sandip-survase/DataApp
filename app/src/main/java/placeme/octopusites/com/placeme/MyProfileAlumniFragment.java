@@ -1017,7 +1017,7 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         }
         if (found_courses == 1) {
-            if (!title1.equals("")){
+            if (!course1.equals("")) {
                 Log.d("cricket", " kl rahul  massive inning");
                 if (!course1.equals(""))
                 acc3txttxt.setText(course1);
@@ -1031,7 +1031,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
             else
             {
-                acc3txttxt.setText("No skills filled.");
+                acc3txttxt.setText("No courses filled.");
             }
         }
         if (found_skills == 1) {

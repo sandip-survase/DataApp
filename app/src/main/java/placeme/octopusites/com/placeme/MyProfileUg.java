@@ -2001,6 +2001,11 @@ public class MyProfileUg extends AppCompatActivity {
                 s.setCollegenameug(schoolname);
                 s.setYearofpassingug(monthandyearofpassing);
 
+                s.setCourseug(courseug);
+                s.setUniversityug(universityug);
+                s.setStreamug(streamug);
+
+
                 MyProfileUg.super.onBackPressed();
             }
             else {

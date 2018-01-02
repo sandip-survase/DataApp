@@ -931,7 +931,7 @@ public class MyProfileFragment extends Fragment {
                 if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
                     acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and " + courses_count + " more");
             } else {
-                acc3txttxt.setText("No skills filled.");
+                acc3txttxt.setText("No courses filled.");
             }
         }
         if (found_skills == 1) {
