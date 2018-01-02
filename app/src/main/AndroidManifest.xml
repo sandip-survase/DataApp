@@ -346,7 +346,9 @@
             android:name=".ViewTemplateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GetMoreResumeTemplates" />
+        <activity
+            android:name=".GetMoreResumeTemplates"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EditProfileHr"
             android:screenOrientation="portrait"
@@ -359,25 +361,37 @@
             android:name=".AdminSingleUserViewDialog"
             android:theme="@style/MyFormTheme" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".WelcomeGenrateCodeActivity"
             android:theme="@style/AppFullScreenTheme" />
-        <activity android:name=".MyCustomErrorActivity" />
-        <activity android:name=".NoInternet" />
         <activity
+            android:name=".MyCustomErrorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NoInternet"
+            android:screenOrientation="portrait" />
+        <activity
+            android:screenOrientation="portrait"
             android:name=".UserSelection"
             android:label="@string/title_activity_user_selection" />
-        <activity android:name=".NewsFeedWebView" />
+        <activity
+            android:name=".NewsFeedWebView"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StudentRoleSelected"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".AlumniRoleSelected"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".TPORoleSelected"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".HRRoleSelected"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
 
         <meta-data
@@ -432,7 +446,9 @@
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
             android:value="598.0dip" />
 
-        <activity android:name=".StayTunedActivity"></activity>
+        <activity
+            android:name=".StayTunedActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

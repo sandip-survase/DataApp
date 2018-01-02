@@ -51,7 +51,6 @@
                 android:id="@+id/instcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
                 android:hint="Enter Institute Code"
                 android:imeOptions="actionDone"
                 android:inputType="textCapCharacters"
