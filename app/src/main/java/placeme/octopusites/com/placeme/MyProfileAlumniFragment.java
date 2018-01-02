@@ -153,22 +153,7 @@ public class MyProfileAlumniFragment extends Fragment {
     private ProgressBar profileprogress, updateProgress;
     public MyProfileAlumniFragment() {
     }
-    public static String getUserCountry(Context context) {
-        try {
-            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            final String simCountry = tm.getSimCountryIso();
-            if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
-                return simCountry.toUpperCase(Locale.US);
-            } else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
-                String networkCountry = tm.getNetworkCountryIso();
-                if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
-                    return networkCountry.toUpperCase(Locale.US);
-                }
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
+
     public void bottomupbox2(Activity activity, View view) {
         Animation animation1 =
                 AnimationUtils.loadAnimation(activity,
@@ -190,6 +175,7 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -576,11 +562,12 @@ public class MyProfileAlumniFragment extends Fragment {
         }
     }
     void populateData() {
-        Log.d("cricket", "sachin tendulkar massive inning");
+
         setVisibilityExpbox();
         percentProfile = 0;
         if (ucode != null) {
             if (!ucode.equals(""))
+                Log.d("cricket", "sachin tendulkar massive inning");
                 myprofilepreview.setText(ucode);
         }
         if (phone != null) {
@@ -1265,8 +1252,9 @@ public class MyProfileAlumniFragment extends Fragment {
         String MONTH = "";
         String YEAR = "";
 
-        Log.d("cricket", " Ravidra jadeja massive inning");
+
         if (todates1.equals("") && !fromdates1.equals("")) {
+            Log.d("cricket", " Ravidra jadeja massive inning");
             fulltodate1 = alltoDatestoInt(fromdates1);
             continuseWork.put(fulltodate1, 1);
         }
@@ -1939,6 +1927,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
 
         if (!todates1.equals("") && !fromdates1.equals("")) {
+            Log.d("cricket", " Ravidra jadeja massive inning");
             fulltodate1 = alltoDatestoInt(todates1);
             workDoneExp.put(fulltodate1, 1);
         }
@@ -3163,8 +3152,8 @@ public class MyProfileAlumniFragment extends Fragment {
                             proj_count = 6;
                         if (!proj10.equals(""))
                             proj_count = 7;
-
                     }
+
                     s = json.getString("knownlang");
                     if (s.equals("found")) {
                         found_lang = 1;

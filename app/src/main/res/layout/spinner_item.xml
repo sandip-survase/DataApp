@@ -5,5 +5,7 @@
     android:padding="10dp"
     android:textColor="#03353e"
     android:id="@+id/spinner_item"
+    android:singleLine="true"
+    android:maxLines="1"
 
     />

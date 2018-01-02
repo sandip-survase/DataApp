@@ -333,6 +333,7 @@ public class MyProfilePg extends AppCompatActivity {
 
                 if (selectedCoursepgsem.equals("Other")) {
                     othersemcourseinput.setVisibility(View.VISIBLE);
+                    othersemcourse.setVisibility(View.VISIBLE);
                 } else {
 
                     othersemcourseinput.setVisibility(View.GONE);
@@ -446,9 +447,7 @@ public class MyProfilePg extends AppCompatActivity {
 
                 TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.othersemuniversityinput);
                 if (selectedUniversitypgsem.equals("Other")) {
-
                     otheruniversityinput.setVisibility(View.VISIBLE);
-
                 } else {
                     otheruniversityinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -472,6 +471,7 @@ public class MyProfilePg extends AppCompatActivity {
                 if (selectedUniversitypgyear.equals("Other")) {
 
                     otheryearuniversityinput.setVisibility(View.VISIBLE);
+                    otheryearuniversity.setVisibility(View.VISIBLE);
 
                 } else {
                     otheryearuniversityinput.setVisibility(View.GONE);
@@ -512,9 +512,13 @@ public class MyProfilePg extends AppCompatActivity {
                 tosettoStreamslist.clear();
 
                 setStreamyearAdapter(toCompare);
+
                 if (selectedCoursepgyear.equals("Other")) {
 
                     otheryearcourseinput.setVisibility(View.VISIBLE);
+                    otheryearcourse.setVisibility(View.VISIBLE);
+
+
                 } else {
                     otheryearcourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -578,6 +582,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
 
 
         pmarkssem1.addTextChangedListener(new TextWatcher() {
@@ -1113,6 +1118,44 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
+        otheryearuniversity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otheryearuniversityinput.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        othersemuniversity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                othersemuniversityinput.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
         pgsemaggregate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -2355,6 +2398,9 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                                         if (schoolnamepgsemester.length() < 3) {
                                                                                                             errorflag4 = 1;
                                                                                                             schoolnamepgseminput.setError("Kindly enter valid college name");
+                                                                                                        } else if (monthandyearofpassingpgsem.length() < 9 || monthandyearofpassingpgsem.length() > 9) {
+                                                                                                            errorflag5 = 1;
+                                                                                                            yearofpassingpgseminput.setError("Kindly select valid Month,Year");
                                                                                                         } else if (selectedUniversitypgsem.equals("Other")) {
                                                                                                             otherspecifieduniversitypgsem = othersemuniversity.getText().toString();
 
@@ -2363,9 +2409,6 @@ public class MyProfilePg extends AppCompatActivity {
 
                                                                                                                 othersemuniversityinput.setError("Kindly enter valid university");
                                                                                                             }
-                                                                                                        } else if (monthandyearofpassingpgsem.length() < 9 || monthandyearofpassingpgsem.length() > 9) {
-                                                                                                            errorflag5 = 1;
-                                                                                                            yearofpassingpgseminput.setError("Kindly select valid Month,Year");
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -2377,6 +2420,9 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                                     if (schoolnamepgsemester.length() < 3) {
                                                                                                         errorflag4 = 1;
                                                                                                         schoolnamepgseminput.setError("Kindly enter valid college name");
+                                                                                                    } else if (monthandyearofpassingpgsem.length() < 9 || monthandyearofpassingpgsem.length() > 9) {
+                                                                                                        errorflag5 = 1;
+                                                                                                        yearofpassingpgseminput.setError("Kindly select valid Month,Year");
                                                                                                     } else if (selectedUniversitypgsem.equals("Other")) {
                                                                                                         otherspecifieduniversitypgsem = othersemuniversity.getText().toString();
 
@@ -2385,10 +2431,9 @@ public class MyProfilePg extends AppCompatActivity {
 
                                                                                                             othersemuniversityinput.setError("Kindly enter valid university");
                                                                                                         }
-                                                                                                    } else if (monthandyearofpassingpgsem.length() < 9 || monthandyearofpassingpgsem.length() > 9) {
-                                                                                                        errorflag5 = 1;
-                                                                                                        yearofpassingpgseminput.setError("Kindly select valid Month,Year");
+
                                                                                                     }
+
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -2554,8 +2599,10 @@ public class MyProfilePg extends AppCompatActivity {
                                                                     if (schoolnamepgyears.length() < 3) {
                                                                         errorflag4 = 1;
                                                                         schoolnamepgyearinput.setError("Kindly enter valid college name");
-                                                                    }
-                                                                    if (selectedUniversitypgyear.equals("Other")) {
+                                                                    } else if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
+                                                                        errorflag5 = 1;
+                                                                        yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
+                                                                    } else if (selectedUniversitypgyear.equals("Other")) {
                                                                         otherspecifieduniversitypgyear = otheryearuniversity.getText().toString();
 
                                                                         if (otherspecifieduniversitypgyear.length() < 3) {
@@ -2565,10 +2612,7 @@ public class MyProfilePg extends AppCompatActivity {
                                                                         }
                                                                     }
 
-                                                                    if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
-                                                                        errorflag5 = 1;
-                                                                        yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
-                                                                    }
+
                                                                 }
                                                             }
                                                         } else {
@@ -2577,8 +2621,14 @@ public class MyProfilePg extends AppCompatActivity {
                                                                 errorflag3 = 1;
                                                                 Toast.makeText(MyProfilePg.this, "Select University", Toast.LENGTH_LONG).show();
                                                             } else {
+                                                                if (schoolnamepgyears.length() < 3) {
+                                                                    errorflag4 = 1;
 
-                                                                if (selectedUniversitypgyear.equals("Other")) {
+                                                                    schoolnamepgyearinput.setError("Kindly enter valid college name");
+                                                                } else if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
+                                                                        errorflag5 = 1;
+                                                                        yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
+                                                                    } else if (selectedUniversitypgyear.equals("Other")) {
                                                                     otherspecifieduniversitypgyear = otheryearuniversity.getText().toString();
 
                                                                     if (otherspecifieduniversitypgyear.length() < 3) {
@@ -2587,17 +2637,7 @@ public class MyProfilePg extends AppCompatActivity {
                                                                         otheryearuniversityinput.setError("Kindly enter valid university");
                                                                     }
                                                                 }
-                                                                if (schoolnamepgyears.length() < 3) {
-                                                                    errorflag4 = 1;
 
-                                                                    schoolnamepgyearinput.setError("Kindly enter valid college name");
-                                                                } else {
-
-                                                                    if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
-                                                                        errorflag5 = 1;
-                                                                        yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
-                                                                    }
-                                                                }
                                                             }
                                                         }
                                                     }

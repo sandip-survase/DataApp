@@ -305,6 +305,8 @@
                 android:id="@+id/yearofpassing12spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
                 android:layout_below="@+id/otherboardinput"
                 android:layout_toLeftOf="@+id/section">
 

@@ -1988,6 +1988,9 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                                                                                         errorflag4 = 1;
 
                                                                                                         otherboarddinput.setError("Kindly enter valid board");
+                                                                                                    } else if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
+                                                                                                        errorflag5 = 1;
+                                                                                                        yearofpassingdinput.setError("Kindly select valid Month,Year");
                                                                                                     }
                                                                                                 } else if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
                                                                                                     errorflag5 = 1;

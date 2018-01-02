@@ -236,7 +236,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:elevation="10dp"
-                    android:text=" % Profile Completed"
+                    android:text="  Profile Completed"
                     android:textColor="@color/while_color"
                     android:textSize="11dp"
                     android:textStyle="italic" />

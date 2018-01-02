@@ -517,9 +517,10 @@ public class AdminProfileFragment extends Fragment {
 
     void populateData() {
         setVisibilityExpbox();
-        Log.d("cricket", "sachin tendulkar massive inning");
+
         if (ucode != null) {
             if (!ucode.equals(""))
+                Log.d("cricket", "sachin tendulkar massive inning");
                 myprofilepreview.setText(ucode);
         }
 
@@ -811,7 +812,7 @@ public class AdminProfileFragment extends Fragment {
     public void populateExperiencesInfo() {
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
-        Log.d("cricket", " Ravidra jadeja massive inning");
+
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
@@ -822,6 +823,7 @@ public class AdminProfileFragment extends Fragment {
         String YEAR = "";
 
         if (todate1.equals("") && !fromdate1.equals("")) {
+            Log.d("cricket", " Ravidra jadeja massive inning");
             fulltodate1 = alltoDatestoInt(fromdate1);
             continuseWork.put(fulltodate1, 1);
         }
@@ -1497,6 +1499,7 @@ public class AdminProfileFragment extends Fragment {
         }
 
         if (!todate1.equals("") && !fromdate1.equals("")) {
+            Log.d("cricket", " Ravidra jadeja massive inning");
             fulltodate1 = alltoDatestoInt(todate1);
             workDoneExp.put(fulltodate1, 1);
         }

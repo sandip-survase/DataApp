@@ -742,6 +742,7 @@
                 android:layout_marginLeft="5dp"
                 android:background="@color/while_color"
                 android:gravity="center"
+
                 android:popupBackground="@color/while_color"
                 android:spinnerMode="dropdown" />
 
@@ -860,6 +861,7 @@
             android:orientation="horizontal">
 
             <Spinner
+
                 android:id="@+id/uuniversity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

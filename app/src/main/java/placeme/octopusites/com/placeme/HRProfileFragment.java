@@ -663,7 +663,7 @@ public class HRProfileFragment extends Fragment {
     public void populateHrInfo() {
         TreeMap<Integer, Integer> continuseWork = new TreeMap<>();
         TreeMap<Integer, Integer> workDoneExp = new TreeMap<>(Collections.reverseOrder());
-        Log.d("cricket", " Ravidra jadeja massive inning");
+
         hrinfobox1 = false;
         hrinfobox2 = false;
         hrinfobox3 = false;
@@ -675,6 +675,7 @@ public class HRProfileFragment extends Fragment {
 
         // continus working then we hav to fromdate not todate
         if (todates1.equals("") && !fromdates1.equals("")) {
+            Log.d("cricket", " Ravidra jadeja massive inning");
             fulltodate1 = alltoDatestoInt(fromdates1);
             continuseWork.put(fulltodate1, 1);
         }
@@ -1350,6 +1351,7 @@ public class HRProfileFragment extends Fragment {
         }
 
         if (!todates1.equals("") && !fromdates1.equals("")) {
+            Log.d("cricket", " Ravidra jadeja massive inning");
             fulltodate1 = alltoDatestoInt(todates1);
             workDoneExp.put(fulltodate1, 1);
         }
@@ -3096,11 +3098,15 @@ public class HRProfileFragment extends Fragment {
 
         void populateData() {
             setVisibilityExpbox();
-            Log.d("cricket", "sachin tendulkar massive inning");
+
             percentProfile = 0;
 
-            if (!ucode.equals(""))
-                myprofilepreview.setText(ucode);
+            if (ucode != null) {
+                if (!ucode.equals("")) {
+                    Log.d("cricket", "sachin tendulkar massive inning");
+                    myprofilepreview.setText(ucode);
+                }
+            }
 
             if (found_intro_box == 1) {
                 if (!fname.equals("") && !lname.equals("")) {

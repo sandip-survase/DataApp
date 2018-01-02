@@ -195,6 +195,9 @@ public class MyProfileUg extends AppCompatActivity {
         uaggregate.setTypeface(Z.getBold(this));
         schoolnameu.setTypeface(Z.getBold(this));
         yearofpassingu.setTypeface(Z.getBold(this));
+        othercourse.setTypeface(Z.getBold(this));
+        otheruniversity.setTypeface(Z.getBold(this));
+
 
         umarksusem1input.setTypeface(Z.getLight(this));
         uoutofsem1input.setTypeface(Z.getLight(this));
@@ -1860,18 +1863,17 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                                         if (schoolname.length() < 3) {
                                                                                                                             errorflag4 = 1;
                                                                                                                             schoolnameuinput.setError("Kindly enter valid college name");
-                                                                                                                        }
-                                                                                                                        else if (selectedUniversity.equals("Other")) {
+                                                                                                                        } else if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
+                                                                                                                            errorflag5 = 1;
+                                                                                                                            yearofpassinguinput.setError("Kindly select valid Month,Year");
+                                                                                                                        } else if (selectedUniversity.equals("Other")) {
                                                                                                                             otherspecifieduniversity = otheruniversity.getText().toString();
 
                                                                                                                             if (otherspecifieduniversity.length() < 3) {
                                                                                                                                 errorflag4 = 1;
 
-                                                                                                                                otheruniversityinput.setError("Kindly enter vali University");
+                                                                                                                                otheruniversityinput.setError("Kindly enter valid University");
                                                                                                                             }
-                                                                                                                        } else if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
-                                                                                                                            errorflag5 = 1;
-                                                                                                                            yearofpassinguinput.setError("Kindly select valid Month,Year");
                                                                                                                         }
                                                                                                                     }
 
