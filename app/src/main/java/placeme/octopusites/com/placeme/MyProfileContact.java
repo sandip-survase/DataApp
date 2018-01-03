@@ -576,7 +576,7 @@ public class MyProfileContact extends AppCompatActivity {
                 }
                 MyProfileContact.super.onBackPressed();
 
-            }
+            } else
             Toast.makeText(MyProfileContact.this, "Try again !", Toast.LENGTH_SHORT).show();
 
 

@@ -3017,6 +3017,7 @@ public class MyProfileCourses extends AppCompatActivity {
                 }
 
 //                setMonthYear(id, selectedMonth, selectedYear, isvalid, textInputLayout);
+
                 boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
                 if(!bln) {
                     idinput.setError("kindly enter valid date");

@@ -7167,9 +7167,7 @@ public class AdminExperiences extends AppCompatActivity {
 
     public  void save1() {
         try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
+
 
             if(errorflag==0) {
 

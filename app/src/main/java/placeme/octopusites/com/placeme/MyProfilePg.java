@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -322,7 +323,6 @@ public class MyProfilePg extends AppCompatActivity {
                 tosettoStreamslist.clear();
 
                 setStreamAdapter(toCompare);
-//                Toast.makeText(MyProfilePg.this, ""+selectedStreampgsem, Toast.LENGTH_SHORT).show();
 
                 TextInputLayout othersemcourseinput = (TextInputLayout) findViewById(R.id.othersemcourseinput);
 
@@ -482,7 +482,6 @@ public class MyProfilePg extends AppCompatActivity {
             }
         });
 //
-
 
         pgyearcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -2025,7 +2024,7 @@ public class MyProfilePg extends AppCompatActivity {
 
         edittedFlag = 0;
 
-
+        Log.d("cricket", "MPP OC odi match");
     }
 
     //********************************************
@@ -2453,6 +2452,7 @@ public class MyProfilePg extends AppCompatActivity {
             if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
 
                 try {
+                    Log.d("cricket", "MPP V&SS odi match");
 
                     if (selectedStreampgsem == null) {
                         selectedStreampgsem = "";
@@ -2486,7 +2486,7 @@ public class MyProfilePg extends AppCompatActivity {
                     new SaveDataPgYear().execute(encObjStringYear);
 
                 } catch (Exception e) {
-                    Toast.makeText(MyProfilePg.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.d("cricket", "MPP V&SS odi match lost -");
                 }
             }
         } else if (pattern.equals("year")) {
@@ -2641,7 +2641,7 @@ public class MyProfilePg extends AppCompatActivity {
                 }
             }
             if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
-
+                Log.d("cricket", "MPP V&SY odi match");
                 try {
                     if (selectedStreampgyear == null)
                         selectedStreampgyear = "";
@@ -2672,7 +2672,8 @@ public class MyProfilePg extends AppCompatActivity {
                     new SaveDataPgSem().execute(encObjStringSem);
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
+                    Log.d("cricket", "MPP V&SY odi match lost -");
 
                 }
             }
@@ -2867,7 +2868,7 @@ public class MyProfilePg extends AppCompatActivity {
     class SaveDataPgSem extends AsyncTask<String, String, String> {
 
         protected String doInBackground(String... param) {
-
+            Log.d("cricket", "MPP DIBS odi match ");
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
@@ -2881,12 +2882,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.d("cricket", "MPP DIBS odi match lost - " + e.getMessage());
             }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
+
+            Log.d("cricket", "MPP DIBS odi match ");
             if (result.equals("success")) {
 
                 if (!markssem1.equals(""))
@@ -2939,7 +2943,7 @@ public class MyProfilePg extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("d", param[0]));    //0
-
+            Log.d("cricket", "MPP DIBY odi match");
             json = jParser.makeHttpRequest(Z.url_savedata_pg_year, "GET", params);
             try {
                 r = json.getString("info");
@@ -2947,12 +2951,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.d("cricket", "MPP DIBY odi match lost - " + e.getMessage());
             }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d("cricket", "MPP OPEY odi match");
             if (result.equals("success")) {
                 if (!marksyear1.equals(""))
                     Toast.makeText(MyProfilePg.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();

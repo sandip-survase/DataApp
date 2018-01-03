@@ -1721,6 +1721,9 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
 
         edittedFlag = 0;
+
+        Log.d("cricket", "MPTOD OC odi match");
+
     }
 
 
@@ -1811,7 +1814,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0 && errorflag8 == 0 && errorflag9 == 0) {
                 try {
-
+                    Log.d("cricket", "MPTOD V&ST odi match");
 
                     if (selectedStream12.equals("Other"))
                         selectedstreamBytes1 = otherspecifiedstream;
@@ -1828,6 +1831,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     new SaveDataDiploma().execute();
 
                 } catch (Exception e) {
+                    Log.d("cricket", "MPTOD V&ST odi match lost - " + e.getMessage());
                 }
             }
 
@@ -2025,6 +2029,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             }
             if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
                 try {
+                    Log.d("cricket", "MPTOD V&SD odi match");
 
                     if (selectedCourse.equals("Other"))
                         selectedcourseBytes1 = otherspecifiedcourse;
@@ -2041,6 +2046,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
                 } catch (Exception e) {
 
+                    Log.d("cricket", "MPTOD V&SD odi match lost - " + e.getMessage());
                 }
             }
         }
@@ -2263,7 +2269,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("obj", strobj));        //1
 
-
+            Log.d("cricket", "MPTOD DIBT odi match");
             json = jParser.makeHttpRequest(Z.url_savedata_twelth, "GET", params);
             try {
                 r = json.getString("info");
@@ -2271,13 +2277,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.d("cricket", "MPTOD DIBT odi match lost - " + e.getMessage());
             }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("cricket", "MPTOD OPET odi match");
             if (result.equals("success")) {
                 if (!marksobtained.equals(""))
                     Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
@@ -2312,6 +2319,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 strobj2 = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this), MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this));
 
             } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("cricket", "MPTOD DIBD odi match lost - " + e.getMessage());
 
             }
 
@@ -2319,20 +2328,21 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("obj1", strobj2));        //1
-
+            Log.d("cricket", "MPTOD DIBD odi match");
             json = jParser.makeHttpRequest(Z.url_savedata_diploma, "GET", params);
             try {
                 r = json.getString("info");
 
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.d("cricket", "MPTOD DIBD odi match lost - " + e.getMessage());
             }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("cricket", "MPTOD OPED odi match");
             if (result.equals("success")) {
 
 

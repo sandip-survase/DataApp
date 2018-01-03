@@ -1589,7 +1589,10 @@ public class PersonalProfileTabFragment extends Fragment  {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-
+                if (role.equals("student"))
+                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 edittedFlag = 0;
             } else {
                 Toast.makeText(getActivity(), "Try again", Toast.LENGTH_SHORT).show();

@@ -67,9 +67,6 @@ public class MyProfileUg extends AppCompatActivity {
 
     ArrayList<String> tosettoStreamslist = new ArrayList<>();
     int coursecount=0,streamcount=0,universitycount=0;
-    List<String> courseslist = new ArrayList<String>();
-    List<String> streamlist = new ArrayList<String>();
-    List<String> universitieslist = new ArrayList<String>();
     String[] courses,streams,universities;
     StudentData s=new StudentData();
     String oldCourse="",oldStream="",oldUniversity="",encobj="";
@@ -428,8 +425,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             }
         });
-
-
 
         umarkssem1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1514,7 +1509,7 @@ public class MyProfileUg extends AppCompatActivity {
 
         edittedFlag=0;
 
-
+        Log.d("cricket", "MPU OC odi match");
     }
 
 
@@ -1911,6 +1906,7 @@ public class MyProfileUg extends AppCompatActivity {
         }
         if(errorflag1==0&&errorflag2==0&&errorflag3==0&&errorflag4==0&&errorflag5==0)
         {
+            Log.d("cricket", "MPU V&S odi match");
             try {
 
                 if (selectedStream.equals("Other"))
@@ -1938,6 +1934,8 @@ public class MyProfileUg extends AppCompatActivity {
                 new SaveDataUg().execute();
 
             }catch (Exception e){
+                e.printStackTrace();
+                Log.d("cricket", "MPU V&S odi match lost - " + e.getMessage());
             }
         }
 
@@ -1947,7 +1945,7 @@ public class MyProfileUg extends AppCompatActivity {
 
 
         protected String doInBackground(String... param) {
-
+            Log.d("cricket", "MPU DIB odi match");
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));    //0
@@ -1956,13 +1954,16 @@ public class MyProfileUg extends AppCompatActivity {
             try {
                 r = json.getString("info");
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("cricket", "MPU DIB odi match lost - " + e.getMessage());
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("cricket", "MPU OPE odi match");
             if(result.equals("success"))
             {
                 Toast.makeText(MyProfileUg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();

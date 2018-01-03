@@ -11,7 +11,7 @@ public class LicenseActivity extends AppCompatActivity {
 
 
     TextView mainheading,subheading,license1,content1,license2,content2,license3,content3,license4,content4,license5,content5,license6,content6,license7,content7,license8,content8,license9,content9,license10,content10;
-    TextView license11, content11, license12, content12, license13, content13, license14, content14, license15, content15, license16, content16, license17, content17, license18, content18, license19, content19, license20, content20, license21, content21, license22, content22, license23, content23;
+    TextView license11, content11, license12, content12, license13, content13, license14, content14, license15, content15, license16, content16, license17, content17, license18, content18, license19, content19, license20, content20, license21, content21, license22, content22, license23, content23, license24, content24;
     String mainheadstr = "Libraries We Use";
     String subheadingstr = "The following sets forth attribution notices for third party software that may be contained in portion of the place me product. we thank the open source community for all of their contribution.";
 
@@ -352,7 +352,17 @@ public class LicenseActivity extends AppCompatActivity {
             "See the License for the specific language governing permissions and\n" +
             "limitations under the License.\n";
 
-
+    String licencestr24 = "Font";
+    String contentstr24 = "Copyright (c),Nicolas Spalinger & Victor Gaultney, 2007-02-26\n" +
+            "THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n" +
+            "EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF\n" +
+            "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\n" +
+            "OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE\n" +
+            "COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n" +
+            "INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL\n" +
+            "DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n" +
+            "FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM\n" +
+            "OTHER DEALINGS IN THE FONT SOFTWARE.";
 
 
     @Override
@@ -436,6 +446,9 @@ public class LicenseActivity extends AppCompatActivity {
         license23 = (TextView) findViewById(R.id.license23);
         content23 = (TextView) findViewById(R.id.content23);
 
+        license24 = (TextView) findViewById(R.id.license24);
+        content24 = (TextView) findViewById(R.id.content24);
+
 
         Typeface custom_font6 = Z.getLight(this);
         Typeface custom_font7 = Z.getBold(this);
@@ -512,6 +525,10 @@ public class LicenseActivity extends AppCompatActivity {
         license23.setTypeface(custom_font7);
         content23.setTypeface(custom_font6);
 
+        license24.setTypeface(custom_font7);
+        content24.setTypeface(custom_font6);
+
+
         mainheading.setText(mainheadstr);
         subheading.setText(subheadingstr);
 
@@ -583,6 +600,9 @@ public class LicenseActivity extends AppCompatActivity {
 
         license23.setText(licencestr23);
         content23.setText(contentstr23);
+
+        license24.setText(licencestr24);
+        content24.setText(contentstr24);
 
 
     }

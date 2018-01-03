@@ -2201,6 +2201,14 @@ public class MyProfileCertifications extends AppCompatActivity {
                 RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl10);
                 relativeLayout1.setVisibility(View.VISIBLE);
                 certicount++;
+
+                TextView t = (TextView) findViewById(R.id.addmorecertitxt);
+                ImageView i = (ImageView) findViewById(R.id.addmorecertiimg);
+                addmorecerti.setVisibility(View.GONE);
+                t.setVisibility(View.GONE);
+                i.setVisibility(View.GONE);
+
+
             }
         }
 

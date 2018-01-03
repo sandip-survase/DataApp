@@ -518,6 +518,8 @@ public class MyProfileTenth extends AppCompatActivity {
                 new SaveData().execute();
 
             } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("cricket", "MPT V&S odi match lost - " + e.getMessage());
 
             }
         }
@@ -601,14 +603,16 @@ public class MyProfileTenth extends AppCompatActivity {
                 r = json.getString("info");
 
             } catch (Exception e) {
+
                 e.printStackTrace();
+                Log.d("cricket", "MPT DIB odi match lost - " + e.getMessage());
             }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("cricket", "MPT OPE odi match");
             if (result.equals("success")) {
                 Toast.makeText(MyProfileTenth.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
