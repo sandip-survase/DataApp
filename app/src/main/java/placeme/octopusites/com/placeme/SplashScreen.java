@@ -577,7 +577,7 @@ public class SplashScreen extends AppCompatActivity {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder
-                .setMessage("Could not reach to server!")
+                .setMessage("Sorry, we could not reach to server!")
                 .setCancelable(false)
                 .setPositiveButton("try again",
                         new DialogInterface.OnClickListener() {
