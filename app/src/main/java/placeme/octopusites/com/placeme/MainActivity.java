@@ -47,12 +47,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -93,21 +90,18 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class MainActivity extends AppCompatActivity implements ImagePickerCallback {
 
-    File Imgfile;
     final public static int STUDENT_DATA_CHANGE_RESULT_CODE = 333;
-    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
-    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
-    private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Username = "nameKey";
+    public static final String Password = "passKey";
+    File Imgfile;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
-    private int page_to_call_notification = 1;
-    private int current_page_notification = 1;
     int total_no_of_notifications;
     int[] called_pages_notification;
     boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
     int lastPageFlagNotification = 0;
     int unreadcountNotification = 0;
     int notificationcount = 0;
-
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1 = "", lang1 = "", careerobj;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
@@ -121,12 +115,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String notificationids[], notificationtitles[], notificationnotifications[], notificationfilename1[], notificationfilename2[], notificationfilename3[], notificationfilename4[], notificationfilename5[], notificationuploadtime[], notificationlastmodified[], notificationuploadedby[], notificationuploadedbyplain[];
     String notificationreadstatus[];
     int notificationpages = 0;
-    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
-    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
-    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     int firstVisibleItemPlacement, visibleItemCountPlacement, totalItemCountPlacement;
-    private int page_to_call_placement = 1;
-    private int current_page_placement = 1;
     int total_no_of_placements;
     int[] called_pages_placement;
     boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
@@ -143,33 +132,20 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String placementreadstatus[];
     int placementpages = 0;
     Menu menu;
-    public static final String MyPREFERENCES = "MyPrefs";
-    private String plainusername, username = "", fname = "", resultofop = "", lname = "";
-
-
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     int selectedMenuFlag = 1;
-
     int searchNotificationFlag = 0, searchPlacementFlag = 0;
     JSONParser jParser = new JSONParser();
     String digest1, digest2;
     JSONObject json;
     FrameLayout mainfragment;
-    private MaterialSearchView searchView;
     int navMenuFlag = 0, oldNavMenuFlag = 0;
     FrameLayout crop_layout;
-    private ImageView resultView;
     ImagePicker imagePicker;
-    private int chooserType;
-    private String mediaPath;
-    private String finalPath;
     String filepath = "", filename = "";
-    private String thumbPath;
     String directory;
     List<String> response;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
     SwipeRefreshLayout tswipe_refresh_layout;
     int crop_flag = 0;
     String reciever_username[], reciever_uid[];
@@ -177,16 +153,35 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     int count;
     int unreadMessageCount = 0;
     String sender_uid;
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
-
     Toolbar toolbar;
-    private TextView toolbar_title;
-
     ViewPager mViewPager;
     TabLayout tabLayout;
+    ArrayList<RecyclerItemEdit> tempListNotification;
+    ArrayList<RecyclerItemPlacement> tempListPlacement;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
+    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
+    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
+    private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    private int page_to_call_notification = 1;
+    private int current_page_notification = 1;
+    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
+    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
+    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    private int page_to_call_placement = 1;
+    private int current_page_placement = 1;
+    private String plainusername, username = "", fname = "", resultofop = "", lname = "";
+    private MaterialSearchView searchView;
+    private ImageView resultView;
+    private int chooserType;
+    private String mediaPath;
+    private String finalPath;
+    private String thumbPath;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private TextView toolbar_title;
     private int[] tabIcons = {
             R.drawable.news_feed_icon,
             R.drawable.videos_icon,
@@ -197,20 +192,25 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     };
     //initial setup
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
-    ArrayList<RecyclerItemEdit> tempListNotification;
-    ArrayList<RecyclerItemPlacement> tempListPlacement;
-
-
     //new
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
-    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
-
-
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
-    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
 
+    public static boolean containsIgnoreCase(String str, String searchStr) {
+        if (str == null || searchStr == null) return false;
+
+        final int length = searchStr.length();
+        if (length == 0)
+            return true;
+
+        for (int i = str.length() - length; i >= 0; i--) {
+            if (str.regionMatches(true, i, searchStr, 0, length))
+                return true;
+        }
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -314,20 +314,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                     Log.d("TAG", "push broadcast received: ");
                     new GetUnreadCountOfNotificationAndPlacement().execute();
-//                    String sender = intent.getStringExtra("sender");
-//                    for(int i=0;i<reciever_username.length;i++)
-//                    {
-//                        if(reciever_username[i].equals(sender)) {
-//                            unread_count[i] = Integer.parseInt(unread_count[i]) + 1+"";
-//                            unreadMessageCount++;
-//                        }
-//                    }
-//                    messagecountrl.setVisibility(View.VISIBLE);
-//                    messagecount.setText(unreadMessageCount+"");
-//                    if(unreadMessageCount==0)
-//                    {
-//                        messagecountrl.setVisibility(View.GONE);
-//                    }
+
                     getNotifications();
                     getPlacements();
 
@@ -1253,56 +1240,567 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
 
 
-
         getNotifications();
         new GetUnreadMessagesCount().execute();
         new UpdateFirebaseToken().execute();
-        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
-        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            MySharedPreferencesManager.save(MainActivity.this, "uid", user.getUid());
+            new CreateFirebaseUser(username, pass, user.getUid()).execute();
+        }
 
-        String uid = MySharedPreferencesManager.getData(MainActivity.this, "uid");
-        Log.d("TAG", "onCreate: shared  uid :" + uid);
-        if (uid != null)
-            new CreateFirebaseUser2(u, p, uid).execute();
-
-
-        //temp work remove after done
-
-//
-//        new CreateFirebaseUser(u,p).execute();
-//        try {
-//            u=Z.Decrypt(u,MainActivity.this);
-//            p=Z.Decrypt(p,MainActivity.this);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        final String u1=u;
-//        FirebaseAuth.getInstance().createUserWithEmailAndPassword(u,  Z.md5(p + MySharedPreferencesManager.getDigest3(MainActivity.this)))
-//                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-//
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(MainActivity.this, "task success.",Toast.LENGTH_LONG).show();
-//
-//                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                            String uid = user.getUid();
-//
-//                            Log.d("TAG", "firebase user created with email: "+u1+"\nuid: "+uid);
-//
-//                        } else {
-//                            Toast.makeText(MainActivity.this, "task failed.",Toast.LENGTH_LONG).show();
-//
-//                        }
-//                    }
-//                });
-//
 
     }
 
+
 //    student data
+
+    void loginFirebase(String username, String hash) {
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+//    studentdata end
+
+    void filterNotifications(String text) {
+        tempListNotification = new ArrayList();
+        for (RecyclerItemEdit d : itemListNotificationNew) {
+
+            if (containsIgnoreCase(d.getTitle(), text)) {
+                tempListNotification.add(d);
+            }
+        }
+        mAdapterNotificationEdit.updateList(tempListNotification, text);
+    }
+
+    void filterPlacements(String text) {
+        tempListPlacement = new ArrayList();
+        for (RecyclerItemPlacement d : itemListPlacementnew) {
+
+            if (containsIgnoreCase(d.getCompanyname(), text)) {
+                tempListPlacement.add(d);
+            }
+        }
+        mAdapterPlacement.updateList(tempListPlacement, text);
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
+        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
+        tabLayout.getTabAt(5).setIcon(tabIcons[5]);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new NoDataAvailableFragment(), "News Feed");
+        adapter.addFrag(new NoDataAvailableFragment(), "Videos");
+        adapter.addFrag(new ResumeTemplatesFragment(), "Resume Templates");
+        adapter.addFrag(new NoDataAvailableFragment(), "Interview Questions");
+        adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");
+        adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
+        viewPager.setAdapter(adapter);
+    }
+
+    public void updateUnreadMessageCount(int readCount) {
+        unreadMessageCount -= readCount;
+        messagecountrl.setVisibility(View.VISIBLE);
+        messagecount.setText(unreadMessageCount + "");
+        if (unreadMessageCount <= 0) {
+            messagecountrl.setVisibility(View.GONE);
+        }
+    }
+
+    void getNotifications() {
+
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+        new GetNotificationsReadStatus().execute();
+    }
+
+    void getPlacements() {
+        Log.d("pbacktrack", "getPlacements: accessed ");
+        previousTotalPlacement = 0;
+        loadingPlacement = true;
+        page_to_call_placement = 1;
+        isFirstRunPlacement = true;
+        isLastPageLoadedPlacement = false;
+        lastPageFlagPlacement = 0;
+        new GetPlacementsReadStatus().execute();
+    }
+
+    private void simulateLoadingNotification() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                tswipe_refresh_layout.setRefreshing(true);
+            }
+
+            @Override
+            protected Void doInBackground(Void... param) {
+                try {
+
+
+                    Log.d("TAG", "simulateLoadingNotification: accessed");
+                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
+                    Log.d("TAG", "notificationpages:" + notificationpages);
+
+                    if (page_to_call_notification < notificationpages)
+                        page_to_call_notification++;
+
+
+                    if (page_to_call_notification != notificationpages) {
+
+                        List<NameValuePair> params = new ArrayList<NameValuePair>();
+                        params.add(new BasicNameValuePair("u", username));       //0
+                        params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+                        json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
+
+                        notificationcount = Integer.parseInt(json.getString("count"));
+
+                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+
+
+                    } else {
+                        if (!isLastPageLoadedNotification) {
+
+                            lastPageFlagNotification = 1;
+
+                            List<NameValuePair> params = new ArrayList<NameValuePair>();
+                            params.add(new BasicNameValuePair("u", username));       //0
+                            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+                            json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
+
+                            notificationcount = Integer.parseInt(json.getString("count"));
+
+                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void param) {
+
+                if (!isLastPageLoadedNotification) {
+
+                    setserverlisttoadapter(itemlistfromserver);
+
+
+                }
+
+
+            }
+        }.execute();
+    }
+
+    private void simulateLoadingPlacement() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                tswipe_refresh_layout.setRefreshing(true);
+            }
+
+            @Override
+            protected Void doInBackground(Void... param) {
+
+                try {
+                    if (page_to_call_placement < placementpages)
+                        page_to_call_placement++;
+
+                    if (page_to_call_placement != placementpages) {
+
+                        List<NameValuePair> params = new ArrayList<NameValuePair>();
+                        params.add(new BasicNameValuePair("u", username));
+                        params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+                        json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
+                        try {
+
+                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+                        } catch (Exception e) {
+                        }
+
+
+                    } else {
+                        if (!isLastPageLoadedPlacement) {
+
+                            lastPageFlagPlacement = 1;
+
+                            List<NameValuePair> params = new ArrayList<NameValuePair>();
+                            params.add(new BasicNameValuePair("u", username));
+                            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+                            json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
+                            try {
+
+                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+                            } catch (Exception e) {
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void param) {
+
+
+                tswipe_refresh_layout.setVisibility(View.VISIBLE);
+                tswipe_refresh_layout.setRefreshing(false);
+                if (!isLastPageLoadedPlacement) {
+
+
+                    setplacementListtoadapter(placementListfromserver);
+                }
+                tswipe_refresh_layout.setRefreshing(false);
+
+
+            }
+        }.execute();
+    }
+
+    private void disableScrollbars(ScrollView scrollView) {
+        if (scrollView != null) {
+
+            scrollView.setVerticalScrollBarEnabled(false);
+
+        }
+    }
+
+    void changeReadStatusNotification(String id) {
+        new ChangeReadStatusNotification().execute(id);
+
+    }
+
+    void changeReadStatusPlacement(String id) {
+        new ChangeReadStatusPlacement().execute(id);
+
+    }
+
+    @Override
+    public void onImagesChosen(List<ChosenImage> list) {
+        final ChosenImage file = list.get(0);
+
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                if (file != null) {
+
+                    finalPath = file.getOriginalPath().toString();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onError(String s) {
+        crop_layout.setVisibility(View.GONE);
+        tswipe_refresh_layout.setVisibility(View.GONE);
+        mainfragment.setVisibility(View.VISIBLE);
+        Toast.makeText(MainActivity.this, "Try Again !", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    private void disableNavigationViewScrollbars(NavigationView navigationView) {
+        if (navigationView != null) {
+            NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
+            if (navigationMenuView != null) {
+                navigationMenuView.setVerticalScrollBarEnabled(false);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (searchView.isSearchOpen()) {
+            searchView.closeSearch();
+        } else {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed();
+                    return;
+                }
+                this.doubleBackToExitPressedOnce = true;
+                Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                }, 2000);
+            }
+        }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu = menu;
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void requestProfileImage() {
+//        new GetProfileImage().execute();
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
+    }
+
+    public void requestCropImage() {
+        resultView.setImageDrawable(null);
+
+        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
+        chooseImage();
+
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+
+        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+
+            try {
+
+                if (imagePicker == null) {
+                    imagePicker = new ImagePicker(this);
+                    imagePicker.setImagePickerCallback(this);
+                }
+                imagePicker.submit(result);
+                crop_layout.setVisibility(View.VISIBLE);
+                tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.GONE);
+                crop_flag = 1;
+                beginCrop(result.getData());
+                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                crop_layout.setVisibility(View.GONE);
+                tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.VISIBLE);
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            crop_layout.setVisibility(View.GONE);
+            tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+            handleCrop(resultCode, result);
+        }
+
+        if (resultCode == STUDENT_DATA_CHANGE_RESULT_CODE) {
+            Log.d("TAG", "onActivityResult: personal save");
+            MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.refreshContent();
+        }
+
+    }
+
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            File f = new File(getCacheDir(), "cropped");
+            filepath = f.getAbsolutePath();
+
+            filename = "";
+            int index = filepath.lastIndexOf("/");
+            directory = "";
+            for (int i = 0; i < index; i++)
+                directory += filepath.charAt(i);
+
+            for (int i = index + 1; i < filepath.length(); i++)
+                filename += filepath.charAt(i);
+
+            crop_layout.setVisibility(View.GONE);
+            tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.showUpdateProgress();
+//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new CompressTask().execute();
+
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            crop_layout.setVisibility(View.GONE);
+            tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void chooseImage() {
+
+        imagePicker.pickImage();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotificationChat"));
+
+    }
+
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }
+
+    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
+
+        itemListNotificationNew.addAll(itemlist);
+        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
+
+        recyclerViewNotification.getRecycledViewPool().clear();
+        mAdapterNotificationEdit.notifyDataSetChanged();
+
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+
+    }
+
+    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
+
+        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+        itemListPlacementnew.addAll(itemList2);
+
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
+
+        recyclerViewPlacement.getRecycledViewPool().clear();
+        mAdapterPlacement.notifyDataSetChanged();
+
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+
+        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+
+
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
 
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
         @Override
@@ -1492,77 +1990,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-//    studentdata end
-
-
-
-
-
-
-
-
-    void loginFirebase(String username, String hash) {
-
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username, hash)
-                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-
-
-                        } else {
-                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    void filterNotifications(String text) {
-        tempListNotification = new ArrayList();
-        for (RecyclerItemEdit d : itemListNotificationNew) {
-
-            if (containsIgnoreCase(d.getTitle(), text)) {
-                tempListNotification.add(d);
-            }
-        }
-        mAdapterNotificationEdit.updateList(tempListNotification, text);
-    }
-
-    void filterPlacements(String text) {
-        tempListPlacement = new ArrayList();
-        for (RecyclerItemPlacement d : itemListPlacementnew) {
-
-            if (containsIgnoreCase(d.getCompanyname(), text)) {
-                tempListPlacement.add(d);
-            }
-        }
-        mAdapterPlacement.updateList(tempListPlacement, text);
-    }
-
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
-        tabLayout.getTabAt(5).setIcon(tabIcons[5]);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new NoDataAvailableFragment(), "News Feed");
-        adapter.addFrag(new NoDataAvailableFragment(), "Videos");
-        adapter.addFrag(new ResumeTemplatesFragment(), "Resume Templates");
-        adapter.addFrag(new NoDataAvailableFragment(), "Interview Questions");
-        adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");
-        adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
-        viewPager.setAdapter(adapter);
-    }
-
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -1589,29 +2016,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
-        }
-    }
-
-    public static boolean containsIgnoreCase(String str, String searchStr) {
-        if (str == null || searchStr == null) return false;
-
-        final int length = searchStr.length();
-        if (length == 0)
-            return true;
-
-        for (int i = str.length() - length; i >= 0; i--) {
-            if (str.regionMatches(true, i, searchStr, 0, length))
-                return true;
-        }
-        return false;
-    }
-
-    public void updateUnreadMessageCount(int readCount) {
-        unreadMessageCount -= readCount;
-        messagecountrl.setVisibility(View.VISIBLE);
-        messagecount.setText(unreadMessageCount + "");
-        if (unreadMessageCount <= 0) {
-            messagecountrl.setVisibility(View.GONE);
         }
     }
 
@@ -1772,183 +2176,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-    void getNotifications() {
-
-        previousTotalNotification = 0;
-        loadingNotification = true;
-        page_to_call_notification = 1;
-        isFirstRunNotification = true;
-        isLastPageLoadedNotification = false;
-        lastPageFlagNotification = 0;
-        new GetNotificationsReadStatus().execute();
-    }
-
-    void getPlacements() {
-        Log.d("pbacktrack", "getPlacements: accessed ");
-        previousTotalPlacement = 0;
-        loadingPlacement = true;
-        page_to_call_placement = 1;
-        isFirstRunPlacement = true;
-        isLastPageLoadedPlacement = false;
-        lastPageFlagPlacement = 0;
-        new GetPlacementsReadStatus().execute();
-    }
-
-    private void simulateLoadingNotification() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                tswipe_refresh_layout.setRefreshing(true);
-            }
-
-            @Override
-            protected Void doInBackground(Void... param) {
-                try {
-
-
-                    Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
-                    Log.d("TAG", "notificationpages:" + notificationpages);
-
-                    if (page_to_call_notification < notificationpages)
-                        page_to_call_notification++;
-
-
-                    if (page_to_call_notification != notificationpages) {
-
-                        List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("u", username));       //0
-                        params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
-
-                        notificationcount = Integer.parseInt(json.getString("count"));
-
-                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-
-
-                    } else {
-                        if (!isLastPageLoadedNotification) {
-
-                            lastPageFlagNotification = 1;
-
-                            List<NameValuePair> params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u", username));       //0
-                            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
-
-                            notificationcount = Integer.parseInt(json.getString("count"));
-
-                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                        }
-
-                    }
-
-                } catch (Exception e) {
-
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void param) {
-
-                if (!isLastPageLoadedNotification) {
-
-                    setserverlisttoadapter(itemlistfromserver);
-
-
-                }
-
-
-            }
-        }.execute();
-    }
-
-    private void simulateLoadingPlacement() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                tswipe_refresh_layout.setRefreshing(true);
-            }
-
-            @Override
-            protected Void doInBackground(Void... param) {
-
-                try {
-                    if (page_to_call_placement < placementpages)
-                        page_to_call_placement++;
-
-                    if (page_to_call_placement != placementpages) {
-
-                        List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("u", username));
-                        params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-                        json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
-                        try {
-
-                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-                        } catch (Exception e) {
-                        }
-
-
-                    } else {
-                        if (!isLastPageLoadedPlacement) {
-
-                            lastPageFlagPlacement = 1;
-
-                            List<NameValuePair> params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u", username));
-                            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-                            json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
-                            try {
-
-                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-                            } catch (Exception e) {
-                            }
-
-                        }
-                    }
-                } catch (Exception e) {
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void param) {
-
-
-                tswipe_refresh_layout.setVisibility(View.VISIBLE);
-                tswipe_refresh_layout.setRefreshing(false);
-                if (!isLastPageLoadedPlacement) {
-
-
-                    setplacementListtoadapter(placementListfromserver);
-                }
-                tswipe_refresh_layout.setRefreshing(false);
-
-
-            }
-        }.execute();
-    }
-
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
 
 
@@ -2027,7 +2254,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         public abstract void onLoadMore(int current_page);
     }
 
-
     class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -2069,6 +2295,22 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
+
+//    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
+//        @Override
+//        protected Bitmap doInBackground(String... urls) {
+//            Bitmap map = null;
+//
+//            return map;
+//        }
+//        @Override
+//        protected void onPostExecute(Bitmap result) {
+//
+//            downloadImage();
+//        }
+//
+//    }
+
     class GetNotifications2 extends AsyncTask<String, String, String> {
 
 
@@ -2106,8 +2348,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-
-
     class GetPlacements2 extends AsyncTask<String, String, String> {
 
 
@@ -2142,51 +2382,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             setplacementListtoadapter(placementListfromserver);
 
         }
-    }
-
-
-    private void disableScrollbars(ScrollView scrollView) {
-        if (scrollView != null) {
-
-            scrollView.setVerticalScrollBarEnabled(false);
-
-        }
-    }
-
-    void changeReadStatusNotification(String id) {
-        new ChangeReadStatusNotification().execute(id);
-
-    }
-
-    void changeReadStatusPlacement(String id) {
-        new ChangeReadStatusPlacement().execute(id);
-
-    }
-
-    @Override
-    public void onImagesChosen(List<ChosenImage> list) {
-        final ChosenImage file = list.get(0);
-
-        runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                if (file != null) {
-
-                    finalPath = file.getOriginalPath().toString();
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onError(String s) {
-        crop_layout.setVisibility(View.GONE);
-        tswipe_refresh_layout.setVisibility(View.GONE);
-        mainfragment.setVisibility(View.VISIBLE);
-        Toast.makeText(MainActivity.this, "Try Again !", Toast.LENGTH_SHORT).show();
-
-
     }
 
     class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
@@ -2226,193 +2421,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
-
-    private void disableNavigationViewScrollbars(NavigationView navigationView) {
-        if (navigationView != null) {
-            NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
-            if (navigationMenuView != null) {
-                navigationMenuView.setVerticalScrollBarEnabled(false);
-            }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (searchView.isSearchOpen()) {
-            searchView.closeSearch();
-        } else {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            } else {
-                if (doubleBackToExitPressedOnce) {
-                    super.onBackPressed();
-                    return;
-                }
-                this.doubleBackToExitPressedOnce = true;
-                Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
-
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        doubleBackToExitPressedOnce = false;
-                    }
-                }, 2000);
-            }
-        }
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        this.menu = menu;
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        MenuItem item = menu.findItem(R.id.action_search);
-        searchView.setMenuItem(item);
-
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void requestProfileImage() {
-//        new GetProfileImage().execute();
-        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-
-    }
-
-    public void requestCropImage() {
-        resultView.setImageDrawable(null);
-
-        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
-        chooseImage();
-
-
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
-        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
-
-            try {
-
-                if (imagePicker == null) {
-                    imagePicker = new ImagePicker(this);
-                    imagePicker.setImagePickerCallback(this);
-                }
-                imagePicker.submit(result);
-                crop_layout.setVisibility(View.VISIBLE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.GONE);
-                crop_flag = 1;
-                beginCrop(result.getData());
-                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                crop_layout.setVisibility(View.GONE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.VISIBLE);
-            }
-        } else if (resultCode == RESULT_CANCELED) {
-            crop_layout.setVisibility(View.GONE);
-            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            crop_flag = 0;
-        } else if (requestCode == Crop.REQUEST_CROP) {
-            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
-            handleCrop(resultCode, result);
-        }
-
-        if (resultCode == STUDENT_DATA_CHANGE_RESULT_CODE) {
-            Log.d("TAG", "onActivityResult: personal save");
-            MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.refreshContent();
-        }
-
-    }
-
-
-    private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        Crop.of(source, destination).asSquare().start(this);
-    }
-
-    private void handleCrop(int resultCode, Intent result) {
-        if (resultCode == RESULT_OK) {
-            File f = new File(getCacheDir(), "cropped");
-            filepath = f.getAbsolutePath();
-
-            filename = "";
-            int index = filepath.lastIndexOf("/");
-            directory = "";
-            for (int i = 0; i < index; i++)
-                directory += filepath.charAt(i);
-
-            for (int i = index + 1; i < filepath.length(); i++)
-                filename += filepath.charAt(i);
-
-            crop_layout.setVisibility(View.GONE);
-            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.showUpdateProgress();
-//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-            new CompressTask().execute();
-
-        } else if (resultCode == Crop.RESULT_ERROR) {
-            crop_layout.setVisibility(View.GONE);
-            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
-
-        }
-    }
-
-
-
-    private void chooseImage() {
-
-        imagePicker.pickImage();
-    }
-
-
-//    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
-//        @Override
-//        protected Bitmap doInBackground(String... urls) {
-//            Bitmap map = null;
-//
-//            return map;
-//        }
-//        @Override
-//        protected void onPostExecute(Bitmap result) {
-//
-//            downloadImage();
-//        }
-//
-//    }
 
     class Getsingnature extends AsyncTask<String, String, String> {
         String signature = "";
@@ -2455,7 +2463,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             File sourceFile = new File(filepath);
             try {
                 Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
             Luban.compress(MainActivity.this, sourceFile)
                     .setMaxSize(256)                // limit the final image size（unit：Kb）
                     .putGear(Luban.CUSTOM_GEAR)
@@ -2463,6 +2472,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         @Override
                         public void onStart() {
                         }
+
                         @Override
                         public void onSuccess(File file) {
                             try {
@@ -2482,14 +2492,14 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                                 Imgfile = file;
 
 
-                                    new UploadProfile().execute();
+                                new UploadProfile().execute();
 
                             }
                         }
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.d("TAG", "onError: "+e.getMessage());
+                            Log.d("TAG", "onError: " + e.getMessage());
                         }
                     });
             return true;
@@ -2535,7 +2545,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
 
-            if(result) {
+            if (result) {
                 if (response != null && response.get(0).contains("success")) {
                     MySharedPreferencesManager.save(MainActivity.this, "crop", "no");
                     requestProfileImage();
@@ -2551,7 +2561,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     fragment.HideUpdateProgress();
                 }
 
-            }else {
+            } else {
                 Toast.makeText(MainActivity.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
                 fragment.HideUpdateProgress();
             }
@@ -2599,18 +2609,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotificationChat"));
-
-    }
-
-    @Override
-    public void onPause() {
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
-        super.onPause();
-    }
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         // TODO move UpdateFirebaseToken code to all base activity
@@ -2647,7 +2645,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //            }
         }
     }
-
 
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
@@ -2696,129 +2693,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
-
-        }
-    }
-
-
-    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
-
-        itemListNotificationNew.addAll(itemlist);
-        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
-
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
-
-        recyclerViewNotification.getRecycledViewPool().clear();
-        mAdapterNotificationEdit.notifyDataSetChanged();
-
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
-
-        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
-
-    }
-
-    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
-
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
-        itemListPlacementnew.addAll(itemList2);
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-
-        recyclerViewPlacement.getRecycledViewPool().clear();
-        mAdapterPlacement.notifyDataSetChanged();
-
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
-
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
-
-
-    }
-
-    //    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-//
-//        String u, p;
-//
-//        CreateFirebaseUser(String u, String p) {
-//            this.u = u;
-//            this.p = p;
-//        }
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            String u1=null,p1=null;
-//            try {
-//                u1=Z.Decrypt(u,MainActivity.this);
-//                p1=Z.Decrypt(p,MainActivity.this);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//            final String u2=u1;
-//
-//            FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1,  Z.md5(p1 + MySharedPreferencesManager.getDigest3(MainActivity.this)))
-//                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-//
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()) {
-//                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                                String uid = user.getUid();
-//                                Log.d("TAG", "firebase user created with email: "+u2+"\nuid: "+uid);
-//
-//                                new CreateFirebaseUser2(u,p,uid).execute();
-//                            } else {
-//                                Log.d("TAG", "firebase user creation failed:");
-//
-//                            }
-//                        }
-//                    });
-//
-//
-//            return resultofop;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-////            loginFirebase(plainusername, hash);
-//        }
-//    }
-//
-    class CreateFirebaseUser2 extends AsyncTask<String, String, String> {
-
-        String u, p, d;
-
-        CreateFirebaseUser2(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
 
         }
     }

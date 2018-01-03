@@ -42,6 +42,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -1268,9 +1269,48 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new UpdateFirebaseToken().execute();
         new GetUnreadMessagesCount().execute();
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            MySharedPreferencesManager.save(AdminActivity.this, "uid", user.getUid());
+            new CreateFirebaseUser(username, pass, user.getUid()).execute();
+        }
 
     }
 
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+        String resultofop;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
     class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
 
 

@@ -1203,7 +1203,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                new CreateFirebaseUser(encUsername,encPassword).execute();
+                CreateFirebaseUser(encUsername, encPassword);
+                try {
+                    loginFirebase(Z.Decrypt(encUsername, WelcomeGenrateCodeActivity.this), Z.md5(Z.Decrypt(encPassword, WelcomeGenrateCodeActivity.this) + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -1310,8 +1315,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             if (result!=null && result.equals("success")) {
 
-                new CreateFirebaseUser(encUsername,encPassword).execute();
-
+                CreateFirebaseUser(encUsername, encPassword);
+                try {
+                    loginFirebase(Z.Decrypt(encUsername, WelcomeGenrateCodeActivity.this), Z.md5(Z.Decrypt(encPassword, WelcomeGenrateCodeActivity.this) + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -1330,103 +1339,36 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         }
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-
-        String u, p;
-
-        CreateFirebaseUser(String u, String p) {
-            this.u = u;
-            this.p = p;
+    void CreateFirebaseUser(final String u, final String p) {
+        String u1 = null, p1 = null;
+        try {
+            u1 = Z.Decrypt(u, WelcomeGenrateCodeActivity.this);
+            p1 = Z.Decrypt(p, WelcomeGenrateCodeActivity.this);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        final String u2 = u1;
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1, Z.md5(p1 + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)))
+                .addOnCompleteListener(WelcomeGenrateCodeActivity.this, new OnCompleteListener<AuthResult>() {
 
-        protected String doInBackground(String... param) {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = user.getUid();
+                            MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "uid", uid);
+                            Log.d("TAG", "firebase user created in welcome generate code activity with email: " + u2 + "\nuid: " + uid);
 
 
-            String u1 = null, p1 = null;
-            try {
-                u1 = Z.Decrypt(u, WelcomeGenrateCodeActivity.this);
-                p1 = Z.Decrypt(p, WelcomeGenrateCodeActivity.this);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                        } else {
+                            Log.d("TAG", "firebase user creation failed in welcome generate activity:");
 
-            final String u2 = u1;
-
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1, Z.md5(p1 + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)))
-                    .addOnCompleteListener(WelcomeGenrateCodeActivity.this, new OnCompleteListener<AuthResult>() {
-
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                String uid = user.getUid();
-                                Log.d("TAG", "firebase user created with email: " + u2 + "\nuid: " + uid);
-
-                                new CreateFirebaseUser2(u, p, uid).execute();
-
-                            } else {
-                                Log.d("TAG", "firebase user creation failed:");
-
-                            }
                         }
-                    });
-
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            String plainusername = null;
-            String plainPassword = null;
-
-            try {
-                plainusername = AES4all.Decrypt(encUsername,digest1,digest2);
-                plainPassword = AES4all.Decrypt(encPassword,digest1,digest2);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            String hash=md5(plainPassword + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this));
-
-            loginFirebase(plainusername, hash);
-//            Toast.makeText(WelcomeGenrateCodeActivity.this, "fire "+resultofop, Toast.LENGTH_LONG).show();
-        }
+                    }
+                });
     }
 
-    class CreateFirebaseUser2 extends AsyncTask<String, String, String> {
 
-        String u, p, d;
-
-        CreateFirebaseUser2(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jsonParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
 
     void loginFirebase(String username, String hash) {
 

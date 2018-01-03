@@ -265,6 +265,11 @@ public class OTPActivity extends AppCompatActivity {
                     if (role.equals("student")) {
 //                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         CreateFirebaseUser(u, p);
+                        try {
+                            loginFirebase(Z.Decrypt(u, OTPActivity.this), Z.md5(Z.Decrypt(p, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
@@ -274,6 +279,11 @@ public class OTPActivity extends AppCompatActivity {
                     } else if (role.equals("alumni")) {
 //                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         CreateFirebaseUser(u, p);
+                        try {
+                            loginFirebase(Z.Decrypt(u, OTPActivity.this), Z.md5(Z.Decrypt(p, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
@@ -319,21 +329,21 @@ public class OTPActivity extends AppCompatActivity {
     void loginFirebase(String username, String hash) {
 
         FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username, hash);
-//                .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//
-//
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-//
-//
-//                        } else {
-//                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(OTPActivity.this, "Successfully logged in to Firebase from otp activity", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(OTPActivity.this, "Failed to login to Firebase from otp activity", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     class ResendOTP extends AsyncTask<String, String, String> {
@@ -429,11 +439,11 @@ public class OTPActivity extends AppCompatActivity {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             String uid = user.getUid();
                             MySharedPreferencesManager.save(OTPActivity.this, "uid", uid);
-                            Log.d("TAG", "firebase user created with email: " + u2 + "\nuid: " + uid);
+                            Log.d("TAG", "firebase user created in otp activity with email: " + u2 + "\nuid: " + uid);
 
 
                         } else {
-                            Log.d("TAG", "firebase user creation failed:");
+                            Log.d("TAG", "firebase user creation failed in otp activity:");
 
                         }
                     }
@@ -442,48 +452,14 @@ public class OTPActivity extends AppCompatActivity {
 
     }
 
-//   class CreateFirebaseUser2 extends AsyncTask<String, String, String> {
-//
-//        String u, p, d;
-//
-//        CreateFirebaseUser2(String u, String p,String d) {
-//            this.u = u;
-//            this.p = p;
-//            this.d = d;
-//        }
-//
-//        protected String doInBackground(String... param) {
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("u", u));
-//            params.add(new BasicNameValuePair("p", p));
-//            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-//            params.add(new BasicNameValuePair("d", d));
-//            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
-//
-//            Log.d("TAG", "create firebase json: "+json);
-//            try {
-//                resultofop = json.getString("info");
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return resultofop;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            loginFirebase(plainusername, hash);
-//        }
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//
-//        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-//        homeIntent.addCategory(Intent.CATEGORY_HOME);
-//        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(homeIntent);
-//    }
+    @Override
+    public void onBackPressed() {
+
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
 
 
 }
