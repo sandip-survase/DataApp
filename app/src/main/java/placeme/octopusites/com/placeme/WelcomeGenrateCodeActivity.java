@@ -1203,12 +1203,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                CreateFirebaseUser(encUsername, encPassword);
-                try {
-                    loginFirebase(Z.Decrypt(encUsername, WelcomeGenrateCodeActivity.this), Z.md5(Z.Decrypt(encPassword, WelcomeGenrateCodeActivity.this) + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -1219,8 +1214,16 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
                 }
                 catch (Exception e){}
+                // base press will move to base activity
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+
+                CreateFirebaseUser(encUsername, encPassword);
+                try {
+                    loginFirebase(Z.Decrypt(encUsername, WelcomeGenrateCodeActivity.this), Z.md5(Z.Decrypt(encPassword, WelcomeGenrateCodeActivity.this) + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         }
@@ -1315,12 +1318,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             if (result!=null && result.equals("success")) {
 
-                CreateFirebaseUser(encUsername, encPassword);
-                try {
-                    loginFirebase(Z.Decrypt(encUsername, WelcomeGenrateCodeActivity.this), Z.md5(Z.Decrypt(encPassword, WelcomeGenrateCodeActivity.this) + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -1333,7 +1330,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                 // back press next will move to base activity
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+                CreateFirebaseUser(encUsername, encPassword);
+                try {
+                    loginFirebase(Z.Decrypt(encUsername, WelcomeGenrateCodeActivity.this), Z.md5(Z.Decrypt(encPassword, WelcomeGenrateCodeActivity.this) + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         }
@@ -1358,8 +1360,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             String uid = user.getUid();
                             MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "uid", uid);
                             Log.d("TAG", "firebase user created in welcome generate code activity with email: " + u2 + "\nuid: " + uid);
-
-
                         } else {
                             Log.d("TAG", "firebase user creation failed in welcome generate activity:");
 
@@ -1389,7 +1389,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     public static String md5(String input) {
 

@@ -84,6 +84,8 @@ public class OTPActivity extends AppCompatActivity {
                         .setPositiveButton("yes",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
+                                        MySharedPreferencesManager.save(OTPActivity.this, "activationMessage", "");
+                                        MySharedPreferencesManager.save(OTPActivity.this, "otp", "no");
                                         finish();
                                     }
                                 })
@@ -234,6 +236,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encUsernameVerify));
             params.add(new BasicNameValuePair("eo", encOTP));
             json = jParser.makeHttpRequest(Z.url_verifyotp, "GET", params);
+            Log.d("TAG", "doInBackground: verify :" + json);
 
             try {
                 resultofop = json.getString("info");
@@ -247,7 +250,7 @@ public class OTPActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            new ClearOTPTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//            new ClearOTPTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             if (resultofop.equals("success") && activationMessageflag == false) {
 
                     Log.d("TAG", "por bala" + activationMessageflag);
@@ -263,44 +266,35 @@ public class OTPActivity extends AppCompatActivity {
 //                    Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
                     if (role.equals("student")) {
-//                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         CreateFirebaseUser(u, p);
                         try {
                             loginFirebase(Z.Decrypt(u, OTPActivity.this), Z.md5(Z.Decrypt(p, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
-                    } else if (role.equals("admin")) {
-                        startActivity(new Intent(OTPActivity.this, AdminActivity.class));
-                        finish();
                     } else if (role.equals("alumni")) {
-//                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         CreateFirebaseUser(u, p);
                         try {
                             loginFirebase(Z.Decrypt(u, OTPActivity.this), Z.md5(Z.Decrypt(p, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
-                    } else if (role.equals("hr")) {
-                        startActivity(new Intent(OTPActivity.this, HRActivity.class));
-                        finish();
                     }
+//                        else if (role.equals("hr")) {
+//                        startActivity(new Intent(OTPActivity.this, HRActivity.class));
+//                        finish();
+//                    }else if (role.equals("admin")) {
+//                        startActivity(new Intent(OTPActivity.this, AdminActivity.class));
+//                        finish();
+//                    }
 
-//              }    else if (resultofop.equals("fail"))
-//                    Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
-//                else if (resultofop.equals("expired"))
-//                    Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
-//                else if (resultofop.equals("already")) {
-//
-//                }
-//                else
-//                    Toast.makeText(OTPActivity.this, resultofop, Toast.LENGTH_LONG).show();
+
             } else if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "por bala" + activationMessageflag);
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
@@ -311,10 +305,8 @@ public class OTPActivity extends AppCompatActivity {
                 finish();
             } else if (resultofop.equals("fail")) {
                 otplayout.setError("Incorrect OTP");
-//                Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
             } else if (resultofop.equals("expired"))
                 otplayout.setError("OTP expired.Please request OTP again.");
-//                Toast.makeText(OTPActivity.this, "OTP expired.Please request OTP again.", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(OTPActivity.this, "Try again", Toast.LENGTH_SHORT).show();
 
@@ -351,6 +343,7 @@ public class OTPActivity extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
             String encUsernameResendOTP = encUsername;
+            Log.d("TAG", "doInBackground: resnd " + encUsername);
 
             if (activationMessageflag == true) {
                 encUsernameResendOTP = MySharedPreferencesManager.getData(OTPActivity.this, "proEmail");
@@ -364,6 +357,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("f", encfname));
             params.add(new BasicNameValuePair("l", enclname));
             json = jParser.makeHttpRequest(Z.url_resendotp, "GET", params);
+
             try {
                 resultofop = json.getString("info");
 
@@ -385,17 +379,17 @@ public class OTPActivity extends AppCompatActivity {
         }
     }
 
-    class ClearOTPTask extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            jParser.makeHttpRequest(Z.url_ClearOTP, "GET", params);
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-        }
-    }
+//    class ClearOTPTask extends AsyncTask<String, String, String> {
+//        protected String doInBackground(String... param) {
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            jParser.makeHttpRequest(Z.url_ClearOTP, "GET", params);
+//            return "";
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//        }
+//    }
 
     class AddStudentUnderAdmin extends AsyncTask<String, String, String> {
 
