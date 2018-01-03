@@ -53,7 +53,7 @@ public class SplashScreen extends AppCompatActivity {
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
     private String EmailCred = "";
-    private String android_id;
+    private String android_id, device_id;
 
     public static String getDeviceName() {
         String manufacturer = Build.MANUFACTURER;
@@ -462,7 +462,8 @@ public class SplashScreen extends AppCompatActivity {
 
             try {
                 android_id = Secure.getString(getApplication().getContentResolver(), Secure.ANDROID_ID);
-//
+                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                device_id = telephonyManager.getDeviceId();
             } catch (Exception e) {
             }
 
@@ -472,7 +473,7 @@ public class SplashScreen extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
-            params.add(new BasicNameValuePair("did", "did"));
+            params.add(new BasicNameValuePair("did", device_id));
             params.add(new BasicNameValuePair("u", username));
             params.add(new BasicNameValuePair("e", echo_number));
 

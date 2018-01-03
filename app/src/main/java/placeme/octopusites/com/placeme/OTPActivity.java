@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -262,7 +263,8 @@ public class OTPActivity extends AppCompatActivity {
 //                    Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
                     if (role.equals("student")) {
-                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        CreateFirebaseUser(u, p);
                         new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
@@ -270,7 +272,8 @@ public class OTPActivity extends AppCompatActivity {
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
-                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        CreateFirebaseUser(u, p);
                         new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
@@ -293,8 +296,6 @@ public class OTPActivity extends AppCompatActivity {
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                 String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
-
-                new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
@@ -410,55 +411,79 @@ public class OTPActivity extends AppCompatActivity {
         }
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-
-        String u, p;
-
-        CreateFirebaseUser(String u, String p) {
-            this.u = u;
-            this.p = p;
+    void CreateFirebaseUser(final String u, final String p) {
+        String u1 = null, p1 = null;
+        try {
+            u1 = Z.Decrypt(u, OTPActivity.this);
+            p1 = Z.Decrypt(p, OTPActivity.this);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        final String u2 = u1;
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1, Z.md5(p1 + MySharedPreferencesManager.getDigest3(OTPActivity.this)))
+                .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
 
-        protected String doInBackground(String... param) {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = user.getUid();
+                            MySharedPreferencesManager.save(OTPActivity.this, "uid", uid);
+                            Log.d("TAG", "firebase user created with email: " + u2 + "\nuid: " + uid);
 
 
-            String fname = MySharedPreferencesManager.getData(OTPActivity.this, "fname");
-            String lname = MySharedPreferencesManager.getData(OTPActivity.this, "lname");
-            String encfullName = fname + " " + lname;
-            String encPhone = MySharedPreferencesManager.getData(OTPActivity.this, "phone");
+                        } else {
+                            Log.d("TAG", "firebase user creation failed:");
 
-            if (encfullName == null)
-                encfullName = "Name_Not_Found_From_shared";
-            if (encPhone == null)
-                encPhone = "Phone_Not_Found_From_shared";
+                        }
+                    }
+                });
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
 
-        @Override
-        protected void onPostExecute(String result) {
-            loginFirebase(plainusername, hash);
-        }
     }
 
-    @Override
-    public void onBackPressed() {
-
-        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory(Intent.CATEGORY_HOME);
-        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(homeIntent);
-    }
+//   class CreateFirebaseUser2 extends AsyncTask<String, String, String> {
+//
+//        String u, p, d;
+//
+//        CreateFirebaseUser2(String u, String p,String d) {
+//            this.u = u;
+//            this.p = p;
+//            this.d = d;
+//        }
+//
+//        protected String doInBackground(String... param) {
+//
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", u));
+//            params.add(new BasicNameValuePair("p", p));
+//            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+//            params.add(new BasicNameValuePair("d", d));
+//            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+//
+//            Log.d("TAG", "create firebase json: "+json);
+//            try {
+//                resultofop = json.getString("info");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return resultofop;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            loginFirebase(plainusername, hash);
+//        }
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//
+//        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//        homeIntent.addCategory(Intent.CATEGORY_HOME);
+//        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(homeIntent);
+//    }
 
 
 }

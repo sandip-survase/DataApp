@@ -39,6 +39,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -1341,17 +1342,35 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-            json = jsonParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
+            String u1 = null, p1 = null;
             try {
-                resultofop = json.getString("info");
-
+                u1 = Z.Decrypt(u, WelcomeGenrateCodeActivity.this);
+                p1 = Z.Decrypt(p, WelcomeGenrateCodeActivity.this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            final String u2 = u1;
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1, Z.md5(p1 + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this)))
+                    .addOnCompleteListener(WelcomeGenrateCodeActivity.this, new OnCompleteListener<AuthResult>() {
+
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                String uid = user.getUid();
+                                Log.d("TAG", "firebase user created with email: " + u2 + "\nuid: " + uid);
+
+                                new CreateFirebaseUser2(u, p, uid).execute();
+
+                            } else {
+                                Log.d("TAG", "firebase user creation failed:");
+
+                            }
+                        }
+                    });
+
             return resultofop;
         }
 
@@ -1372,6 +1391,40 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             loginFirebase(plainusername, hash);
 //            Toast.makeText(WelcomeGenrateCodeActivity.this, "fire "+resultofop, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    class CreateFirebaseUser2 extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+
+        CreateFirebaseUser2(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jsonParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
         }
     }
 

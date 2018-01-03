@@ -47,8 +47,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -1253,12 +1257,49 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         getNotifications();
         new GetUnreadMessagesCount().execute();
         new UpdateFirebaseToken().execute();
+        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
+        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
+
+
+        String uid = MySharedPreferencesManager.getData(MainActivity.this, "uid");
+        Log.d("TAG", "onCreate: shared  uid :" + uid);
+        if (uid != null)
+            new CreateFirebaseUser2(u, p, uid).execute();
 
 
         //temp work remove after done
-//        String u = MySharedPreferencesManager.getUsername(MainActivity.this);
-//        String p = MySharedPreferencesManager.getPassword(MainActivity.this);
+
+//
 //        new CreateFirebaseUser(u,p).execute();
+//        try {
+//            u=Z.Decrypt(u,MainActivity.this);
+//            p=Z.Decrypt(p,MainActivity.this);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        final String u1=u;
+//        FirebaseAuth.getInstance().createUserWithEmailAndPassword(u,  Z.md5(p + MySharedPreferencesManager.getDigest3(MainActivity.this)))
+//                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+//
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(MainActivity.this, "task success.",Toast.LENGTH_LONG).show();
+//
+//                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                            String uid = user.getUid();
+//
+//                            Log.d("TAG", "firebase user created with email: "+u1+"\nuid: "+uid);
+//
+//                        } else {
+//                            Toast.makeText(MainActivity.this, "task failed.",Toast.LENGTH_LONG).show();
+//
+//                        }
+//                    }
+//                });
+//
+
     }
 
 //    student data
@@ -1470,11 +1511,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
                         if (task.isSuccessful()) {
-//                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
 
                         } else {
-//                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -2619,7 +2660,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
+                JSONObject json2 = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
+                Log.d("FinaltestN2", "json notification: " + json2);
 
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
@@ -2697,5 +2739,88 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
+    //    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+//
+//        String u, p;
+//
+//        CreateFirebaseUser(String u, String p) {
+//            this.u = u;
+//            this.p = p;
+//        }
+//
+//        protected String doInBackground(String... param) {
+//
+//
+//            String u1=null,p1=null;
+//            try {
+//                u1=Z.Decrypt(u,MainActivity.this);
+//                p1=Z.Decrypt(p,MainActivity.this);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//            final String u2=u1;
+//
+//            FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1,  Z.md5(p1 + MySharedPreferencesManager.getDigest3(MainActivity.this)))
+//                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+//
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if (task.isSuccessful()) {
+//                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                                String uid = user.getUid();
+//                                Log.d("TAG", "firebase user created with email: "+u2+"\nuid: "+uid);
+//
+//                                new CreateFirebaseUser2(u,p,uid).execute();
+//                            } else {
+//                                Log.d("TAG", "firebase user creation failed:");
+//
+//                            }
+//                        }
+//                    });
+//
+//
+//            return resultofop;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+////            loginFirebase(plainusername, hash);
+//        }
+//    }
+//
+    class CreateFirebaseUser2 extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+
+        CreateFirebaseUser2(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
 
 }
