@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
-    private String plainusername, username = "", fname = "", resultofop = "", lname = "";
+    private String plainusername, username = "", pass, fname = "", resultofop = "", lname = "";
     private MaterialSearchView searchView;
     private ImageView resultView;
     private int chooserType;
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username = MySharedPreferencesManager.getUsername(this);
         String role = MySharedPreferencesManager.getRole(this);
-        String pass = MySharedPreferencesManager.getPassword(this);
+        pass = MySharedPreferencesManager.getPassword(this);
 
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
         tabLayout = (TabLayout) findViewById(R.id.blogtabs);
@@ -1244,19 +1244,46 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         new GetUnreadMessagesCount().execute();
         new UpdateFirebaseToken().execute();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            MySharedPreferencesManager.save(MainActivity.this, "uid", user.getUid());
-            new CreateFirebaseUser(username, pass, user.getUid()).execute();
-        }
-
 
     }
 
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
 
 //    student data
 
-    void loginFirebase(String username, String hash) {
+    void loginFirebase(final String username, String hash) {
 
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
@@ -1268,6 +1295,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                MySharedPreferencesManager.save(MainActivity.this, "uid", user.getUid());
+                                try {
+                                    new CreateFirebaseUser(Z.Encrypt(username, MainActivity.this), pass, user.getUid()).execute();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
 
                         } else {
                             Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
@@ -1768,39 +1804,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
 
-        String u, p, d;
-
-        CreateFirebaseUser(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
 
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
         @Override
