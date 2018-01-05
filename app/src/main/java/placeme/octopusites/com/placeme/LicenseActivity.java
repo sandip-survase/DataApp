@@ -352,7 +352,7 @@ public class LicenseActivity extends AppCompatActivity {
             "See the License for the specific language governing permissions and\n" +
             "limitations under the License.\n";
 
-    String licencestr24 = "Font";
+    String licencestr24 = "Nunito & Righteous";
     String contentstr24 = "Copyright (c),Nicolas Spalinger & Victor Gaultney, 2007-02-26\n" +
             "THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n" +
             "EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF\n" +

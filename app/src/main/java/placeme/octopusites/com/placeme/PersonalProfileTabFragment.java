@@ -1,6 +1,8 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -52,15 +54,13 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 
 public class PersonalProfileTabFragment extends Fragment  {
+    Activity mActivity;
 
     EditText fnameedittext, mnameedittext, snameedittext, nameastenedittext, caddrline1, caddrline2, caddrline3, paddrline1, paddrline2, paddrline3, emailedittext, phoneedittext, profileaemail, mothernameedittext, dobedittext, mobileedittext, alternatemobileedittext, mothertongueedittext, hobbiesedittext, casteedittext, prnedittext, languagesknownedittext;
     RadioButton radioButtonMale, radioButtonFemale, radioButtonHandicappedNo, radioButtonHandicappedYes, radioButtonSportsNo, radioButtonSportsState, radioButtonSportsNational, radioButtonSportsInternational, radioButtonDefenceNo, radioButtonDefence, radioButtonExserviceman;
     Spinner bloodgrpspinner, categoryspinner, religionspinner;
     String fname = "", mname = "", sname = "", nameasten = "", alternateemail = "", mothername = "", dob = "", gender = "", mobile = "", phone = "", alternatemobile = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", handicapped = "", sports = "", defenceex = "";
     String lang1 = "", lang2 = "", lang3 = "", lang4 = "", lang5 = "", lang6 = "", lang7 = "", lang8 = "", lang9 = "", lang10 = "", addrline1c = "", addrline2c = "", addrline3c = "", addrline1p = "", addrline2p = "", addrline3p = "";
-    String encfname, encmname, encsname, encnameasten, encalternateemail, encmothername, encdob, encgender, encmobile, encphone, encalternatemobile, encmothertongue, enchobbies, encbloodgroup, enccategory, encreligion, enccaste, encprn, enchandicapped, encsports, encdefenceex;
-    String encaddrline1c, encaddrline2c, encaddrline3c, encaddrline1p, encaddrline2p, encaddrline3p;
-    //    Button save;
     RadioGroup radioGroupGender, radioGroupHandicapped, radioGroupSports, radioGroupDefenceex;
     JSONParser jParser = new JSONParser();
 
@@ -97,7 +97,14 @@ public class PersonalProfileTabFragment extends Fragment  {
     };
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 
         rootView = inflater.inflate(R.layout.fragment_edit_profile_personal, container, false);
 
@@ -1589,16 +1596,19 @@ public class PersonalProfileTabFragment extends Fragment  {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-                if (role.equals("student"))
-                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if (role.equals("alumni"))
-                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+                if (role.equals("student")) {
+                    mActivity.setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                } else if (role.equals("alumni")) {
+
+                    mActivity.setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                }
+
                 edittedFlag = 0;
             } else {
                 Toast.makeText(getActivity(), "Try again", Toast.LENGTH_SHORT).show();
             }
 
-//            save.setVisibility(View.VISIBLE);
             personalprogress.setVisibility(View.GONE);
 
             s.setFname(fname);

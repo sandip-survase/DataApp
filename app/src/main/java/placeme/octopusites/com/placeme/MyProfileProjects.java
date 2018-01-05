@@ -1420,6 +1420,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                 i.setVisibility(View.GONE);
             }
         }
+        Log.d("cricket", "MPPJ OC odi match");
 
         edittedFlag=0;
     }
@@ -2234,6 +2235,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
         if(errorflag==0)
         {
+            Log.d("cricket", "MPPJ V&S odi match");
            save();
         }
     }
@@ -2270,6 +2272,8 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
             new SaveProjects().execute(encObjString);
         } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("cricket", "MPPJ V&S odi  lost -");
 
         }
 
@@ -2285,19 +2289,23 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             params.add(new BasicNameValuePair("u",username));       //0
 
             params.add(new BasicNameValuePair("d",param[0]));       //0
-
+            Log.d("cricket", "MPPJ DIB odi match");
             json = jParser.makeHttpRequest(Z.url_saveprojects, "GET", params);
             try {
                 r = json.getString("info");
 
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("cricket", "MPPJ DIB odi match lost -");
+
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            Log.d("cricket", "MPPJ OPE odi match lost -");
             if(result.equals("success"))
             {
 

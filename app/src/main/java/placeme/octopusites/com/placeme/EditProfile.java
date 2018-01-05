@@ -221,13 +221,10 @@ public class EditProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Log.d("TAG", "onActivityResult: " + resultCode);
+
         if (resultCode == MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE)
             setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-
-        if (resultCode == AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE)
-            setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-
     }
 
     // new

@@ -1,8 +1,10 @@
 package placeme.octopusites.com.placeme;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -24,6 +30,7 @@ import java.util.List;
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 import cat.ereza.customactivityoncrash.config.CaocConfig;
 
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 
 public class MyCustomErrorActivity extends AppCompatActivity {
@@ -40,6 +47,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     CaocConfig config;
     String abd="";
     TextView ohsnapmsg,ohsnapmsg2;
+    String uname = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +55,13 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_custom_error);
 
         username = MySharedPreferencesManager.getUsername(this);
+
         error=getlogcat();
 
         abd = error + CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
         Log.d("TAG", "onCreate: username -"+username);
         Log.d("TAG", "onCreate: abd - "+abd);
-        new ask().execute();
+        new SaveError().execute();
         Log.d("TAG", "onCreate: after ask task - ");
 
         config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
@@ -85,31 +94,63 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         MyCustomErrorActivity.super.onBackPressed();
     }
 
-    class ask extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
-            Log.d("TAG", "doInBackground: mycutom error");
-            String  r ="";
-            String str =abd;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));  //0
-            params.add(new BasicNameValuePair("k", str));     //1
-            json = jParser.makeHttpRequest(Z.url_save_bug, "GET", params);
-            Log.d("TAG", "json - "+json);
+    class SaveError extends AsyncTask<String, String, String> {
 
+
+        protected String doInBackground(String... param) {
+            String encstring = "";
+            List<String> response = new ArrayList<String>();
+//            *********
             try {
-                r = json.getString("info");
-                Log.d("errorreport", "doInBackground: errorreport  r: -" + r);
+                uname = Z.Decrypt(username, MyCustomErrorActivity.this);
             } catch (Exception e) {
-                Log.d("errorreport", "doInBackground: errorreport  Exception: -" + e.getMessage());
                 e.printStackTrace();
             }
 
-            return  r;
+            String filename = "Logcat.txt";
+            generateNoteOnSD(MyCustomErrorActivity.this, filename, abd);
 
+            File atach1 = new File(Environment.getExternalStorageDirectory(), "/Place Me/" + uname + "/" + filename);
+
+
+            if (atach1 != null) {
+
+                MultipartUtility multipart = null;
+                try {
+                    multipart = new MultipartUtility(Z.url_SaveLogFile, "UTF-8");
+                    Log.d("TAG", "UploadProfile1 : input  username " + username);
+                    multipart.addFormField("u", username);
+
+                    if (filename != "") {
+                        multipart.addFormField("f", filename);
+                        multipart.addFilePart("uf", atach1);
+                        Log.d("TAG", "onSuccess: f name- " + filename);
+                    } else
+                        multipart.addFormField("f", "null");
+                    response = multipart.finish();
+                    atach1.delete();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("TAG", "exp : " + e.getMessage());
+
+                }
+
+            } else {
+                Log.d("TAG", "file null");
+
+            }
+
+//**************
+            return null;
         }
 
+        @Override
+        protected void onPostExecute(String result) {
 
+        }
     }
+
     public String getlogcat()
     {
         String logcat="";
@@ -132,5 +173,23 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         }
 
         return logcat;
+    }
+
+    public void generateNoteOnSD(Context context, String sFileName, String sBody) {
+        try {
+            File root = new File(Environment.getExternalStorageDirectory(), "Place Me/" + uname);
+//            File root = new File(Environment.getExternalStorageDirectory(), "/Place Me/Logcat");
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File gpxfile = new File(root, sFileName);
+            FileWriter writer = new FileWriter(gpxfile);
+            writer.append(sBody);
+            writer.flush();
+            writer.close();
+//            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

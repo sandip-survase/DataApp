@@ -3386,6 +3386,7 @@ public class ProjectsProfileTabFragment extends Fragment {
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
                 edittedFlag = 0;
             } else
                 Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
