@@ -12,24 +12,18 @@ import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_HIGH;
 import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_MAX;
@@ -67,10 +61,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
         Log.d(TAG, "push received");
-
-        Intent pushNotification = new Intent("pushreceived");
-        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
-
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         if (remoteMessage.getNotification() != null) {
 
@@ -445,7 +435,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         manager.notify(0, builder.build());
 
-
+                        Intent pushNotification = new Intent("pushNotificationChat");
+                        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
 
                     }
 

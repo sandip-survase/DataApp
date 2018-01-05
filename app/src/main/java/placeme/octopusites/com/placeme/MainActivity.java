@@ -49,6 +49,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -2700,8 +2701,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                JSONObject json2 = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
-                Log.d("FinaltestN2", "json notification: " + json2);
+                JSONObject json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
 
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
@@ -2733,7 +2733,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
             } catch (Exception e) {
-//                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(AdminActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
 

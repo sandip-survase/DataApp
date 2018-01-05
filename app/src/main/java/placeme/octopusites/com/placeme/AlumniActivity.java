@@ -91,12 +91,14 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback {
     //
-    public static final int ALUMNI_DATA_CHANGE_RESULT_CODE = 222;
-    public static final String Intro = "intro";
-    //
 //placement variable
     File Imgfile;
+    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
+    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
+    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     int firstVisibleItemPlacement, visibleItemCountPlacement, totalItemCountPlacement;
+    private int page_to_call_placement = 1;
+    private int current_page_placement = 1;
     int total_no_of_placements;
     int[] called_pages_placement;
     boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
@@ -116,14 +118,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     String unread_count[];
     int unreadMessageCount = 0;
     String sender_uid;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     StudentData studentData = new StudentData();
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
+//
+
+    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
+    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
+    private int page_to_call_notification = 1;
     boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
     int lastPageFlagNotification = 0;
     int notificationpages = 0;
     int[] called_pages_notification;
-//
     int total_no_of_notifications;
     int unreadcountNotification = 0;
     int readstatuscountNotification = 0;
@@ -137,60 +144,53 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     String lastupdatedNotification[];
     int searchNotificationFlag = 0, searchPlacementFlag = 0;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
+    private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    private int current_page_notification = 1;
     String[] blanksuggestionList = {""};
     String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1 = "", lang1 = "", careerobj, fname = "", resultofop = "", lname = "";
+
+    //
+    public static final int ALUMNI_DATA_CHANGE_RESULT_CODE = 222;
+    private String username = "";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     int notificationorplacementflag = 0;
+    private RecyclerView recyclerView;
+    private RecyclerItemAdapter mAdapter;
     int count = 0, id[], pcount = 0;
     String heading[], notification[];
     JSONParser jParser = new JSONParser();
     JSONObject json;
     FrameLayout mainfragment;
     Handler handler = new Handler();
+    private MaterialSearchView searchView;
     RelativeLayout createnotificationrl, editnotificationrl;
     int notificationplacementflag = 0;
+    public static final String Intro = "intro";
     int navMenuFlag = 0, oldNavMenuFlag = 0;
     int selectedMenuFlag = 1;
+
+    //  our coding here
+    private ImageView resultView;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
+    private String finalPath;
     int crop_flag = 0;
     String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
+    private String plainusername;
     String filepath = "", filename = "";
     String directory, pass;
     List<String> response;
+    //
+
     // noti
     SwipeRefreshLayout tswipe_refresh_layout;
     Toolbar toolbar;
     ViewPager mViewPager;
     TabLayout tabLayout;
-    ArrayList<RecyclerItemEdit> tempListNotification;
-    ArrayList<RecyclerItemPlacement> tempListPlacement;
-    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
-    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
-    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
-    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
-    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
-    private int page_to_call_placement = 1;
-    private int current_page_placement = 1;
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
-    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
-    private int page_to_call_notification = 1;
-    private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
-    //
-    private int current_page_notification = 1;
-    private String username = "";
-    private RecyclerView recyclerView;
-    private RecyclerItemAdapter mAdapter;
-    private MaterialSearchView searchView;
-    //  our coding here
-    private ImageView resultView;
-    private String finalPath;
-    private String plainusername;
     private int[] tabIcons = {
             R.drawable.news_feed_icon,
             R.drawable.videos_icon,
@@ -199,28 +199,25 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             R.drawable.ebooks_icon,
             R.drawable.question_sets_icon,
     };
+
     private TextView toolbar_title;
+
     //initial setup
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
+    ArrayList<RecyclerItemEdit> tempListNotification;
+    ArrayList<RecyclerItemPlacement> tempListPlacement;
+
+
     //new
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+
+
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
 
-    public static boolean containsIgnoreCase(String str, String searchStr) {
-        if (str == null || searchStr == null) return false;
-
-        final int length = searchStr.length();
-        if (length == 0)
-            return true;
-
-        for (int i = str.length() - length; i >= 0; i--) {
-            if (str.regionMatches(true, i, searchStr, 0, length))
-                return true;
-        }
-        return false;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,7 +250,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
-
 
         MySharedPreferencesManager.save(AlumniActivity.this, "intro", "yes");
 
@@ -527,13 +523,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         messagecount = (TextView) hView.findViewById(R.id.messagecount);
         messagecountrl = (RelativeLayout) hView.findViewById(R.id.messagecountrl);
 
-        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
-        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
-        View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v5 = (View) hView.findViewById(R.id.settingselectionview);
-        View v6 = (View) hView.findViewById(R.id.blogselectionview);
-        View v7 = (View) hView.findViewById(R.id.abtselectionview);
-        View v8 = (View) hView.findViewById(R.id.chatselectionview);
+        View v1 = hView.findViewById(R.id.prifileselectionview);
+        View v2 = hView.findViewById(R.id.notificationselectionview);
+        View v3 = hView.findViewById(R.id.placementselectionview);
+        View v5 = hView.findViewById(R.id.settingselectionview);
+        View v6 = hView.findViewById(R.id.blogselectionview);
+        View v7 = hView.findViewById(R.id.abtselectionview);
+        View v8 = hView.findViewById(R.id.chatselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
@@ -712,6 +708,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
 
 
             }
@@ -952,15 +949,11 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                if (intent.getAction().equals("pushreceived")) {
+                if (intent.getAction().equals("pushNotificationChat")) {
 
                     Log.d("TAG", "push broadcast received: ");
                     new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
-
-                    new RefreshNotificationCount().execute();
-                    new RefreshPlacementCount().execute();
-
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
                         fragment.addMessages();
@@ -1209,7 +1202,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             String data = new String(demo2DecryptedBytes1);
             String hash = md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
 
-            new LoginFirebaseTask().execute(plainusername, hash);
+//            new LoginFirebaseTask().execute(plainusername,hash);
+
+            loginFirebase(plainusername, hash);
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1248,8 +1243,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //        tswipe_refresh_layout.setRefreshing(true);
 
         new GetStudentData().execute();
+
         getNotifications();
-        new RefreshPlacementCount().execute();
         new GetUnreadMessagesCount().execute();
 
 
@@ -1294,6 +1289,353 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
+                //shift this to class
+                String studenttenthmarksObj = "", studenttwelthordiplomamarksobj = "", diplomadataobject, ugdataobject = "";
+
+
+                resultofop = json.getString("info");
+                if (resultofop.equals("found")) {
+                    String s = json.getString("intro");
+                    if (s.equals("found")) {
+                        found_box1 = 1;
+                        Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(json.getString("introObj"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        fname = obj2.getFirstname();
+                        lname = obj2.getLastname();
+
+                        studentData.setFname(fname);
+                        studentData.setLname(lname);
+                    }
+                    s = json.getString("tenth");
+                    if (s.equals("found")) {
+
+                        studenttenthmarksObj = json.getString("tenthobj");
+                        MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(studenttenthmarksObj, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        studentData.setPercentage10(obj2.percentage);
+
+                        found_tenth = 1;
+                    }
+
+                    s = json.getString("twelth");
+                    if (s.equals("found")) {
+                        studenttwelthordiplomamarksobj = json.getString("twelthobj");
+                        MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(studenttwelthordiplomamarksobj, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        studentData.setPercentage12(obj2.percentage);
+
+
+                    }
+
+                    s = json.getString("diploma");
+                    if (s.equals("found")) {
+                        found_diploma = 1;
+                        Log.d("TAG", "dataload found_diploma:-" + found_diploma);
+
+                        diplomadataobject = json.getString("diplomaobj");
+
+                        MyProfileDiplomaModal obj2 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        studentData.setAggregatediploma(obj2.aggregate);
+
+                    }
+
+                    s = json.getString("ug");
+                    if (s.equals("found")) {
+                        ugdataobject = json.getString("ugobj");
+                        MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        studentData.setAggregateug(obj2.aggregate);
+
+                        found_ug = 1;
+                    }
+
+
+                    s = json.getString("projects");
+                    if (s.equals("found")) {
+                        found_projects = 1;
+                        ArrayList<Projects> projectsList = (ArrayList<Projects>) fromString(json.getString("projectsdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        Projects obj1 = projectsList.get(0);
+                        proj1 = obj1.getProj1();
+                        domain1 = obj1.getDomain1();
+                        team1 = obj1.getTeam1();
+                        duration1 = obj1.getDuration1();
+
+                        studentData.setProj1(proj1);
+                        studentData.setDomain1(domain1);
+                        studentData.setTeam1(team1);
+                        studentData.setDuration1(duration1);
+
+
+                    }
+                    s = json.getString("knownlang");
+                    if (s.equals("found")) {
+                        found_lang = 1;
+                        ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        KnownLangs obj1 = knownLangsList.get(0);
+                        lang1 = obj1.getKnownlang();
+
+                        studentData.setLang1(lang1);
+
+                    }
+
+                    s = json.getString("skills");
+                    if (s.equals("found")) {
+                        found_skills = 1;
+                        ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        Skills obj1 = skillsList.get(0);
+                        skill1 = obj1.getSkill();
+                        studentData.setSkill1(skill1);
+
+                    }
+
+                    s = json.getString("career");
+                    if (s.equals("found")) {
+                        found_careerobj = 1;
+                        String careerdataobject = json.getString("careerobj");
+                        MyProfileCareerObjModal obj2 = (MyProfileCareerObjModal) fromString(careerdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        careerobj = obj2.careerobj;
+                        studentData.setCareerobj(careerobj);
+                    }
+
+                    s = json.getString("strengths");
+                    if (s.equals("found")) {
+                        found_strengths = 1;
+                        String strengthdataobject = json.getString("strengthsobj");
+
+                        MyProfileStrengthsModal obj2 = (MyProfileStrengthsModal) fromString(strengthdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        strength1 = obj2.sstrength1;
+                        studentData.setStrength1(strength1);
+                    }
+                    s = json.getString("weaknesses");
+                    if (s.equals("found")) {
+                        found_weaknesses = 1;
+                        String weaknessesdataobject = json.getString("weaknessesobj");
+
+                        MyProfileWeaknessesModal obj2 = (MyProfileWeaknessesModal) fromString(weaknessesdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+
+                        weak1 = obj2.sweak1;
+                        studentData.setWeak1(weak1);
+                    }
+
+                    s = json.getString("contact_details");
+                    if (s.equals("found")) {
+                        found_contact_details = 1;
+                    }
+                    s = json.getString("personal");
+                    if (s.equals("found")) {
+                        found_personal = 1;
+                        String personaldataobject = json.getString("personalobj");
+
+                        MyProfilePersonal obj2 = (MyProfilePersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        fname = obj2.fname;
+                        lname = obj2.sname;
+                        dob = obj2.dob;
+                        phone = obj2.mobile;
+                        hobbies = obj2.hobbies;
+                        addressline1 = obj2.addrline1c;
+                        addressline2 = obj2.addrline2c;
+                        addressline3 = obj2.addrline3c;
+
+                        Log.d("TAG", "doInBackground: personal - " + fname);
+                        Log.d("TAG", "doInBackground: personal - " + lname);
+
+
+                        studentData.setFname(fname);
+                        studentData.setLname(lname);
+                        studentData.setDob(dob);
+                        studentData.setPhone(phone);
+                        studentData.setHobbies(hobbies);
+                        studentData.setLang1(lang1);
+                        studentData.setAddressline1(addressline1);
+                        studentData.setAddressline2(addressline2);
+                        studentData.setAddressline3(addressline3);
+
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return map;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+
+
+        }
+    }
+
+
+    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
+
+            try {
+
+                count = Integer.parseInt(json.getString("count"));
+                sender_uid = json.getString("uid");
+
+                reciever_username = new String[count];
+                reciever_uid = new String[count];
+                unread_count = new String[count];
+
+                for (int i = 0; i < count; i++) {
+                    unread_count[i] = "0";
+                    reciever_username[i] = json.getString("username" + i);
+                    reciever_uid[i] = json.getString("uid" + i);
+                }
+
+            } catch (Exception ex) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (count > 0) {
+
+                for (int i = 0; i < count; i++) {
+
+                    String tempusername = null;
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
+
+                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
+
+                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+
+
+                    } catch (Exception e) {
+                    }
+                    if (reciever_uid != null)
+                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+                }
+
+            }
+
+
+        }
+    }
+
+    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
+
+        String sender, reciever, senderuid, recieveruid;
+        int index;
+
+        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
+            this.sender = sender;
+            this.reciever = reciever;
+            this.senderuid = senderuid;
+            this.recieveruid = recieveruid;
+            this.index = index;
+        }
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("s", sender));       //0
+            params.add(new BasicNameValuePair("r", reciever));     //1
+            params.add(new BasicNameValuePair("su", senderuid));    //2
+            params.add(new BasicNameValuePair("ru", recieveruid));  //3
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
+                unread_count[index] = json.getString("unreadcount");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            unreadMessageCount = 0;
+            if (index == count - 1) {
+
+                for (int i = 0; i < count; i++) {
+
+                    unreadMessageCount += Integer.parseInt(unread_count[i]);
+
+                }
+                messagecountrl.setVisibility(View.VISIBLE);
+                messagecount.setText(unreadMessageCount + "");
+                if (unreadMessageCount == 0) {
+                    messagecountrl.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
+                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            placementcountrl.setVisibility(View.VISIBLE);
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
+                placementcountrl.setVisibility(View.GONE);
+            }
+            notificationcountrl.setVisibility(View.VISIBLE);
+            notificationcounttxt.setText(unreadcountNotification + "");
+            if (unreadcountNotification == 0) {
+                notificationcountrl.setVisibility(View.GONE);
+            }
+
+            getNotifications();
+
+        }
+    }
+
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();
         for (RecyclerItemEdit d : itemListNotificationNew) {
@@ -1303,6 +1645,20 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             }
         }
         mAdapterNotificationEdit.updateList(tempListNotification, text);
+    }
+
+    public static boolean containsIgnoreCase(String str, String searchStr) {
+        if (str == null || searchStr == null) return false;
+
+        final int length = searchStr.length();
+        if (length == 0)
+            return true;
+
+        for (int i = str.length() - length; i >= 0; i--) {
+            if (str.regionMatches(true, i, searchStr, 0, length))
+                return true;
+        }
+        return false;
     }
 
     void getNotifications() {
@@ -1330,6 +1686,172 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         lastPageFlagPlacement = 0;
         new GetPlacementsReadStatus().execute();
     }
+    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumniAlumniMetaData, "GET", params);
+
+                notificationpages = Integer.parseInt(json.getString("pages"));
+                called_pages_notification = new int[notificationpages];
+                total_no_of_notifications = Integer.parseInt(json.getString("count"));
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+
+//
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                notificationcountrl.setVisibility(View.VISIBLE);
+                notificationcounttxt.setText(unreadcountNotification + "");
+                if (unreadcountNotification == 0) {
+                    notificationcountrl.setVisibility(View.GONE);
+                }
+
+
+                new GetNotifications().execute();
+
+
+            } catch (Exception e) {
+                Toast.makeText(AlumniActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+    }
+
+    class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+                json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumniAlumniMetaData, "GET", params);
+
+
+                placementpages = Integer.parseInt(json.getString("pages"));
+                called_pages_placement = new int[placementpages];
+                total_no_of_placements = Integer.parseInt(json.getString("count"));
+                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("Backtrack", "placementpages: " + placementpages);
+                Log.d("Backtrack", "called_pages_placement: " + called_pages_placement);
+                Log.d("Backtrack", "total_no_of_placements: " + total_no_of_placements);
+                Log.d("Backtrack", "unreadcountPlacement: " + unreadcountPlacement);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            placementcountrl.setVisibility(View.VISIBLE);
+
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
+                placementcountrl.setVisibility(View.GONE);
+            }
+
+
+            new GetPlacements().execute();
+
+
+        }
+    }
+
+    class GetNotifications extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            Log.d("class", "accessed");
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
+            try {
+
+                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            setserverlisttoadapter(itemlistfromserver);
+
+        }
+
+    }
+
+    class GetPlacements extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+            String r = null;
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+
+            json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
+            try {
+
+                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+            } catch (Exception e) {
+            }
+
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+            setplacementListtoadapter(placementListfromserver);
+
+        }
+    }
 
     void changeReadStatusNotification(String id) {
         new ChangeReadStatusNotification().execute(id);
@@ -1339,6 +1861,119 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     void changeReadStatusPlacement(String id) {
         new ChangeReadStatusPlacement().execute(id);
 
+    }
+
+    class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("id", param[0]));       //0
+            json = jParser.makeHttpRequest(Z.url_ChangeNotificationReadStatus, "GET", params);
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+    class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("id", param[0]));       //0
+            json = jParser.makeHttpRequest(Z.url_ChangePlacementReadStatus, "GET", params);
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+    public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
+
+
+        private LinearLayoutManager mLinearLayoutManager;
+
+        public EndlessRecyclerOnScrollListenerNotification(LinearLayoutManager linearLayoutManager) {
+            this.mLinearLayoutManager = linearLayoutManager;
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            visibleItemCountNotification = recyclerView.getChildCount();
+            totalItemCountNotification = mLinearLayoutManager.getItemCount();
+            firstVisibleItemNotification = mLinearLayoutManager.findFirstVisibleItemPosition();
+
+            if (loadingNotification) {
+                if (totalItemCountNotification > previousTotalNotification) {
+                    loadingNotification = false;
+                    previousTotalNotification = totalItemCountNotification;
+                }
+            }
+            if (!loadingNotification && (totalItemCountNotification - visibleItemCountNotification)
+                    <= (firstVisibleItemNotification + visibleThresholdNotification)) {
+                // End has been reached
+
+                // Do something
+                current_page_notification++;
+
+                onLoadMore(current_page_notification);
+
+                loadingNotification = true;
+            }
+        }
+
+        public abstract void onLoadMore(int current_page);
+    }
+    public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
+
+
+        private LinearLayoutManager mLinearLayoutManager;
+
+        public EndlessRecyclerOnScrollListenerPlacement(LinearLayoutManager linearLayoutManager) {
+            this.mLinearLayoutManager = linearLayoutManager;
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            visibleItemCountPlacement = recyclerView.getChildCount();
+            totalItemCountPlacement = mLinearLayoutManager.getItemCount();
+            firstVisibleItemPlacement = mLinearLayoutManager.findFirstVisibleItemPosition();
+
+            if (loadingPlacement) {
+                if (totalItemCountPlacement > previousTotalPlacement) {
+                    loadingPlacement = false;
+                    previousTotalPlacement = totalItemCountPlacement;
+                }
+            }
+            if (!loadingPlacement && (totalItemCountPlacement - visibleItemCountPlacement)
+                    <= (firstVisibleItemPlacement + visibleThresholdPlacement)) {
+                // End has been reached
+
+                // Do something
+                current_page_placement++;
+
+                onLoadMore(current_page_placement);
+
+                loadingPlacement = true;
+            }
+        }
+
+        public abstract void onLoadMore(int current_page);
     }
 
     private void simulateLoadingNotification() {
@@ -1498,6 +2133,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }.execute();
     }
 
+
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
@@ -1516,6 +2152,34 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");
         adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
         viewPager.setAdapter(adapter);
+    }
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
@@ -1720,711 +2384,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         });
     }
 
-    public void requestProfileImage() {
-        downloadImage();
-//        new GetProfileImage().execute();
-    }
-
-    private void downloadImage() {
-
-        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-    }
-
-    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
-
-        itemListNotificationNew.addAll(itemlist);
-        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
-
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
-
-        mAdapterNotificationEdit.notifyDataSetChanged();
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
-
-        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
-
-    }
-
-    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
-
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-
-        itemListPlacementnew.addAll(itemList2);
-
-        mAdapterPlacement.notifyDataSetChanged();
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
-
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
-
-
-    }
-
-    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
-            try {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
-                //shift this to class
-                String studenttenthmarksObj = "", studenttwelthordiplomamarksobj = "", diplomadataobject, ugdataobject = "";
-
-
-                resultofop = json.getString("info");
-                if (resultofop.equals("found")) {
-                    String s = json.getString("intro");
-                    if (s.equals("found")) {
-                        found_box1 = 1;
-                        Modelmyprofileintro obj2 = (Modelmyprofileintro) fromString(json.getString("introObj"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-                        fname = obj2.getFirstname();
-                        lname = obj2.getLastname();
-
-                        studentData.setFname(fname);
-                        studentData.setLname(lname);
-                    }
-                    s = json.getString("tenth");
-                    if (s.equals("found")) {
-
-                        studenttenthmarksObj = json.getString("tenthobj");
-                        MyProfileTenthModal obj2 = (MyProfileTenthModal) fromString(studenttenthmarksObj, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        studentData.setPercentage10(obj2.percentage);
-
-                        found_tenth = 1;
-                    }
-
-                    s = json.getString("twelth");
-                    if (s.equals("found")) {
-                        studenttwelthordiplomamarksobj = json.getString("twelthobj");
-                        MyProfileTwelthModal obj2 = (MyProfileTwelthModal) fromString(studenttwelthordiplomamarksobj, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-                        studentData.setPercentage12(obj2.percentage);
-
-
-                    }
-
-                    s = json.getString("diploma");
-                    if (s.equals("found")) {
-                        found_diploma = 1;
-                        Log.d("TAG", "dataload found_diploma:-" + found_diploma);
-
-                        diplomadataobject = json.getString("diplomaobj");
-
-                        MyProfileDiplomaModal obj2 = (MyProfileDiplomaModal) fromString(diplomadataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-                        studentData.setAggregatediploma(obj2.aggregate);
-
-                    }
-
-                    s = json.getString("ug");
-                    if (s.equals("found")) {
-                        ugdataobject = json.getString("ugobj");
-                        MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        studentData.setAggregateug(obj2.aggregate);
-
-                        found_ug = 1;
-                    }
-
-
-                    s = json.getString("projects");
-                    if (s.equals("found")) {
-                        found_projects = 1;
-                        ArrayList<Projects> projectsList = (ArrayList<Projects>) fromString(json.getString("projectsdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        Projects obj1 = projectsList.get(0);
-                        proj1 = obj1.getProj1();
-                        domain1 = obj1.getDomain1();
-                        team1 = obj1.getTeam1();
-                        duration1 = obj1.getDuration1();
-
-                        studentData.setProj1(proj1);
-                        studentData.setDomain1(domain1);
-                        studentData.setTeam1(team1);
-                        studentData.setDuration1(duration1);
-
-
-                    }
-                    s = json.getString("knownlang");
-                    if (s.equals("found")) {
-                        found_lang = 1;
-                        ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        KnownLangs obj1 = knownLangsList.get(0);
-                        lang1 = obj1.getKnownlang();
-
-                        studentData.setLang1(lang1);
-
-                    }
-
-                    s = json.getString("skills");
-                    if (s.equals("found")) {
-                        found_skills = 1;
-                        ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        Skills obj1 = skillsList.get(0);
-                        skill1 = obj1.getSkill();
-                        studentData.setSkill1(skill1);
-
-                    }
-
-                    s = json.getString("career");
-                    if (s.equals("found")) {
-                        found_careerobj = 1;
-                        String careerdataobject = json.getString("careerobj");
-                        MyProfileCareerObjModal obj2 = (MyProfileCareerObjModal) fromString(careerdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        careerobj = obj2.careerobj;
-                        studentData.setCareerobj(careerobj);
-                    }
-
-                    s = json.getString("strengths");
-                    if (s.equals("found")) {
-                        found_strengths = 1;
-                        String strengthdataobject = json.getString("strengthsobj");
-
-                        MyProfileStrengthsModal obj2 = (MyProfileStrengthsModal) fromString(strengthdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        strength1 = obj2.sstrength1;
-                        studentData.setStrength1(strength1);
-                    }
-                    s = json.getString("weaknesses");
-                    if (s.equals("found")) {
-                        found_weaknesses = 1;
-                        String weaknessesdataobject = json.getString("weaknessesobj");
-
-                        MyProfileWeaknessesModal obj2 = (MyProfileWeaknessesModal) fromString(weaknessesdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-
-                        weak1 = obj2.sweak1;
-                        studentData.setWeak1(weak1);
-                    }
-
-                    s = json.getString("contact_details");
-                    if (s.equals("found")) {
-                        found_contact_details = 1;
-                    }
-                    s = json.getString("personal");
-                    if (s.equals("found")) {
-                        found_personal = 1;
-                        String personaldataobject = json.getString("personalobj");
-
-                        MyProfilePersonal obj2 = (MyProfilePersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
-
-                        fname = obj2.fname;
-                        lname = obj2.sname;
-                        dob = obj2.dob;
-                        phone = obj2.mobile;
-                        hobbies = obj2.hobbies;
-                        addressline1 = obj2.addrline1c;
-                        addressline2 = obj2.addrline2c;
-                        addressline3 = obj2.addrline3c;
-
-                        Log.d("TAG", "doInBackground: personal - " + fname);
-                        Log.d("TAG", "doInBackground: personal - " + lname);
-
-
-                        studentData.setFname(fname);
-                        studentData.setLname(lname);
-                        studentData.setDob(dob);
-                        studentData.setPhone(phone);
-                        studentData.setHobbies(hobbies);
-                        studentData.setLang1(lang1);
-                        studentData.setAddressline1(addressline1);
-                        studentData.setAddressline2(addressline2);
-                        studentData.setAddressline3(addressline3);
-
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return map;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap result) {
-
-
-        }
-    }
-
-    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
-
-            try {
-
-                count = Integer.parseInt(json.getString("count"));
-                sender_uid = json.getString("uid");
-
-                reciever_username = new String[count];
-                reciever_uid = new String[count];
-                unread_count = new String[count];
-
-                for (int i = 0; i < count; i++) {
-                    unread_count[i] = "0";
-                    reciever_username[i] = json.getString("username" + i);
-                    reciever_uid[i] = json.getString("uid" + i);
-                }
-
-            } catch (Exception ex) {
-
-            }
-
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (count > 0) {
-
-                for (int i = 0; i < count; i++) {
-
-                    String tempusername = null;
-                    try {
-                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                        String sPadding = "ISO10126Padding";
-
-                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
-
-                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-
-
-                    } catch (Exception e) {
-                    }
-                    if (reciever_uid != null)
-                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
-                }
-
-            }
-
-
-        }
-    }
-
-    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
-
-        String sender, reciever, senderuid, recieveruid;
-        int index;
-
-        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
-            this.sender = sender;
-            this.reciever = reciever;
-            this.senderuid = senderuid;
-            this.recieveruid = recieveruid;
-            this.index = index;
-        }
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("s", sender));       //0
-            params.add(new BasicNameValuePair("r", reciever));     //1
-            params.add(new BasicNameValuePair("su", senderuid));    //2
-            params.add(new BasicNameValuePair("ru", recieveruid));  //3
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
-                unread_count[index] = json.getString("unreadcount");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            unreadMessageCount = 0;
-            if (index == count - 1) {
-
-                for (int i = 0; i < count; i++) {
-
-                    unreadMessageCount += Integer.parseInt(unread_count[i]);
-
-                }
-                messagecountrl.setVisibility(View.VISIBLE);
-                messagecount.setText(unreadMessageCount + "");
-                if (unreadMessageCount == 0) {
-                    messagecountrl.setVisibility(View.GONE);
-                }
-            }
-        }
-    }
-
-    class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            placementcountrl.setVisibility(View.VISIBLE);
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
-                placementcountrl.setVisibility(View.GONE);
-            }
-            notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification + "");
-            if (unreadcountNotification == 0) {
-                notificationcountrl.setVisibility(View.GONE);
-            }
-
-            getNotifications();
-
-        }
-    }
-
-    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumniAlumniMetaData, "GET", params);
-
-                notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification = new int[notificationpages];
-                total_no_of_notifications = Integer.parseInt(json.getString("count"));
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d("FinaltestN", "notificationpages: " + notificationpages);
-                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
-                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
-
-//
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                notificationcountrl.setVisibility(View.VISIBLE);
-                notificationcounttxt.setText(unreadcountNotification + "");
-                if (unreadcountNotification == 0) {
-                    notificationcountrl.setVisibility(View.GONE);
-                }
-
-
-                new GetNotifications().execute();
-
-
-            } catch (Exception e) {
-                Toast.makeText(AlumniActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-
-        }
-    }
-
-    class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-                json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumniAlumniMetaData, "GET", params);
-
-
-                placementpages = Integer.parseInt(json.getString("pages"));
-                called_pages_placement = new int[placementpages];
-                total_no_of_placements = Integer.parseInt(json.getString("count"));
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d("Backtrack", "placementpages: " + placementpages);
-                Log.d("Backtrack", "called_pages_placement: " + called_pages_placement);
-                Log.d("Backtrack", "total_no_of_placements: " + total_no_of_placements);
-                Log.d("Backtrack", "unreadcountPlacement: " + unreadcountPlacement);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            placementcountrl.setVisibility(View.VISIBLE);
-
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
-                placementcountrl.setVisibility(View.GONE);
-            }
-
-
-            new GetPlacements().execute();
-
-
-        }
-    }
-
-    class GetNotifications extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            Log.d("class", "accessed");
-            json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
-            try {
-
-                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
-                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            setserverlisttoadapter(itemlistfromserver);
-
-        }
-
-    }
-
-    class GetPlacements extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-
-            json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
-            try {
-
-                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-            } catch (Exception e) {
-            }
-
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-            setplacementListtoadapter(placementListfromserver);
-
-        }
-    }
-
-    class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(Z.url_ChangeNotificationReadStatus, "GET", params);
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
-
-    class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(Z.url_ChangePlacementReadStatus, "GET", params);
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
-
-    public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
-
-
-        private LinearLayoutManager mLinearLayoutManager;
-
-        public EndlessRecyclerOnScrollListenerNotification(LinearLayoutManager linearLayoutManager) {
-            this.mLinearLayoutManager = linearLayoutManager;
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-
-            visibleItemCountNotification = recyclerView.getChildCount();
-            totalItemCountNotification = mLinearLayoutManager.getItemCount();
-            firstVisibleItemNotification = mLinearLayoutManager.findFirstVisibleItemPosition();
-
-            if (loadingNotification) {
-                if (totalItemCountNotification > previousTotalNotification) {
-                    loadingNotification = false;
-                    previousTotalNotification = totalItemCountNotification;
-                }
-            }
-            if (!loadingNotification && (totalItemCountNotification - visibleItemCountNotification)
-                    <= (firstVisibleItemNotification + visibleThresholdNotification)) {
-                // End has been reached
-
-                // Do something
-                current_page_notification++;
-
-                onLoadMore(current_page_notification);
-
-                loadingNotification = true;
-            }
-        }
-
-        public abstract void onLoadMore(int current_page);
-    }
-
-    public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
-
-
-        private LinearLayoutManager mLinearLayoutManager;
-
-        public EndlessRecyclerOnScrollListenerPlacement(LinearLayoutManager linearLayoutManager) {
-            this.mLinearLayoutManager = linearLayoutManager;
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-
-            visibleItemCountPlacement = recyclerView.getChildCount();
-            totalItemCountPlacement = mLinearLayoutManager.getItemCount();
-            firstVisibleItemPlacement = mLinearLayoutManager.findFirstVisibleItemPosition();
-
-            if (loadingPlacement) {
-                if (totalItemCountPlacement > previousTotalPlacement) {
-                    loadingPlacement = false;
-                    previousTotalPlacement = totalItemCountPlacement;
-                }
-            }
-            if (!loadingPlacement && (totalItemCountPlacement - visibleItemCountPlacement)
-                    <= (firstVisibleItemPlacement + visibleThresholdPlacement)) {
-                // End has been reached
-
-                // Do something
-                current_page_placement++;
-
-                onLoadMore(current_page_placement);
-
-                loadingPlacement = true;
-            }
-        }
-
-        public abstract void onLoadMore(int current_page);
-    }
-    // thumbanail
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
-
     class CompressTask extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
             File sourceFile = new File(filepath);
@@ -2439,7 +2398,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         @Override
                         public void onStart() {
                         }
-
                         @Override
                         public void onSuccess(File file) {
                             try {
@@ -2545,10 +2503,21 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     }
 
+    public void requestProfileImage() {
+        downloadImage();
+//        new GetProfileImage().execute();
+    }
+    // thumbanail
+
+    private void downloadImage() {
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    }
+
     class Getsingnature extends AsyncTask<String, String, String> {
 
         String signature = "";
-
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -2645,94 +2614,41 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
     }
 
-    class RefreshNotificationCount extends AsyncTask<String, String, String> {
+    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
+        itemListNotificationNew.addAll(itemlist);
+        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
 
-        protected String doInBackground(String... param) {
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
 
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
+        mAdapterNotificationEdit.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
 
-            try {
+        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
 
-                json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumniAlumniMetaData, "GET", params);
-
-                notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification = new int[notificationpages];
-                total_no_of_notifications = Integer.parseInt(json.getString("count"));
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d("FinaltestN", "notificationpages: " + notificationpages);
-                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
-                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
-
-//
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                notificationcountrl.setVisibility(View.VISIBLE);
-                notificationcounttxt.setText(unreadcountNotification + "");
-                if (unreadcountNotification == 0) {
-                    notificationcountrl.setVisibility(View.GONE);
-                }
-
-
-            } catch (Exception e) {
-                Toast.makeText(AlumniActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-
-        }
     }
 
-    class RefreshPlacementCount extends AsyncTask<String, String, String> {
+    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
+
+        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
+
+        itemListPlacementnew.addAll(itemList2);
+
+        mAdapterPlacement.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
 
 
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-                json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumniAlumniMetaData, "GET", params);
+        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
 
 
-                placementpages = Integer.parseInt(json.getString("pages"));
-                called_pages_placement = new int[placementpages];
-                total_no_of_placements = Integer.parseInt(json.getString("count"));
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d("Backtrack", "placementpages: " + placementpages);
-                Log.d("Backtrack", "called_pages_placement: " + called_pages_placement);
-                Log.d("Backtrack", "total_no_of_placements: " + total_no_of_placements);
-                Log.d("Backtrack", "unreadcountPlacement: " + unreadcountPlacement);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            placementcountrl.setVisibility(View.VISIBLE);
-
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
-                placementcountrl.setVisibility(View.GONE);
-            }
-
-        }
     }
+
 
 
 }
