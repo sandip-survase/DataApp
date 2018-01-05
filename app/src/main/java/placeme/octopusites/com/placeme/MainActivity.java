@@ -1244,7 +1244,38 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         new GetUnreadMessagesCount().execute();
         new UpdateFirebaseToken().execute();
 
+//        changePass();
 
+    }
+
+    private void changePass() {
+        String hash = null;
+        try {
+
+            hash = Z.md5("120120" + MySharedPreferencesManager.getDigest3(MainActivity.this));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (hash != null) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                user.updatePassword(hash).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("kkk", "Password updated");
+                        } else {
+                            Log.d("kkk", "Error password not updated");
+                        }
+                    }
+                });
+            } else
+                Log.d("kkk", "user null: ");
+
+        } else
+            Log.d("kkk", "hash null: ");
     }
 
     class CreateFirebaseUser extends AsyncTask<String, String, String> {
@@ -1264,7 +1295,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
             params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
 
             Log.d("TAG", "create firebase json: " + json);
             try {

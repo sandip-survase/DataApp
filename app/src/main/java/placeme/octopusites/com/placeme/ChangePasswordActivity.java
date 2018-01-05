@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
@@ -19,6 +20,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -27,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+import static placeme.octopusites.com.placeme.Z.md5;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -235,6 +244,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("a", encnewpass));
 
             json = jParser.makeHttpRequest(Z.url_changepass, "GET", params);
+            Log.d("TAG", "ChangePassTask: " + json);
             try {
                 resultofop = json.getString("info");
                 json.put("chge pass json : ",json);
@@ -248,8 +258,47 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
             if(resultofop.equals("success")) {
 
-                MySharedPreferencesManager.save(ChangePasswordActivity.this,"passKey", encnewpass);
+                String hashnew = null, hashOld = null, firebaseUsername = null;
+                try {
+                    String data = Z.Decrypt(encnewpass, ChangePasswordActivity.this);
+                    hashnew = md5(data + MySharedPreferencesManager.getDigest3(ChangePasswordActivity.this));
+                    firebaseUsername = Z.Decrypt(MySharedPreferencesManager.getUsername(ChangePasswordActivity.this), ChangePasswordActivity.this);
+                    String passOld = Z.Decrypt(MySharedPreferencesManager.getPassword(ChangePasswordActivity.this), ChangePasswordActivity.this);
+                    hashOld = md5(passOld + MySharedPreferencesManager.getDigest3(ChangePasswordActivity.this));
+//                    Log.d("kkk", "firebaseUsernameOld: pass "+firebaseUsername);
+//                    Log.d("kkk", "onPostExecute: pass old "+passOld);
+//                    Log.d("kkk", "onPostExecute: pass new "+data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
+                final String hash = hashnew;
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                Log.d("TAG", "onPostExecute: firebaseUsernameOld "+firebaseUsername);
+//                Log.d("TAG", "onPostExecute: hashOld "+hashOld);
+                AuthCredential credential = EmailAuthProvider.getCredential(firebaseUsername, hashOld);
+                user.reauthenticate(credential)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    user.updatePassword(hash).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("kkk", "FIFA updated");
+                                            } else {
+                                                Log.d("kkk", "Error FIFA not updated");
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    Log.d("kkk", "Error auth failed");
+                                }
+                            }
+                        });
+
+                MySharedPreferencesManager.save(ChangePasswordActivity.this,"passKey", encnewpass);
                 Toast.makeText(ChangePasswordActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 ChangePasswordActivity.super.onBackPressed();
             }
@@ -259,8 +308,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 Toast.makeText(ChangePasswordActivity.this,"Failed..!",Toast.LENGTH_SHORT).show();
 
 
-
-
             currentedittext.setText("");
             newpassedittetx.setText("");
             newpassaedittext.setText("");
@@ -268,5 +315,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
     }
+
 
 }

@@ -44,7 +44,7 @@ public class Z {
     public static final String url_getdigest = IP + "AESTest/GetDigest";
     public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
-//======================================= login =====================================
+    //======================================= login =====================================
 
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
@@ -150,6 +150,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_markread = IP + "Firebase/MarkRead";
     public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
+    public static final String url_ForgotPasswordChange = IP + "Firebase/ForgotPasswordChange";
 
     // Messages -----------------------------------------
 
