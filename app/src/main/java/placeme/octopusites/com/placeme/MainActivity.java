@@ -1243,10 +1243,77 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         new UpdateFirebaseToken().execute();
         new GetStudentData().execute();
 
+//        changePass();
 
     }
 
-    void loginFirebase(String username, String hash) {
+    private void changePass() {
+        String hash = null;
+        try {
+
+            hash = Z.md5("120120" + MySharedPreferencesManager.getDigest3(MainActivity.this));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (hash != null) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                user.updatePassword(hash).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("kkk", "Password updated");
+                        } else {
+                            Log.d("kkk", "Error password not updated");
+                        }
+                    }
+                });
+            } else
+                Log.d("kkk", "user null: ");
+
+        } else
+            Log.d("kkk", "hash null: ");
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+
+//    student data
+
+    void loginFirebase(final String username, String hash) {
 
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
@@ -1256,11 +1323,20 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
                         if (task.isSuccessful()) {
-//                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                MySharedPreferencesManager.save(MainActivity.this, "uid", user.getUid());
+                                try {
+                                    new CreateFirebaseUser(Z.Encrypt(username, MainActivity.this), pass, user.getUid()).execute();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
 
                         } else {
-//                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -1345,14 +1421,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         new GetPlacementsReadStatus().execute();
     }
 
-    public void requestCropImage() {
-        resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
-        chooseImage();
-
-
-    }
 
     private void simulateLoadingNotification() {
         new AsyncTask<Void, Void, Void>() {
@@ -1626,6 +1695,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
+    public void requestCropImage() {
+        resultView.setImageDrawable(null);
+
+        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
+        chooseImage();
+
+
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -1765,39 +1843,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
 
-        String u, p, d;
-
-        CreateFirebaseUser(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
 
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
         @Override

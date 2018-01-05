@@ -998,7 +998,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
             params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
 
             Log.d("TAG", "create firebase json: " + json);
             try {

@@ -148,6 +148,7 @@ public class OTP2Activity extends AppCompatActivity {
         }
     }
 
+
     class ResendOTP extends AsyncTask<String, String, String> {
 
 
