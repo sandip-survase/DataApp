@@ -844,6 +844,7 @@ public class MyProfileFragment extends Fragment {
                     projtab3.setVisibility(View.GONE);
                     noprojtab.setVisibility(View.GONE);
                     projtab1.setVisibility(View.VISIBLE);
+                    extraprojectscount.setVisibility(View.GONE);
                 }
                 if (!proj2.equals("")) {
                     myprofileproj2.setText(proj2);
@@ -857,6 +858,7 @@ public class MyProfileFragment extends Fragment {
                     projtab2.setVisibility(View.VISIBLE);
                     gear3.setVisibility(View.GONE);
                     projtab3.setVisibility(View.GONE);
+                    extraprojectscount.setVisibility(View.GONE);
                     noprojtab.setVisibility(View.GONE);
                 }
                 if (!proj3.equals("")) {
@@ -872,6 +874,7 @@ public class MyProfileFragment extends Fragment {
                     gear3.setVisibility(View.VISIBLE);
                     projtab3.setVisibility(View.VISIBLE);
                     noprojtab.setVisibility(View.GONE);
+                    extraprojectscount.setVisibility(View.GONE);
                     if (!proj4.equals("")) {
                         extraprojectscount.setVisibility(View.VISIBLE);
                         extraprojectscount.setText("and " + proj_count + " more");

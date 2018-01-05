@@ -842,27 +842,22 @@ public class MyProfileStrengths extends AppCompatActivity {
         {
             sstrength10=strength10.getText().toString();
 
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
+
         }
         else if(d==8)
         {
             sstrength10=strength10.getText().toString();
             sstrength9=strength9.getText().toString();
 
-            if(sstrength9.length()>2) {
                 sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==7)
         {
@@ -870,21 +865,17 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength9=strength9.getText().toString();
             sstrength8=strength8.getText().toString();
 
-            if(sstrength8.length()>2) {
                 sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
+
                 sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
+
                 sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==6)
         {
@@ -893,26 +884,21 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength8=strength8.getText().toString();
             sstrength7=strength7.getText().toString();
 
-            if(sstrength7.length()>2) {
                 sstrength6 = sstrength7;
                 strength6.setText(sstrength6);
                 strength7.setText("");
-            }
-            if(sstrength8.length()>2) {
-                sstrength7 = sstrength8;
+
+            sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
-                sstrength8 = sstrength9;
+
+            sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==5)
         {
@@ -922,31 +908,25 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength7=strength7.getText().toString();
             sstrength6=strength6.getText().toString();
 
-            if(sstrength6.length()>2) {
                 sstrength5 = sstrength6;
                 strength5.setText(sstrength5);
                 strength6.setText("");
-            }
-            if(sstrength7.length()>2) {
-                sstrength6 = sstrength7;
+
+            sstrength6 = sstrength7;
                 strength6.setText(sstrength6);
                 strength7.setText("");
-            }
-            if(sstrength8.length()>2) {
-                sstrength7 = sstrength8;
+
+            sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
-                sstrength8 = sstrength9;
+
+            sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==4)
         {
@@ -957,36 +937,29 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength6=strength6.getText().toString();
             sstrength5=strength5.getText().toString();
 
-            if(sstrength5.length()>2) {
                 sstrength4 = sstrength5;
                 strength4.setText(sstrength4);
                 strength5.setText("");
-            }
-            if(sstrength6.length()>2) {
-                sstrength5 = sstrength6;
+
+            sstrength5 = sstrength6;
                 strength5.setText(sstrength5);
                 strength6.setText("");
-            }
-            if(sstrength7.length()>2) {
-                sstrength6 = sstrength7;
+
+            sstrength6 = sstrength7;
                 strength6.setText(sstrength6);
                 strength7.setText("");
-            }
-            if(sstrength8.length()>2) {
-                sstrength7 = sstrength8;
+
+            sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
-                sstrength8 = sstrength9;
+
+            sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==3)
         {
@@ -998,41 +971,33 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength5=strength5.getText().toString();
             sstrength4=strength4.getText().toString();
 
-            if(sstrength4.length()>2) {
                 sstrength3 = sstrength4;
                 strength3.setText(sstrength3);
                 strength4.setText("");
-            }
-            if(sstrength5.length()>2) {
-                sstrength4 = sstrength5;
+
+            sstrength4 = sstrength5;
                 strength4.setText(sstrength4);
                 strength5.setText("");
-            }
-            if(sstrength6.length()>2) {
-                sstrength5 = sstrength6;
+
+            sstrength5 = sstrength6;
                 strength5.setText(sstrength5);
                 strength6.setText("");
-            }
-            if(sstrength7.length()>2) {
-                sstrength6 = sstrength7;
+
+            sstrength6 = sstrength7;
                 strength6.setText(sstrength6);
                 strength7.setText("");
-            }
-            if(sstrength8.length()>2) {
-                sstrength7 = sstrength8;
+
+            sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
-                sstrength8 = sstrength9;
+
+            sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==2)
         {
@@ -1045,46 +1010,37 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength4=strength4.getText().toString();
             sstrength3=strength3.getText().toString();
 
-            if(sstrength3.length()>2) {
                 sstrength2 = sstrength3;
                 strength2.setText(sstrength2);
                 strength3.setText("");
-            }
-            if(sstrength4.length()>2) {
-                sstrength3 = sstrength4;
+
+            sstrength3 = sstrength4;
                 strength3.setText(sstrength3);
                 strength4.setText("");
-            }
-            if(sstrength5.length()>2) {
-                sstrength4 = sstrength5;
+
+            sstrength4 = sstrength5;
                 strength4.setText(sstrength4);
                 strength5.setText("");
-            }
-            if(sstrength6.length()>2) {
-                sstrength5 = sstrength6;
+
+            sstrength5 = sstrength6;
                 strength5.setText(sstrength5);
                 strength6.setText("");
-            }
-            if(sstrength7.length()>2) {
-                sstrength6 = sstrength7;
+
+            sstrength6 = sstrength7;
                 strength6.setText(sstrength6);
                 strength7.setText("");
-            }
-            if(sstrength8.length()>2) {
-                sstrength7 = sstrength8;
+
+            sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
-                sstrength8 = sstrength9;
+
+            sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
         }
         else if(d==1)
         {
@@ -1098,51 +1054,41 @@ public class MyProfileStrengths extends AppCompatActivity {
             sstrength3=strength3.getText().toString();
             sstrength2=strength2.getText().toString();
 
-            if(sstrength2.length()>1) {
                 sstrength1 = sstrength2;
                 strength1.setText(sstrength1);
                 strength2.setText("");
-            }
-            if(sstrength3.length()>2) {
-                sstrength2 = sstrength3;
+
+            sstrength2 = sstrength3;
                 strength2.setText(sstrength2);
                 strength3.setText("");
-            }
-            if(sstrength4.length()>2) {
-                sstrength3 = sstrength4;
+
+            sstrength3 = sstrength4;
                 strength3.setText(sstrength3);
                 strength4.setText("");
-            }
-            if(sstrength5.length()>2) {
-                sstrength4 = sstrength5;
+
+            sstrength4 = sstrength5;
                 strength4.setText(sstrength4);
                 strength5.setText("");
-            }
-            if(sstrength6.length()>2) {
-                sstrength5 = sstrength6;
+
+            sstrength5 = sstrength6;
                 strength5.setText(sstrength5);
                 strength6.setText("");
-            }
-            if(sstrength7.length()>2) {
-                sstrength6 = sstrength7;
+
+            sstrength6 = sstrength7;
                 strength6.setText(sstrength6);
                 strength7.setText("");
-            }
-            if(sstrength8.length()>2) {
-                sstrength7 = sstrength8;
+
+            sstrength7 = sstrength8;
                 strength7.setText(sstrength7);
                 strength8.setText("");
-            }
-            if(sstrength9.length()>2) {
-                sstrength8 = sstrength9;
+
+            sstrength8 = sstrength9;
                 strength8.setText(sstrength8);
                 strength9.setText("");
-            }
-            if(sstrength10.length()>2) {
-                sstrength9 = sstrength10;
+
+            sstrength9 = sstrength10;
                 strength9.setText(sstrength9);
                 strength10.setText("");
-            }
 
 
             sstrength1 = strength1.getText().toString();

@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -1249,61 +1250,61 @@ public class MyProfilePublications extends AppCompatActivity {
         publicationdate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate1);
+                showDateDialog(publicationdate1, publicationdateinput1);
             }
         });
         publicationdate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate2);
+                showDateDialog(publicationdate2, publicationdateinput2);
             }
         });
         publicationdate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate3);
+                showDateDialog(publicationdate3, publicationdateinput3);
             }
         });
         publicationdate4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate4);
+                showDateDialog(publicationdate4, publicationdateinput4);
             }
         });
         publicationdate5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate5);
+                showDateDialog(publicationdate5, publicationdateinput5);
             }
         });
         publicationdate6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate6);
+                showDateDialog(publicationdate6, publicationdateinput6);
             }
         });
         publicationdate7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate7);
+                showDateDialog(publicationdate7, publicationdateinput7);
             }
         });
         publicationdate8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate8);
+                showDateDialog(publicationdate8, publicationdateinput8);
             }
         });
         publicationdate9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate9);
+                showDateDialog(publicationdate9, publicationdateinput9);
             }
         });
         publicationdate10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(publicationdate10);
+                showDateDialog(publicationdate10, publicationdateinput10);
             }
         });
 
@@ -4917,7 +4918,7 @@ public class MyProfilePublications extends AppCompatActivity {
             MyProfilePublications.super.onBackPressed();
     }
 
-    void showDateDialog(final EditText id) {
+    void showDateDialog(final EditText id, final TextInputLayout tid) {
 
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfilePublications.this);
@@ -4984,7 +4985,12 @@ public class MyProfilePublications extends AppCompatActivity {
                     isInvalidDate = 1;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+//                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+                if (!bln) {
+                    tid.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
 
                 alertDialog.cancel();
             }
@@ -5006,13 +5012,17 @@ public class MyProfilePublications extends AppCompatActivity {
         alertDialog.getWindow().setLayout(w, h);
     }
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
+    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
         if (isInvalidDate == 1) {
-            id.setText("");
-            id.setError("Kindly select valid date");
-            Toast.makeText(this, "Kindly select valid date", Toast.LENGTH_SHORT).show();
-        } else
+//            id.setText("");
+//            id.setError("Kindly select valid date");
+//            Toast.makeText(this, "Kindly select valid date", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
             id.setText(selectedMonth + ", " + selectedYear);
+            return true;
+        }
+
     }
 
     class SavePublications extends AsyncTask<String, String, String> {

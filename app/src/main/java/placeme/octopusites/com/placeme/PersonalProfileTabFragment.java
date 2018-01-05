@@ -1598,6 +1598,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             if (result.equals("success")) {
 
                 if (role.equals("student")) {
+                    Log.d("TAG", "onPostExecute: student");
                     mActivity.setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 } else if (role.equals("alumni")) {
 

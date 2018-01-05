@@ -2381,6 +2381,7 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                                 } else {
 
                                                                                                     if (selectedUniversitypgsem.equals("- Select University -")) {
+                                                                                                        Toast.makeText(MyProfilePg.this, "Select University", Toast.LENGTH_LONG).show();
                                                                                                         errorflag3 = 1;
                                                                                                     } else {
                                                                                                         if (schoolnamepgsemester.length() < 3) {
