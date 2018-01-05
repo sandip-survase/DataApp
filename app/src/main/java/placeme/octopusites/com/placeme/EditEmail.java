@@ -183,6 +183,7 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("o",encOTP));         //2
 
             json = jParser.makeHttpRequest(Z.url_VerifyOTPEditEmail, "GET", params);
+            Log.d("TAG", "VerifyOTP: " + json);
 
             try {
                 r = json.getString("info");
@@ -227,6 +228,7 @@ public class EditEmail extends AppCompatActivity {
             Log.d("TAG", "Change to gf input : " + encnewemail);
 
             json = jParser.makeHttpRequest(Z.url_ChangeUsernameFireBase, "GET", params);
+            Log.d("TAG", "ChangeEmailInFireBaseTask json :" + json);
 
             try {
                 resultofop = json.getString("info");

@@ -20,6 +20,7 @@ public class Z {
     //**************************  final **************************
     public static final String VPS_IP = "162.213.199.3";   // for authority
     public static final String IP = "http://162.213.199.3/";
+    public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
     //**************************  final **************************
 
     public static final String IP_8080 = "http://162.213.199.3:8080/";
@@ -136,7 +137,7 @@ public static final String url_getnotificationsmetadata = IP_sunny_local+ "Creat
     public static final String url_UpdateFirebaseToken = IP + "Firebase/UpdateFirebaseToken";
     //    ----------------------------------/sunny---------------------------------------------------------------
 
-    public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
+    public static final String url_ChangeUsernameFireBase = IP_TOMCAT + "Firebase/ChangeUsername";
     public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
     public static final String url_getmessagesreadstatus = IP + "Firebase/GetReadStatusOfMessages";
     public static final String url_changepass = IP + "Firebase/ChangePass";
@@ -150,7 +151,7 @@ public static final String url_getnotificationsmetadata = IP_sunny_local+ "Creat
     public static final String url_markread = IP + "Firebase/MarkRead";
     public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
-    public static final String url_ForgotPasswordChange = IP + "Firebase/ForgotPasswordChange";
+    public static final String url_ForgotPasswordChange = IP_TOMCAT + "Firebase/ForgotPasswordChange";
 
     // Messages -----------------------------------------
 
@@ -162,7 +163,9 @@ public static final String url_getnotificationsmetadata = IP_sunny_local+ "Creat
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
-    public static final String url_save_bug = IP + "ProfileObjects/Save_Bug";
+    public static final String url_SaveLogFile = IP + "ProfileObjects/SaveLogFile";
+
+
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
     public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
     public static final String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";
@@ -225,23 +228,14 @@ public static final String url_getnotificationsmetadata = IP_sunny_local+ "Creat
     public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
 
     //   --------------------------------------------Experience---------------------------------
-    public static final String url_getugcourses = IP + "AESTest/GetUGCourses";
 
     //  --------------------------------------------Tabfragment---------------------------------
-    public static final String url_getstreams = IP + "AESTest/GetUGStreams";
-    public static final String url_getuniversities = IP + "AESTest/GetUGUniversities";
-
-    //    ------------------------------------------company details---------------------------------
-    public static final String url_getpgcourses = IP + "AESTest/GetPGCourses";
 
     //    ------------------------------------------Institute details---------------------------------
-    public static final String url_getpgstreams = IP + "AESTest/GetPGStreams";
 
     //    ------------------------------------------Education details---------------------------------
-    public static final String url_getpguniversities = IP + "AESTest/GetPGUniversities";
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
-    public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
     public static final String upload_profile = IP + "AESTest/UploadProfile";

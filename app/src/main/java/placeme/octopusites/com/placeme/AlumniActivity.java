@@ -380,6 +380,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
+//                                            int i=4/0;
+
                     } else if (navMenuFlag == 2) {
 
                         params.setScrollFlags(0);
