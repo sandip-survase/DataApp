@@ -1,4 +1,4 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 import android.content.Context;
 import android.net.Uri;
@@ -16,9 +16,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.R;
+import placeme.octopusites.com.placeme.UserSelection;
+import placeme.octopusites.com.placeme.Z;
 
 
 public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemUsersAdapter.MyViewHolder> {

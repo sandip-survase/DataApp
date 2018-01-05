@@ -1,7 +1,7 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 /**
- * Created by Lincoln on 15/01/16.
+ * Created by sunny
  */
 public class RecyclerItemUsersAdmin {
     private String name, email,role,isactivated,encemail,signatsure;

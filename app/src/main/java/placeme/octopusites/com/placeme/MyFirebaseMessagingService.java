@@ -67,6 +67,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
         Log.d(TAG, "push received");
+
+        Intent pushNotification = new Intent("pushreceived");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
+
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         if (remoteMessage.getNotification() != null) {
 
@@ -441,8 +445,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         manager.notify(0, builder.build());
 
-                        Intent pushNotification = new Intent("pushNotificationChat");
-                        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
+
 
                     }
 

@@ -76,6 +76,12 @@ import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 import placeme.octopusites.com.placeme.modal.MyProfileWeaknessesModal;
 import placeme.octopusites.com.placeme.modal.Projects;
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
@@ -83,17 +89,14 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
-public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback
-{
+public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback {
+    //
+    public static final int ALUMNI_DATA_CHANGE_RESULT_CODE = 222;
+    public static final String Intro = "intro";
     //
 //placement variable
     File Imgfile;
-    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
-    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
-    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     int firstVisibleItemPlacement, visibleItemCountPlacement, totalItemCountPlacement;
-    private int page_to_call_placement = 1;
-    private int current_page_placement = 1;
     int total_no_of_placements;
     int[] called_pages_placement;
     boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
@@ -113,79 +116,81 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     String unread_count[];
     int unreadMessageCount = 0;
     String sender_uid;
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
     StudentData studentData = new StudentData();
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
-//
-
-    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
-    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
-    private int page_to_call_notification = 1;
     boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
     int lastPageFlagNotification = 0;
     int notificationpages = 0;
     int[] called_pages_notification;
+//
     int total_no_of_notifications;
     int unreadcountNotification = 0;
     int readstatuscountNotification = 0;
     String notificationreadstatus[];
     RelativeLayout notificationcountrl;
     TextView notificationcounttxt;
-    int notificationcount=0;
-    String notificationids[],notificationtitles[],notificationnotifications[],notificationfilename1[],notificationfilename2[],notificationfilename3[],notificationfilename4[],notificationfilename5[],notificationuploadtime[],notificationlastmodified[],notificationuploadedby[],notificationuploadedbyplain[];
+    int notificationcount = 0;
+    String notificationids[], notificationtitles[], notificationnotifications[], notificationfilename1[], notificationfilename2[], notificationfilename3[], notificationfilename4[], notificationfilename5[], notificationuploadtime[], notificationlastmodified[], notificationuploadedby[], notificationuploadedbyplain[];
     String[] uniqueUploadersNotification;
     String[] uniqueUploadersEncNotification;
     String lastupdatedNotification[];
-    int searchNotificationFlag=0,searchPlacementFlag=0;
+    int searchNotificationFlag = 0, searchPlacementFlag = 0;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
-    private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
-    private int current_page_notification = 1;
-    String[] blanksuggestionList={""};
+    String[] blanksuggestionList = {""};
     String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1 = "", lang1 = "", careerobj, fname = "", resultofop = "", lname = "";
-
-    //
-    public static final int ALUMNI_DATA_CHANGE_RESULT_CODE = 222;
-    private String username = "";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
-    int notificationorplacementflag=0;
-    private RecyclerView recyclerView;
-    private RecyclerItemAdapter mAdapter;
+    int notificationorplacementflag = 0;
     int count = 0, id[], pcount = 0;
     String heading[], notification[];
     JSONParser jParser = new JSONParser();
     JSONObject json;
     FrameLayout mainfragment;
-    Handler handler=new Handler();
-    private MaterialSearchView searchView;
+    Handler handler = new Handler();
     RelativeLayout createnotificationrl, editnotificationrl;
     int notificationplacementflag = 0;
-    public static final String Intro = "intro";
     int navMenuFlag = 0, oldNavMenuFlag = 0;
     int selectedMenuFlag = 1;
-
-    //  our coding here
-    private ImageView resultView;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
-    private String finalPath;
     int crop_flag = 0;
     String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
-    private String plainusername;
-    String filepath="",filename="";
-    String directory,pass;
+    String filepath = "", filename = "";
+    String directory, pass;
     List<String> response;
-    //
-
     // noti
     SwipeRefreshLayout tswipe_refresh_layout;
     Toolbar toolbar;
     ViewPager mViewPager;
     TabLayout tabLayout;
+    ArrayList<RecyclerItemEdit> tempListNotification;
+    ArrayList<RecyclerItemPlacement> tempListPlacement;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
+    private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
+    private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
+    private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    private int page_to_call_placement = 1;
+    private int current_page_placement = 1;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
+    private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
+    private int page_to_call_notification = 1;
+    private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
+    //
+    private int current_page_notification = 1;
+    private String username = "";
+    private RecyclerView recyclerView;
+    private RecyclerItemAdapter mAdapter;
+    private MaterialSearchView searchView;
+    //  our coding here
+    private ImageView resultView;
+    private String finalPath;
+    private String plainusername;
     private int[] tabIcons = {
             R.drawable.news_feed_icon,
             R.drawable.videos_icon,
@@ -194,25 +199,28 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             R.drawable.ebooks_icon,
             R.drawable.question_sets_icon,
     };
-
     private TextView toolbar_title;
-
     //initial setup
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
-    ArrayList<RecyclerItemEdit> tempListNotification;
-    ArrayList<RecyclerItemPlacement> tempListPlacement;
-
-
     //new
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
-    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
-
-
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
-    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
 
+    public static boolean containsIgnoreCase(String str, String searchStr) {
+        if (str == null || searchStr == null) return false;
+
+        final int length = searchStr.length();
+        if (length == 0)
+            return true;
+
+        for (int i = str.length() - length; i >= 0; i--) {
+            if (str.regionMatches(true, i, searchStr, 0, length))
+                return true;
+        }
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,7 +236,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(AlumniActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -240,11 +248,12 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         tabLayout.setupWithViewPager(mViewPager);
 
         username = MySharedPreferencesManager.getUsername(this);
-        Log.d("***", "onCreate: username"+username);
-        pass=MySharedPreferencesManager.getPassword(this);
+        Log.d("***", "onCreate: username" + username);
+        pass = MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
+
 
         MySharedPreferencesManager.save(AlumniActivity.this, "intro", "yes");
 
@@ -287,7 +296,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(AlumniActivity.this,query,Toast.LENGTH_LONG).show();
+                Toast.makeText(AlumniActivity.this, query, Toast.LENGTH_LONG).show();
 
                 return false;
             }
@@ -296,34 +305,21 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if(selectedMenuFlag==0)
-                {
+                if (selectedMenuFlag == 0) {
 
-                }
-                else if(selectedMenuFlag==1)
-                {
-                    searchNotificationFlag=1;
+                } else if (selectedMenuFlag == 1) {
+                    searchNotificationFlag = 1;
                     filterNotifications(newText);
-                }
-                else if(selectedMenuFlag==2)
-                {
-                    searchPlacementFlag=1;
+                } else if (selectedMenuFlag == 2) {
+                    searchPlacementFlag = 1;
 //                    filterPlacements(newText);
-                }
-                else if(selectedMenuFlag==3)
-                {
+                } else if (selectedMenuFlag == 3) {
 
-                }
-                else if(selectedMenuFlag==4)
-                {
+                } else if (selectedMenuFlag == 4) {
 
-                }
-                else if(selectedMenuFlag==5)
-                {
+                } else if (selectedMenuFlag == 5) {
 
-                }
-                else if(selectedMenuFlag==6)
-                {
+                } else if (selectedMenuFlag == 6) {
 
                 }
 
@@ -337,13 +333,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             public void onSearchViewShown() {
 
 
-                if(selectedMenuFlag==1)
-                {
+                if (selectedMenuFlag == 1) {
                     searchView.setSuggestions(blanksuggestionList);
                     searchView.setSuggestions(null);
-                }
-                else if(selectedMenuFlag==2)
-                {
+                } else if (selectedMenuFlag == 2) {
                     searchView.setSuggestions(blanksuggestionList);
                     searchView.setSuggestions(null);
                 }
@@ -361,17 +354,16 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        {
+        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             //scrolling toolbar gone problem solve blog
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
 
-                if(oldNavMenuFlag!=navMenuFlag) {
+                if (oldNavMenuFlag != navMenuFlag) {
                     if (navMenuFlag == 1) {
-                        selectedMenuFlag=0;
+                        selectedMenuFlag = 0;
 
                         //scroll
                         params.setScrollFlags(0);
@@ -392,7 +384,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                         params.setScrollFlags(0);
 
-                        selectedMenuFlag=1;
+                        selectedMenuFlag = 1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
@@ -407,7 +399,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 3) {
 
-                        selectedMenuFlag=2;
+                        selectedMenuFlag = 2;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -424,7 +416,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 4) {
 
-                        selectedMenuFlag=3;
+                        selectedMenuFlag = 3;
                         params.setScrollFlags(0);
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -442,7 +434,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 5) {
 
-                        selectedMenuFlag=4;
+                        selectedMenuFlag = 4;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -459,7 +451,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         tabLayout.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
 
-                        selectedMenuFlag=5;
+                        selectedMenuFlag = 5;
                         params.setScrollFlags(5);           // enable scrolling
 
 //                        Toast.makeText(MainActivity.this, ""+params.getScrollFlags(), Toast.LENGTH_SHORT).show();
@@ -475,7 +467,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                     } else if (navMenuFlag == 7) {
 
-                        selectedMenuFlag=6;
+                        selectedMenuFlag = 6;
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
@@ -499,12 +491,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
 
-                oldNavMenuFlag=navMenuFlag;
+                oldNavMenuFlag = navMenuFlag;
 
             }
         };
-
-
 
 
         drawer.setDrawerListener(toggle);
@@ -512,90 +502,90 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        final View hView =  navigationView.getHeaderView(0);
-        profile = (CircleImageView)hView.findViewById(R.id.profile_image);
+        final View hView = navigationView.getHeaderView(0);
+        profile = (CircleImageView) hView.findViewById(R.id.profile_image);
 //        new GetProfileImage().execute();
-        final ImageView profilei=(ImageView)hView.findViewById(R.id.profile);
-        final ImageView notificationi=(ImageView)hView.findViewById(R.id.notification);
-        final ImageView placementi=(ImageView)hView.findViewById(R.id.placement);
-        final ImageView settingsi=(ImageView)hView.findViewById(R.id.settings);
-        final ImageView newsi=(ImageView)hView.findViewById(R.id.blog);
-        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
+        final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
+        final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
+        final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
+        final ImageView settingsi = (ImageView) hView.findViewById(R.id.settings);
+        final ImageView newsi = (ImageView) hView.findViewById(R.id.blog);
+        final ImageView chati = (ImageView) hView.findViewById(R.id.chat);
 //
 //        notificationcounttxt=(TextView) hView.findViewById(R.id.notificationcount);
 //        notificationcountrl=(RelativeLayout) hView.findViewById(R.id.notificationcountrl);
 //        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
 
-        notificationcounttxt=(TextView)hView.findViewById(R.id.notificationcount);
-        notificationcountrl=(RelativeLayout)hView.findViewById(R.id.notificationcountrl);
+        notificationcounttxt = (TextView) hView.findViewById(R.id.notificationcount);
+        notificationcountrl = (RelativeLayout) hView.findViewById(R.id.notificationcountrl);
 //
-        placementcounttxt=(TextView)hView.findViewById(R.id.placementcount);
-        placementcountrl=(RelativeLayout)hView.findViewById(R.id.placementcountrl);
+        placementcounttxt = (TextView) hView.findViewById(R.id.placementcount);
+        placementcountrl = (RelativeLayout) hView.findViewById(R.id.placementcountrl);
 //
         messagecount = (TextView) hView.findViewById(R.id.messagecount);
         messagecountrl = (RelativeLayout) hView.findViewById(R.id.messagecountrl);
 
-        View v1=(View)hView.findViewById(R.id.prifileselectionview);
-        View v2=(View)hView.findViewById(R.id.notificationselectionview);
-        View v3=(View)hView.findViewById(R.id.placementselectionview);
-        View v5=(View)hView.findViewById(R.id.settingselectionview);
-        View v6=(View)hView.findViewById(R.id.blogselectionview);
-        View v7=(View)hView.findViewById(R.id.abtselectionview);
-        View v8=(View)hView.findViewById(R.id.chatselectionview);
+        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
+        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
+        View v3 = (View) hView.findViewById(R.id.placementselectionview);
+        View v5 = (View) hView.findViewById(R.id.settingselectionview);
+        View v6 = (View) hView.findViewById(R.id.blogselectionview);
+        View v7 = (View) hView.findViewById(R.id.abtselectionview);
+        View v8 = (View) hView.findViewById(R.id.chatselectionview);
 
-        mainfragment=(FrameLayout)findViewById(R.id.mainfragment);
+        mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                navMenuFlag=1;
+                navMenuFlag = 1;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getBold(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -608,7 +598,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=2;
+                navMenuFlag = 2;
 
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
@@ -616,46 +606,46 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getBold(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -668,59 +658,58 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=3;
+                navMenuFlag = 3;
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getBold(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
 
 
             }
@@ -729,51 +718,51 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=4;
+                navMenuFlag = 4;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon_selected);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getBold(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -788,51 +777,51 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=5;
+                navMenuFlag = 5;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getBold(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
@@ -846,58 +835,56 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=6;
+                navMenuFlag = 6;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getBold(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
-
 
 
             }
@@ -906,51 +893,51 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=7;
+                navMenuFlag = 7;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTypeface(Z.getLight(AlumniActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTypeface(Z.getLight(AlumniActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTypeface(Z.getLight(AlumniActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTypeface(Z.getLight(AlumniActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTypeface(Z.getLight(AlumniActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTypeface(Z.getLight(AlumniActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTypeface(Z.getLight(AlumniActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
@@ -963,11 +950,15 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                if (intent.getAction().equals("pushNotificationChat")) {
+                if (intent.getAction().equals("pushreceived")) {
 
                     Log.d("TAG", "push broadcast received: ");
                     new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
+
+                    new RefreshNotificationCount().execute();
+                    new RefreshPlacementCount().execute();
+
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
                         fragment.addMessages();
@@ -979,31 +970,31 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         notificationi.setImageDrawable(myDrawable);
 
 
-        TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
+        TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
         pt.setTypeface(Z.getBold(AlumniActivity.this));
         pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-        TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+        TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
         pt1.setTypeface(Z.getLight(AlumniActivity.this));
         pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+        TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
         pt3.setTypeface(Z.getLight(AlumniActivity.this));
         pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+        TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
         pt8.setTypeface(Z.getLight(AlumniActivity.this));
         pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+        TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
         pt5.setTypeface(Z.getLight(AlumniActivity.this));
         pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+        TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
         pt6.setTypeface(Z.getLight(AlumniActivity.this));
         pt6.setTextColor(getResources().getColor(R.color.while_color));
 
-        TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+        TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
         pt7.setTypeface(Z.getLight(AlumniActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
@@ -1115,7 +1106,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onLoadMore(int current_page) {
 
-                if(total_no_of_notifications>20) {
+                if (total_no_of_notifications > 20) {
                     simulateLoadingNotification();
                 }
 
@@ -1188,7 +1179,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             @Override
             public void onLoadMore(int current_page) {
 
-                if(total_no_of_placements>20) {
+                if (total_no_of_placements > 20) {
                     simulateLoadingPlacement();
                 }
 
@@ -1199,33 +1190,31 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 // our coding here
 
-        try
-        {
+        try {
 
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
+            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            plainusername=new String(demo1DecryptedBytes1);
+            plainusername = new String(demo1DecryptedBytes1);
 //            ProfileRole
 //            r.setPlainusername(plainusername);
 
-            byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
+            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
-            String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
+            String data = new String(demo2DecryptedBytes1);
+            String hash = md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
 
-//            new LoginFirebaseTask().execute(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername, hash);
 
-            loginFirebase(plainusername, hash);
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
-        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
-
-
-        crop_layout=(FrameLayout)findViewById(R.id.crop_layout);
+        crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
 
 
         resultView = (ImageView) findViewById(R.id.result_image);
@@ -1237,7 +1226,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         requestProfileImage();  //  update thumbanail first time activity Load
 
 
-        tswipe_refresh_layout=(SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -1257,8 +1246,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //        tswipe_refresh_layout.setRefreshing(true);
 
         new GetStudentData().execute();
-
         getNotifications();
+        new RefreshPlacementCount().execute();
         new GetUnreadMessagesCount().execute();
 
 
@@ -1303,6 +1292,478 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+    void filterNotifications(String text) {
+        tempListNotification = new ArrayList();
+        for (RecyclerItemEdit d : itemListNotificationNew) {
+
+            if (containsIgnoreCase(d.getTitle(), text)) {
+                tempListNotification.add(d);
+            }
+        }
+        mAdapterNotificationEdit.updateList(tempListNotification, text);
+    }
+
+    void getNotifications() {
+        itemListNotificationNew.clear();
+
+        tswipe_refresh_layout.setRefreshing(true);
+        previousTotalNotification = 0;
+        loadingNotification = true;
+        page_to_call_notification = 1;
+        isFirstRunNotification = true;
+        isLastPageLoadedNotification = false;
+        lastPageFlagNotification = 0;
+        new GetNotificationsReadStatus().execute();
+    }
+
+    void getPlacements() {
+        itemListPlacementnew.clear();
+
+        tswipe_refresh_layout.setRefreshing(true);
+        previousTotalPlacement = 0;
+        loadingPlacement = true;
+        page_to_call_placement = 1;
+        isFirstRunPlacement = true;
+        isLastPageLoadedPlacement = false;
+        lastPageFlagPlacement = 0;
+        new GetPlacementsReadStatus().execute();
+    }
+
+    void changeReadStatusNotification(String id) {
+        new ChangeReadStatusNotification().execute(id);
+
+    }
+
+    void changeReadStatusPlacement(String id) {
+        new ChangeReadStatusPlacement().execute(id);
+
+    }
+
+    private void simulateLoadingNotification() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                tswipe_refresh_layout.setRefreshing(true);
+            }
+
+            @Override
+            protected Void doInBackground(Void... param) {
+                try {
+
+
+                    Log.d("TAG", "simulateLoadingNotification: accessed");
+                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
+                    Log.d("TAG", "notificationpages:" + notificationpages);
+
+                    if (page_to_call_notification < notificationpages)
+                        page_to_call_notification++;
+
+
+                    if (page_to_call_notification != notificationpages) {
+
+                        List<NameValuePair> params = new ArrayList<NameValuePair>();
+                        params.add(new BasicNameValuePair("u", username));       //0
+                        params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+                        json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
+
+                        notificationcount = Integer.parseInt(json.getString("count"));
+
+                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+
+
+                    } else {
+                        if (!isLastPageLoadedNotification) {
+
+                            lastPageFlagNotification = 1;
+
+                            List<NameValuePair> params = new ArrayList<NameValuePair>();
+                            params.add(new BasicNameValuePair("u", username));       //0
+                            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+                            json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
+
+                            notificationcount = Integer.parseInt(json.getString("count"));
+
+                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void param) {
+
+                if (!isLastPageLoadedNotification) {
+
+                    setserverlisttoadapter(itemlistfromserver);
+
+
+                }
+
+
+                tswipe_refresh_layout.setRefreshing(false);
+//                new GetLastUpdatedNotification().execute();
+            }
+        }.execute();
+    }
+
+    private void simulateLoadingPlacement() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                tswipe_refresh_layout.setRefreshing(true);
+            }
+
+            @Override
+            protected Void doInBackground(Void... param) {
+
+                try {
+                    if (page_to_call_placement < placementpages)
+                        page_to_call_placement++;
+
+                    if (page_to_call_placement != placementpages) {
+
+                        List<NameValuePair> params = new ArrayList<NameValuePair>();
+                        params.add(new BasicNameValuePair("u", username));
+                        params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+                        json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
+                        try {
+
+                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+                        } catch (Exception e) {
+                        }
+
+
+                    } else {
+                        if (!isLastPageLoadedPlacement) {
+
+                            lastPageFlagPlacement = 1;
+
+                            List<NameValuePair> params = new ArrayList<NameValuePair>();
+                            params.add(new BasicNameValuePair("u", username));
+                            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
+
+                            json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
+                            try {
+
+                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+
+                            } catch (Exception e) {
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void param) {
+
+
+                tswipe_refresh_layout.setVisibility(View.VISIBLE);
+                tswipe_refresh_layout.setRefreshing(false);
+                if (!isLastPageLoadedPlacement) {
+
+
+                    setplacementListtoadapter(placementListfromserver);
+                }
+                tswipe_refresh_layout.setRefreshing(false);
+
+
+            }
+        }.execute();
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
+        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
+        tabLayout.getTabAt(5).setIcon(tabIcons[5]);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        AlumniActivity.ViewPagerAdapter adapter = new AlumniActivity.ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new NoDataAvailableFragment(), "News Feed");
+        adapter.addFrag(new NoDataAvailableFragment(), "Videos");
+        adapter.addFrag(new ResumeTemplatesFragment(), "Resume Templates");
+        adapter.addFrag(new NoDataAvailableFragment(), "Interview Questions");
+        adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");
+        adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
+        viewPager.setAdapter(adapter);
+    }
+
+    private void disableNavigationViewScrollbars(NavigationView navigationView) {
+        if (navigationView != null) {
+            NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
+            if (navigationMenuView != null) {
+                navigationMenuView.setVerticalScrollBarEnabled(false);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (searchView.isSearchOpen()) {
+            searchView.closeSearch();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                //startService(new Intent(getBaseContext(), MyService.class).putExtra("username",username).putExtra("usertype","student"));
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    void addNotificationdatatoAdapter()
+//    {
+//        for(int i=0;i<10;i++)
+//        {
+//            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "yes",HRActivity.this);
+//            itemList.add(item);
+//        }
+//        for(int i=0;i<2;i++)
+//        {
+//            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "no",HRActivity.this);
+//            itemList.add(item);
+//        }
+//        mAdapter.notifyDataSetChanged();
+//    }
+//    void addPlacementdatatoAdapter()
+//    {
+//        for(int i=0;i<5;i++)
+//        {
+//            RecyclerItem item = new RecyclerItem(i,"Company "+i, "3.2","21/07/2016", "Trainee");
+//            itemList.add(item);
+//        }
+//        mAdapter.notifyDataSetChanged();
+//    }
+    // our coding here
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+
+
+        if (resultCode == ALUMNI_DATA_CHANGE_RESULT_CODE) {
+
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.refreshContent();
+
+        }
+        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+
+            try {
+
+                if (imagePicker == null) {
+                    imagePicker = new ImagePicker(this);
+                    imagePicker.setImagePickerCallback(this);
+                }
+                imagePicker.submit(result);
+                crop_layout.setVisibility(View.VISIBLE);
+                //            tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.GONE);
+                crop_flag = 1;
+                beginCrop(result.getData());
+                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                crop_layout.setVisibility(View.GONE);
+                //            tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.VISIBLE);
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            crop_layout.setVisibility(View.GONE);
+            //        tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.showUpdateProgress();
+            handleCrop(resultCode, result);
+        }
+
+//    if(requestCode==HRProfileFragment.COMPANY_DEATAILS_CHANGE_REQUEST)
+//    {
+//
+//    }
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            File f = new File(getCacheDir(), "cropped");
+            filepath = f.getAbsolutePath();
+
+            filename = "";
+            int index = filepath.lastIndexOf("/");
+            directory = "";
+            for (int i = 0; i < index; i++)
+                directory += filepath.charAt(i);
+
+            for (int i = index + 1; i < filepath.length(); i++)
+                filename += filepath.charAt(i);
+
+            crop_layout.setVisibility(View.GONE);
+//            tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+//            fragment.showUpdateProgress();
+
+//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+            new CompressTask().execute();
+
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            crop_layout.setVisibility(View.GONE);
+//            tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    public void requestCropImage() {
+        resultView.setImageDrawable(null);
+
+        MySharedPreferencesManager.save(AlumniActivity.this, "crop", "yes");
+
+        chooseImage();
+
+
+    }
+
+    private void chooseImage() {
+
+        imagePicker.pickImage();
+    }
+
+    @Override
+    public void onError(String s) {
+        crop_layout.setVisibility(View.GONE);
+        // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
+        mainfragment.setVisibility(View.VISIBLE);
+        Toast.makeText(AlumniActivity.this, s, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onImagesChosen(List<ChosenImage> list) {
+        final ChosenImage file = list.get(0);
+
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                if (file != null) {
+
+                    finalPath = file.getOriginalPath().toString();
+                }
+            }
+        });
+    }
+
+    public void requestProfileImage() {
+        downloadImage();
+//        new GetProfileImage().execute();
+    }
+
+    private void downloadImage() {
+
+        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    }
+
+    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
+
+        itemListNotificationNew.addAll(itemlist);
+        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+
+        if (lastPageFlagNotification == 1)
+            isLastPageLoadedNotification = true;
+
+        mAdapterNotificationEdit.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+
+    }
+
+    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
+
+        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
+
+        itemListPlacementnew.addAll(itemList2);
+
+        mAdapterPlacement.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+
+        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+
+
+    }
+
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -1492,10 +1953,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
     }
 
-
-
-
-
     class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
 
 
@@ -1549,7 +2006,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     } catch (Exception e) {
                     }
                     if (reciever_uid != null)
-                    new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
                 }
 
             }
@@ -1652,55 +2109,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
-    void filterNotifications(String text) {
-        tempListNotification = new ArrayList();
-        for (RecyclerItemEdit d : itemListNotificationNew) {
 
-            if (containsIgnoreCase(d.getTitle(), text)) {
-                tempListNotification.add(d);
-            }
-        }
-        mAdapterNotificationEdit.updateList(tempListNotification, text);
-    }
-    public static boolean containsIgnoreCase(String str, String searchStr)     {
-        if(str == null || searchStr == null) return false;
-
-        final int length = searchStr.length();
-        if (length == 0)
-            return true;
-
-        for (int i = str.length() - length; i >= 0; i--) {
-            if (str.regionMatches(true, i, searchStr, 0, length))
-                return true;
-        }
-        return false;
-    }
-    void getNotifications()
-    {
-        itemListNotificationNew.clear();
-
-        tswipe_refresh_layout.setRefreshing(true);
-        previousTotalNotification = 0;
-        loadingNotification = true;
-        page_to_call_notification=1;
-        isFirstRunNotification=true;
-        isLastPageLoadedNotification=false;
-        lastPageFlagNotification=0;
-        new GetNotificationsReadStatus().execute();
-    }
-    void getPlacements()
-    {
-        itemListPlacementnew.clear();
-
-        tswipe_refresh_layout.setRefreshing(true);
-        previousTotalPlacement = 0;
-        loadingPlacement = true;
-        page_to_call_placement=1;
-        isFirstRunPlacement=true;
-        isLastPageLoadedPlacement=false;
-        lastPageFlagPlacement=0;
-        new GetPlacementsReadStatus().execute();
-    }
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -1769,10 +2178,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
-                Log.d("Backtrack", "placementpages: "+placementpages);
-                Log.d("Backtrack", "called_pages_placement: "+called_pages_placement);
-                Log.d("Backtrack", "total_no_of_placements: "+total_no_of_placements);
-                Log.d("Backtrack", "unreadcountPlacement: "+unreadcountPlacement);
+                Log.d("Backtrack", "placementpages: " + placementpages);
+                Log.d("Backtrack", "called_pages_placement: " + called_pages_placement);
+                Log.d("Backtrack", "total_no_of_placements: " + total_no_of_placements);
+                Log.d("Backtrack", "unreadcountPlacement: " + unreadcountPlacement);
 
 
             } catch (Exception e) {
@@ -1868,17 +2277,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
     }
 
-    void changeReadStatusNotification(String id)
-    {
-        new ChangeReadStatusNotification().execute(id);
-
-    }
-    void changeReadStatusPlacement(String id)
-    {
-        new ChangeReadStatusPlacement().execute(id);
-
-    }
-
     class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
 
 
@@ -1897,6 +2295,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+
     class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
 
 
@@ -1915,6 +2314,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
 
 
@@ -1953,6 +2353,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         public abstract void onLoadMore(int current_page);
     }
+
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 
@@ -1991,191 +2392,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         public abstract void onLoadMore(int current_page);
     }
-    private void simulateLoadingNotification() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                tswipe_refresh_layout.setRefreshing(true);
-            }
+    // thumbanail
 
-            @Override
-            protected Void doInBackground(Void... param) {
-                try {
-
-
-                    Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
-                    Log.d("TAG", "notificationpages:" + notificationpages);
-
-                    if (page_to_call_notification < notificationpages)
-                        page_to_call_notification++;
-
-
-                    if (page_to_call_notification != notificationpages) {
-
-                        List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("u", username));       //0
-                        params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
-
-                        notificationcount = Integer.parseInt(json.getString("count"));
-
-                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-
-
-                    } else {
-                        if (!isLastPageLoadedNotification) {
-
-                            lastPageFlagNotification = 1;
-
-                            List<NameValuePair> params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u", username));       //0
-                            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumni, "GET", params);
-
-                            notificationcount = Integer.parseInt(json.getString("count"));
-
-                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                        }
-
-                    }
-
-                } catch (Exception e) {
-
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void param) {
-
-                if (!isLastPageLoadedNotification) {
-
-                    setserverlisttoadapter(itemlistfromserver);
-
-
-                }
-
-
-                tswipe_refresh_layout.setRefreshing(false);
-//                new GetLastUpdatedNotification().execute();
-            }
-        }.execute();
-    }
-    private void simulateLoadingPlacement() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                tswipe_refresh_layout.setRefreshing(true);
-            }
-
-            @Override
-            protected Void doInBackground(Void... param) {
-
-                try {
-                    if (page_to_call_placement < placementpages)
-                        page_to_call_placement++;
-
-                    if (page_to_call_placement != placementpages) {
-
-                        List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("u", username));
-                        params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-                        json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
-                        try {
-
-                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-                        } catch (Exception e) {
-                        }
-
-
-                    } else {
-                        if (!isLastPageLoadedPlacement) {
-
-                            lastPageFlagPlacement = 1;
-
-                            List<NameValuePair> params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u", username));
-                            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-                            json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
-                            try {
-
-                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-                            } catch (Exception e) {
-                            }
-
-                        }
-                    }
-                } catch (Exception e) {
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void param) {
-
-
-                tswipe_refresh_layout.setVisibility(View.VISIBLE);
-                tswipe_refresh_layout.setRefreshing(false);
-                if (!isLastPageLoadedPlacement) {
-
-
-                    setplacementListtoadapter(placementListfromserver);
-                }
-                tswipe_refresh_layout.setRefreshing(false);
-
-
-            }
-        }.execute();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
-        tabLayout.getTabAt(5).setIcon(tabIcons[5]);
-    }
-    private void setupViewPager(ViewPager viewPager) {
-        AlumniActivity.ViewPagerAdapter adapter = new AlumniActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new NoDataAvailableFragment(), "News Feed");
-        adapter.addFrag(new NoDataAvailableFragment(), "Videos");
-        adapter.addFrag(new ResumeTemplatesFragment(), "Resume Templates");
-        adapter.addFrag(new NoDataAvailableFragment(), "Interview Questions");
-        adapter.addFrag(new NoDataAvailableFragment(), "Ebooks");
-        adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
-        viewPager.setAdapter(adapter);
-    }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -2205,209 +2423,13 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
     }
 
-    private void disableNavigationViewScrollbars(NavigationView navigationView) {
-        if (navigationView != null) {
-            NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
-            if (navigationMenuView != null) {
-                navigationMenuView.setVerticalScrollBarEnabled(false);
-            }
-        }
-    }
-    @Override
-    public void onBackPressed() {
-        if (searchView.isSearchOpen()) {
-            searchView.closeSearch();
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            if (doubleBackToExitPressedOnce) {
-                super.onBackPressed();
-                //startService(new Intent(getBaseContext(), MyService.class).putExtra("username",username).putExtra("usertype","student"));
-                return;
-            }
-            this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
-
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce = false;
-                }
-            }, 2000);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        searchView.setMenuItem(item);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return super.onOptionsItemSelected(item);
-    }
-    //    void addNotificationdatatoAdapter()
-//    {
-//        for(int i=0;i<10;i++)
-//        {
-//            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "yes",HRActivity.this);
-//            itemList.add(item);
-//        }
-//        for(int i=0;i<2;i++)
-//        {
-//            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "no",HRActivity.this);
-//            itemList.add(item);
-//        }
-//        mAdapter.notifyDataSetChanged();
-//    }
-//    void addPlacementdatatoAdapter()
-//    {
-//        for(int i=0;i<5;i++)
-//        {
-//            RecyclerItem item = new RecyclerItem(i,"Company "+i, "3.2","21/07/2016", "Trainee");
-//            itemList.add(item);
-//        }
-//        mAdapter.notifyDataSetChanged();
-//    }
-    // our coding here
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
-
-        if (resultCode == ALUMNI_DATA_CHANGE_RESULT_CODE) {
-
-            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.refreshContent();
-
-        }
-        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
-
-            try {
-
-                if (imagePicker == null) {
-                    imagePicker = new ImagePicker(this);
-                    imagePicker.setImagePickerCallback(this);
-                }
-                imagePicker.submit(result);
-                crop_layout.setVisibility(View.VISIBLE);
-                //            tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.GONE);
-                crop_flag = 1;
-                beginCrop(result.getData());
-                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                crop_layout.setVisibility(View.GONE);
-                //            tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.VISIBLE);
-            }
-        } else if (resultCode == RESULT_CANCELED) {
-            crop_layout.setVisibility(View.GONE);
-            //        tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            crop_flag = 0;
-        } else if (requestCode == Crop.REQUEST_CROP) {
-            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
-            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.showUpdateProgress();
-            handleCrop(resultCode, result);
-        }
-
-//    if(requestCode==HRProfileFragment.COMPANY_DEATAILS_CHANGE_REQUEST)
-//    {
-//
-//    }
-    }
-    private void handleCrop(int resultCode, Intent result) {
-        if (resultCode == RESULT_OK) {
-            File f=new File(getCacheDir(), "cropped");
-            filepath=f.getAbsolutePath();
-
-            filename="";
-            int index=filepath.lastIndexOf("/");
-            directory="";
-            for(int i=0;i<index;i++)
-                directory+=filepath.charAt(i);
-
-            for(int i=index+1;i<filepath.length();i++)
-                filename+=filepath.charAt(i);
-
-            crop_layout.setVisibility(View.GONE);
-//            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-//            fragment.showUpdateProgress();
-
-//            new UploadProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-            new CompressTask().execute();
-
-        } else if (resultCode == Crop.RESULT_ERROR) {
-            crop_layout.setVisibility(View.GONE);
-//            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
-
-        }
-    }
-
-    private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        Crop.of(source, destination).asSquare().start(this);
-    }
-
-    public void requestCropImage()
-    {
-        resultView.setImageDrawable(null);
-
-        MySharedPreferencesManager.save(AlumniActivity.this,"crop", "yes");
-
-        chooseImage();
-
-
-    }
-    private void chooseImage() {
-
-        imagePicker.pickImage();
-    }
-    @Override
-    public void onError(String s) {
-        crop_layout.setVisibility(View.GONE);
-        // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
-        mainfragment.setVisibility(View.VISIBLE);
-        Toast.makeText(AlumniActivity.this, s, Toast.LENGTH_SHORT).show();
-
-    }
-    @Override
-    public void onImagesChosen(List<ChosenImage> list) {
-        final ChosenImage file=list.get(0);
-
-        runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                if (file != null) {
-
-                    finalPath = file.getOriginalPath().toString();
-                }
-            }
-        });
-    }
-
     class CompressTask extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
             File sourceFile = new File(filepath);
             try {
                 Log.d("TAG", "before compress :   " + sourceFile.length() / 1024 + " kb");
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
             Luban.compress(AlumniActivity.this, sourceFile)
                     .setMaxSize(256)                // limit the final image size（unit：Kb）
                     .putGear(Luban.CUSTOM_GEAR)
@@ -2415,6 +2437,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         @Override
                         public void onStart() {
                         }
+
                         @Override
                         public void onSuccess(File file) {
                             try {
@@ -2439,7 +2462,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.d("TAG", "onError: "+e.getMessage());
+                            Log.d("TAG", "onError: " + e.getMessage());
                         }
                     });
             return true;
@@ -2520,21 +2543,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     }
 
-    public void requestProfileImage() {
-        downloadImage();
-//        new GetProfileImage().execute();
-    }
-    // thumbanail
-
-    private void downloadImage() {
-
-        new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-    }
-
     class Getsingnature extends AsyncTask<String, String, String> {
 
-        String signature="";
+        String signature = "";
+
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -2550,10 +2562,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("TAG", "downloadImage signature : "+signature);
+            Log.d("TAG", "downloadImage signature : " + signature);
 //        String t = String.valueOf(System.currentTimeMillis());
 
-            Log.d("TAG", "downloadImage: GetImage username "+username);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
@@ -2568,62 +2580,34 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
     }
 
-
-    void loginFirebase(final String username, String hash) {
-
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username, hash)
-                .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(AlumniActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            if (user != null) {
-                                MySharedPreferencesManager.save(AlumniActivity.this, "uid", user.getUid());
-                                try {
-                                    new CreateFirebaseUser(Z.Encrypt(username, AlumniActivity.this), pass, user.getUid()).execute();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+    class LoginFirebaseTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String user = param[0];
+            String hash = param[1];
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(user, hash)
+                    .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MySharedPreferencesManager.save(AlumniActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
+                            } else {
+                                MySharedPreferencesManager.save(AlumniActivity.this, "fireLoginStatus", "Failed to login to Firebase");
                             }
-
-                        } else {
-                            Toast.makeText(AlumniActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            String status = MySharedPreferencesManager.getData(AlumniActivity.this, "fireLoginStatus");
+            Toast.makeText(AlumniActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(AlumniActivity.this, "fireLoginStatus");
+        }
     }
 
-    //    class LoginFirebaseTask extends AsyncTask<String, String, String> {
-//        protected String doInBackground(String... param) {
-//            String user=param[0];
-//            String hash=param[1];
-//            FirebaseAuth.getInstance()
-//                    .signInWithEmailAndPassword(user,hash)
-//                    .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()) {
-//                                MySharedPreferencesManager.save(AlumniActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
-//                            } else {
-//                                MySharedPreferencesManager.save(AlumniActivity.this,"fireLoginStatus","Failed to login to Firebase");
-//                            }
-//                        }
-//                    });
-//            return null;
-//        }
-//        @Override
-//        protected void onPostExecute(String result) {
-//            String status=MySharedPreferencesManager.getData(AlumniActivity.this,"fireLoginStatus");
-//            Toast.makeText(AlumniActivity.this, status, Toast.LENGTH_SHORT).show();
-//            // remove value from shared
-//            MySharedPreferencesManager.removeKey(AlumniActivity.this,"fireLoginStatus");
-//        }
-//    }
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         JSONObject json;
@@ -2658,40 +2642,95 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //            }
         }
     }
-    void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
-        itemListNotificationNew.addAll(itemlist);
-        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+    class RefreshNotificationCount extends AsyncTask<String, String, String> {
 
-        if (lastPageFlagNotification == 1)
-            isLastPageLoadedNotification = true;
 
-        mAdapterNotificationEdit.notifyDataSetChanged();
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
+        protected String doInBackground(String... param) {
 
-        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
 
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_GetNotificationsAlumniAlumniMetaData, "GET", params);
+
+                notificationpages = Integer.parseInt(json.getString("pages"));
+                called_pages_notification = new int[notificationpages];
+                total_no_of_notifications = Integer.parseInt(json.getString("count"));
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+
+//
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                notificationcountrl.setVisibility(View.VISIBLE);
+                notificationcounttxt.setText(unreadcountNotification + "");
+                if (unreadcountNotification == 0) {
+                    notificationcountrl.setVisibility(View.GONE);
+                }
+
+
+            } catch (Exception e) {
+                Toast.makeText(AlumniActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+
+        }
     }
-    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-
-        itemListPlacementnew.addAll(itemList2);
-
-        mAdapterPlacement.notifyDataSetChanged();
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
+    class RefreshPlacementCount extends AsyncTask<String, String, String> {
 
 
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+                json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumniAlumniMetaData, "GET", params);
 
 
+                placementpages = Integer.parseInt(json.getString("pages"));
+                called_pages_placement = new int[placementpages];
+                total_no_of_placements = Integer.parseInt(json.getString("count"));
+                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("Backtrack", "placementpages: " + placementpages);
+                Log.d("Backtrack", "called_pages_placement: " + called_pages_placement);
+                Log.d("Backtrack", "total_no_of_placements: " + total_no_of_placements);
+                Log.d("Backtrack", "unreadcountPlacement: " + unreadcountPlacement);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            placementcountrl.setVisibility(View.VISIBLE);
+
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
+                placementcountrl.setVisibility(View.GONE);
+            }
+
+        }
     }
-
 
 
 }

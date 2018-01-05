@@ -29,6 +29,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
+
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 
 public class EditPlacementHr extends AppCompatActivity {

@@ -24,7 +24,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +32,7 @@ import java.util.Collection;
 import java.util.List;
 
 import mabbas007.tagsedittext.TagsEditText;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
 
 
 public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEditListener {

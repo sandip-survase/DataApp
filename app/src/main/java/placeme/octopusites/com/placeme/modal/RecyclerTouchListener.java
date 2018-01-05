@@ -1,4 +1,4 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by Ravi Tamada on 03/09/16.
- * www.androidhive.info
+ * Created by sunny
  */
 public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 

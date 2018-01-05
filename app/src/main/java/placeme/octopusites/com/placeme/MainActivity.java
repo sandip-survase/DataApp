@@ -49,7 +49,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -80,6 +79,11 @@ import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 import placeme.octopusites.com.placeme.modal.MyProfileWeaknessesModal;
 import placeme.octopusites.com.placeme.modal.Projects;
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
@@ -310,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                if (intent.getAction().equals("pushNotificationChat")) {
+                if (intent.getAction().equals("pushreceived")) {
 
                     Log.d("TAG", "push broadcast received: ");
                     new GetUnreadCountOfNotificationAndPlacement().execute();
@@ -318,6 +322,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     getNotifications();
                     getPlacements();
 
+                    new RefreshNotificationCount().execute();
+                    new RefreshPlacementCount().execute();
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
@@ -1230,60 +1236,17 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             }
         });
 
-        if (MySharedPreferencesManager.getRole(this).equals("student")) {
-            new GetStudentData().execute();
-
-        }
-        if (MySharedPreferencesManager.getRole(this).equals("alumni")) {
-            new GetStudentData().execute();
-
-        }
-
 
         getNotifications();
+        new RefreshPlacementCount().execute();
         new GetUnreadMessagesCount().execute();
         new UpdateFirebaseToken().execute();
+        new GetStudentData().execute();
 
 
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-
-        String u, p, d;
-
-        CreateFirebaseUser(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
-
-//    student data
-
-    void loginFirebase(final String username, String hash) {
+    void loginFirebase(String username, String hash) {
 
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
@@ -1293,20 +1256,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
 
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            if (user != null) {
-                                MySharedPreferencesManager.save(MainActivity.this, "uid", user.getUid());
-                                try {
-                                    new CreateFirebaseUser(Z.Encrypt(username, MainActivity.this), pass, user.getUid()).execute();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
 
                         } else {
-                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -1366,7 +1320,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
     void getNotifications() {
-
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
@@ -1378,6 +1333,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     void getPlacements() {
         Log.d("pbacktrack", "getPlacements: accessed ");
+
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
@@ -1385,6 +1343,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         isLastPageLoadedPlacement = false;
         lastPageFlagPlacement = 0;
         new GetPlacementsReadStatus().execute();
+    }
+
+    public void requestCropImage() {
+        resultView.setImageDrawable(null);
+
+        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
+        chooseImage();
+
+
     }
 
     private void simulateLoadingNotification() {
@@ -1460,6 +1427,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             }
         }.execute();
     }
+
+
+//    studentdata end
 
     private void simulateLoadingPlacement() {
         new AsyncTask<Void, Void, Void>() {
@@ -1656,15 +1626,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    public void requestCropImage() {
-        resultView.setImageDrawable(null);
-
-        MySharedPreferencesManager.save(MainActivity.this, "crop", "yes");
-        chooseImage();
-
-
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -1804,7 +1765,39 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
 
+        String u, p, d;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest("http://162.213.199.3:8086/Firebase/RegisterFirebaseUser", "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
 
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
         @Override
@@ -2700,5 +2693,91 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
     }
+
+    class RefreshNotificationCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
+
+                notificationpages = Integer.parseInt(json.getString("pages"));
+                called_pages_notification = new int[notificationpages];
+                total_no_of_notifications = Integer.parseInt(json.getString("count"));
+                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+
+                Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+
+//
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                notificationcountrl.setVisibility(View.VISIBLE);
+                notificationcounttxt.setText(unreadcountNotification + "");
+                if (unreadcountNotification == 0) {
+                    notificationcountrl.setVisibility(View.GONE);
+                }
+
+
+            } catch (Exception e) {
+//                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+    }
+
+    class RefreshPlacementCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            try {
+                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
+
+
+                placementpages = Integer.parseInt(json.getString("pages"));
+                called_pages_placement = new int[placementpages];
+                total_no_of_placements = Integer.parseInt(json.getString("count"));
+                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            placementcountrl.setVisibility(View.VISIBLE);
+
+            placementcounttxt.setText(unreadcountPlacement + "");
+            if (unreadcountPlacement == 0) {
+                placementcountrl.setVisibility(View.GONE);
+            }
+
+
+        }
+    }
+
 
 }

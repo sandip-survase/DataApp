@@ -40,6 +40,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
+
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.MainActivity.containsIgnoreCase;

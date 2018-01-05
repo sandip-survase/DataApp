@@ -38,6 +38,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 

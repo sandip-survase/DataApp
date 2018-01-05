@@ -1,4 +1,4 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,8 @@ import java.text.Normalizer;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.R;
+import placeme.octopusites.com.placeme.Z;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 

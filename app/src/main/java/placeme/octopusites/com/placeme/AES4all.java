@@ -138,7 +138,7 @@ public class AES4all {
 
         return new String(SimpleBase64Encoder.encode(objEncryptedBytes));
     }
-    static String Decrypt(String string,String digest1,String digest2) throws Exception
+    public static String Decrypt(String string, String digest1, String digest2) throws Exception
     {
         byte[] demoKeyBytes=SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes=SimpleBase64Encoder.decode(digest2);

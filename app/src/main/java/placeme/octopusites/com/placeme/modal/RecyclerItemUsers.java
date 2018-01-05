@@ -1,15 +1,15 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 
 import java.io.Serializable;
 
 /**
- * Created by Lincoln on 15/01/16.
+ * Created by sunny .
  */
 public class RecyclerItemUsers implements Serializable {
     private String name, email;
     int id;
-    boolean isSelected=false;
+    public  boolean isSelected=false;
 
 
 

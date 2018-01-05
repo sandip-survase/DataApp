@@ -16,3 +16,6 @@
 #   public *;
 #}
 -ignorewarnings
+-keep public class placeme.octopusites.com.placeme.modal.** {
+                                                            *;
+                                                         }

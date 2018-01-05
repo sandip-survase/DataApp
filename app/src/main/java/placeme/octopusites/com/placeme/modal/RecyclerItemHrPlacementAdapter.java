@@ -1,4 +1,4 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import placeme.octopusites.com.placeme.R;
+import placeme.octopusites.com.placeme.Z;
 
 
 public class RecyclerItemHrPlacementAdapter extends RecyclerView.Adapter<RecyclerItemHrPlacementAdapter.MyViewHolder> {

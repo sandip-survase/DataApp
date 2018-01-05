@@ -18,6 +18,9 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.RecyclerItemUsers;
+import placeme.octopusites.com.placeme.modal.RecyclerItemUsersAdapter;
+
 public class ShowRegisteredUsers extends AppCompatActivity {
 
     private MaterialSearchView searchView;

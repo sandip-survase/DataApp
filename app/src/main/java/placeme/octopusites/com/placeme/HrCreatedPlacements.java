@@ -13,6 +13,10 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacementAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
+
 public class HrCreatedPlacements extends AppCompatActivity {
 
     private List<RecyclerItemHrPlacement> itemList = new ArrayList<>();

@@ -1,9 +1,9 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 import android.content.Context;
 
 /**
- * Created by Lincoln on 15/01/16.
+
  */
 public class RecyclerItemAdminEdit {
     private String title, notification;

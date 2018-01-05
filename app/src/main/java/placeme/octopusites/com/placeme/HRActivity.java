@@ -61,6 +61,15 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
+import placeme.octopusites.com.placeme.modal.RecyclerItem;
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacementAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemUsers;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.fromString;

@@ -1,4 +1,4 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 
 import java.io.Serializable;

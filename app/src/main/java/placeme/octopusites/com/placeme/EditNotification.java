@@ -40,6 +40,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.modal.RecyclerItemAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;

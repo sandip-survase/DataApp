@@ -29,6 +29,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.RecyclerItemUsersAdmin;
+import placeme.octopusites.com.placeme.modal.RecyclerItemUsersAdminAdapter;
+import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 import placeme.octopusites.com.placeme.modal.UserDetails;
 
 import static placeme.octopusites.com.placeme.AES4all.fromString;

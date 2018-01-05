@@ -39,9 +39,9 @@ import java.util.Collection;
 import java.util.List;
 
 import mabbas007.tagsedittext.TagsEditText;
+import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
@@ -471,9 +471,11 @@ public class EditPlacementMain extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", sid)); //0
 
-            json = jParser.makeHttpRequest(Z.url_GetForWhomeNotification, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetForWhomePlacements, "GET", params);
             try {
                 Forwhomefromdb = json.getString("forwhom");
+                Log.d("Forwhomefromdb", "onPostExecute: " + Forwhomefromdb);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -485,24 +487,17 @@ public class EditPlacementMain extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
 
-                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                String sPadding = "ISO10126Padding";
                 if (!Forwhomefromdb.equals("")) {
-                    byte[] ForwhomefromdbEncryptedBytes = SimpleBase64Encoder.decode(Forwhomefromdb);
-                    byte[] ForwhomefromdbDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, ForwhomefromdbEncryptedBytes);
-                    Forwhomefromdb = Z.Decrypt(Forwhomefromdb, EditPlacementMain.this);
+                   Forwhomefromdb = Z.Decrypt(Forwhomefromdb, EditPlacementMain.this);
                     Log.d("Forwhomefromdb", "onPostExecute: " + Forwhomefromdb);
                 }
 
-                String tempu = Decrypt(encUsername, digest1, digest2);
+                String tempu = Z.Decrypt(encUsername,EditPlacementMain.this);
                 Log.d("Forwhomefromdb", "tempu: " + tempu);
 
 
                 if (Forwhomefromdb.contains(tempu)) {
-
                     Forwhomefromdb = Forwhomefromdb.replace(tempu, "");
-
                 }
                 Log.d("Forwhomefromdb", "after: " + Forwhomefromdb);
 

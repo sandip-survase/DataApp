@@ -1,7 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 /**
- * Created by Lincoln on 15/01/16.
+ * Created by sunny
  */
 public class RecyclerItemMessages {
     private String uploadedby, signature, fname, lname, lastmessage, time, username, sender_uid ,uid, token,unreadcount;

@@ -1,4 +1,4 @@
-package placeme.octopusites.com.placeme;
+package placeme.octopusites.com.placeme.modal;
 
 import android.graphics.Color;
 import android.net.Uri;
@@ -19,6 +19,9 @@ import java.text.Normalizer;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.JSONParser;
+import placeme.octopusites.com.placeme.R;
+import placeme.octopusites.com.placeme.Z;
 
 
 public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<RecyclerItemUsersAdminAdapter.MyViewHolder> {
