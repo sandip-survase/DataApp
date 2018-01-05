@@ -20,6 +20,7 @@ public class Z {
     //**************************  final **************************
     public static final String VPS_IP = "162.213.199.3";   // for authority
     public static final String IP = "http://162.213.199.3/";
+    public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
     //**************************  final **************************
 
     public static final String IP_8080 = "http://162.213.199.3:8080/";
@@ -136,7 +137,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_UpdateFirebaseToken = IP + "Firebase/UpdateFirebaseToken";
     //    ----------------------------------/sunny---------------------------------------------------------------
 
-    public static final String url_ChangeUsernameFireBase = IP + "Firebase/ChangeUsername";
+    public static final String url_ChangeUsernameFireBase = IP_TOMCAT + "Firebase/ChangeUsername";
     public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
     public static final String url_getmessagesreadstatus = IP + "Firebase/GetReadStatusOfMessages";
     public static final String url_changepass = IP + "Firebase/ChangePass";
@@ -150,7 +151,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_markread = IP + "Firebase/MarkRead";
     public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
-    public static final String url_ForgotPasswordChange = IP + "Firebase/ForgotPasswordChange";
+    public static final String url_ForgotPasswordChange = IP_TOMCAT + "Firebase/ForgotPasswordChange";
 
     // Messages -----------------------------------------
 

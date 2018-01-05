@@ -158,47 +158,6 @@ public class CreateNewPassword extends AppCompatActivity {
                 Toast.makeText(CreateNewPassword.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
 
 
-                String hashnew = null, hashOld = null, firebaseUsername = null;
-                try {
-                    String data = Z.Decrypt(encpassword, CreateNewPassword.this);
-                    hashnew = md5(data + MySharedPreferencesManager.getDigest3(CreateNewPassword.this));
-                    firebaseUsername = Z.Decrypt(MySharedPreferencesManager.getUsername(CreateNewPassword.this), CreateNewPassword.this);
-                    String passOld = Z.Decrypt(MySharedPreferencesManager.getPassword(CreateNewPassword.this), CreateNewPassword.this);
-                    hashOld = md5(passOld + MySharedPreferencesManager.getDigest3(CreateNewPassword.this));
-                    Log.d("kkk", "firebaseUsernameOld: pass " + firebaseUsername);
-                    Log.d("kkk", "onPostExecute: pass old " + passOld);
-                    Log.d("kkk", "onPostExecute: pass new " + data);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                final String hash = hashnew;
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Log.d("kkk", "onPostExecute: firebaseUsernameOld " + firebaseUsername);
-                Log.d("kkk", "onPostExecute: hashOld " + hashOld);
-                AuthCredential credential = EmailAuthProvider.getCredential(firebaseUsername, hashOld);
-                user.reauthenticate(credential)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    user.updatePassword(hash).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d("kkk", "FIFA updated");
-                                            } else {
-                                                Log.d("kkk", "Error FIFA not updated");
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    Log.d("kkk", "Error auth failed");
-                                }
-                            }
-                        });
-
-
                 MySharedPreferencesManager.save(CreateNewPassword.this, "nameKey", encUsername);
                 MySharedPreferencesManager.save(CreateNewPassword.this, "passKey", encpassword);
 
