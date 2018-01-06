@@ -45,7 +45,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     String digest1, digest2;
     String ComName = "", ComMail = "",sOtherNature="", ComWeb = "", ComPhone = "", ComAlterPhone = "", ComCIIN = "", ComAdd1 = "", ComAdd2 = "", ComAdd3 = "";
     String CompanyType, encobj = "";
-    String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
+    String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "",oldCompany_Nature;
     TextInputEditText CompanyName,otherNature, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
     TextInputLayout instnameinput,ocompanytherNatureTextInputLayout, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
     Spinner Company_Nature;
@@ -148,6 +148,8 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         CompanyCIINstr = h.getCompanyCIIN();
         CompanyNaturestr = h.getCompanyNature();
 
+        oldCompany_Nature = CompanyNaturestr;
+
         CompanyAddressLine1str = h.getCompanyaddl1();
         CompanyAddressLine2str = h.getCompanyaddl2();
         CompanyAddressLine3str = h.getCompanyaddl3();
@@ -200,6 +202,11 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                 pos = position;
                 CompanyType = Nature[position];
 
+
+
+                if(!oldCompany_Nature.equals(CompanyType)){
+                        flag1=1;
+                }
 
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);

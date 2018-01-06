@@ -452,16 +452,20 @@ public class MyProfileUg extends AppCompatActivity {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                        if(n1==0 && n2==0) {
+                            upercentsem1.setText("NA");
+                        }else{
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                            if (percentage >= 0 && percentage <= 100) {
+                                if (percentage >= 0 && percentage <= 100) {
 
-                                upercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem1input.setError("Kindly enter valid out of marks");
+                                upercentsem1.setText("");
                             }
-                        } else {
-                            uoutofsem1input.setError("Kindly enter valid out of marks");
-                            upercentsem1.setText("");
                         }
                     }
                     else
@@ -495,21 +499,27 @@ public class MyProfileUg extends AppCompatActivity {
                     double percentage = 0;
                     String s1 = umarkssem1.getText().toString();
                     String s2 = uoutofsem1.getText().toString();
+
                     if (!s1.equals("") && !s2.equals("")) {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                        if(n1==0 && n2==0) {
+                            upercentsem1.setText("NA");
+                        }else{
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                            if (percentage >= 0 && percentage <= 100) {
+                                if (percentage >= 0 && percentage <= 100) {
 
-                                upercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem1input.setError("Kindly enter valid out of marks.");
+                                upercentsem1.setText("");
                             }
-                        } else {
-                            uoutofsem1input.setError("Kindly enter valid out of marks.");
-                            upercentsem1.setText("");
                         }
+
                     }
                     else
                     {
@@ -545,16 +555,21 @@ public class MyProfileUg extends AppCompatActivity {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                        if(n1==0 && n2==0) {
+                            upercentsem2.setText("NA");
+                        }else {
 
-                            if (percentage >= 0 && percentage <= 100) {
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                                upercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                if (percentage >= 0 && percentage <= 100) {
+
+                                    upercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem2input.setError("Kindly enter valid out of marks.");
+                                upercentsem2.setText("");
                             }
-                        } else {
-                            uoutofsem2input.setError("Kindly enter valid out of marks.");
-                            upercentsem2.setText("");
                         }
                     }
                     else
@@ -590,16 +605,20 @@ public class MyProfileUg extends AppCompatActivity {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                        if(n1==0 && n2==0) {
+                            upercentsem2.setText("NA");
+                        }else {
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                            if (percentage >= 0 && percentage <= 100) {
+                                if (percentage >= 0 && percentage <= 100) {
 
-                                upercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem2input.setError("Kindly enter valid out of marks.");
+                                upercentsem2.setText("");
                             }
-                        } else {
-                            uoutofsem2input.setError("Kindly enter valid out of marks.");
-                            upercentsem2.setText("");
                         }
                     }
                     else
@@ -1002,17 +1021,20 @@ public class MyProfileUg extends AppCompatActivity {
                     if (!s1.equals("") && !s2.equals("")) {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
+                        if(n1==0 && n2==0) {
+                            upercentsem7.setText("NA");
+                        }else {
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                                if (percentage >= 0 && percentage <= 100) {
 
-                            if (percentage >= 0 && percentage <= 100) {
-
-                                upercentsem7.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem7.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem7input.setError("Kindly enter valid out of marks.");
+                                upercentsem7.setText("");
                             }
-                        } else {
-                            uoutofsem7input.setError("Kindly enter valid out of marks.");
-                            upercentsem7.setText("");
                         }
                     }
                     else
@@ -1048,17 +1070,20 @@ public class MyProfileUg extends AppCompatActivity {
                     if (!s1.equals("") && !s2.equals("")) {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
+                        if(n1==0 && n2==0) {
+                            upercentsem7.setText("NA");
+                        }else {
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                                if (percentage >= 0 && percentage <= 100) {
 
-                            if (percentage >= 0 && percentage <= 100) {
-
-                                upercentsem7.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem7.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem7input.setError("Kindly enter valid out of marks.");
+                                upercentsem7.setText("");
                             }
-                        } else {
-                            uoutofsem7input.setError("Kindly enter valid out of marks.");
-                            upercentsem7.setText("");
                         }
                     }
                     else
@@ -1094,17 +1119,20 @@ public class MyProfileUg extends AppCompatActivity {
                     if (!s1.equals("") && !s2.equals("")) {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
+                        if(n1==0 && n2==0) {
+                            upercentsem8.setText("NA");
+                        }else {
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                                if (percentage >= 0 && percentage <= 100) {
 
-                            if (percentage >= 0 && percentage <= 100) {
-
-                                upercentsem8.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem8.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem8input.setError("Kindly enter valid out of marks.");
+                                upercentsem8.setText("");
                             }
-                        } else {
-                            uoutofsem8input.setError("Kindly enter valid out of marks.");
-                            upercentsem8.setText("");
                         }
                     }
                     else
@@ -1141,16 +1169,20 @@ public class MyProfileUg extends AppCompatActivity {
                         double n1 = Double.parseDouble(s1);
                         double n2 = Double.parseDouble(s2);
 
-                        if (n1 <= n2) {
-                            percentage = (n1 * 100 / n2);
+                        if(n1==0 && n2==0) {
+                            upercentsem8.setText("NA");
+                        }else {
+                            if (n1 <= n2) {
+                                percentage = (n1 * 100 / n2);
 
-                            if (percentage >= 0 && percentage <= 100) {
+                                if (percentage >= 0 && percentage <= 100) {
 
-                                upercentsem8.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                    upercentsem8.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                                }
+                            } else {
+                                uoutofsem8input.setError("Kindly enter valid out of marks.");
+                                upercentsem8.setText("");
                             }
-                        } else {
-                            uoutofsem8input.setError("Kindly enter valid out of marks.");
-                            upercentsem8.setText("");
                         }
                     }
                     else

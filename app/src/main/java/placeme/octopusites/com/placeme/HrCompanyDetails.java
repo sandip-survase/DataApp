@@ -194,6 +194,10 @@ public class HrCompanyDetails extends AppCompatActivity {
                 CompanyType = Nature[position];
                 newnature = CompanyType;
 
+//                if(!oldnature.equals(CompanyType)){
+//                    flag1=1;
+//                }
+
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
                     otherNature.setVisibility(View.VISIBLE);

@@ -1032,69 +1032,69 @@ public class MyProfileAchievements extends AppCompatActivity {
         yearofhonor1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor1);
+                showDateDialog(yearofhonor1,yearhonor1);
             }
         });
         yearofhonor2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor2);
+                showDateDialog(yearofhonor2,yearhonor2);
             }
         });
 
         yearofhonor3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor3);
+                showDateDialog(yearofhonor3,yearhonor3);
             }
         });
 
         yearofhonor4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor4);
+                showDateDialog(yearofhonor4,yearhonor4);
             }
         });
 
         yearofhonor5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor5);
+                showDateDialog(yearofhonor5,yearhonor5);
             }
         });
 
         yearofhonor6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor6);
+                showDateDialog(yearofhonor6,yearhonor6);
             }
         });
 
         yearofhonor7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor7);
+                showDateDialog(yearofhonor7,yearhonor7);
             }
         });
 
         yearofhonor8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor8);
+                showDateDialog(yearofhonor8,yearhonor8);
             }
         });
 
         yearofhonor9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor9);
+                showDateDialog(yearofhonor9,yearhonor9);
             }
         });
 
         yearofhonor10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(yearofhonor10);
+                showDateDialog(yearofhonor10,yearhonor10);
             }
         });
 
@@ -2655,7 +2655,7 @@ public class MyProfileAchievements extends AppCompatActivity {
         }
     }
 
-    void showDateDialog(final TextInputEditText id) {
+    void showDateDialog(final TextInputEditText id, final TextInputLayout tid) {
 
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileAchievements.this);
@@ -2716,10 +2716,17 @@ public class MyProfileAchievements extends AppCompatActivity {
                 int isInvalidDate = 0;
                 Calendar currentDatecalendar = Calendar.getInstance();
                 int selectedYearInterger = Integer.parseInt(selectedYear);
-                if (selectedYearInterger >= currentDatecalendar.get(Calendar.YEAR) && monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
+                if (selectedYearInterger == currentDatecalendar.get(Calendar.YEAR) && monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
                     isInvalidDate = 1;
                 }
-                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+//                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+                if (!bln) {
+                    tid.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
+
                 alertDialog.cancel();
             }
         });
@@ -2741,13 +2748,14 @@ public class MyProfileAchievements extends AppCompatActivity {
 
     }
 
-    void setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
+    boolean setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
         if (isInvalidDate == 1) {
             id.setText("");
-            id.setError("Kindly select valid Date");
-            Toast.makeText(this, "Kindly select valid Date", Toast.LENGTH_SHORT).show();
-        } else
+            return false;
+        } else {
             id.setText(selectedMonth + ", " + selectedYear);
+            return true;
+        }
     }
 
     private void disableScrollbars(ScrollView scrollView) {
