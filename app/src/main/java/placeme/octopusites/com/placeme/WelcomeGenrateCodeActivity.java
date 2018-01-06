@@ -1326,7 +1326,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 try {
                     helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under HR Manager / Recruiter.");
                     genratedCode.setText(CODE);
-                    headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
+                    headerMsgcode.setText("This is your Company Code provided by PlaceMe.");
                 }catch (Exception e){}
 
                 // back press next will move to base activity
