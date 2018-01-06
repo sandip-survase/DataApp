@@ -175,7 +175,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
 
 //                startActivity(new Intent(getActivity(),PrivacyPolicy.class));
-                startActivity(new Intent(getActivity(), NewsFeedWebView.class).putExtra("url", "https://placeme.co.in/").putExtra("header", "Privacy Policy"));
+                startActivity(new Intent(getActivity(), NewsFeedWebView.class));
             }
         });
         termsselectionview.setOnClickListener(new View.OnClickListener() {

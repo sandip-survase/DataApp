@@ -24,8 +24,8 @@ public class NewsFeedWebView extends AppCompatActivity {
 
         webViewProgressBar= (ProgressBar) findViewById(R.id.webViewProgressBar);
 
-        String headerURL=getIntent().getStringExtra("url");
-        String headerTitle=getIntent().getStringExtra("header");
+        String headerURL = getIntent().getStringExtra("https://www.google.co.in/");
+        String headerTitle = getIntent().getStringExtra("kkr");
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle(headerTitle);
@@ -33,18 +33,54 @@ public class NewsFeedWebView extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
             wb=(WebView)findViewById(R.id.webView1);
-        wb.setWebChromeClient(new WebChromeClient());
 //            wb.getSettings().setJavaScriptEnabled(true);
 //            wb.getSettings().setLoadWithOverviewMode(true);
 //            wb.getSettings().setUseWideViewPort(true);
 //            wb.getSettings().setBuiltInZoomControls(true);
 //            wb.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 //            wb.getSettings().setPluginState(WebSettings.PluginState.ON);
-////            wb.getSettings().setPluginsEnabled(true);
+//            wb.getSettings().setPluginsEnabled(true);
 //            wb.setWebViewClient(new HelloWebViewClient());
-            wb.loadUrl(headerURL);
+        wb.setWebChromeClient(getChromeClient());
+        wb.loadUrl("https://placeme.co.in");
+
+
+        wb.getSettings().setJavaScriptEnabled(true);
+        wb.getSettings().setLoadWithOverviewMode(true);
+        wb.getSettings().setUseWideViewPort(true);
+        wb.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                progDailog.show();
+                view.loadUrl(url);
+
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, final String url) {
+//                progDailog.dismiss();
+            }
+        });
+
+        wb.loadUrl("https://placeme.co.in/");
 
     }
+
+//        wb.setWebChromeClient(new WebChromeClient() {
+//            public void onProgressChanged(WebView view, int progress)
+//            {
+//                setTitle("Loading...");
+//                setProgress(progress * 100);
+//
+//                if(progress == 100)
+//                    setTitle(R.string.app_name);
+//            }
+//        });
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,14 +96,17 @@ public class NewsFeedWebView extends AppCompatActivity {
     }
 
 
-    private class HelloWebViewClient extends WebViewClient {
+    private WebChromeClient getChromeClient() {
+//        final ProgressDialog progressDialog = new ProgressDialog(MyWebViewActivity.this);
+//        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//        progressDialog.setCancelable(false);
 
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-            webViewProgressBar.setVisibility(View.GONE);
-            return false;
-        }
-
+        return new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+            }
+        };
     }
+
 }
