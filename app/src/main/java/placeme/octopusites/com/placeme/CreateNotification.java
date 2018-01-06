@@ -677,7 +677,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                         if (!fileinprogress1 && !fileinprogress2 && !fileinprogress3 && !fileinprogress4 && !fileinprogress5) {
 
-                            Toast.makeText(this, "files ok", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "files ok", Toast.LENGTH_SHORT).show();
                             encRole = Z.Encrypt(srole, CreateNotification.this);
                             encTitle = Z.Encrypt(stitle, CreateNotification.this);
                             encNotiffication = Z.Encrypt(snotiffication, CreateNotification.this);

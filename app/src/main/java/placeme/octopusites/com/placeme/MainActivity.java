@@ -1245,7 +1245,24 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         new GetStudentData().execute();
 
 //        changePass();
+        Log.d("Tag", "onCreate: " + getIntent().getStringExtra("push"));
+        if (getIntent().getStringExtra("push") != null) {
+//for clearing firebase service static fields
+            Log.d("OnCreate", "trying to get String data");
+            MyFirebaseMessagingService.countfornotiff = 0;
+            MyFirebaseMessagingService.notiffbigtext = "";
+            MyFirebaseMessagingService.notiffbigtext2 = "";
+            MyFirebaseMessagingService.companynameslist.clear();
+            MyFirebaseMessagingService.packagelists.clear();
+            MyFirebaseMessagingService.postlists.clear();
+            MyFirebaseMessagingService.ldrlists.clear();
+            MyFirebaseMessagingService.vacantlist.clear();
+            Log.d("serviceFields", "notificationtitlelist:" + MyFirebaseMessagingService.notificationcontentlist.size());
+            MyFirebaseMessagingService.notificationtitlelist.clear();
+            MyFirebaseMessagingService.notificationcontentlist.clear();
+            Log.d("serviceFields", "notificationtitlelist2:" + MyFirebaseMessagingService.notificationcontentlist.size());
 
+        }
     }
 
     private void changePass() {

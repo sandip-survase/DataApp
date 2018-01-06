@@ -61,8 +61,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
-import placeme.octopusites.com.placeme.modal.RecyclerItem;
-import placeme.octopusites.com.placeme.modal.RecyclerItemAdapter;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
 import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacement;
@@ -136,8 +134,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     int total_no_of_notifications;
     int unreadcountNotification = 0;
     private String username = "";
-    private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerItemAdapter mAdapter;
+    private ArrayList<RecyclerItemEdit> itemList = new ArrayList<>();
     private MaterialSearchView searchView;
     //  our coding here
     private ImageView resultView;
@@ -159,6 +156,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
     private int page_to_call_notification = 1;
+
+
+    int searchNotificationFlag = 0, searchPlacementFlag = 0;
+    ArrayList<RecyclerItemEdit> tempListNotification;
+    String TAG = "ParineetiChopra";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -795,14 +800,88 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                RecyclerItem movie = itemList.get(position);
+                try {
 
-                if (notificationorplacementflag == 0) {
 
-                    startActivity(new Intent(HRActivity.this, ViewNotification.class).putExtra("username", username));
-                } else if (notificationorplacementflag == 1) {
-                    startActivity(new Intent(HRActivity.this, ViewPlacementAdmin.class).putExtra("username", username));
+                    RecyclerItemEdit itemN = null;
+                    if (searchNotificationFlag == 1)
+                        itemN = tempListNotification.get(position);
+                    else
+                        itemN = itemListNotificationNew.get(position);
+                    if (!itemN.isIsread()) {
+                        itemN.setIsread(true);
+                        unreadcountNotification--;
+                        notificationcountrl.setVisibility(View.VISIBLE);
+                        notificationcounttxt.setText(unreadcountNotification + "");
+                        if (unreadcountNotification == 0) {
+                            notificationcountrl.setVisibility(View.GONE);
+                        }
+
+                    }
+
+
+                    mAdapterNotificationEdit.notifyDataSetChanged();
+                    changeReadStatusNotification(itemN.getId());
+
+                    crop_flag = 1;
+                    Intent i1 = new Intent(HRActivity.this, ViewNotification.class);
+
+                    i1.putExtra("id", itemN.getId());
+                    i1.putExtra("title", itemN.getTitle());
+                    i1.putExtra("notification", itemN.getNotification());
+
+
+                    if (itemN.getFilename1() != null) {
+                        i1.putExtra("file1", Z.Decrypt(itemN.getFilename1(), HRActivity.this));
+                    } else {
+                        i1.putExtra("file1", itemN.getFilename1());
+                    }
+
+                    if (itemN.getFilename2() != null) {
+                        i1.putExtra("file2", Z.Decrypt(itemN.getFilename2(), HRActivity.this));
+                    } else {
+                        i1.putExtra("file2", itemN.getFilename2());
+                    }
+                    if (itemN.getFilename3() != null) {
+                        i1.putExtra("file3", Z.Decrypt(itemN.getFilename3(), HRActivity.this));
+                    } else {
+                        i1.putExtra("file3", itemN.getFilename3());
+                    }
+                    if (itemN.getFilename4() != null) {
+                        i1.putExtra("file4", Z.Decrypt(itemN.getFilename4(), HRActivity.this));
+                    } else {
+                        i1.putExtra("file4", itemN.getFilename4());
+                    }
+
+                    if (itemN.getFilename5() != null) {
+                        i1.putExtra("file5", Z.Decrypt(itemN.getFilename5(), HRActivity.this));
+                    } else {
+                        i1.putExtra("file5", itemN.getFilename5());
+                    }
+
+                    i1.putExtra("uploadedby", itemN.getUploadedby());
+                    i1.putExtra("uploadtime", itemN.getUploadtime());
+                    i1.putExtra("lastmodified", itemN.getLastmodified());
+
+                    Log.d("addOnItemTouch", "id: " + itemN.getId());
+                    Log.d("addOnItemTouch", "title" + itemN.getTitle());
+                    Log.d("addOnItemTouch", "notification" + itemN.getNotification());
+                    Log.d("addOnItemTouch", "file1" + itemN.getFilename1());
+                    Log.d("addOnItemTouch", "file2" + itemN.getFilename2());
+                    Log.d("addOnItemTouch", "file3" + itemN.getFilename3());
+                    Log.d("addOnItemTouch", "file4" + itemN.getFilename4());
+                    Log.d("addOnItemTouch", "file5" + itemN.getFilename5());
+                    Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                    Log.d("addOnItemTouch", "uploadtime" + itemN.getUploadtime());
+                    Log.d("addOnItemTouch", "uploadedby" + itemN.getUploadedby());
+                    Log.d("addOnItemTouch", "lastmodified" + itemN.getLastmodified());
+                    startActivity(i1);
+
+
+                } catch (Exception e) {
+
                 }
+
             }
 
             @Override
@@ -955,13 +1034,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onRefresh() {
 
-                getPlacements2();
 
-
-//                if (selectedMenuFlag == 1)
-//                    getNotifications();
-//                else if (selectedMenuFlag == 2)
-//                    getPlacements();
+                if (selectedMenuFlag == 1)
+                    getNotifications();
+                else if (selectedMenuFlag == 2)
+                    getPlacements2();
 
 
             }
@@ -1279,7 +1356,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     void setserverlisttoadapter2(ArrayList<RecyclerItemEdit> itemlist) {
 
         itemListNotificationNew.addAll(itemlist);
-        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+        Log.d(TAG, "New MovieList To release:" + itemListNotificationNew.size());
 
         if (lastPageFlagNotification == 1)
             isLastPageLoadedNotification = true;
@@ -1291,7 +1368,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
-        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+        Log.d(TAG, "movie collection After release  " + mAdapterNotificationEdit.getItemCount());
+
 
     }
 
@@ -1759,9 +1837,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
-                Log.d("FinaltestN", "notificationpages: " + notificationpages);
-                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
-                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+                Log.d(TAG, "projects :" + notificationpages);
+                Log.d(TAG, "total Movies:" + total_no_of_notifications);
+                Log.d(TAG, "Movies to release:" + notificationpages);
 
 //
             } catch (Exception e) {
@@ -1806,9 +1884,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
-                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
 
             } catch (Exception e) {
@@ -1826,6 +1903,31 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
     }
+
+    void changeReadStatusNotification(String id) {
+        new ChangeReadStatusNotification().execute(id);
+
+    }
+
+    class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("id", param[0]));       //0
+            json = jParser.makeHttpRequest(Z.url_changenotificationsreadstatus, "GET", params);
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+
 
 
 }

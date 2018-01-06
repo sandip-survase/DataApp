@@ -33,25 +33,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public static final String MyPREFERENCES = "MyPrefs";
     private static final String TAG = "MyFirebaseMsgService";
     static int count = 0;  // notification id ...increase this count when new type of notifiation arrives
-    static int countfornotiff = 0;
+    public static int countfornotiff = 0;
     static int countforplace = 0;
     static int countformessagesenders = 0;
     static String stro = "", stro2 = "";
-    static String notiffbigtext = "", notiffbigtext2 = "";
+    public static String notiffbigtext = "", notiffbigtext2 = "";
     String chatBigText = null;
     String chatSubText = null;
 
-    static ArrayList<String> companynameslist = new ArrayList<>();
-    static ArrayList<String> packagelists = new ArrayList<>();
-    static ArrayList<String> postlists = new ArrayList<>();
-    static ArrayList<String> ldrlists = new ArrayList<>();
-    static ArrayList<String> vacantlist = new ArrayList<>();
+    public static ArrayList<String> companynameslist = new ArrayList<>();
+    public static ArrayList<String> packagelists = new ArrayList<>();
+    public static ArrayList<String> postlists = new ArrayList<>();
+    public static ArrayList<String> ldrlists = new ArrayList<>();
+    public static ArrayList<String> vacantlist = new ArrayList<>();
     static ArrayList<String> messages = new ArrayList<>();
     static ArrayList<String> messageSenders = new ArrayList<>();
 
 
-    static ArrayList<String> notificationtitlelist = new ArrayList<>();
-    static ArrayList<String> notificationcontentlist = new ArrayList<>();
+    public static ArrayList<String> notificationtitlelist = new ArrayList<>();
+    public static ArrayList<String> notificationcontentlist = new ArrayList<>();
 
 
     SharedPreferences sharedpreferences;
@@ -62,6 +62,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.d(TAG, "push received");
         Log.d(TAG, "From: " + remoteMessage.getFrom());
+
+        Intent pushNotification = new Intent("pushreceived");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
+
         if (remoteMessage.getNotification() != null) {
 
         } else {
@@ -122,9 +126,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                     String senderdec = AES4all.Decrypt(sender, MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 //                    String  lastmodifiedDEC=AES4all.Decrypt(lastmodified,MySharedPreferencesManager.getDigest1(this),MySharedPreferencesManager.getDigest2(this));
+                    Intent intent = null;
+                    if (countfornotiff == 0) {
+                        intent = new Intent(this, ViewNotification.class);
+                    } else {
+                        String role = "";
+                        role = MySharedPreferencesManager.getRole(this);
+                        if (role.equals("admin")) {
+                            intent = new Intent(this, AdminActivity.class);
+                        } else if (role.equals("student")) {
+                            intent = new Intent(this, MainActivity.class);
+                        } else if (role.equals("alumni")) {
+                            intent = new Intent(this, AlumniActivity.class);
+                        } else if (role.equals("hr")) {
+                            intent = new Intent(this, HRActivity.class);
+
+                        }
 
 
-                    Intent intent = new Intent(this, ViewNotification.class);
+                    }
+                    intent.putExtra("push", "Recieved");
                     intent.putExtra("receiver", receiver);
                     intent.putExtra("uploadedby", sender);
                     intent.putExtra("id", ids);
@@ -161,12 +182,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         notiffbigtext = notificationtitlelist.get(0) + "\t" + notificationcontentlist.get(0) +
                                 "\n" + notiffbigtext2;
 
-                        senderdec = countfornotiff + "\tNotifications From PLACEME.";
+                        senderdec = "+" + countfornotiff + "\tNotifications From PLACEME.";
                         title = "NOTIFICATIONS";
+                        notification = null;
 
                     }
 
-
+                    countfornotiff++;
                     NotificationCompat.Builder builder =
                             new NotificationCompat.Builder(this)
                                     .setLargeIcon(icon)
@@ -175,7 +197,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                     .setContentText(notification)
                                     .setAutoCancel(true)
                                     .setSound(defaultSoundUri)
-                                    .setNumber(++countfornotiff)
+                                    .setNumber(countfornotiff)
                                     .setStyle(new NotificationCompat.BigTextStyle()
                                             .bigText(Bigmsg))
                                     .setSubText(senderdec)
@@ -192,7 +214,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                     NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     manager.notify(count, builder.build());
-//                    countfornotiff++;
 
 
                 } else if (Notificationtags.equals("PlacemetsforAll")) {
@@ -231,9 +252,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     String experience = data.getString("experience");
 
                     String senderdec = AES4all.Decrypt(sender, MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
-
-
                     Intent intent = new Intent(this, ViewPlacement.class);
+
 //                    intent.putExtra("fname", name1.get(0));
 //                    intent.putExtra("lname", name1.get(1));
 //                    intent.putExtra("uploadedby", name1.get(2));
@@ -246,6 +266,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                    ArrayList<String> packagelists = new ArrayList<>();
 //                    ArrayList<String> postlists = new ArrayList<>();
 //                    ArrayList<String>  ldrlists = new ArrayList<>();
+
                     count = 2;
 
 //                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -273,14 +294,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                         stro2 += "" + Companyname + " (" + cpackage + " LPA) \n";
 
-                        lastdateofregistration = countforplace + "\tPlacements From PLACEME.";
+                        lastdateofregistration = "+" + countforplace + "\tPlacements From PLACEME.";
                         Companyname = "PLACEMENTS";
 
                         stro = companynameslist.get(0) + " (" + packagelists.get(0) + " LPA)" +
                                 "\n" + stro2;
+                        Companyname = null;
 
                     }
 
+                    countforplace++;
 
                     Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -292,7 +315,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                     .setContentText(post + " (" + cpackage + " LPA)")
                                     .setAutoCancel(true)
                                     .setSound(defaultSoundUri)
-                                    .setNumber(++countforplace)
+                                    .setNumber(countforplace)
                                     .setStyle(new NotificationCompat.BigTextStyle()
                                             .bigText(stro))
                                     .setSubText(lastdateofregistration)
@@ -309,11 +332,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                     NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     manager.notify(count, builder.build());
-//                    countforplace++;
 
-                }
-                else if (Notificationtags.equals("chat")) {
-                    count=3;
+                } else if (Notificationtags.equals("chat")) {
+                    count = 3;
                     Log.d(TAG, "chat received: ");
                     String sender = data.getString("sender");
                     String receiver = data.getString("receiver");
@@ -435,8 +456,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         manager.notify(0, builder.build());
 
-                        Intent pushNotification = new Intent("pushNotificationChat");
-                        LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
 
                     }
 

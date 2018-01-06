@@ -90,8 +90,24 @@ public class ViewNotification extends AppCompatActivity {
         String uploadedby_enc=getIntent().getStringExtra("uploadedby");
         Log.d("gettingdata", "uploadedby_enc"+uploadedby_enc);
 
+
         try
         {
+            MyFirebaseMessagingService.countfornotiff = 0;
+            MyFirebaseMessagingService.notiffbigtext = "";
+            MyFirebaseMessagingService.notiffbigtext2 = "";
+            MyFirebaseMessagingService.companynameslist.clear();
+            MyFirebaseMessagingService.packagelists.clear();
+            MyFirebaseMessagingService.postlists.clear();
+            MyFirebaseMessagingService.ldrlists.clear();
+            MyFirebaseMessagingService.vacantlist.clear();
+            Log.d("serviceFields", "notificationtitlelist:" + MyFirebaseMessagingService.notificationcontentlist.size());
+            MyFirebaseMessagingService.notificationtitlelist.clear();
+            MyFirebaseMessagingService.notificationcontentlist.clear();
+            Log.d("serviceFields", "notificationtitlelist2:" + MyFirebaseMessagingService.notificationcontentlist.size());
+
+
+
 
 //            uploadedby=uploadedby_enc;
             Log.d("gettingdata", "uploadedby"+uploadedby);
