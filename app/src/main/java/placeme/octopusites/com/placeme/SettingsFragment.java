@@ -174,7 +174,8 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),PrivacyPolicy.class));
+//                startActivity(new Intent(getActivity(),PrivacyPolicy.class));
+                startActivity(new Intent(getActivity(), NewsFeedWebView.class));
             }
         });
         termsselectionview.setOnClickListener(new View.OnClickListener() {
