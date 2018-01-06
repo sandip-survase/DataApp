@@ -40,6 +40,7 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
+import static placeme.octopusites.com.placeme.MainActivity.photo;
 
 public class PrintProfileTabFragment extends Fragment {
 
@@ -65,7 +66,7 @@ public class PrintProfileTabFragment extends Fragment {
     View getmoreselectionview;
     TextView getmore,selectformattxt;
     ProgressBar resumeprogress;
-    int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
+    int found_photo=0,found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
     int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
     int found_contact_details=0,found_personal=0;
 
@@ -420,6 +421,24 @@ public class PrintProfileTabFragment extends Fragment {
         }
 
 
+        if(photo.equals("noupdate")){
+            downloadresume.setVisibility(View.VISIBLE);
+            resumeprogress.setVisibility(View.GONE);
+
+            Snackbar.make(downloadresume.getRootView(), "Please upload photo", Snackbar.LENGTH_LONG)
+                    .setAction("OPEN", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(), MainActivity.class).putExtra("status",1));
+                            getActivity().finish();
+                        }
+                    })
+                    .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                    .setDuration(10000)
+                    .show();
+        }else{
+
+            found_photo =1;
             if(found_box1==0){
                 downloadresume.setVisibility(View.VISIBLE);
                 resumeprogress.setVisibility(View.GONE);
@@ -464,8 +483,8 @@ public class PrintProfileTabFragment extends Fragment {
                                 .setDuration(10000)
                                 .show();
 
-                    }else{
-                        if(found_ug==0){
+                    }else {
+                        if (found_ug == 0) {
                             downloadresume.setVisibility(View.VISIBLE);
                             resumeprogress.setVisibility(View.GONE);
                             Snackbar.make(downloadresume.getRootView(), "Please fill Std. Ug details", Snackbar.LENGTH_LONG)
@@ -479,8 +498,8 @@ public class PrintProfileTabFragment extends Fragment {
                                     .setDuration(10000)
                                     .show();
 
-                        }else{
-                            if(found_projects==0){
+                        } else {
+                            if (found_projects == 0) {
                                 downloadresume.setVisibility(View.VISIBLE);
                                 resumeprogress.setVisibility(View.GONE);
                                 Snackbar.make(downloadresume.getRootView(), "Please fill Project details", Snackbar.LENGTH_LONG)
@@ -494,8 +513,8 @@ public class PrintProfileTabFragment extends Fragment {
                                         .setDuration(10000)
                                         .show();
 
-                            }else{
-                                if(found_lang==0){
+                            } else {
+                                if (found_lang == 0) {
                                     downloadresume.setVisibility(View.VISIBLE);
                                     resumeprogress.setVisibility(View.GONE);
                                     Snackbar.make(downloadresume.getRootView(), "Please fill Known languages details", Snackbar.LENGTH_LONG)
@@ -509,8 +528,8 @@ public class PrintProfileTabFragment extends Fragment {
                                             .setDuration(10000)
                                             .show();
 
-                                }else{
-                                    if(found_skills==0){
+                                } else {
+                                    if (found_skills == 0) {
                                         downloadresume.setVisibility(View.VISIBLE);
                                         resumeprogress.setVisibility(View.GONE);
                                         Snackbar.make(downloadresume.getRootView(), "Please fill Skill details", Snackbar.LENGTH_LONG)
@@ -524,8 +543,8 @@ public class PrintProfileTabFragment extends Fragment {
                                                 .setDuration(10000)
                                                 .show();
 
-                                    }else{
-                                        if(found_careerobj==0){
+                                    } else {
+                                        if (found_careerobj == 0) {
                                             downloadresume.setVisibility(View.VISIBLE);
                                             resumeprogress.setVisibility(View.GONE);
                                             Snackbar.make(downloadresume.getRootView(), "Please fill Career details", Snackbar.LENGTH_LONG)
@@ -539,8 +558,8 @@ public class PrintProfileTabFragment extends Fragment {
                                                     .setDuration(10000)
                                                     .show();
 
-                                        }else{
-                                            if(found_strengths==0){
+                                        } else {
+                                            if (found_strengths == 0) {
                                                 downloadresume.setVisibility(View.VISIBLE);
                                                 resumeprogress.setVisibility(View.GONE);
                                                 Snackbar.make(downloadresume.getRootView(), "Please fill Strength details", Snackbar.LENGTH_LONG)
@@ -554,8 +573,8 @@ public class PrintProfileTabFragment extends Fragment {
                                                         .setDuration(10000)
                                                         .show();
 
-                                            }else{
-                                                if(found_weaknesses==0){
+                                            } else {
+                                                if (found_weaknesses == 0) {
                                                     downloadresume.setVisibility(View.VISIBLE);
                                                     resumeprogress.setVisibility(View.GONE);
                                                     Snackbar.make(downloadresume.getRootView(), "Please fill Weaknesses details", Snackbar.LENGTH_LONG)
@@ -570,24 +589,24 @@ public class PrintProfileTabFragment extends Fragment {
                                                             .show();
 
                                                 } else {
-                                                        if(found_personal==0){
-                                                            downloadresume.setVisibility(View.VISIBLE);
-                                                            resumeprogress.setVisibility(View.GONE);
-                                                            Snackbar.make(downloadresume.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
-                                                                    .setAction("OPEN", new View.OnClickListener() {
-                                                                        @Override
-                                                                        public void onClick(View view) {
-                                                                            String role = MySharedPreferencesManager.getRole(getActivity());
-                                                                            if (role.equals("student")) {
-                                                                                startActivity(new Intent(getActivity(), EditProfile.class));
-                                                                            } else
-                                                                                startActivity(new Intent(getActivity(), EditProfileAlumni.class));
-                                                                        }
-                                                                    })
-                                                                    .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
-                                                                    .setDuration(10000)
-                                                                    .show();
-                                                        }
+                                                    if (found_personal == 0) {
+                                                        downloadresume.setVisibility(View.VISIBLE);
+                                                        resumeprogress.setVisibility(View.GONE);
+                                                        Snackbar.make(downloadresume.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
+                                                                .setAction("OPEN", new View.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(View view) {
+                                                                        String role = MySharedPreferencesManager.getRole(getActivity());
+                                                                        if (role.equals("student")) {
+                                                                            startActivity(new Intent(getActivity(), EditProfile.class));
+                                                                        } else
+                                                                            startActivity(new Intent(getActivity(), EditProfileAlumni.class));
+                                                                    }
+                                                                })
+                                                                .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                                .setDuration(10000)
+                                                                .show();
+                                                    }
                                                 }
                                             }
 
@@ -598,11 +617,12 @@ public class PrintProfileTabFragment extends Fragment {
                             }
                         }
                     }
+                    }
 
                 }
             }
 
-        if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
+        if (found_photo == 1 && found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);
 
