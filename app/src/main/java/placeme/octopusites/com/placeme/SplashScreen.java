@@ -614,8 +614,11 @@ public class SplashScreen extends AppCompatActivity {
                 .setPositiveButton("Update",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                String packageName = getPackageName();
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details:id=" + packageName)));
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=placeme.octopusites.com.placeme")));
+                                } catch (android.content.ActivityNotFoundException anfe) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=placeme.octopusites.com.placeme")));
+                                }
                                 finish();
 
                             }
@@ -653,9 +656,11 @@ public class SplashScreen extends AppCompatActivity {
                 .setPositiveButton("Update",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                String packageName = getPackageName();
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details:id=" + packageName)));
-                                //TODO check playStore link
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=placeme.octopusites.com.placeme")));
+                                } catch (android.content.ActivityNotFoundException anfe) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=placeme.octopusites.com.placeme")));
+                                }
                                 finish();
 
                             }

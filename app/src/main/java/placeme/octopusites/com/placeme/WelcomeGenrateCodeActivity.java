@@ -596,7 +596,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         TextView welcometextviewcontext1=(TextView)WelComeCompanyView.findViewById(R.id.welcometextviewcontext1);
         TextView welcometextviewcontext2=(TextView)WelComeCompanyView.findViewById(R.id.welcometextviewcontext2);
 
-        welcometextviewcontext2.setText("\"The mechanics of industry is easy. The real engine is the peeople: Their motivation and direction.\" - Ken Gilbert");
+        welcometextviewcontext2.setText("\"The mechanics of industry is easy. The real engine is the people : Their motivation and direction.\" - Ken Gilbert");
         welcometextviewcontext1.setTypeface(Z.getBold(this));
         welcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
 
@@ -780,47 +780,47 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             errorFlagInstitute = true;
                             instituteNameTextInputLayout.clearFocus();
                             instituteName.requestFocus();
-                            instituteNameTextInputLayout.setError("Enter valid Institute name");
+                            instituteNameTextInputLayout.setError(" kindly enter valid institute name");
                         } else if (COUNTRY.length() < 1) {
                             errorFlagInstitute = true;
                             countryAutoBox.clearFocus();
                             countryAutoBox.requestFocus();
-                            countryinputlayout.setError("select country");
+                            countryinputlayout.setError("Kindly select valid country");
                         } else if (sInstituteAddress.length() < 5) {
                             errorFlagInstitute = true;
                             instituteAddress.clearFocus();
                             instituteAddress.requestFocus();
-                            addressTextInputLayout.setError("Enter valid address");
+                            addressTextInputLayout.setError("Kindly enter valid address");
                         } else if (!sInstituteEmail.contains("@")) {
                             errorFlagInstitute = true;
                             instituteEmail.clearFocus();
                             instituteEmail.requestFocus();
-                            instituteEmailTextInputLayout.setError("Invalid Email");
+                            instituteEmailTextInputLayout.setError("Kindly enter invalid Email");
                         } else if (!sInstitutewebsite.contains(".")) {
                             errorFlagInstitute = true;
                             institutewebsite.clearFocus();
                             institutewebsite.requestFocus();
-                            websiteTextInputLayout.setError("Enter valid Website url");
+                            websiteTextInputLayout.setError("Kindly enter valid Website url");
                         } else if (sInstitutephone.length() < 8) {
                             errorFlagInstitute = true;
                             institutephone.clearFocus();
                             institutephone.requestFocus();
-                            phoneTextInputLayout.setError("Invalid phone number");
+                            phoneTextInputLayout.setError("Kindly enter invalid phone number");
                         }else if(instituteAlternatephone.length()>0 && instituteAlternatephone.length()<8){
                             errorFlagInstitute = true;
                             alternatePhoneTextInputLayout.clearFocus();
                             alternatePhoneTextInputLayout.requestFocus();
-                            alternatePhoneTextInputLayout.setError("Invalid phone number");
+                            alternatePhoneTextInputLayout.setError("Kindly invalid phone number");
                         } else if (sUniversity.length() < 2) {
                             errorFlagInstitute = true;
                             university.clearFocus();
                             university.requestFocus();
-                            univercityTextInputLayout.setError("Enter Valid University Name");
+                            univercityTextInputLayout.setError("Kindly enter valid university name");
                         } else if (sRegNumber.length() < 2) {
                             errorFlagInstitute = true;
                             regNumber.clearFocus();
                             regNumber.requestFocus();
-                            regNumTextInputLayout.setError("Invalid Registration Number");
+                            regNumTextInputLayout.setError("Kindly enter valid registration number");
                         } else if (COUNTRY.length() > 1) {
                             boolean flag = false;
                             for (String compareCountry : countrieslist) {
@@ -833,7 +833,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                                 errorFlagInstitute = true;
                                 countryAutoBox.clearFocus();
                                 countryAutoBox.requestFocus();
-                                countryinputlayout.setError("please select country from suggestions");
+                                countryinputlayout.setError("Kindly select country from suggestions");
                             }
                         }
                         if (errorFlagInstitute == false) {
@@ -901,12 +901,12 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             errorFlagCompany = true;
                             CIN.clearFocus();
                             CIN.requestFocus();
-                            companyCINTextInputLayout.setError("KIndly provide valid CIN (Company Identification Number)");
+                            companyCINTextInputLayout.setError("Kindly provide valid CIN (Company Identification Number)");
                         } else  if (CompanyType== null) {
                             errorFlagCompany = true;
                         }else  if (CompanyType != null && CompanyType.equals("-Select Company Nature-")) {
                             errorFlagCompany = true;
-                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Please select company nature", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Kindly select company nature", Toast.LENGTH_SHORT).show();
                         } if (CompanyType != null && !CompanyType.equals("")) {
                             if (CompanyType.equals("Other")) {
                                 if (sOtherNature.length() < 2) {
@@ -930,7 +930,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                                 errorFlagCompany = true;
                                 countryAutoBoxCompany.clearFocus();
                                 countryAutoBoxCompany.requestFocus();
-                                companycountryinputlayout.setError("Please select country from suggestions");
+                                companycountryinputlayout.setError("Kindly select country from suggestions");
                             }
                         }
                         if (errorFlagCompany == false) {
@@ -1188,6 +1188,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             //static
 
             json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
+            Log.d("TAG", "SaveInstititeData json : " + json);
             try {
                 r = json.getString("info");
                 if (r.equals("success")) {
@@ -1211,7 +1212,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 try {
                     helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
                     genratedCode.setText(CODE);
-                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
+                    headerMsgcode.setText("This is your Institute Code provided by Place Me.");
                 }
                 catch (Exception e){}
                 // base press will move to base activity
