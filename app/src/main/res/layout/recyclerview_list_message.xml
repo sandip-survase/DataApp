@@ -28,14 +28,29 @@
 
 
     <TextView
-        android:id="@+id/lastmessage"
+        android:id="@+id/username"
         android:layout_below="@id/name"
+        android:layout_width="match_parent"
+        android:text="Username"
+        android:textSize="8dp"
+        android:textColor="@color/dark_color"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/profile"
+        android:layout_marginTop="1dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:layout_marginRight="30dp" />
+
+    <TextView
+        android:id="@+id/lastmessage"
+        android:layout_below="@id/username"
         android:layout_width="match_parent"
         android:text="last message"
         android:textColor="@color/dark_color"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/profile"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:maxLines="1"

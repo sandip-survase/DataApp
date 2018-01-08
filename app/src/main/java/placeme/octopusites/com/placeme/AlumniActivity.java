@@ -92,6 +92,8 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback {
     //
 //placement variable
+    String TAG = "ParineetiChopra";
+
     File Imgfile;
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
@@ -122,8 +124,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     StudentData studentData = new StudentData();
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
-//
-    public static String photo="noupdate";
+    //
+    public static String photo = "noupdate";
 
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
@@ -711,7 +713,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 drawer.closeDrawer(GravityCompat.START);
 
 
-
             }
         });
         v8.setOnClickListener(new View.OnClickListener() {
@@ -1244,10 +1245,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 //        tswipe_refresh_layout.setRefreshing(true);
 
 
+        int value = getIntent().getIntExtra("status", 0);
 
-        int value = getIntent().getIntExtra("status",0);
-
-        if(value==1){
+        if (value == 1) {
             MyProfileAlumniFragment fragment = new MyProfileAlumniFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -1303,6 +1303,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+
     private class GetAlumniData extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -1676,9 +1677,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     }
 
     void getNotifications() {
-        itemListNotificationNew.clear();
+        Log.d(TAG, "doing foreplay");
 
-        tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
@@ -1689,9 +1689,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     }
 
     void getPlacements() {
-        itemListPlacementnew.clear();
 
-        tswipe_refresh_layout.setRefreshing(true);
+        Log.d(TAG, "Doing foreplay with sunny");
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
@@ -1700,6 +1699,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         lastPageFlagPlacement = 0;
         new GetPlacementsReadStatus().execute();
     }
+
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
 
@@ -1718,9 +1718,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
-                Log.d("FinaltestN", "notificationpages: " + notificationpages);
-                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
-                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+                Log.d(TAG, "projects :" + notificationpages);
+                Log.d(TAG, "total Movies:" + total_no_of_notifications);
+                Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
+
 
 //
             } catch (Exception e) {
@@ -1768,10 +1769,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
-                Log.d("Backtrack", "placementpages: " + placementpages);
-                Log.d("Backtrack", "called_pages_placement: " + called_pages_placement);
-                Log.d("Backtrack", "total_no_of_placements: " + total_no_of_placements);
-                Log.d("Backtrack", "unreadcountPlacement: " + unreadcountPlacement);
+                Log.d(TAG, "with sunny projects :" + placementpages);
+                Log.d(TAG, "with sunny total Movies:" + total_no_of_placements);
+                Log.d(TAG, "with sunny Movies to release:" + unreadcountPlacement);
 
 
             } catch (Exception e) {
@@ -1811,10 +1811,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
-                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
 
+                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1825,6 +1824,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         @Override
         protected void onPostExecute(String result) {
 
+            itemListNotificationNew.clear();
             setserverlisttoadapter(itemlistfromserver);
 
         }
@@ -1847,10 +1847,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
+                Log.d(TAG, "with sunny Movies from Hollywood" + placementListfromserver.size());
+                Log.d(TAG, "with sunny Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
             } catch (Exception e) {
             }
@@ -1861,7 +1859,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         @Override
         protected void onPostExecute(String result) {
 
-
+            itemListPlacementnew.clear();
             setplacementListtoadapter(placementListfromserver);
 
         }
@@ -1895,6 +1893,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+
     class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
 
 
@@ -1913,6 +1912,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
+
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
 
 
@@ -1951,6 +1951,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         public abstract void onLoadMore(int current_page);
     }
+
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 
@@ -2002,9 +2003,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 try {
 
 
-                    Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
-                    Log.d("TAG", "notificationpages:" + notificationpages);
+                    Log.d(TAG, "Movies to release from reports:" + page_to_call_notification);
+                    Log.d(TAG, "projects :" + notificationpages);
 
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
@@ -2019,9 +2019,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
-                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                         itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                        Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                        Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
 
                     } else {
@@ -2036,9 +2036,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
-                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                            Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                            Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                         }
 
                     }
@@ -2077,6 +2077,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             protected Void doInBackground(Void... param) {
 
                 try {
+                    Log.d(TAG, "Movies to release with sunny from reports:" + page_to_call_placement);
+                    Log.d(TAG, "projects with sunny :" + placementpages);
+
                     if (page_to_call_placement < placementpages)
                         page_to_call_placement++;
 
@@ -2089,11 +2092,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
                         try {
 
-                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                             placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+                            Log.d(TAG, "with sunny Movies from Hollywood" + placementListfromserver.size());
+                            Log.d(TAG, "with sunny Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
 
                         } catch (Exception e) {
@@ -2112,11 +2113,10 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             json = jParser.makeHttpRequest(Z.url_GetPlacementsAlumni, "GET", params);
                             try {
 
-                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+                                Log.d(TAG, "with sunny Movies from Hollywood" + placementListfromserver.size());
+                                Log.d(TAG, "with sunny Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
+
 
 
                             } catch (Exception e) {
@@ -2167,6 +2167,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         adapter.addFrag(new NoDataAvailableFragment(), "Question Sets");
         viewPager.setAdapter(adapter);
     }
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -2412,6 +2413,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         @Override
                         public void onStart() {
                         }
+
                         @Override
                         public void onSuccess(File file) {
                             try {
@@ -2532,6 +2534,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     class Getsingnature extends AsyncTask<String, String, String> {
 
         String signature = "";
+
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -2540,7 +2543,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
-                ShouldAnimateProfile.photo =signature;
+                ShouldAnimateProfile.photo = signature;
 
             } catch (Exception ex) {
             }
@@ -2559,16 +2562,15 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
-try{
-            Glide.with(ShouldAnimateProfile.AlumniActivity)
-                    .load(uri)
-                    .signature(new StringSignature(signature))
-                    .into(profile);
+            try {
+                Glide.with(ShouldAnimateProfile.AlumniActivity)
+                        .load(uri)
+                        .signature(new StringSignature(signature))
+                        .into(profile);
 
-        }
-            catch (Exception e){
-            Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
-        }
+            } catch (Exception e) {
+                Log.d("TAG", "onPostExecute: glide exception - " + e.getMessage());
+            }
         }
     }
 
@@ -2600,6 +2602,7 @@ try{
                     }
                 });
     }
+
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         JSONObject json;
@@ -2638,7 +2641,7 @@ try{
     void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
         itemListNotificationNew.addAll(itemlist);
-        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
+        Log.d(TAG, "New MovieList To release:" + itemListNotificationNew.size());
 
         if (lastPageFlagNotification == 1)
             isLastPageLoadedNotification = true;
@@ -2646,30 +2649,24 @@ try{
         mAdapterNotificationEdit.notifyDataSetChanged();
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
-
-        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+        Log.d(TAG, "After release collection " + mAdapterNotificationEdit.getItemCount());
 
     }
 
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
-
+        itemListPlacementnew.addAll(itemList2);
+        Log.d(TAG, "New MovieList with sunny  To release:" + itemListPlacementnew.size());
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
-
-        itemListPlacementnew.addAll(itemList2);
-
+        recyclerViewPlacement.getRecycledViewPool().clear();
         mAdapterPlacement.notifyDataSetChanged();
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
-
+        Log.d(TAG, "After release  with sunny collection " + mAdapterPlacement.getItemCount());
 
     }
-
 
 
 }

@@ -42,7 +42,6 @@ import java.util.List;
 
 import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.MainActivity.containsIgnoreCase;
 
@@ -81,7 +80,7 @@ public class MessagesFragment extends Fragment {
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                    if (intent.getAction().equals("pushNotification")) {
+                if (intent.getAction().equals("pushreceived")) {
 
 
                     String message = intent.getStringExtra("message");
@@ -119,13 +118,7 @@ public class MessagesFragment extends Fragment {
 
 
         try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
-
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(usernameenc);
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            plainusername=new String(demo1DecryptedBytes1);
+            plainusername = Z.Decrypt(usernameenc, getActivity());
         } catch (Exception e) {
         }
 

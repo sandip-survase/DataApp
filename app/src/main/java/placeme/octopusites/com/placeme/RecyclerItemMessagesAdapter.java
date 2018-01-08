@@ -31,7 +31,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public CircleImageView profile;
-        public TextView name, lastmessage, time, date, unreadmessagecount;
+        public TextView name, lastmessage, time, date, unreadmessagecount, username;
         public RelativeLayout unreadmessagecountrl;
 
         public MyViewHolder(View view) {
@@ -43,6 +43,9 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
             date = (TextView) view.findViewById(R.id.date);
             unreadmessagecount = (TextView) view.findViewById(R.id.unreadmessagecount);
             unreadmessagecountrl = (RelativeLayout) view.findViewById(R.id.unreadmessagecountrl);
+            username = (TextView) view.findViewById(R.id.username);
+
+
 
         }
     }
@@ -90,6 +93,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
 
         holder.name.setText(item.getFname() + " " + item.getLname());
+        holder.username.setText(item.getUsername());
         holder.name.setTypeface(Z.getBold(holder.profile.getContext()));
 
 

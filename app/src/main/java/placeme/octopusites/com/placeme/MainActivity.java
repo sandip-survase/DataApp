@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -100,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
+    String TAG = "aliabhatt";
+
     File Imgfile;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
     int total_no_of_notifications;
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String unread_count[];
     int count;
     int unreadMessageCount = 0;
-   public static String photo="noupdate";
+    public static String photo = "noupdate";
     String sender_uid;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
@@ -1240,9 +1241,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         });
 
 
-        int value = getIntent().getIntExtra("status",0);
+        int value = getIntent().getIntExtra("status", 0);
 
-        if(value==1){
+        if (value == 1) {
             MyProfileFragment fragment = new MyProfileFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -1427,6 +1428,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
     void getNotifications() {
+        Log.d(TAG, "Doing foreplay");
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalNotification = 0;
@@ -1439,8 +1441,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     }
 
     void getPlacements() {
-        Log.d("pbacktrack", "getPlacements: accessed ");
-
+        Log.d(TAG, "with SidharthMalhotra Doing foreplay");
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
@@ -1451,8 +1452,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         lastPageFlagPlacement = 0;
         new GetPlacementsReadStatus().execute();
     }
-
-
 
     private void simulateLoadingNotification() {
         new AsyncTask<Void, Void, Void>() {
@@ -1466,9 +1465,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 try {
 
 
-                    Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
-                    Log.d("TAG", "notificationpages:" + notificationpages);
+                    Log.d(TAG, "Movies to release from reports:" + page_to_call_notification);
+                    Log.d(TAG, "projects :" + notificationpages);
 
                     if (page_to_call_notification < notificationpages)
                         page_to_call_notification++;
@@ -1482,10 +1480,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
-
-                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                         itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                        Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                        Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
 
                     } else {
@@ -1499,10 +1496,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
 
                             notificationcount = Integer.parseInt(json.getString("count"));
-
-                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                            Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                            Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                         }
 
                     }
@@ -1517,10 +1513,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             protected void onPostExecute(Void param) {
 
                 if (!isLastPageLoadedNotification) {
-
                     setserverlisttoadapter(itemlistfromserver);
-
-
+                } else {
+                    tswipe_refresh_layout.setRefreshing(false);
                 }
 
 
@@ -1542,6 +1537,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             protected Void doInBackground(Void... param) {
 
                 try {
+                    Log.d(TAG, "Movies to release with ranveer from reports:" + page_to_call_placement);
+                    Log.d(TAG, "projects with ranveer :" + placementpages);
                     if (page_to_call_placement < placementpages)
                         page_to_call_placement++;
 
@@ -1556,10 +1553,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                             Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                             placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
+                            Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                            Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                         } catch (Exception e) {
                         }
@@ -1579,9 +1574,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                                 Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+                                Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
 
                             } catch (Exception e) {
@@ -1601,11 +1595,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(false);
                 if (!isLastPageLoadedPlacement) {
-
-
                     setplacementListtoadapter(placementListfromserver);
+                } else {
+                    tswipe_refresh_layout.setRefreshing(false);
                 }
-                tswipe_refresh_layout.setRefreshing(false);
 
 
             }
@@ -1839,41 +1832,28 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
         itemListNotificationNew.addAll(itemlist);
-        Log.d("tag2", "itemListNotificationNew size ===========" + itemListNotificationNew.size());
-
+        Log.d(TAG, "New MovieList To release:" + itemListNotificationNew.size());
         if (lastPageFlagNotification == 1)
             isLastPageLoadedNotification = true;
-
         recyclerViewNotification.getRecycledViewPool().clear();
         mAdapterNotificationEdit.notifyDataSetChanged();
-
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
-
-        Log.d("tag2", "mAdapterNotificationEdit itemcount ===========" + mAdapterNotificationEdit.getItemCount());
+        Log.d(TAG, "After release collection " + mAdapterNotificationEdit.getItemCount());
 
     }
 
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
-
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
         itemListPlacementnew.addAll(itemList2);
-
+        Log.d(TAG, "New MovieList with sidharthmalhotra To release" + itemListPlacementnew.size());
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
-
         recyclerViewPlacement.getRecycledViewPool().clear();
         mAdapterPlacement.notifyDataSetChanged();
-
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
-
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
-
-
+        Log.d(TAG, "After release  with sidharthmalhotra collection " + mAdapterPlacement.getItemCount());
     }
-
 
 
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
@@ -2346,6 +2326,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
+                Log.d(TAG, "with SidharthMalhotra projects :" + placementpages);
+                Log.d(TAG, "with SidharthMalhotra total Movies:" + total_no_of_placements);
+                Log.d(TAG, "with SidharthMalhotra Movies to release:" + unreadcountPlacement);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2400,10 +2384,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
-                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
 
+                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2438,11 +2421,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
+                Log.d(TAG, "with SidharthMalhotra Movies from Hollywood" + placementListfromserver.size());
+                Log.d(TAG, "with SidharthMalhotra Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
             } catch (Exception e) {
             }
 
@@ -2531,9 +2511,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         .load(uri)
                         .signature(new StringSignature(signature))
                         .into(profile);
-            }
-            catch (Exception e){
-                Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+            } catch (Exception e) {
+                Log.d("TAG", "onPostExecute: glide exception - " + e.getMessage());
             }
 
         }
@@ -2744,11 +2723,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 called_pages_notification = new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d("FinaltestN", "notificationpages: " + notificationpages);
-                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
-                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
-
+                Log.d(TAG, "projects :" + notificationpages);
+                Log.d(TAG, "total Movies:" + total_no_of_notifications);
+                Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
 //
             } catch (Exception e) {
                 e.printStackTrace();

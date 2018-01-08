@@ -1510,6 +1510,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
                             Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
                             Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
+
                         }
 
                     }
@@ -1526,13 +1527,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 if (!isLastPageLoadedNotification) {
 
                     setserverlisttoadapter(itemlistfromserver);
-
-
                 }
-
-
                 tswipe_refresh_layout.setRefreshing(false);
-//                new GetLastUpdatedNotification().execute();
             }
         }.execute();
     }
@@ -1788,6 +1784,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             protected Void doInBackground(Void... param) {
 
                 try {
+                    Log.d(TAG, "Movies to release with ranveer from reports:" + page_to_call_placement);
+                    Log.d(TAG, "projects with ranveer :" + placementpages);
                     if (page_to_call_placement < placementpages)
                         page_to_call_placement++;
 
@@ -1800,12 +1798,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
                         try {
 
-                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                             placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
+                            Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                            Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                         } catch (Exception e) {
                         }
@@ -1823,11 +1818,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
                             try {
 
-                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+                                Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
 
                             } catch (Exception e) {
@@ -1870,6 +1863,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     void getNotifications2() {
+        Log.d(TAG, "doing foreplay");
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
@@ -1880,6 +1874,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     void getPlacements2() {
+        Log.d(TAG, "Doing foreplay with ranveer");
+
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
@@ -1950,7 +1946,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 Log.d(TAG, "projects :" + notificationpages);
                 Log.d(TAG, "total Movies:" + total_no_of_notifications);
-                Log.d(TAG, "Movies to release:" + notificationpages);
+                Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
 
 //
             } catch (Exception e) {
@@ -2469,20 +2465,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+        itemListPlacementnew.addAll(itemList2);
+        Log.d(TAG, "New MovieList with ranveer  To release:" + itemListPlacementnew.size());
 
         if (lastPageFlagPlacement == 1)
             isLastPageLoadedPlacement = true;
 
         recyclerViewPlacement.getRecycledViewPool().clear();
-        itemListPlacementnew.addAll(itemList2);
 
         mAdapterPlacement.notifyDataSetChanged();
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+        Log.d(TAG, "After release  with ranveer collection " + mAdapterPlacement.getItemCount());
 
 
     }
