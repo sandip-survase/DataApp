@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import org.joda.time.Months;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -230,121 +232,121 @@ public class AdminExperiences extends AppCompatActivity {
         fromdate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate1);
+                showDateDialog(fromdate1,fromdateinput1);
             }
         });
         todate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate1);
+                showDateDialog(todate1,todateinput1);
             }
         });
         fromdate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate2);
+                showDateDialog(fromdate2,fromdateinput2);
             }
         });
         todate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate2);
+                showDateDialog(todate2,todateinput2);
             }
         });
         fromdate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate3);
+                showDateDialog(fromdate3,fromdateinput3);
             }
         });
         todate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate3);
+                showDateDialog(todate3,todateinput3);
             }
         });
         fromdate4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate4);
+                showDateDialog(fromdate4,fromdateinput4);
             }
         });
         todate4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate4);
+                showDateDialog(todate4,todateinput4);
             }
         });
         fromdate5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate5);
+                showDateDialog(fromdate5,fromdateinput5);
             }
         });
         todate5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate5);
+                showDateDialog(todate5,todateinput5);
             }
         });
         fromdate6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate6);
+                showDateDialog(fromdate6,fromdateinput6);
             }
         });
         todate6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate6);
+                showDateDialog(todate6,todateinput6);
             }
         });
         fromdate7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate7);
+                showDateDialog(fromdate7,fromdateinput7);
             }
         });
         todate7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate7);
+                showDateDialog(todate7,todateinput7);
             }
         });
         fromdate8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate8);
+                showDateDialog(fromdate8,fromdateinput8);
             }
         });
         todate8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate8);
+                showDateDialog(todate8,todateinput8);
             }
         });
         fromdate9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate9);
+                showDateDialog(fromdate9,fromdateinput9);
             }
         });
         todate9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate9);
+                showDateDialog(todate9,todateinput9);
             }
         });
         fromdate10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(fromdate10);
+                showDateDialog(fromdate10,fromdateinput10);
             }
         });
         todate10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(todate10);
+                showDateDialog(todate10,todateinput10);
             }
         });
 
@@ -7310,7 +7312,7 @@ public class AdminExperiences extends AppCompatActivity {
 
 
     }
-    void showDateDialog(final TextInputEditText id)
+    void showDateDialog(final TextInputEditText id, final TextInputLayout tid)
     {
 
 
@@ -7342,8 +7344,11 @@ public class AdminExperiences extends AppCompatActivity {
         monthList.add("Nov");
         monthList.add("Dec");
 
-        for(int i=1975;i<=2017;i++)
-            yearList.add(""+i);
+
+
+        Calendar currentCalendar = Calendar.getInstance();
+        for (int i = 1975; i <= currentCalendar.get(Calendar.YEAR); i++)
+            yearList.add("" + i);
 
 
         monthView.setWheelAdapter(new ArrayWheelAdapter(AdminExperiences.this));
@@ -7369,7 +7374,21 @@ public class AdminExperiences extends AppCompatActivity {
                 String selectedMonth=monthList.get(monthPosition);
                 String selectedYear=yearList.get(yearPosition);
 
-                setMonthYear(id,selectedMonth,selectedYear);
+                int isInvalidDate = 0;
+                Calendar currentDatecalendar = Calendar.getInstance();
+                int selectedYearInterger = Integer.parseInt(selectedYear);
+                if (selectedYearInterger == currentDatecalendar.get(Calendar.YEAR) && monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
+                    isInvalidDate = 1;
+                }
+
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+                if (!bln) {
+                    tid.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
+
+
+//                setMonthYear(id,selectedMonth,selectedYear);
 
                 alertDialog.cancel();
             }
@@ -7391,9 +7410,14 @@ public class AdminExperiences extends AppCompatActivity {
         alertDialog.getWindow().setLayout(w, h);
 
     }
-    void setMonthYear(TextInputEditText id,String selectedMonth,String selectedYear)
-    {
-        id.setText(selectedMonth+", "+selectedYear);
+    boolean setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
+        if (isInvalidDate == 1) {
+            id.setText("");
+            return false;
+        } else {
+            id.setText(selectedMonth + ", " + selectedYear);
+            return true;
+        }
     }
 
 }

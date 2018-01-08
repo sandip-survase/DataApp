@@ -1968,123 +1968,123 @@ public class MyProfilePatents extends AppCompatActivity {
         filing1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing1);
+                showDateDialog(filing1,filinginput1);
             }
         });
 
         filing2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing2);
+                showDateDialog(filing2,filinginput2);
             }
         });
         filing3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing3);
+                showDateDialog(filing3,filinginput3);
             }
         });
         filing4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing4);
+                showDateDialog(filing4,filinginput4);
             }
         });
         filing5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing5);
+                showDateDialog(filing5,filinginput5);
             }
         });
         filing6.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing6);
+                showDateDialog(filing6,filinginput6);
             }
         });
         filing7.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing7);
+                showDateDialog(filing7,filinginput7);
             }
         });
         filing8.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing8);
+                showDateDialog(filing8,filinginput8);
             }
         });
         filing9.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing9);
+                showDateDialog(filing9,filinginput9);
             }
         });
         filing10.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(filing10);
+                showDateDialog(filing10,filinginput10);
             }
         });
 
         issue1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue1);
+                showDateDialog(issue1,issueinput1);
             }
         });
         issue2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue2);
+                showDateDialog(issue2,issueinput2);
             }
         });
         issue3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue3);
+                showDateDialog(issue3,issueinput3);
             }
         });
         issue4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue4);
+                showDateDialog(issue4,issueinput4);
             }
         });
         issue5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue5);
+                showDateDialog(issue5,issueinput5);
             }
         });
         issue6.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue6);
+                showDateDialog(issue6,issueinput6);
             }
         });
         issue7.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue7);
+                showDateDialog(issue7,issueinput7);
             }
         });
         issue8.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue8);
+                showDateDialog(issue8,issueinput8);
             }
         });
         issue9.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue9);
+                showDateDialog(issue9,issueinput9);
             }
         });
         issue10.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateDialog(issue10);
+                showDateDialog(issue10,issueinput10);
             }
         });
 
@@ -7041,7 +7041,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
     }
 
-    void showDateDialog(final EditText id) {
+    void showDateDialog(final EditText id, final TextInputLayout tid) {
 
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfilePatents.this);
@@ -7106,11 +7106,17 @@ public class MyProfilePatents extends AppCompatActivity {
                 int isInvalidDate = 0;
                 Calendar currentDatecalendar = Calendar.getInstance();
                 int selectedYearInterger = Integer.parseInt(selectedYear);
-                if (selectedYearInterger > currentDatecalendar.get(Calendar.YEAR) || monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
+                if (selectedYearInterger == currentDatecalendar.get(Calendar.YEAR) && monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
                     isInvalidDate = 1;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+//                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+                if (!bln) {
+                    tid.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
 
                 alertDialog.cancel();
             }
@@ -7133,13 +7139,13 @@ public class MyProfilePatents extends AppCompatActivity {
 
     }
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
+    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
         if (isInvalidDate == 1) {
             id.setText("");
-            id.setError("Kindly select valid date");
-            Toast.makeText(this, "Invalid Date", Toast.LENGTH_SHORT).show();
+            return false;
         } else
             id.setText(selectedMonth + ", " + selectedYear);
+        return true;
     }
 
     class GetCountries extends AsyncTask<String, String, String> {

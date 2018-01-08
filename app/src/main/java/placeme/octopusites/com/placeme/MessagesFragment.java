@@ -278,7 +278,11 @@ public class MessagesFragment extends Fragment {
                     reciever_lname[i]=json.getString("lname"+i);
                     reciever_lastmessage[i]=json.getString("lastmessage"+i);
                     reciever_time[i]=json.getString("lasttime"+i);
-                    reciever_signature[i]=json.getString("signature"+i);
+                    try {
+                        reciever_signature[i] = json.getString("signature" + i);
+                    } catch (Exception e) {
+                        reciever_signature[i] = "PlaceMe";
+                    }
                     reciever_token[i]=json.getString("token"+i);
                     reciever_uid[i]=json.getString("uid"+i);
 

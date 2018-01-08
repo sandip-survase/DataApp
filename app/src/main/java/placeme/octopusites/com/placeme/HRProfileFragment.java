@@ -3243,7 +3243,7 @@ public class HRProfileFragment extends Fragment {
                     insttelephone.setText(Companyphonestr);
                 }
                 if (!Companyaddl1str.equals("")) {
-                    instcontactaddr.setText(Companyaddl1str + ", " + Companyaddl2str + ", " + Companyaddl3str);
+                    instcontactaddr.setText(Companyaddl1str + " " + Companyaddl2str + " " + Companyaddl3str);
                 }
 
                 percentProfile++;

@@ -4981,7 +4981,7 @@ public class MyProfilePublications extends AppCompatActivity {
                 int isInvalidDate = 0;
                 Calendar currentDatecalendar = Calendar.getInstance();
                 int selectedYearInterger = Integer.parseInt(selectedYear);
-                if (selectedYearInterger > currentDatecalendar.get(Calendar.YEAR) || monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
+                if (selectedYearInterger == currentDatecalendar.get(Calendar.YEAR) && monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
                     isInvalidDate = 1;
                 }
 
@@ -5014,9 +5014,7 @@ public class MyProfilePublications extends AppCompatActivity {
 
     boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
         if (isInvalidDate == 1) {
-//            id.setText("");
-//            id.setError("Kindly select valid date");
-//            Toast.makeText(this, "Kindly select valid date", Toast.LENGTH_SHORT).show();
+            id.setText("");
             return false;
         } else {
             id.setText(selectedMonth + ", " + selectedYear);

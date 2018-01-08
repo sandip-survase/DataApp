@@ -1,5 +1,6 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -43,7 +44,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 public class AdminPersonalTabFragment extends Fragment {
-
+    Activity mActivity;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     String digest1, digest2, encobj = "";
@@ -88,6 +89,12 @@ public class AdminPersonalTabFragment extends Fragment {
                     + "/" + String.valueOf(year));
         }
     };
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -740,7 +747,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             if (result.equals("success")) {
                 if (edittedFlag == 1) {
-                    getActivity().setResult(111);
+                    mActivity.setResult(111);
 
                 }
                 edittedFlag = 0;

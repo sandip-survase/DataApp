@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String unread_count[];
     int count;
     int unreadMessageCount = 0;
+   public static String photo="noupdate";
     String sender_uid;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
@@ -1236,6 +1237,17 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             }
         });
+
+
+        int value = getIntent().getIntExtra("status",0);
+
+        if(value==1){
+            MyProfileFragment fragment = new MyProfileFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.mainfragment, fragment);
+            fragmentTransaction.commit();
+        }
 
 
         getNotifications();
@@ -2494,6 +2506,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
+                photo =signature;
+
             } catch (Exception ex) {
             }
             return signature;
