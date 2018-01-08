@@ -170,7 +170,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int visibleThresholdNotification = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int page_to_call_notification = 1;
     private int current_page_notification = 1;
-    //placements workdeclair
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
@@ -178,7 +177,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int current_page_placement = 1;
     private TextView toolbar_title;
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
-    //new
+
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
@@ -219,7 +218,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
 
         String encUsername = MySharedPreferencesManager.getUsername(this);
-        Log.d("Shardpreff", "encUsername=======================: " + encUsername);
         //sss
         imagePicker = new ImagePicker(this);
         imagePicker.setImagePickerCallback(this);
