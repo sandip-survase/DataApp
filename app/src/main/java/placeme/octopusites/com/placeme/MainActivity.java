@@ -1275,8 +1275,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             MyFirebaseMessagingService.notificationcontentlist.clear();
             Log.d("serviceFields", "notificationtitlelist2:" + MyFirebaseMessagingService.notificationcontentlist.size());
         }
-        mViewPager.setVisibility(View.GONE);
-        tabLayout.setVisibility(View.GONE);
+
     }
 
     private void changePass() {

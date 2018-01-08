@@ -285,34 +285,35 @@ public class MessageActivity extends AppCompatActivity {
 
     void addChat(Chat chat)
     {
+        if (chat != null) {
+            if (chat.message != null) {
+                new SaveChatToServer(chat).execute();
 
-        new SaveChatToServer(chat).execute();
+                String message = chat.message;
+                StringBuffer sb = new StringBuffer("");
+                int index1 = message.indexOf("pLACEmeMsGTime");
+                for (int j = 0; j < index1; j++) {
+                    sb.append(message.charAt(j));
+                }
+                String extractedMessage = sb.toString();
 
-        String message=chat.message;
-        StringBuffer sb=new StringBuffer("");
-        int index1=message.indexOf("pLACEmeMsGTime");
-        for(int j=0;j<index1;j++)
-        {
-            sb.append(message.charAt(j));
+                Chat chat2 = new Chat(chat.sender, chat.receiver, chat.senderUid, chat.receiverUid, extractedMessage, chat.timestamp);
+                if (helper.createChat(chat2))
+                    new CheckLastPushed(chat).execute();
+                tempList.clear();
+                tempList = helper.loadChat(username, email);
+                if (tempList.size() > 0) {
+                    firstMessage = tempList.get(0).message;
+                    firstTimestamp = tempList.get(0).timestamp;
+                    lastMessage = tempList.get(tempList.size() - 1).message;
+                    lastTimestamp = tempList.get(tempList.size() - 1).timestamp;
+                }
+                chatList.clear();
+                chatList.addAll(tempList);
+                mAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+            }
         }
-        String extractedMessage=sb.toString();
-
-        Chat chat2=new Chat(chat.sender,chat.receiver,chat.senderUid,chat.receiverUid,extractedMessage,chat.timestamp);
-        if(helper.createChat(chat2))
-            new CheckLastPushed(chat).execute();
-        tempList.clear();
-        tempList=helper.loadChat(username,email);
-        if(tempList.size()>0) {
-            firstMessage = tempList.get(0).message;
-            firstTimestamp = tempList.get(0).timestamp;
-            lastMessage = tempList.get(tempList.size()-1).message;
-            lastTimestamp = tempList.get(tempList.size()-1).timestamp;
-        }
-        chatList.clear();
-        chatList.addAll(tempList);
-        mAdapter.notifyDataSetChanged();
-        recyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
-
     }
     void sendMessage()
     {

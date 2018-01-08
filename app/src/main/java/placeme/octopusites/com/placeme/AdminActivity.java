@@ -2522,5 +2522,13 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
+    public void updateUnreadMessageCount(int readCount) {
+        unreadMessageCount -= readCount;
+        messagecountrl.setVisibility(View.VISIBLE);
+        messagecount.setText(unreadMessageCount + "");
+        if (unreadMessageCount <= 0) {
+            messagecountrl.setVisibility(View.GONE);
+        }
+    }
 
 }

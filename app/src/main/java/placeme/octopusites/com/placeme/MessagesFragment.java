@@ -68,6 +68,7 @@ public class MessagesFragment extends Fragment {
     String unread_count[];
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     int searchFlag=0;
+    ArrayList<Integer> indexes_to_skip = new ArrayList<>();
     public MessagesFragment() {
 
     }
@@ -150,6 +151,12 @@ public class MessagesFragment extends Fragment {
                 if (role.equals("student")) {
                     if (unread_count != null) {
                         ((MainActivity) getActivity()).updateUnreadMessageCount(Integer.parseInt(unread_count[position]));
+                        Log.d("TAG", "unread messages count: " + Integer.parseInt(unread_count[position]));
+                    }
+                }
+                if (role.equals("admin")) {
+                    if (unread_count != null) {
+                        ((AdminActivity) getActivity()).updateUnreadMessageCount(Integer.parseInt(unread_count[position]));
                         Log.d("TAG", "unread messages count: " + Integer.parseInt(unread_count[position]));
                     }
                 }
@@ -283,9 +290,12 @@ public class MessagesFragment extends Fragment {
                     } catch (Exception e) {
                         reciever_signature[i] = "PlaceMe";
                     }
-                    reciever_token[i]=json.getString("token"+i);
-                    reciever_uid[i]=json.getString("uid"+i);
-
+                    try {
+                        reciever_token[i] = json.getString("token" + i);
+                        reciever_uid[i] = json.getString("uid" + i);
+                    } catch (Exception e) {
+                        indexes_to_skip.add(i);
+                    }
                     Log.d("TAG", "reciever_username[i]: "+reciever_username[i]);
 
                 }
@@ -305,32 +315,31 @@ public class MessagesFragment extends Fragment {
 
                 for (int i = 0; i < count; i++) {
 
-                    String tempusername = null;
-                    try {
-                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                        String sPadding = "ISO10126Padding";
+                    if (!indexes_to_skip.contains(i)) {
+                        String tempusername = null;
+                        try {
+                            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                            String sPadding = "ISO10126Padding";
 
-                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
+                            byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
 
-                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-
-
+                            byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                            tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
 
 
-                    } catch (Exception e) {
+                        } catch (Exception e) {
 
-                    }
+                        }
 
-                    if (reciever_uid != null & reciever_username != null) {
-                        new GetMessagesReadStatus(usernameenc, tempusername, sender_uid, reciever_uid[i], i).execute();
-                        new GetProfileImageAndSaveToPref(reciever_username[i], tempusername).execute();
+                        if (reciever_uid != null & reciever_username != null) {
+                            new GetMessagesReadStatus(usernameenc, tempusername, sender_uid, reciever_uid[i], i).execute();
+                            new GetProfileImageAndSaveToPref(reciever_username[i], tempusername).execute();
+                        }
                     }
                 }
 
             }
-
 
         }
     }
