@@ -31,22 +31,23 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public CircleImageView profile;
-        public TextView name,lastmessage,time,date,unreadmessagecount;
+        public TextView name, lastmessage, time, date, unreadmessagecount;
         public RelativeLayout unreadmessagecountrl;
+
         public MyViewHolder(View view) {
             super(view);
-            profile=(CircleImageView)view.findViewById(R.id.profile);
+            profile = (CircleImageView) view.findViewById(R.id.profile);
             name = (TextView) view.findViewById(R.id.name);
             lastmessage = (TextView) view.findViewById(R.id.lastmessage);
             time = (TextView) view.findViewById(R.id.time);
             date = (TextView) view.findViewById(R.id.date);
             unreadmessagecount = (TextView) view.findViewById(R.id.unreadmessagecount);
-            unreadmessagecountrl = (RelativeLayout)view.findViewById(R.id.unreadmessagecountrl);
+            unreadmessagecountrl = (RelativeLayout) view.findViewById(R.id.unreadmessagecountrl);
 
         }
     }
 
-    public void updateList(List<RecyclerItemMessages> list,String searchText){
+    public void updateList(List<RecyclerItemMessages> list, String searchText) {
         itemList = list;
         this.searchText = searchText;
         notifyDataSetChanged();
@@ -76,62 +77,60 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
                 .appendQueryParameter("u", item.getUploadedby())
                 .build();
 
+        if (item.getSignature() != null)
+            Glide.with(holder.profile.getContext())
+                    .load(uri)
+                    .signature(new StringSignature(item.getSignature()))
+                    .into(holder.profile);
+        else
+            Glide.with(holder.profile.getContext())
+                    .load(uri)
+                    .signature(new StringSignature("Place Me"))
+                    .into(holder.profile);
 
-        Glide.with(holder.profile.getContext())
-                .load(uri)
-                .signature(new StringSignature(item.getSignature()))
-                .into(holder.profile);
 
-
-
-        holder.name.setText(item.getFname()+" "+item.getLname());
+        holder.name.setText(item.getFname() + " " + item.getLname());
         holder.name.setTypeface(Z.getBold(holder.profile.getContext()));
 
 
-        if(searchText!=null) {
+        if (searchText != null) {
             if (searchText.length() > 0) {
-                holder.name.setText(highlightText(searchText,item.getFname()+" "+item.getLname()));
-            }
-            else
-                holder.name.setText(item.getFname()+" "+item.getLname());
-        }
-        else
-            holder.name.setText(item.getFname()+" "+item.getLname());
+                holder.name.setText(highlightText(searchText, item.getFname() + " " + item.getLname()));
+            } else
+                holder.name.setText(item.getFname() + " " + item.getLname());
+        } else
+            holder.name.setText(item.getFname() + " " + item.getLname());
 
 
         holder.lastmessage.setText(item.getLastmessage());
         holder.lastmessage.setTypeface(Z.getLight(holder.profile.getContext()));
-        if(item.getUnreadcount()!=null) {
-            if(item.getUnreadcount().length()>0) {
-                int unreadcount=Integer.parseInt(item.getUnreadcount());
-                if(unreadcount==0)
-                {
+        if (item.getUnreadcount() != null) {
+            if (item.getUnreadcount().length() > 0) {
+                int unreadcount = Integer.parseInt(item.getUnreadcount());
+                if (unreadcount == 0) {
                     holder.unreadmessagecountrl.setVisibility(View.GONE);
                     holder.name.setTextColor(Color.parseColor("#03353e"));
 
-                }
-                else {
+                } else {
                     holder.unreadmessagecountrl.setVisibility(View.VISIBLE);
-                    holder.unreadmessagecount.setText(""+unreadcount);
+                    holder.unreadmessagecount.setText("" + unreadcount);
                     holder.name.setTextColor(Color.parseColor("#00bcd4"));
 
                 }
-            }
-            else {
+            } else {
                 holder.unreadmessagecountrl.setVisibility(View.GONE);
                 holder.name.setTextColor(Color.parseColor("#03353e"));
 
             }
-        }
-        else {
+        } else {
             holder.unreadmessagecountrl.setVisibility(View.GONE);
             holder.name.setTextColor(Color.parseColor("#03353e"));
 
         }
 
 
-        String time=item.getTime();
-        if(time!=null) {
+        String time = item.getTime();
+        if (time != null) {
             if (time.length() > 3) {
                 DateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
                 DateFormat sdf1 = new SimpleDateFormat("dd-MMM-yyyy");
@@ -150,8 +149,8 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
         }
 
 
-
     }
+
     public static CharSequence highlightText(String search, String originalText) {
         if (search != null && !search.equalsIgnoreCase("")) {
             String normalizedText = Normalizer.normalize(originalText, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").toLowerCase();
@@ -171,6 +170,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
         }
         return originalText;
     }
+
     @Override
     public int getItemCount() {
         return itemList.size();

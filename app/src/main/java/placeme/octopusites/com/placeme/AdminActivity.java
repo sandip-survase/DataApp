@@ -1435,9 +1435,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 if (unread_count != null)
                     for (int i = 0; i < count; i++) {
-
-                        unreadMessageCount += Integer.parseInt(unread_count[i]);
-
+                        try {
+                            unreadMessageCount += Integer.parseInt(unread_count[i]);
+                        } catch (Exception e) {
+                        }
                     }
                 messagecountrl.setVisibility(View.VISIBLE);
                 messagecount.setText(unreadMessageCount + "");
@@ -1928,10 +1929,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
         Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
     }
-
-
-
-
 
 
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
@@ -2489,6 +2486,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     }
+
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         JSONObject json;

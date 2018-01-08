@@ -100,13 +100,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
-
-
-
-
-
-
-
     File Imgfile;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
     int total_no_of_notifications;
@@ -1281,8 +1274,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             MyFirebaseMessagingService.notificationtitlelist.clear();
             MyFirebaseMessagingService.notificationcontentlist.clear();
             Log.d("serviceFields", "notificationtitlelist2:" + MyFirebaseMessagingService.notificationcontentlist.size());
-
         }
+        mViewPager.setVisibility(View.GONE);
+        tabLayout.setVisibility(View.GONE);
     }
 
     private void changePass() {
@@ -2514,7 +2508,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
-                ShouldAnimateProfile.photo =signature;
+                photo = signature;
 
             } catch (Exception ex) {
             }
