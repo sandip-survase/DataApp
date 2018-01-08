@@ -497,9 +497,9 @@ public class HrContactTabFragment extends Fragment {
 //                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
                 if (role.equals("hr"))
-                    getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                    ShouldAnimateProfile.EditProfileHr.setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
                 else
-                    getActivity().setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+                    ShouldAnimateProfile.EditProfileAdmin.setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
 
 

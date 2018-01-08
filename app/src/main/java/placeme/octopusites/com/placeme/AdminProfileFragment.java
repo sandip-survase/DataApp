@@ -2264,9 +2264,9 @@ public class AdminProfileFragment extends Fragment {
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
+try {
 
-
-            Glide.with(getActivity())
+            Glide.with(ShouldAnimateProfile.AdminActivity)
                     .load(uri)
                     .crossFade()
                     .signature(new StringSignature(signature))
@@ -2284,6 +2284,11 @@ public class AdminProfileFragment extends Fragment {
                         }
                     })
                     .into(myprofileimg);
+
+        }
+            catch (Exception e){
+            Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+        }
 
         }
     }

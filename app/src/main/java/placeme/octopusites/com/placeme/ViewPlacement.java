@@ -173,7 +173,9 @@ public class ViewPlacement extends AppCompatActivity {
 
         } else {
             studentmarks();
+            new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
+
 
 
 //        **********notification crash solution
@@ -397,6 +399,7 @@ public class ViewPlacement extends AppCompatActivity {
     //*************************************************
     public void validatedata() {
 
+        Log.d("TAG", "validatedata: ShouldAnimateProfile.photo - "+ShouldAnimateProfile.photo);
         if (ShouldAnimateProfile.photo.equals("noupdate")) {
 
             registerbutton.setVisibility(View.VISIBLE);
@@ -762,7 +765,7 @@ public class ViewPlacement extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            dialog.setMessage("Doing something, please wait.");
+            dialog.setMessage("please wait...");
             dialog.show();
         }
 
@@ -975,7 +978,7 @@ public class ViewPlacement extends AppCompatActivity {
             try {
                 signature = json.getString("lastupdated");
                 ShouldAnimateProfile.photo =signature;
-
+                Log.d("TAG", "doInBackground: ShouldAnimateProfile.photo - "+ShouldAnimateProfile.photo);
             } catch (Exception ex) {
             }
             return signature;

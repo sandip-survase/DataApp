@@ -1190,6 +1190,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate1.setText("");
                             fromdateinput1.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1254,6 +1255,8 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate2.setText("");
+
                             fromdateinput2.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1318,6 +1321,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate3.setText("");
                             fromdateinput3.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1383,6 +1387,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate4.setText("");
                             fromdateinput4.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1447,6 +1452,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate5.setText("");
                             fromdateinput5.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1511,6 +1517,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate6.setText("");
                             fromdateinput6.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1574,6 +1581,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate7.setText("");
                             fromdateinput7.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1636,6 +1644,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate8.setText("");
                             fromdateinput8.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1699,6 +1708,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate9.setText("");
                             fromdateinput9.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1766,6 +1776,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            fromdate10.setText("");
                             fromdateinput10.setError("Kindly enter valid date");
                         } else {
                             //allowed
@@ -1833,6 +1844,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate1.setText("");
                             todateinput1.setError("Kindly enter valid date");
 
                         } else {
@@ -1901,6 +1913,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate2.setText("");
                             todateinput2.setError("Kindly enter valid date");
 
                         } else {
@@ -1970,6 +1983,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate3.setText("");
                             todateinput3.setError("Kindly enter valid date");
 
                         } else {
@@ -2039,6 +2053,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate4.setText("");
                             todateinput4.setError("Kindly enter valid date");
 
                         } else {
@@ -2105,6 +2120,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate5.setText("");
                             todateinput5.setError("Kindly enter valid date");
 
                         } else {
@@ -2173,6 +2189,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate6.setText("");
                             todateinput6.setError("Kindly enter valid date");
 
                         } else {
@@ -2238,6 +2255,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate7.setText("");
                             todateinput7.setError("Kindly enter valid date");
 
                         } else {
@@ -2302,6 +2320,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate8.setText("");
                             todateinput8.setError("Kindly enter valid date");
 
                         } else {
@@ -2368,6 +2387,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate9.setText("");
                             todateinput9.setError("Kindly enter valid date");
 
                         } else {
@@ -2434,6 +2454,7 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
+                            todate10.setText("");
                             todateinput10.setError("Kindly enter valid date");
 
                         } else {
@@ -7384,7 +7405,8 @@ public class AdminExperiences extends AppCompatActivity {
                 boolean bln = setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
                 if (!bln) {
                     tid.setError("kindly enter valid date");
-//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(AdminExperiences.this, "bln "+bln, Toast.LENGTH_SHORT).show();
                 }
 
 

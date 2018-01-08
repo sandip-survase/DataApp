@@ -3003,6 +3003,7 @@ public class MyProfileCourses extends AppCompatActivity {
                 boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
                 if(!bln) {
                     idinput.setError("kindly enter valid date");
+
 //                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
                 }
                 alertDialog.cancel();

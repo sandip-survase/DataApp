@@ -2084,8 +2084,9 @@ public class HRProfileFragment extends Fragment {
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
+            try {
 
-            Glide.with(getActivity())
+            Glide.with(ShouldAnimateProfile.HRActivity)
                     .load(uri)
                     .crossFade()
                     .signature(new StringSignature(signature))
@@ -2103,6 +2104,11 @@ public class HRProfileFragment extends Fragment {
                         }
                     })
                     .into(myprofileimg);
+
+        }
+            catch (Exception e){
+            Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+        }
 
         }
     }

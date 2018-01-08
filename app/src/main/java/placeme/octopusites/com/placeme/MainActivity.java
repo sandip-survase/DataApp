@@ -1736,7 +1736,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
+        Log.d("TAG", "onActivityResult: MainActivity");
         if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {

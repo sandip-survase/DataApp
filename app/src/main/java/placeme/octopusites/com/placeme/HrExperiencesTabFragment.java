@@ -4152,9 +4152,12 @@ public class HrExperiencesTabFragment extends Fragment {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
                 if (role.equals("alumni"))
-                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                    ShouldAnimateProfile.EditProfileAlumni.setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))
-                    getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                    ShouldAnimateProfile.EditProfileHr.setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    ShouldAnimateProfile.EditProfileAdmin.setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
 
                 edittedFlag=0;
             } else

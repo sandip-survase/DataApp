@@ -388,7 +388,7 @@ public class HrPersonalTabFragment extends Fragment {
                 Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
 
 
-            getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+            ShouldAnimateProfile.EditProfileHr.setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
         }
     }
 

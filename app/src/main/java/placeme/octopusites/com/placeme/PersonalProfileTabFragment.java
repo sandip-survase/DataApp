@@ -1599,9 +1599,9 @@ public class PersonalProfileTabFragment extends Fragment  {
 
                 if (role.equals("student")) {
                     Log.d("TAG", "onPostExecute: student");
-                    mActivity.setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                    ShouldAnimateProfile.EditProfile.setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 } else if (role.equals("alumni")) {
-                    mActivity.setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                    ShouldAnimateProfile.EditProfileAlumni.setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 }
 
                 edittedFlag = 0;

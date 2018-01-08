@@ -205,10 +205,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     protected void onCreate(Bundle savedInstanceState) {
         //first change
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
+        ShouldAnimateProfile.AdminActivity = AdminActivity.this;
         ShouldAnimateProfile.isInside = true;
         Z.CountOfUsersUnderAdmin = "0";
 
@@ -1590,12 +1589,18 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
+try {
 
-            Glide.with(AdminActivity.this)
+            Glide.with(ShouldAnimateProfile.AdminActivity)
                     .load(uri)
                     .crossFade()
                     .signature(new StringSignature(signature))
                     .into(profile);
+
+        }
+            catch (Exception e){
+            Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+        }
 
         }
     }

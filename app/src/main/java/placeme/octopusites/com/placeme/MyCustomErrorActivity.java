@@ -163,7 +163,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
             StringBuilder log=new StringBuilder();
             String line = "";
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains("TAG") || line.contains("cricket"))
+                if (line.contains("TAG") || line.contains("cricket") || line.contains("DeepikaPadukone") || line.contains("aliabhatt") || line.contains("ParineetiChopra"))
                     log.append(line+"\n");
             }
 

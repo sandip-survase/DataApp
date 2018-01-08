@@ -37,7 +37,7 @@ public class EditProfileHr extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_hr);
 
-//        ShouldAnimateProfile.EditProfileHr = EditProfileHr.this;
+        ShouldAnimateProfile.EditProfileHr = EditProfileHr.this;
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);

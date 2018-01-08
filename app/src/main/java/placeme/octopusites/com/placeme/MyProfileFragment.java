@@ -2769,6 +2769,7 @@ public class MyProfileFragment extends Fragment {
             JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
             try {
                 signature = json.getString("lastupdated");
+                ShouldAnimateProfile.photo =signature;
             } catch (Exception ex) {
             }
             return signature;

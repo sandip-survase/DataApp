@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -422,6 +423,8 @@ public class PrintProfileTabFragment extends Fragment {
                 found_careerobj = 0;
         }
 
+
+        Log.d("TAG", "validatedata: ShouldAnimateProfile.photo - "+ShouldAnimateProfile.photo);
 
         if(ShouldAnimateProfile.photo.equals("noupdate")){
 

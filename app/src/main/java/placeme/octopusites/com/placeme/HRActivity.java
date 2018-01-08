@@ -173,6 +173,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hr);
 
+        ShouldAnimateProfile.HRActivity = HRActivity.this;
+
         ShouldAnimateProfile.isInside = true;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -1402,11 +1404,15 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
-
-            Glide.with(HRActivity.this)
+            try {
+            Glide.with(ShouldAnimateProfile.HRActivity)
                     .load(uri)
                     .signature(new StringSignature(signature))
                     .into(profile);
+            }
+            catch (Exception e){
+                Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+            }
         }
     }
 

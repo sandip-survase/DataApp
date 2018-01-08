@@ -38,7 +38,10 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-//        ShouldAnimateProfile.EditProfile = EditProfile.this;
+
+        ShouldAnimateProfile.EditProfile = EditProfile.this;
+
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -151,10 +154,7 @@ public class EditProfile extends AppCompatActivity {
         } else {
             fab.setVisibility(View.GONE);
         }
-
-
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
 

@@ -747,7 +747,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             if (result.equals("success")) {
                 if (edittedFlag == 1) {
-                    mActivity.setResult(111);
+                    ShouldAnimateProfile.EditProfileAdmin.setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
                 }
                 edittedFlag = 0;

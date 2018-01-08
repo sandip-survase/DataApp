@@ -617,7 +617,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             if (result.equals("success")) {
                 flag1 = 0;
                 h.setCompanyNature(CompanyType);
-                getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                ShouldAnimateProfile.EditProfileHr.setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
             } else
                 Toast.makeText(getActivity(), "Try again !", Toast.LENGTH_SHORT).show();
         }

@@ -496,7 +496,7 @@ public class AdminInstituteTabFragment extends Fragment {
 
             if (result.equals("success")) {
                 if (edittedFlag == 1) {
-                    getActivity().setResult(111);
+                    ShouldAnimateProfile.EditProfileAdmin.setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
                 }
                 edittedFlag = 0;

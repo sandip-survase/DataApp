@@ -38,7 +38,7 @@ public class EditProfileAdmin extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_edit_profile_admin);
-//        ShouldAnimateProfile.EditProfileAdmin = EditProfileAdmin.this;
+        ShouldAnimateProfile.EditProfileAdmin = EditProfileAdmin.this;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
