@@ -115,7 +115,7 @@ public class AdminProfileFragment extends Fragment {
 
     int percentProfile = 0;
     View rootView;
-
+    RelativeLayout knownLanguagesRelativeLayout, SkillsRelativeLayout, HonorsRelativeLayout, PatentsRelativeLayout, PublicationsRelativeLayout;
     HashMap<String, Integer> hashMap;
 
 
@@ -337,6 +337,51 @@ public class AdminProfileFragment extends Fragment {
         accomplishmentsedit = (ImageView) rootView.findViewById(R.id.accomplishmentsedit);
         expedit = (ImageView) rootView.findViewById(R.id.expedit);
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
+
+        knownLanguagesRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab2);
+        SkillsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab4);
+        HonorsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab5);
+        PatentsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab6);
+        PublicationsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab7);
+
+
+        knownLanguagesRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileKnownLang.class).putExtra("username", username), 0);
+            }
+        });
+
+        SkillsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileSkills.class).putExtra("username", username), 0);
+            }
+        });
+
+        HonorsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileAchievements.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        PatentsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfilePatents.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        PublicationsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfilePublications.class).putExtra("username", username), 0);
+            }
+        });
+
 
         if (!ShouldAnimateProfile.shouldAnimate) {
             Z.bottomupbox1(getActivity(), box1);

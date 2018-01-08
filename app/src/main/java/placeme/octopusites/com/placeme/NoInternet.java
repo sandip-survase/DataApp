@@ -200,7 +200,6 @@ public class NoInternet extends AppCompatActivity {
             progressbar.setVisibility(View.GONE);
             refreshButton.setVisibility(View.VISIBLE);
             if (aVoid) {
-                Toast.makeText(NoInternet.this, "system online", Toast.LENGTH_SHORT).show();
                 if (fromSplashScreen == true && mainContext != null) {
                     Log.d("TAG", "towords om");
                     Intent intent = new Intent(mainContext, SplashScreen.class);

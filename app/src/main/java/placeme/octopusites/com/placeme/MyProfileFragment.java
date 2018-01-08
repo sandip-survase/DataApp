@@ -114,6 +114,8 @@ public class MyProfileFragment extends Fragment {
     StudentData studentData = new StudentData();
     int percentProfile = 0;
     ProgressBar profileprogress;
+    RelativeLayout knownLanguagesRelativeLayout, CertificationsRelativeLayout, CoursesRelativeLayout, SkillsRelativeLayout, HonorsRelativeLayout, PatentsRelativeLayout, PublicationsRelativeLayout;
+    RelativeLayout CareerObjectiveRelativeLayout, StrengthsRelativeLayout, WeaknessesRelativeLayout, LocationPreferencesRelativeLayout;
 
     public void bottomupbox2(Activity activity, View view) {
         Animation animation1 =
@@ -313,6 +315,103 @@ public class MyProfileFragment extends Fragment {
         contactemail.setTypeface(Z.getBold(getActivity()));
         mobiletxt.setTypeface(Z.getLight(getActivity()));
         contactmobile.setTypeface(Z.getBold(getActivity()));
+
+        knownLanguagesRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab1);
+        CertificationsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab2);
+        CoursesRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab3);
+        SkillsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab4);
+        HonorsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab5);
+        PatentsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab6);
+        PublicationsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.acctab7);
+
+        CareerObjectiveRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.careertab1);
+        StrengthsRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.careertab2);
+        WeaknessesRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.careertab3);
+        LocationPreferencesRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.careertab4);
+
+        knownLanguagesRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileKnownLang.class).putExtra("username", username), 0);
+            }
+        });
+
+        CertificationsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileCertifications.class).putExtra("username", username), 0);
+            }
+        });
+
+        CoursesRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileCourses.class).putExtra("username", username), 0);
+            }
+        });
+
+        SkillsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileSkills.class).putExtra("username", username), 0);
+            }
+        });
+
+        HonorsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileAchievements.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        PatentsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfilePatents.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        PublicationsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfilePublications.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        CareerObjectiveRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileCareerObj.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        StrengthsRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileStrengths.class).putExtra("username", username), 0);
+            }
+        });
+
+
+        WeaknessesRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileWeaknesses.class).putExtra("username", username), 0);
+            }
+        });
+
+        LocationPreferencesRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), MyProfileLocationPreferences.class).putExtra("username", username), 0);
+            }
+        });
+
+
         if (!ShouldAnimateProfile.shouldAnimate) {
             Z.bottomupbox1(getActivity(), box1);
             bottomupbox2(getActivity(), box2);

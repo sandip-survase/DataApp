@@ -79,12 +79,13 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
+
+    File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
     public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
     String TAG = "DeepikaPadukone";
-    File Imgfile;
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     JSONParser jParser = new JSONParser();
@@ -176,6 +177,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
     private TextView toolbar_title;
+    Toolbar toolbar;
+    TextView bluePanelTv;
+
+
+    RelativeLayout admincontrolsrl;
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
 
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
@@ -1291,158 +1297,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-
-        String u, p, d;
-        String resultofop;
-
-        CreateFirebaseUser(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
-    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
-
-            try {
-
-                count = Integer.parseInt(json.getString("count"));
-                sender_uid = json.getString("uid");
-
-                reciever_username = new String[count];
-                reciever_uid = new String[count];
-                unread_count = new String[count];
-
-                for (int i = 0; i < count; i++) {
-                    unread_count[i] = "0";
-                    reciever_username[i] = json.getString("username" + i);
-                    reciever_uid[i] = json.getString("uid" + i);
-                }
-
-            } catch (Exception ex) {
-
-            }
-
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (count > 0) {
-
-                for (int i = 0; i < count; i++) {
-
-                    String tempusername = null;
-                    try {
-                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                        String sPadding = "ISO10126Padding";
-
-                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
-
-                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-
-
-                    } catch (Exception e) {
-                    }
-
-                    if (reciever_uid != null)
-                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
-                }
-
-            }
-
-
-        }
-    }
-
-    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
-
-        String sender, reciever, senderuid, recieveruid;
-        int index;
-
-        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
-            this.sender = sender;
-            this.reciever = reciever;
-            this.senderuid = senderuid;
-            this.recieveruid = recieveruid;
-            this.index = index;
-        }
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("s", sender));       //0
-            params.add(new BasicNameValuePair("r", reciever));     //1
-            params.add(new BasicNameValuePair("su", senderuid));    //2
-            params.add(new BasicNameValuePair("ru", recieveruid));  //3
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
-                unread_count[index] = json.getString("unreadcount");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            unreadMessageCount = 0;
-            if (index == count - 1) {
-
-                if (unread_count != null)
-                    for (int i = 0; i < count; i++) {
-
-                        unreadMessageCount += Integer.parseInt(unread_count[i]);
-
-                    }
-                messagecountrl.setVisibility(View.VISIBLE);
-                messagecount.setText(unreadMessageCount + "");
-                if (unreadMessageCount == 0) {
-                    messagecountrl.setVisibility(View.GONE);
-                }
-            }
-        }
-    }
-
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();
         for (RecyclerItemEdit d : itemListNotificationNew) {
@@ -1559,43 +1413,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public void requestProfileImage() {
 
         new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
-
-    class Getsingnature extends AsyncTask<String, String, String> {
-        String signature = "";
-
-        protected String doInBackground(String... param) {
-            JSONParser jParser = new JSONParser();
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));
-            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            Log.d("TAG", "doInBackground: Getsingnature json " + json);
-            try {
-                signature = json.getString("lastupdated");
-            } catch (Exception ex) {
-            }
-            return signature;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            Log.d("TAG", "downloadImage signature : " + signature);
-            Log.d("TAG", "downloadImage: GetImage username " + username);
-            Uri uri = new Uri.Builder()
-                    .scheme("http")
-                    .authority(Z.VPS_IP)
-                    .path("AESTest/GetImage")
-                    .appendQueryParameter("u", username)
-                    .build();
-
-            Glide.with(AdminActivity.this)
-                    .load(uri)
-                    .crossFade()
-                    .signature(new StringSignature(signature))
-                    .into(profile);
-
-        }
     }
 
     public void requestCropImage() {
@@ -1901,6 +1718,239 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
+    public void refreshUserCount() {
+
+        new GetCountOfUsersUnderAdmin().execute();
+    }
+
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+
+//        if (navMenuFlag == 2) {
+//
+//            getNotifications();
+//        } else if (navMenuFlag == 3) {
+//            getPlacements();
+//        }
+
+//    }
+
+    public void setUserCount() {
+        bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
+        Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
+    }
+
+    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
+
+        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
+
+        recyclerViewPlacement.getRecycledViewPool().clear();
+        itemListPlacementnew.addAll(itemList2);
+
+        mAdapterPlacement.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+
+        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+
+
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+        String resultofop;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+
+    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
+
+            try {
+
+                count = Integer.parseInt(json.getString("count"));
+                sender_uid = json.getString("uid");
+
+                reciever_username = new String[count];
+                reciever_uid = new String[count];
+                unread_count = new String[count];
+
+                for (int i = 0; i < count; i++) {
+                    unread_count[i] = "0";
+                    reciever_username[i] = json.getString("username" + i);
+                    reciever_uid[i] = json.getString("uid" + i);
+                }
+
+            } catch (Exception ex) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (count > 0) {
+
+                for (int i = 0; i < count; i++) {
+
+                    String tempusername = null;
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
+
+                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
+
+                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+
+
+                    } catch (Exception e) {
+                    }
+
+                    if (reciever_uid != null)
+                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+                }
+
+            }
+
+
+        }
+    }
+
+    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
+
+        String sender, reciever, senderuid, recieveruid;
+        int index;
+
+        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
+            this.sender = sender;
+            this.reciever = reciever;
+            this.senderuid = senderuid;
+            this.recieveruid = recieveruid;
+            this.index = index;
+        }
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("s", sender));       //0
+            params.add(new BasicNameValuePair("r", reciever));     //1
+            params.add(new BasicNameValuePair("su", senderuid));    //2
+            params.add(new BasicNameValuePair("ru", recieveruid));  //3
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
+                unread_count[index] = json.getString("unreadcount");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            unreadMessageCount = 0;
+            if (index == count - 1) {
+
+                if (unread_count != null)
+                    for (int i = 0; i < count; i++) {
+                        try {
+                            unreadMessageCount += Integer.parseInt(unread_count[i]);
+                        } catch (Exception e) {
+                        }
+                    }
+                messagecountrl.setVisibility(View.VISIBLE);
+                messagecount.setText(unreadMessageCount + "");
+                if (unreadMessageCount == 0) {
+                    messagecountrl.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            Glide.with(AdminActivity.this)
+                    .load(uri)
+                    .crossFade()
+                    .signature(new StringSignature(signature))
+                    .into(profile);
+
+        }
+    }
 
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
@@ -2322,16 +2372,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    public void refreshUserCount() {
-
-        new GetCountOfUsersUnderAdmin().execute();
-    }
-
-    public void setUserCount() {
-        bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
-        Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
-    }
-
     class isVerified extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             String username = MySharedPreferencesManager.getUsername(AdminActivity.this);
@@ -2448,25 +2488,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
-
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-
-        recyclerViewPlacement.getRecycledViewPool().clear();
-        itemListPlacementnew.addAll(itemList2);
-
-        mAdapterPlacement.notifyDataSetChanged();
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
-
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
-
-
-    }
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         JSONObject json;

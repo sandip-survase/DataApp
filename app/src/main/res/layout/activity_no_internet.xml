@@ -32,7 +32,7 @@
     <TextView
         android:textColor="@color/dark_color"
         android:layout_centerHorizontal="true"
-        android:text="No internet connection found. Check your connection or our servers may not responding your request."
+        android:text="No internet connection found. Check your connection or our servers may not be responding your request."
         android:textSize="16dp"
         android:id="@+id/msg2"
         android:textAlignment="center"
