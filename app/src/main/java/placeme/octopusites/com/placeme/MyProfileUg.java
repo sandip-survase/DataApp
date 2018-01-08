@@ -81,6 +81,8 @@ public class MyProfileUg extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_ug);
 
+//        ShouldAnimateProfile.MyProfileUg = MyProfileUg.this;
+
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);

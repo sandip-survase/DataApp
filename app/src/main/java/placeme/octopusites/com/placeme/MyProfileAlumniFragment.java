@@ -4647,7 +4647,8 @@ public class MyProfileAlumniFragment extends Fragment {
                     .appendQueryParameter("u", username)
                     .build();
 
-            Glide.with(getActivity())
+            try {
+            Glide.with(ShouldAnimateProfile.AlumniActivity)
                     .load(uri)
                     .crossFade()
                     .signature(new StringSignature(signature))
@@ -4664,6 +4665,11 @@ public class MyProfileAlumniFragment extends Fragment {
                         }
                     })
                     .into(myprofileimg);
+            }
+            catch (Exception e){
+                Log.d("TAG", "onPostExecute: glide except");
+
+            }
 
         }
     }

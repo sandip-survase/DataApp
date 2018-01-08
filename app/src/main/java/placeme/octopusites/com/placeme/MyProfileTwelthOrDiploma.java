@@ -95,6 +95,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_twelth_or_diploma);
 
+//        ShouldAnimateProfile.MyProfileTwelthOrDiploma = MyProfileTwelthOrDiploma.this;
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
         ab.setDisplayHomeAsUpEnabled(true);

@@ -38,8 +38,7 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-
+//        ShouldAnimateProfile.EditProfile = EditProfile.this;
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);

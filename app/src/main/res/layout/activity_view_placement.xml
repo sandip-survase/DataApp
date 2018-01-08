@@ -54,6 +54,12 @@
         android:id="@+id/registerbuttonlayout"
         android:visibility="gone">
 
+        <com.andexert.library.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rv_rippleDuration="80"
+            app:rv_color="#00bcd4"
+            app:rv_centered="true">
         <Button
             android:id="@+id/registerforplacementbutton"
             android:layout_width="match_parent"
@@ -63,7 +69,7 @@
             android:textSize="18dp"
             android:text="REGISTER"
             android:background="@drawable/textviewborder" />
-
+        </com.andexert.library.RippleView>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"

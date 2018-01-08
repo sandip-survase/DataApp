@@ -2782,24 +2782,33 @@ public class MyProfileFragment extends Fragment {
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
-            Glide.with(getActivity())
-                    .load(uri)
-                    .crossFade()
-                    .signature(new StringSignature(signature))
-                    .listener(new RequestListener<Uri, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            updateProgress.setVisibility(View.GONE);
-                            return false;
-                        }
 
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            updateProgress.setVisibility(View.GONE);
-                            return false;
-                        }
-                    })
-                    .into(myprofileimg);
+            try {
+
+                Glide.with(ShouldAnimateProfile.MainActivity)
+                        .load(uri)
+                        .crossFade()
+                        .signature(new StringSignature(signature))
+                        .listener(new RequestListener<Uri, GlideDrawable>() {
+                            @Override
+                            public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                updateProgress.setVisibility(View.GONE);
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                updateProgress.setVisibility(View.GONE);
+                                return false;
+                            }
+                        })
+                        .into(myprofileimg);
+
+            }
+            catch (Exception e){
+                Log.d("TAG", "onPostExecute: glide except");
+
+            }
         }
     }
 }

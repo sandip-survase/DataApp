@@ -94,6 +94,8 @@ public class MyProfilePg extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_pg);
 
+//        ShouldAnimateProfile.MyProfilePg = MyProfilePg.this;
+
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username = MySharedPreferencesManager.getUsername(this);
@@ -2863,7 +2865,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             alertDialog.show();
         } else
-            MyProfilePg.super.onBackPressed();
+            super.onBackPressed();
     }
 
     class SaveDataPgSem extends AsyncTask<String, String, String> {

@@ -58,7 +58,7 @@ public class PrintProfileTabFragment extends Fragment {
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
     String fname = "", lname = "", studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
-    String username,resultofop="";
+    String username,resultofop="",role;
     RadioGroup radioGroupFormat;
     RadioButton radioButtonWord,radioButtonPdf;
     String format="pdf";
@@ -84,6 +84,8 @@ public class PrintProfileTabFragment extends Fragment {
         selectformattxt.setTypeface(Z.getLight(getActivity()));
         sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);
+        role = MySharedPreferencesManager.getRole(getActivity());
+
         MySharedPreferencesManager.save(getActivity(),"template",template+"");
 
         radioGroupFormat=(RadioGroup)rootView.findViewById(R.id.radioGroupFormat);
@@ -421,7 +423,8 @@ public class PrintProfileTabFragment extends Fragment {
         }
 
 
-        if(photo.equals("noupdate")){
+        if(ShouldAnimateProfile.photo.equals("noupdate")){
+
             downloadresume.setVisibility(View.VISIBLE);
             resumeprogress.setVisibility(View.GONE);
 
@@ -429,8 +432,13 @@ public class PrintProfileTabFragment extends Fragment {
                     .setAction("OPEN", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getActivity(), MainActivity.class).putExtra("status",1));
-                            getActivity().finish();
+                            if(role.equals("student")) {
+                                startActivity(new Intent(getActivity(), MainActivity.class).putExtra("status", 1));
+                                getActivity().finish();
+                            }else {
+                                startActivity(new Intent(getActivity(), AlumniActivity.class).putExtra("status", 1));
+                                getActivity().finish();
+                            }
                         }
                     })
                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))

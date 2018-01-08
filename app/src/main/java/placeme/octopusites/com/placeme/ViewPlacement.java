@@ -42,6 +42,7 @@ import placeme.octopusites.com.placeme.modal.Projects;
 import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.fromString;
+import static placeme.octopusites.com.placeme.MainActivity.photo;
 
 
 public class ViewPlacement extends AppCompatActivity {
@@ -57,15 +58,15 @@ public class ViewPlacement extends AppCompatActivity {
     ProgressBar progressBar;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
     int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
-    int found_contact_details = 0, found_personal = 0;
+    int found_contact_details = 0, found_personal = 0, found_photo = 0;
     String role;
     String fname = "", lname = "";
     String sPadding = "ISO10126Padding";
     StudentData studentData = new StudentData();
+    StudentData s = new StudentData();
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    StudentData s = new StudentData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,25 +158,26 @@ public class ViewPlacement extends AppCompatActivity {
                 registerbutton.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 studentmarks();
-                    validatedata();
+                validatedata();
             }
         });
 
 //************
-        studentmarks();
+        String fnametocheck = s.getFname();
+
+        if (fnametocheck == null) {
+
+            GetStudentData getStudentData = new GetStudentData(ViewPlacement.this);
+            getStudentData.execute();
+            new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        } else {
+            studentmarks();
+        }
 
 
 //        **********notification crash solution
 
-//        String fnametocheck = s.getFname();
-//
-//        if(fnametocheck==null){
-//
-//            GetStudentData getStudentData =new GetStudentData(ViewPlacement.this);
-//            getStudentData.execute();
-//
-//        }
-        
 
     }
 
@@ -263,7 +265,6 @@ public class ViewPlacement extends AppCompatActivity {
         }
 
 
-
         if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
             if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
                 found_personal = 1;
@@ -321,7 +322,6 @@ public class ViewPlacement extends AppCompatActivity {
         c12 = Float.parseFloat(stdxiiordiploma);
         cu = Float.parseFloat(ug);
         int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
-
 
 
         if (found_tenth == 0) {
@@ -397,199 +397,227 @@ public class ViewPlacement extends AppCompatActivity {
     //*************************************************
     public void validatedata() {
 
-        if (found_box1 == 0) {
-//                    please fill intro information
+        if (ShouldAnimateProfile.photo.equals("noupdate")) {
+
             registerbutton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            Snackbar.make(registerbutton.getRootView(), "Please fill personal details", Snackbar.LENGTH_LONG)
+
+            Snackbar.make(registerbutton.getRootView(), "Please upload photo", Snackbar.LENGTH_LONG)
                     .setAction("OPEN", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(ViewPlacement.this, MyProfileIntro.class));
+                            if(role.equals("student")) {
+                                startActivity(new Intent(ViewPlacement.this, MainActivity.class).putExtra("status", 1));
+                                finish();
+                            }
+                            else {
+                                startActivity(new Intent(ViewPlacement.this, AlumniActivity.class).putExtra("status", 1));
+                                finish();
+                            }
+
+
                         }
                     })
                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                     .setDuration(10000)
                     .show();
-//            Toast.makeText(ViewPlacement.this, " Please fill personal details before applying", Toast.LENGTH_SHORT).show();
         } else {
-            if (found_tenth == 0) {
-//                        please fill tenth information
+
+            found_photo = 1;
+            if (found_box1 == 0) {
+//                    please fill intro information
                 registerbutton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-                Snackbar.make(registerbutton.getRootView(), "Please fill Std. X details", Snackbar.LENGTH_LONG)
+                Snackbar.make(registerbutton.getRootView(), "Please fill personal details", Snackbar.LENGTH_LONG)
                         .setAction("OPEN", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                startActivity(new Intent(ViewPlacement.this, MyProfileTenth.class));
+                                startActivity(new Intent(ViewPlacement.this, MyProfileIntro.class));
                             }
                         })
                         .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                         .setDuration(10000)
                         .show();
-//                Toast.makeText(ViewPlacement.this, " Please fill Std. X details before applying", Toast.LENGTH_SHORT).show();
-
+//            Toast.makeText(ViewPlacement.this, " Please fill personal details before applying", Toast.LENGTH_SHORT).show();
             } else {
-                if (found_twelth == 0 && found_diploma == 0) {
-//                        please fill twelth or diploma information
+                if (found_tenth == 0) {
+//                        please fill tenth information
                     registerbutton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
-                    Snackbar.make(registerbutton.getRootView(), "Please fill Std. XII/Diplom details", Snackbar.LENGTH_LONG)
+                    Snackbar.make(registerbutton.getRootView(), "Please fill Std. X details", Snackbar.LENGTH_LONG)
                             .setAction("OPEN", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    startActivity(new Intent(ViewPlacement.this, MyProfileTwelthOrDiploma.class));
+                                    startActivity(new Intent(ViewPlacement.this, MyProfileTenth.class));
                                 }
                             })
                             .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                             .setDuration(10000)
                             .show();
-//                    Toast.makeText(ViewPlacement.this, "Please fill Std. XII/Diploma details before applying", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ViewPlacement.this, " Please fill Std. X details before applying", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    if (found_ug == 0) {
-//                        please fill ug information
-                        Snackbar.make(registerbutton.getRootView(), "Please fill Std. Ug details", Snackbar.LENGTH_LONG)
+                    if (found_twelth == 0 && found_diploma == 0) {
+//                        please fill twelth or diploma information
+                        registerbutton.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        Snackbar.make(registerbutton.getRootView(), "Please fill Std. XII/Diplom details", Snackbar.LENGTH_LONG)
                                 .setAction("OPEN", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        startActivity(new Intent(ViewPlacement.this, MyProfileUg.class));
+                                        startActivity(new Intent(ViewPlacement.this, MyProfileTwelthOrDiploma.class));
                                     }
                                 })
                                 .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                 .setDuration(10000)
                                 .show();
-//                        Toast.makeText(ViewPlacement.this, " Please fill your Ug details before applying", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ViewPlacement.this, "Please fill Std. XII/Diploma details before applying", Toast.LENGTH_SHORT).show();
 
                     } else {
-                        if (found_projects == 0) {
-//                        please fill project information
-                            registerbutton.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            Snackbar.make(registerbutton.getRootView(), "Please fill Project details", Snackbar.LENGTH_LONG)
+                        if (found_ug == 0) {
+//                        please fill ug information
+                            Snackbar.make(registerbutton.getRootView(), "Please fill Std. Ug details", Snackbar.LENGTH_LONG)
                                     .setAction("OPEN", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            startActivity(new Intent(ViewPlacement.this, MyProfileProjects.class));
+                                            startActivity(new Intent(ViewPlacement.this, MyProfileUg.class));
                                         }
                                     })
                                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                     .setDuration(10000)
                                     .show();
-//                            Toast.makeText(ViewPlacement.this, " Please fill Project details before applying", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ViewPlacement.this, " Please fill your Ug details before applying", Toast.LENGTH_SHORT).show();
 
                         } else {
-                            if (found_lang == 0) {
-//                        please fill language information
+                            if (found_projects == 0) {
+//                        please fill project information
                                 registerbutton.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.GONE);
-                                Snackbar.make(registerbutton.getRootView(), "Please fill Known languages details", Snackbar.LENGTH_LONG)
+                                Snackbar.make(registerbutton.getRootView(), "Please fill Project details", Snackbar.LENGTH_LONG)
                                         .setAction("OPEN", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                startActivity(new Intent(ViewPlacement.this, MyProfileKnownLang.class));
+                                                startActivity(new Intent(ViewPlacement.this, MyProfileProjects.class));
                                             }
                                         })
                                         .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                         .setDuration(10000)
                                         .show();
-//                                Toast.makeText(ViewPlacement.this, " Please fill Known languages details before applying", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ViewPlacement.this, " Please fill Project details before applying", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                if (found_skills == 0) {
-//                        please fill skill information
+                                if (found_lang == 0) {
+//                        please fill language information
                                     registerbutton.setVisibility(View.VISIBLE);
                                     progressBar.setVisibility(View.GONE);
-                                    Snackbar.make(registerbutton.getRootView(), "Please fill Skill details", Snackbar.LENGTH_LONG)
+                                    Snackbar.make(registerbutton.getRootView(), "Please fill Known languages details", Snackbar.LENGTH_LONG)
                                             .setAction("OPEN", new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
-                                                    startActivity(new Intent(ViewPlacement.this, MyProfileSkills.class));
+                                                    startActivity(new Intent(ViewPlacement.this, MyProfileKnownLang.class));
                                                 }
                                             })
                                             .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                             .setDuration(10000)
                                             .show();
-
-//                                    Toast.makeText(ViewPlacement.this, " Please fill Skill details before applying", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(ViewPlacement.this, " Please fill Known languages details before applying", Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    if (found_careerobj == 0) {
-//                        please fill career objective information
+                                    if (found_skills == 0) {
+//                        please fill skill information
                                         registerbutton.setVisibility(View.VISIBLE);
                                         progressBar.setVisibility(View.GONE);
-                                        Snackbar.make(registerbutton.getRootView(), "Please fill Career details", Snackbar.LENGTH_LONG)
+                                        Snackbar.make(registerbutton.getRootView(), "Please fill Skill details", Snackbar.LENGTH_LONG)
                                                 .setAction("OPEN", new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View view) {
-                                                        startActivity(new Intent(ViewPlacement.this, MyProfileCareerObj.class));
+                                                        startActivity(new Intent(ViewPlacement.this, MyProfileSkills.class));
                                                     }
                                                 })
                                                 .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                 .setDuration(10000)
                                                 .show();
 
-//                                        Toast.makeText(ViewPlacement.this, " Please fill Career details before applying", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(ViewPlacement.this, " Please fill Skill details before applying", Toast.LENGTH_SHORT).show();
 
                                     } else {
-                                        if (found_strengths == 0) {
-//                        please fill strength information
+                                        if (found_careerobj == 0) {
+//                        please fill career objective information
                                             registerbutton.setVisibility(View.VISIBLE);
                                             progressBar.setVisibility(View.GONE);
-                                            Snackbar.make(registerbutton.getRootView(), "Please fill Strength details", Snackbar.LENGTH_LONG)
+                                            Snackbar.make(registerbutton.getRootView(), "Please fill Career details", Snackbar.LENGTH_LONG)
                                                     .setAction("OPEN", new View.OnClickListener() {
                                                         @Override
                                                         public void onClick(View view) {
-                                                            startActivity(new Intent(ViewPlacement.this, MyProfileStrengths.class));
+                                                            startActivity(new Intent(ViewPlacement.this, MyProfileCareerObj.class));
                                                         }
                                                     })
                                                     .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                     .setDuration(10000)
                                                     .show();
-//                                            Toast.makeText(ViewPlacement.this, " Please fill Strength details before applying", Toast.LENGTH_SHORT).show();
+
+//                                        Toast.makeText(ViewPlacement.this, " Please fill Career details before applying", Toast.LENGTH_SHORT).show();
 
                                         } else {
-                                            if (found_weaknesses == 0) {
-//                        please fill weaknesses information
+                                            if (found_strengths == 0) {
+//                        please fill strength information
                                                 registerbutton.setVisibility(View.VISIBLE);
                                                 progressBar.setVisibility(View.GONE);
-                                                Snackbar.make(registerbutton.getRootView(), "Please fill Weaknesses details", Snackbar.LENGTH_LONG)
+                                                Snackbar.make(registerbutton.getRootView(), "Please fill Strength details", Snackbar.LENGTH_LONG)
                                                         .setAction("OPEN", new View.OnClickListener() {
                                                             @Override
                                                             public void onClick(View view) {
-                                                                startActivity(new Intent(ViewPlacement.this, MyProfileWeaknesses.class));
+                                                                startActivity(new Intent(ViewPlacement.this, MyProfileStrengths.class));
                                                             }
                                                         })
                                                         .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                         .setDuration(10000)
                                                         .show();
-//                                                Toast.makeText(ViewPlacement.this, " Please fill Weaknesses details before applying", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(ViewPlacement.this, " Please fill Strength details before applying", Toast.LENGTH_SHORT).show();
 
                                             } else {
-                                                if (found_personal == 0) {
-//                        please fill personal information
+                                                if (found_weaknesses == 0) {
+//                        please fill weaknesses information
                                                     registerbutton.setVisibility(View.VISIBLE);
                                                     progressBar.setVisibility(View.GONE);
-                                                    Snackbar.make(registerbutton.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
+                                                    Snackbar.make(registerbutton.getRootView(), "Please fill Weaknesses details", Snackbar.LENGTH_LONG)
                                                             .setAction("OPEN", new View.OnClickListener() {
                                                                 @Override
                                                                 public void onClick(View view) {
-                                                                    String role = MySharedPreferencesManager.getRole(ViewPlacement.this);
-                                                                    if (role.equals("student")) {
-                                                                        startActivity(new Intent(ViewPlacement.this, EditProfile.class));
-                                                                    } else
-                                                                        startActivity(new Intent(ViewPlacement.this, EditProfileAlumni.class));
+                                                                    startActivity(new Intent(ViewPlacement.this, MyProfileWeaknesses.class));
                                                                 }
                                                             })
                                                             .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
                                                             .setDuration(10000)
                                                             .show();
+//                                                Toast.makeText(ViewPlacement.this, " Please fill Weaknesses details before applying", Toast.LENGTH_SHORT).show();
+
+                                                } else {
+                                                    if (found_personal == 0) {
+//                        please fill personal information
+                                                        registerbutton.setVisibility(View.VISIBLE);
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Snackbar.make(registerbutton.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
+                                                                .setAction("OPEN", new View.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(View view) {
+                                                                        String role = MySharedPreferencesManager.getRole(ViewPlacement.this);
+                                                                        if (role.equals("student")) {
+                                                                            startActivity(new Intent(ViewPlacement.this, EditProfile.class));
+                                                                        } else
+                                                                            startActivity(new Intent(ViewPlacement.this, EditProfileAlumni.class));
+                                                                    }
+                                                                })
+                                                                .setActionTextColor(getResources().getColor(R.color.sky_blue_color))
+                                                                .setDuration(10000)
+                                                                .show();
 //                                                    Toast.makeText(ViewPlacement.this, " Please fill Personal details before applying", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             }
+
+
                                         }
-
-
                                     }
                                 }
                             }
@@ -600,7 +628,7 @@ public class ViewPlacement extends AppCompatActivity {
             }
         }
 
-        if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
+        if (found_photo == 1 && found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
             new SaveResumedatabase().execute();
 
         }
@@ -714,8 +742,7 @@ public class ViewPlacement extends AppCompatActivity {
 
                 if (result.equals("found")) {
                     new registerforPlacementTask().execute();
-                }
-                else
+                } else
                     Toast.makeText(ViewPlacement.this, "Not Register..!", Toast.LENGTH_SHORT).show();
 
                 registerbutton.setVisibility(View.VISIBLE);
@@ -746,7 +773,13 @@ public class ViewPlacement extends AppCompatActivity {
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
+                if(role.equals("alumni")){
+                    json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
+                }
+                else {
+                    json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
+                }
+
                 //shift this to class
                 String studenttenthmarksObj = "", studenttwelthordiplomamarksobj = "", diplomadataobject, ugdataobject = "";
 
@@ -924,10 +957,30 @@ public class ViewPlacement extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
+                studentmarks();
             }
-            studentmarks();
+
         }
     }
 
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+                ShouldAnimateProfile.photo =signature;
+
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
+
+    }
 }
 

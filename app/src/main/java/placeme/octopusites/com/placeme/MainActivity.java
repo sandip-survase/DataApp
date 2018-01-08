@@ -1,6 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -99,6 +100,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
+
+
+
+
+
+
+
     File Imgfile;
     int firstVisibleItemNotification, visibleItemCountNotification, totalItemCountNotification;
     int total_no_of_notifications;
@@ -225,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ShouldAnimateProfile.MainActivity = MainActivity.this;
         ShouldAnimateProfile.isInside = true;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -2506,7 +2514,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
-                photo =signature;
+                ShouldAnimateProfile.photo =signature;
 
             } catch (Exception ex) {
             }
@@ -2525,10 +2533,15 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     .appendQueryParameter("u", username)
                     .build();
 
-            Glide.with(MainActivity.this)
-                    .load(uri)
-                    .signature(new StringSignature(signature))
-                    .into(profile);
+            try {
+                Glide.with(ShouldAnimateProfile.MainActivity)
+                        .load(uri)
+                        .signature(new StringSignature(signature))
+                        .into(profile);
+            }
+            catch (Exception e){
+                Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+            }
 
         }
     }

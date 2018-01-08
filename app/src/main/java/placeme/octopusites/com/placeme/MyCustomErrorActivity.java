@@ -57,8 +57,9 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         username = MySharedPreferencesManager.getUsername(this);
 
         error=getlogcat();
+        String stack = CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
 
-        abd = error + CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
+        abd = stack+error ;
         Log.d("TAG", "onCreate: username -"+username);
         Log.d("TAG", "onCreate: abd - "+abd);
         new SaveError().execute();

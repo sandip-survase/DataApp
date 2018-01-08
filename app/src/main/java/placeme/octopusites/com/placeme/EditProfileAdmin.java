@@ -35,8 +35,10 @@ public class EditProfileAdmin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile_admin);
 
+
+        setContentView(R.layout.activity_edit_profile_admin);
+//        ShouldAnimateProfile.EditProfileAdmin = EditProfileAdmin.this;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

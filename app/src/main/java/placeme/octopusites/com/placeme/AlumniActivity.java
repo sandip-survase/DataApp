@@ -123,6 +123,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
 //
+    public static String photo="noupdate";
 
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
@@ -226,7 +227,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumni);
-
+        ShouldAnimateProfile.AlumniActivity = AlumniActivity.this;
         ShouldAnimateProfile.isInside = true;
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
@@ -1242,7 +1243,20 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         });
 //        tswipe_refresh_layout.setRefreshing(true);
 
-        new GetStudentData().execute();
+
+
+        int value = getIntent().getIntExtra("status",0);
+
+        if(value==1){
+            MyProfileAlumniFragment fragment = new MyProfileAlumniFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.mainfragment, fragment);
+            fragmentTransaction.commit();
+        }
+
+
+        new GetAlumniData().execute();
 
         getNotifications();
         new GetUnreadMessagesCount().execute();
@@ -1289,7 +1303,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         }
     }
-    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
+    private class GetAlumniData extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
@@ -2526,6 +2540,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
+                ShouldAnimateProfile.photo =signature;
+
             } catch (Exception ex) {
             }
             return signature;
@@ -2543,11 +2559,16 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
-
-            Glide.with(AlumniActivity.this)
+try{
+            Glide.with(ShouldAnimateProfile.AlumniActivity)
                     .load(uri)
                     .signature(new StringSignature(signature))
                     .into(profile);
+
+        }
+            catch (Exception e){
+            Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+        }
         }
     }
 

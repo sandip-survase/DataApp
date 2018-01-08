@@ -71,6 +71,8 @@ public class MyProfileTenth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_tenth);
 
+//        ShouldAnimateProfile.MyProfileTenth = MyProfileTenth.this;
+
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username = MySharedPreferencesManager.getUsername(this);
