@@ -132,9 +132,9 @@ public class AlumniRoleSelected extends AppCompatActivity {
                         new checkUcode().execute(instituteCode);
                     }
                     else
-                        instcodeTextInputLayout.setError("Kindly provide correct institute code provided by Place Me.");
+                        instcodeTextInputLayout.setError("Kindly provide correct institute code provided by Place Me. Please contact your TPO.");
                 else
-                    instcodeTextInputLayout.setError("Kindly provide your institute code provided by Place Me.");
+                    instcodeTextInputLayout.setError("Kindly provide correct institute code provided by Place Me. Please contact your TPO.");
             }
         });
 
@@ -188,8 +188,7 @@ public class AlumniRoleSelected extends AppCompatActivity {
 
             } else {
                 setResult(0000);
-                Toast.makeText(AlumniRoleSelected.this, "Invalid Institute Code\nplease contact your TPO", Toast.LENGTH_LONG).show();
-                instcodeTextInputLayout.setError("Invalid Institute Code\nplease contact your TPO");
+                instcodeTextInputLayout.setError("Kindly provide correct institute code provided by Place Me.\nPlease contact your TPO.");
             }
         }
     }
