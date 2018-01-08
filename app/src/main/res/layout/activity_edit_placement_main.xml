@@ -42,10 +42,16 @@
             android:layout_below="@+id/placementtabs"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sky_blue_color"
+            android:layout_below="@+id/placementviewpager"
+            android:id="@+id/line" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/placementviewpager"
+            android:layout_below="@+id/line"
             android:textColor="@color/dark_color"
             android:text="Choose to whom you want to send this Placement."
             android:textSize="14dp"

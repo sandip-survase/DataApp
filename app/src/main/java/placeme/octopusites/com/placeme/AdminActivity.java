@@ -80,13 +80,11 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
-    File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
-
     public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
-
+    File Imgfile;
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     JSONParser jParser = new JSONParser();
@@ -149,6 +147,16 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String lastupdatedPlacement[];
     TextView createPlacementOrNotification, editPlacementOrNotification;
     PlacementEditData settag = new PlacementEditData();
+    //notification
+    String reciever_username[], reciever_uid[];
+    String unread_count[];
+    int unreadMessageCount = 0;
+    String sender_uid;
+    Toolbar toolbar;
+    TextView bluePanelTv;
+    RelativeLayout admincontrolsrl;
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
     private ImageView resultView;
     private int chooserType;
     private String mediaPath;
@@ -156,11 +164,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private String plainusername, username = "", fname = "", mname = "", sname = "";
     private String thumbPath;
     private MaterialSearchView searchView;
-    //notification
-    String reciever_username[], reciever_uid[];
-    String unread_count[];
-    int unreadMessageCount = 0;
-    String sender_uid;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private int previousTotalNotification = 0; // The total number of items in the dataset after the last load
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
@@ -174,23 +177,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
     private TextView toolbar_title;
-    Toolbar toolbar;
-    TextView bluePanelTv;
-
-
-    RelativeLayout admincontrolsrl;
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
-
     //new
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
-    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
-
-
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
-    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
-
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
         if (str == null || searchStr == null) return false;
@@ -1066,7 +1058,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         recyclerViewNotification.setAdapter(mAdapterNotificationEdit);
 
 
-
 //        ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
 
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
@@ -1282,158 +1273,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
-
-        String u, p, d;
-        String resultofop;
-
-        CreateFirebaseUser(String u, String p, String d) {
-            this.u = u;
-            this.p = p;
-            this.d = d;
-        }
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("d", d));
-            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
-    }
-    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
-
-            try {
-
-                count = Integer.parseInt(json.getString("count"));
-                sender_uid = json.getString("uid");
-
-                reciever_username = new String[count];
-                reciever_uid = new String[count];
-                unread_count = new String[count];
-
-                for (int i = 0; i < count; i++) {
-                    unread_count[i] = "0";
-                    reciever_username[i] = json.getString("username" + i);
-                    reciever_uid[i] = json.getString("uid" + i);
-                }
-
-            } catch (Exception ex) {
-
-            }
-
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (count > 0) {
-
-                for (int i = 0; i < count; i++) {
-
-                    String tempusername = null;
-                    try {
-                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                        String sPadding = "ISO10126Padding";
-
-                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
-
-                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-
-
-                    } catch (Exception e) {
-                    }
-
-                    if (reciever_uid != null)
-                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
-                }
-
-            }
-
-
-        }
-    }
-
-    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
-
-        String sender, reciever, senderuid, recieveruid;
-        int index;
-
-        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
-            this.sender = sender;
-            this.reciever = reciever;
-            this.senderuid = senderuid;
-            this.recieveruid = recieveruid;
-            this.index = index;
-        }
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("s", sender));       //0
-            params.add(new BasicNameValuePair("r", reciever));     //1
-            params.add(new BasicNameValuePair("su", senderuid));    //2
-            params.add(new BasicNameValuePair("ru", recieveruid));  //3
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
-                unread_count[index] = json.getString("unreadcount");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            unreadMessageCount = 0;
-            if (index == count - 1) {
-
-                if (unread_count != null)
-                    for (int i = 0; i < count; i++) {
-
-                        unreadMessageCount += Integer.parseInt(unread_count[i]);
-
-                    }
-                messagecountrl.setVisibility(View.VISIBLE);
-                messagecount.setText(unreadMessageCount + "");
-                if (unreadMessageCount == 0) {
-                    messagecountrl.setVisibility(View.GONE);
-                }
-            }
-        }
-    }
-
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();
         for (RecyclerItemEdit d : itemListNotificationNew) {
@@ -1444,7 +1283,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
         mAdapterNotificationEdit.updateList(tempListNotification, text);
     }
-
 
     void changeReadStatusNotification(String id) {
         new ChangeReadStatusNotification().execute(id);
@@ -1557,43 +1395,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    class Getsingnature extends AsyncTask<String, String, String> {
-        String signature = "";
-
-        protected String doInBackground(String... param) {
-            JSONParser jParser = new JSONParser();
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));
-            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
-            Log.d("TAG", "doInBackground: Getsingnature json " + json);
-            try {
-                signature = json.getString("lastupdated");
-            } catch (Exception ex) {
-            }
-            return signature;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            Log.d("TAG", "downloadImage signature : " + signature);
-            Log.d("TAG", "downloadImage: GetImage username " + username);
-            Uri uri = new Uri.Builder()
-                    .scheme("http")
-                    .authority(Z.VPS_IP)
-                    .path("AESTest/GetImage")
-                    .appendQueryParameter("u", username)
-                    .build();
-
-            Glide.with(AdminActivity.this)
-                    .load(uri)
-                    .crossFade()
-                    .signature(new StringSignature(signature))
-                    .into(profile);
-
-        }
-    }
-
     public void requestCropImage() {
         resultView.setImageDrawable(null);
 
@@ -1606,6 +1407,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         imagePicker.pickImage();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
@@ -1647,7 +1449,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     }
-
 
     private void beginCrop(Uri source) {
         Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
@@ -1747,7 +1548,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -1762,7 +1562,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
-
 
     void changeReadStatusPlacement(String id) {
         new ChangeReadStatusPlacement().execute(id);
@@ -1861,20 +1660,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         mAdapterPlacement.updateList(tempListPlacement, text);
     }
 
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-
-//        if (navMenuFlag == 2) {
-//
-//            getNotifications();
-//        } else if (navMenuFlag == 3) {
-//            getPlacements();
-//        }
-
-//    }
-
-
     void getNotifications2() {
 
         previousTotalNotification = 0;
@@ -1885,6 +1670,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         lastPageFlagNotification = 0;
         new GetNotificationsReadStatus().execute();
     }
+
     void getPlacements2() {
         previousTotalPlacement = 0;
         loadingPlacement = true;
@@ -1914,6 +1700,239 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
+    public void refreshUserCount() {
+
+        new GetCountOfUsersUnderAdmin().execute();
+    }
+
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+
+//        if (navMenuFlag == 2) {
+//
+//            getNotifications();
+//        } else if (navMenuFlag == 3) {
+//            getPlacements();
+//        }
+
+//    }
+
+    public void setUserCount() {
+        bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
+        Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
+    }
+
+    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
+
+        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
+
+        if (lastPageFlagPlacement == 1)
+            isLastPageLoadedPlacement = true;
+
+        recyclerViewPlacement.getRecycledViewPool().clear();
+        itemListPlacementnew.addAll(itemList2);
+
+        mAdapterPlacement.notifyDataSetChanged();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+
+        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
+
+
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p, d;
+        String resultofop;
+
+        CreateFirebaseUser(String u, String p, String d) {
+            this.u = u;
+            this.p = p;
+            this.d = d;
+        }
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            params.add(new BasicNameValuePair("d", d));
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
+
+            Log.d("TAG", "create firebase json: " + json);
+            try {
+                resultofop = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+    }
+
+    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
+
+            try {
+
+                count = Integer.parseInt(json.getString("count"));
+                sender_uid = json.getString("uid");
+
+                reciever_username = new String[count];
+                reciever_uid = new String[count];
+                unread_count = new String[count];
+
+                for (int i = 0; i < count; i++) {
+                    unread_count[i] = "0";
+                    reciever_username[i] = json.getString("username" + i);
+                    reciever_uid[i] = json.getString("uid" + i);
+                }
+
+            } catch (Exception ex) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (count > 0) {
+
+                for (int i = 0; i < count; i++) {
+
+                    String tempusername = null;
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
+
+                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
+
+                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+
+
+                    } catch (Exception e) {
+                    }
+
+                    if (reciever_uid != null)
+                        new GetMessagesReadStatus(username, tempusername, sender_uid, reciever_uid[i], i).execute();
+                }
+
+            }
+
+
+        }
+    }
+
+    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
+
+        String sender, reciever, senderuid, recieveruid;
+        int index;
+
+        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
+            this.sender = sender;
+            this.reciever = reciever;
+            this.senderuid = senderuid;
+            this.recieveruid = recieveruid;
+            this.index = index;
+        }
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("s", sender));       //0
+            params.add(new BasicNameValuePair("r", reciever));     //1
+            params.add(new BasicNameValuePair("su", senderuid));    //2
+            params.add(new BasicNameValuePair("ru", recieveruid));  //3
+
+            try {
+
+                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
+                unread_count[index] = json.getString("unreadcount");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            unreadMessageCount = 0;
+            if (index == count - 1) {
+
+                if (unread_count != null)
+                    for (int i = 0; i < count; i++) {
+                        try {
+                            unreadMessageCount += Integer.parseInt(unread_count[i]);
+                        } catch (Exception e) {
+                        }
+                    }
+                messagecountrl.setVisibility(View.VISIBLE);
+                messagecount.setText(unreadMessageCount + "");
+                if (unreadMessageCount == 0) {
+                    messagecountrl.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    class Getsingnature extends AsyncTask<String, String, String> {
+        String signature = "";
+
+        protected String doInBackground(String... param) {
+            JSONParser jParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            JSONObject json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
+            Log.d("TAG", "doInBackground: Getsingnature json " + json);
+            try {
+                signature = json.getString("lastupdated");
+            } catch (Exception ex) {
+            }
+            return signature;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.d("TAG", "downloadImage signature : " + signature);
+            Log.d("TAG", "downloadImage: GetImage username " + username);
+            Uri uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("AESTest/GetImage")
+                    .appendQueryParameter("u", username)
+                    .build();
+
+            Glide.with(AdminActivity.this)
+                    .load(uri)
+                    .crossFade()
+                    .signature(new StringSignature(signature))
+                    .into(profile);
+
+        }
+    }
 
     class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 
@@ -2086,7 +2105,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-
     class CompressTask extends AsyncTask<String, String, Boolean> {
         protected Boolean doInBackground(String... param) {
             File sourceFile = new File(filepath);
@@ -2245,8 +2263,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-
-
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 
@@ -2336,16 +2352,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    public void refreshUserCount() {
-
-        new GetCountOfUsersUnderAdmin().execute();
-    }
-
-    public void setUserCount() {
-        bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
-        Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
-    }
-
     class isVerified extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             String username = MySharedPreferencesManager.getUsername(AdminActivity.this);
@@ -2412,7 +2418,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             try {
 
                 Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this),MySharedPreferencesManager.getDigest2(AdminActivity.this) );
+                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                 Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
                 Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
                 Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
@@ -2471,25 +2477,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
-
-        Log.d("tag2", "itemListPlacement size ===========" + itemListPlacementnew.size());
-
-        if (lastPageFlagPlacement == 1)
-            isLastPageLoadedPlacement = true;
-
-        recyclerViewPlacement.getRecycledViewPool().clear();
-        itemListPlacementnew.addAll(itemList2);
-
-        mAdapterPlacement.notifyDataSetChanged();
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(false);
-
-
-        Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
-
-
-    }
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
         JSONObject json;
