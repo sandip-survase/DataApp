@@ -133,6 +133,5 @@ public class MyProfileAccomplishments extends AppCompatActivity {
             setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
         }
 
-
     }
 }
