@@ -23,7 +23,7 @@
                 <View
                     android:id="@+id/emailselectionview"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="70dp"
                     android:layout_above="@+id/notificon"
 
                     />
@@ -61,6 +61,12 @@
                     android:layout_below="@+id/lastloginselectionview"
                     android:layout_above="@+id/settingsline15" />
 
+                <View
+                    android:id="@+id/rateusselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/reportselectionview"
+                    android:layout_above="@+id/settingsline16" />
 
                 <ImageView
                     android:layout_width="25dp"
@@ -273,6 +279,46 @@
                     android:layout_below="@+id/reportreporttxt"
                     android:id="@+id/settingsline6" />
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/rateusicon"
+                    android:id="@+id/rateicon"
+                    android:layout_below="@+id/settingsline6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rate Us"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/ratetxt"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/passicon"
+                    android:layout_below="@+id/settingsline6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rate us on google play"
+                    android:layout_below="@+id/ratetxt"
+                    android:id="@+id/rateratetxt"
+                    android:textSize="12dp"
+                    android:textColor="@color/dark_color"
+                    android:paddingTop="3dp"
+                    android:layout_toRightOf="@+id/emailicon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/rateratetxt"
+                    android:id="@+id/settingsline16" />
+
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
@@ -291,7 +337,7 @@
                 <View
                     android:id="@+id/faqselectionview"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="50dp"
                     android:layout_above="@+id/helpselectionview"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />

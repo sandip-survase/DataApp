@@ -1419,11 +1419,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             unreadMessageCount = 0;
             if (index == count - 1) {
 
-                for (int i = 0; i < count; i++) {
+                if (unread_count != null)
+                    for (int i = 0; i < count; i++) {
 
-                    unreadMessageCount += Integer.parseInt(unread_count[i]);
+                        unreadMessageCount += Integer.parseInt(unread_count[i]);
 
-                }
+                    }
                 messagecountrl.setVisibility(View.VISIBLE);
                 messagecount.setText(unreadMessageCount + "");
                 if (unreadMessageCount == 0) {

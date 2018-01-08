@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 public class SettingsFragment extends Fragment {
 
-    View changepassselectionview,pushselectionview,emailselectionview,proselectionview,lastloginselectionview,reportselectionview;
+    View changepassselectionview, pushselectionview, emailselectionview, proselectionview, lastloginselectionview, reportselectionview, rateusselectionview;
     View faqselectionview,helpselectionview,privacyselectionview,termsselectionview,agreementselectionview,signoutselectionview;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -41,7 +42,7 @@ public class SettingsFragment extends Fragment {
         emailselectionview=(View)rootView.findViewById(R.id.emailselectionview);
         lastloginselectionview=(View)rootView.findViewById(R.id.lastloginselectionview);
         reportselectionview=(View)rootView.findViewById(R.id.reportselectionview);
-
+        rateusselectionview = (View) rootView.findViewById(R.id.rateusselectionview);
 
         faqselectionview=(View)rootView.findViewById(R.id.faqselectionview);
         helpselectionview=(View)rootView.findViewById(R.id.helpselectionview);
@@ -56,12 +57,14 @@ public class SettingsFragment extends Fragment {
         TextView passtxt=(TextView)rootView.findViewById(R.id.passtxt);
         TextView logintxt=(TextView)rootView.findViewById(R.id.logintxt);
         TextView reporttxt=(TextView)rootView.findViewById(R.id.reporttxt);
+        TextView ratetxt = (TextView) rootView.findViewById(R.id.ratetxt);
 
         TextView emailemailtxt=(TextView)rootView.findViewById(R.id.emailemailtxt);
         TextView notifnotiftxt=(TextView)rootView.findViewById(R.id.notifnotiftxt);
         TextView passpasstxt=(TextView)rootView.findViewById(R.id.passpasstxt);
 
         TextView reportreporttxt=(TextView)rootView.findViewById(R.id.reportreporttxt);
+        TextView rateratetxt = (TextView) rootView.findViewById(R.id.rateratetxt);
         TextView loginlogintxt=(TextView)rootView.findViewById(R.id.loginlogintxt);
 
 
@@ -90,7 +93,9 @@ public class SettingsFragment extends Fragment {
         logintxt.setTypeface(Z.getBold(getActivity()));
         loginlogintxt.setTypeface(Z.getLight(getActivity()));
         reporttxt.setTypeface(Z.getBold(getActivity()));
+        ratetxt.setTypeface(Z.getBold(getActivity()));
         reportreporttxt.setTypeface(Z.getLight(getActivity()));
+        rateratetxt.setTypeface(Z.getLight(getActivity()));
         faqtxt.setTypeface(Z.getBold(getActivity()));
         helptxt.setTypeface(Z.getBold(getActivity()));
         privacytxt.setTypeface(Z.getBold(getActivity()));
@@ -156,6 +161,17 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        rateusselectionview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=placeme.octopusites.com.placeme")));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=placeme.octopusites.com.placeme")));
+                }
+            }
+        });
         faqselectionview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
