@@ -372,6 +372,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
+
                         mainfragment.setVisibility(View.VISIBLE);
 
                         mViewPager.setVisibility(View.GONE);

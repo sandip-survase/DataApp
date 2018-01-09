@@ -5,6 +5,8 @@ import android.content.Context;
 
 public class ShouldAnimateProfile {
 
+    public static String photo="noupdate";
+
     public static boolean shouldAnimate=false;
     public static boolean isInside = false;
 
@@ -13,7 +15,16 @@ public class ShouldAnimateProfile {
     static Context AdminActivity = null;
     static Context HRActivity = null;
 
-    public static String photo="noupdate";
+
+
+//    static Activity MyProfileKnownLang = null;
+//
+//    static Activity MyProfileSkills = null;
+//    static Activity MyProfileCertifications = null;
+//    static Activity MyProfileCourses = null;
+//    static Activity MyProfileAchievements = null;
+//    static Activity MyProfilePatents = null;
+//    static Activity MyProfilePublications = null;
 
 //
     static Activity EditProfile = null;

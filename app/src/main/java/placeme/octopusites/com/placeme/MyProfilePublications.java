@@ -5120,8 +5120,6 @@ public class MyProfilePublications extends AppCompatActivity {
                 s.setPublicationdate10(spublicationdate10);
                 s.setPuburl10(surl10);
                 s.setPubdescription10(sdescription10);
-
-
                 MyProfilePublications.super.onBackPressed();
             } else
                 Toast.makeText(MyProfilePublications.this, "Try again !", Toast.LENGTH_SHORT).show();

@@ -666,11 +666,13 @@ public class MyProfileAlumniFragment extends Fragment {
         }
     }
     void populateData() {
-
+        Log.d("TAG", "populateData:  executed");
         setVisibilityExpbox();
         percentProfile = 0;
         if (ucode != null) {
+            Log.d("TAG", "ucode: null  executed");
             if (!ucode.equals(""))
+                Log.d("TAG", "ucode: equals  executed");
                 Log.d("cricket", "sachin tendulkar massive inning");
                 myprofilepreview.setText(ucode);
         }
@@ -2690,6 +2692,7 @@ public class MyProfileAlumniFragment extends Fragment {
         }
     }
     public void refreshContent() {
+        Log.d("TAG", "refreshContent: executed");
         new GetAlumniData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         ((AlumniActivity) getActivity()).requestProfileImage();
         updateProgress.setVisibility(View.VISIBLE);
@@ -2774,6 +2777,7 @@ public class MyProfileAlumniFragment extends Fragment {
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
             try {
+                Log.d("TAG", "doInBackground: executed");
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
@@ -2781,6 +2785,8 @@ public class MyProfileAlumniFragment extends Fragment {
                 String s = "";
                 resultofop = json.getString("info");
                 if (resultofop.equals("found")) {
+                    Log.d("TAG", "doInBackground: resultofop executed");
+
                     Log.d("cricket", "sachin tendulkar opening to bat");
                     ucode = json.getString("ucode");
                     String encphone = json.getString("phone");
@@ -4582,6 +4588,7 @@ public class MyProfileAlumniFragment extends Fragment {
                 updateProgress.setVisibility(View.GONE);
                 populateData();
                 downloadImage();
+                Log.d("TAG", "onPostExecute:  executed");
                 swipe_refresh_layout.setRefreshing(false);
             } catch (Exception e) {
                 Log.d("cricket", "Match 3 lost : " + e.getMessage());

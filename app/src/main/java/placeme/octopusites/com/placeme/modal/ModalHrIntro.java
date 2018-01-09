@@ -57,9 +57,8 @@ public class ModalHrIntro implements Serializable {
         this.designationValue = designationValue;
     }
 
-    public ModalHrIntro(String firstname, String lastname, String designationValue, String selectedCountry, String selectedState, String selectedCity)
+    public ModalHrIntro(String firstname, String lastname, String designationValue, String  selectedCity, String selectedState, String selectedCountry)
     {
-
         this.firstname=firstname;
         this.lastname=lastname;
         this.designationValue=designationValue;

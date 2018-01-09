@@ -3171,7 +3171,7 @@ public class HRProfileFragment extends Fragment {
                     percentProfile++;
                 }
 
-                if (!country.equals("") && !state.equals("") && !city.equals("") && !country.equals("") && !state.equals("") && !city.equals("")) {
+                if (!country.equals("") && !state.equals("") && !city.equals("")) {
                     myprofilloc.setText(city + ", " + state + ", " + country);
                 }
                 if (!designation.equals("") && !designation.equals("")) {

@@ -2452,6 +2452,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -2479,7 +2480,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-
+        Log.d("TAG", "onBackPressed: ");
         if( proficiencyEdittedFlog==1 || langEdittedFlog==1 ) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
