@@ -178,6 +178,8 @@ public class MessageActivity extends AppCompatActivity {
 
 
     }
+
+
     void loadChatHistoryFromDB()
     {
         tempList.clear();
@@ -682,8 +684,8 @@ public class MessageActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
 
-                onBackPressed();
 
+                onBackPressed();
                 return(true);
         }
 

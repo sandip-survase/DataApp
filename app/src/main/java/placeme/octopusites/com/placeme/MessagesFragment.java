@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +64,7 @@ public class MessagesFragment extends Fragment {
     String messagesreadstatus[];
     int count;
     String sender_uid;
+    SwipeRefreshLayout swipeRefreshLayout;
     String reciever_username[],reciever_signature[],reciever_fname[],reciever_lname[],reciever_lastmessage[],reciever_time[],reciever_token[],reciever_uid[];
     String unread_count[];
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -79,9 +81,7 @@ public class MessagesFragment extends Fragment {
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
                 if (intent.getAction().equals("pushreceived")) {
-
 
                     String message = intent.getStringExtra("message");
                     String time = intent.getStringExtra("time");
@@ -115,6 +115,13 @@ public class MessagesFragment extends Fragment {
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         role = MySharedPreferencesManager.getRole(getActivity());
 
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                addMessages();
+            }
+        });
 
 
         try {
@@ -326,8 +333,8 @@ public class MessagesFragment extends Fragment {
                         }
 
                         if (reciever_uid != null & reciever_username != null) {
-                            new GetMessagesReadStatus(usernameenc, tempusername, sender_uid, reciever_uid[i], i).execute();
-                            new GetProfileImageAndSaveToPref(reciever_username[i], tempusername).execute();
+                            new GetMessagesReadStatus(usernameenc, tempusername, sender_uid, reciever_uid[i], i).executeOnExecutor(THREAD_POOL_EXECUTOR);
+                            new GetProfileImageAndSaveToPref(reciever_username[i], tempusername).executeOnExecutor(THREAD_POOL_EXECUTOR);
                         }
                     }
                 }
@@ -480,6 +487,7 @@ public class MessagesFragment extends Fragment {
                 mAdapter.notifyDataSetChanged();
 
             }
+            swipeRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -487,7 +495,7 @@ public class MessagesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mRegistrationBroadcastReceiver,new IntentFilter("pushNotification"));
-
+        new GetMessages().execute();
     }
     @Override
     public void onPause() {

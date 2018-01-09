@@ -255,7 +255,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
             isSuccess=true;
         }
 
-
         return isSuccess;
     }
 
