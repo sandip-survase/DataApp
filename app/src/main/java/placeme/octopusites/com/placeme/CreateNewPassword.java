@@ -157,7 +157,7 @@ public class CreateNewPassword extends AppCompatActivity {
             if (resultofop.equals("success")) {
                 Toast.makeText(CreateNewPassword.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
 
-
+                MySharedPreferencesManager.save(CreateNewPassword.this, "otp2", "no");
                 MySharedPreferencesManager.save(CreateNewPassword.this, "nameKey", encUsername);
                 MySharedPreferencesManager.save(CreateNewPassword.this, "passKey", encpassword);
 

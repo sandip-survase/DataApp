@@ -79,13 +79,20 @@ public class OTPActivity extends AppCompatActivity {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(OTPActivity.this);
 
                 alertDialogBuilder
-                        .setMessage("Your sign up data will get lost. Do you want to continue?")
+                        .setMessage("Your sign up data will be lost. Do you want to continue?")
                         .setCancelable(false)
                         .setPositiveButton("yes",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         MySharedPreferencesManager.save(OTPActivity.this, "activationMessage", "");
                                         MySharedPreferencesManager.save(OTPActivity.this, "otp", "no");
+                                        MySharedPreferencesManager.save(OTPActivity.this, "nameKey", null);
+                                        MySharedPreferencesManager.save(OTPActivity.this, "passKey", null);
+
+
+                                        Intent intent = new Intent(OTPActivity.this, LoginActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
                                         finish();
                                     }
                                 })
@@ -139,7 +146,6 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 resendotp.setVisibility(View.GONE);
-                Toast.makeText(OTPActivity.this, "" + MySharedPreferencesManager.getRole(OTPActivity.this), Toast.LENGTH_SHORT).show();
                 new ResendOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         });
@@ -273,7 +279,9 @@ public class OTPActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         new AddStudentUnderAdmin().execute();
-                        startActivity(new Intent(OTPActivity.this, MainActivity.class));
+                        Intent intent = new Intent(OTPActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         finish();
                     } else if (role.equals("alumni")) {
                         CreateFirebaseUser(u, p);
@@ -283,7 +291,9 @@ public class OTPActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         new AddStudentUnderAdmin().execute();
-                        startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
+                        Intent intent = new Intent(OTPActivity.this, AlumniActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         finish();
                     }
 //                        else if (role.equals("hr")) {

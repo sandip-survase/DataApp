@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -105,6 +106,7 @@ public class LastSession extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
             json = jParser.makeHttpRequest(Z.url_getsession, "GET", params);
+            Log.d("TAG", "doInBackground: json kun " + json);
             try {
                 r = json.getString("current");
                 if(r.equals("found"))

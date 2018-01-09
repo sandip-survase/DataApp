@@ -53,6 +53,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_dialog);
 
+        setFinishOnTouchOutside(false);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 

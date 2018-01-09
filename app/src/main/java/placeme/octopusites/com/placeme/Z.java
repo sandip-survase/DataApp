@@ -154,7 +154,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
 
     // Messages -----------------------------------------
 
-    public static final String url_getsession = IP + "AESTest/GetSessionDetails";
+
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP + "AESTest/EditEmail";
 
@@ -171,7 +171,8 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_savepreferences = IP + "AESTest/SavePreferences";
     public static final String url_report = IP + "AESTest/ReportBug";
     public static final String download_resume_template = IP + "AESTest/DownloadResumeTemplate";
-    public static final String url_savesessiondetails = IP + "AESTest/SaveSessionDetails";
+    public static final String url_getsession = IP_TOMCAT + "AESTest/GetSessionDetails";
+    public static final String url_savesessiondetails = IP_TOMCAT + "AESTest/SaveSessionDetails";
     public static final String load_resume_pages = IP + "AESTest/GetAvailableResumePages";
     public static final String load_resume_page = IP + "AESTest/GetResumePage";
     public static final String load_HR_data = IP + "ProfileObjects/GetHrData";

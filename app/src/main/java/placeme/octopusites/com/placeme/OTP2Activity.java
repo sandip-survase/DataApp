@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -41,6 +42,7 @@ public class OTP2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp2);
 
+        setFinishOnTouchOutside(false);
         otplayout=(TextInputLayout)findViewById(R.id.otplayout);
         entertxt=(TextView)findViewById(R.id.entertxt);
         resendotp=(TextView)findViewById(R.id.resend);
@@ -61,7 +63,7 @@ public class OTP2Activity extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
         encUsername=MySharedPreferencesManager.getUsername(this);
 
-
+        MySharedPreferencesManager.save(this, "otp2", "yes");
 
 
         resendotp.setOnClickListener(new View.OnClickListener() {
@@ -157,12 +159,17 @@ public class OTP2Activity extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encUsername));
+            try {
+                params.add(new BasicNameValuePair("fname", Z.Encrypt("", OTP2Activity.this)));
+                params.add(new BasicNameValuePair("lname", Z.Encrypt("", OTP2Activity.this)));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             json = jParser.makeHttpRequest(Z.url_resendotp, "GET", params);
             try {
                 resultofop = json.getString("info");
-
-
 
             }catch (Exception e){e.printStackTrace();}
             return "";

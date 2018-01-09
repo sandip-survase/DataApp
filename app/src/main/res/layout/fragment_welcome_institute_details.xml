@@ -253,7 +253,7 @@
                 android:id="@+id/regNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter registration number provided by university"
+                android:hint="Enter registration number provided by university*"
                 android:singleLine="true"
                 android:textColor="#03353e"
                 android:inputType="textCapCharacters"

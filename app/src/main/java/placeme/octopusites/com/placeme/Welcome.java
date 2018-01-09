@@ -108,7 +108,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     boolean throughAdminFlag = false, errorFlagThroughAdminIntro = false;
     private String instOrEmailstr;
     private String confrimpass;
-    TextView adminInfo;
+    TextView adminInfo, forgotpassword;
     boolean instoremailerror = false;
     private static String android_id, device_id;
     String adminInstitute, adminfname, adminlname;
@@ -191,7 +191,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 EasyTransitionOptions.makeTransitionOptions(
                         Welcome.this,
                         WelcomeRoleView.findViewById(R.id.iv_icon_student)
-
                 );
 
         // start transition
@@ -285,6 +284,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     public void setWelComePasswordView(View v) {
         WelcomePasswordView = v;
         passwordedittext = (EditText) WelcomePasswordView.findViewById(R.id.welcomepassword);
+        forgotpassword = (TextView) WelcomePasswordView.findViewById(R.id.forgot);
+        forgotpassword.setTypeface(Z.getBold(this));
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Welcome.this, ForgotPasswordDialog.class));
+            }
+        });
+
         passwordedittext.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

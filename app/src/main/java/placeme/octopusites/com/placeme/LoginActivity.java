@@ -116,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
         newp.setTypeface(Z.getBold(this));
 
         String otp = MySharedPreferencesManager.getData(LoginActivity.this, "otp");
+        String otp2 = MySharedPreferencesManager.getData(LoginActivity.this, "otp2");
 
         if (otp != null) {
             if (otp.equals("yes")) {
@@ -123,6 +124,14 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         }
+        if (otp2 != null) {
+            if (otp2.equals("yes")) {
+                startActivity(new Intent(getApplicationContext(), OTP2Activity.class));
+
+            }
+        }
+
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

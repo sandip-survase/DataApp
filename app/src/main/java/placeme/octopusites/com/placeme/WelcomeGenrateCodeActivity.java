@@ -796,6 +796,11 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             instituteEmail.clearFocus();
                             instituteEmail.requestFocus();
                             instituteEmailTextInputLayout.setError("Kindly enter invalid Email");
+                        } else if (!sInstituteEmail.contains("edu")) {
+                            errorFlagInstitute = true;
+                            instituteEmail.clearFocus();
+                            instituteEmail.requestFocus();
+                            instituteEmailTextInputLayout.setError("Kindly enter invalid Email");
                         } else if (!sInstitutewebsite.contains(".")) {
                             errorFlagInstitute = true;
                             institutewebsite.clearFocus();

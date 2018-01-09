@@ -176,12 +176,23 @@ public class SplashScreen extends AppCompatActivity {
                 String otp = sharedpreferences.getString("otp", null);
 
                 String activatedCode = MySharedPreferencesManager.getData(SplashScreen.this, "activatedCode");
+                String otp2 = MySharedPreferencesManager.getData(SplashScreen.this, "otp2");
 
                 if (activatedCode != null && activatedCode.equals("yes")) {
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
                             startActivity(new Intent(getApplicationContext(), WelcomeGenrateCodeActivity.class));
+                            finish();
+                        }
+                    }, 2000);
+
+                } else if (otp2 != null && otp2.equals("yes")) {   // forgot gf
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                             finish();
                         }
                     }, 2000);
@@ -438,6 +449,7 @@ public class SplashScreen extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", platform));      //1
             json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
+            Log.d("TAG", "SaveSessionDetails json :" + json);
             try {
                 r = json.getString("info");
 
