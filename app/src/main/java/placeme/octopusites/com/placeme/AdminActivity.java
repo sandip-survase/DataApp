@@ -36,6 +36,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ConnectionQuality;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,6 +59,7 @@ import com.soundcloud.android.crop.Crop;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -62,10 +70,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
+import okhttp3.OkHttpClient;
 import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
@@ -238,6 +248,35 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
+
+
+        //
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .build();
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        OkHttpUtil.getClient();
+
+//        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(getApplicationContext(), OkHttpUtil.getClient());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        AndroidNetworking.setBitmapDecodeOptions(options);
+        AndroidNetworking.enableLogging();
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+                Log.d(TAG, "onChange: currentConnectionQuality : " + currentConnectionQuality + " currentBandwidth : " + currentBandwidth);
+            }
+        });
 
 
         MySharedPreferencesManager.save(AdminActivity.this, "intro", "yes");
@@ -1589,18 +1628,17 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
-try {
+            try {
 
-            Glide.with(ShouldAnimateProfile.AdminActivity)
-                    .load(uri)
-                    .crossFade()
-                    .signature(new StringSignature(signature))
-                    .into(profile);
+                Glide.with(ShouldAnimateProfile.AdminActivity)
+                        .load(uri)
+                        .crossFade()
+                        .signature(new StringSignature(signature))
+                        .into(profile);
 
-        }
-            catch (Exception e){
-            Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
-        }
+            } catch (Exception e) {
+                Log.d("TAG", "onPostExecute: glide exception - " + e.getMessage());
+            }
 
         }
     }
@@ -1875,19 +1913,18 @@ try {
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-        new GetNotificationsReadStatus().execute();
+        GetNotificationsReadStatus();
     }
 
     void getPlacements2() {
         Log.d(TAG, "Doing foreplay with ranveer");
-
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
         isFirstRunPlacement = true;
         isLastPageLoadedPlacement = false;
         lastPageFlagPlacement = 0;
-        new GetPlacementsReadStatus().execute();
+         GetPlacementsReadStatus();
     }
 
     void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
@@ -1932,54 +1969,54 @@ try {
     }
 
 
-    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_GetNotificationsAdminAdminMetaData, "GET", params);
-                notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification = new int[notificationpages];
-                total_no_of_notifications = Integer.parseInt(json.getString("count"));
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d(TAG, "projects :" + notificationpages);
-                Log.d(TAG, "total Movies:" + total_no_of_notifications);
-                Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
-
+//    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
 //
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                notificationcountrl.setVisibility(View.VISIBLE);
-                notificationcounttxt.setText(unreadcountNotification + "");
-                if (unreadcountNotification == 0) {
-                    notificationcountrl.setVisibility(View.GONE);
-                }
-
-
-                new GetNotifications2().execute();
-
-
-            } catch (Exception e) {
-//                Toast.makeText(AdminActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-
-        }
-    }
+//
+//        protected String doInBackground(String... param) {
+//
+//            String r = null;
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", username));       //0
+//
+//            try {
+//
+//                json = jParser.makeHttpRequest(Z.url_GetNotificationsAdminAdminMetaData, "GET", params);
+//                notificationpages = Integer.parseInt(json.getString("pages"));
+//                called_pages_notification = new int[notificationpages];
+//                total_no_of_notifications = Integer.parseInt(json.getString("count"));
+//                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
+//
+//                Log.d(TAG, "projects :" + notificationpages);
+//                Log.d(TAG, "total Movies:" + total_no_of_notifications);
+//                Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
+//
+////
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return r;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            try {
+//                notificationcountrl.setVisibility(View.VISIBLE);
+//                notificationcounttxt.setText(unreadcountNotification + "");
+//                if (unreadcountNotification == 0) {
+//                    notificationcountrl.setVisibility(View.GONE);
+//                }
+//
+//
+//                new GetNotifications2().execute();
+//
+//
+//            } catch (Exception e) {
+////                Toast.makeText(AdminActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//
+//
+//        }
+//    }
 
     class ChangeReadStatusNotification extends AsyncTask<String, String, String> {
 
@@ -2250,13 +2287,10 @@ try {
         @Override
         protected void onPostExecute(String result) {
             placementcountrl.setVisibility(View.VISIBLE);
-
             placementcounttxt.setText(unreadcountPlacement + "");
             if (unreadcountPlacement == 0) {
                 placementcountrl.setVisibility(View.GONE);
             }
-
-
             new GetPlacements2().execute();
 
 
@@ -2301,6 +2335,7 @@ try {
 
         public abstract void onLoadMore(int current_page);
     }
+
 
     class ChangeReadStatusPlacement extends AsyncTask<String, String, String> {
 
@@ -2404,37 +2439,37 @@ try {
         }
     }
 
-    class GetNotifications2 extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
-            try {
-                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
-                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            itemListNotificationNew.clear();
-            setserverlisttoadapter(itemlistfromserver);
-
-        }
-
-
-    }
+//    class GetNotifications2 extends AsyncTask<String, String, String> {
+//
+//
+//        protected String doInBackground(String... param) {
+//
+//            String r = null;
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", username));       //0
+//            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+//            json = jParser.makeHttpRequest(Z.url_GetNotificationsAdmin, "GET", params);
+//            try {
+//                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
+//                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+//                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return r;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//
+//            itemListNotificationNew.clear();
+//            setserverlisttoadapter(itemlistfromserver);
+//
+//        }
+//
+//
+//    }
 
     class GetPlacements2 extends AsyncTask<String, String, String> {
 
@@ -2529,6 +2564,244 @@ try {
         if (unreadMessageCount <= 0) {
             messagecountrl.setVisibility(View.GONE);
         }
+    }
+
+
+    private void GetNotificationsReadStatus() {
+//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdminMetaData")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            notificationpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_notification = new int[notificationpages];
+                            total_no_of_notifications = Integer.parseInt(response.getString("count"));
+                            unreadcountNotification = Integer.parseInt(response.getString("unreadcount"));
+                            Log.d(TAG, "projects :" + notificationpages);
+                            Log.d(TAG, "total Movies:" + total_no_of_notifications);
+                            Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
+
+
+                            notificationcountrl.setVisibility(View.VISIBLE);
+                            notificationcounttxt.setText(unreadcountNotification + "");
+                            if (unreadcountNotification == 0) {
+                                notificationcountrl.setVisibility(View.GONE);
+                            }
+                            GetNotifications2();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+
+    private void GetNotifications2() {
+        Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdmin")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .addQueryParameter("p", page_to_call_notification + "")
+
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object2 : " + response.toString());
+                        try {
+
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
+                            Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                            Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
+                            itemListNotificationNew.clear();
+                            setserverlisttoadapter(itemlistfromserver);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+    private void GetPlacementsReadStatus() {
+//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdminMetaData")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            placementpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_placement = new int[placementpages];
+                            total_no_of_placements = Integer.parseInt(response.getString("count"));
+                            unreadcountPlacement = Integer.parseInt(response.getString("unreadcount"));
+                            Log.d(TAG, "with Ranveer projects :" + placementpages);
+                            Log.d(TAG, "with Ranveer total Movies:" + total_no_of_placements);
+                            Log.d(TAG, "with Ranveer Movies to release:" + unreadcountPlacement);
+
+                            placementcountrl.setVisibility(View.VISIBLE);
+                            placementcounttxt.setText(unreadcountPlacement + "");
+                            if (unreadcountPlacement == 0) {
+                                placementcountrl.setVisibility(View.GONE);
+                            }
+                             GetPlacements2();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+    private void GetPlacements2() {
+        Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdmin")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .addQueryParameter("p", page_to_call_placement + "")
+
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object2 : " + response.toString());
+                        try {
+
+                            try {
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
+                                Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
+
+                            } catch (Exception e) {
+                            }
+                            itemListPlacementnew.clear();
+                            setplacementListtoadapter(placementListfromserver);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
     }
 
 }

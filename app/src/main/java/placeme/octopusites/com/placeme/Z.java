@@ -31,6 +31,8 @@ public class Z {
     public static final String IP_sunny_local = "http://162.213.199.3:8090/";
     public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
     public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
+    public static final String IP_secured_sunny = "https://placeme.co.in/";
+
 
 
     public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
@@ -74,10 +76,10 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
     public static final String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
-    public static final String url_GetNotificationsAdminAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsAdminMetaData";
-    public static final String url_GetReadStatusOfNotificationsAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    public static final String url_GetNotificationsAdmin = IP + "CreateNotificationTemp/GetNotificationsAdmin";
-    public static final String url_ChangeNotificationReadStatusAdmin = IP + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+    public static final String url_GetNotificationsAdminAdminMetaData = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAdminMetaData";
+    public static final String url_GetReadStatusOfNotificationsAdmin = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
+    public static final String url_GetNotificationsAdmin = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAdmin";
+    public static final String url_ChangeNotificationReadStatusAdmin = IP_secured_sunny + "CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     //    -------------------------------EditNotification-----------------------------------
     public static final String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
     public static final String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
