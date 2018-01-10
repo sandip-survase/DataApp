@@ -117,7 +117,6 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
 
-
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
