@@ -4835,8 +4835,11 @@ public class MyProfilePatents extends AppCompatActivity {
         patoffice1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCountry1 = (String) parent.getItemAtPosition(position);
 
+                selectedCountry1 = (String) parent.getItemAtPosition(position);
+                if (s.getPselectedcountry1()!=null && !s.getPselectedcountry1().equals(selectedCountry1)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4849,6 +4852,11 @@ public class MyProfilePatents extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry2 = (String) parent.getItemAtPosition(position);
 
+                selectedCountry2 = (String) parent.getItemAtPosition(position);
+                if (s.getPselectedcountry2()!=null && !s.getPselectedcountry2().equals(selectedCountry2)) {
+                    edittedFlag = 1;
+                }
+
             }
 
             @Override
@@ -4860,7 +4868,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry3 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry3()!=null && !s.getPselectedcountry3().equals(selectedCountry3)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4872,7 +4882,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry4 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry4()!=null && !s.getPselectedcountry4().equals(selectedCountry4)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4885,6 +4897,9 @@ public class MyProfilePatents extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry5 = (String) parent.getItemAtPosition(position);
 
+                if (s.getPselectedcountry5()!=null && !s.getPselectedcountry5().equals(selectedCountry5)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4896,7 +4911,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry6 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry6()!=null && !s.getPselectedcountry6().equals(selectedCountry6)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4908,7 +4925,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry7 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry7()!=null && !s.getPselectedcountry7().equals(selectedCountry7)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4920,7 +4939,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry8 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry8()!=null && !s.getPselectedcountry8().equals(selectedCountry8)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4932,7 +4953,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry9 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry9()!=null && !s.getPselectedcountry9().equals(selectedCountry9)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -4944,7 +4967,9 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCountry10 = (String) parent.getItemAtPosition(position);
-
+                if (s.getPselectedcountry10()!=null && !s.getPselectedcountry10().equals(selectedCountry10)) {
+                    edittedFlag = 1;
+                }
             }
 
             @Override
@@ -6978,7 +7003,12 @@ public class MyProfilePatents extends AppCompatActivity {
 
             case R.id.action_save:
 
-                validateandSave();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

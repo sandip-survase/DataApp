@@ -139,6 +139,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         ab.setTitle("Create Notification");
 
         FLAG = getIntent().getStringExtra("flag");
+
         if (FLAG.equals("EditNotification")) {
             ab.setTitle("Edit Notification");
             createnotitxt.setText("Modify/Delete Notification");
@@ -1396,6 +1397,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected void onPostExecute(String result) {
+//setresult
+            Log.d("TAG", "onPostExecute: setresult - "+AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+
+            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
 
             Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
             CreateNotification.super.onBackPressed();

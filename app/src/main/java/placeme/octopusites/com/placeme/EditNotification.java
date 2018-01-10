@@ -29,6 +29,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.apache.http.NameValuePair;
@@ -119,6 +124,7 @@ public class EditNotification extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
+        Z.NetworkConnectoin(EditNotification.this);
 
         username = MySharedPreferencesManager.getUsername(this);
 
@@ -604,7 +610,8 @@ public class EditNotification extends AppCompatActivity {
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-        new GetNotificationsByadminMetadata().execute();
+//        new GetNotificationsByadminMetadata().execute();
+        GetNotificationsByadminMetadata();
 
     }
 
@@ -729,8 +736,71 @@ public class EditNotification extends AppCompatActivity {
 
         }
 
-
     }
+
+    private void GetplacementbyAdmin() {
+        Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsSentByAdmin")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .addQueryParameter("p", page_to_call_notification + "")
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d("TAG", " bytesSent : " + bytesSent);
+                        Log.d("TAG", " bytesReceived : " + bytesReceived);
+                        Log.d("TAG", " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+                        Log.d("TAG", "onResponse object2 : " + response.toString());
+                        try {
+                            Log.d("json1", "jsonparamsList " + response.getString("jsonparamsList"));
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
+                            Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
+                            Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        setserverlisttoadapter(itemlistfromserver);
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                            Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+
+
+
+
+
+
 
     void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
 
@@ -786,7 +856,7 @@ public class EditNotification extends AppCompatActivity {
             try {
 
 
-                new GetplacementbyAdmin().execute();
+//                new GetplacementbyAdmin().execute();
 
 
             } catch (Exception e) {
@@ -795,6 +865,76 @@ public class EditNotification extends AppCompatActivity {
 
 
         }
+    }
+
+
+    private void GetNotificationsByadminMetadata() {
+        Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsByAdminMetaData")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d("TAG", " bytesSent : " + bytesSent);
+                        Log.d("TAG", " bytesReceived : " + bytesReceived);
+                        Log.d("TAG", " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", "onResponse object2 : " + response.toString());
+                        try {
+                            notificationpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_notification = new int[notificationpages];
+                            total_no_of_notifications = Integer.parseInt(response.getString("count"));
+                            unreadcountNotification = Integer.parseInt(response.getString("unreadcount"));
+
+                            Log.d("FinaltestN", "notificationpages: " + notificationpages);
+                            Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
+                            Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
+
+                            GetplacementbyAdmin();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                            Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+
+
+
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getNotifications2();
+
+
     }
 
 }

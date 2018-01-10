@@ -94,6 +94,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
+    public static final int ADMIN_CREATE_DATA_CHANGE_RESULT_CODE = 999;
     public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
     String TAG = "DeepikaPadukone";
     CircleImageView profile;
@@ -330,7 +331,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
                         Intent i1 = new Intent(AdminActivity.this, CreateNotification.class);
                         i1.putExtra("flag", "fromAdminActivity");
-                        startActivity(i1);
+                        startActivityForResult(i1, 0);
+
+//                        startActivityForResult(new Intent(getActivity(), MyProfileKnownLang.class).putExtra("username", username), 0);
+//                        for result
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
                     }
@@ -341,7 +345,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
                         String Tag = "adminActivity";
                         settag.setActivityFromtag(Tag);
-                        startActivity(new Intent(AdminActivity.this, CreatePlacement.class));
+
+                        startActivityForResult(new Intent(AdminActivity.this, CreatePlacement.class),0);
+
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
                     }
@@ -688,7 +694,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             public void onClick(View view) {
 
                 navMenuFlag = 2;
-
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
@@ -1659,6 +1664,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
+        Log.d(TAG, "onActivityResult: called "+resultCode);
+
         if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
@@ -1695,6 +1702,16 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             handleCrop(resultCode, result);
         }
 
+        else if (resultCode == ADMIN_CREATE_DATA_CHANGE_RESULT_CODE) {
+
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            Log.d(TAG, "onActivityResult: called notification");
+//             Toast.makeText(this, "NOTIFICATION", Toast.LENGTH_SHORT).show();
+             getNotifications2();
+                getPlacements2();
+
+//            handleCrop(resultCode, result);
+        }
 
     }
 
@@ -2563,6 +2580,20 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         messagecount.setText(unreadMessageCount + "");
         if (unreadMessageCount <= 0) {
             messagecountrl.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        if(  selectedMenuFlag ==1){
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            getNotifications2();
+
+        }else if(selectedMenuFlag ==2 ){
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            getPlacements2();
         }
     }
 

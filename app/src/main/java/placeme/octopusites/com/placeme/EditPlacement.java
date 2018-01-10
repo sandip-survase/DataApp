@@ -27,6 +27,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.apache.http.NameValuePair;
@@ -39,6 +44,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
+import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
 import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
 import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
@@ -113,7 +119,6 @@ public class EditPlacement extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_placement);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -125,9 +130,9 @@ public class EditPlacement extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+        Z.NetworkConnectoin(EditPlacement.this);
 
         //init
-
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);
@@ -266,7 +271,6 @@ public class EditPlacement extends AppCompatActivity {
             public void onLongClick(View view, int position) {
                     RecyclerItemPlacement item = itemListPlacement.get(position);
                 if (deleteflag == 0) {
-
 
                     if (!notificationdeleteArraylist.contains(item.getId())) {
                         notificationdeleteArraylist.add(item.getId());
@@ -549,8 +553,8 @@ public class EditPlacement extends AppCompatActivity {
 //        new GetPlacementsReadStatus().execute();
 
 
-        new GetPlacementsByAdminMetadata().execute();
-
+//        new GetPlacementsByAdminMetadata().execute();
+        GetPlacementsByAdminMetadata();
 
     }
 
@@ -600,14 +604,72 @@ public class EditPlacement extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-
             Log.d("Getplacement", "onPostExecute:  im here");
             setplacementListtoadapter(placementListfromserver);
+
         }
     }
 
+    public void GetPlacements(){
+            Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementSentByAdmin")
+                    .setTag(this)
+                    .addQueryParameter("u", username)
+                    .addQueryParameter("p", page_to_call_placement + "")
+                    .setPriority(Priority.HIGH)
+                    .getResponseOnlyFromNetwork()
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d("TAG", " bytesSent : " + bytesSent);
+                            Log.d("TAG", " bytesReceived : " + bytesReceived);
+                            Log.d("TAG", " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("TAG", "onResponse object2 : " + response.toString());
+                            try {
 
-    class Deleteplacements extends AsyncTask<String, String, String> {
+
+                                Log.d("json1", "placementlistfromserver " + response.getString("placementlistfromserver"));
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+
+                            } catch (Exception e) {
+                            }
+                            setplacementListtoadapter(placementListfromserver);
+
+
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            if (error.getErrorCode() != 0) {
+                                // received ANError from server
+                                // error.getErrorCode() - the ANError code from server
+                                // error.getErrorBody() - the ANError body from server
+                                // error.getErrorDetail() - just a ANError detail
+                                Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                                Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                                Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        }
+
+
+
+
+        class Deleteplacements extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
@@ -676,8 +738,8 @@ public class EditPlacement extends AppCompatActivity {
 
 
     }
-    class GetPlacementsByAdminMetadata extends AsyncTask<String, String, String> {
 
+    class GetPlacementsByAdminMetadata extends AsyncTask<String, String, String> {
 
         protected String doInBackground(String... param) {
 
@@ -694,9 +756,6 @@ public class EditPlacement extends AppCompatActivity {
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
-
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -711,6 +770,68 @@ public class EditPlacement extends AppCompatActivity {
 
         }
     }
+
+    private void GetPlacementsByAdminMetadata() {
+        Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsByAdminMetaData")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d("TAG", " bytesSent : " + bytesSent);
+                        Log.d("TAG", " bytesReceived : " + bytesReceived);
+                        Log.d("TAG", " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", "onResponse object2 : " + response.toString());
+                        try {
+                            placementpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_placement = new int[placementpages];
+                            total_no_of_placements = Integer.parseInt(response.getString("count"));
+                            unreadcountPlacement = Integer.parseInt(response.getString("unreadcount"));
+                            GetPlacements();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                            Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+
+
+
+
+
+
+
+
+
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 

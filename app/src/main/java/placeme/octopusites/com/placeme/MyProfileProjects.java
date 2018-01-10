@@ -3468,7 +3468,12 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
             case R.id.action_save:
 
-                validateandSave();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

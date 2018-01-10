@@ -207,7 +207,6 @@ public class MyProfileIntro extends AppCompatActivity {
 
         });
 
-
         edittedFlag = 0;
         Log.d("cricket", "MPI OC odi match");
 
@@ -322,7 +321,12 @@ public class MyProfileIntro extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
 
-                validateandSave();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

@@ -308,7 +308,12 @@ public class AdminIntro extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
 
-                validateandSave();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 //Toast.makeText(getBaseContext(),"clicked", Toast.LENGTH_SHORT).show();
                 break;
 

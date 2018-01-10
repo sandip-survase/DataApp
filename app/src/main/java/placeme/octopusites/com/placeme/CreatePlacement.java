@@ -631,7 +631,7 @@ public class CreatePlacement extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
+            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
             CreatePlacement.super.onBackPressed();
 

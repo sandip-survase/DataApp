@@ -5198,7 +5198,7 @@ public class AdminExperiences extends AppCompatActivity {
     }
 
 
-    void validate() {
+    void validateandSave() {
         postinput1.setError(null);
         instinput1.setError(null);
         postinput2.setError(null);
@@ -7280,8 +7280,12 @@ public class AdminExperiences extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-
-                validate();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

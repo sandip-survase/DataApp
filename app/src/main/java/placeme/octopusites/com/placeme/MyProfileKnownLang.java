@@ -764,6 +764,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                langEdittedFlog = 1;
+                                proficiencyEdittedFlog = 1;
                                 deleteLang();
                             }
                         })
@@ -2413,8 +2415,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
             {
                 Toast.makeText(MyProfileKnownLang.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-
-
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))
@@ -2458,8 +2458,12 @@ public class MyProfileKnownLang extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-
-                validateandSave();
+                if( proficiencyEdittedFlog==1 || langEdittedFlog==1 ) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

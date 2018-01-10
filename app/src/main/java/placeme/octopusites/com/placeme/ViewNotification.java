@@ -1,6 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -386,15 +387,23 @@ public class ViewNotification extends AppCompatActivity {
 
         //change as per entry
 
-        super.onBackPressed();
-//        Log.d("TAG", "role"+MySharedPreferencesManager.getRole(this));
-//        if(MySharedPreferencesManager.getRole(getBaseContext()).equals("student")){
-//            startActivity(new Intent(getBaseContext(),MainActivity.class));
-//
-//        } else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("alumni")){
-//            startActivity(new Intent(getBaseContext(),AlumniActivity.class));
-//
-//        }
+//        super.onBackPressed();
+        Log.d("TAG", "role"+MySharedPreferencesManager.getRole(this));
+        if(MySharedPreferencesManager.getRole(getBaseContext()).equals("student")){
+            startActivity(new Intent(getBaseContext(),MainActivity.class));
+
+        } else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("alumni")){
+            startActivity(new Intent(getBaseContext(),AlumniActivity.class));
+
+        }
+        else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("admin")){
+            startActivity(new Intent(getBaseContext(),AdminActivity.class));
+
+        }
+        else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("hr")){
+            startActivity(new Intent(getBaseContext(),HRActivity.class));
+
+        }
 
 
     }

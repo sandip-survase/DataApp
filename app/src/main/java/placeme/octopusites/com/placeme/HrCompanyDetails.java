@@ -46,10 +46,10 @@ public class HrCompanyDetails extends AppCompatActivity {
     String CompanyType = "", strobj = "";
     String encobj = "";
     String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "", oldnature = "", newnature = "";
-    TextInputEditText CompanyName,otherNature, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
+    TextInputEditText CompanyName, otherNature, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
     Spinner Company_Nature;
     String encComName = "", encUsername = "", encComMail = "", encComWeb = "", encComPhone = "", encComAlterPhone = "", encComCIIN = "", encComType = "", encComAddL1 = "", encComAddL2 = "", encComAddL3 = "";
-    String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc","Other"};
+    String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc", "Other"};
     JSONParser jsonParser = new JSONParser();
 
     JSONObject json;
@@ -57,8 +57,9 @@ public class HrCompanyDetails extends AppCompatActivity {
     HrData h = new HrData();
     ArrayAdapter<String> dataAdapter;
     int flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag5 = 0, flag6 = 0, flag7 = 0, flag8 = 0, flag9 = 0, flag10 = 0;
-    TextInputLayout instnameinput,ocompanytherNatureTextInputLayout, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
+    TextInputLayout instnameinput, ocompanytherNatureTextInputLayout, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
     TextView loctxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +86,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         CompanyAddressLine1 = (TextInputEditText) findViewById(R.id.compaddressline1);
         CompanyAddressLine2 = (TextInputEditText) findViewById(R.id.compaddressline2);
         CompanyAddressLine3 = (TextInputEditText) findViewById(R.id.compaddressline3);
-        loctxt=(TextView) findViewById(R.id.loctxt);
+        loctxt = (TextView) findViewById(R.id.loctxt);
         Company_Nature = (Spinner) findViewById(R.id.board10);
 
         instnameinput = (TextInputLayout) findViewById(R.id.instnameinput);
@@ -98,7 +99,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         instphoneainput = (TextInputLayout) findViewById(R.id.instphoneainput);
         instreginput = (TextInputLayout) findViewById(R.id.instreginput);
 
-        ocompanytherNatureTextInputLayout= (TextInputLayout) findViewById(R.id.otherNatureTextInputLayout);
+        ocompanytherNatureTextInputLayout = (TextInputLayout) findViewById(R.id.otherNatureTextInputLayout);
         CompanyName.setTypeface(Z.getBold(HrCompanyDetails.this));
         CompanyEmail.setTypeface(Z.getBold(HrCompanyDetails.this));
         CompanyWebsite.setTypeface(Z.getBold(HrCompanyDetails.this));
@@ -140,7 +141,6 @@ public class HrCompanyDetails extends AppCompatActivity {
         if (oldnature == null) {
             oldnature = "-Select Company Nature-";
         }
-
 
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, Nature) {
@@ -192,8 +192,8 @@ public class HrCompanyDetails extends AppCompatActivity {
                 // new HrCompanyDetails().GetStates().execute();
                 pos = position;
                 CompanyType = Nature[position];
-                newnature = CompanyType;
 
+                Log.d("TAG", "onItemSelected: CompanyType  - " + CompanyType);
 //                if(!oldnature.equals(CompanyType)){
 //                    flag1=1;
 //                }
@@ -201,16 +201,21 @@ public class HrCompanyDetails extends AppCompatActivity {
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
                     otherNature.setVisibility(View.VISIBLE);
-                } else
-                    ocompanytherNatureTextInputLayout.setVisibility(View.GONE);
 
+                } else {
+                    newnature = CompanyType;
+                    if (!CompanyNaturestr.equals(newnature)) {
+                        flag1 = 1;
+                    }
+
+                    ocompanytherNatureTextInputLayout.setVisibility(View.GONE);
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
 
 
         if (CompanyNamestr != null) {
@@ -265,7 +270,7 @@ public class HrCompanyDetails extends AppCompatActivity {
 
         if (CompanyNaturestr != null) {
             int foundboard = 0;
-            for (int i = 1; i <Nature.length - 1; i++)
+            for (int i = 1; i < Nature.length - 1; i++)
                 if (CompanyNaturestr.equals(Nature[i])) {
                     foundboard = 1;
                     break;
@@ -462,11 +467,17 @@ public class HrCompanyDetails extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                validateandSave();
+                if (flag1 == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:
@@ -486,7 +497,7 @@ public class HrCompanyDetails extends AppCompatActivity {
 
     public void validateandSave() {
         int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0, errorflag8 = 0, errorflag9 = 0, errorflag10 = 0;
-        String ComName = "", ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3,sOtherNature="";
+        String ComName = "", ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3, sOtherNature = "";
         ComName = CompanyName.getText().toString();
         ComMail = CompanyEmail.getText().toString();
         ComWeb = CompanyWebsite.getText().toString();
@@ -539,7 +550,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             }
         }
 
-        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 &&  errorflag6 == 0 && errorflag7 == 0 && errorflag8 == 0 && errorflag9 == 0 && errorflag10 == 0) {
+        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag6 == 0 && errorflag7 == 0 && errorflag8 == 0 && errorflag9 == 0 && errorflag10 == 0) {
 
             try {
 
@@ -568,7 +579,7 @@ public class HrCompanyDetails extends AppCompatActivity {
 
 //|| !CompanyNaturestr.equals
 //|| !oldnature.equals(CompanyType)
-        if (flag1 == 1 ) {
+        if (flag1 == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             alertDialogBuilder

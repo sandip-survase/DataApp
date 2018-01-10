@@ -705,8 +705,13 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
 
-                validateandSave();
                 break;
 
             case android.R.id.home:
@@ -723,7 +728,6 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
         return super.onCreateOptionsMenu(menu);
-
 
     }
     public String getJson() {

@@ -4496,8 +4496,12 @@ public class MyProfileCourses extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-
-                validateandSave();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

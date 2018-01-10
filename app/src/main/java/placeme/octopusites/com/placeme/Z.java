@@ -2,15 +2,23 @@ package placeme.octopusites.com.placeme;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ConnectionQuality;
+import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
@@ -562,5 +570,38 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
         }
         return false;
     }
+
+    public static void NetworkConnectoin(Context context)
+    {
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .build();
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        OkHttpUtil.getClient();
+
+//        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(context, OkHttpUtil.getClient());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        AndroidNetworking.setBitmapDecodeOptions(options);
+        AndroidNetworking.enableLogging();
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+//                Log.d(TAG, "onChange: currentConnectionQuality : " + currentConnectionQuality + " currentBandwidth : " + currentBandwidth);
+            }
+        });
+
+
+    }
+
+
 
 }
