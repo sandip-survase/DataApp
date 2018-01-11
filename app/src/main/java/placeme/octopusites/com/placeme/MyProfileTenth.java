@@ -656,7 +656,7 @@ public class MyProfileTenth extends AppCompatActivity {
                 s.setPercentage10(percentage);
                 s.setSchoolname10(schoolname);
                 s.setYearofpassing10(monthandyearofpassing);
-                s.setBoard10(selectedBoard);
+                s.setBoard10(selectboard);
 
                 MyProfileTenth.super.onBackPressed();
             } else

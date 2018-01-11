@@ -2171,7 +2171,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         schoolnamediploma = "";
         selectedBoarddiploma = "";
         selectedCourse = "";
-
+        monthandyearofpassingdiploma="";
 
         dmarkssem1.setText("");
         doutofsem1.setText("");
