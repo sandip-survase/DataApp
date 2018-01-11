@@ -387,28 +387,27 @@ public class ViewNotification extends AppCompatActivity {
 
         //change as per entry
 
-//        super.onBackPressed();
-        Log.d("TAG", "role"+MySharedPreferencesManager.getRole(this));
-        if(MySharedPreferencesManager.getRole(getBaseContext()).equals("student")){
-            startActivity(new Intent(getBaseContext(),MainActivity.class));
+        if(getIntent().getStringExtra("push")!=null){
+            Log.d("TAG", "role"+MySharedPreferencesManager.getRole(this));
+            if(MySharedPreferencesManager.getRole(getBaseContext()).equals("student")){
+                startActivity(new Intent(getBaseContext(),MainActivity.class));
 
-        } else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("alumni")){
-            startActivity(new Intent(getBaseContext(),AlumniActivity.class));
+            } else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("alumni")){
+                startActivity(new Intent(getBaseContext(),AlumniActivity.class));
+
+            }
+            else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("admin")){
+                startActivity(new Intent(getBaseContext(),AdminActivity.class));
+
+            }
+            else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("hr")){
+                startActivity(new Intent(getBaseContext(),HRActivity.class));
+
+            }
+        }else{
+        super.onBackPressed();
 
         }
-        else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("admin")){
-            startActivity(new Intent(getBaseContext(),AdminActivity.class));
-
-        }
-        else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("hr")){
-            startActivity(new Intent(getBaseContext(),HRActivity.class));
-
-        }
-
-
     }
-
-
-
 }
 

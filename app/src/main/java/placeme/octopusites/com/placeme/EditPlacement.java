@@ -44,7 +44,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
-import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
 import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
 import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
@@ -105,13 +104,9 @@ public class EditPlacement extends AppCompatActivity {
     private ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
 
 
-
     int firstVisibleItemPlacement, visibleItemCountPlacement, totalItemCountPlacement;
 
     SwipeRefreshLayout tswipe_refresh_layout;
-
-
-
 
 
     @Override
@@ -135,8 +130,8 @@ public class EditPlacement extends AppCompatActivity {
         //init
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
+        username = MySharedPreferencesManager.getUsername(this);
+        String role = MySharedPreferencesManager.getRole(this);
 
 //        try
 //        {
@@ -156,7 +151,7 @@ public class EditPlacement extends AppCompatActivity {
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement , EditPlacement.this);
+        mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement, EditPlacement.this);
         recyclerViewPlacement.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManagerPlacement = new LinearLayoutManager(this);
         recyclerViewPlacement.setLayoutManager(linearLayoutManagerPlacement);
@@ -269,7 +264,7 @@ public class EditPlacement extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                    RecyclerItemPlacement item = itemListPlacement.get(position);
+                RecyclerItemPlacement item = itemListPlacement.get(position);
                 if (deleteflag == 0) {
 
                     if (!notificationdeleteArraylist.contains(item.getId())) {
@@ -299,9 +294,6 @@ public class EditPlacement extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
@@ -372,7 +364,7 @@ public class EditPlacement extends AppCompatActivity {
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                itemListPlacement.clear();
+//                itemListPlacement.clear();
                 getPlacements();
             }
         });
@@ -540,7 +532,6 @@ public class EditPlacement extends AppCompatActivity {
     //adapter methods and classes
 
     void getPlacements() {
-        itemListPlacement.clear();
         previousTotalPlacement = 0;
         loadingPlacement = true;
         page_to_call_placement = 1;
@@ -568,9 +559,6 @@ public class EditPlacement extends AppCompatActivity {
     }
 
 
-
-
-
     class GetPlacements extends AsyncTask<String, String, String> {
 
 
@@ -593,8 +581,6 @@ public class EditPlacement extends AppCompatActivity {
                 Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
 
-
-
             } catch (Exception e) {
             }
 
@@ -610,66 +596,66 @@ public class EditPlacement extends AppCompatActivity {
         }
     }
 
-    public void GetPlacements(){
-            Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementSentByAdmin")
-                    .setTag(this)
-                    .addQueryParameter("u", username)
-                    .addQueryParameter("p", page_to_call_placement + "")
-                    .setPriority(Priority.HIGH)
-                    .getResponseOnlyFromNetwork()
-                    .build()
-                    .setAnalyticsListener(new AnalyticsListener() {
-                        @Override
-                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                            Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
-                            Log.d("TAG", " bytesSent : " + bytesSent);
-                            Log.d("TAG", " bytesReceived : " + bytesReceived);
-                            Log.d("TAG", " isFromCache : " + isFromCache);
-                        }
-                    })
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.d("TAG", "onResponse object2 : " + response.toString());
-                            try {
+    public void GetPlacements() {
+        Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementSentByAdmin")
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .addQueryParameter("p", page_to_call_placement + "")
+                .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d("TAG", " bytesSent : " + bytesSent);
+                        Log.d("TAG", " bytesReceived : " + bytesReceived);
+                        Log.d("TAG", " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", "onResponse object2 : " + response.toString());
+                        try {
 
 
-                                Log.d("json1", "placementlistfromserver " + response.getString("placementlistfromserver"));
-                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+                            Log.d("json1", "placementlistfromserver " + response.getString("placementlistfromserver"));
+                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
-                            } catch (Exception e) {
-                            }
+                            itemListPlacement.clear();
                             setplacementListtoadapter(placementListfromserver);
 
-
+                        } catch (Exception e) {
                         }
 
-                        @Override
-                        public void onError(ANError error) {
-                            if (error.getErrorCode() != 0) {
-                                // received ANError from server
-                                // error.getErrorCode() - the ANError code from server
-                                // error.getErrorBody() - the ANError body from server
-                                // error.getErrorDetail() - just a ANError detail
-                                Log.d("TAG", "onError errorCode : " + error.getErrorCode());
-                                Log.d("TAG", "onError errorBody : " + error.getErrorBody());
-                                Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
-                            } else {
-                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                                Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
-                            }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                            Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
                         }
-                    });
-        }
+                    }
+                });
+    }
 
 
-
-
-        class Deleteplacements extends AsyncTask<String, String, String> {
+    class Deleteplacements extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
@@ -713,6 +699,7 @@ public class EditPlacement extends AppCompatActivity {
 
         }
     }
+
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
 
@@ -729,9 +716,6 @@ public class EditPlacement extends AppCompatActivity {
 //
         recyclerViewPlacement.getRecycledViewPool().clear();
         mAdapterPlacement.notifyDataSetChanged();
-
-
-
 
 
         Log.d("tag2", "itemcount size ===========" + mAdapterPlacement.getItemCount());
@@ -765,7 +749,7 @@ public class EditPlacement extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-      new GetPlacements().execute();
+            new GetPlacements().execute();
 
 
         }

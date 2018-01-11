@@ -695,7 +695,7 @@ public class EditPlacementMain extends AppCompatActivity {
 
             Toast.makeText(EditPlacementMain.this,result,Toast.LENGTH_SHORT).show();
 
-            EditPlacementMain.super.onBackPressed();
+//            EditPlacementMain.super.onBackPressed();
 
 
         }

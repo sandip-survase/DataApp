@@ -1628,8 +1628,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             tswipe_refresh_layout.setVisibility(View.VISIBLE);
             Log.d(TAG, "onActivityResult: called notification");
 //             Toast.makeText(this, "NOTIFICATION", Toast.LENGTH_SHORT).show();
-             getNotifications2();
+//             getNotifications2();
+//                getPlacements2();
+            if(  selectedMenuFlag ==1){
+                tswipe_refresh_layout.setVisibility(View.VISIBLE);
+                tswipe_refresh_layout.setRefreshing(true);
+                getNotifications2();
+
+            }else if(selectedMenuFlag ==2 ){
+                tswipe_refresh_layout.setVisibility(View.VISIBLE);
+                tswipe_refresh_layout.setRefreshing(true);
+
                 getPlacements2();
+            }
 
 //            handleCrop(resultCode, result);
         }
@@ -1737,7 +1748,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotificationChat"));
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushreceived"));
         setUserCount();
         Log.d("TAG", "onResume: ");
 
@@ -2007,7 +2018,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     File sourceFile = new File(filepath);
 
                     MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
-                    Log.d("TAG", "doInBackground: input username " + username);
                     multipart.addFormField("u", username);
 
                     if (filename != "") {
@@ -2275,19 +2285,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
 
-        if(  selectedMenuFlag ==1){
-            tswipe_refresh_layout.setVisibility(View.VISIBLE);
-            getNotifications2();
-
-        }else if(selectedMenuFlag ==2 ){
-            tswipe_refresh_layout.setVisibility(View.VISIBLE);
-            getPlacements2();
-        }
-    }
 
 
     private void GetNotificationsReadStatus() {
@@ -2807,10 +2805,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         public void onResponse(JSONObject response) {
                             Log.d(TAG, "onResponse object2 : " + response.toString());
                             try {
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
+                                Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
-                                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
-                                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
                                 if (!isLastPageLoadedPlacement) {
 
@@ -2866,10 +2864,10 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             public void onResponse(JSONObject response) {
                                 Log.d(TAG, "onResponse object2 : " + response.toString());
                                 try {
+                                    placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
+                                    Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
+                                    Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
-                                    itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
-                                    Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                    Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
                                     if (!isLastPageLoadedPlacement) {
                                         setplacementListtoadapter(placementListfromserver);
