@@ -2341,9 +2341,6 @@ public class MyProfileCertifications extends AppCompatActivity {
         if (switch10.isChecked())
             willexpire10 = "no";
 
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
 
@@ -2374,8 +2371,6 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                         }
-
-
                     }
                 }
             } else if (certicount == 1) {

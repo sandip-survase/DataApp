@@ -1403,7 +1403,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
 
             Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
-            CreateNotification.super.onBackPressed();
+//            CreateNotification.super.onBackPressed();
         }
     }
 
@@ -1515,6 +1515,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         protected void onPostExecute(String result) {
 
             Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
+            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             CreateNotification.super.onBackPressed();
 
         }

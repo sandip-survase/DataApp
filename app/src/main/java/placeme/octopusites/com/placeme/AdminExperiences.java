@@ -433,6 +433,69 @@ public class AdminExperiences extends AppCompatActivity {
         i=(ImageView)findViewById(R.id.addmoreexpimg);
         addmoreexp=(View)findViewById(R.id.addmoreexp);
 
+        expsw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        edittedFlag=1;
+            }
+        });
+        expsw2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+        expsw10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                edittedFlag=1;
+            }
+        });
+
+
+
 //getters
         try {
 
@@ -495,7 +558,6 @@ public class AdminExperiences extends AppCompatActivity {
                     }
 
                 }
-
 
             }
             if (spost2 != null) {
@@ -2471,6 +2533,7 @@ public class AdminExperiences extends AppCompatActivity {
             }
         });
 
+
         expsw1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -2480,12 +2543,12 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-
+                Log.d("TAG", "onTextChanged: expsw1");
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                Log.d("TAG", "afterTextChanged: expsw1");
             }
         });
         expsw2.addTextChangedListener(new TextWatcher() {

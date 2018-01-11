@@ -192,7 +192,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                 // new HrCompanyDetails().GetStates().execute();
                 pos = position;
                 CompanyType = Nature[position];
-
+                oldnature = CompanyType;
                 Log.d("TAG", "onItemSelected: CompanyType  - " + CompanyType);
 //                if(!oldnature.equals(CompanyType)){
 //                    flag1=1;
@@ -201,6 +201,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
                     otherNature.setVisibility(View.VISIBLE);
+                    checkothernature();
 
                 } else {
                     newnature = CompanyType;
@@ -472,7 +473,13 @@ public class HrCompanyDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
+                if(oldnature.equals("Other")){
+                    if (otherNature.getText().toString().length() < 2) {
+                        flag1 = 1;
+                    }
+                }
                 if (flag1 == 1) {
+
                     validateandSave();
                 }
                 else {
@@ -651,4 +658,9 @@ public class HrCompanyDetails extends AppCompatActivity {
 
         }
     }
+    public void checkothernature(){
+
+    }
+
+
 }

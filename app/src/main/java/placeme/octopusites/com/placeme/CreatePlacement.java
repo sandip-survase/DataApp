@@ -169,6 +169,7 @@ public class CreatePlacement extends AppCompatActivity {
         });
 
 
+
         CheckBoxsAlumni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -384,7 +385,7 @@ public class CreatePlacement extends AppCompatActivity {
                         } else {
 
 //                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
-                            //call ENCRYPT ND SAVE save method
+                            //call ENCRYPT ND create save method
                             encrypt();
                         }
                     }
@@ -633,7 +634,7 @@ public class CreatePlacement extends AppCompatActivity {
         protected void onPostExecute(String result) {
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
-            CreatePlacement.super.onBackPressed();
+//            CreatePlacement.super.onBackPressed();
 
 //            if(result.equals("success"))
 //            {

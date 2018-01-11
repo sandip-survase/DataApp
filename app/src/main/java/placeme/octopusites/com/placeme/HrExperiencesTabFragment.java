@@ -410,6 +410,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+
                 if (isChecked) {
                     //status="true"; //edit here
                     blnswitch1 = true;
@@ -423,6 +424,8 @@ public class HrExperiencesTabFragment extends Fragment {
                     View v = (View)rootView.findViewById(R.id.todaterl1);
                     v.setVisibility(View.VISIBLE);
                 }
+
+
 
             }
         });
@@ -605,6 +608,8 @@ public class HrExperiencesTabFragment extends Fragment {
 
             }
         });
+
+
         //
         post1.addTextChangedListener(new TextWatcher() {
             @Override
