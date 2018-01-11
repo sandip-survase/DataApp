@@ -57,9 +57,9 @@ public class Z {
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
 // -------------------------------------------MainActivity(student)-----------------------------------------------
-public static final String url_getnotificationsmetadata = IP + "CreateNotificationTemp/GetNotificationsMetaData";
-    public static final String url_getnotificationsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfNotifications";
-    public static final String url_getnotifications = IP + "CreateNotificationTemp/GetNotifications";
+public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
+    public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
+    public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
 
     public static final String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";

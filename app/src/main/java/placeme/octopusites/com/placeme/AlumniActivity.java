@@ -998,7 +998,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 if (intent.getAction().equals("pushNotificationChat")) {
 
                     Log.d("TAG", "push broadcast received: ");
-                    new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
@@ -1654,46 +1653,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
     }
 
-    class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            placementcountrl.setVisibility(View.VISIBLE);
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
-                placementcountrl.setVisibility(View.GONE);
-            }
-            notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification + "");
-            if (unreadcountNotification == 0) {
-                notificationcountrl.setVisibility(View.GONE);
-            }
-
-            getNotifications();
-
-        }
-    }
 
     void filterNotifications(String text) {
         tempListNotification = new ArrayList();

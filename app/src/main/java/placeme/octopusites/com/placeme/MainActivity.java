@@ -362,9 +362,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 if (intent.getAction().equals("pushreceived")) {
 
                     Log.d("TAG", "push broadcast received: ");
-                    new GetUnreadCountOfNotificationAndPlacement().execute();
-
-
                     RefreshNotificationCount();
                      RefreshPlacementCount();
                     new GetUnreadMessagesCount().execute();
@@ -2218,46 +2215,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-    class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            placementcountrl.setVisibility(View.VISIBLE);
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
-                placementcountrl.setVisibility(View.GONE);
-            }
-            notificationcountrl.setVisibility(View.VISIBLE);
-            notificationcounttxt.setText(unreadcountNotification + "");
-            if (unreadcountNotification == 0) {
-                notificationcountrl.setVisibility(View.GONE);
-            }
-
-            getNotifications();
-
-        }
-    }
 
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
 
@@ -2340,7 +2297,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     private void GetPlacementsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsMetaData")
+        AndroidNetworking.post(Z.url_getplacementsmetadata)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.HIGH)
@@ -2423,7 +2380,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     private void GetPlacements2() {
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
 
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacements")
+        AndroidNetworking.post(Z.url_getplacements)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
@@ -2773,8 +2730,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
     private void GetNotificationsReadStatus() {
-//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsMetaData")
+        AndroidNetworking.post(Z.url_getnotificationsmetadata)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.HIGH)
@@ -2838,7 +2794,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     private void GetNotifications2() {
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotifications")
+        AndroidNetworking.post(Z.url_getnotifications)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
@@ -3018,7 +2974,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         if (page_to_call_notification != notificationpages) {
 
-            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotifications")
+            AndroidNetworking.post(Z.url_getnotifications)
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
@@ -3074,7 +3030,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             if (!isLastPageLoadedNotification) {
                 lastPageFlagNotification = 1;
 
-                AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotifications")
+                AndroidNetworking.post(Z.url_getnotifications)
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")

@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -32,6 +33,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.UploadProgressListener;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
@@ -57,7 +64,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 public class CreateNotification extends AppCompatActivity implements TagsEditText.TagsEditListener {
 
-
+  String   TAG="CreateNotification";
     final List<String> yearList = new ArrayList<String>();
     //hiding ui
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
@@ -107,6 +114,9 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     boolean fileinprogress1 = false, fileinprogress2 = false, fileinprogress3 = false, fileinprogress4 = false, fileinprogress5 = false;
 
     private TagsEditText batchesTags;
+    boolean createdNew=false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +164,16 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             lastmodifiedtxt.setVisibility(View.GONE);
 
         }
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        OkHttpUtil.getClient();
+//        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(getApplicationContext(), OkHttpUtil.getClient());
+
         attchrl1 = (RelativeLayout) findViewById(R.id.file1);
         attchrl2 = (RelativeLayout) findViewById(R.id.file2);
         attchrl3 = (RelativeLayout) findViewById(R.id.file3);
@@ -743,7 +763,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     filenameparam1 = "";
                                     ssfile1 = "";
                                     filecounter--;
-                                    fileinprogress1=false;
+                                    fileinprogress1 = false;
                                     refresh();
 
                                 } catch (Exception e) {
@@ -767,7 +787,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             String n = t1.getText().toString();
             filenameondialogshow1.setText(n);
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
-            if (FLAG.equals("fromeditactivity")) {
+            if (FLAG.equals("EditNotification")) {
                 sizeondialogshow1.setText("");
                 sizeondialogshow1.setVisibility(View.GONE);
             } else {
@@ -819,7 +839,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     filenameparam2 = "";
                                     ssfile2 = "";
                                     filecounter--;
-                                    fileinprogress2=false;
+                                    fileinprogress2 = false;
                                     refresh();
 
                                 } catch (Exception e) {
@@ -843,7 +863,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             String n = t2.getText().toString();
             filenameondialogshow1.setText(n);
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
-            if (FLAG.equals("fromeditactivity")) {
+            if (FLAG.equals("EditNotification")) {
                 sizeondialogshow1.setText("");
                 sizeondialogshow1.setVisibility(View.GONE);
 
@@ -894,7 +914,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     filenameparam3 = "";
                                     ssfile3 = "";
                                     filecounter--;
-                                    fileinprogress3=false;
+                                    fileinprogress3 = false;
 
                                     refresh();
                                 } catch (Exception e) {
@@ -920,7 +940,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             String n = t3.getText().toString();
             filenameondialogshow1.setText(n);
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
-            if (FLAG.equals("fromeditactivity")) {
+            if (FLAG.equals("EditNotification")) {
                 sizeondialogshow1.setText("");
                 sizeondialogshow1.setVisibility(View.GONE);
 
@@ -970,7 +990,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     ssfile4 = "";
 
                                     filenameparam4 = "";
-                                    fileinprogress4=false;
+                                    fileinprogress4 = false;
                                     refresh();
 
                                 } catch (Exception e) {
@@ -996,7 +1016,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             filenameondialogshow1.setText(n);
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
 
-            if (FLAG.equals("fromeditactivity")) {
+            if (FLAG.equals("EditNotification")) {
                 sizeondialogshow1.setText("");
                 sizeondialogshow1.setVisibility(View.GONE);
 
@@ -1045,7 +1065,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                                     filenameparam5 = "";
                                     ssfile5 = "";
                                     filecounter--;
-                                    fileinprogress5=false;
+                                    fileinprogress5 = false;
                                     refresh();
                                 } catch (Exception e) {
 
@@ -1070,7 +1090,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             String n = t5.getText().toString();
             filenameondialogshow1.setText(n);
             TextView sizeondialogshow1 = (TextView) dialogView.findViewById(R.id.primaryemail);
-            if (FLAG.equals("fromeditactivity")) {
+            if (FLAG.equals("EditNotification")) {
                 sizeondialogshow1.setText("");
                 sizeondialogshow1.setVisibility(View.GONE);
 
@@ -1117,6 +1137,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     .setPositiveButton("Discard",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    setResult(299);
                                     CreateNotification.super.onBackPressed();
                                 }
                             })
@@ -1141,10 +1162,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             alertDialog.show();
 
         } else {
+            if ( !createdNew ) {
+                setResult(299);
+            }
             CreateNotification.super.onBackPressed();
 
         }
-
     }
 
     @Override
@@ -1192,20 +1215,21 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 refresh();
                 batchesTags.dismissDropDown();
                 if (filecounter == 1) {
-                    new ShowProgress1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                    new ShowProgress1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    uploadImage();
                 }
                 if (filecounter == 2) {
-                    new ShowProgress2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                     ShowProgress2( filename,filePath  );
                 }
                 if (filecounter == 3) {
-                    new ShowProgress3().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                     ShowProgress3( filename,filePath  );
                 }
                 if (filecounter == 4) {
-                    new ShowProgress4().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                     ShowProgress4( filename,filePath  );
 
                 }
                 if (filecounter == 5) {
-                    new ShowProgress5().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                     ShowProgress5( filename,filePath  );
 
                 }
 
@@ -1231,7 +1255,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam5 = "";
 
                     attchrl1.requestFocus();
-               }
+                }
             } catch (Exception e) {
                 attchrl1.setVisibility(View.GONE);
                 t1.setText("");
@@ -1247,7 +1271,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam5 = "";
 
                     attchrl2.requestFocus();
-          }
+                }
             } catch (Exception e) {
                 attchrl2.setVisibility(View.GONE);
                 t2.setText("");
@@ -1261,7 +1285,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam4 = "";
                     filenameparam5 = "";
                     attchrl3.requestFocus();
-        }
+                }
             } catch (Exception e) {
                 t3.setText("");
                 attchrl3.setVisibility(View.GONE);
@@ -1276,7 +1300,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     filenameparam5 = "";
 
                     attchrl4.requestFocus();
-          }
+                }
             } catch (Exception e) {
                 attchrl4.setVisibility(View.GONE);
                 t4.setText("");
@@ -1289,12 +1313,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     t5.setText(a1.get(4));
                     filenameparam5 = (a1.get(4));
                     attchrl5.requestFocus();
-         }
+                }
             } catch (Exception e) {
                 attchrl5.setVisibility(View.GONE);
                 t5.setText("");
             }
-     } catch (Exception e) {
+        } catch (Exception e) {
         }
 
     }
@@ -1314,7 +1338,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
     @Override
     public void onEditingFinished() {
-   }
+    }
 
     class SaveData extends AsyncTask<String, String, String> {
         @Override
@@ -1398,12 +1422,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         @Override
         protected void onPostExecute(String result) {
 //setresult
-            Log.d("TAG", "onPostExecute: setresult - "+AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
-
+            Log.d("TAG", "onPostExecute: setresult - " + AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
-
+            createdNew=true;
             Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
-//            CreateNotification.super.onBackPressed();
+            CreateNotification.super.onBackPressed();
         }
     }
 
@@ -1513,391 +1536,20 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected void onPostExecute(String result) {
-
             Toast.makeText(CreateNotification.this, result, Toast.LENGTH_SHORT).show();
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+            createdNew=true;
             CreateNotification.super.onBackPressed();
 
         }
     }
 
-   class ShowProgress1 extends AsyncTask<String, String, String> {
 
-        @Override
-        protected String doInBackground(String... strings) {
-            prg1.setIndeterminate(true);
-            try {
-                File atach1 = new File(filePath);
-                lenght = atach1.length();
-                username = Z.Decrypt(encUsername, CreateNotification.this);
-//            username = encUsername;
 
-                if (atach1 != null) {
 
-                    MultipartUtility multipart = null;
-                    try {
-                        prg1.setIndeterminate(true);
-                        fileinprogress1 = true;
 
-                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-                        Log.d("TAG", "UploadProfile1 : input  username " + username);
-                        multipart.addFormField("u", username);
-                        if (filename != "") {
-                            multipart.addFormField("f", filename);
-                            multipart.addFilePart("uf", atach1);
-                            Log.d("TAG", "onSuccess: f name- " + filename);
-                        } else
-                            multipart.addFormField("f", "null");
-                        response = multipart.finish();
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "exp : " + e.getMessage());
 
-                    }
-
-                } else {
-                    Log.d("TAG", "file null");
-
-                }
-
-
-            } catch (Exception ex) {
-
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Log.d("response", ":onPostExecute response1 :" + response);
-
-            if (response != null && response.get(0).contains("created")) {
-                Log.d("filestatus1", "created");
-                prg1.setIndeterminate(false);
-                prg1.setProgress(100);
-                fileinprogress1 = false;
-
-
-            } else if (response != null && response.get(0).contains("null")) {
-                Log.d("filestatus1", "null");
-                fileinprogress1 = false;
-
-
-            } else {
-                Log.d("filestatus1", "file not created");
-                fileinprogress1 = false;
-
-
-            }
-
-        }
-    }
-
-    class ShowProgress2 extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            prg2.setIndeterminate(true);
-            try {
-                File atach1 = new File(filePath);
-                lenght = atach1.length();
-                username = Z.Decrypt(encUsername, CreateNotification.this);
-//            username = encUsername;
-
-                if (atach1 != null) {
-
-                    MultipartUtility multipart = null;
-                    try {
-                        prg2.setIndeterminate(true);
-                        fileinprogress2 = true;
-
-
-                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-                        Log.d("TAG", "UploadProfile2 : input  username " + username);
-                        multipart.addFormField("u", username);
-                        if (filename != "") {
-                            multipart.addFormField("f", filename);
-                            multipart.addFilePart("uf", atach1);
-                            Log.d("TAG", "onSuccess: f name- " + filename);
-                        } else
-                            multipart.addFormField("f", "null");
-                        response = multipart.finish();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "exp : " + e.getMessage());
-
-                    }
-
-                } else {
-                    Log.d("TAG", "file null");
-
-                }
-
-
-            } catch (Exception ex) {
-
-            }
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Log.d("response", ":onPostExecute response2 :" + response);
-
-
-            if (response != null && response.get(0).contains("created")) {
-                Log.d("filestatus2", "created");
-                prg2.setIndeterminate(false);
-                prg2.setProgress(100);
-                fileinprogress2 = false;
-
-
-            } else if (response != null && response.get(0).contains("null")) {
-                Log.d("filestatus2", "null");
-                fileinprogress2 = false;
-
-
-            } else {
-                Log.d("filestatus2", "file not created");
-                fileinprogress2 = false;
-
-
-            }
-
-        }
-    }
-
-    class ShowProgress3 extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-            try {
-                File atach1 = new File(filePath);
-                lenght = atach1.length();
-                username = Z.Decrypt(encUsername, CreateNotification.this);
-//            username = encUsername;
-
-                if (atach1 != null) {
-
-                    MultipartUtility multipart = null;
-                    try {
-                        prg3.setIndeterminate(true);
-                        fileinprogress3 = true;
-
-
-                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-                        Log.d("TAG", "UploadProfile3 : input  username " + username);
-                        multipart.addFormField("u", username);
-                        if (filename != "") {
-                            multipart.addFormField("f", filename);
-                            multipart.addFilePart("uf", atach1);
-                            Log.d("TAG", "onSuccess: f name- " + filename);
-                        } else
-                            multipart.addFormField("f", "null");
-                        response = multipart.finish();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "exp : " + e.getMessage());
-
-                    }
-
-                } else {
-                    Log.d("TAG", "file null");
-
-                }
-
-
-            } catch (Exception ex) {
-
-            }
-
-
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Log.d("response", ":onPostExecute response3 :" + response);
-
-            if (response != null && response.get(0).contains("created")) {
-                Log.d("filestatus3", "created");
-                prg3.setIndeterminate(false);
-                prg3.setProgress(100);
-                fileinprogress3 = false;
-
-
-            } else if (response != null && response.get(0).contains("null")) {
-                Log.d("filestatus3", "null");
-                fileinprogress3 = false;
-
-
-            } else {
-                Log.d("filestatus3", "file not created");
-                fileinprogress3 = false;
-
-
-            }
-
-        }
-    }
-
-    class ShowProgress4 extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-
-            try {
-                File atach1 = new File(filePath);
-                lenght = atach1.length();
-                username = Z.Decrypt(encUsername, CreateNotification.this);
-//            username = encUsername;
-
-                if (atach1 != null) {
-
-                    MultipartUtility multipart = null;
-                    try {
-                        prg4.setIndeterminate(true);
-                        fileinprogress4 = true;
-
-
-                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-                        Log.d("TAG", "UploadProfile4 : input  username " + username);
-                        multipart.addFormField("u", username);
-                        if (filename != "") {
-                            multipart.addFormField("f", filename);
-                            multipart.addFilePart("uf", atach1);
-                            Log.d("TAG", "onSuccess: f name- " + filename);
-                        } else
-                            multipart.addFormField("f", "null");
-                        response = multipart.finish();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "exp : " + e.getMessage());
-
-                    }
-
-                } else {
-                    Log.d("TAG", "file null");
-
-                }
-
-
-            } catch (Exception ex) {
-
-
-            }
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (response != null && response.get(0).contains("created")) {
-                Log.d("filestatus4", "created");
-                prg4.setIndeterminate(false);
-                prg4.setProgress(100);
-                fileinprogress4 = false;
-
-
-            } else if (response != null && response.get(0).contains("null")) {
-                Log.d("filestatus4", "null");
-                fileinprogress4 = false;
-
-
-            } else {
-                Log.d("filestatus4", "file not created");
-                fileinprogress4 = false;
-
-
-            }
-
-
-        }
-    }
-
-    class ShowProgress5 extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-                File atach1 = new File(filePath);
-                lenght = atach1.length();
-                username = Z.Decrypt(encUsername, CreateNotification.this);
-
-                if (atach1 != null) {
-
-                    MultipartUtility multipart = null;
-                    try {
-                        prg5.setIndeterminate(true);
-                        fileinprogress5 = true;
-
-
-                        multipart = new MultipartUtility(Z.url_SavefileOnServer, "UTF-8");
-                        Log.d("TAG", "UploadProfile5 : input  username " + username);
-                        multipart.addFormField("u", username);
-                        if (filename != "") {
-                            multipart.addFormField("f", filename);
-                            multipart.addFilePart("uf", atach1);
-                            Log.d("TAG", "onSuccess: f name- " + filename);
-                        } else
-                            multipart.addFormField("f", "null");
-                        response = multipart.finish();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "exp : " + e.getMessage());
-
-                    }
-
-                } else {
-                    Log.d("TAG", "file null");
-
-                }
-
-
-            } catch (Exception ex) {
-
-
-            }
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (response != null && response.get(0).contains("created")) {
-                Log.d("filestatus5", "created");
-                prg5.setIndeterminate(false);
-                prg5.setProgress(100);
-                fileinprogress5 = false;
-
-
-            } else if (response != null && response.get(0).contains("null")) {
-                Log.d("filestatus5", "null");
-                fileinprogress5 = false;
-
-
-            } else {
-                Log.d("filestatus5", "file not created");
-                fileinprogress5 = false;
-
-
-
-
-            }
-
-        }
-    }
 
     class GetForwhome extends AsyncTask<String, String, String> {
 
@@ -2003,6 +1655,307 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             edittedFlag = 0;
         }
     }
+    public void uploadImage() {
+        try {
+            username = Z.Decrypt(encUsername, CreateNotification.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+                .setPriority(Priority.MEDIUM)
+                .addQueryParameter("u", username)
+                .addQueryParameter("f",filename )
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .addMultipartFile("uf", new File(filePath))
+                .setTag(this)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        Log.d(TAG, "bytesUploaded : " + bytesUploaded + " totalBytes : " + totalBytes);
+                        int precent=  (int) ((bytesUploaded * 100) / totalBytes);
+                        Log.d(TAG, "precent :"+precent);
+                        prg1.setProgress(precent);
+
+                        Log.d(TAG, "setUploadProgressListener isMainThread : " + String.valueOf(Looper.myLooper() == Looper.getMainLooper()));
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Image upload Completed");
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+    public void ShowProgress2(String filename,String filePath  ) {
+
+        try {
+            username = Z.Decrypt(encUsername, CreateNotification.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+                .setPriority(Priority.MEDIUM)
+                .addQueryParameter("u", username)
+                .addQueryParameter("f",filename )
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .addMultipartFile("uf", new File(filePath))
+                .setTag(this)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        Log.d(TAG, "bytesUploaded : " + bytesUploaded + " totalBytes : " + totalBytes);
+                        int precent=  (int) ((bytesUploaded * 100) / totalBytes);
+                        Log.d(TAG, "precent :"+precent);
+                        prg2.setProgress(precent);
+
+                        Log.d(TAG, "setUploadProgressListener isMainThread : " + String.valueOf(Looper.myLooper() == Looper.getMainLooper()));
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Image upload Completed");
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+    public void ShowProgress3(String filename,String filePath  ) {
+
+        try {
+            username = Z.Decrypt(encUsername, CreateNotification.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+                .setPriority(Priority.MEDIUM)
+                .addQueryParameter("u", username)
+                .addQueryParameter("f",filename )
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .addMultipartFile("uf", new File(filePath))
+                .setTag(this)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        Log.d(TAG, "bytesUploaded : " + bytesUploaded + " totalBytes : " + totalBytes);
+                        int precent=  (int) ((bytesUploaded * 100) / totalBytes);
+                        Log.d(TAG, "precent :"+precent);
+                        prg3.setProgress(precent);
+
+                        Log.d(TAG, "setUploadProgressListener isMainThread : " + String.valueOf(Looper.myLooper() == Looper.getMainLooper()));
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Image upload Completed");
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+    public void ShowProgress4(String filename,String filePath  ) {
+
+        try {
+            username = Z.Decrypt(encUsername, CreateNotification.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+                .setPriority(Priority.MEDIUM)
+                .addQueryParameter("u", username)
+                .addQueryParameter("f",filename )
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .addMultipartFile("uf", new File(filePath))
+                .setTag(this)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        Log.d(TAG, "bytesUploaded : " + bytesUploaded + " totalBytes : " + totalBytes);
+                        int precent=  (int) ((bytesUploaded * 100) / totalBytes);
+                        Log.d(TAG, "precent :"+precent);
+                        prg4.setProgress(precent);
+
+                        Log.d(TAG, "setUploadProgressListener isMainThread : " + String.valueOf(Looper.myLooper() == Looper.getMainLooper()));
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Image upload Completed");
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+    public void ShowProgress5(String filename,String filePath  ) {
+
+        try {
+            username = Z.Decrypt(encUsername, CreateNotification.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+                .setPriority(Priority.MEDIUM)
+                .addQueryParameter("u", username)
+                .addQueryParameter("f",filename )
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .addMultipartFile("uf", new File(filePath))
+                .setTag(this)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        Log.d(TAG, "bytesUploaded : " + bytesUploaded + " totalBytes : " + totalBytes);
+                        int precent=  (int) ((bytesUploaded * 100) / totalBytes);
+                        Log.d(TAG, "precent :"+precent);
+                        prg5.setProgress(precent);
+
+                        Log.d(TAG, "setUploadProgressListener isMainThread : " + String.valueOf(Looper.myLooper() == Looper.getMainLooper()));
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Image upload Completed");
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
 
 
 }

@@ -75,6 +75,7 @@ public class EditPlacementMain extends AppCompatActivity {
     String sid, scompanyname, spackage, spost, sforwhichcourse, sforwhichstream, svacancies, slastdateofregistration, sdateofarrival, sbond, snoofapti;
     String snooftechtest, snoofgd, snoofti, snoofhri, sstdx, sstdxiiordiploma, sug, spg, suploadtime, slastmodified, suploadedby, sforwhom = "", snoofallowedliveatkt, snoofalloweddeadatkt;
     //
+    boolean newCreatedPlacements=false;
 
 
 //
@@ -395,6 +396,7 @@ public class EditPlacementMain extends AppCompatActivity {
                     .setPositiveButton("Discard",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    setResult(299);
                                     EditPlacementMain.super.onBackPressed();
                                 }
                             })
@@ -417,8 +419,14 @@ public class EditPlacementMain extends AppCompatActivity {
             });
 
             alertDialog.show();
-        } else
-            EditPlacementMain.super.onBackPressed();
+        } else{
+            if(newCreatedPlacements){
+                setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+            }else{
+                setResult(299);
+            }
+            super.onBackPressed();
+        }
 
     }
 
@@ -694,8 +702,10 @@ public class EditPlacementMain extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             Toast.makeText(EditPlacementMain.this,result,Toast.LENGTH_SHORT).show();
+            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+            newCreatedPlacements=true;
 
-//            EditPlacementMain.super.onBackPressed();
+            EditPlacementMain.super.onBackPressed();
 
 
         }

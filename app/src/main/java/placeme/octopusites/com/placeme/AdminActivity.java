@@ -333,7 +333,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
                         Intent i1 = new Intent(AdminActivity.this, CreateNotification.class);
                         i1.putExtra("flag", "fromAdminActivity");
-                        startActivityForResult(i1, 0);
+                        startActivityForResult(i1, 99);
 
 //                        startActivityForResult(new Intent(getActivity(), MyProfileKnownLang.class).putExtra("username", username), 0);
 //                        for result
@@ -348,7 +348,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         String Tag = "adminActivity";
                         settag.setActivityFromtag(Tag);
 
-                        startActivityForResult(new Intent(AdminActivity.this, CreatePlacement.class),0);
+                        startActivityForResult(new Intent(AdminActivity.this, CreatePlacement.class),99);
 
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
@@ -363,7 +363,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
-                        startActivity(new Intent(AdminActivity.this, EditNotification.class));
+                        startActivityForResult(new Intent(AdminActivity.this, EditNotification.class),99);
 
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
@@ -372,7 +372,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 } else if (notificationorplacementflag == 2) {
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
-                        startActivity(new Intent(AdminActivity.this, EditPlacement.class));
+                        startActivityForResult(new Intent(AdminActivity.this, EditPlacement.class),99);
 
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
@@ -525,7 +525,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         createPlacementOrNotification.setText("Create Placements");
                         editPlacementOrNotification.setText("Edit Placements");
                         tswipe_refresh_layout.setVisibility(View.VISIBLE);
-
+                        tswipe_refresh_layout.setRefreshing(true);
                         recyclerViewNotification.setVisibility(View.GONE);
                         recyclerViewPlacement.setVisibility(View.VISIBLE);
 
@@ -1625,7 +1625,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
             handleCrop(resultCode, result);
         }
-
         else if (resultCode == ADMIN_CREATE_DATA_CHANGE_RESULT_CODE) {
 
             tswipe_refresh_layout.setVisibility(View.VISIBLE);
@@ -1647,6 +1646,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 //            handleCrop(resultCode, result);
         }
+        else if (resultCode == 299) {
+            Log.d(TAG, "comming from edit  do nothing ");
+
+        }
+
 
     }
 

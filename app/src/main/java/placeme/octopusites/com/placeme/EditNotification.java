@@ -109,6 +109,8 @@ public class EditNotification extends AppCompatActivity {
     private RecyclerView recyclerViewNotification;
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
+    boolean newCreatedNotification=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,6 +219,7 @@ public class EditNotification extends AppCompatActivity {
 
                         if (item.getFilename2() != null) {
                             i1.putExtra("file2", Z.Decrypt(item.getFilename2(), EditNotification.this));
+                            i1.putExtra("file2", Z.Decrypt(item.getFilename2(), EditNotification.this));
                         } else {
                             i1.putExtra("file2", item.getFilename2());
                         }
@@ -246,7 +249,7 @@ public class EditNotification extends AppCompatActivity {
                         Log.d("Check2", "file1: " + item.getFilename1());
                         Log.d("Check2", "lastmodified: " + item.getLastmodified());
                         Log.d("Check2", "file5: " + item.getFilename5());
-                        startActivityForResult(i1,0);
+                        startActivityForResult(i1,99);
 
 
                     }
@@ -519,7 +522,16 @@ public class EditNotification extends AppCompatActivity {
             getNotifications2();
 
         } else
+
+        if(newCreatedNotification){
+            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+        }else{
+            setResult(299);
+        }
+
             super.onBackPressed();
+
+
     }
 
 
@@ -945,6 +957,7 @@ public class EditNotification extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE){
+            newCreatedNotification=true;
             getNotifications2();
         }
 

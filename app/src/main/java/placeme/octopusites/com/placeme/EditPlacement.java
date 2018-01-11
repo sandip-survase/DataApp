@@ -107,6 +107,7 @@ public class EditPlacement extends AppCompatActivity {
     int firstVisibleItemPlacement, visibleItemCountPlacement, totalItemCountPlacement;
 
     SwipeRefreshLayout tswipe_refresh_layout;
+    boolean newCreatedPlacements=false;
 
 
     @Override
@@ -257,9 +258,8 @@ public class EditPlacement extends AppCompatActivity {
 //                    Log.d("Check2" ,"forwhome: "+  item.getForwhom());
 
                     Log.d("Check2", "ug: " + item.getUg());
-                    startActivity(i1);
+                    startActivityForResult(i1,99);
                 }
-
             }
 
             @Override
@@ -525,8 +525,16 @@ public class EditPlacement extends AppCompatActivity {
             }
             selectedCount = 0;
 
-        } else
+        } else {
+            if(newCreatedPlacements){
+                setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+            }else{
+                setResult(299);
+            }
             super.onBackPressed();
+
+
+        }
     }
 
     //adapter methods and classes
@@ -550,13 +558,6 @@ public class EditPlacement extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        getPlacements();
-
-
-    }
 
 
     class GetPlacements extends AsyncTask<String, String, String> {
@@ -984,5 +985,14 @@ public class EditPlacement extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(resultCode==AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE){
+            newCreatedPlacements=true;
+            getPlacements();
+        }
+
+    }
 }
