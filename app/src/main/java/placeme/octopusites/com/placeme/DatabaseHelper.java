@@ -237,8 +237,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String selectQuery = "select * from chat where timestamp='"+chat.timestamp+"' and message='"+chat.message+"'";
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        String[] columns = {"sender", "receiver", "senderUid", "receiverUid", "message", "timestamp", "messagetime"};
+        Cursor cursor = db.query("chat", columns, "timestamp=? and message=?", new String[]{chat.timestamp + "", chat.message}, null, null, null);
+//        String selectQuery = "select * from chat where timestamp='"+chat.timestamp+"' and message='"+chat.message+"'";
+//        Cursor cursor = db.rawQuery(selectQuery, null);
         int c=cursor.getCount();
         if(c==0) {
             ContentValues values = new ContentValues();

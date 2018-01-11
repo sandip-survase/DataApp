@@ -58,6 +58,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -1292,8 +1293,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         getNotifications();
          RefreshPlacementCount();
         new GetUnreadMessagesCount().execute();
-        new UpdateFirebaseToken().execute();
+//        new UpdateFirebaseToken().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetStudentData().execute();
+
 
 //        changePass();
         Log.d("Tag", "onCreate: " + getIntent().getStringExtra("push"));
@@ -1376,13 +1378,29 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         @Override
         protected void onPostExecute(String result) {
-
+            new getToken().execute();
         }
     }
 
 //    student data
 
     void loginFirebase(final String username, String hash) {
+//
+//        FirebaseAuth.getInstance().signInWithCustomToken("eyJhbGciOiJSUzI1NiIsImtpZCI6ImIyOGM3MzNhY2Y3YTcyNTg0ZmUxMTg4MGJjMmFkNDhkYTIxZTQ1OTEifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGxhY2VtZS0yYWJkYSIsImF1ZCI6InBsYWNlbWUtMmFiZGEiLCJhdXRoX3RpbWUiOjE1MTU1Njc2ODQsInVzZXJfaWQiOiJpaUEybkhPOUpGUW92YllMOUJ1OHh3ZXpXd1kyIiwic3ViIjoiaWlBMm5ITzlKRlFvdmJZTDlCdTh4d2V6V3dZMiIsImlhdCI6MTUxNTU2NzY4NSwiZXhwIjoxNTE1NTcxMjg1LCJlbWFpbCI6InNoYXJhbmd0aGVkZW9AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInNoYXJhbmd0aGVkZW9AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.fmqnUrPlsNbPCVu5uWh_FoBDjmFUJjLrveNrU7xkvyvJZ_HzjtDcVfDYDj84Rghp8DMnFLrSDfcqp-HD62t9P8MJNN3jdnn_Hy_ryjAOplsSbVewjrVxvDqxg07NmxzGEsXgumadP3eNRVEszd3nd5rIxmmsdLX_RTiWT1ercbC_PQS_ZiOnQe7pfHPKstcQcuqj0xuGVatSQAM140ZkGnUZuu0_EcZQEd8q86L9P9E1yeAEaZ50Kffe80hQbhWWgTVr40EB4XW0Ak7ueXr4_cPat0qx19yeUgyufFAtsmMeSZUhpd1Md74fpImImt1Z0ro8W0QHTUU0vgAf2CzOSQ")
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d("RTR", "signInWithCustomToken:success");
+//
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w("RTR", "signInWithCustomToken:failure", task.getException());
+//
+//                        }
+//                    }
+//                });
 
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
@@ -1392,11 +1410,12 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-
+                            Log.d("TAG", "Successfully logged in to Firebase");
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                             if (user != null) {
                                 MySharedPreferencesManager.save(MainActivity.this, "uid", user.getUid());
+                                Log.d("RTR", "token :" + user.getUid());
                                 try {
                                     new CreateFirebaseUser(Z.Encrypt(username, MainActivity.this), pass, user.getUid()).execute();
                                 } catch (Exception e) {
@@ -1404,8 +1423,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                                 }
                             }
 
+
                         } else {
-                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Fail logged in to Firebase");
                         }
                     }
                 });
@@ -2836,91 +2856,60 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
     }
 
-    class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
-        // TODO move UpdateFirebaseToken code to all base activity
-        // TODO update AID,DID
-        JSONObject json;
+    class getToken extends AsyncTask<String, String, String> {
+
+
         JSONParser jParser = new JSONParser();
         String resultofop = null;
 
         protected String doInBackground(String... param) {
             try {
 
-                String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
-                String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
-                Log.d("TAG", "mainactivity token\n" + token);
-
+                String encUsername = MySharedPreferencesManager.getUsername(MainActivity.this);
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));       //0
-                params.add(new BasicNameValuePair("t", token));             //1
-                json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+                JSONObject json = jParser.makeHttpRequest(Z.url_GenrateCustomToken, "GET", params);
+                Log.d("RTR", "getToken : " + json);
 
-
-                resultofop = json.getString("info");
+                resultofop = json.getString("token");
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "";
+            return resultofop;
         }
 
         @Override
         protected void onPostExecute(String result) {
-//            if (resultofop.equals("success")) {
-//                Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
-//            }
+
+            if (result != null) {
+                FirebaseAuth.getInstance().signInWithCustomToken(result)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("RTR", "signInWithCustomToken:success");
+                                    Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user != null) {
+                                        Log.d("RTR", "onComplete uid: " + user.getUid());
+                                    }
+
+                                } else {
+                                    Log.w("RTR", "signInWithCustomToken:failure", task.getException());
+                                    Toast.makeText(MainActivity.this, "Fail logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+            } else
+                Log.d("TAG", "token null: ");
         }
+
     }
 
 
-//    class GetNotificationsReadStatus extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//            String r = null;
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("u", username));       //0
-//
-//            try {
-//
-//                JSONObject json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
-//
-//                notificationpages = Integer.parseInt(json.getString("pages"));
-//                called_pages_notification = new int[notificationpages];
-//                total_no_of_notifications = Integer.parseInt(json.getString("count"));
-//                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-//                Log.d(TAG, "projects :" + notificationpages);
-//                Log.d(TAG, "total Movies:" + total_no_of_notifications);
-//                Log.d(TAG, "Upcoming Movies to release:" + notificationpages);
-////
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return r;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            try {
-//                notificationcountrl.setVisibility(View.VISIBLE);
-//                notificationcounttxt.setText(unreadcountNotification + "");
-//                if (unreadcountNotification == 0) {
-//                    notificationcountrl.setVisibility(View.GONE);
-//                }
-//
-//
-//                new GetNotifications2().execute();
-//
-//
-//            } catch (Exception e) {
-////                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//
-//
-//        }
-//    }
 
 
 

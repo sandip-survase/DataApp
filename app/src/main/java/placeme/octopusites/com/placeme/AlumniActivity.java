@@ -1344,7 +1344,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         @Override
         protected void onPostExecute(String result) {
-
+            new getToken().execute();
         }
     }
 
@@ -2880,7 +2880,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(AlumniActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(AlumniActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Successfully logged in to Firebase: ");
 
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             if (user != null) {
@@ -2893,10 +2894,63 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             }
 
                         } else {
-                            Toast.makeText(AlumniActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(AlumniActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Fails logged in to Firebase: ");
                         }
                     }
                 });
+    }
+
+
+    class getToken extends AsyncTask<String, String, String> {
+
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(AlumniActivity.this);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                JSONObject json = jParser.makeHttpRequest(Z.url_GenrateCustomToken, "GET", params);
+                Log.d("RTR", "getToken : " + json);
+
+                resultofop = json.getString("token");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result != null) {
+                FirebaseAuth.getInstance().signInWithCustomToken(result)
+                        .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AlumniActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                    Log.d("RTR", "signInWithCustomToken:success");
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user != null) {
+                                        Log.d("RTR", "onComplete uid: " + user.getUid());
+                                    }
+
+                                } else {
+                                    Log.w("RTR", "signInWithCustomToken:failure", task.getException());
+                                    Toast.makeText(AlumniActivity.this, "Fails logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+            } else
+                Log.d("TAG", "token null: ");
+        }
+
     }
 
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {

@@ -148,7 +148,7 @@ public class SplashScreen extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        new UpdateFirebaseToken().execute();
+//        new UpdateFirebaseToken().execute();
 
 // my code
 //        CaocConfig.Builder.create()
@@ -706,6 +706,7 @@ public class SplashScreen extends AppCompatActivity {
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+                Log.d("TAG", "UpdateFirebaseToken : json" + json);
                 resultofop = json.getString("info");
 
             } catch (Exception e) {
@@ -717,7 +718,7 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (resultofop.equals("success")) {
-                Log.d("TAG", "got navin gf");
+                Log.d("TAG", "got navin gf >>");
             }
         }
     }

@@ -20,13 +20,14 @@ import java.util.List;
 
 public class LastSession extends AppCompatActivity {
 
-    TextView countrytxt,platformtxt,iptxt,ipiptxt,ipiplasttxt,countrylasttxt,platformlasttxt,iplasttxt,lastaccessedtxt,lastaccessedtxttxt,activetxt,lasttxt,detaildetailtxt,detaildetaillasttxt;
-    String scountry,sregion,scity,sregionlast,scitylast,splatform,sip,scountrylast,splatformlast,siplast,slastaccessed;
+    TextView countrytxt, platformtxt, iptxt, ipiptxt, ipiplasttxt, countrylasttxt, platformlasttxt, iplasttxt, lastaccessedtxt, lastaccessedtxttxt, activetxt, lasttxt, detaildetailtxt, detaildetaillasttxt;
+    String scountry, sregion, scity, sregionlast, scitylast, splatform, sip, scountrylast, splatformlast, siplast, slastaccessed;
     JSONObject json;
     String username;
     JSONParser jParser = new JSONParser();
 
-    int found_current=0,found_last=0;
+    int found_current = 0, found_last = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +39,23 @@ public class LastSession extends AppCompatActivity {
 
 //        digest1 = MySharedPreferencesManager.getDigest1(this);
 //        digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
+        username = MySharedPreferencesManager.getUsername(this);
 //        String role=MySharedPreferencesManager.getRole(this);
 
-        countrytxt=(TextView)findViewById(R.id.countrytxt);
-        platformtxt=(TextView)findViewById(R.id.platformtxt);
-        iptxt=(TextView)findViewById(R.id.iptxt);
-        ipiptxt=(TextView)findViewById(R.id.ipiptxt);
-        ipiplasttxt=(TextView)findViewById(R.id.ipiplasttxt);
-        countrylasttxt=(TextView)findViewById(R.id.countrylasttxt);
-        platformlasttxt=(TextView)findViewById(R.id.platformlasttxt);
-        iplasttxt=(TextView)findViewById(R.id.iplasttxt);
-        lastaccessedtxttxt=(TextView)findViewById(R.id.lastaccessedtxttxt);
-        lastaccessedtxt=(TextView)findViewById(R.id.lastaccessedtxt);
-        activetxt=(TextView)findViewById(R.id.activetxt);
-        lasttxt=(TextView)findViewById(R.id.lasttxt);
-        detaildetailtxt=(TextView)findViewById(R.id.detaildetailtxt);
-        detaildetaillasttxt=(TextView)findViewById(R.id.detaildetaillasttxt);
+        countrytxt = (TextView) findViewById(R.id.countrytxt);
+        platformtxt = (TextView) findViewById(R.id.platformtxt);
+        iptxt = (TextView) findViewById(R.id.iptxt);
+        ipiptxt = (TextView) findViewById(R.id.ipiptxt);
+        ipiplasttxt = (TextView) findViewById(R.id.ipiplasttxt);
+        countrylasttxt = (TextView) findViewById(R.id.countrylasttxt);
+        platformlasttxt = (TextView) findViewById(R.id.platformlasttxt);
+        iplasttxt = (TextView) findViewById(R.id.iplasttxt);
+        lastaccessedtxttxt = (TextView) findViewById(R.id.lastaccessedtxttxt);
+        lastaccessedtxt = (TextView) findViewById(R.id.lastaccessedtxt);
+        activetxt = (TextView) findViewById(R.id.activetxt);
+        lasttxt = (TextView) findViewById(R.id.lasttxt);
+        detaildetailtxt = (TextView) findViewById(R.id.detaildetailtxt);
+        detaildetaillasttxt = (TextView) findViewById(R.id.detaildetaillasttxt);
 
         activetxt.setTypeface(Z.getBold(this));
         lasttxt.setTypeface(Z.getBold(this));
@@ -72,18 +73,11 @@ public class LastSession extends AppCompatActivity {
         lastaccessedtxt.setTypeface(Z.getBold(this));
 
 
-
-
-
-
         new GetSessionDetails().execute();
 
 
-
-
-
-
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -91,15 +85,17 @@ public class LastSession extends AppCompatActivity {
 
                 onBackPressed();
 
-                return(true);
+                return (true);
         }
 
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
+
     class GetSessionDetails extends AsyncTask<String, String, String> {
 
 
-        String r="";
+        String r = "";
+
         protected String doInBackground(String... param) {
 
 
@@ -109,44 +105,57 @@ public class LastSession extends AppCompatActivity {
             Log.d("TAG", "doInBackground: json kun " + json);
             try {
                 r = json.getString("current");
-                if(r.equals("found"))
-                {
-                    found_current=1;
-                    scity= json.getString("city");
-                    sregion= json.getString("region");
-                    scountry= json.getString("country");
+                if (r.equals("found")) {
+                    found_current = 1;
+                    scity = json.getString("city");
+                    sregion = json.getString("region");
+                    scountry = json.getString("country");
                     splatform = json.getString("platform");
                     sip = json.getString("ip");
 
                 }
                 r = json.getString("last");
-                if(r.equals("found")) {
-                    found_last=1;
-                    scitylast= json.getString("lastcity");
-                    sregionlast= json.getString("lastregion");
-                    scountrylast= json.getString("lastcountry");
+                if (r.equals("found")) {
+                    found_last = 1;
+                    scitylast = json.getString("lastcity");
+                    sregionlast = json.getString("lastregion");
+                    scountrylast = json.getString("lastcountry");
                     splatformlast = json.getString("lastplatform");
                     siplast = json.getString("lastip");
                     slastaccessed = json.getString("lastaccesstime");
                 }
 
-                }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-            if(found_current==1)
-            {
-                countrytxt.setText(scity+", "+sregion+", "+scountry);
-                platformtxt.setText("Place Me on "+splatform);
+            if (found_current == 1) {
+
+                if (scity == null || scity.equals("null"))
+                    scity = "";
+                else
+                    scity = scity + ", ";
+                if (sregion == null || sregion.equals("null"))
+                    sregion = "";
+                else
+                    sregion = sregion + ", ";
+                if (scountry == null || scountry.equals("null"))
+                    scountry = "";
+
+                countrytxt.setText(scity + sregion + scountry);
+
+
+                platformtxt.setText("Place Me on " + splatform);
                 iptxt.setText(sip);
             }
-            if(found_last==1)
-            {
-                countrylasttxt.setText(scitylast+", "+sregionlast+", "+scountrylast);
-                platformlasttxt.setText("Place Me on "+splatformlast);
+            if (found_last == 1) {
+                countrylasttxt.setText(scitylast + ", " + sregionlast + ", " + scountrylast);
+                platformlasttxt.setText("Place Me on " + splatformlast);
                 iplasttxt.setText(siplast);
 
                 DateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
@@ -157,7 +166,7 @@ public class LastSession extends AppCompatActivity {
                     Date date0 = sdf.parse(slastaccessed);
                     String date1 = sdf1.format(date0);
                     String time1 = sdf2.format(date0);
-                    lastaccessedtxt.setText(date1+" "+time1);
+                    lastaccessedtxt.setText(date1 + " " + time1);
 
                 } catch (Exception e) {
                 }

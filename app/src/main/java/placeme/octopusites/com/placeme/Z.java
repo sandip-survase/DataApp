@@ -160,6 +160,7 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
     public static final String url_ForgotPasswordChange = IP_TOMCAT + "Firebase/ForgotPasswordChange";
+    public static final String url_GenrateCustomToken = IP_TOMCAT + "Firebase/GenrateCustomToken";
 
     // Messages -----------------------------------------
 

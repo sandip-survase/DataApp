@@ -50,6 +50,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -197,6 +198,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
     private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private RecyclerItemAdapterPlacement mAdapterPlacement;
+    private String pass;
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
         if (str == null || searchStr == null) return false;
@@ -245,7 +247,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
         username = MySharedPreferencesManager.getUsername(this);
-        String pass = MySharedPreferencesManager.getPassword(this);
+        pass = MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
@@ -287,12 +289,23 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new isVerified().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         try {
-            String plainusername = Z.Decrypt(username,AdminActivity.this);
-            String data = new String(Z.Decrypt(pass,AdminActivity.this));
+            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+            demoIVBytes = SimpleBase64Encoder.decode(digest2);
+            sPadding = "ISO10126Padding";
+
+            String plainusername = Decrypt(username, digest1, digest2);
+
+            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
+            byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
+            String data = new String(demo2DecryptedBytes1);
             String hash = md5(data + MySharedPreferencesManager.getDigest3(this));
-            new LoginFirebaseTask().execute(plainusername, hash);
+
+            loginFirebase(plainusername, hash);
+
+
         } catch (Exception e) {
         }
+
 
         bluePanelTv = (TextView) findViewById(R.id.bluePanelTv);
         bluePanelTv.setTypeface(Z.getBold(this));
@@ -1318,11 +1331,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new UpdateFirebaseToken().execute();
         new GetUnreadMessagesCount().execute();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            MySharedPreferencesManager.save(AdminActivity.this, "uid", user.getUid());
-            new CreateFirebaseUser(username, pass, user.getUid()).execute();
-        }
+
 
     }
 
@@ -1346,18 +1355,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             params.add(new BasicNameValuePair("d", d));
             json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
 
-            Log.d("TAG", "create firebase json: " + json);
-            try {
-                resultofop = json.getString("info");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             return resultofop;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
+            new getToken().execute();
         }
     }
 
@@ -1808,7 +1811,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     public void refreshUserCount() {
 
-        new GetCountOfUsersUnderAdmin().execute();
+        new GetCountOfUsersUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
 //    @Override
@@ -2129,34 +2132,106 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    class LoginFirebaseTask extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
-            String user = param[0];
-            String hash = param[1];
-            FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(user, hash)
-                    .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Log.d("TAG", "successfully logged in to firebase");
-                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
-                            } else {
-                                Log.d("TAG", "failed to login to firebase");
-                                MySharedPreferencesManager.save(AdminActivity.this, "fireLoginStatus", "Failed to login to Firebase");
+
+    void loginFirebase(final String username, String hash) {
+
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Log.d("TAG", "Successfully logged in to Firebase: ");
+//                            Toast.makeText(AdminActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            if (user != null) {
+                                MySharedPreferencesManager.save(AdminActivity.this, "uid", user.getUid());
+                                Log.d("RTR", "token :" + user.getUid());
+
+                                try {
+                                    new CreateFirebaseUser(Z.Encrypt(username, AdminActivity.this), pass, user.getUid()).execute();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
+
+
+                            user.getToken(true)
+                                    .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                                        public void onComplete(@NonNull Task<GetTokenResult> task) {
+                                            if (task.isSuccessful()) {
+                                                String idToken = task.getResult().getToken();
+                                                Log.d("RTR", "token :" + idToken);
+                                                // Send token to your backend via HTTPS
+                                                // ...
+                                            } else {
+                                                // Handle error -> task.getException();
+                                            }
+                                        }
+                                    });
+
+                        } else {
+//                            Toast.makeText(AdminActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Fail logged in to Firebase: ");
                         }
-                    });
-            return null;
+                    }
+                });
+    }
+
+
+    class getToken extends AsyncTask<String, String, String> {
+
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(AdminActivity.this);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                JSONObject json = jParser.makeHttpRequest(Z.url_GenrateCustomToken, "GET", params);
+                Log.d("RTR", "getToken : " + json);
+
+                resultofop = json.getString("token");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            String status = MySharedPreferencesManager.getData(AdminActivity.this, "fireLoginStatus");
-//            Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
-            // remove value from shared
-            MySharedPreferencesManager.removeKey(AdminActivity.this, "fireLoginStatus");
+
+            if (result != null) {
+                FirebaseAuth.getInstance().signInWithCustomToken(result)
+                        .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AdminActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                    Log.d("RTR", "signInWithCustomToken:success");
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user != null) {
+                                        Log.d("RTR", "onComplete uid: " + user.getUid());
+                                    }
+
+                                } else {
+                                    Log.w("RTR", "signInWithCustomToken:failure", task.getException());
+                                    Toast.makeText(AdminActivity.this, "Fails logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+            } else
+                Log.d("TAG", "token null: ");
         }
+
     }
 
     class isVerified extends AsyncTask<String, String, String> {
