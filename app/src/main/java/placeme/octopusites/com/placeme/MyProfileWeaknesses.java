@@ -22,6 +22,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -50,12 +54,15 @@ public class MyProfileWeaknesses extends AppCompatActivity {
     TextInputLayout weakinput1,weakinput2,weakinput3,weakinput4,weakinput5,weakinput6,weakinput7,weakinput8,weakinput9,weakinput10;
     String sweak1, sweak2, sweak3, sweak4, sweak5, sweak6, sweak7, sweak8, sweak9, sweak10,encobj="";
     String encweak1, encweak2, encweak3, encweak4, encweak5, encweak6, encweak7, encweak8, encweak9, encweak10;
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_weaknesses);
-
+        MobileAds.initialize(this, Z.APP_ID);
+        mAdView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);
@@ -1568,5 +1575,29 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             alertDialog.show();
         } else
             MyProfileWeaknesses.super.onBackPressed();
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 }

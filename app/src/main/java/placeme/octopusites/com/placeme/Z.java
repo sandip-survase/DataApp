@@ -25,20 +25,18 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class Z {
+    //**************************  advertisement **************************
+
+    public static final String BANNER_UNIT_ID = "ca-app-pub-4561960316771699/4063759942";
+    public static final String VIDEO_UNIT_ID = "ca-app-pub-4561960316771699/5264504434";
+    public static final String APP_ID = "ca-app-pub-4561960316771699~6596755648";
+
     //**************************  final **************************
     public static final String VPS_IP = "162.213.199.3";   // for authority
     public static final String IP = "http://162.213.199.3/";
     public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
     //**************************  final **************************
 
-    public static final String IP_8080 = "http://162.213.199.3:8080/";
-    public static final String IP_40744 = "http://162.213.199.3:40744/";
-    public static final String IP_8081 = "http://104.237.4.236:8081/";
-    public static final String IP_1234 = "http://104.237.4.236:1234/";
-    public static final String IP_8086 = "http://162.213.199.3:8086/";
-    public static final String IP_sunny_local = "http://162.213.199.3:8090/";
-    public static final String Local_IP_Raju = "http://192.168.100.100:8080/";
-    public static final String Local_IP_sunny = "http://192.168.100.30:8080/";
     public static final String IP_secured_sunny = "https://placeme.co.in/";
 
 
@@ -79,9 +77,9 @@ public static final String url_getnotificationsmetadata = IP + "CreateNotificati
     public static final String url_ChangePlacementReadStatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
     //                                --------------------adminActivity-----------------
 //placement urls
-    public static final String url_GetPlacementsAdminAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsAdminMetaData";
+    public static final String url_GetPlacementsAdminAdminMetaData = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsAdminMetaData";
     public static final String url_GetReadStatusOfPlacementsForAdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    public static final String url_GetPlacementsAdmin = IP + "CreateNotificationTemp/GetPlacementsAdmin";
+    public static final String url_GetPlacementsAdmin = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsAdmin";
     public static final String url_ChangePlacementReadStatusAdmin = IP + "CreateNotificationTemp/ChangePlacementReadStatusAdmin";
     //notiffurl
     public static final String url_GetNotificationsAdminAdminMetaData = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAdminMetaData";

@@ -31,6 +31,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.wx.wheelview.adapter.ArrayWheelAdapter;
 import com.wx.wheelview.widget.WheelView;
 
@@ -65,11 +68,16 @@ public class MyProfileTenth extends AppCompatActivity {
     String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "", encobj = "",selectboard="";
     String oldBoard = "";
     StudentData s = new StudentData();
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_tenth);
+
+        MobileAds.initialize(this, Z.APP_ID);
+        mAdView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 //        ShouldAnimateProfile.MyProfileTenth = MyProfileTenth.this;
 
@@ -634,6 +642,30 @@ public class MyProfileTenth extends AppCompatActivity {
             } else
                 Toast.makeText(MyProfileTenth.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 
 }

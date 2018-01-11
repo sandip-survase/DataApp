@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofileskills"
     android:layout_width="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:background="@color/while_color">
 
@@ -2077,6 +2078,15 @@
             android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addmoreskill"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id" />
 
     </RelativeLayout>
 </ScrollView>

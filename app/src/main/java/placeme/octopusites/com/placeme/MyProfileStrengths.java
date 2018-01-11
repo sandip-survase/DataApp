@@ -22,6 +22,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -51,10 +55,16 @@ public class MyProfileStrengths extends AppCompatActivity {
 
     String sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10,encobj="";
     String encstrength1,encstrength2,encstrength3,encstrength4,encstrength5,encstrength6,encstrength7,encstrength8,encstrength9,encstrength10;
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_strengths);
+
+        MobileAds.initialize(this, Z.APP_ID);
+        mAdView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -1582,5 +1592,29 @@ public class MyProfileStrengths extends AppCompatActivity {
             alertDialog.show();
         }else
             MyProfileStrengths.super.onBackPressed();
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 }

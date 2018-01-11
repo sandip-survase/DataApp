@@ -30,6 +30,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -70,14 +76,62 @@ public class PrintProfileTabFragment extends Fragment {
     int found_photo=0,found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
     int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
     int found_contact_details=0,found_personal=0;
-
+    int downloadClickFlag = 0;
     int selectedResumeTemplate=0;
+    private RewardedVideoAd mRewardedVideoAd;
+    boolean isRewarded = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_printprofile, container, false);
 
+        MobileAds.initialize(getActivity(), Z.APP_ID);
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
+        mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+            @Override
+            public void onRewardedVideoAdLoaded() {
 
+            }
+
+            @Override
+            public void onRewardedVideoAdOpened() {
+
+            }
+
+            @Override
+            public void onRewardedVideoStarted() {
+
+            }
+
+            @Override
+            public void onRewardedVideoAdClosed() {
+                if (!isRewarded)
+                    Toast.makeText(getActivity(), "Please watch the complete video to download your resume.", Toast.LENGTH_SHORT).show();
+                downloadresume.setVisibility(View.VISIBLE);
+                resumeprogress.setVisibility(View.GONE);
+                loadRewardedVideoAd();
+            }
+
+            @Override
+            public void onRewarded(RewardItem rewardItem) {
+                if (downloadClickFlag == 1)
+                    startDownload();
+                isRewarded = true;
+            }
+
+            @Override
+            public void onRewardedVideoAdLeftApplication() {
+
+
+            }
+
+            @Override
+            public void onRewardedVideoAdFailedToLoad(int i) {
+
+
+            }
+        });
+        loadRewardedVideoAd();
         getmore=(TextView)rootView.findViewById(R.id.getmore);
         selectformattxt=(TextView)rootView.findViewById(R.id.selectformattxt);
 
@@ -165,12 +219,8 @@ public class PrintProfileTabFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                downloadresume.setVisibility(View.GONE);
-                resumeprogress.setVisibility(View.VISIBLE);
-                //start downloading resumr
-
-
                 validatedata();
+
 
             }
         });
@@ -303,42 +353,29 @@ public class PrintProfileTabFragment extends Fragment {
         return animation;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        IsNewTemplateDownloaded obj=new IsNewTemplateDownloaded();
-        if(obj.getIsDownloaded())
-        {
-//            Toast.makeText(getActivity(), "refreshed", Toast.LENGTH_SHORT).show();
-            refreshContent();
-            obj.setIsDownloaded(false);
-        }
-    }
-
     public void validatedata() {
-            StudentData s = new StudentData();
+        StudentData s = new StudentData();
         fname = s.getFname();
         lname = s.getLname();
 
         String careerobj = s.getCareerobj();
 
-            String dob = s.getDob();
-            String mobile = s.getPhone();
-            String hobbies = s.getHobbies();
+        String dob = s.getDob();
+        String mobile = s.getPhone();
+        String hobbies = s.getHobbies();
 
-            String addrline1c = s.getAddressline1();
-            String addrline2c = s.getAddressline2();
-            String addrline3c = s.getAddressline3();
+        String addrline1c = s.getAddressline1();
+        String addrline2c = s.getAddressline2();
+        String addrline3c = s.getAddressline3();
 
-            String lang1 = s.getLang1();
-            String proj = s.getProj1();
-            String strength1 = s.getStrength1();
-            String weak1 = s.getWeak1();
-            String skill1 = s.getSkill1();
+        String lang1 = s.getLang1();
+        String proj = s.getProj1();
+        String strength1 = s.getStrength1();
+        String weak1 = s.getWeak1();
+        String skill1 = s.getSkill1();
         studenttenthmarks = s.getPercentage10();
         studenttwelthordiplomamarks = s.getPercentage12();
         studentugmarks = s.getAggregateug();
-
 
 
         if (fname != null && lname != null) {
@@ -377,44 +414,44 @@ public class PrintProfileTabFragment extends Fragment {
                 found_ug = 0;
         }
 
-            if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
-                if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
-                    found_personal = 1;
-                } else
-                    found_personal = 0;
-            }
-            if (lang1 != null) {
-                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                    found_lang = 1;
-                else
-                    found_lang = 0;
-            }
-            if (proj != null) {
-                if (!proj.equals(""))
-                    found_projects = 1;
-                else
-                    found_projects = 0;
-            }
-            if (strength1 != null) {
-                if (!strength1.equals(""))
-                    found_strengths = 1;
-                else
-                    found_strengths = 0;
-            }
-            if (weak1 != null) {
-                if (!weak1.equals(""))
-                    found_weaknesses = 1;
-                else
-                    found_weaknesses = 0;
-            }
+        if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
+            if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
+                found_personal = 1;
+            } else
+                found_personal = 0;
+        }
+        if (lang1 != null) {
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                found_lang = 1;
+            else
+                found_lang = 0;
+        }
+        if (proj != null) {
+            if (!proj.equals(""))
+                found_projects = 1;
+            else
+                found_projects = 0;
+        }
+        if (strength1 != null) {
+            if (!strength1.equals(""))
+                found_strengths = 1;
+            else
+                found_strengths = 0;
+        }
+        if (weak1 != null) {
+            if (!weak1.equals(""))
+                found_weaknesses = 1;
+            else
+                found_weaknesses = 0;
+        }
 
-            if (skill1 != null) {
+        if (skill1 != null) {
 
-                if (!skill1.equals(""))
-                    found_skills = 1;
-                else
-                    found_skills = 0;
-            }
+            if (!skill1.equals(""))
+                found_skills = 1;
+            else
+                found_skills = 0;
+        }
 
         if (careerobj != null) {
             if (!careerobj.equals(""))
@@ -478,8 +515,7 @@ public class PrintProfileTabFragment extends Fragment {
                             .setDuration(10000)
                             .show();
 
-                }
-                else{
+                } else{
                     if(found_twelth==0 && found_diploma==0){
                         downloadresume.setVisibility(View.VISIBLE);
                         resumeprogress.setVisibility(View.GONE);
@@ -628,45 +664,80 @@ public class PrintProfileTabFragment extends Fragment {
                             }
                         }
                     }
-                    }
-
                 }
+
             }
+        }
 
         if (found_photo == 1 && found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
+
+            downloadClickFlag = 1;
+            if (mRewardedVideoAd.isLoaded()) {
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);
+                mRewardedVideoAd.show();
+            } else
+                Toast.makeText(getActivity(), "Please wait while we prepare your resume...", Toast.LENGTH_SHORT).show();
 
-                Uri uri = new Uri.Builder()
-                        .scheme("http")
-                        .authority(Z.VPS_IP)
-                        .path("GenerateResumeWithJODConverter3/DownloadResume")
-                        .appendQueryParameter("username",username)
-                        .appendQueryParameter("format",format)
-                        .appendQueryParameter("template", template + "")
-                        .build();
+        }
+    }
+
+    void startDownload() {
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority(Z.VPS_IP)
+                .path("GenerateResumeWithJODConverter3/DownloadResume")
+                .appendQueryParameter("username", username)
+                .appendQueryParameter("format", format)
+                .appendQueryParameter("template", template + "")
+                .build();
 
 
 //****************
-                String storagePath = Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
+        String storagePath = Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
 
-                DownloadManager dm = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        DownloadManager dm = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-                if (format.equals("pdf")) {
-                    request.setDestinationInExternalPublicDir("/Place Me", "resume.pdf");
-                } else {
-                    request.setDestinationInExternalPublicDir("/Place Me", "resume.docx");
-                }
-                Long referese = dm.enqueue(request);
+        if (format.equals("pdf")) {
+            request.setDestinationInExternalPublicDir("/Place Me", "resume.pdf");
+        } else {
+            request.setDestinationInExternalPublicDir("/Place Me", "resume.docx");
+        }
+        Long referese = dm.enqueue(request);
 
 
 //                ************
-                downloadresume.setVisibility(View.VISIBLE);
-                resumeprogress.setVisibility(View.GONE);
+        downloadresume.setVisibility(View.VISIBLE);
+        resumeprogress.setVisibility(View.GONE);
 
-                Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
-            }
+        Toast.makeText(getContext(), "Downloading Started..", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mRewardedVideoAd.pause(getActivity());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRewardedVideoAd.resume(getActivity());
+        IsNewTemplateDownloaded obj = new IsNewTemplateDownloaded();
+        if (obj.getIsDownloaded()) {
+//            Toast.makeText(getActivity(), "refreshed", Toast.LENGTH_SHORT).show();
+            refreshContent();
+            obj.setIsDownloaded(false);
+        }
+    }
+
+    private void loadRewardedVideoAd() {
+        if (!mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.loadAd(Z.VIDEO_UNIT_ID, new AdRequest.Builder().build());
+        }
+    }
+
 }

@@ -2292,7 +2292,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void GetNotificationsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdminMetaData")
+        AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.HIGH)
@@ -2356,7 +2356,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void GetNotifications2() {
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdmin")
+        AndroidNetworking.post(Z.url_GetNotificationsAdmin)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
@@ -2410,7 +2410,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void GetPlacementsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdminMetaData")
+        AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.HIGH)
@@ -2472,7 +2472,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private void GetPlacements2() {
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
 
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdmin")
+        AndroidNetworking.post(Z.url_GetPlacementsAdmin)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
@@ -2539,7 +2539,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         if (page_to_call_notification != notificationpages) {
 
-            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdmin")
+            AndroidNetworking.post(Z.url_GetNotificationsAdmin)
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
@@ -2595,7 +2595,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             if (!isLastPageLoadedNotification) {
                 lastPageFlagNotification = 1;
 
-                AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdmin")
+                AndroidNetworking.post(Z.url_GetNotificationsAdmin)
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")
@@ -2660,7 +2660,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void RefreshNotificationCount() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAdminMetaData")
+        AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.HIGH)
@@ -2722,7 +2722,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void RefreshPlacementCount() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdminMetaData")
+        AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.HIGH)
@@ -2789,7 +2789,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         if (page_to_call_placement != placementpages) {
 
-            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdmin")
+            AndroidNetworking.post(Z.url_GetPlacementsAdmin)
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_placement + "")
@@ -2848,7 +2848,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             if (!isLastPageLoadedPlacement) {
                 lastPageFlagPlacement = 1;
 
-                AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAdmin")
+                AndroidNetworking.post(Z.url_GetPlacementsAdmin)
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_placement + "")

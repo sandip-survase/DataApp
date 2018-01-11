@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@color/while_color"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -137,12 +138,23 @@
             android:elevation="8dp"
             android:src="@drawable/add_icon_white" />
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id" />
+
         <View
             android:id="@+id/dummy_view_for_shadow"
             android:layout_width="match_parent"
             android:layout_below="@+id/locbutton"
             android:layout_height="0dp"
             android:layout_marginTop="50dp" />
+
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

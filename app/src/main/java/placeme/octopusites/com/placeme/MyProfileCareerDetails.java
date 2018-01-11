@@ -8,14 +8,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class MyProfileCareerDetails extends AppCompatActivity {
 
     View careerobjbutton,strengthbutton,weakbutton,locbutton;
     String username;
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_career_details);
+
+        MobileAds.initialize(this, Z.APP_ID);
+        mAdView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Career Details");
@@ -91,5 +102,29 @@ public class MyProfileCareerDetails extends AppCompatActivity {
         {
             setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
         }
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 }

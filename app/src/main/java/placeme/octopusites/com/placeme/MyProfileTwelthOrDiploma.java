@@ -35,6 +35,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.wx.wheelview.adapter.ArrayWheelAdapter;
 import com.wx.wheelview.widget.WheelView;
 
@@ -89,11 +92,16 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     String strobj, strobj2;
 
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_twelth_or_diploma);
+
+        MobileAds.initialize(this, Z.APP_ID);
+        mAdView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 //        ShouldAnimateProfile.MyProfileTwelthOrDiploma = MyProfileTwelthOrDiploma.this;
 
@@ -2386,5 +2394,29 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             } else
                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 }

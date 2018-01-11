@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myprofileintroscrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofileintroscrollview"
     android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,30 +16,30 @@
         tools:context="com.octopusites.placeme.MyProfileIntro">
 
         <View
+            android:id="@+id/section"
             android:layout_width="1dp"
             android:layout_height="1dp"
-            android:id="@+id/section"
             android:layout_centerHorizontal="true" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/fnameTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/section"
-            android:theme="@style/TextLabel"
-            android:id="@+id/fnameTextInputLayout">
+            android:theme="@style/TextLabel">
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/fname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First Name *"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="50"
-                android:inputType="textCapWords"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                android:hint="First Name *"
                 android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:maxLength="50"
                 android:singleLine="true"
-                android:id="@+id/fname" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -68,86 +69,96 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/roleinputlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lnameTextInputLayout"
-            android:theme="@style/TextLabel"
             android:layout_marginTop="20dp"
-            android:id="@+id/roleinputlayout">
+            android:theme="@style/TextLabel">
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/role"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Role *"
-                android:textSize="16dp"
                 android:focusable="false"
-                android:textColor="@color/dark_color"
+                android:hint="Role *"
                 android:singleLine="true"
-                android:id="@+id/role" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailinputlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/roleinputlayout"
-            android:theme="@style/TextLabel"
             android:layout_marginTop="20dp"
-            android:id="@+id/emailinputlayout">
+            android:theme="@style/TextLabel">
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email *"
-                android:textSize="16dp"
                 android:focusable="false"
-                android:textColor="@color/dark_color"
+                android:hint="Email *"
                 android:singleLine="true"
-                android:id="@+id/email" />
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/loctxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location Details "
             android:layout_below="@+id/emailinputlayout"
-            android:textSize="20dp"
-            android:textColor="@color/while_color"
-            android:id="@+id/loctxt"
-            android:layout_marginTop="25dp"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder"
-            android:elevation="2dp" />
+            android:paddingTop="10dp"
+            android:text="Location Details "
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
 
 
         <!--*********************-->
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/citystaecountryinputlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/loctxt"
-            android:theme="@style/TextLabel"
             android:layout_marginTop="20dp"
-            android:id="@+id/citystaecountryinputlayout">
+            android:theme="@style/TextLabel">
 
             <AutoCompleteTextView
+                android:id="@+id/citystaecountry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="City / District *"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="100"
-                android:inputType="textCapWords"
-                android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:id="@+id/citystaecountry" />
+                android:inputType="textCapWords"
+                android:maxLength="100"
+                android:singleLine="true"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/citystaecountryinputlayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id" />
     </RelativeLayout>
 </ScrollView>

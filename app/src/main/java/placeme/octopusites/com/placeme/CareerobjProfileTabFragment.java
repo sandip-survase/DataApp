@@ -10,6 +10,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 
 public class CareerobjProfileTabFragment extends Fragment {
@@ -17,11 +23,42 @@ public class CareerobjProfileTabFragment extends Fragment {
 
     View careerobjbutton,strengthbutton,weakbutton,locbutton;
     String username;
+    private AdView mAdView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_edit_profile_careerdetails, container, false);
 
+        MobileAds.initialize(getActivity(), Z.APP_ID);
+        mAdView = rootView.findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                Toast.makeText(getActivity(), "onAdLoaded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Toast.makeText(getActivity(), "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                Toast.makeText(getActivity(), "onAdOpened", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                Toast.makeText(getActivity(), "onAdLeftApplication", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdClosed() {
+                Toast.makeText(getActivity(), "onAdClosed", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         TextView careerobjtxt=(TextView)rootView.findViewById(R.id.careerobjtxt);
         TextView strengthtxt=(TextView)rootView.findViewById(R.id.strengthtxt);
@@ -102,5 +139,28 @@ public class CareerobjProfileTabFragment extends Fragment {
 
         return animation;
     }
-//
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
 }
