@@ -826,12 +826,6 @@ public class EditPlacement extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
 
 
@@ -869,86 +863,141 @@ public class EditPlacement extends AppCompatActivity {
         }
 
         public abstract void onLoadMore(int current_page);
+
     }
+
     private void simulateLoadingPlacement() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                tswipe_refresh_layout.setRefreshing(true);
-            }
+        tswipe_refresh_layout.setRefreshing(true);
 
-            @Override
-            protected Void doInBackground(Void... param) {
+        Log.d("TAG", "Movies to release with ranveer from reports:" + page_to_call_placement);
+        Log.d("TAG", "projects with ranveer :" + placementpages);
+        if (page_to_call_placement < placementpages)
+            page_to_call_placement++;
 
-                try {
-                    if (page_to_call_placement < placementpages)
-                        page_to_call_placement++;
+        if (page_to_call_placement != placementpages) {
 
-                    if (page_to_call_placement != placementpages) {
-
-                        List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("u", username));
-                        params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-                        json = jParser.makeHttpRequest(Z.url_GetPlacementSentByAdmin, "GET", params);
-                        try {
-
-                            Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-
-                        } catch (Exception e) {
+            AndroidNetworking.post(Z.url_GetPlacementSentByAdmin)
+                    .setTag(this)
+                    .addQueryParameter("u", username)
+                    .addQueryParameter("p", page_to_call_placement + "")
+                    .setPriority(Priority.HIGH)
+                    .getResponseOnlyFromNetwork()
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d("TAG", " bytesSent : " + bytesSent);
+                            Log.d("TAG", " bytesReceived : " + bytesReceived);
+                            Log.d("TAG", " isFromCache : " + isFromCache);
                         }
-
-
-
-                    } else {
-                        if (!isLastPageLoadedPlacement) {
-
-                            lastPageFlagPlacement = 1;
-
-                            List<NameValuePair> params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u", username));
-                            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-                            json = jParser.makeHttpRequest(Z.url_GetPlacementSentByAdmin, "GET", params);
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("TAG", "onResponse object2 : " + response.toString());
                             try {
-
-                                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+//                                Log.d("TAG", " Movies from Hollywood" + itemlistfromserver.size());
                                 Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+//                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+//                            Log.
+                                if (!isLastPageLoadedPlacement) {
 
 
+                                    setplacementListtoadapter(placementListfromserver);
+                                }
+                                tswipe_refresh_layout.setRefreshing(false);
 
                             } catch (Exception e) {
+                                e.printStackTrace();
                             }
 
                         }
-                    }
-                } catch (Exception e) {
-                }
-                return null;
+
+                        @Override
+                        public void onError(ANError error) {
+                            if (error.getErrorCode() != 0) {
+                                // received ANError from server
+                                // error.getErrorCode() - the ANError code from server
+                                // error.getErrorBody() - the ANError body from server
+                                // error.getErrorDetail() - just a ANError detail
+                                Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                                Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                                Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        } else {
+            if (!isLastPageLoadedPlacement) {
+                lastPageFlagPlacement = 1;
+
+                AndroidNetworking.post(Z.url_GetPlacementSentByAdmin)
+                        .setTag(this)
+                        .addQueryParameter("u", username)
+                        .addQueryParameter("p", page_to_call_placement + "")
+                        .setPriority(Priority.HIGH)
+                        .getResponseOnlyFromNetwork()
+                        .build()
+                        .setAnalyticsListener(new AnalyticsListener() {
+                            @Override
+                            public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                                Log.d("TAG", " timeTakenInMillis : " + timeTakenInMillis);
+                                Log.d("TAG", " bytesSent : " + bytesSent);
+                                Log.d("TAG", " bytesReceived : " + bytesReceived);
+                                Log.d("TAG", " isFromCache : " + isFromCache);
+                            }
+                        })
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("TAG", "onResponse object2 : " + response.toString());
+                                try {
+
+                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+//                            Log.d("TAG", " Movies from Hollywood" + itemlistfromserver.size());
+                                    Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
+//                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
+//                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
+//
+                                    if (!isLastPageLoadedPlacement) {
+                                        setplacementListtoadapter(placementListfromserver);
+                                    }
+                                    tswipe_refresh_layout.setRefreshing(false);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(ANError error) {
+                                if (error.getErrorCode() != 0) {
+                                    // received ANError from server
+                                    // error.getErrorCode() - the ANError code from server
+                                    // error.getErrorBody() - the ANError body from server
+                                    // error.getErrorDetail() - just a ANError detail
+                                    Log.d("TAG", "onError errorCode : " + error.getErrorCode());
+                                    Log.d("TAG", "onError errorBody : " + error.getErrorBody());
+                                    Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                                } else {
+                                    // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                    Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                                }
+                            }
+                        });
+            }else{
+                tswipe_refresh_layout.setRefreshing(false);
+
             }
 
-            @Override
-            protected void onPostExecute(Void param) {
+        }
 
 
-                if (!isLastPageLoadedPlacement){
-
-
-                    setplacementListtoadapter(placementListfromserver);
-                }
-
-
-            }
-        }.execute();
     }
 
 
