@@ -400,17 +400,21 @@ public class ViewNotification extends AppCompatActivity {
             Log.d("TAG", "role"+MySharedPreferencesManager.getRole(this));
             if(MySharedPreferencesManager.getRole(getBaseContext()).equals("student")){
                 startActivity(new Intent(getBaseContext(),MainActivity.class));
+                finish();
 
             } else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("alumni")){
                 startActivity(new Intent(getBaseContext(),AlumniActivity.class));
+                finish();
 
             }
             else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("admin")){
                 startActivity(new Intent(getBaseContext(),AdminActivity.class));
+                finish();
 
             }
             else if(MySharedPreferencesManager.getRole(getBaseContext()).equals("hr")){
                 startActivity(new Intent(getBaseContext(),HRActivity.class));
+                finish();
 
             }
         }else{
