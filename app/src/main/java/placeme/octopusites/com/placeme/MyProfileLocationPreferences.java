@@ -282,6 +282,9 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editlocation=0;
+                edittedFlag=1;
+
+
                 if (locationcount == 0) {
                     if (location1.getText().toString() != null) {
                         if (!location1.getText().toString().equals("")) {

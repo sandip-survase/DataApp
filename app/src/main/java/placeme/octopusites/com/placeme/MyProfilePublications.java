@@ -1537,7 +1537,7 @@ public class MyProfilePublications extends AppCompatActivity {
         addmorepublication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                edittedFlag=1;
                 editpublic=0;
 
                 if (publicationcount == 0) {

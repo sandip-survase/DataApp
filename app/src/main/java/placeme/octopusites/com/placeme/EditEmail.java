@@ -242,14 +242,14 @@ public class EditEmail extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if(result!=null && result.equals("success")){
+//            if(result!=null && result.equals("success")){
 
                 MySharedPreferencesManager.save(EditEmail.this, Z.USERNAME_KEY,encnewemail);
                 primaryemail.setText(snewemail);
                 Toast.makeText(EditEmail.this, "Username successfully changed from "+plainusername+" to " +snewemail , Toast.LENGTH_SHORT).show();
                 otpflag=0;
                 onBackPressed();
-            }
+//            }
 
         }
     }

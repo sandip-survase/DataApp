@@ -328,6 +328,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
         Z.fade(this, welcomepasswordenterpasswordimage);
+        Z.fadeandmovedown(this, forgotpassword);
         Z.fadeandmovedown(this, welcomepasswordTextInputLayout);
         Z.slideinleft1(this, welcomepasswordwelcometextviewcontext1);
         Z.slideinleft2(this, welcomepasswordwelcometextviewcontext2);

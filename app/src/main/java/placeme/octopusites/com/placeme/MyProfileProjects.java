@@ -1040,6 +1040,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             @Override
             public void onClick(View view) {
                 editproj=0;
+                edittedFlag=1;
                 if(projectscount==0)
                 {
                     if(proj1.getText().toString()!=null && domain1.getText().toString()!=null && team1.getText().toString()!=null && duration1.getText().toString()!=null) {

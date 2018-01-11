@@ -202,14 +202,18 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),TermsConditions.class));
+//                startActivity(new Intent(getActivity(),TermsConditions.class));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/terms-of-use.jsp"));
+                startActivity(browserIntent);
             }
         });
         agreementselectionview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),UserAgreement.class));
+//                startActivity(new Intent(getActivity(),UserAgreement.class));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/terms-of-use.jsp"));
+                startActivity(browserIntent);
             }
         });
 

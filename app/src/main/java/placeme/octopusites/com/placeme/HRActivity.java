@@ -161,8 +161,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     int searchNotificationFlag = 0, searchPlacementFlag = 0;
     ArrayList<RecyclerItemEdit> tempListNotification;
     String TAG = "ParineetiChopra";
-
-
+    private String pass;
 
 
     @Override
@@ -188,7 +187,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         admincontrolsrl.setVisibility(View.GONE);
 
         username = MySharedPreferencesManager.getUsername(this);
-        String pass = MySharedPreferencesManager.getPassword(HRActivity.this);
+        pass = MySharedPreferencesManager.getPassword(HRActivity.this);
         String role = MySharedPreferencesManager.getRole(HRActivity.this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -1012,8 +1011,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             String data = Z.Decrypt(pass, HRActivity.this);
             String hash = md5(data + MySharedPreferencesManager.getDigest3(HRActivity.this));
 
-//           loginFirebase(plainusername,hash);
-            new LoginFirebaseTask().execute(plainusername, hash);
+            loginFirebase(plainusername, hash);
+//            new LoginFirebaseTask().execute(plainusername, hash);
 
         } catch (Exception e) {
 //            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1050,13 +1049,89 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         Log.d("VisibilityCheck", "onCreate: ");
         tswipe_refresh_layout.setRefreshing(true);
         getNotifications();
-        new UpdateFirebaseToken().execute();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            MySharedPreferencesManager.save(HRActivity.this, "uid", user.getUid());
-            new CreateFirebaseUser(username, pass, user.getUid()).execute();
+
+    }
+
+    void loginFirebase(final String username, String hash) {
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+//                            Toast.makeText(HRActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Successfully logged in to Firebase: ");
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                MySharedPreferencesManager.save(HRActivity.this, "uid", user.getUid());
+                                try {
+                                    new CreateFirebaseUser(Z.Encrypt(username, HRActivity.this), pass, user.getUid()).execute();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                        } else {
+//                            Toast.makeText(HRActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Fail logged in to Firebase: ");
+                        }
+                    }
+                });
+    }
+
+    class getToken extends AsyncTask<String, String, String> {
+
+        JSONParser jParser = new JSONParser();
+        String resultofop = null;
+
+        protected String doInBackground(String... param) {
+            try {
+
+                String encUsername = MySharedPreferencesManager.getUsername(HRActivity.this);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", encUsername));       //0
+                JSONObject json = jParser.makeHttpRequest(Z.url_GenrateCustomToken, "GET", params);
+                Log.d("RTR", "getToken : " + json);
+
+                resultofop = json.getString("token");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
         }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result != null) {
+                FirebaseAuth.getInstance().signInWithCustomToken(result)
+                        .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(HRActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                    Log.d("RTR", "signInWithCustomToken:success");
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user != null) {
+                                        Log.d("RTR", "onComplete uid: " + user.getUid());
+                                    }
+
+                                } else {
+                                    Log.w("RTR", "signInWithCustomToken:failure", task.getException());
+                                    Toast.makeText(HRActivity.this, "Fails logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+            } else
+                Log.d("TAG", "token null: ");
+        }
+
     }
 
     class CreateFirebaseUser extends AsyncTask<String, String, String> {
@@ -1090,7 +1165,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         @Override
         protected void onPostExecute(String result) {
-
+            new getToken().execute();
         }
     }
     void setserverlisttoadapter(List<RecyclerItemHrPlacement> itemlist) {

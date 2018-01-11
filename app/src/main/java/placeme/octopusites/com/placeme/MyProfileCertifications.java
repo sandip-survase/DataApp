@@ -1785,6 +1785,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                edittedFlag=1;
                 editcertfi = 0;
 
                 if (certicount == 0) {
@@ -2330,28 +2331,55 @@ public class MyProfileCertifications extends AppCompatActivity {
 
         if (switch1.isChecked())
             willexpire1 = "no";
+        else
+            willexpire1 = "yes";
+
         if (switch2.isChecked())
             willexpire2 = "no";
+        else
+            willexpire2 = "yes";
+
         if (switch3.isChecked())
             willexpire3 = "no";
+        else
+            willexpire3 = "yes";
+
         if (switch4.isChecked())
             willexpire4 = "no";
+        else
+            willexpire4 = "yes";
+
         if (switch5.isChecked())
             willexpire5 = "no";
+        else
+            willexpire5 = "yes";
+
         if (switch6.isChecked())
             willexpire6 = "no";
+        else
+            willexpire6 = "yes";
+
         if (switch7.isChecked())
             willexpire7 = "no";
+
+        else
+            willexpire7 = "yes";
+
         if (switch8.isChecked())
             willexpire8 = "no";
+        else
+            willexpire8 = "yes";
+
         if (switch9.isChecked())
             willexpire9 = "no";
+        else
+            willexpire9 = "yes";
+
         if (switch10.isChecked())
             willexpire10 = "no";
+        else
+            willexpire10 = "yes";
 
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
 
@@ -2363,17 +2391,17 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -2382,8 +2410,6 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                         }
-
-
                     }
                 }
             } else if (certicount == 1) {
@@ -2391,18 +2417,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
                             if (willexpire1.equals("yes")) {
-                                errorflag = 0;
+
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
                                     certienddate1.setError("Kindly select valid date");
@@ -2411,22 +2437,22 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -2450,18 +2476,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -2470,23 +2496,23 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
 
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -2496,23 +2522,23 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
 
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -2541,18 +2567,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -2561,23 +2587,23 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
 
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -2586,22 +2612,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                             }
 
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -2610,23 +2636,23 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                             }
 
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
 
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -2664,18 +2690,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -2684,22 +2710,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -2708,22 +2734,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                             }
 
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -2732,22 +2758,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                             }
 
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -2756,22 +2782,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                             }
 
                                                                             {
-                                                                                errorflag = 0;
+
                                                                                 if (stitle5.length() < 3) {
                                                                                     errorflag = 1;
                                                                                     titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
-                                                                                    errorflag = 0;
+
                                                                                     if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
                                                                                         issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
-                                                                                        errorflag = 0;
+
                                                                                         if (sstartdate5.length() < 3) {
                                                                                             errorflag = 1;
                                                                                             certistartdate5.setError("Kindly select valid date");
                                                                                         } else {
-                                                                                            errorflag = 0;
+
                                                                                             if (willexpire5.equals("yes")) {
                                                                                                 if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
@@ -2815,18 +2841,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -2835,22 +2861,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -2859,22 +2885,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                             }
 
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -2883,22 +2909,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                             }
 
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -2907,22 +2933,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                             }
 
                                                                             {
-                                                                                errorflag = 0;
+
                                                                                 if (stitle5.length() < 3) {
                                                                                     errorflag = 1;
                                                                                     titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
-                                                                                    errorflag = 0;
+
                                                                                     if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
                                                                                         issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
-                                                                                        errorflag = 0;
+
                                                                                         if (sstartdate5.length() < 3) {
                                                                                             errorflag = 1;
                                                                                             certistartdate5.setError("Kindly select valid date");
                                                                                         } else {
-                                                                                            errorflag = 0;
+
                                                                                             if (willexpire5.equals("yes")) {
                                                                                                 if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
@@ -2931,22 +2957,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                             }
 
                                                                                             {
-                                                                                                errorflag = 0;
+
                                                                                                 if (stitle6.length() < 3) {
                                                                                                     errorflag = 1;
                                                                                                     titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
-                                                                                                    errorflag = 0;
+
                                                                                                     if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
                                                                                                         issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
-                                                                                                        errorflag = 0;
+
                                                                                                         if (sstartdate6.length() < 3) {
                                                                                                             errorflag = 1;
                                                                                                             certistartdate6.setError("Kindly select valid date");
                                                                                                         } else {
-                                                                                                            errorflag = 0;
+
                                                                                                             if (willexpire6.equals("yes")) {
                                                                                                                 if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
@@ -2994,18 +3020,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -3014,22 +3040,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -3038,22 +3064,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                             }
 
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -3062,22 +3088,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                             }
 
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -3086,22 +3112,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                             }
 
                                                                             {
-                                                                                errorflag = 0;
+
                                                                                 if (stitle5.length() < 3) {
                                                                                     errorflag = 1;
                                                                                     titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
-                                                                                    errorflag = 0;
+
                                                                                     if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
                                                                                         issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
-                                                                                        errorflag = 0;
+
                                                                                         if (sstartdate5.length() < 3) {
                                                                                             errorflag = 1;
                                                                                             certistartdate5.setError("Kindly select valid date");
                                                                                         } else {
-                                                                                            errorflag = 0;
+
                                                                                             if (willexpire5.equals("yes")) {
                                                                                                 if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
@@ -3109,22 +3135,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                 }
                                                                                             }
                                                                                             {
-                                                                                                errorflag = 0;
+
                                                                                                 if (stitle6.length() < 3) {
                                                                                                     errorflag = 1;
                                                                                                     titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
-                                                                                                    errorflag = 0;
+
                                                                                                     if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
                                                                                                         issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
-                                                                                                        errorflag = 0;
+
                                                                                                         if (sstartdate6.length() < 3) {
                                                                                                             errorflag = 1;
                                                                                                             certistartdate6.setError("Kindly select valid date");
                                                                                                         } else {
-                                                                                                            errorflag = 0;
+
                                                                                                             if (willexpire6.equals("yes")) {
                                                                                                                 if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
@@ -3133,22 +3159,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                             }
 
                                                                                                             {
-                                                                                                                errorflag = 0;
+
                                                                                                                 if (stitle7.length() < 3) {
                                                                                                                     errorflag = 1;
                                                                                                                     titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
+
                                                                                                                     if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
                                                                                                                         issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
-                                                                                                                        errorflag = 0;
+
                                                                                                                         if (sstartdate7.length() < 3) {
                                                                                                                             errorflag = 1;
                                                                                                                             certistartdate7.setError("Kindly select valid date");
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
+
                                                                                                                             if (willexpire7.equals("yes")) {
                                                                                                                                 if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
@@ -3202,18 +3228,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -3222,22 +3248,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                             }
 
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -3245,22 +3271,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                 }
                                             }
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -3268,22 +3294,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                 }
                                                             }
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -3291,22 +3317,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                 }
                                                                             }
                                                                             {
-                                                                                errorflag = 0;
+
                                                                                 if (stitle5.length() < 3) {
                                                                                     errorflag = 1;
                                                                                     titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
-                                                                                    errorflag = 0;
+
                                                                                     if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
                                                                                         issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
-                                                                                        errorflag = 0;
+
                                                                                         if (sstartdate5.length() < 3) {
                                                                                             errorflag = 1;
                                                                                             certistartdate5.setError("Kindly select valid date");
                                                                                         } else {
-                                                                                            errorflag = 0;
+
                                                                                             if (willexpire5.equals("yes")) {
                                                                                                 if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
@@ -3314,22 +3340,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                 }
                                                                                             }
                                                                                             {
-                                                                                                errorflag = 0;
+
                                                                                                 if (stitle6.length() < 3) {
                                                                                                     errorflag = 1;
                                                                                                     titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
-                                                                                                    errorflag = 0;
+
                                                                                                     if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
                                                                                                         issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
-                                                                                                        errorflag = 0;
+
                                                                                                         if (sstartdate6.length() < 3) {
                                                                                                             errorflag = 1;
                                                                                                             certistartdate6.setError("Kindly select valid date");
                                                                                                         } else {
-                                                                                                            errorflag = 0;
+
                                                                                                             if (willexpire6.equals("yes")) {
                                                                                                                 if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
@@ -3337,22 +3363,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                 }
                                                                                                             }
                                                                                                             {
-                                                                                                                errorflag = 0;
+
                                                                                                                 if (stitle7.length() < 3) {
                                                                                                                     errorflag = 1;
                                                                                                                     titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
+
                                                                                                                     if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
                                                                                                                         issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
-                                                                                                                        errorflag = 0;
+
                                                                                                                         if (sstartdate7.length() < 3) {
                                                                                                                             errorflag = 1;
                                                                                                                             certistartdate7.setError("Kindly select valid date");
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
+
                                                                                                                             if (willexpire7.equals("yes")) {
                                                                                                                                 if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
@@ -3360,22 +3386,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                                 }
                                                                                                                             }
                                                                                                                             {
-                                                                                                                                errorflag = 0;
+
                                                                                                                                 if (stitle8.length() < 3) {
                                                                                                                                     errorflag = 1;
                                                                                                                                     titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
+
                                                                                                                                     if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
                                                                                                                                         issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
-                                                                                                                                        errorflag = 0;
+
                                                                                                                                         if (sstartdate8.length() < 3) {
                                                                                                                                             errorflag = 1;
                                                                                                                                             certistartdate8.setError("Kindly select valid date");
                                                                                                                                         } else {
-                                                                                                                                            errorflag = 0;
+
                                                                                                                                             if (willexpire8.equals("yes")) {
                                                                                                                                                 if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
@@ -3434,18 +3460,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -3453,22 +3479,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                 }
                             }
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -3476,22 +3502,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                 }
                                             }
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -3499,22 +3525,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                 }
                                                             }
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -3522,22 +3548,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                 }
                                                                             }
                                                                             {
-                                                                                errorflag = 0;
+
                                                                                 if (stitle5.length() < 3) {
                                                                                     errorflag = 1;
                                                                                     titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
-                                                                                    errorflag = 0;
+
                                                                                     if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
                                                                                         issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
-                                                                                        errorflag = 0;
+
                                                                                         if (sstartdate5.length() < 3) {
                                                                                             errorflag = 1;
                                                                                             certistartdate5.setError("Kindly select valid date");
                                                                                         } else {
-                                                                                            errorflag = 0;
+
                                                                                             if (willexpire5.equals("yes")) {
                                                                                                 if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
@@ -3545,22 +3571,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                 }
                                                                                             }
                                                                                             {
-                                                                                                errorflag = 0;
+
                                                                                                 if (stitle6.length() < 3) {
                                                                                                     errorflag = 1;
                                                                                                     titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
-                                                                                                    errorflag = 0;
+
                                                                                                     if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
                                                                                                         issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
-                                                                                                        errorflag = 0;
+
                                                                                                         if (sstartdate6.length() < 3) {
                                                                                                             errorflag = 1;
                                                                                                             certistartdate6.setError("Kindly select valid date");
                                                                                                         } else {
-                                                                                                            errorflag = 0;
+
                                                                                                             if (willexpire6.equals("yes")) {
                                                                                                                 if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
@@ -3568,22 +3594,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                 }
                                                                                                             }
                                                                                                             {
-                                                                                                                errorflag = 0;
+
                                                                                                                 if (stitle7.length() < 3) {
                                                                                                                     errorflag = 1;
                                                                                                                     titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
+
                                                                                                                     if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
                                                                                                                         issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
-                                                                                                                        errorflag = 0;
+
                                                                                                                         if (sstartdate7.length() < 3) {
                                                                                                                             errorflag = 1;
                                                                                                                             certistartdate7.setError("Kindly select valid date");
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
+
                                                                                                                             if (willexpire7.equals("yes")) {
                                                                                                                                 if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
@@ -3591,22 +3617,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                                 }
                                                                                                                             }
                                                                                                                             {
-                                                                                                                                errorflag = 0;
+
                                                                                                                                 if (stitle8.length() < 3) {
                                                                                                                                     errorflag = 1;
                                                                                                                                     titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
+
                                                                                                                                     if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
                                                                                                                                         issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
-                                                                                                                                        errorflag = 0;
+
                                                                                                                                         if (sstartdate8.length() < 3) {
                                                                                                                                             errorflag = 1;
                                                                                                                                             certistartdate8.setError("Kindly select valid date");
                                                                                                                                         } else {
-                                                                                                                                            errorflag = 0;
+
                                                                                                                                             if (willexpire8.equals("yes")) {
                                                                                                                                                 if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
@@ -3614,22 +3640,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                                                 }
                                                                                                                                             }
                                                                                                                                             {
-                                                                                                                                                errorflag = 0;
+
                                                                                                                                                 if (stitle9.length() < 3) {
                                                                                                                                                     errorflag = 1;
                                                                                                                                                     titleinput9.setError("Kindly enter valid name");
                                                                                                                                                 } else {
-                                                                                                                                                    errorflag = 0;
+
                                                                                                                                                     if (sissuer9.length() < 3) {
                                                                                                                                                         errorflag = 1;
                                                                                                                                                         issuerinput9.setError("Kindly enter valid name");
                                                                                                                                                     } else {
-                                                                                                                                                        errorflag = 0;
+
                                                                                                                                                         if (sstartdate9.length() < 3) {
                                                                                                                                                             errorflag = 1;
                                                                                                                                                             certistartdate9.setError("Kindly select valid date");
                                                                                                                                                         } else {
-                                                                                                                                                            errorflag = 0;
+
                                                                                                                                                             if (willexpire9.equals("yes")) {
                                                                                                                                                                 if (senddate9.length() < 4) {
                                                                                                                                                                     errorflag = 1;
@@ -3694,18 +3720,18 @@ public class MyProfileCertifications extends AppCompatActivity {
                     errorflag = 1;
                     titleinput1.setError("Kindly enter valid name");
                 } else {
-                    errorflag = 0;
+
                     if (sissuer1.length() < 3) {
                         errorflag = 1;
                         issuerinput1.setError("Kindly enter valid name");
                     } else {
 
-                        errorflag = 0;
+
                         if (sstartdate1.length() < 1) {
                             errorflag = 1;
                             certistartdate1.setError("Kindly select valid date");
                         } else {
-                            errorflag = 0;
+
                             if (willexpire1.equals("yes")) {
                                 if (senddate1.length() < 4) {
                                     errorflag = 1;
@@ -3713,22 +3739,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                 }
                             }
                             {
-                                errorflag = 0;
+
                                 if (stitle2.length() < 3) {
                                     errorflag = 1;
                                     titleinput2.setError("Kindly enter valid name");
                                 } else {
-                                    errorflag = 0;
+
                                     if (sissuer2.length() < 3) {
                                         errorflag = 1;
                                         issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
+
                                         if (sstartdate2.length() < 2) {
                                             errorflag = 1;
                                             certistartdate2.setError("Kindly select valid date");
                                         } else {
-                                            errorflag = 0;
+
                                             if (willexpire2.equals("yes")) {
                                                 if (senddate2.length() < 4) {
                                                     errorflag = 1;
@@ -3736,22 +3762,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                 }
                                             }
                                             {
-                                                errorflag = 0;
+
                                                 if (stitle3.length() < 3) {
                                                     errorflag = 1;
                                                     titleinput3.setError("Kindly enter valid name");
                                                 } else {
-                                                    errorflag = 0;
+
                                                     if (sissuer3.length() < 3) {
                                                         errorflag = 1;
                                                         issuerinput3.setError("Kindly enter valid name");
                                                     } else {
-                                                        errorflag = 0;
+
                                                         if (sstartdate3.length() < 3) {
                                                             errorflag = 1;
                                                             certistartdate3.setError("Kindly select valid date");
                                                         } else {
-                                                            errorflag = 0;
+
                                                             if (willexpire3.equals("yes")) {
                                                                 if (senddate3.length() < 4) {
                                                                     errorflag = 1;
@@ -3759,22 +3785,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                 }
                                                             }
                                                             {
-                                                                errorflag = 0;
+
                                                                 if (stitle4.length() < 3) {
                                                                     errorflag = 1;
                                                                     titleinput4.setError("Kindly enter valid name");
                                                                 } else {
-                                                                    errorflag = 0;
+
                                                                     if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
                                                                         issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
-                                                                        errorflag = 0;
+
                                                                         if (sstartdate4.length() < 3) {
                                                                             errorflag = 1;
                                                                             certistartdate4.setError("Kindly select valid date");
                                                                         } else {
-                                                                            errorflag = 0;
+
                                                                             if (willexpire4.equals("yes")) {
                                                                                 if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
@@ -3782,22 +3808,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                 }
                                                                             }
                                                                             {
-                                                                                errorflag = 0;
+
                                                                                 if (stitle5.length() < 3) {
                                                                                     errorflag = 1;
                                                                                     titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
-                                                                                    errorflag = 0;
+
                                                                                     if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
                                                                                         issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
-                                                                                        errorflag = 0;
+
                                                                                         if (sstartdate5.length() < 3) {
                                                                                             errorflag = 1;
                                                                                             certistartdate5.setError("Kindly select valid date");
                                                                                         } else {
-                                                                                            errorflag = 0;
+
                                                                                             if (willexpire5.equals("yes")) {
                                                                                                 if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
@@ -3805,22 +3831,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                 }
                                                                                             }
                                                                                             {
-                                                                                                errorflag = 0;
+
                                                                                                 if (stitle6.length() < 3) {
                                                                                                     errorflag = 1;
                                                                                                     titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
-                                                                                                    errorflag = 0;
+
                                                                                                     if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
                                                                                                         issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
-                                                                                                        errorflag = 0;
+
                                                                                                         if (sstartdate6.length() < 3) {
                                                                                                             errorflag = 1;
                                                                                                             certistartdate6.setError("Kindly select valid date");
                                                                                                         } else {
-                                                                                                            errorflag = 0;
+
                                                                                                             if (willexpire6.equals("yes")) {
                                                                                                                 if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
@@ -3829,22 +3855,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                             }
 
                                                                                                             {
-                                                                                                                errorflag = 0;
+
                                                                                                                 if (stitle7.length() < 3) {
                                                                                                                     errorflag = 1;
                                                                                                                     titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
+
                                                                                                                     if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
                                                                                                                         issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
-                                                                                                                        errorflag = 0;
+
                                                                                                                         if (sstartdate7.length() < 3) {
                                                                                                                             errorflag = 1;
                                                                                                                             certistartdate7.setError("Kindly select valid date");
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
+
                                                                                                                             if (willexpire7.equals("yes")) {
                                                                                                                                 if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
@@ -3852,22 +3878,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                                 }
                                                                                                                             }
                                                                                                                             {
-                                                                                                                                errorflag = 0;
+
                                                                                                                                 if (stitle8.length() < 3) {
                                                                                                                                     errorflag = 1;
                                                                                                                                     titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
+
                                                                                                                                     if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
                                                                                                                                         issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
-                                                                                                                                        errorflag = 0;
+
                                                                                                                                         if (sstartdate8.length() < 3) {
                                                                                                                                             errorflag = 1;
                                                                                                                                             certistartdate8.setError("Kindly select valid date");
                                                                                                                                         } else {
-                                                                                                                                            errorflag = 0;
+
                                                                                                                                             if (willexpire8.equals("yes")) {
                                                                                                                                                 if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
@@ -3875,22 +3901,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                                                 }
                                                                                                                                             }
                                                                                                                                             {
-                                                                                                                                                errorflag = 0;
+
                                                                                                                                                 if (stitle9.length() < 3) {
                                                                                                                                                     errorflag = 1;
                                                                                                                                                     titleinput9.setError("Kindly enter valid name");
                                                                                                                                                 } else {
-                                                                                                                                                    errorflag = 0;
+
                                                                                                                                                     if (sissuer9.length() < 3) {
                                                                                                                                                         errorflag = 1;
                                                                                                                                                         issuerinput9.setError("Kindly enter valid name");
                                                                                                                                                     } else {
-                                                                                                                                                        errorflag = 0;
+
                                                                                                                                                         if (sstartdate9.length() < 3) {
                                                                                                                                                             errorflag = 1;
                                                                                                                                                             certistartdate9.setError("Kindly select valid date");
                                                                                                                                                         } else {
-                                                                                                                                                            errorflag = 0;
+
                                                                                                                                                             if (willexpire9.equals("yes")) {
                                                                                                                                                                 if (senddate9.length() < 4) {
                                                                                                                                                                     errorflag = 1;
@@ -3898,22 +3924,22 @@ public class MyProfileCertifications extends AppCompatActivity {
                                                                                                                                                                 }
                                                                                                                                                             }
                                                                                                                                                             {
-                                                                                                                                                                errorflag = 0;
+
                                                                                                                                                                 if (stitle10.length() < 3) {
                                                                                                                                                                     errorflag = 1;
                                                                                                                                                                     titleinput10.setError("Kindly enter valid name");
                                                                                                                                                                 } else {
-                                                                                                                                                                    errorflag = 0;
+
                                                                                                                                                                     if (sissuer10.length() < 3) {
                                                                                                                                                                         errorflag = 1;
                                                                                                                                                                         issuerinput10.setError("Kindly enter valid name");
                                                                                                                                                                     } else {
-                                                                                                                                                                        errorflag = 0;
+
                                                                                                                                                                         if (sstartdate10.length() < 3) {
                                                                                                                                                                             errorflag = 1;
                                                                                                                                                                             certistartdate10.setError("Kindly select valid date");
                                                                                                                                                                         } else {
-                                                                                                                                                                            errorflag = 0;
+
                                                                                                                                                                             if (willexpire10.equals("yes")) {
                                                                                                                                                                                 if (senddate10.length() < 4) {
                                                                                                                                                                                     errorflag = 1;

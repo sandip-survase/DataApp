@@ -1115,6 +1115,7 @@ public class MyProfileAchievements extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editachieve=0;
+                edittedFlag=1;
 
                 if (honorcount == 0) {
                     if (title1.getText().toString() != null && issuer1.getText().toString() != null && yearofhonor1.getText().toString() != null) {

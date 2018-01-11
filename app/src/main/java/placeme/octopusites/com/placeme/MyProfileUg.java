@@ -283,7 +283,16 @@ public class MyProfileUg extends AppCompatActivity {
 
                 if (selectedCourse.equals("Other")) {
                     othercourseinput.setVisibility(View.VISIBLE);
+
+                    if(othercourse.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
+
                 } else {
+
+                    if(!selectedCourse.equals(s.getCourseug())){
+                        edittedFlag=1;
+                    }
 
                     othercourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -352,8 +361,14 @@ public class MyProfileUg extends AppCompatActivity {
                 if(selectedStream.equals("Other")) {
 
                     otherboardinput.setVisibility(View.VISIBLE);
+                    if(otherstream.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
                 }
                 else {
+                    if(!selectedStream.equals(s.getStreamug())){
+                        edittedFlag=1;
+                    }
 
                     otherboardinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -423,8 +438,15 @@ public class MyProfileUg extends AppCompatActivity {
                 TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.otheruniversityinput);
                 if (selectedUniversity.equals("Other")) {
                     otheruniversityinput.setVisibility(View.VISIBLE);
+                    if(otheruniversity.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
 
                 } else {
+
+                    if(!selectedUniversity.equals(s.getUniversityug())){
+                        edittedFlag=1;
+                    }
                     otheruniversityinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -1557,7 +1579,6 @@ public class MyProfileUg extends AppCompatActivity {
     }
 
 
-
     String setStreamAdapter(String a) {
         try {
 
@@ -1666,8 +1687,12 @@ public class MyProfileUg extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-
-                validateandSave();
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
                 break;
 
             case android.R.id.home:

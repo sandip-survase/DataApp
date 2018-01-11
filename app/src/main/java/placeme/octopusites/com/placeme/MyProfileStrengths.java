@@ -393,6 +393,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editstrength=0;
+                edittedFlag=1;
                 if(strengthcount==0)
                 {
                     if(strength1.getText().toString()!=null ){
@@ -1530,6 +1531,11 @@ public class MyProfileStrengths extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
+
+
+
+
+
                 if (edittedFlag == 1) {
                     validateandSave();
                 }

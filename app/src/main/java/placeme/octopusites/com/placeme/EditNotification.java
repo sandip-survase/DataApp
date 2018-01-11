@@ -59,6 +59,8 @@ public class EditNotification extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
 
+    String TAG = "EditNotificationtag";
+
     Toolbar toolbar;
     TextView selectedtxt;
     int selectedCount = 0;
@@ -169,89 +171,89 @@ public class EditNotification extends AppCompatActivity {
         recyclerViewNotification.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewNotification, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                try{
+                try {
 
-                RecyclerItemEdit item = itemListNotificationNew.get(position);
+                    RecyclerItemEdit item = itemListNotificationNew.get(position);
 
 
-                if (deleteflag == 1) {
+                    if (deleteflag == 1) {
 
-                    if (!notificationdeleteArraylist.contains(item.getId())) {
-                        notificationdeleteArraylist.add(item.getId());
-                        view.setBackgroundColor(Color.parseColor("#eeeeee"));
-                        selectedCount++;
-                        setActionBarTitle(selectedCount);
-                        selectedPositions[position] = 1;
-                        selectedViews[position] = view;
-                    } else {
-                        notificationdeleteArraylist.remove(item.getId());
-                        view.setBackgroundColor(Color.TRANSPARENT);
-                        selectedCount--;
-                        setActionBarTitle(selectedCount);
-                        selectedPositions[position] = 0;
-                        selectedViews[position] = null;
-                        if (selectedCount == 0)
-                            goBack();
+                        if (!notificationdeleteArraylist.contains(item.getId())) {
+                            notificationdeleteArraylist.add(item.getId());
+                            view.setBackgroundColor(Color.parseColor("#eeeeee"));
+                            selectedCount++;
+                            setActionBarTitle(selectedCount);
+                            selectedPositions[position] = 1;
+                            selectedViews[position] = view;
+                        } else {
+                            notificationdeleteArraylist.remove(item.getId());
+                            view.setBackgroundColor(Color.TRANSPARENT);
+                            selectedCount--;
+                            setActionBarTitle(selectedCount);
+                            selectedPositions[position] = 0;
+                            selectedViews[position] = null;
+                            if (selectedCount == 0)
+                                goBack();
+                        }
+
+
+                    } else if (role.equals("hr")) {
+                        startActivity(new Intent(EditNotification.this, EditNotificationHrMain.class));
+
+                    } else if (role.equals("admin")) {
+
+                        Intent i1 = new Intent(EditNotification.this, CreateNotification.class);
+                        i1.putExtra("flag", "EditNotification");
+                        i1.putExtra("id", item.getId());
+                        i1.putExtra("title", item.getTitle());
+                        i1.putExtra("notification", item.getNotification());
+
+
+                        if (item.getFilename1() != null) {
+                            i1.putExtra("file1", Z.Decrypt(item.getFilename1(), EditNotification.this));
+                        } else {
+                            i1.putExtra("file1", item.getFilename1());
+                        }
+
+                        if (item.getFilename2() != null) {
+                            i1.putExtra("file2", Z.Decrypt(item.getFilename2(), EditNotification.this));
+                        } else {
+                            i1.putExtra("file2", item.getFilename2());
+                        }
+                        if (item.getFilename3() != null) {
+                            i1.putExtra("file3", Z.Decrypt(item.getFilename3(), EditNotification.this));
+                        } else {
+                            i1.putExtra("file3", item.getFilename3());
+                        }
+                        if (item.getFilename4() != null) {
+                            i1.putExtra("file4", Z.Decrypt(item.getFilename4(), EditNotification.this));
+                        } else {
+                            i1.putExtra("file4", item.getFilename4());
+                        }
+
+                        if (item.getFilename5() != null) {
+                            i1.putExtra("file5", Z.Decrypt(item.getFilename5(), EditNotification.this));
+                        } else {
+                            i1.putExtra("file5", item.getFilename5());
+                        }
+
+                        i1.putExtra("uploadedby", item.getUploadedby());
+                        i1.putExtra("uploadtime", item.getUploadtime());
+                        i1.putExtra("lastmodified", item.getLastmodified());
+                        Log.d("Check2", "id: " + item.getId());
+                        Log.d("Check2", "notiff: " + item.getNotification());
+                        Log.d("Check2", "title: " + item.getTitle());
+                        Log.d("Check2", "file1: " + item.getFilename1());
+                        Log.d("Check2", "lastmodified: " + item.getLastmodified());
+                        Log.d("Check2", "file5: " + item.getFilename5());
+                        startActivityForResult(i1,0);
+
+
                     }
 
-
-                } else if (role.equals("hr")) {
-                    startActivity(new Intent(EditNotification.this, EditNotificationHrMain.class));
-
-                } else if (role.equals("admin")) {
-
-                    Intent i1 = new Intent(EditNotification.this, CreateNotification.class);
-                    i1.putExtra("flag", "EditNotification");
-                    i1.putExtra("id", item.getId());
-                    i1.putExtra("title", item.getTitle());
-                    i1.putExtra("notification", item.getNotification());
-
-
-                    if (item.getFilename1() != null) {
-                        i1.putExtra("file1", Z.Decrypt(item.getFilename1(), EditNotification.this));
-                    } else {
-                        i1.putExtra("file1", item.getFilename1());
-                    }
-
-                    if (item.getFilename2() != null) {
-                        i1.putExtra("file2", Z.Decrypt(item.getFilename2(), EditNotification.this));
-                    } else {
-                        i1.putExtra("file2", item.getFilename2());
-                    }
-                    if (item.getFilename3() != null) {
-                        i1.putExtra("file3", Z.Decrypt(item.getFilename3(), EditNotification.this));
-                    } else {
-                        i1.putExtra("file3", item.getFilename3());
-                    }
-                    if (item.getFilename4() != null) {
-                        i1.putExtra("file4", Z.Decrypt(item.getFilename4(), EditNotification.this));
-                    } else {
-                        i1.putExtra("file4", item.getFilename4());
-                    }
-
-                    if (item.getFilename5() != null) {
-                        i1.putExtra("file5", Z.Decrypt(item.getFilename5(), EditNotification.this));
-                    } else {
-                        i1.putExtra("file5", item.getFilename5());
-                    }
-
-                    i1.putExtra("uploadedby", item.getUploadedby());
-                    i1.putExtra("uploadtime", item.getUploadtime());
-                    i1.putExtra("lastmodified", item.getLastmodified());
-                    Log.d("Check2", "id: " + item.getId());
-                    Log.d("Check2", "notiff: " + item.getNotification());
-                    Log.d("Check2", "title: " + item.getTitle());
-                    Log.d("Check2", "file1: " + item.getFilename1());
-                    Log.d("Check2", "lastmodified: " + item.getLastmodified());
-                    Log.d("Check2", "file5: " + item.getFilename5());
-                    startActivity(i1);
-
-
+                } catch (Exception e) {
+                    Log.d("Exception", " " + e.getMessage());
                 }
-
-            } catch (Exception e) {
-                Log.d("Exception", " " + e.getMessage());
-            }
             }
 
 
@@ -363,7 +365,6 @@ public class EditNotification extends AppCompatActivity {
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                itemListNotificationNew.clear();
                 getNotifications2();
             }
         });
@@ -522,87 +523,10 @@ public class EditNotification extends AppCompatActivity {
     }
 
 
-    private void simulateLoadingNotification() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                tswipe_refresh_layout.setRefreshing(true);
-            }
-
-            @Override
-            protected Void doInBackground(Void... param) {
-                try {
-
-
-                    Log.d("TAG", "simulateLoadingNotification: accessed");
-                    Log.d("TAG", "page_to_call_notification:" + page_to_call_notification);
-                    Log.d("TAG", "notificationpages:" + notificationpages);
-
-                    if (page_to_call_notification < notificationpages)
-                        page_to_call_notification++;
-
-
-                    if (page_to_call_notification != notificationpages) {
-
-                        List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("u", username));       //0
-                        params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
-
-                        notificationcount = Integer.parseInt(json.getString("count"));
-
-                        Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                        itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                        Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-
-
-                    } else {
-                        if (!isLastPageLoadedNotification) {
-
-                            lastPageFlagNotification = 1;
-
-                            List<NameValuePair> params = new ArrayList<NameValuePair>();
-                            params.add(new BasicNameValuePair("u", username));       //0
-                            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
-
-                            notificationcount = Integer.parseInt(json.getString("count"));
-
-                            Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                            Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                        }
-
-                    }
-
-                } catch (Exception e) {
-
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void param) {
-
-                if (!isLastPageLoadedNotification) {
-
-                    setserverlisttoadapter(itemlistfromserver);
-
-
-                }
-
-
-                tswipe_refresh_layout.setRefreshing(false);
-//                new GetLastUpdatedNotification().execute();
-            }
-        }.execute();
-    }
-
     void getNotifications2() {
 
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(true);
-        itemListNotificationNew.clear();
 
         previousTotalNotification = 0;
         loadingNotification = true;
@@ -701,42 +625,6 @@ public class EditNotification extends AppCompatActivity {
         public abstract void onLoadMore(int current_page);
     }
 
-    class GetplacementbyAdmin extends AsyncTask<String, String, String> {
-
-        private static final String TAG = "Getplacementbyhr";
-        ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
-            try {
-
-
-                Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(json.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
-                Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            setserverlisttoadapter(itemlistfromserver);
-
-        }
-
-    }
 
     private void GetplacementbyAdmin() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
@@ -768,11 +656,11 @@ public class EditNotification extends AppCompatActivity {
                             Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
                             Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
 
-
+                            itemListNotificationNew.clear();
+                            setserverlisttoadapter(itemlistfromserver);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        setserverlisttoadapter(itemlistfromserver);
 
 
                     }
@@ -794,12 +682,6 @@ public class EditNotification extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
-
-
 
 
     void setserverlisttoadapter(ArrayList<RecyclerItemEdit> itemlist) {
@@ -928,14 +810,144 @@ public class EditNotification extends AppCompatActivity {
 
 
 
+    private void simulateLoadingNotification() {
+        tswipe_refresh_layout.setRefreshing(true);
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        getNotifications2();
+
+        if (page_to_call_notification < notificationpages)
+            page_to_call_notification++;
+        Log.d(TAG, "Movies to release from reports:" + page_to_call_notification);
+        Log.d(TAG, "projects :" + notificationpages);
+        if (page_to_call_notification < notificationpages)
+            page_to_call_notification++;
+
+        if (page_to_call_notification != notificationpages) {
+
+            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsSentByAdmin")
+                    .setTag(this)
+                    .addQueryParameter("u", username)
+                    .addQueryParameter("p", page_to_call_notification + "")
+
+                    .setPriority(Priority.HIGH)
+                    .getResponseOnlyFromNetwork()
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d(TAG, "onResponse object2 : " + response.toString());
+                            try {
+                                itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(EditNotification.this), MySharedPreferencesManager.getDigest2(EditNotification.this));
+                                Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
+                                if (!isLastPageLoadedNotification) {
+                                    setserverlisttoadapter(itemlistfromserver);
+                                }
+                                tswipe_refresh_layout.setRefreshing(false);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            if (error.getErrorCode() != 0) {
+                                // received ANError from server
+                                // error.getErrorCode() - the ANError code from server
+                                // error.getErrorBody() - the ANError body from server
+                                // error.getErrorDetail() - just a ANError detail
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        } else {
+            if (!isLastPageLoadedNotification) {
+                lastPageFlagNotification = 1;
+
+                AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsSentByAdmin")
+                        .setTag(this)
+                        .addQueryParameter("u", username)
+                        .addQueryParameter("p", page_to_call_notification + "")
+
+                        .setPriority(Priority.HIGH)
+                        .getResponseOnlyFromNetwork()
+                        .build()
+                        .setAnalyticsListener(new AnalyticsListener() {
+                            @Override
+                            public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                                Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                                Log.d(TAG, " bytesSent : " + bytesSent);
+                                Log.d(TAG, " bytesReceived : " + bytesReceived);
+                                Log.d(TAG, " isFromCache : " + isFromCache);
+                            }
+                        })
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d(TAG, "onResponse object2 : " + response.toString());
+                                try {
+
+                                    itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(EditNotification.this), MySharedPreferencesManager.getDigest2(EditNotification.this));
+                                    Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                                    Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
+                                    if (!isLastPageLoadedNotification) {
+
+                                        setserverlisttoadapter(itemlistfromserver);
+                                    }
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(ANError error) {
+                                if (error.getErrorCode() != 0) {
+                                    // received ANError from server
+                                    // error.getErrorCode() - the ANError code from server
+                                    // error.getErrorBody() - the ANError body from server
+                                    // error.getErrorDetail() - just a ANError detail
+                                    Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                    Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                    Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                } else {
+                                    // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                    Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                }
+                            }
+                        });
+            } else {
+                tswipe_refresh_layout.setRefreshing(false);
+
+            }
+
+        }
 
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE){
+            getNotifications2();
+        }
+
+    }
 }
 

@@ -391,6 +391,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editweak=0;
+                edittedFlag=1;
                 if (weakcount == 0) {
                     if (weak1.getText().toString() != null) {
                         if (!weak1.getText().toString().equals("")) {
@@ -675,7 +676,6 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                 i.setVisibility(View.GONE);
             }
         }
-
 
         edittedFlag = 0;
 
