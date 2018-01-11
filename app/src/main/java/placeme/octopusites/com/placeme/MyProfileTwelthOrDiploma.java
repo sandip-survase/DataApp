@@ -60,6 +60,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     TextInputLayout marks12input, outof12input, schoolname12input, otherstream12input, otherboardinput, yearofpassing12inpute, marksdsem1input, doutofsem1input, dpercentsem1input, marksdsem2input, doutofsem2input, dpercentsem2inpute, marksdsem3input, doutofsem3input, dpercentsem3input, marksdsem4input, doutofsem4inpute, dpercentsem4inpute, marksdsem5input, doutofsem5input, dpercentsem5input, marksdsem6input, doutofsem6input, dpercentsem6input, daggregateinput, othercourseinput, otherboarddinput, schoolnamedinput, yearofpassingdinput;
     TextInputLayout percent12input;
     String selectedBoard12 = "", selectedBoarddiploma = "", selectedStream12 = "", monthandyearofpassing12 = "", monthandyearofpassingdiploma = "";
+    String twelthboard="",diplomaboard="",streamtwelth="",coursediploma="";
     Spinner stream12, board12;
     Spinner dcourse, duniversity;
     String username, role;
@@ -1018,6 +1019,25 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             }
         });
 
+        yearofpassingd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                yearofpassingdinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
         othercourse.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1085,14 +1105,24 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedBoarddiploma = (String) parent.getItemAtPosition(position);
+                diplomaboard = selectedBoarddiploma;
+
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboarddinput);
                 if (selectedBoarddiploma.equals("Other")) {
 
                     otherboardinput.setVisibility(View.VISIBLE);
                     otherboardd.setVisibility(View.VISIBLE);
 
+                    if(otherboardd.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
+//                    isdatavalidate(selectedBoarddiploma,otherboardd);
+
                 } else {
 
+                    if(!diplomaboard.equals(s.getUniversitydiploma())){
+                        edittedFlag=1;
+                    }
                     otherboardinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -1154,11 +1184,24 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedBoard12 = (String) parent.getItemAtPosition(position);
+
+
+
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboardinput);
                 if (selectedBoard12.equals("Other")) {
                     otherboard.setVisibility(View.VISIBLE);
                     otherboardinput.setVisibility(View.VISIBLE);
+
+                    if(otherboard.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
+
                 } else {
+
+                    if(!selectedBoard12.equals(s.getBoard12())){
+                        edittedFlag=1;
+                    }
+
                     otherboard.setVisibility(View.GONE);
                     otherboardinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -1222,13 +1265,22 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStream12 = (String) parent.getItemAtPosition(position);
-                TextInputLayout otherstreaminput = (TextInputLayout) findViewById(R.id.otherstream12input);
-                if (selectedStream12.equals("Other")) {
+                TextInputLayout otherstreaminput12 = (TextInputLayout) findViewById(R.id.otherstream12input);
 
-                    otherstreaminput.setVisibility(View.VISIBLE);
+                if (selectedStream12.equals("Other")) {
+                    otherstreaminput12.setVisibility(View.VISIBLE);
+
+                    if(otherstream12.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
                 } else {
 
-                    otherstreaminput.setVisibility(View.GONE);
+                    if(!selectedStream12.equals(s.getStream12())){
+                        edittedFlag=1;
+                    }
+
+
+                    otherstreaminput12.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
@@ -1246,7 +1298,16 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 selectedCourse = (String) parent.getItemAtPosition(position);
                 if (selectedCourse.equals("Other")) {
                     othercourseinput.setVisibility(View.VISIBLE);
+
+                    if(othercourse.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
+
                 } else {
+
+                    if(!selectedCourse.equals(s.getCoursediploma())){
+                        edittedFlag=1;
+                    }
 
                     othercourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -1728,6 +1789,11 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     }
 
+//    public void isdatavalidate(String tempstr,EditText temp){
+//
+//    }
+//
+
 
     void setMonthYear(String tod, String selectedMonth, String selectedYear) {
         if (tod.equals("twelth"))
@@ -2185,8 +2251,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
+                if (edittedFlag == 1) {
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
 
-                validateandSave();
+//                validateandSave();
                 break;
 
             case android.R.id.home:
@@ -2203,7 +2275,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
         return super.onCreateOptionsMenu(menu);
-
 
     }
 
@@ -2387,4 +2458,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Try again !", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 }

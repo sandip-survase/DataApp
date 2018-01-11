@@ -368,6 +368,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editeskills=0;
+                edittedFlag=1;
                 if (skillcount == 0) {
 
                     if(skill1.getText().toString()!=null)

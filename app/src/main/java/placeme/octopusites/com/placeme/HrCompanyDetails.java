@@ -193,6 +193,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                 pos = position;
                 CompanyType = Nature[position];
                 oldnature = CompanyType;
+
                 Log.d("TAG", "onItemSelected: CompanyType  - " + CompanyType);
 //                if(!oldnature.equals(CompanyType)){
 //                    flag1=1;
@@ -201,7 +202,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                 if (CompanyType.equals("Other")) {
                     ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
                     otherNature.setVisibility(View.VISIBLE);
-                    checkothernature();
+//                    checkothernature();
 
                 } else {
                     newnature = CompanyType;
@@ -657,9 +658,6 @@ public class HrCompanyDetails extends AppCompatActivity {
                 Toast.makeText(HrCompanyDetails.this, "Try again !", Toast.LENGTH_SHORT).show();
 
         }
-    }
-    public void checkothernature(){
-
     }
 
 

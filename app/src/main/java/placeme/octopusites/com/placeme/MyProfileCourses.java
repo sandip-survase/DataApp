@@ -1367,6 +1367,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editecourse=0;
+                editecourse=1;
 
                 if (coursecount == 0) {
                     if (name1.getText().toString() != null && inst1.getText().toString() != null && fromdate1.getText().toString() != null && todate1.getText().toString() != null) {

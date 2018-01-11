@@ -2099,6 +2099,8 @@ public class MyProfilePatents extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editpatent=0;
+                edittedFlag=1;
+
                 if (patentcount == 0) {
                     if (title1.getText().toString() != null && appno1.getText().toString() != null && inventor1.getText().toString() != null && (issue1.getText().toString() != null || filing1.getText().toString() != null)) {
                         if (!title1.getText().toString().equals("") && !appno1.getText().toString().equals("") && !inventor1.getText().toString().equals("") && (!issue1.getText().toString().equals("") || !filing1.getText().toString().equals("")) && !patoffice1.getSelectedItem().toString().equals("- Select Patent Office -")) {

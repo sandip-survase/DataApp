@@ -198,7 +198,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
         addmorelang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 editelang=0;
+                langEdittedFlog=1;
+
                 if(langcount==0)
                 {
                     if(!knownlang1.getSelectedItem().toString().equals("- Select Language -")&&!proficiency1.getSelectedItem().toString().equals("- Proficiency -")) {

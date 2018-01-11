@@ -2705,11 +2705,15 @@ public class AdminExperiences extends AppCompatActivity {
             }
         });
 //admore exp
+
         addmoreexp=(View)findViewById(R.id.addmoreexp);
         addmoreexp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 editexp=0;
+                edittedFlag=1;
+
                 if (expcount == 0) {
 
                     if(post1.getText().toString()!=null && inst1.getText().toString()!=null && fromdate1.getText().toString()!=null )
