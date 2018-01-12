@@ -33,32 +33,7 @@ public class CareerobjProfileTabFragment extends Fragment {
         mAdView = rootView.findViewById(R.id.ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                Toast.makeText(getActivity(), "onAdLoaded", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                Toast.makeText(getActivity(), "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAdOpened() {
-                Toast.makeText(getActivity(), "onAdOpened", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                Toast.makeText(getActivity(), "onAdLeftApplication", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAdClosed() {
-                Toast.makeText(getActivity(), "onAdClosed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         TextView careerobjtxt=(TextView)rootView.findViewById(R.id.careerobjtxt);
         TextView strengthtxt=(TextView)rootView.findViewById(R.id.strengthtxt);

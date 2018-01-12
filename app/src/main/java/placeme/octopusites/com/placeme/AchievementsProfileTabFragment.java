@@ -11,17 +11,26 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 
 public class AchievementsProfileTabFragment extends Fragment {
 
     String username;
 
     View knownlang,certifications,courses,skills,honors,patents,publications;
+    private AdView mAdView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_edit_profile_accomplishments, container, false);
 
+        MobileAds.initialize(getActivity(), Z.APP_ID);
+        mAdView = rootView.findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         TextView knownlangtxt=(TextView)rootView.findViewById(R.id.knownlangtxt);
         TextView certitxt=(TextView)rootView.findViewById(R.id.certitxt);
@@ -157,34 +166,28 @@ public class AchievementsProfileTabFragment extends Fragment {
 
         return animation;
     }
-//    class MyAsyncTask extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            params.add(new BasicNameValuePair("username",username));
-//            params.add(new BasicNameValuePair("achievements",achievements));
-//           json = jParser.makeHttpRequest(saveachievementsinfo, "GET", params);
-//            try {
-//                resultofop = json.getString("info");
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            if(resultofop.equals("success"))
-//                Toast.makeText(getContext(),"Successfully Updated..!",Toast.LENGTH_SHORT).show();
-//            else
-//                Toast.makeText(getContext(),"Failed..!",Toast.LENGTH_SHORT).show();
-//
-//            save.setVisibility(View.VISIBLE);
-//            achievementsprogress.setVisibility(View.GONE);
-//        }
-//    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
 }

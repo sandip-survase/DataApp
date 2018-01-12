@@ -4,6 +4,7 @@
     android:id="@+id/myprofileaccomplishments"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@color/while_color"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
@@ -236,6 +237,16 @@
             android:layout_height="0dp"
             android:layout_below="@+id/publicationbutton"
             android:layout_marginTop="50dp" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/publicationbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id" />
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
