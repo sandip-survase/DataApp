@@ -2372,7 +2372,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2437,8 +2438,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
-
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2490,7 +2491,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2554,7 +2556,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
 
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2621,7 +2624,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
 
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -2677,7 +2681,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")
 
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {
@@ -2737,7 +2742,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2799,7 +2805,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2867,7 +2874,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_placement + "")
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -2926,7 +2934,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_placement + "")
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {

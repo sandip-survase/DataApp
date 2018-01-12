@@ -644,7 +644,8 @@ public class EditNotification extends AppCompatActivity {
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -767,7 +768,8 @@ public class EditNotification extends AppCompatActivity {
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsByAdminMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -840,7 +842,8 @@ public class EditNotification extends AppCompatActivity {
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
 
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -895,7 +898,8 @@ public class EditNotification extends AppCompatActivity {
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")
 
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {

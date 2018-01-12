@@ -1844,9 +1844,9 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         }
 
         AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
-                .setPriority(Priority.MEDIUM)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
+                .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .addMultipartFile("uf", new File(filePath))
                 .setTag(this)

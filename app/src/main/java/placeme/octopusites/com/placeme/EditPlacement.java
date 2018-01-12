@@ -603,7 +603,8 @@ public class EditPlacement extends AppCompatActivity {
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -761,7 +762,8 @@ public class EditPlacement extends AppCompatActivity {
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsByAdminMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -865,7 +867,8 @@ public class EditPlacement extends AppCompatActivity {
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_placement + "")
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -924,7 +927,8 @@ public class EditPlacement extends AppCompatActivity {
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_placement + "")
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {

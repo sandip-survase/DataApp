@@ -1512,7 +1512,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_placement + "")
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -1571,7 +1572,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_placement + "")
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {
@@ -2300,7 +2302,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         AndroidNetworking.post(Z.url_getplacementsmetadata)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2385,7 +2388,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
 
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2733,7 +2737,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         AndroidNetworking.post(Z.url_getnotificationsmetadata)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2799,7 +2804,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
 
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2852,7 +2858,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2912,7 +2919,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2979,7 +2987,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
 
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -3035,7 +3044,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")
 
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {

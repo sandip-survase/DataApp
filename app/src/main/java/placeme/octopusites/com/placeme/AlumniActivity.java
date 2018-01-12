@@ -1710,7 +1710,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsAlumniMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1774,7 +1775,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsAlumniMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1839,7 +1841,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
 
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1896,7 +1899,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
 
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2094,7 +2098,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_placement + "")
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -2151,7 +2156,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_placement + "")
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {
@@ -2800,7 +2806,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
 
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.MEDIUM)
+                    .setOkHttpClient(OkHttpUtil.getClient())
                     .getResponseOnlyFromNetwork()
                     .build()
                     .setAnalyticsListener(new AnalyticsListener() {
@@ -2856,7 +2863,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")
 
-                        .setPriority(Priority.HIGH)
+                        .setPriority(Priority.MEDIUM)
+                        .setOkHttpClient(OkHttpUtil.getClient())
                         .getResponseOnlyFromNetwork()
                         .build()
                         .setAnalyticsListener(new AnalyticsListener() {
