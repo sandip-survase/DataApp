@@ -495,7 +495,7 @@ public class MessagesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mRegistrationBroadcastReceiver,new IntentFilter("pushNotification"));
-        new GetMessages().execute();
+
     }
     @Override
     public void onPause() {
