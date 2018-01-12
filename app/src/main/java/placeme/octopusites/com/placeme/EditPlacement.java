@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -26,18 +27,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -108,6 +107,7 @@ public class EditPlacement extends AppCompatActivity {
 
     SwipeRefreshLayout tswipe_refresh_layout;
     boolean newCreatedPlacements=false;
+    private String TAG="EditPlacemets";
 
 
     @Override
@@ -357,15 +357,31 @@ public class EditPlacement extends AppCompatActivity {
         //seting data to adapter
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setRefreshing(true);
-
         getPlacements();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tswipe_refresh_layout.setRefreshing(false);
+                if (mAdapterPlacement.getItemCount() == 0) {
+                    Toast.makeText(EditPlacement.this, "Couldn't Process Your request.please try again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, 5000);
 
 
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                itemListPlacement.clear();
                 getPlacements();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tswipe_refresh_layout.setRefreshing(false);
+                        if (mAdapterPlacement.getItemCount() == 0) {
+                            Toast.makeText(EditPlacement.this, "Couldn't Process Your request.please try again", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, 5000);
             }
         });
 
@@ -477,7 +493,7 @@ public class EditPlacement extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
-                                            new Deleteplacements().execute();
+                                             Deleteplacements();
 
                                         }
                                     })
@@ -512,11 +528,11 @@ public class EditPlacement extends AppCompatActivity {
     public void onBackPressed() {
         if (deleteflag == 1) {
             notificationdeleteArraylist.clear();
+            tswipe_refresh_layout.setRefreshing(true);
 
             setNormalActionbar();
             deleteflag = 0;
             showSearchMenu();
-
             for (int i = 0; i < mAdapterPlacement.getItemCount(); i++) {
                 if (selectedViews[i] != null) {
                     selectedViews[i].setBackgroundColor(Color.TRANSPARENT);
@@ -525,13 +541,18 @@ public class EditPlacement extends AppCompatActivity {
             }
             selectedCount = 0;
 
+            getPlacements();
+
+
         } else {
             if(newCreatedPlacements){
                 setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+                super.onBackPressed();
+
             }else{
                 setResult(299);
-            }
             super.onBackPressed();
+            }
 
 
         }
@@ -597,13 +618,13 @@ public class EditPlacement extends AppCompatActivity {
         }
     }
 
-    public void GetPlacements() {
+    public void GetPlacementsFromServer() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementSentByAdmin")
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
@@ -648,59 +669,20 @@ public class EditPlacement extends AppCompatActivity {
                             Log.d("TAG", "onError errorCode : " + error.getErrorCode());
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
     }
 
 
-    class Deleteplacements extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String deletidsArray[] = notificationdeleteArraylist.toArray(new String[notificationdeleteArraylist.size()]);
-            String deletids = Arrays.toString(deletidsArray);
-            deletids = deletids.trim();
-            Log.d("username", ":username " + username);
-            Log.d("deletids", "onClick: " + deletids);
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("ids", deletids));       //1
-
-
-            json = jParser.makeHttpRequest(Z.url_Delete_Placements, "GET", params);
-            try {
-                r = json.getString("info");
-                Log.d("TAG", "info" + r);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                Toast.makeText(EditPlacement.this, result, Toast.LENGTH_LONG).show();
-                Log.d("Tag", "onPostExecute: " + result);
-                goBack();
-                getPlacements();
-
-            } catch (Exception e) {
-                Log.d("Tag", "onPostExecute: " + result);
-                Log.d("Tag", "onPostExecute: " + e.getMessage());
-                Toast.makeText(EditPlacement.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-        }
-    }
 
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
@@ -784,7 +766,7 @@ public class EditPlacement extends AppCompatActivity {
                             called_pages_placement = new int[placementpages];
                             total_no_of_placements = Integer.parseInt(response.getString("count"));
                             unreadcountPlacement = Integer.parseInt(response.getString("unreadcount"));
-                            GetPlacements();
+                            GetPlacementsFromServer();
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -802,9 +784,14 @@ public class EditPlacement extends AppCompatActivity {
                             Log.d("TAG", "onError errorCode : " + error.getErrorCode());
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -913,9 +900,14 @@ public class EditPlacement extends AppCompatActivity {
                                 Log.d("TAG", "onError errorCode : " + error.getErrorCode());
                                 Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                                 Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                                tswipe_refresh_layout.setRefreshing(false);
+                                Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
                             } else {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                                tswipe_refresh_layout.setRefreshing(false);
+                                Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
@@ -973,9 +965,14 @@ public class EditPlacement extends AppCompatActivity {
                                     Log.d("TAG", "onError errorCode : " + error.getErrorCode());
                                     Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                                     Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                    Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
                                 } else {
                                     // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                     Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                    Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });
@@ -999,4 +996,89 @@ public class EditPlacement extends AppCompatActivity {
         }
 
     }
+
+
+
+    private void Deleteplacements() {
+        String deletidsArray[] = notificationdeleteArraylist.toArray(new String[notificationdeleteArraylist.size()]);
+        String deletids = Arrays.toString(deletidsArray);
+        deletids = deletids.trim();
+
+
+
+// do it later for refreshing recyclerView
+
+//       String deletidsaftr=deletids.replace("[","");
+//        deletidsaftr=deletidsaftr.replace("]","");
+//        deletidsaftr=  deletidsaftr.trim();
+//        String strids[]=deletidsaftr.split(",");
+//
+//        for (int i = 0; i < strids.length; i++){
+//
+//        }
+
+        Log.d(TAG, ":username " + username);
+        Log.d(TAG, ":deletids " + deletids);
+
+        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/DeletePlacement")
+                .setTag(this)
+//                .addPathParameter("port","8080")
+                .addQueryParameter("u", username)
+                .addQueryParameter("ids", deletids)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            String info = response.getString("info");
+                            Log.d(TAG, "info: " + info);
+                            if (info != null) {
+                                if (info.contains("successfully")) {
+                                    setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+                                    Toast.makeText(EditPlacement.this, "Placements deleted successfully", Toast.LENGTH_LONG).show();
+                                    newCreatedPlacements=true;
+                                    goBack();
+                                }
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        }
+                    }
+                });
+    }
+
 }

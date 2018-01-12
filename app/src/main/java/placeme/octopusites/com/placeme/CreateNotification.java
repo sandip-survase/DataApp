@@ -1178,8 +1178,14 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
 
             filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            Log.d(TAG, "filePath1: "+filePath);
+
+            Toast.makeText(this, "filePath1:"+filePath, Toast.LENGTH_SHORT).show();
+
             File f = new File(filePath);
             filePath = f.getAbsolutePath();
+            Log.d(TAG, "filePath: "+filePath);
+            Toast.makeText(this, "filePath2:"+filePath, Toast.LENGTH_SHORT).show();
             // Do anything with file
             lenght = f.length();
 

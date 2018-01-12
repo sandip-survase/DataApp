@@ -96,7 +96,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
     public static final int ADMIN_CREATE_DATA_CHANGE_RESULT_CODE = 999;
-    public static final String url_GetPlacementsCreatedByHr = "http://192.168.100.30:8080/CreateNotificationTemp/NotificationlistTest";
     String TAG = "DeepikaPadukone";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
@@ -348,7 +347,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         String Tag = "adminActivity";
                         settag.setActivityFromtag(Tag);
 
-                        startActivityForResult(new Intent(AdminActivity.this, CreatePlacement.class),99);
+                        startActivityForResult(new Intent(AdminActivity.this, CreatePlacement.class), 99);
 
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
@@ -363,7 +362,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
-                        startActivityForResult(new Intent(AdminActivity.this, EditNotification.class),99);
+                        startActivityForResult(new Intent(AdminActivity.this, EditNotification.class), 99);
 
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
@@ -372,7 +371,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                 } else if (notificationorplacementflag == 2) {
                     if (Z.isAdminHrVerified(AdminActivity.this)) {
-                        startActivityForResult(new Intent(AdminActivity.this, EditPlacement.class),99);
+                        startActivityForResult(new Intent(AdminActivity.this, EditPlacement.class), 99);
 
                     } else {
                         Toast.makeText(AdminActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
@@ -1299,12 +1298,43 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 } else if (selectedMenuFlag == 2) {
                     getPlacements2();
                 }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tswipe_refresh_layout.setRefreshing(false);
+                        if (selectedMenuFlag == 1) {
+                            if (mAdapterNotificationEdit.getItemCount() == 0)
+                                Toast.makeText(AdminActivity.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
+                        } else if (selectedMenuFlag == 2) {
+                            if (mAdapterPlacement.getItemCount() == 0)
+                                Toast.makeText(AdminActivity.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, 5000);
+
 
             }
         });
 
-        Log.d(TAG, "onCreate: " + getIntent().getStringExtra("push"));
+   tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(true);
+        getNotifications2();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tswipe_refresh_layout.setRefreshing(false);
+                if (mAdapterNotificationEdit.getItemCount() == 0) {
+                    Toast.makeText(AdminActivity.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, 5000);
 
+
+        new UpdateFirebaseToken().execute();
+        new GetUnreadMessagesCount().execute();
+
+
+        Log.d(TAG, "onCreate: " + getIntent().getStringExtra("push"));
         if (getIntent().getStringExtra("push") != null) {
 //for clearing firebase service static fields
             Log.d("OnCreate", "trying to get String data");
@@ -1322,16 +1352,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             Log.d("serviceFields", "notificationtitlelist2:" + MyFirebaseMessagingService.notificationcontentlist.size());
 
         }
-
-
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(true);
-        getNotifications2();
-        RefreshPlacementCount();
-        new UpdateFirebaseToken().execute();
-        new GetUnreadMessagesCount().execute();
-
-
 
     }
 
@@ -1588,7 +1608,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
-        Log.d(TAG, "onActivityResult: called "+resultCode);
+        Log.d(TAG, "onActivityResult: called " + resultCode);
 
         if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
@@ -1624,20 +1644,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
             handleCrop(resultCode, result);
-        }
-        else if (resultCode == ADMIN_CREATE_DATA_CHANGE_RESULT_CODE) {
+        } else if (resultCode == ADMIN_CREATE_DATA_CHANGE_RESULT_CODE) {
 
             tswipe_refresh_layout.setVisibility(View.VISIBLE);
             Log.d(TAG, "onActivityResult: called notification");
 //             Toast.makeText(this, "NOTIFICATION", Toast.LENGTH_SHORT).show();
 //             getNotifications2();
 //                getPlacements2();
-            if(  selectedMenuFlag ==1){
+            if (selectedMenuFlag == 1) {
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(true);
                 getNotifications2();
 
-            }else if(selectedMenuFlag ==2 ){
+            } else if (selectedMenuFlag == 2) {
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
                 tswipe_refresh_layout.setRefreshing(true);
 
@@ -1645,8 +1664,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
 
 //            handleCrop(resultCode, result);
-        }
-        else if (resultCode == 299) {
+        } else if (resultCode == 299) {
             Log.d(TAG, "comming from edit  do nothing ");
 
         }
@@ -1812,15 +1830,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         Log.d(TAG, "New MovieList To release:" + itemListNotificationNew.size());
         if (lastPageFlagNotification == 1)
             isLastPageLoadedNotification = true;
-
-
         recyclerViewNotification.getRecycledViewPool().clear();
+        recyclerViewNotification.setAdapter(mAdapterNotificationEdit);
         mAdapterNotificationEdit.notifyDataSetChanged();
 
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
         Log.d(TAG, "After release collection " + mAdapterNotificationEdit.getItemCount());
 
+        RefreshPlacementCount();
 
     }
 
@@ -2365,8 +2383,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
 
-
-
     private void GetNotificationsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
         AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
@@ -2423,9 +2439,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -2438,7 +2460,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
-                .setPriority(Priority.MEDIUM)
+//                .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
@@ -2478,9 +2500,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -2540,9 +2568,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -2600,9 +2634,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -2666,9 +2706,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                 Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                                 Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                tswipe_refresh_layout.setRefreshing(false);
+                                Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                             } else {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                tswipe_refresh_layout.setRefreshing(false);
+                                Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
@@ -2721,13 +2767,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                     Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                                     Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                                     Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                    Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                                 } else {
                                     // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                     Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                    Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });
-            }else{
+            } else {
                 tswipe_refresh_layout.setRefreshing(false);
 
             }
@@ -2805,7 +2857,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
@@ -2860,6 +2912,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     }
                 });
     }
+
     private void simulateLoadingPlacement() {
         tswipe_refresh_layout.setRefreshing(true);
 
@@ -2920,9 +2973,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                 Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                                 Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                tswipe_refresh_layout.setRefreshing(false);
+                                Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                             } else {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                tswipe_refresh_layout.setRefreshing(false);
+                                Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
@@ -2978,13 +3037,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                     Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                                     Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                                     Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                    Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                                 } else {
                                     // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                     Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                    tswipe_refresh_layout.setRefreshing(false);
+                                    Toast.makeText(AdminActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });
-            }else{
+            } else {
                 tswipe_refresh_layout.setRefreshing(false);
 
             }

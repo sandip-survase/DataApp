@@ -163,6 +163,9 @@ public class ViewPlacement extends AppCompatActivity {
         });
 
 //************
+
+        if(role.equals("alumni") ||role.equals("student") ){
+
         String fnametocheck = s.getFname();
 
         if (fnametocheck == null) {
@@ -174,6 +177,12 @@ public class ViewPlacement extends AppCompatActivity {
         } else {
             studentmarks();
             new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
+        }
+        }else{
+            LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
+            registerbuttonlayout.setVisibility(View.GONE);
         }
 
 

@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -38,6 +39,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,12 +47,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import placeme.octopusites.com.placeme.modal.RecyclerItemAdapter;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
 import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class EditNotification extends AppCompatActivity {
@@ -105,11 +105,10 @@ public class EditNotification extends AppCompatActivity {
     private int current_page_notification = 1;
     private String plainusername, username = "", fname = "", mname = "", sname = "";
     private List<RecyclerItemEdit> itemListNotification = new ArrayList<>();
-    private RecyclerItemAdapter mAdapterNotification;
     private RecyclerView recyclerViewNotification;
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
-    boolean newCreatedNotification=false;
+    boolean newCreatedNotification = false;
 
 
     @Override
@@ -134,31 +133,11 @@ public class EditNotification extends AppCompatActivity {
 
         role = MySharedPreferencesManager.getRole(this);
 
-
         try {
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
-
-            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
-
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-
-            String plainusername = new String(demo1DecryptedBytes1);
-
-
+            OkHttpUtil.init(true);
         } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
-//        recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
-//        mAdapterNotification = new RecyclerItemAdapter(itemListNotification);
-//        recyclerViewNotification.setHasFixedSize(true);
-//        final LinearLayoutManager linearLayoutManagerNotification = new LinearLayoutManager(this);
-//        recyclerViewNotification.setLayoutManager(linearLayoutManagerNotification);
-//        recyclerViewNotification.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-//        recyclerViewNotification.setItemAnimator(new DefaultItemAnimator());
-//        recyclerViewNotification.setAdapter(mAdapterNotification);
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew, EditNotification.this);
@@ -249,7 +228,8 @@ public class EditNotification extends AppCompatActivity {
                         Log.d("Check2", "file1: " + item.getFilename1());
                         Log.d("Check2", "lastmodified: " + item.getLastmodified());
                         Log.d("Check2", "file5: " + item.getFilename5());
-                        startActivityForResult(i1,99);
+                        startActivityForResult(i1, 99);
+
 
 
                     }
@@ -352,6 +332,7 @@ public class EditNotification extends AppCompatActivity {
 
             }
         });
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
 
         TextView editnotitxt = (TextView) findViewById(R.id.editnotitxt);
@@ -359,10 +340,35 @@ public class EditNotification extends AppCompatActivity {
         editnotitxt.setTypeface(Z.getBold(this));
         editnotinotitxt.setTypeface(Z.getLight(this));
         deletenotitxt.setTypeface(Z.getBold(this));
-        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
-//        addPlacementdatatoAdapter();
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(true);
         getNotifications2();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tswipe_refresh_layout.setRefreshing(false);
+                if (mAdapterNotificationEdit.getItemCount() == 0) {
+                    Toast.makeText(EditNotification.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, 5000);
+
+        tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getNotifications2();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tswipe_refresh_layout.setRefreshing(false);
+                        if (mAdapterNotificationEdit.getItemCount() == 0) {
+                            Toast.makeText(EditNotification.this, "Couldn't Process Your request.please try again", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, 5000);
+            }
+        });
 
 
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -481,7 +487,7 @@ public class EditNotification extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
-                                            new DeleteNotifications().execute();
+                                            DeleteNotifications();
                                         }
                                     })
 
@@ -515,31 +521,38 @@ public class EditNotification extends AppCompatActivity {
     public void onBackPressed() {
         if (deleteflag == 1) {
             notificationdeleteArraylist.clear();
+            tswipe_refresh_layout.setRefreshing(true);
+//            recyclerViewNotification.setVisibility(View.GONE);
+//           recyclerViewNotification.setVisibility(View.VISIBLE);
+
+            for (int i = 0; i < mAdapterNotificationEdit.getItemCount(); i++) {
+                if (selectedViews[i] != null) {
+                    selectedViews[i].setBackgroundColor(Color.TRANSPARENT);
+                }
+                selectedPositions[i] = 0;
+            }
+
             setNormalActionbar();
             deleteflag = 0;
             showSearchMenu();
             selectedCount = 0;
             getNotifications2();
 
-        } else
-
-        if(newCreatedNotification){
+        } else if (newCreatedNotification) {
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
-        }else{
+            super.onBackPressed();
+
+        } else {
             setResult(299);
+        super.onBackPressed();
         }
 
-            super.onBackPressed();
 
 
     }
 
 
     void getNotifications2() {
-
-        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-        tswipe_refresh_layout.setRefreshing(true);
-
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
@@ -551,50 +564,6 @@ public class EditNotification extends AppCompatActivity {
 
     }
 
-    class DeleteNotifications extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String deletidsArray[] = notificationdeleteArraylist.toArray(new String[notificationdeleteArraylist.size()]);
-            String deletids = Arrays.toString(deletidsArray);
-            deletids = deletids.trim();
-            Log.d("username", ":username " + username);
-
-            Log.d("deletids", "onClick: " + deletids);
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("ids", deletids));       //1
-
-
-            json = jParser.makeHttpRequest(Z.url_DeleteNotification, "GET", params);
-            try {
-                r = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                Toast.makeText(EditNotification.this, result, Toast.LENGTH_LONG).show();
-                Log.d("Tag", "onPostExecute: " + result);
-                goBack();
-                getNotifications2();
-
-            } catch (Exception e) {
-                Log.d("Tag", "onPostExecute: " + result);
-                Log.d("Tag", "onPostExecute: " + e.getMessage());
-                Toast.makeText(EditNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-        }
-    }
 
 
     public abstract class EndlessRecyclerOnScrollListenerNotification extends RecyclerView.OnScrollListener {
@@ -640,11 +609,11 @@ public class EditNotification extends AppCompatActivity {
 
     private void GetplacementbyAdmin() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsSentByAdmin")
+        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/GetNotificationsSentByAdmin")
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
@@ -765,10 +734,10 @@ public class EditNotification extends AppCompatActivity {
 
     private void GetNotificationsByadminMetadata() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsByAdminMetaData")
+        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/GetNotificationsByAdminMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
@@ -819,9 +788,6 @@ public class EditNotification extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
 
     private void simulateLoadingNotification() {
@@ -955,16 +921,101 @@ public class EditNotification extends AppCompatActivity {
         }
 
 
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE){
-            newCreatedNotification=true;
+        if (resultCode == AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE) {
+            newCreatedNotification = true;
             getNotifications2();
         }
 
     }
+
+
+    private void DeleteNotifications() {
+
+        String deletidsArray[] = notificationdeleteArraylist.toArray(new String[notificationdeleteArraylist.size()]);
+        String deletids = Arrays.toString(deletidsArray);
+        deletids = deletids.trim();
+
+// do it later for refreshing recyclerView
+
+//       String deletidsaftr=deletids.replace("[","");
+//        deletidsaftr=deletidsaftr.replace("]","");
+//        deletidsaftr=  deletidsaftr.trim();
+//        String strids[]=deletidsaftr.split(",");
+//
+//        for (int i = 0; i < strids.length; i++){
+//
+//        }
+
+        Log.d(TAG, ":username " + username);
+        Log.d(TAG, ":deletids " + deletids);
+
+        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/DeleteNotification")
+                .setTag(this)
+//                .addPathParameter("port","8080")
+                .addQueryParameter("u", username)
+                .addQueryParameter("ids", deletids)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            String info = response.getString("info");
+                            Log.d(TAG, "info: " + info);
+                            if (info != null) {
+                                if (info.contains("successfully")) {
+                                    setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+                                    Toast.makeText(EditNotification.this, "Notifications deleted successfully", Toast.LENGTH_LONG).show();
+                                    newCreatedNotification=true;
+                                    goBack();
+                                }
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        }
+                    }
+                });
+    }
+
+
 }
 

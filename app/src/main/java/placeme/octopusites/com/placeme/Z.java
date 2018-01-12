@@ -35,12 +35,13 @@ public class Z {
     public static final String VPS_IP = "162.213.199.3";   // for authority
     public static final String IP = "http://162.213.199.3/";
     public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
+    public static final String IP_local_Glassfish = "http://162.213.199.3/";
+
+
+
     //**************************  final **************************
 
     public static final String IP_secured_sunny = "https://placeme.co.in/";
-
-
-
     public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE = "Fail to upload image!\nPlease try again";
     public static String CountOfUsersUnderAdmin = "0";
@@ -90,7 +91,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_GetNotificationsByAdminMetaData = IP + "CreateNotificationTemp/GetNotificationsByAdminMetaData";
     public static final String url_GetReadStatusOfNotificationsByAdmin = IP + "CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
     public static final String url_GetNotificationsSentByAdmin = IP + "CreateNotificationTemp/GetNotificationsSentByAdmin";
-    public static final String url_DeleteNotification = IP + "CreateNotificationTemp/DeleteNotification";
+    public static final String url_DeleteNotification = IP_local_Glassfish + "CreateNotificationTemp/DeleteNotification";
     //    -------------------------------Editplacements -----------------------------------
     public static final String url_GetPlacementSentByAdminByAdminMetaData = IP + "CreateNotificationTemp/GetPlacementsByAdminMetaData";
     public static final String url_GetReadStatusOfPlacementsByAFdmin = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";

@@ -1288,7 +1288,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
 
         getNotifications();
-         RefreshPlacementCount();
         new GetUnreadMessagesCount().execute();
 //        new UpdateFirebaseToken().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetStudentData().execute();
@@ -1868,6 +1867,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
         Log.d(TAG, "After release collection " + mAdapterNotificationEdit.getItemCount());
+
+        RefreshPlacementCount();
+
 
     }
 
@@ -2729,10 +2731,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
 
-
-
-
-
     private void GetNotificationsReadStatus() {
         AndroidNetworking.post(Z.url_getnotificationsmetadata)
                 .setTag(this)
@@ -2858,7 +2856,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsMetaData")
                 .setTag(this)
                 .addQueryParameter("u", username)
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
