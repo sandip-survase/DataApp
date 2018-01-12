@@ -1232,10 +1232,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         try {
 
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
-
+//
             byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
             plainusername = new String(demo1DecryptedBytes1);
@@ -1252,7 +1249,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             loginFirebase(plainusername, hash);
 
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this,""+ e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
 

@@ -149,8 +149,6 @@ public class ViewPlacement extends AppCompatActivity {
         save.setLastmodified(lastmodified);
         save.setUploadedby(uploadedby);
 
-//
-
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

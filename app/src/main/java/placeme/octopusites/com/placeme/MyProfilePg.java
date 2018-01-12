@@ -87,7 +87,7 @@ public class MyProfilePg extends AppCompatActivity {
     StudentData s = new StudentData();
     String oldCoursesem = "", oldStreamsem = "", oldUniversitysem = "";
     String oldCourseyear = "", oldStreamyear = "", oldUniversityyear = "";
-    int edittedFlag = 0, checksemstream = 0, checkyearstream = 0, isCourseSetsem = 0, isStreamSetsem = 0, isCourseSetyear = 0, isStreamSetyear = 0, isUniversitySetsem = 0, isUniversitySetyear = 0;
+    int edittedFlag = 0,firstflag=0, checksemstream = 0, checkyearstream = 0, isCourseSetsem = 0, isStreamSetsem = 0, isCourseSetyear = 0, isStreamSetyear = 0, isUniversitySetsem = 0, isUniversitySetyear = 0;
 
     String courseSem = null, streamSem = null, universitySem = null;
     String courseYear = null, streamYear = null, universityYear = null;
@@ -321,9 +321,7 @@ public class MyProfilePg extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCoursepgsem = (String) parent.getItemAtPosition(position);
                 courseSem = selectedCoursepgsem;
-
                 String toCompare = selectedCoursepgsem;
-
                 int index = 0;
                 for (int i = 0; i < CourseList.length; i++) {
                     if (CourseList[i].equals(toCompare))
@@ -339,8 +337,19 @@ public class MyProfilePg extends AppCompatActivity {
                 if (selectedCoursepgsem.equals("Other")) {
                     othersemcourseinput.setVisibility(View.VISIBLE);
                     othersemcourse.setVisibility(View.VISIBLE);
-                } else {
+                    courseSem = othersemcourse.getText().toString();
+                    if(othersemcourse.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
 
+                } else {
+                    if(!selectedCoursepgsem.equals("- Select Course -")) {
+                    if(!selectedCoursepgsem.equals(s.getCoursepgsem())){
+                        edittedFlag=1;
+                    }
+                    }
+                    else
+                        firstflag=1;
                     othersemcourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -451,12 +460,27 @@ public class MyProfilePg extends AppCompatActivity {
                 universitySem = selectedUniversitypgsem;
 
                 TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.othersemuniversityinput);
+
                 if (selectedUniversitypgsem.equals("Other")) {
                     otheruniversityinput.setVisibility(View.VISIBLE);
+                    universitySem = othersemuniversity.getText().toString();
+                    if(othersemuniversity.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
                 } else {
+                    if(!selectedUniversitypgsem.equals("- Select University -")) {
+
+                    if(!selectedUniversitypgsem.equals(s.getUniversitypgsem())){
+                        edittedFlag=1;
+                    }
+                    }
+                    else
+                        firstflag=1;
+
                     otheruniversityinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                 }
 
             }
@@ -473,12 +497,25 @@ public class MyProfilePg extends AppCompatActivity {
                 selectedUniversitypgyear = (String) parent.getItemAtPosition(position);
                 universityYear = selectedUniversitypgyear;
                 TextInputLayout otheryearuniversityinput = (TextInputLayout) findViewById(R.id.otheryearuniversityinput);
+
                 if (selectedUniversitypgyear.equals("Other")) {
 
                     otheryearuniversityinput.setVisibility(View.VISIBLE);
                     otheryearuniversity.setVisibility(View.VISIBLE);
+                    universityYear = otheryearuniversity.getText().toString();
+                    if(otheryearuniversity.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
 
                 } else {
+                    if(!selectedUniversitypgyear.equals("- Select University -")) {
+                    if(!selectedUniversitypgyear.equals(s.getUniversitypgyear())){
+                        edittedFlag=1;
+                    }
+                    }
+                    else
+                        firstflag=1;
+
                     otheryearuniversityinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -492,6 +529,7 @@ public class MyProfilePg extends AppCompatActivity {
             }
         });
 //
+        Log.d("TAG", "oncreate: courseYear -"+courseYear);
 
         pgyearcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -499,31 +537,35 @@ public class MyProfilePg extends AppCompatActivity {
                 selectedCoursepgyear = (String) parent.getItemAtPosition(position);
 
                 courseYear = selectedCoursepgyear;
-
-                TextInputLayout otheryearcourseinput = (TextInputLayout) findViewById(R.id.otheryearcourseinput);
-
-
+                Log.d("TAG", "onItemSelected: courseYear -"+courseYear);
                 String toCompare = selectedCoursepgyear;
-
                 int index = 0;
                 for (int i = 0; i < CourseList.length; i++) {
                     if (CourseList[i].equals(toCompare))
                         index = i;
-
                 }
-
                 toCompare = CourseListWithIds[index];
                 tosettoStreamslist.clear();
-
                 setStreamyearAdapter(toCompare);
+                TextInputLayout otheryearcourseinput = (TextInputLayout) findViewById(R.id.otheryearcourseinput);
 
                 if (selectedCoursepgyear.equals("Other")) {
-
+                    courseYear = otheryearcourse.getText().toString();
+                    if(otheryearcourse.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
                     otheryearcourseinput.setVisibility(View.VISIBLE);
                     otheryearcourse.setVisibility(View.VISIBLE);
 
-
                 } else {
+                    if(!selectedCoursepgyear.equals("- Select Course -")) {
+                        if(!selectedCoursepgyear.equals(s.getCoursepgyear())){
+                        edittedFlag=1;
+                    }
+                    }
+                    else
+                        firstflag=1;
+
                     otheryearcourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -547,7 +589,16 @@ public class MyProfilePg extends AppCompatActivity {
 
                 if (selectedStreampgsem.equals("Other")) {
                     othersemstreaminput.setVisibility(View.VISIBLE);
+
+                    if(othersemstream.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
+
                 } else {
+
+                    if(!selectedStreampgsem.equals(s.getStreampgsem())){
+                        edittedFlag=1;
+                    }
 
                     othersemstreaminput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -569,12 +620,21 @@ public class MyProfilePg extends AppCompatActivity {
 
                 streamYear = selectedStreampgyear;
 
-                TextInputLayout othersemstreaminput = (TextInputLayout) findViewById(R.id.otheryearstreaminput);
+                TextInputLayout otheryearstreaminput = (TextInputLayout) findViewById(R.id.otheryearstreaminput);
                 if (selectedStreampgyear.equals("Other")) {
-                    othersemstreaminput.setVisibility(View.VISIBLE);
+                    otheryearstreaminput.setVisibility(View.VISIBLE);
+
+                    if(otheryearstream.getText().toString().length()<2){
+                        edittedFlag=1;
+                    }
+
                 } else {
 
-                    othersemstreaminput.setVisibility(View.GONE);
+                    if(!selectedStreampgyear.equals(s.getStreampgyear())){
+                        edittedFlag=1;
+                    }
+
+                    otheryearstreaminput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
@@ -1122,7 +1182,7 @@ public class MyProfilePg extends AppCompatActivity {
             }
         });
 
-        otheryearuniversity.addTextChangedListener(new TextWatcher() {
+        othersemcourse.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -1130,15 +1190,17 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                otheryearuniversityinput.setError(null);
+                othersemcourseinput.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+
             }
         });
+
 
         othersemuniversity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1157,6 +1219,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
 
 
         pgsemaggregate.addTextChangedListener(new TextWatcher() {
@@ -1513,6 +1576,25 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
+        otheryearuniversity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otheryearuniversityinput.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         schoolnamepgyear.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1819,15 +1901,17 @@ public class MyProfilePg extends AppCompatActivity {
         if (selectedCoursepgyear == null || selectedCoursepgyear.equals("- Select Course -")) {
             oldCourseyear = "- Select Course -";
             courseYear = oldCourseyear;
-        } else
+        } else {
             oldCourseyear = selectedCoursepgyear;
-
+            courseYear = oldCourseyear;
+        }
         if (selectedUniversitypgyear == null || selectedUniversitypgyear.equals("- Select University -")) {
             oldUniversityyear = "- Select University -";
             universityYear = oldUniversityyear;
-        } else
+        } else {
             oldUniversityyear = selectedUniversitypgyear;
-
+            universityYear = oldUniversityyear;
+        }
 
         setStreamAdapter(selectedCoursepgsem);
         setStreamyearAdapter(selectedCoursepgyear);
@@ -2012,24 +2096,6 @@ public class MyProfilePg extends AppCompatActivity {
             selectedUniversitypgyear = "- Select University -";
 
 
-        othersemcourse.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                othersemcourseinput.setError(null);
-                edittedFlag = 1;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
-        });
 
 
         edittedFlag = 0;
@@ -2224,7 +2290,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             case R.id.action_save:
 
-                validateandSave();
+                if (edittedFlag == 1 || firstflag==1) {
+
+                    validateandSave();
+                }
+                else {
+                    onBackPressed();
+                }
+
                 break;
 
             case android.R.id.home:

@@ -73,7 +73,7 @@ public class MyProfileUg extends AppCompatActivity {
     String[] courses,streams,universities;
     StudentData s=new StudentData();
     String oldCourse="",oldStream="",oldUniversity="",encobj="";
-    int edittedFlag=0,isCourseSet=0,isStreamSet=0;
+    int edittedFlag=0,isCourseSet=0,isStreamSet=0,firstflag=0;
     String[] CourseListWithIds, CourseList;
     String[] StramsListWithIds, StramsList, tempStramsList;
     String courseug = "", streamug = "", universityug = "",tempcourse="",tempuniversity="",tempstream="";
@@ -283,16 +283,20 @@ public class MyProfileUg extends AppCompatActivity {
 
                 if (selectedCourse.equals("Other")) {
                     othercourseinput.setVisibility(View.VISIBLE);
-
+                    tempcourse = othercourse.getText().toString();
                     if(othercourse.getText().toString().length()<2){
                         edittedFlag=1;
                     }
 
                 } else {
+                    if(!selectedCourse.equals("- Select Course -")) {
 
                     if(!selectedCourse.equals(s.getCourseug())){
                         edittedFlag=1;
                     }
+                    }
+                    else
+                        firstflag=1;
 
                     othercourseinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -438,15 +442,22 @@ public class MyProfileUg extends AppCompatActivity {
                 TextInputLayout otheruniversityinput = (TextInputLayout) findViewById(R.id.otheruniversityinput);
                 if (selectedUniversity.equals("Other")) {
                     otheruniversityinput.setVisibility(View.VISIBLE);
+
+                    tempuniversity =    otheruniversity.getText().toString();
+
                     if(otheruniversity.getText().toString().length()<2){
                         edittedFlag=1;
                     }
 
                 } else {
-
+                    if(!selectedUniversity.equals("- Select University -")) {
                     if(!selectedUniversity.equals(s.getUniversityug())){
                         edittedFlag=1;
                     }
+                    }
+                    else
+                        firstflag=1;
+
                     otheruniversityinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -773,9 +784,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 uoutofsem4input.setError(null);
-
                 try {
                     double percentage = 0;
                     String s1 = umarkssem4.getText().toString();
@@ -1687,7 +1696,7 @@ public class MyProfileUg extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-                if (edittedFlag == 1) {
+                if (edittedFlag == 1 || firstflag==1) {
                     validateandSave();
                 }
                 else {

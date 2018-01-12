@@ -63,8 +63,8 @@ public class MyProfileTenth extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    String selectedBoard = "",myselectboard="";
-    int edittedFlag = 0;
+    String selectedBoard = "";
+    int edittedFlag = 0,firstflag=0;
     String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "", encobj = "",selectboard="";
     String oldBoard = "";
     StudentData s = new StudentData();
@@ -79,7 +79,6 @@ public class MyProfileTenth extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-//        ShouldAnimateProfile.MyProfileTenth = MyProfileTenth.this;
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -323,17 +322,25 @@ public class MyProfileTenth extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedBoard = (String) parent.getItemAtPosition(position);
-                myselectboard = selectedBoard;
+                Log.d("TAG", "onItemSelected: selectedBoard - "+selectedBoard);
 
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboardinput);
+
                 if (selectedBoard.equals("Other")) {
-
-                    otherboardinput.setVisibility(View.VISIBLE);
-                } else {
-
-                    if(!selectedBoard.equals(s.getBoard10())){
+                    if (otherboard.getText().toString().length() < 2) {
                         edittedFlag = 1;
                     }
+                    otherboardinput.setVisibility(View.VISIBLE);
+
+                } else {
+                        if(!selectedBoard.equals("- Select Board -")) {
+                        Log.d("TAG", "onItemSelected: selectedBoard if-"+selectedBoard);
+                        if (!selectedBoard.equals(s.getBoard10())) {
+                            edittedFlag = 1;
+                        }
+                    }
+                    else
+                        firstflag=1;
 
                     otherboardinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -548,14 +555,7 @@ public class MyProfileTenth extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-
-                if(myselectboard.equals("Other")){
-                    if (otherboard.getText().toString().length() < 2) {
-                        edittedFlag = 1;
-                    }
-                }
-
-                if (edittedFlag == 1) {
+                if (edittedFlag == 1 || firstflag==1) {
                     validateandSave();
                 }
                 else {

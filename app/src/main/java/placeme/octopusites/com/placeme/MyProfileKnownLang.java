@@ -447,10 +447,17 @@ public class MyProfileKnownLang extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sknownlang1 = (String) parent.getItemAtPosition(position);
+                Log.d("TAG", "onItemSelected: -" + sknownlang1);
 
-                if (s.getLang1() != null && !s.getLang1().equals(sknownlang1)) {
+                if (sknownlang1.equals("- Select Language -")) {
+                    langEdittedFlog = 1;
+                    Log.d("TAG", "onItemSelected: if -" + langEdittedFlog);
+                } else{
+                   if (s.getLang1() != null && !s.getLang1().equals(sknownlang1)) {
                     langEdittedFlog = 1;
                 }
+            }
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -594,6 +601,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 if (Sobj!=null && !Sobj.equals(sproficiency1)) {
                     proficiencyEdittedFlog = 1;
                 }
+
+//                if(!sproficiency1.equals("- Proficiency -")){
+//                    langEdittedFlog = 1;
+//                }
 
             }
 
