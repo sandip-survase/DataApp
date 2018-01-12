@@ -1,9 +1,14 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,6 +18,10 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -601,6 +610,73 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
 
     }
 
+
+    public static String[] getMyFilePath(Context context, Uri uri) {
+
+        File file = null;
+        String[] array = new String[2];
+
+
+// get name with extension
+        String uriString = uri.toString();
+        File myFile = new File(uriString);
+        String path = myFile.getAbsolutePath();
+        String displayName = null;
+        if (uriString.startsWith("content://")) {
+            Cursor cursor = null;
+            try {
+                cursor = context.getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        } else if (uriString.startsWith("file://")) {
+            displayName = myFile.getName();
+        }
+//
+        String scheme = uri.getScheme();
+        if (scheme.equals(ContentResolver.SCHEME_CONTENT)) {
+            try {
+                InputStream fileInputStream = context.getApplicationContext().getContentResolver().openInputStream(uri);
+                Log.d("TAG", "getFilePath:" + fileInputStream.available());
+                // TODO check file size then create file
+                try {
+                    file = new File(Environment.getExternalStorageDirectory().toString(), displayName);
+                    OutputStream output = new FileOutputStream(file);
+                    try {
+                        byte[] buffer = new byte[4 * 1024]; // or other buffer size
+                        int read;
+                        while ((read = fileInputStream.read(buffer)) != -1) {
+                            output.write(buffer, 0, read);
+                        }
+                        output.flush();
+                    } finally {
+                        output.close();
+                    }
+                } finally {
+                    fileInputStream.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (scheme.equals(ContentResolver.SCHEME_FILE)) {
+            String path1 = uri.getPath();
+            try {
+                file = new File(path1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        array[0] = file.getPath();
+        array[1] = displayName;
+
+        Log.d("TAG", "displayName: " + array[1]);
+        Log.d("TAG", "getPath: " + array[0]);
+
+        return array;
+    }
 
 
 }

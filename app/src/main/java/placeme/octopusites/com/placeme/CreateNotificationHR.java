@@ -25,8 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nbsp.materialfilepicker.MaterialFilePicker;
-import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -197,13 +196,13 @@ public class CreateNotificationHR extends AppCompatActivity {
                     filesame = 0;
 
 
-                    new MaterialFilePicker().
-                            withActivity(CreateNotificationHR.this)
-                            .withRequestCode(1)
-                            .withFilter(Pattern.compile(".*\\.*$")) // Filtering files and directories by file name using regexp
-                            .withFilterDirectories(false) // Set directories filterable (false by default)
-                            .withHiddenFiles(true) // Show hidden files and folders
-                            .start();
+//                    new MaterialFilePicker().
+//                            withActivity(CreateNotificationHR.this)
+//                            .withRequestCode(1)
+//                            .withFilter(Pattern.compile(".*\\.*$")) // Filtering files and directories by file name using regexp
+//                            .withFilterDirectories(false) // Set directories filterable (false by default)
+//                            .withHiddenFiles(true) // Show hidden files and folders
+//                            .start();
                 } else {
                     Toast.makeText(CreateNotificationHR.this, "FileLimit 5 ", Toast.LENGTH_LONG).show();
                 }
@@ -369,89 +368,89 @@ public class CreateNotificationHR extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-
-
-            filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-            Log.d("filetest", "filePath: "+filePath);
-            File f = new File(filePath);
-            filePath = f.getAbsolutePath();
-
-            Log.d("filetest", "filePath ABSOLUTE: "+filePath);
-            // Do anything with file
-            lenght = f.length();
-            Log.d("filetest", " lenght: "+lenght);
-
-//            Toast.makeText(MainActivity.this, "File lenght:" + lenght, Toast.LENGTH_LONG).show();
-
-            if (lenght > 16777216) {
-                Toast.makeText(CreateNotificationHR.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
-                filesame = 1;
-            }
-            filename = "";
-            int index = filePath.lastIndexOf("/");
-            directory = "";
-            for (int i = 0; i < index; i++)
-                directory += filePath.charAt(i);
-
-            for (int i = index + 1; i < filePath.length(); i++)
-                filename += filePath.charAt(i);
-
-            Log.d("filetest", " filename: "+filename);
-
-            if(a1.contains(filename)){
-                filesame = 1;
-                Log.d("filetest", "filename:"+filename+"=====already present" );
-
-            }
-
-//            try {
-//                for (int i = 0; i < a1.size(); i++) {
-//                    if (a1.get(i).equals(filename)) {
-//                        filesame = 1;
-//                    }
-//                }
-//            } catch (Exception e) {
+//        if (requestCode == 1 && resultCode == RESULT_OK) {
+//
+//
+//            filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+//            Log.d("filetest", "filePath: "+filePath);
+//            File f = new File(filePath);
+//            filePath = f.getAbsolutePath();
+//
+//            Log.d("filetest", "filePath ABSOLUTE: "+filePath);
+//            // Do anything with file
+//            lenght = f.length();
+//            Log.d("filetest", " lenght: "+lenght);
+//
+////            Toast.makeText(MainActivity.this, "File lenght:" + lenght, Toast.LENGTH_LONG).show();
+//
+//            if (lenght > 16777216) {
+//                Toast.makeText(CreateNotificationHR.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
+//                filesame = 1;
 //            }
-
-
-            if (filesame != 1) {
-                a1.add(filename);
-                map.put(filename, filePath);
-                map2.put(filename, lenght + "");
-                filecounter++;
-                refresh();
-
-//                batchesTags.dismissDropDown();
-
-                if (filecounter == 1) {
-                    new ShowProgress().execute();
-
-                }
-
-                if (filecounter == 2) {
-                    new ShowProgress2().execute();
-
-                }
-                if (filecounter == 3) {
-                    new ShowProgress3().execute();
-
-                }
-                if (filecounter == 4) {
-                    new ShowProgress4().execute();
-
-                }
-                if (filecounter == 5) {
-                    new ShowProgress5().execute();
-
-                }
-
-            } else {
-                Log.d("filetest", "filename:"+filename+"=====already present" );
-
-                Toast.makeText(CreateNotificationHR.this, "File name is same", Toast.LENGTH_LONG).show();
-            }
-        }
+//            filename = "";
+//            int index = filePath.lastIndexOf("/");
+//            directory = "";
+//            for (int i = 0; i < index; i++)
+//                directory += filePath.charAt(i);
+//
+//            for (int i = index + 1; i < filePath.length(); i++)
+//                filename += filePath.charAt(i);
+//
+//            Log.d("filetest", " filename: "+filename);
+//
+//            if(a1.contains(filename)){
+//                filesame = 1;
+//                Log.d("filetest", "filename:"+filename+"=====already present" );
+//
+//            }
+//
+////            try {
+////                for (int i = 0; i < a1.size(); i++) {
+////                    if (a1.get(i).equals(filename)) {
+////                        filesame = 1;
+////                    }
+////                }
+////            } catch (Exception e) {
+////            }
+//
+//
+//            if (filesame != 1) {
+//                a1.add(filename);
+//                map.put(filename, filePath);
+//                map2.put(filename, lenght + "");
+//                filecounter++;
+//                refresh();
+//
+////                batchesTags.dismissDropDown();
+//
+//                if (filecounter == 1) {
+//                    new ShowProgress().execute();
+//
+//                }
+//
+//                if (filecounter == 2) {
+//                    new ShowProgress2().execute();
+//
+//                }
+//                if (filecounter == 3) {
+//                    new ShowProgress3().execute();
+//
+//                }
+//                if (filecounter == 4) {
+//                    new ShowProgress4().execute();
+//
+//                }
+//                if (filecounter == 5) {
+//                    new ShowProgress5().execute();
+//
+//                }
+//
+//            } else {
+//                Log.d("filetest", "filename:"+filename+"=====already present" );
+//
+//                Toast.makeText(CreateNotificationHR.this, "File name is same", Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
 

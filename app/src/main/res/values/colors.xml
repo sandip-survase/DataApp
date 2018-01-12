@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#03353e</color>
     <color name="colorAccent">#00bcd4</color>
 
-    <color name="transperent">@android:color/transparent</color>
+    <color name="transparent">@android:color/transparent</color>
 
     <color name="while_color">#fcfdfd</color>
     <color name="sky_blue_color">#00bcd4</color>

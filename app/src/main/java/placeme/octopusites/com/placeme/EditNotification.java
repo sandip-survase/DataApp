@@ -460,7 +460,7 @@ public class EditNotification extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setBackgroundDrawable(new ColorDrawable(EditNotification.this.getResources().getColor(R.color.transperent)));
+        actionBar.setBackgroundDrawable(new ColorDrawable(EditNotification.this.getResources().getColor(R.color.transparent)));
 
         LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflator.inflate(R.layout.custom_delete_notifications, null);

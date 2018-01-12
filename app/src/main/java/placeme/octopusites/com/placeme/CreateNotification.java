@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
@@ -39,8 +40,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
-import com.nbsp.materialfilepicker.MaterialFilePicker;
-import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -445,13 +445,10 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                 if (filecounter < 5) {
                     filesame = 0;
-                    new MaterialFilePicker().
-                            withActivity(CreateNotification.this)
-                            .withRequestCode(1)
-                            .withFilter(Pattern.compile(".*\\.*$")) // Filtering files and directories by file name using regexp
-                            .withFilterDirectories(false) // Set directories filterable (false by default)
-                            .withHiddenFiles(true) // Show hidden files and folders
-                            .start();
+
+                    Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                    i.setType("*/*");
+                    startActivityForResult(i, 9);
                 } else {
                     Toast.makeText(CreateNotification.this, "FileLimit 5 ", Toast.LENGTH_LONG).show();
                 }
@@ -1174,33 +1171,86 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+//        if (requestCode == 1 && resultCode == RESULT_OK) {
+//
+//
+//            filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+//            File f = new File(filePath);
+//            filePath = f.getAbsolutePath();
+//            // Do anything with file
+//            lenght = f.length();
+//
+//            if (lenght > 16777216) {
+//                Toast.makeText(CreateNotification.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
+//                filesame = 1;
+//            }
+//            filename = "";
+//            int index = filePath.lastIndexOf("/");
+//            directory = "";
+//            for (int i = 0; i < index; i++)
+//                directory += filePath.charAt(i);
+//
+//            for (int i = index + 1; i < filePath.length(); i++)
+//                filename += filePath.charAt(i);
+//            try {
+//                for (int i = 0; i < a1.size(); i++) {
+//                    if (a1.get(i).equals(filename)) {
+//                        filesame = 1;
+//                    }
+//                }
+//            } catch (Exception e) {
+//            }
+//
+//
+//            if (filesame != 1) {
+//                int THREAD_POOL_EXECUTOR2 = 5;
+//
+//                a1.add(filename);
+//                map.put(filename, filePath);
+//                map2.put(filename, lenght + "");
+//                filecounter++;
+//                refresh();
+//                batchesTags.dismissDropDown();
+//                if (filecounter == 1) {
+////                    new ShowProgress1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                    ShowProgress1( filename,filePath  );
+//                }
+//                if (filecounter == 2) {
+//                     ShowProgress2( filename,filePath  );
+//                }
+//                if (filecounter == 3) {
+//                     ShowProgress3( filename,filePath  );
+//                }
+//                if (filecounter == 4) {
+//                     ShowProgress4( filename,filePath  );
+//
+//                }
+//                if (filecounter == 5) {
+//                     ShowProgress5( filename,filePath  );
+//
+//                }
+//
+//            } else {
+//                Toast.makeText(CreateNotification.this, "File is already uploaded", Toast.LENGTH_LONG).show();
+//            }
+//        }
 
+        // new
+        if (requestCode == 9 && resultCode == RESULT_OK) {
 
-            filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-            Log.d(TAG, "filePath1: "+filePath);
+            Uri uri = data.getData();
+            String[] fileInfoArray = Z.getMyFilePath(CreateNotification.this, uri);
 
-            Toast.makeText(this, "filePath1:"+filePath, Toast.LENGTH_SHORT).show();
+            filePath = fileInfoArray[0];
+            filename = fileInfoArray[1];
 
-            File f = new File(filePath);
-            filePath = f.getAbsolutePath();
-            Log.d(TAG, "filePath: "+filePath);
-            Toast.makeText(this, "filePath2:"+filePath, Toast.LENGTH_SHORT).show();
-            // Do anything with file
-            lenght = f.length();
+            File file = new File(filePath);
 
             if (lenght > 16777216) {
                 Toast.makeText(CreateNotification.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
                 filesame = 1;
             }
-            filename = "";
-            int index = filePath.lastIndexOf("/");
-            directory = "";
-            for (int i = 0; i < index; i++)
-                directory += filePath.charAt(i);
 
-            for (int i = index + 1; i < filePath.length(); i++)
-                filename += filePath.charAt(i);
             try {
                 for (int i = 0; i < a1.size(); i++) {
                     if (a1.get(i).equals(filename)) {
@@ -1209,7 +1259,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 }
             } catch (Exception e) {
             }
-
 
             if (filesame != 1) {
                 int THREAD_POOL_EXECUTOR2 = 5;
@@ -1222,27 +1271,29 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 batchesTags.dismissDropDown();
                 if (filecounter == 1) {
 //                    new ShowProgress1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    uploadImage();
+                    ShowProgress1(filename, filePath);
                 }
                 if (filecounter == 2) {
-                     ShowProgress2( filename,filePath  );
+                    ShowProgress2(filename, filePath);
                 }
                 if (filecounter == 3) {
-                     ShowProgress3( filename,filePath  );
+                    ShowProgress3(filename, filePath);
                 }
                 if (filecounter == 4) {
-                     ShowProgress4( filename,filePath  );
+                    ShowProgress4(filename, filePath);
 
                 }
                 if (filecounter == 5) {
-                     ShowProgress5( filename,filePath  );
+                    ShowProgress5(filename, filePath);
 
                 }
 
             } else {
                 Toast.makeText(CreateNotification.this, "File is already uploaded", Toast.LENGTH_LONG).show();
             }
+
         }
+
     }
 
     void refresh() {
@@ -1661,14 +1712,23 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             edittedFlag = 0;
         }
     }
-    public void uploadImage() {
+
+    public void ShowProgress1(String filename, String filePath) {
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         try {
             username = Z.Decrypt(encUsername, CreateNotification.this);
         } catch (Exception e) {
             e.printStackTrace();
         }
         AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
@@ -1722,13 +1782,19 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     public void ShowProgress2(String filename,String filePath  ) {
 
         try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             username = Z.Decrypt(encUsername, CreateNotification.this);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
@@ -1783,13 +1849,19 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     public void ShowProgress3(String filename,String filePath  ) {
 
         try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             username = Z.Decrypt(encUsername, CreateNotification.this);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
@@ -1844,6 +1916,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     public void ShowProgress4(String filename,String filePath  ) {
 
         try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             username = Z.Decrypt(encUsername, CreateNotification.this);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1852,7 +1930,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .addMultipartFile("uf", new File(filePath))
                 .setTag(this)
@@ -1904,13 +1982,19 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     public void ShowProgress5(String filename,String filePath  ) {
 
         try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             username = Z.Decrypt(encUsername, CreateNotification.this);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
