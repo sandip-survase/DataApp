@@ -1138,6 +1138,20 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         protected Boolean doInBackground(String... param) {
 
+            try {
+                encfname = Z.Encrypt(fname, Welcome.this);
+                enclname = Z.Encrypt(lname, Welcome.this);
+                encmobile = Z.Encrypt(mobile, Welcome.this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            Log.d("TAG", "doInBackground: encUsersName " + encUsersName);
+            Log.d("TAG", "doInBackground: encfname " + encfname);
+            Log.d("TAG", "doInBackground: enclname " + enclname);
+            Log.d("TAG", "doInBackground: encmobile " + encmobile);
+
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));       //0
             params.add(new BasicNameValuePair("f", encfname));           //1

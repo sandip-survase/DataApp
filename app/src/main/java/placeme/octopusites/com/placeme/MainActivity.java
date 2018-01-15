@@ -2192,7 +2192,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
                 unread_count[index] = json.getString("unreadcount");
 
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
