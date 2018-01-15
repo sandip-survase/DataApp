@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -41,6 +39,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -64,7 +63,6 @@ import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.Z.md5;
 
 public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
@@ -327,11 +325,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
 
 
-        Z.fade(this, welcomepasswordenterpasswordimage);
-        Z.fadeandmovedown(this, forgotpassword);
-        Z.fadeandmovedown(this, welcomepasswordTextInputLayout);
-        Z.slideinleft1(this, welcomepasswordwelcometextviewcontext1);
-        Z.slideinleft2(this, welcomepasswordwelcometextviewcontext2);
+//        Z.fade(this, welcomepasswordenterpasswordimage);
+//        Z.fadeandmovedown(this, forgotpassword);
+//        Z.fadeandmovedown(this, welcomepasswordTextInputLayout);
+//        Z.slideinleft1(this, welcomepasswordwelcometextviewcontext1);
+//        Z.slideinleft2(this, welcomepasswordwelcometextviewcontext2);
     }
 
     public void setWelComeCreatePasswordView(View v) {
@@ -751,9 +749,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 onBackPressed();
             }
         });
-
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -794,7 +790,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         viewPager.setCurrentItem(0);
         addBottomDots(0, 2);
 
-            android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
+        android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
 
 //        try {
 //            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -903,8 +899,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             }
                         }
                     }
-                } else if (currentPosition == 2)
-                {
+                } else if (currentPosition == 2) {
                     if (path == 2) {
                         Toast.makeText(Welcome.this, "Please select your role !", Toast.LENGTH_SHORT).show();
                     }
@@ -992,15 +987,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         });
 
-        resultView = (ImageView)
-
-                findViewById(R.id.result_image);
-
-        imagePicker = new
-
-                ImagePicker(this);
+        resultView = (ImageView) findViewById(R.id.result_image);
+        imagePicker = new ImagePicker(this);
         imagePicker.setImagePickerCallback(Welcome.this);
-
         imagePicker.shouldGenerateMetadata(false); // Default is true
         imagePicker.shouldGenerateThumbnails(false); // Default is true
 
@@ -1178,7 +1167,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     MySharedPreferencesManager.save(Welcome.this, "role", "student");
                     MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
-                    new CreateFirebaseUser(encUsersName, encPassword).execute();
+                    CreateFirebaseUser(encUsersName, encPassword);
+                    try {
+                        loginFirebase(Z.Decrypt(encUsersName, Welcome.this), Z.md5(Z.Decrypt(encPassword, Welcome.this) + MySharedPreferencesManager.getDigest3(Welcome.this)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+//                    new CreateFirebaseUser(encUsersName, encPassword).execute();
 
                     startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 //                Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
@@ -1192,63 +1188,116 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-    class CreateFirebaseUser extends AsyncTask<String, String, String> {
 
-        String u, p;
-
-        CreateFirebaseUser(String u, String p) {
-            this.u = u;
-            this.p = p;
+    void CreateFirebaseUser(final String u, final String p) {
+        String u1 = null, p1 = null;
+        try {
+            u1 = Z.Decrypt(u, Welcome.this);
+            p1 = Z.Decrypt(p, Welcome.this);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        final String u2 = u1;
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(u1, Z.md5(p1 + MySharedPreferencesManager.getDigest3(Welcome.this)))
+                .addOnCompleteListener(Welcome.this, new OnCompleteListener<AuthResult>() {
 
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", u));
-            params.add(new BasicNameValuePair("p", p));
-            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-
-            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
-            try {
-                resultofop = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            String salt = MySharedPreferencesManager.getDigest3(Welcome.this);
-
-            String hash = md5(passwordstr + salt);
-            loginFirebase(plainUsername, hash);
-
-        }
-
-        void loginFirebase(String username, String hash) {
-            FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(username, hash)
-                    .addOnCompleteListener(Welcome.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = user.getUid();
+                            MySharedPreferencesManager.save(Welcome.this, "uid", uid);
+                            Log.d("TAG", "firebase user created in otp activity with email: " + u2 + "\nuid: " + uid);
 
 
-                            if (task.isSuccessful()) {
-//                                Toast.makeText(Welcome.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("TAG", "bhajala");
+                        } else {
+                            Log.d("TAG", "firebase user creation failed in otp activity:");
 
-                            } else {
-//                                Toast.makeText(Welcome.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("TAG", "nay bhajala");
-                            }
                         }
-                    });
-        }
+                    }
+                });
+
+
     }
+
+    void loginFirebase(String username, String hash) {
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(Welcome.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Welcome.this, "Successfully logged in to Firebase from otp activity", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(Welcome.this, "Failed to login to Firebase from otp activity", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+//    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+//
+//        String u, p;
+//
+//        CreateFirebaseUser(String u, String p) {
+//            this.u = u;
+//            this.p = p;
+//        }
+//
+//        protected String doInBackground(String... param) {
+//
+//
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", u));
+//            params.add(new BasicNameValuePair("p", p));
+//            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+//
+//            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
+//            try {
+//                resultofop = json.getString("info");
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return resultofop;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//
+//            String salt = MySharedPreferencesManager.getDigest3(Welcome.this);
+//
+//            String hash = md5(passwordstr + salt);
+//            loginFirebase(plainUsername, hash);
+//
+//        }
+//
+//        void loginFirebase(String username, String hash) {
+//            FirebaseAuth.getInstance()
+//                    .signInWithEmailAndPassword(username, hash)
+//                    .addOnCompleteListener(Welcome.this, new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//
+//                            if (task.isSuccessful()) {
+////                                Toast.makeText(Welcome.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                                Log.d("TAG", "bhajala");
+//
+//                            } else {
+////                                Toast.makeText(Welcome.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+//                                Log.d("TAG", "nay bhajala");
+//                            }
+//                        }
+//                    });
+//        }
+//    }
 
 
     private void addBottomDots(int currentPage, int totalPages) {
@@ -1491,7 +1540,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             JSONObject json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
             Log.d("TAG", "welcome: json " + json);
-            if (json != null ) {
+            if (json != null) {
                 try {
                     result = json.getString("info");
                     if (result != null)
@@ -1593,94 +1642,93 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             int returnCode = 0;
             try {
-                    List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("u", mEmail));
-                    params.add(new BasicNameValuePair("p", mPassword));
-                    json = jParser.makeHttpRequest(Z.url_login, "GET", params);
-                    String s = null;
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", mEmail));
+                params.add(new BasicNameValuePair("p", mPassword));
+                json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                String s = null;
 
-                    s = json.getString("info");
-                    resultofop = s;
+                s = json.getString("info");
+                resultofop = s;
 
-                    if (!s.equals("notactivated"))
-                        MySharedPreferencesManager.save(Welcome.this, "role", s);
-                    else {
-                        MySharedPreferencesManager.save(Welcome.this, "role", json.getString("role"));
-                    }
+                if (!s.equals("notactivated"))
+                    MySharedPreferencesManager.save(Welcome.this, "role", s);
+                else {
+                    MySharedPreferencesManager.save(Welcome.this, "role", json.getString("role"));
+                }
 
-                    if (s.equals("student")) {
+                if (s.equals("student")) {
 
-                        EmailCred = mEmail;
-                        returnCode = 1;
-                        return 1;
-                    } else if (s.equals("admin")) {
+                    EmailCred = mEmail;
+                    returnCode = 1;
+                    return 1;
+                } else if (s.equals("admin")) {
 
-                        EmailCred = mEmail;
-                        returnCode = 3;
-                        return 3;
-                    } else if (s.equals("hr")) {
+                    EmailCred = mEmail;
+                    returnCode = 3;
+                    return 3;
+                } else if (s.equals("hr")) {
 
-                        EmailCred = mEmail;
-                        returnCode = 4;
-                        return 4;
-                    } else if (s.equals("alumni")) {
+                    EmailCred = mEmail;
+                    returnCode = 4;
+                    return 4;
+                } else if (s.equals("alumni")) {
 
-                        EmailCred = mEmail;
-                        returnCode = 5;
-                        return 5;
-                    }
-                    if (s.equals("notactivated")) {             // throughAdmin
-                        Log.d("TAG", "dead");
+                    EmailCred = mEmail;
+                    returnCode = 5;
+                    return 5;
+                }
+                if (s.equals("notactivated")) {             // throughAdmin
+                    Log.d("TAG", "dead");
 
-                        String throughAdmin = json.getString("throughAdmin");
-                        Log.d("TAG, ", "dady");
-
-
-                        if (throughAdmin != null && throughAdmin.equals("yes")) {
-                            throughAdminFlag = true;
-
-                            adminInstitute = json.getString("adminInst");
-                            adminfname = json.getString("adminfname");
-                            adminlname = json.getString("adminlname");
-                            try {
-                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                String sPadding = "ISO10126Padding";
-
-                                byte[] adminInstituteEncryptedBytes = SimpleBase64Encoder.decode(adminInstitute);
-                                byte[] adminInstituteDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, adminInstituteEncryptedBytes);
-                                adminInstitute = new String(adminInstituteDecryptedBytes);
-
-                                byte[] fnameEncryptedBytes = SimpleBase64Encoder.decode(adminfname);
-                                byte[] fnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, fnameEncryptedBytes);
-                                adminfname = new String(fnameDecryptedBytes);
-
-                                byte[] lnameEncryptedBytes = SimpleBase64Encoder.decode(adminlname);
-                                byte[] lnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, lnameEncryptedBytes);
-                                adminlname = new String(lnameDecryptedBytes);
-                                returnCode = 7;
-                                return 7;
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                Log.d("TAG", "exp ex:" + e.getMessage());
-                            }
+                    String throughAdmin = json.getString("throughAdmin");
+                    Log.d("TAG, ", "daddy");
 
 
-                        } else {
-                            String role = json.getString("role");
-                            if (!s.equals("notactivated"))
-                                MySharedPreferencesManager.save(Welcome.this, "role", s);
-                            else {
-                                MySharedPreferencesManager.save(Welcome.this, "role", json.getString("role"));
-                            }
-                            EmailCred = mEmail;
-                            returnCode = 6;
-                            return 6;
+                    if (throughAdmin != null && throughAdmin.equals("yes")) {
+                        throughAdminFlag = true;
+
+                        adminInstitute = json.getString("adminInst");
+                        adminfname = json.getString("adminfname");
+                        adminlname = json.getString("adminlname");
+                        try {
+                            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                            String sPadding = "ISO10126Padding";
+
+                            byte[] adminInstituteEncryptedBytes = SimpleBase64Encoder.decode(adminInstitute);
+                            byte[] adminInstituteDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, adminInstituteEncryptedBytes);
+                            adminInstitute = new String(adminInstituteDecryptedBytes);
+
+                            byte[] fnameEncryptedBytes = SimpleBase64Encoder.decode(adminfname);
+                            byte[] fnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, fnameEncryptedBytes);
+                            adminfname = new String(fnameDecryptedBytes);
+
+                            byte[] lnameEncryptedBytes = SimpleBase64Encoder.decode(adminlname);
+                            byte[] lnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, lnameEncryptedBytes);
+                            adminlname = new String(lnameDecryptedBytes);
+                            returnCode = 7;
+                            return 7;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("TAG", "exp ex:" + e.getMessage());
                         }
 
 
+                    } else {
+                        String role = json.getString("role");
+                        if (!s.equals("notactivated"))
+                            MySharedPreferencesManager.save(Welcome.this, "role", s);
+                        else {
+                            MySharedPreferencesManager.save(Welcome.this, "role", json.getString("role"));
+                        }
+                        EmailCred = mEmail;
+                        returnCode = 6;
+                        return 6;
                     }
 
+
+                }
 
 
             } catch (Exception e) {
@@ -1792,7 +1840,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected Boolean doInBackground(String... param) {
 
 
-            String platform="Android ("+getDeviceName()+")";
+            String platform = "Android (" + getDeviceName() + ")";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));    //0
             params.add(new BasicNameValuePair("m", platform));      //1
@@ -1962,6 +2010,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         @Override
                         public void onStart() {
                         }
+
                         @Override
                         public void onSuccess(File file) {
 
@@ -2028,7 +2077,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             crop_layout.setVisibility(View.GONE);
             updateProgress.setVisibility(View.GONE);
-            if(result) {
+            if (result) {
 
                 if (response != null && response.get(0).contains("success")) {
                     MySharedPreferencesManager.save(Welcome.this, "crop", "no");
@@ -2042,7 +2091,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 } else
                     Toast.makeText(Welcome.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
 
-            }else
+            } else
                 Toast.makeText(Welcome.this, Z.FAIL_TO_UPLOAD_IMAGE, Toast.LENGTH_SHORT).show();
         }
 

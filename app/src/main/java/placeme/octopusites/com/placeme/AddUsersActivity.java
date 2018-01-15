@@ -1,19 +1,14 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Looper;
-import android.provider.OpenableColumns;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -40,7 +35,6 @@ import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
 
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -48,9 +42,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -113,6 +105,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
     private String encfilename = "";
     private String TAG = "TAG";
+    private File file;
 
 
     @Override
@@ -457,26 +450,27 @@ public class AddUsersActivity extends AppCompatActivity {
             filePath = fileInfoArray[0];
             filename = fileInfoArray[1];
 
-            File file = new File(filePath);
-
-            if (file.length() > 16777216) {
+            if (filePath != null && filePath.equals("max")) {
                 Toast.makeText(AddUsersActivity.this, "File Exceeds the Size Limit(16MB)", Toast.LENGTH_LONG).show();
                 flag = true;
-            }
+            } else {
 
-            String fileName[] = filename.split("\\.");
-            if (fileName.length >= 2) {
-                String extension = fileName[fileName.length - 1];
-                if (extension.equals("xls") || extension.equals("xlsx")) {
-                    filesame = 0;
+                file = new File(filePath);
+                String fileName[] = filename.split("\\.");
+                if (fileName.length >= 2) {
+                    String extension = fileName[fileName.length - 1];
+                    if (extension.equals("xls") || extension.equals("xlsx")) {
+                        filesame = 0;
+                    } else {
+                        flag = true;
+                        Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
-                    flag = true;
                     Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
+                    flag = true;
                 }
 
-            } else {
-                Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
-                flag = true;
             }
 
             if (flag == false) {
@@ -690,6 +684,7 @@ public class AddUsersActivity extends AppCompatActivity {
             Log.d("TAG", "onPostExecute: result " + result);
 
             if (result.equals("success")) {
+                email.setText(""); //reset
                 Toast.makeText(AddUsersActivity.this, "User successfully Created!", Toast.LENGTH_SHORT).show();
                 setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
 
@@ -807,9 +802,6 @@ public class AddUsersActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
 
 }

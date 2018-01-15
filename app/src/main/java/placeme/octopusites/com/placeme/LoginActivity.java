@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     String country = "", city = "", isp = "", countryCode = "", query = "";
     String digest1, digest2;
     TextInputLayout usernameTextInputLayout, passwordTextInputLayout;
+    private String adminInstitute, adminfname, adminlname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,16 +119,14 @@ public class LoginActivity extends AppCompatActivity {
         String otp = MySharedPreferencesManager.getData(LoginActivity.this, "otp");
         String otp2 = MySharedPreferencesManager.getData(LoginActivity.this, "otp2");
 
-        if (otp != null) {
-            if (otp.equals("yes")) {
+        if (otp != null && otp.equals("yes")) {
+
                 startActivity(new Intent(getApplicationContext(), OTPActivity.class));
 
-            }
-        } else if (otp2 != null) {
-            if (otp2.equals("yes")) {
+        } else if (otp2 != null && otp2.equals("yes")) {
+
                 startActivity(new Intent(getApplicationContext(), OTP2Activity.class));
 
-            }
         } else {
 
             String newUserCheck = getIntent().getStringExtra("showOTP");
@@ -267,13 +266,38 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (s.equals("notactivated")) {
 
-                    String role = json.getString("role");
-                    Log.d("TAG", "dead");
-                    MySharedPreferencesManager.save(LoginActivity.this, "role", role);
-                    Log.d("TAG", "doInBackground: role : " + role);
-                    EmailCred = mEmail;
+                    String throughAdmin = json.getString("throughAdmin");
+                    Log.d("TAG, ", "daddy");
 
-                    return 6;
+                    if (throughAdmin != null && throughAdmin.equals("yes")) {
+
+                        adminInstitute = json.getString("adminInst");
+                        adminfname = json.getString("adminfname");
+                        adminlname = json.getString("adminlname");
+                        try {
+
+                            adminInstitute = Z.Decrypt(adminInstitute, LoginActivity.this);
+                            adminfname = Z.Decrypt(adminfname, LoginActivity.this);
+                            adminlname = Z.Decrypt(adminlname, LoginActivity.this);
+
+                            Log.d("TAG", "doInBackground: " + "" + adminInstitute + "\n" + adminfname + "\n" + adminlname);
+
+                            return 7;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("TAG", "exp ex:" + e.getMessage());
+                        }
+
+                    } else {
+                        String role = json.getString("role");
+                        Log.d("TAG", "dead");
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", role);
+                        Log.d("TAG", "doInBackground: role : " + role);
+                        EmailCred = mEmail;
+
+                        return 6;
+                    }
+
                 }
 
 
@@ -302,44 +326,40 @@ public class LoginActivity extends AppCompatActivity {
                         new SaveSessionDetails().execute();
                         MySharedPreferencesManager.save(LoginActivity.this, "role", "student");
                         MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("student");
-//                            r.setUsername(EmailCred);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else if (success == 3) {
                         new SaveSessionDetails().execute();
                         MySharedPreferencesManager.save(LoginActivity.this, "role", "admin");
                         MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("admin");
-//                            r.setUsername(EmailCred);
                         startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                         finish();
                     } else if (success == 4) {
                         new SaveSessionDetails().execute();
                         MySharedPreferencesManager.save(LoginActivity.this, "role", "hr");
                         MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("hr");
-//                            r.setUsername(EmailCred);
                         startActivity(new Intent(LoginActivity.this, HRActivity.class));
                         finish();
                     } else if (success == 5) {
                         new SaveSessionDetails().execute();
                         MySharedPreferencesManager.save(LoginActivity.this, "role", "alumni");
                         MySharedPreferencesManager.save(LoginActivity.this, "nameKey", EmailCred);
-
-//                            ProfileRole r = new ProfileRole();
-//                            r.setRole("alumni");
-//                            r.setUsername(EmailCred);
                         startActivity(new Intent(LoginActivity.this, AlumniActivity.class));
                         finish();
                     }
                 }
             }).start();
 
-            if (success == 6) {
+
+            if (success == 7) {  // through admin
+                Intent intent = new Intent(LoginActivity.this, WelcomeIntroThroughAdminFromLoginActivity.class);
+                intent.putExtra("inst", adminInstitute);
+                intent.putExtra("fname", adminfname);
+                intent.putExtra("lname", adminlname);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            } else if (success == 6) {
                 Toast.makeText(LoginActivity.this, "You are already registered but not verified. Enter OTP sent on your registered email address", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(LoginActivity.this, OTPActivity.class));
             } else if (resultofop.equals("notpresent")) {

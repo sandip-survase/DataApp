@@ -227,7 +227,6 @@ public class PrintProfileTabFragment extends Fragment {
 
         refreshContent();
         File myDirectory = new File(Environment.getExternalStorageDirectory(), "Place Me");
-
         if (!myDirectory.exists()) {
             myDirectory.mkdirs();
         }

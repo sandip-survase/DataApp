@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
@@ -47,7 +48,6 @@ public class Z {
     public static final String IP_local_Glassfish = "http://162.213.199.3/";
 
 
-
     //**************************  final **************************
 
     public static final String IP_secured_sunny = "https://placeme.co.in/";
@@ -66,8 +66,8 @@ public class Z {
 
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
-// -------------------------------------------MainActivity(student)-----------------------------------------------
-public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
+    // -------------------------------------------MainActivity(student)-----------------------------------------------
+    public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
@@ -112,7 +112,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
 
     public static final String url_GetNotificationsHrMetadata = IP + "CreateNotificationTemp/GetNotificationsHrMetadata";
     public static final String url_GetNotificationsHr = IP + "CreateNotificationTemp/GetNotificationsHr";
-
 
 
     //    -------------------------------EditPlacementHr -----------------------------------
@@ -579,8 +578,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
         return false;
     }
 
-    public static void NetworkConnectoin(Context context)
-    {
+    public static void NetworkConnectoin(Context context) {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
@@ -642,22 +640,34 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
                 InputStream fileInputStream = context.getApplicationContext().getContentResolver().openInputStream(uri);
                 Log.d("TAG", "getFilePath:" + fileInputStream.available());
                 // TODO check file size then create file
-                try {
-                    file = new File(Environment.getExternalStorageDirectory().toString(), displayName);
-                    OutputStream output = new FileOutputStream(file);
+
+                if (fileInputStream.available() < 16777216) {
                     try {
-                        byte[] buffer = new byte[4 * 1024]; // or other buffer size
-                        int read;
-                        while ((read = fileInputStream.read(buffer)) != -1) {
-                            output.write(buffer, 0, read);
+//                        String k=Environment.getExternalStorageDirectory().getPath() + "/Place Me/";
+                        File myDirectory = new File(Environment.getExternalStorageDirectory(), "/Place Me/tmp");
+                        if (!myDirectory.exists()) {
+                            myDirectory.mkdirs();
                         }
-                        output.flush();
+                        file = new File(Environment.getExternalStorageDirectory().toString() + "/Place Me/tmp", displayName);
+                        OutputStream output = new FileOutputStream(file);
+                        try {
+                            byte[] buffer = new byte[4 * 1024]; // or other buffer size
+                            int read;
+                            while ((read = fileInputStream.read(buffer)) != -1) {
+                                output.write(buffer, 0, read);
+                            }
+                            output.flush();
+                        } finally {
+                            output.close();
+                        }
                     } finally {
-                        output.close();
+                        fileInputStream.close();
                     }
-                } finally {
-                    fileInputStream.close();
+
+                } else {
+                    array[0] = "max";  // File Exceeds the Size Limit
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -669,9 +679,11 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
                 e.printStackTrace();
             }
         }
-        array[0] = file.getPath();
-        array[1] = displayName;
 
+        if (file != null) {
+            array[0] = file.getPath();
+            array[1] = displayName;
+        }
         Log.d("TAG", "displayName: " + array[1]);
         Log.d("TAG", "getPath: " + array[0]);
 
