@@ -8,8 +8,8 @@ android {
         applicationId "placeme.octopusites.com.placeme"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 5
-        versionName "0.0.5"
+        versionCode 6
+        versionName "0.0.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -20,6 +20,9 @@ android {
             shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters "armeabi-v7a", "armeabi" // includes ARM SO files only, so no x86 SO file
+            }
         }
     }
     aaptOptions {
