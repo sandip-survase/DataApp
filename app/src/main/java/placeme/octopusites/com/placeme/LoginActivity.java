@@ -123,12 +123,19 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), OTPActivity.class));
 
             }
-        }
-        if (otp2 != null) {
+        } else if (otp2 != null) {
             if (otp2.equals("yes")) {
                 startActivity(new Intent(getApplicationContext(), OTP2Activity.class));
 
             }
+        } else {
+
+            String newUserCheck = getIntent().getStringExtra("showOTP");
+            if (newUserCheck != null && newUserCheck.equals("yes")) {
+                startActivity(new Intent(LoginActivity.this, OTPActivity.class));
+            } else if (MySharedPreferencesManager.getUsername(this) != null && MySharedPreferencesManager.getPassword(this) != null)
+                attemptLogin(MySharedPreferencesManager.getUsername(this), MySharedPreferencesManager.getPassword(this));
+
         }
 
 
@@ -201,11 +208,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        String newUserCheck = getIntent().getStringExtra("showOTP");
-        if (newUserCheck != null && newUserCheck.equals("yes")) {
-            startActivity(new Intent(LoginActivity.this, OTPActivity.class));
-        } else if (MySharedPreferencesManager.getUsername(this) != null && MySharedPreferencesManager.getPassword(this) != null)
-            attemptLogin(MySharedPreferencesManager.getUsername(this), MySharedPreferencesManager.getPassword(this));
+
     }
 
     void attemptLogin(String u, String p) {
