@@ -37,6 +37,7 @@ import com.androidnetworking.interfaces.UploadProgressListener;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -386,7 +387,8 @@ public class AddUsersActivity extends AppCompatActivity {
                     Log.d("TAG", "baby:" + e.getMessage());
                 }
 
-            }
+            } else
+                Toast.makeText(this, "Kindly select file to upload", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -689,7 +691,7 @@ public class AddUsersActivity extends AppCompatActivity {
                 setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
 
             } else if (result.equals("userExist")) {
-                Toast.makeText(AddUsersActivity.this, "User already exist on Placeme", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddUsersActivity.this, "User already exists on Placeme", Toast.LENGTH_LONG).show();
             } else if (result.equals("Missing domain")) {
                 Toast.makeText(AddUsersActivity.this, "Kindly check email Address", Toast.LENGTH_SHORT).show();
             } else {
@@ -721,7 +723,10 @@ public class AddUsersActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-
+            if (file != null)
+                file.delete();
+            Toast.makeText(AddUsersActivity.this, "Users will be created shortly.", Toast.LENGTH_SHORT).show();
+            AddUsersActivity.super.onBackPressed();
         }
     }
 
@@ -783,6 +788,14 @@ public class AddUsersActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Image upload Completed");
                         Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            String info = response.getString("info");
+                            if (info != null && info.equals("created"))
+                                Toast.makeText(AddUsersActivity.this, "File uploaded successfully. Click on submit to create users.", Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     @Override
@@ -795,6 +808,7 @@ public class AddUsersActivity extends AppCompatActivity {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Toast.makeText(AddUsersActivity.this, "Something went wrong! please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());

@@ -1713,7 +1713,9 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         }
     }
 
-    public void ShowProgress1(String filename, String filePath) {
+    public void ShowProgress1(final String filename, String filePath) {
+
+        final File file1 = new File(filePath);
 
         try {
             OkHttpUtil.init(true);
@@ -1732,7 +1734,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
-                .addMultipartFile("uf", new File(filePath))
+                .addMultipartFile("uf", file1)
                 .setTag(this)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1760,6 +1762,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Image upload Completed");
                         Log.d(TAG, "onResponse object : " + response.toString());
+                        if (file1 != null)
+                            file1.delete();
                     }
 
                     @Override

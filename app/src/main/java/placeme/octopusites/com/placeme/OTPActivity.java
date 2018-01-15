@@ -295,14 +295,13 @@ public class OTPActivity extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
+                    } else if (role.equals("admin")) {
+                        startActivity(new Intent(OTPActivity.this, AdminActivity.class));
+                        finish();
                     }
 //                        else if (role.equals("hr")) {
 //                        startActivity(new Intent(OTPActivity.this, HRActivity.class));
 //                        finish();
-//                    }else if (role.equals("admin")) {
-//                        startActivity(new Intent(OTPActivity.this, AdminActivity.class));
-//                        finish();
-//                    }
 
 
             } else if (resultofop.equals("success") && activationMessageflag == true) {
