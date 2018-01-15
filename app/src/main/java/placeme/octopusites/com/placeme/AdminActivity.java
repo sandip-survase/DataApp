@@ -1313,7 +1313,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                 Toast.makeText(AdminActivity.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }, 5000);
+                }, 10000);
 
 
             }
@@ -1330,7 +1330,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     Toast.makeText(AdminActivity.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 5000);
+        }, 10000);
 
 
         new UpdateFirebaseToken().execute();
@@ -1750,7 +1750,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 public void run() {
                     doubleBackToExitPressedOnce = false;
                 }
-            }, 2000);
+            }, 10000);
         }
     }
 

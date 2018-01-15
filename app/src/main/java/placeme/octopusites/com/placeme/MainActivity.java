@@ -1261,7 +1261,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         disableNavigationViewScrollbars(navigationView);
 
-
+// TODO set delay timeout to students also
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
