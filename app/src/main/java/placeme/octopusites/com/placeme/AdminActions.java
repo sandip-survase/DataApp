@@ -149,6 +149,7 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(AdminActions.this,AddUsersActivity.class));
             }
         });
+
         editnotificationrl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,10 +173,19 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
         editnotificationrl8.setOnClickListener(this);
         editnotificationrl9.setOnClickListener(this);
         editnotificationrl10.setOnClickListener(this);
+
+        editnotificationrl9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminActions.this,CreateMultipleAdmin.class));
+            }
+        });
+
+
         editnotificationrl11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminActions.this,BroadcastMessage.class));
+                startActivity(new Intent(AdminActions.this, BroadcastMessage.class));
             }
         });
     }

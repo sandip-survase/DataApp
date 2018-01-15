@@ -79,6 +79,7 @@ public class MyProfileFragment extends Fragment {
     TextView instcodetxt,trytxt, extraprojectscount;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, careeredit, contactedit;
     RelativeLayout editprofilerl;
+    public static String instcode="";
     String username = "", ucode = "", resultofop = "", dataobject = "", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "";
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "";
     String schoolname10 = "", board10 = "", yearofpassing10 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "";
@@ -1223,12 +1224,18 @@ public class MyProfileFragment extends Fragment {
                 json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
                 String s = "";
                 resultofop = json.getString("info");
+                Log.d("TAG", "doInBackground: "+username);
                 if (resultofop.equals("found")) {
                     Log.d("cricket", "sachin tendulkar opening to bat");
                     ucode = json.getString("ucode");
+                    instcode = ucode;
                     String phoneenc = json.getString("phone");
                     phone = Decrypt(phoneenc, digest1, digest2);
+
+                    Log.d("cricket", "phone - "+phone);
                     s = json.getString("intro");
+                    Log.d("cricket", "json - "+s);
+
                     if (s.equals("found")) {
                         Log.d("cricket", "virat kohli coming to bat");
                         found_box1 = 1;

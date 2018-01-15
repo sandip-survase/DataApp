@@ -46,6 +46,8 @@ public class Z {
     public static final String IP = "http://162.213.199.3/";
     public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
     public static final String IP_local_Glassfish = "http://162.213.199.3/";
+    public static final String IP_8086 = "http://162.213.199.3:8086/";
+
 
 
     //**************************  final **************************
@@ -66,8 +68,8 @@ public class Z {
 
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
-    // -------------------------------------------MainActivity(student)-----------------------------------------------
-    public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
+// -------------------------------------------MainActivity(student)-----------------------------------------------
+public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
@@ -251,6 +253,7 @@ public class Z {
     //    ------------------------------------------Institute details---------------------------------
 
     //    ------------------------------------------Education details---------------------------------
+
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
@@ -258,6 +261,8 @@ public class Z {
     public static final String upload_profile = IP + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
+    public static final String url_createSingleAdmin = IP + "AESTest/CreateSingleAdmin";
+
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";
     public static final String url_delete_file = IP + "AESTest/DeleteFile";
     public static final String url_uploadSingleFile = IP + "AESTest/UploadSingleFile";

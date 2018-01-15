@@ -175,6 +175,9 @@
             android:name=".EditEmail"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".CreateMultipleAdmin"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".LastSession"
             android:screenOrientation="portrait" />
         <activity
