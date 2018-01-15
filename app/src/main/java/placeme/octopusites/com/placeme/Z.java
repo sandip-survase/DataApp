@@ -74,9 +74,9 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
 
-    public static final String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";
+    public static final String url_getplacementsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsMetaData";
     public static final String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
-    public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_changeplacementsreadstatus = IP_secured_sunny + "CreateNotificationTemp/ChangePlacementReadStatus";
     public static final String url_getplacements = IP + "CreateNotificationTemp/GetPlacements";
     //                           --------------------alumniActivity(alumni)----------------------------------------------
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
@@ -121,13 +121,13 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     //    -------------------------------EditPlacementMainHr -----------------------------------
     public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static final String url_UploadAttach1 = "http://162.213.199.3:8090/" + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification =  "http://162.213.199.3:8090/" + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_UploadAttach1 = IP_secured_sunny+ "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification =IP_secured_sunny + "CreateNotificationTemp/ModifyNotification";
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP_secured_sunny + "CreateNotificationTemp/SavefileOnServer";
 
     //    -------------------------------CreatePlacement -----------------------------------
-    public static final String url_CreatePlacements = IP_secured_sunny + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------

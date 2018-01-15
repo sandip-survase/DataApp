@@ -1,6 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.DialogInterface;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -29,9 +30,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import org.apache.http.NameValuePair;
@@ -40,7 +43,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -76,14 +78,34 @@ public class CreatePlacement extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TagsEditText batchesTags;
-    private String digest1,digest2;
-    private String TAG="CreatePlacement";
+    private String digest1, digest2;
+    private String TAG = "CreatePlacement";
 
     //check
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_placement);
+
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        OkHttpUtil.getClient();
+//        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(getApplicationContext(), OkHttpUtil.getClient());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        AndroidNetworking.setBitmapDecodeOptions(options);
+        AndroidNetworking.enableLogging();
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+                Log.d(TAG, "onChange: currentConnectionQuality : " + currentConnectionQuality + " currentBandwidth : " + currentBandwidth);
+            }
+        });
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -93,7 +115,6 @@ public class CreatePlacement extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Create Placement");
-
 
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
@@ -107,7 +128,6 @@ public class CreatePlacement extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
-
 
 
 //        TextView createnotitxt = (TextView) findViewById(R.id.createnotitxt);
@@ -179,23 +199,20 @@ public class CreatePlacement extends AppCompatActivity {
         });
 
 
-
         CheckBoxsAlumni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    forallumflag = 1;
                     showPop = false;
                     allumiselector.setVisibility(View.VISIBLE);
 //                    batches.setVisibility(View.VISIBLE);
-                    forallumflag = 1;
 //                    yearspinner.setVisibility(View.VISIBLE);
 //                    batches.setVisibility(View.VISIBLE);
                     batchesTags.setVisibility(View.VISIBLE);
                     edittedFlag = 1;
                 } else {
                     forallumflag = 0;
-
-
                     batchesTags.setText("");
                     batchesTags.dismissDropDown();
                     allumiselector.setVisibility(View.GONE);
@@ -323,21 +340,25 @@ public class CreatePlacement extends AppCompatActivity {
 
             if (srole.equals("hr")) {
 //                forwhom = Encrypt("PLACEME", digest1, digest2);
-                forwhom="PLACEME()";
+                forwhom = "PLACEME()";
                 Log.d("Forwhome", "validate: " + encforwhom);
             } else {
+                Log.d(TAG, "from Admin: ");
                 String selectedBatchesForWhome = android.text.TextUtils.join(",", TagCreateList);
                 Log.d("Forwhome", "validate: " + selectedBatchesForWhome);
 
-                if (forstudflag == 0 && forallumflag == 0) {
-                    Toast.makeText(CreatePlacement.this, "Select Student Or Alumni to send This Placement ", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "forstudflag: "+forstudflag);
+                Log.d(TAG, "forallumflag: "+forallumflag);
+
+                if (forstudflag==0 && forallumflag==0) {
+                    Log.d(TAG, "aat ala donhi 0");
                     errorflag = 1;
+                    Toast.makeText(CreatePlacement.this, "Select Student Or Alumni to send This Placement ", Toast.LENGTH_SHORT).show();
+
                 } else {
-
-
                     if (forstudflag == 1) {
                         //notification for Student
-                        forwhom = instname + "("+Decrypt(encUsername,digest1,digest2)+",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                        forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                         if (forallumflag == 1) {
                             //for Stud + alumni
                             forwhom = forwhom + "," + selectedBatchesForWhome + ")";
@@ -352,7 +373,7 @@ public class CreatePlacement extends AppCompatActivity {
                         //notification not for Student
                         if (forallumflag == 1) {
                             //for ALLUMNI
-                            forwhom = instname + "("+Decrypt(encUsername,digest1,digest2)+" ," + selectedBatchesForWhome + ")";
+                            forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + " ," + selectedBatchesForWhome + ")";
                             Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                         } else {
@@ -362,49 +383,52 @@ public class CreatePlacement extends AppCompatActivity {
 
                         }
                     }
-                }
-            }
-
-                PlacementCreateTab1 PlaceTab1 = (PlacementCreateTab1) adapter.getItem(0);
-                PlacementCreateTab2 PlaceTab2 = (PlacementCreateTab2) adapter.getItem(1);
-                PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
-                viewPager.setOffscreenPageLimit(3);
-
-                Boolean PlaceTab1_success = true;
-                Boolean PlaceTab2_success = true;
-                Boolean PlaceTab3_success = true;
-
-                PlaceTab1_success = PlaceTab1.Validate();
+                    Log.d(TAG, "forwhom at Bottom" + forwhom);
 
 
-                if (!PlaceTab1_success) {
-                    viewPager.setCurrentItem(0);
-                    PlaceTab1.Validate();
+                    PlacementCreateTab1 PlaceTab1 = (PlacementCreateTab1) adapter.getItem(0);
+                    PlacementCreateTab2 PlaceTab2 = (PlacementCreateTab2) adapter.getItem(1);
+                    PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
+                    viewPager.setOffscreenPageLimit(3);
+
+                    Boolean PlaceTab1_success = true;
+                    Boolean PlaceTab2_success = true;
+                    Boolean PlaceTab3_success = true;
+
+                    PlaceTab1_success = PlaceTab1.Validate();
+
+
+                    if (!PlaceTab1_success) {
+                        viewPager.setCurrentItem(0);
+                        PlaceTab1.Validate();
 //            personalflag = 1;
-                } else {
-                    PlaceTab2_success = PlaceTab2.validate();
-                    if (!PlaceTab2_success) {
-                        viewPager.setCurrentItem(1);
-                        PlaceTab2.validate();
                     } else {
-                        PlaceTab3_success = PlaceTab3.validate();
-
-                        if (!PlaceTab3_success) {
-                            viewPager.setCurrentItem(3);
-                            PlaceTab3.validate();
+                        PlaceTab2_success = PlaceTab2.validate();
+                        if (!PlaceTab2_success) {
+                            viewPager.setCurrentItem(1);
+                            PlaceTab2.validate();
                         } else {
+                            PlaceTab3_success = PlaceTab3.validate();
+
+                            if (!PlaceTab3_success) {
+                                viewPager.setCurrentItem(3);
+                                PlaceTab3.validate();
+                            } else {
 
 //                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
-                            //call ENCRYPT ND create save method
-                            if(errorflag==0){
-                            encrypt();
-                            }else{
-                                Toast.makeText(CreatePlacement.this, "Select Student Or Alumni to send This Placement ", Toast.LENGTH_SHORT).show();
+                                //call ENCRYPT ND create save method
+                                if (errorflag == 0) {
+                                    encrypt();
+                                } else {
+                                    Toast.makeText(CreatePlacement.this, "Try Again...", Toast.LENGTH_SHORT).show();
 
+                                }
                             }
                         }
                     }
                 }
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -489,7 +513,7 @@ public class CreatePlacement extends AppCompatActivity {
             Log.d("gettingtabData", "xcritexiicriteriaria: " + xiicriteria);
             Log.d("gettingtabData", "ugcriteria: " + ugcriteria);
             Log.d("gettingtabData", "pgcriteria: " + pgcriteria);
-             save();
+            new save().execute();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -532,34 +556,34 @@ public class CreatePlacement extends AppCompatActivity {
         if (edittedFlag == 1 || PlaceTab1.isTabEditted() || PlaceTab2.isTabEditted() || PlaceTab3.isTabEditted()) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-        alertDialogBuilder
-                .setMessage("Do you want to discard changes ?")
-                .setCancelable(false)
-                .setPositiveButton("Discard",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                CreatePlacement.super.onBackPressed();
-                            }
-                        })
+            alertDialogBuilder
+                    .setMessage("Do you want to discard changes ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Discard",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    CreatePlacement.super.onBackPressed();
+                                }
+                            })
 
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
-                        dialog.cancel();
-                    }
-                });
+                            dialog.cancel();
+                        }
+                    });
 
-        final AlertDialog alertDialog = alertDialogBuilder.create();
+            final AlertDialog alertDialog = alertDialogBuilder.create();
 
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-            }
-        });
+            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialogInterface) {
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                }
+            });
 
-        alertDialog.show();
+            alertDialog.show();
         } else
             CreatePlacement.super.onBackPressed();
     }
@@ -603,89 +627,75 @@ public class CreatePlacement extends AppCompatActivity {
     }
 
 
-
-    private void save() {
+    class save extends AsyncTask<String, String, String> {
         String sbatchesTags="", sexptaTags="";
-        Log.d(TAG, "encUsername: " + encUsername);        
-
-        AndroidNetworking.post(Z.url_CreatePlacements)
-                .setTag(this)
-                .addQueryParameter("u", encUsername)    //0
-             .addQueryParameter("a", encRole)   //1
-             .addQueryParameter("b", encforwhom)     //2
-             .addQueryParameter("c", paramcompanyname)       //3
-             .addQueryParameter("d", cpackage)      //4
-             .addQueryParameter("e", post)     //5
-             .addQueryParameter("f", selected)     //6
-             .addQueryParameter("g", vacancies)    //7
-             .addQueryParameter("h", lastdateofrr)    //8
-             .addQueryParameter("i", dateofarrival)     //9
-             .addQueryParameter("j", bond)     //10
-             .addQueryParameter("k", apti)     //11
-             .addQueryParameter("l", techtest)     //12
-             .addQueryParameter("m", groupdisc)     //13
-             .addQueryParameter("n", techinterview)     //14
-             .addQueryParameter("o", Hrinterview)     //15
-             .addQueryParameter("p", xcriteria)    //16
-             .addQueryParameter("q", xiicriteria)     //17
-             .addQueryParameter("r", ugcriteria)     //18
-             .addQueryParameter("s", pgcriteria)     //19
-             .addQueryParameter("t", sbatchesTags)     //20
-             .addQueryParameter("v", sexptaTags)    //21
-                .setPriority(Priority.IMMEDIATE)
-                .setOkHttpClient(OkHttpUtil.getClient())
-                .getResponseOnlyFromNetwork()
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                        try {
-                            String info = response.getString("info");
-                            Log.d(TAG, "info: " + info);
-                            if (info != null) {
-                                if (info.contains("successfully")) {
-                                    setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
-                                    Toast.makeText(CreatePlacement.this, "Placements Created Successfully", Toast.LENGTH_SHORT).show();
-                                    CreatePlacement.super.onBackPressed();
-                                }
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+        @Override
+        protected String doInBackground(String... param) {
+            Log.d("gettingtabData", "encUsername: " + encUsername);
 
 
-                    }
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", encUsername));    //0
+            params.add(new BasicNameValuePair("a", encRole));   //1
+            params.add(new BasicNameValuePair("b", encforwhom));       //2
+            params.add(new BasicNameValuePair("c", paramcompanyname));       //3
+            params.add(new BasicNameValuePair("d", cpackage));       //4
+            params.add(new BasicNameValuePair("e", post));     //5
+            params.add(new BasicNameValuePair("f", selected));     //6
+            params.add(new BasicNameValuePair("g", vacancies));     //7
+            params.add(new BasicNameValuePair("h", lastdateofrr));     //8
+            params.add(new BasicNameValuePair("i", dateofarrival));     //9
+            params.add(new BasicNameValuePair("j", bond));     //10
+            params.add(new BasicNameValuePair("k", apti));     //11
+            params.add(new BasicNameValuePair("l", techtest));     //12
+            params.add(new BasicNameValuePair("m", groupdisc));     //13
+            params.add(new BasicNameValuePair("n", techinterview));     //14
+            params.add(new BasicNameValuePair("o", Hrinterview));     //15
+            params.add(new BasicNameValuePair("p", xcriteria));     //16
+            params.add(new BasicNameValuePair("q", xiicriteria));     //17
+            params.add(new BasicNameValuePair("r", ugcriteria));     //18
+            params.add(new BasicNameValuePair("s", pgcriteria));     //19
+            params.add(new BasicNameValuePair("t", sbatchesTags));     //20
+            params.add(new BasicNameValuePair("v", sexptaTags));     //21
 
-                    @Override
-                    public void onError(ANError error) {
-                        if (error.getErrorCode() != 0) {
-                            // received ANError from server
-                            // error.getErrorCode() - the ANError code from server
-                            // error.getErrorBody() - the ANError body from server
-                            // error.getErrorDetail() - just a ANError detail
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+            json = jParser.makeHttpRequest(Z.url_CreatePlacements, "GET", params);
+            try {
+                r = json.getString("info1");
 
-                        }
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
+            CreatePlacement.super.onBackPressed();
+//            CreatePlacement.super.onBackPressed();
+
+//            if(result.equals("success"))
+//            {
+//                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+//
+//                Intent returnIntent = new Intent();
+//                returnIntent.putExtra("result", result);
+//                if(edittedFlag==1){
+//                    setResult(111);
+//                }
+//                CreateNotification.super.onBackPressed();
+//            }
+//            else {
+//                Toast.makeText(CreateNotification.this,result,Toast.LENGTH_SHORT).show();
+//
+//            }
+        }
     }
+
+
 
 
 }

@@ -1776,6 +1776,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Toast.makeText(CreateNotification.this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
@@ -1784,6 +1785,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 });
     }
     public void ShowProgress2(String filename,String filePath  ) {
+
+        final File file1 = new File(filePath);
 
         try {
             OkHttpUtil.init(true);
@@ -1802,7 +1805,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
-                .addMultipartFile("uf", new File(filePath))
+                .addMultipartFile("uf", file1)
                 .setTag(this)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1830,6 +1833,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Image upload Completed");
                         Log.d(TAG, "onResponse object : " + response.toString());
+                        if (file1 != null)
+                            file1.delete();
                     }
 
                     @Override
@@ -1842,6 +1847,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Toast.makeText(CreateNotification.this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
@@ -1851,6 +1857,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     }
 
     public void ShowProgress3(String filename,String filePath  ) {
+
+        final File file1 = new File(filePath);
 
         try {
             OkHttpUtil.init(true);
@@ -1869,7 +1877,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
-                .addMultipartFile("uf", new File(filePath))
+                .addMultipartFile("uf", file1)
                 .setTag(this)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1897,6 +1905,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Image upload Completed");
                         Log.d(TAG, "onResponse object : " + response.toString());
+                        if (file1 != null)
+                            file1.delete();
                     }
 
                     @Override
@@ -1909,6 +1919,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Toast.makeText(CreateNotification.this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
@@ -1918,6 +1929,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     }
 
     public void ShowProgress4(String filename,String filePath  ) {
+
+        final File file1 = new File(filePath);
 
         try {
             OkHttpUtil.init(true);
@@ -1936,7 +1949,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 .addQueryParameter("f",filename )
                 .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
-                .addMultipartFile("uf", new File(filePath))
+                .addMultipartFile("uf", file1)
                 .setTag(this)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1964,6 +1977,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Image upload Completed");
                         Log.d(TAG, "onResponse object : " + response.toString());
+                        if (file1 != null)
+                            file1.delete();
                     }
 
                     @Override
@@ -1976,6 +1991,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Toast.makeText(CreateNotification.this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
@@ -1984,6 +2000,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 });
     }
     public void ShowProgress5(String filename,String filePath  ) {
+
+        final File file1 = new File(filePath);
 
         try {
             OkHttpUtil.init(true);
@@ -2002,7 +2020,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setOkHttpClient(OkHttpUtil.getClient())
-                .addMultipartFile("uf", new File(filePath))
+                .addMultipartFile("uf", file1)
                 .setTag(this)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2030,6 +2048,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Image upload Completed");
                         Log.d(TAG, "onResponse object : " + response.toString());
+                        if (file1 != null)
+                            file1.delete();
                     }
 
                     @Override
@@ -2042,6 +2062,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Toast.makeText(CreateNotification.this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
