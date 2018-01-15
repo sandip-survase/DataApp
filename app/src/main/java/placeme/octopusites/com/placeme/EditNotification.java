@@ -352,7 +352,7 @@ public class EditNotification extends AppCompatActivity {
                     Toast.makeText(EditNotification.this, "Couldn't Process Your request.Kindly Try Again", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 5000);
+        }, 10000);
 
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -366,7 +366,7 @@ public class EditNotification extends AppCompatActivity {
                             Toast.makeText(EditNotification.this, "Couldn't Process Your request.please try again", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }, 5000);
+                }, 10000);
             }
         });
 

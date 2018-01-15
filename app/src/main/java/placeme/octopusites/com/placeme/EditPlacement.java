@@ -369,7 +369,7 @@ public class EditPlacement extends AppCompatActivity {
                     Toast.makeText(EditPlacement.this, "Couldn't Process Your request.please try again", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 5000);
+        }, 10000);
 
 
         tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -384,7 +384,7 @@ public class EditPlacement extends AppCompatActivity {
                             Toast.makeText(EditPlacement.this, "Couldn't Process Your request.please try again", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }, 5000);
+                }, 10000);
             }
         });
 

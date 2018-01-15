@@ -46,6 +46,8 @@ public class Z {
     public static final String IP = "http://162.213.199.3/";
     public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
     public static final String IP_local_Glassfish = "http://162.213.199.3/";
+    public static final String IP_8086 = "http://162.213.199.3:8086/";
+
 
 
     //**************************  final **************************
@@ -66,15 +68,15 @@ public class Z {
 
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
-    // -------------------------------------------MainActivity(student)-----------------------------------------------
-    public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
+// -------------------------------------------MainActivity(student)-----------------------------------------------
+public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
 
-    public static final String url_getplacementsmetadata = IP + "CreateNotificationTemp/GetPlacementsMetaData";
+    public static final String url_getplacementsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsMetaData";
     public static final String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
-    public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_changeplacementsreadstatus = IP_secured_sunny + "CreateNotificationTemp/ChangePlacementReadStatus";
     public static final String url_getplacements = IP + "CreateNotificationTemp/GetPlacements";
     //                           --------------------alumniActivity(alumni)----------------------------------------------
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
@@ -119,13 +121,13 @@ public class Z {
     //    -------------------------------EditPlacementMainHr -----------------------------------
     public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static final String url_UploadAttach1 = "http://162.213.199.3:8090/" + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification =  "http://162.213.199.3:8090/" + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_UploadAttach1 = IP_secured_sunny+ "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification =IP_secured_sunny + "CreateNotificationTemp/ModifyNotification";
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP_secured_sunny + "CreateNotificationTemp/SavefileOnServer";
 
     //    -------------------------------CreatePlacement -----------------------------------
-    public static final String url_CreatePlacements = IP_secured_sunny + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
@@ -251,6 +253,7 @@ public class Z {
     //    ------------------------------------------Institute details---------------------------------
 
     //    ------------------------------------------Education details---------------------------------
+
     public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
@@ -258,6 +261,8 @@ public class Z {
     public static final String upload_profile = IP + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
+    public static final String url_createSingleAdmin = IP + "AESTest/CreateSingleAdmin";
+
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";
     public static final String url_delete_file = IP + "AESTest/DeleteFile";
     public static final String url_uploadSingleFile = IP + "AESTest/UploadSingleFile";
