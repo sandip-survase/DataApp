@@ -808,7 +808,7 @@ public class AddUsersActivity extends AppCompatActivity {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-                            Toast.makeText(AddUsersActivity.this, "Something went wrong! please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddUsersActivity.this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
