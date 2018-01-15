@@ -302,9 +302,7 @@ public class AddUsersActivity extends AppCompatActivity {
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
-
                 byte[] filenameBytes = filename.getBytes("UTF-8");
-
                 byte[] filenameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, filenameBytes);
                 encfilename = new String(SimpleBase64Encoder.encode(filenameEncryptedBytes));
 
@@ -457,6 +455,7 @@ public class AddUsersActivity extends AppCompatActivity {
                 flag = true;
             } else {
 
+                plainFilename = filename;
                 file = new File(filePath);
                 String fileName[] = filename.split("\\.");
                 if (fileName.length >= 2) {
