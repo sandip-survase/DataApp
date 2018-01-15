@@ -609,7 +609,8 @@ public class EditNotification extends AppCompatActivity {
 
     private void GetplacementbyAdmin() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/GetNotificationsSentByAdmin")
+
+        AndroidNetworking.post(Z.url_GetNotificationsSentByAdmin)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
@@ -635,8 +636,6 @@ public class EditNotification extends AppCompatActivity {
                             Log.d("json1", "jsonparamsList " + response.getString("jsonparamsList"));
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
                             Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + itemlistfromserver.get(0).getNotification());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + itemlistfromserver.get(2).getNotification());
 
                             itemListNotificationNew.clear();
                             setserverlisttoadapter(itemlistfromserver);
@@ -734,7 +733,7 @@ public class EditNotification extends AppCompatActivity {
 
     private void GetNotificationsByadminMetadata() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/GetNotificationsByAdminMetaData")
+        AndroidNetworking.post(Z.url_GetNotificationsByAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.LOW)
@@ -803,7 +802,7 @@ public class EditNotification extends AppCompatActivity {
 
         if (page_to_call_notification != notificationpages) {
 
-            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsSentByAdmin")
+            AndroidNetworking.post(Z.url_GetNotificationsSentByAdmin)
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_notification + "")
@@ -859,7 +858,7 @@ public class EditNotification extends AppCompatActivity {
             if (!isLastPageLoadedNotification) {
                 lastPageFlagNotification = 1;
 
-                AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsSentByAdmin")
+                AndroidNetworking.post(Z.url_GetNotificationsSentByAdmin)
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_notification + "")
@@ -941,23 +940,12 @@ public class EditNotification extends AppCompatActivity {
         String deletids = Arrays.toString(deletidsArray);
         deletids = deletids.trim();
 
-// do it later for refreshing recyclerView
-
-//       String deletidsaftr=deletids.replace("[","");
-//        deletidsaftr=deletidsaftr.replace("]","");
-//        deletidsaftr=  deletidsaftr.trim();
-//        String strids[]=deletidsaftr.split(",");
-//
-//        for (int i = 0; i < strids.length; i++){
-//
-//        }
 
         Log.d(TAG, ":username " + username);
         Log.d(TAG, ":deletids " + deletids);
 
-        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/DeleteNotification")
+        AndroidNetworking.post(Z.url_DeleteNotification)
                 .setTag(this)
-//                .addPathParameter("port","8080")
                 .addQueryParameter("u", username)
                 .addQueryParameter("ids", deletids)
                 .setPriority(Priority.MEDIUM)

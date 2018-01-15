@@ -28,11 +28,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -69,7 +77,9 @@ public class CreatePlacement extends AppCompatActivity {
     private ViewPager viewPager;
     private TagsEditText batchesTags;
     private String digest1,digest2;
- //check
+    private String TAG="CreatePlacement";
+
+    //check
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -386,7 +396,12 @@ public class CreatePlacement extends AppCompatActivity {
 
 //                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
                             //call ENCRYPT ND create save method
+                            if(errorflag==0){
                             encrypt();
+                            }else{
+                                Toast.makeText(CreatePlacement.this, "Select Student Or Alumni to send This Placement ", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
                     }
                 }
@@ -474,7 +489,7 @@ public class CreatePlacement extends AppCompatActivity {
             Log.d("gettingtabData", "xcritexiicriteriaria: " + xiicriteria);
             Log.d("gettingtabData", "ugcriteria: " + ugcriteria);
             Log.d("gettingtabData", "pgcriteria: " + pgcriteria);
-            new save().execute();
+             save();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -587,71 +602,89 @@ public class CreatePlacement extends AppCompatActivity {
         }
     }
 
-    class save extends AsyncTask<String, String, String> {
-       String sbatchesTags="", sexptaTags="";
-        @Override
-        protected String doInBackground(String... param) {
-            Log.d("gettingtabData", "encUsername: " + encUsername);
 
 
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsername));    //0
-            params.add(new BasicNameValuePair("a", encRole));   //1
-            params.add(new BasicNameValuePair("b", encforwhom));       //2
-            params.add(new BasicNameValuePair("c", paramcompanyname));       //3
-            params.add(new BasicNameValuePair("d", cpackage));       //4
-            params.add(new BasicNameValuePair("e", post));     //5
-            params.add(new BasicNameValuePair("f", selected));     //6
-            params.add(new BasicNameValuePair("g", vacancies));     //7
-            params.add(new BasicNameValuePair("h", lastdateofrr));     //8
-            params.add(new BasicNameValuePair("i", dateofarrival));     //9
-            params.add(new BasicNameValuePair("j", bond));     //10
-            params.add(new BasicNameValuePair("k", apti));     //11
-            params.add(new BasicNameValuePair("l", techtest));     //12
-            params.add(new BasicNameValuePair("m", groupdisc));     //13
-            params.add(new BasicNameValuePair("n", techinterview));     //14
-            params.add(new BasicNameValuePair("o", Hrinterview));     //15
-            params.add(new BasicNameValuePair("p", xcriteria));     //16
-            params.add(new BasicNameValuePair("q", xiicriteria));     //17
-            params.add(new BasicNameValuePair("r", ugcriteria));     //18
-            params.add(new BasicNameValuePair("s", pgcriteria));     //19
-            params.add(new BasicNameValuePair("t", sbatchesTags));     //20
-            params.add(new BasicNameValuePair("v", sexptaTags));     //21
+    private void save() {
+        String sbatchesTags="", sexptaTags="";
+        Log.d(TAG, "encUsername: " + encUsername);        
+
+        AndroidNetworking.post(Z.url_CreatePlacements)
+                .setTag(this)
+                .addQueryParameter("u", encUsername)    //0
+             .addQueryParameter("a", encRole)   //1
+             .addQueryParameter("b", encforwhom)     //2
+             .addQueryParameter("c", paramcompanyname)       //3
+             .addQueryParameter("d", cpackage)      //4
+             .addQueryParameter("e", post)     //5
+             .addQueryParameter("f", selected)     //6
+             .addQueryParameter("g", vacancies)    //7
+             .addQueryParameter("h", lastdateofrr)    //8
+             .addQueryParameter("i", dateofarrival)     //9
+             .addQueryParameter("j", bond)     //10
+             .addQueryParameter("k", apti)     //11
+             .addQueryParameter("l", techtest)     //12
+             .addQueryParameter("m", groupdisc)     //13
+             .addQueryParameter("n", techinterview)     //14
+             .addQueryParameter("o", Hrinterview)     //15
+             .addQueryParameter("p", xcriteria)    //16
+             .addQueryParameter("q", xiicriteria)     //17
+             .addQueryParameter("r", ugcriteria)     //18
+             .addQueryParameter("s", pgcriteria)     //19
+             .addQueryParameter("t", sbatchesTags)     //20
+             .addQueryParameter("v", sexptaTags)    //21
+                .setPriority(Priority.IMMEDIATE)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            String info = response.getString("info");
+                            Log.d(TAG, "info: " + info);
+                            if (info != null) {
+                                if (info.contains("successfully")) {
+                                    setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
+                                    Toast.makeText(CreatePlacement.this, "Placements Created Successfully", Toast.LENGTH_SHORT).show();
+                                    CreatePlacement.super.onBackPressed();
+                                }
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
-            json = jParser.makeHttpRequest(Z.url_CreatePlacements, "GET", params);
-            try {
-                r = json.getString("info1");
+                    }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-        @Override
-        protected void onPostExecute(String result) {
-            setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
-            Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
-            CreatePlacement.super.onBackPressed();
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-//            if(result.equals("success"))
-//            {
-//                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//
-//                Intent returnIntent = new Intent();
-//                returnIntent.putExtra("result", result);
-//                if(edittedFlag==1){
-//                    setResult(111);
-//                }
-//                CreateNotification.super.onBackPressed();
-//            }
-//            else {
-//                Toast.makeText(CreateNotification.this,result,Toast.LENGTH_SHORT).show();
-//
-//            }
-        }
+                        }
+                    }
+                });
     }
 
 

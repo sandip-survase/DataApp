@@ -91,6 +91,7 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
+
     File Imgfile;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
@@ -219,6 +220,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
         ShouldAnimateProfile.AdminActivity = AdminActivity.this;
         ShouldAnimateProfile.isInside = true;
         Z.CountOfUsersUnderAdmin = "0";
@@ -246,6 +248,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
         username = MySharedPreferencesManager.getUsername(this);
+        Log.d(TAG, "usetname onCreate: "+username);
         pass = MySharedPreferencesManager.getPassword(this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -2328,14 +2331,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             isLastPageLoadedPlacement = true;
 
         recyclerViewPlacement.getRecycledViewPool().clear();
-
         mAdapterPlacement.notifyDataSetChanged();
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
 
         Log.d(TAG, "After release  with ranveer collection " + mAdapterPlacement.getItemCount());
-
-
     }
 
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
@@ -2481,7 +2481,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                             Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                            Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                             itemListNotificationNew.clear();
                             setserverlisttoadapter(itemlistfromserver);
                         } catch (Exception e) {
@@ -2515,7 +2514,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     private void GetPlacementsReadStatus() {
-//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
@@ -2584,7 +2582,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     private void GetPlacements2() {
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-
         AndroidNetworking.post(Z.url_GetPlacementsAdmin)
                 .setTag(this)
                 .addQueryParameter("u", username)
@@ -2612,7 +2609,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             try {
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                                 Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                             } catch (Exception e) {
                             }
@@ -2685,7 +2681,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                                 Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                                 if (!isLastPageLoadedNotification) {
                                     setserverlisttoadapter(itemlistfromserver);
                                 }
@@ -2748,7 +2743,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                                     itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                                     Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                    Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                                     if (!isLastPageLoadedNotification) {
 
                                         setserverlisttoadapter(itemlistfromserver);
@@ -2853,7 +2847,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     }
 
     private void RefreshPlacementCount() {
-//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
@@ -2947,7 +2940,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             try {
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                                 Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
 
                                 if (!isLastPageLoadedPlacement) {
@@ -3013,7 +3005,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                                 try {
                                     placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AdminActivity.this), MySharedPreferencesManager.getDigest2(AdminActivity.this));
                                     Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                    Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
 
                                     if (!isLastPageLoadedPlacement) {

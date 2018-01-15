@@ -27,16 +27,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -106,8 +109,8 @@ public class EditPlacement extends AppCompatActivity {
     int firstVisibleItemPlacement, visibleItemCountPlacement, totalItemCountPlacement;
 
     SwipeRefreshLayout tswipe_refresh_layout;
-    boolean newCreatedPlacements=false;
-    private String TAG="EditPlacemets";
+    boolean newCreatedPlacements = false;
+    private String TAG = "EditPlacemets";
 
 
     @Override
@@ -258,7 +261,7 @@ public class EditPlacement extends AppCompatActivity {
 //                    Log.d("Check2" ,"forwhome: "+  item.getForwhom());
 
                     Log.d("Check2", "ug: " + item.getUg());
-                    startActivityForResult(i1,99);
+                    startActivityForResult(i1, 99);
                 }
             }
 
@@ -493,7 +496,7 @@ public class EditPlacement extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
-                                             Deleteplacements();
+                                            Deleteplacements();
 
                                         }
                                     })
@@ -545,13 +548,13 @@ public class EditPlacement extends AppCompatActivity {
 
 
         } else {
-            if(newCreatedPlacements){
+            if (newCreatedPlacements) {
                 setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
                 super.onBackPressed();
 
-            }else{
+            } else {
                 setResult(299);
-            super.onBackPressed();
+                super.onBackPressed();
             }
 
 
@@ -570,57 +573,16 @@ public class EditPlacement extends AppCompatActivity {
         Log.d("PlacmentTesting", "previousTotalPlacement: " + previousTotalPlacement);
         Log.d("PlacmentTesting", "page_to_call_placement: " + page_to_call_placement);
         Log.d("PlacmentTesting", "lastPageFlagPlacement: " + lastPageFlagPlacement);
-//        new GetPlacementsReadStatus().execute();
 
-
-//        new GetPlacementsByAdminMetadata().execute();
         GetPlacementsByAdminMetadata();
 
     }
 
 
 
-
-    class GetPlacements extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-            json = jParser.makeHttpRequest(Z.url_GetPlacementSentByAdmin, "GET", params);
-            try {
-
-
-                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
-                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
-
-            } catch (Exception e) {
-            }
-
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            Log.d("Getplacement", "onPostExecute:  im here");
-            setplacementListtoadapter(placementListfromserver);
-
-        }
-    }
-
     public void GetPlacementsFromServer() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementSentByAdmin")
+        AndroidNetworking.post(Z.url_GetPlacementSentByAdmin)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
@@ -642,18 +604,18 @@ public class EditPlacement extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d("TAG", "onResponse object2 : " + response.toString());
                         try {
-
-
                             Log.d("json1", "placementlistfromserver " + response.getString("placementlistfromserver"));
                             placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
                             Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                            Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
-
                             itemListPlacement.clear();
                             setplacementListtoadapter(placementListfromserver);
 
                         } catch (Exception e) {
+                            Log.d("TAG", "onError errorCode : " + e.getMessage());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(EditPlacement.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+
                         }
 
 
@@ -683,7 +645,6 @@ public class EditPlacement extends AppCompatActivity {
     }
 
 
-
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
 
@@ -707,41 +668,10 @@ public class EditPlacement extends AppCompatActivity {
 
     }
 
-    class GetPlacementsByAdminMetadata extends AsyncTask<String, String, String> {
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-                json = jParser.makeHttpRequest(Z.url_GetPlacementSentByAdminByAdminMetaData, "GET", params);
-
-
-                placementpages = Integer.parseInt(json.getString("pages"));
-                called_pages_placement = new int[placementpages];
-                total_no_of_placements = Integer.parseInt(json.getString("count"));
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            new GetPlacements().execute();
-
-
-        }
-    }
 
     private void GetPlacementsByAdminMetadata() {
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsByAdminMetaData")
+        AndroidNetworking.post(Z.url_GetPlacementSentByAdminByAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.MEDIUM)
@@ -796,8 +726,6 @@ public class EditPlacement extends AppCompatActivity {
                     }
                 });
     }
-
-
 
 
     public abstract class EndlessRecyclerOnScrollListenerPlacement extends RecyclerView.OnScrollListener {
@@ -938,7 +866,7 @@ public class EditPlacement extends AppCompatActivity {
                                 Log.d("TAG", "onResponse object2 : " + response.toString());
                                 try {
 
-                            placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                                    placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
 //                            Log.d("TAG", " Movies from Hollywood" + itemlistfromserver.size());
                                     Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
 //                            Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
@@ -976,7 +904,7 @@ public class EditPlacement extends AppCompatActivity {
                                 }
                             }
                         });
-            }else{
+            } else {
                 tswipe_refresh_layout.setRefreshing(false);
 
             }
@@ -990,13 +918,12 @@ public class EditPlacement extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode==AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE){
-            newCreatedPlacements=true;
+        if (resultCode == AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE) {
+            newCreatedPlacements = true;
             getPlacements();
         }
 
     }
-
 
 
     private void Deleteplacements() {
@@ -1005,24 +932,11 @@ public class EditPlacement extends AppCompatActivity {
         deletids = deletids.trim();
 
 
-
-// do it later for refreshing recyclerView
-
-//       String deletidsaftr=deletids.replace("[","");
-//        deletidsaftr=deletidsaftr.replace("]","");
-//        deletidsaftr=  deletidsaftr.trim();
-//        String strids[]=deletidsaftr.split(",");
-//
-//        for (int i = 0; i < strids.length; i++){
-//
-//        }
-
         Log.d(TAG, ":username " + username);
         Log.d(TAG, ":deletids " + deletids);
 
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/DeletePlacement")
+        AndroidNetworking.post(Z.url_Delete_Placements)
                 .setTag(this)
-//                .addPathParameter("port","8080")
                 .addQueryParameter("u", username)
                 .addQueryParameter("ids", deletids)
                 .setPriority(Priority.MEDIUM)
@@ -1049,7 +963,7 @@ public class EditPlacement extends AppCompatActivity {
                                 if (info.contains("successfully")) {
                                     setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
                                     Toast.makeText(EditPlacement.this, "Placements deleted successfully", Toast.LENGTH_LONG).show();
-                                    newCreatedPlacements=true;
+                                    newCreatedPlacements = true;
                                     goBack();
                                 }
 

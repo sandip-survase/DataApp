@@ -1862,7 +1862,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
                             Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                            Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
                             itemListNotificationNew.clear();
                             setserverlisttoadapter(itemlistfromserver);
@@ -1921,7 +1920,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             try {
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
                                 Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                             } catch (Exception e) {
                             }
@@ -2119,7 +2117,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
                                 Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                                 if (!isLastPageLoadedPlacement) {
                                     setplacementListtoadapter(placementListfromserver);
@@ -2177,7 +2174,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                                     placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
                                     Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                    Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                                     if (!isLastPageLoadedPlacement) {
                                         setplacementListtoadapter(placementListfromserver);
@@ -2827,7 +2823,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
                                 Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                                 if (!isLastPageLoadedNotification) {
                                     setserverlisttoadapter(itemlistfromserver);
                                 }
@@ -2884,7 +2879,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                                     itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
                                     Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                    Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                                     if (!isLastPageLoadedNotification) {
 
                                         setserverlisttoadapter(itemlistfromserver);

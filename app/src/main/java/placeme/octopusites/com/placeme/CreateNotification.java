@@ -1261,7 +1261,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
 
             if (filesame != 1) {
-                int THREAD_POOL_EXECUTOR2 = 5;
 
                 a1.add(filename);
                 map.put(filename, filePath);
@@ -1478,7 +1477,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
         @Override
         protected void onPostExecute(String result) {
-//setresult
+
+            Log.d("TAG", "json" + json);
             Log.d("TAG", "onPostExecute: setresult - " + AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             createdNew=true;
@@ -1727,7 +1727,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+        AndroidNetworking.upload(Z.url_SavefileOnServer)
                 .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
@@ -1793,7 +1793,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             e.printStackTrace();
         }
 
-        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+        AndroidNetworking.upload(Z.url_SavefileOnServer)
                 .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
@@ -1860,7 +1860,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             e.printStackTrace();
         }
 
-        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+        AndroidNetworking.upload(Z.url_SavefileOnServer)
                 .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
@@ -1927,7 +1927,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             e.printStackTrace();
         }
 
-        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+        AndroidNetworking.upload(Z.url_SavefileOnServer)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )
                 .setPriority(Priority.LOW)
@@ -1993,7 +1993,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             e.printStackTrace();
         }
 
-        AndroidNetworking.upload("https://placeme.co.in/CreateNotificationTemp/SavefileOnServer")
+        AndroidNetworking.upload(Z.url_SavefileOnServer)
                 .setPriority(Priority.LOW)
                 .addQueryParameter("u", username)
                 .addQueryParameter("f",filename )

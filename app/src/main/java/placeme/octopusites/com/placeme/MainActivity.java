@@ -1532,7 +1532,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
                                 Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                                 if (!isLastPageLoadedPlacement) {
 
@@ -1592,7 +1591,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                                     placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
                                     Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                    Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                                     if (!isLastPageLoadedPlacement) {
                                         setplacementListtoadapter(placementListfromserver);
@@ -2411,7 +2409,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             try {
                                 placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(response.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
                                 Log.d(TAG, "with ranveer Movies from Hollywood" + placementListfromserver.size());
-                                Log.d(TAG, "with ranveer Hollywood movie trailer 1" + placementListfromserver.get(0).getCompanyname());
 
                             } catch (Exception e) {
                             }
@@ -2822,7 +2819,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                             itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
                             Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                            Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
 
                             itemListNotificationNew.clear();
                             setserverlisttoadapter(itemlistfromserver);
@@ -3005,7 +3001,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                                 itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
                                 Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                                 if (!isLastPageLoadedNotification) {
                                     setserverlisttoadapter(itemlistfromserver);
                                 }
@@ -3059,25 +3054,19 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             public void onResponse(JSONObject response) {
                                 Log.d(TAG, "onResponse object2 : " + response.toString());
                                 try {
-
                                     itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
                                     Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
-                                    Log.d(TAG, " Hollywood movie trailer 1" + itemlistfromserver.get(0).getNotification());
                                     if (!isLastPageLoadedNotification) {
-
                                         setserverlisttoadapter(itemlistfromserver);
                                     }
                                     tswipe_refresh_layout.setRefreshing(false);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-
                             }
-
                             @Override
                             public void onError(ANError error) {
                                 if (error.getErrorCode() != 0) {
-
                                     Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                                     Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                                     Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
