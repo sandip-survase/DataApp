@@ -40,13 +40,18 @@ public class CreatePlacementHr extends AppCompatActivity {
 
     //ui work
     private Toolbar toolbar;
-    private TagsEditText batchesTags,expTag;
+    private TagsEditText batchesTags,expTag,instTag;
     ArrayAdapter<String> dataAdapter;
     ArrayAdapter<String> dataAdapterexp;
+    ArrayAdapter<String> dataAdapterinst;
+    String[] Institute;
 
     ArrayList<String> TagCreateList = new ArrayList<>();
     ArrayList<String> TagCreateList2 = new ArrayList<>();
+    ArrayList<String> TagCreateList3 = new ArrayList<>();
+    List<String> institutelist = new ArrayList<String>();
 
+    int Institutecount=0;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     ViewPagerAdapter adapter;
@@ -58,7 +63,7 @@ public class CreatePlacementHr extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     String encUsername = "",encRole="";
-    String  sbatchesTags="",sexptaTags="";
+    String  sbatchesTags="",sexptaTags="",sinsttaTags="";
     TextView createnotinotitxt;
 
 
@@ -84,12 +89,14 @@ public class CreatePlacementHr extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-
-
         batchesTags = (TagsEditText) findViewById(R.id.batchesTags);
         batchesTags.setFocusable(false);
+
         expTag = (TagsEditText) findViewById(R.id.expTag);
         expTag.setFocusable(false);
+
+        instTag = (TagsEditText) findViewById(R.id.instTag);
+        instTag.setFocusable(false);
 
         viewPager = (ViewPager) findViewById(R.id.placementviewpager);
         setupViewPager(viewPager);
@@ -116,6 +123,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                 return view;
             }
         };
+
         dataAdapterexp = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.ExpYears)) {
             @Override
             public View getDropDownView(int position, View convertView,
@@ -134,6 +142,8 @@ public class CreatePlacementHr extends AppCompatActivity {
                 return view;
             }
         };
+
+
         batchesTags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,7 +242,7 @@ public class CreatePlacementHr extends AppCompatActivity {
         expTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("TAG", "onClick: expTag");
                 expTag.setAdapter(dataAdapterexp);
                 expTag.setThreshold(1);
                 if (expTag.getText().toString().length()>1) {
@@ -269,6 +279,7 @@ public class CreatePlacementHr extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                Log.d("TAG", "onItemClick: expTag");
                 String temp = getResources().getStringArray(R.array.ExpYears)[position];
                 temp = temp.trim();
 
@@ -301,8 +312,176 @@ public class CreatePlacementHr extends AppCompatActivity {
         });
 
 
+        instTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG", "onClick: insttag");
+                instTag.setAdapter(dataAdapterinst);
+                instTag.setThreshold(1);
+                if (instTag.getText().toString().contains("ALL")) {
+                    //dont popullate
+                    Toast.makeText(CreatePlacementHr.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item, institutelist) {
+                        @Override
+                        public View getDropDownView(int position, View convertView,
+                                                    ViewGroup parent) {
+                            View view = super.getDropDownView(position, convertView, parent);
+                            TextView tv = (TextView) view;
+                            Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                            tv.setTypeface(custom_font3);
+
+                            if (position == 0) {
+                                // Set the hint text color gray
+                                tv.setTextColor(Color.GRAY);
+                            } else {
+                                tv.setTextColor(Color.parseColor("#eeeeee"));
+                            }
+                            return view;
+                        }
+                    };
+
+                    instTag.setAdapter(dataAdapter);
+                    instTag.showDropDown();
+                }
+
+
+            }
+        });
+
+        instTag.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Log.d("TAG", "onItemClick: insttag");
+                String temp = institutelist.get(position);
+                temp = temp.trim();
+
+                if (temp.contains("ALL")) {
+                    TagCreateList3.clear();
+                    TagCreateList3.add("ALL");
+                    String[] TagCreateArray = new String[TagCreateList3.size()];
+                    TagCreateArray = TagCreateList3.toArray(TagCreateArray);
+                    instTag.setText("");
+                    instTag.setTags(TagCreateArray);
+                }
+                if (TagCreateList3.contains(temp)) ;
+                {
+                    int occurance = TagCreateList3.indexOf(temp);
+                    int Lastelement = TagCreateList3.size() - 1;
+                    Log.d("occurance", "onItemClick:" + occurance);
+                    Log.d("Lastelement", "onItemClick:" + Lastelement);
+
+                    if (occurance != TagCreateList3.size() - 1) {
+                        Log.d("deletethis", "onItemClick:");
+                        TagCreateList3.remove(TagCreateList3.size() - 1);
+                        String[] TagCreateArray = new String[TagCreateList3.size()];
+                        TagCreateArray = TagCreateList3.toArray(TagCreateArray);
+                        instTag.setTags(TagCreateArray);
+                    }
+
+                }
+            }
+
+        });
+
+        instTag.setTagsListener(new TagsEditText.TagsEditListener() {
+            @Override
+            public void onTagsChanged(Collection<String> collection) {
+                TagCreateList3.clear();
+                List<String> newList = new ArrayList<String>(instTag.getTags());
+                TagCreateList3.addAll(newList);
+
+                String temp = "";
+                temp = instTag.getText().toString();
+                Log.d("tag", "onTagsChanged: " + temp);
+                if (temp.equals("")) {
+                    instTag.dismissDropDown();
+                }
+            }
+
+            @Override
+            public void onEditingFinished() {
+
+
+            }
+        });
+
+
+        new GetInstitute().execute();
 
     }
+
+    class GetInstitute extends AsyncTask<String, String, String> {
+
+        protected String doInBackground(String... param) {
+
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            json = jParser.makeHttpRequest(Z.url_getinstitute, "GET", params);
+            try {
+                String s = json.getString("count");
+                Institutecount=Integer.parseInt(s);
+                Institute=new String[Institutecount];
+                for(int i=0;i<Institutecount;i++)
+                {
+                    Institute[i]=json.getString("institute"+i);
+                }
+
+            }catch (Exception e){e.printStackTrace();}
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            institutelist.clear();
+            institutelist.add("ALL");
+//            institutelist.add("- Select University -");
+            for(int i=0;i<Institutecount;i++)
+            {
+                institutelist.add(Institute[i]);
+            }
+            populateInstitute();
+        }
+    }
+
+
+    void populateInstitute() {
+        ArrayAdapter<String> dataAdapterinst = new ArrayAdapter<String>(this, R.layout.spinner_item_long, institutelist) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                tv.setTypeface(custom_font3);
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                }
+                return view;
+            }
+        };
+        ;
+        instTag.setAdapter(dataAdapterinst);
+    }
+
 
     private void setupViewPager(ViewPager viewPager) {
 
@@ -344,8 +523,6 @@ public class CreatePlacementHr extends AppCompatActivity {
         }
     }
 
-
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
@@ -368,7 +545,6 @@ public class CreatePlacementHr extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.admin_create, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     void validate() {
         try {
@@ -428,17 +604,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                     }
                 }
 
-
-
-
-
-
-
-
             }
-
-
-
 
         } catch (Exception e) {
             e.printStackTrace();

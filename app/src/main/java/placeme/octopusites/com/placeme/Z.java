@@ -130,6 +130,8 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
+
+
     //    -------------------------------CreateNotificationHR -----------------------------------
     public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
@@ -200,7 +202,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String load_Admin_data = IP + "ProfileObjects/GetAdminData";
     public static final String url_SaveIntro = IP + "ProfileObjects/SaveIntro";
     public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
-
+    public static final String url_getinstitute = IP_8086 + "ProfileObjects/GetInstitute";
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
 

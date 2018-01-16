@@ -94,7 +94,12 @@ public class CreateMultipleAdmin extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-                validate();
+                if(Z.isAdminHrVerified(CreateMultipleAdmin.this)) {
+                    validate();
+                }
+                else
+                    Toast.makeText(CreateMultipleAdmin.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+
                 break;
 
             case android.R.id.home:
@@ -178,10 +183,12 @@ public class CreateMultipleAdmin extends AppCompatActivity {
             Log.d("TAG", "onPostExecute: result " + result);
 
             if (result.equals("success")) {
+                edittedFlag = 0;
                 Toast.makeText(CreateMultipleAdmin.this, "Admin successfully Created!", Toast.LENGTH_SHORT).show();
                 setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
 
             } else if (result.equals("userExist")) {
+                edittedFlag = 0;
                 Toast.makeText(CreateMultipleAdmin.this, "Admin already exist on Placeme", Toast.LENGTH_LONG).show();
             } else if (result.equals("Missing domain")) {
                 Toast.makeText(CreateMultipleAdmin.this, "Kindly check email Address", Toast.LENGTH_SHORT).show();

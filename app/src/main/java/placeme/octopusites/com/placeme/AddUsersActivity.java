@@ -210,10 +210,13 @@ public class AddUsersActivity extends AppCompatActivity {
 //                        .withHiddenFiles(true) // Show hidden files and folders
 //                        .start();
 
-
-                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-                i.setType("*/*");
-                startActivityForResult(i, 9);
+                if(Z.isAdminHrVerified(AddUsersActivity.this)) {
+                    Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                    i.setType("*/*");
+                    startActivityForResult(i, 9);
+                }
+                else
+                    Toast.makeText(AddUsersActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
 
 
             }
@@ -278,7 +281,12 @@ public class AddUsersActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-                validate();
+               if(Z.isAdminHrVerified(AddUsersActivity.this)) {
+                   validate();
+               }
+               else
+                   Toast.makeText(AddUsersActivity.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+
                 break;
 
             case android.R.id.home:

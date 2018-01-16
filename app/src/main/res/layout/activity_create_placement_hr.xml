@@ -170,7 +170,63 @@
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+<!--********************-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/expselector"
+            android:id="@+id/instselector"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/instinput"
+                android:theme="@style/TextLabel"
+                android:maxLines="1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:hint="select Institute">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:textColor="@color/dark_color"
+                    android:text=""
+                    android:layout_marginTop="0dp"
+                    android:id="@+id/dummy5" />
+
+                <mabbas007.tagsedittext.TagsEditText
+                    android:id="@+id/instTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    TagsEditText:tagsTextColor="@color/while_color"
+                    TagsEditText:allowSpaceInTag="true"
+                    android:editable="false"
+                    TagsEditText:tagsBackground="@drawable/square_default"
+                    TagsEditText:tagsCloseImageRight="@drawable/tag_close"
+                    android:textColor="@color/while_color"
+                    android:textSize="16dp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_marginLeft="5dp"
+                    android:popupBackground="@color/while_color"
+                    android:layout_below="@+id/dummy5" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:textColor="@color/dark_color"
+                    android:text=""
+                    android:layout_below="@+id/inst"
+                    android:layout_marginTop="0dp"
+                    android:id="@+id/dummy6" />
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
 
 
     </RelativeLayout>
