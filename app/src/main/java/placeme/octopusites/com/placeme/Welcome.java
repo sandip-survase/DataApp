@@ -1446,6 +1446,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     class SendActivationCode extends AsyncTask<String, String, Boolean> {
 
         String result = null;
+        String encRole;
 
         protected Boolean doInBackground(String... param) {
             try {
@@ -1459,6 +1460,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 byte[] proEmailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proEmailBytes);
                 encProMail = new String(SimpleBase64Encoder.encode(proEmailEncryptedBytes));
 
+                Log.d("TAG", "doInBackground: SELECTED_ROLE SELECTED_ROLE " + SELECTED_ROLE);
+                encRole = Z.Encrypt(SELECTED_ROLE, Welcome.this);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1468,8 +1472,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encProMail));              //0
             params.add(new BasicNameValuePair("f", encfname));                  //1
-            params.add(new BasicNameValuePair("l", enclname));                  //2
+            params.add(new BasicNameValuePair("l", enclname));                //2
+            params.add(new BasicNameValuePair("r", encRole));               //3
             JSONObject json = jParser.makeHttpRequest(Z.url_SendActivationCode, "GET", params);
+            Log.d("kunal", "doInBackground: SendActivationCode " + json);
             if (json != null) {
                 try {
                     result = json.getString("info");
