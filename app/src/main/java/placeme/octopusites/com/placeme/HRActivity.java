@@ -31,6 +31,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ConnectionQuality;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,6 +54,7 @@ import com.soundcloud.android.crop.Crop;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -65,7 +73,6 @@ import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEditNotificationAdapter;
 import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacement;
 import placeme.octopusites.com.placeme.modal.RecyclerItemHrPlacementAdapter;
-import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
 import placeme.octopusites.com.placeme.modal.RecyclerItemUsers;
 import placeme.octopusites.com.placeme.modal.RecyclerTouchListener;
 
@@ -111,11 +118,17 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     ArrayList<ArrayList<RecyclerItemUsers>> registeredallListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> placedallListsfromserver = new ArrayList<>();
+
+    ArrayList<RecyclerItemHrPlacement> placementListfromserver = new ArrayList<>();
+    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+    private ArrayList<RecyclerItemHrPlacement> itemList = new ArrayList<>();
+    private ArrayList<RecyclerItemHrPlacement> itemListPlacementnew = new ArrayList<>();
+
+
     int placemntscount;
     Toolbar toolbar;
     SwipeRefreshLayout tswipe_refresh_layout;
     TextView createnotificationtxt, editnotificationtxt;
-    ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
     boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
     int lastPageFlagPlacement = 0;
     int placementpages = 0;
@@ -126,7 +139,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     RelativeLayout notificationcountrl;
     TextView placementcounttxt;
     RelativeLayout placementcountrl;
-    ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
+
     boolean isFirstRunNotification = true, isLastPageLoadedNotification = false;
     int lastPageFlagNotification = 0;
     int notificationpages = 0;
@@ -134,17 +147,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     int total_no_of_notifications;
     int unreadcountNotification = 0;
     private String username = "";
-    private ArrayList<RecyclerItemEdit> itemList = new ArrayList<>();
     private MaterialSearchView searchView;
     //  our coding here
     private ImageView resultView;
     private String finalPath;
     private String plainusername;
     private RecyclerView recyclerView, recyclerViewPlacemetsHr;
-    private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
     private TextView toolbar_title;
-    private ArrayList<RecyclerItemPlacement> itemListPlacementnew = new ArrayList<>();
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
     private boolean loadingPlacement = true; // True if we are still waiting for the last set of data to load.
@@ -183,6 +193,25 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
 
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        OkHttpUtil.getClient();
+//        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(getApplicationContext(), OkHttpUtil.getClient());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        AndroidNetworking.setBitmapDecodeOptions(options);
+        AndroidNetworking.enableLogging();
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+                Log.d(TAG, "onChange: currentConnectionQuality : " + currentConnectionQuality + " currentBandwidth : " + currentBandwidth);
+            }
+        });
+
         admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
         admincontrolsrl.setVisibility(View.GONE);
 
@@ -191,7 +220,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         String role = MySharedPreferencesManager.getRole(HRActivity.this);
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
-
         try {
             plainusername = AES4all.Decrypt(username, digest1, digest2);
         } catch (Exception e) {
@@ -202,12 +230,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
 
-
         createnotificationtxt = (TextView) findViewById(R.id.createnotificationtxt);
         editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
         createnotificationtxt.setTypeface(Z.getBold(this));
         editnotificationtxt.setTypeface(Z.getBold(this));
-
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -218,7 +244,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         MySharedPreferencesManager.save(HRActivity.this, "activatedCode", "no");
 
         new isVerified().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
@@ -276,55 +301,32 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         admincontrolsrl.setVisibility(View.GONE);
 
                     } else if (navMenuFlag == 2) {
-
-                        notificationorplacementflag = 1;
-
                         notificationorplacementflag = 1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
-
-
                         createnotificationtxt.setText("Create Notification");
                         editnotificationtxt.setText("Edit Notification");
-
-                        mainfragment.setVisibility(View.GONE);
-//                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-
-                        getNotifications();
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
-
                         admincontrolsrl.setVisibility(View.GONE);
+                        getNotifications();
                     } else if (navMenuFlag == 3) {
-
                         notificationorplacementflag = 2;
-
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Placements");
                         mainfragment.setVisibility(View.GONE);
-//                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
-
-//                        addTempPlacements();
-
                         createnotificationtxt.setText("Create Placements");
                         editnotificationtxt.setText("Edit Placements");
-
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
-
                         RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                         rl.setVisibility(View.VISIBLE);
-//                        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//                        fab.setVisibility(View.VISIBLE);
-
-//                        initializerecyclerViewPlacements();
-//                        getplacementbyhr();
-                        getPlacements2();
                         admincontrolsrl.setVisibility(View.VISIBLE);
+                        getPlacements();
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -332,7 +334,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                                 getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
-
                         mainfragment.setVisibility(View.VISIBLE);
                         getSupportActionBar().setTitle("Messages");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
@@ -525,7 +526,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
 
 
                 RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
@@ -777,7 +777,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
 
 
-        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList);
         recyclerViewPlacemetsHr.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(this);
         recyclerViewPlacemetsHr.setLayoutManager(mLayoutManager2);
@@ -894,36 +894,42 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacemetsHr, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                Log.d(TAG, "position: "+position);
+                RecyclerItemHrPlacement item = null;
+                Log.d(TAG, "registeredallListsfromserver: "+registeredallListsfromserver.size());
+                Log.d(TAG, "ShortlistedListsfromserver: "+ShortlistedListsfromserver.size());
+                Log.d(TAG, "placedallListsfromserver: "+placedallListsfromserver.size());
+
+//                    RecyclerItemHrPlacement item = itemListPlacementnew.get(position);
+                String sShortlistedListsfromservertemp = "", splacedItemlistTemp = "";
+
+                ArrayList<RecyclerItemUsers> RegisteredItemlistTemp = registeredallListsfromserver.get(position);
+                ArrayList<RecyclerItemUsers> ShortlistedListsfromservertemp = ShortlistedListsfromserver.get(position);
+                ArrayList<RecyclerItemUsers> placedItemlistTemp = placedallListsfromserver.get(position);
+
+                String sRegisteredItemlistTemp = null;
                 try {
-                    RecyclerItemHrPlacement item = itemList2.get(position);
-
-
-                    ArrayList<RecyclerItemUsers> RegisteredItemlistTemp = registeredallListsfromserver.get(position);
-                    ArrayList<RecyclerItemUsers> ShortlistedListsfromservertemp = ShortlistedListsfromserver.get(position);
-                    ArrayList<RecyclerItemUsers> placedItemlistTemp = placedallListsfromserver.get(position);
-
-
-                    String sRegisteredItemlistTemp = OtoString(RegisteredItemlistTemp, digest1, digest2);
-                    String sShortlistedListsfromservertemp = OtoString(ShortlistedListsfromservertemp, digest1, digest2);
-                    String splacedItemlistTemp = OtoString(placedItemlistTemp, digest1, digest2);
-
-
-                    Log.d("TAG", "position  " + position);
-                    Intent i1 = new Intent(HRActivity.this, UserSelection.class);
-                    i1.putExtra("id", item.getId());
-                    Log.d("Tag", "id: " + item.getId());
-                    i1.putExtra("sRegisteredItemlistTemp", sRegisteredItemlistTemp);
-                    i1.putExtra("sShortlistedListsfromservertemp", sShortlistedListsfromservertemp);
-                    i1.putExtra("splacedItemlistTemp", splacedItemlistTemp);
-                    i1.putExtra("companyname", item.getCompanyname());
-                    i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
-                    i1.putExtra("registerednumber", item.getRegisterednumber());
-                    i1.putExtra("placednumber", item.getPlacednumber());
-                    i1.putExtra("lastdateofreg", item.getLastdateofreg());
-                    startActivity(i1);
+                    sRegisteredItemlistTemp = OtoString(RegisteredItemlistTemp, digest1, digest2);
+                    sShortlistedListsfromservertemp = OtoString(ShortlistedListsfromservertemp, digest1, digest2);
+                    splacedItemlistTemp = OtoString(placedItemlistTemp, digest1, digest2);
                 } catch (Exception e) {
-//                    Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
+
+
+                Log.d("TAG", "position  " + position);
+                Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+                i1.putExtra("id", item.getId());
+                Log.d("Tag", "id: " + item.getId());
+                i1.putExtra("sRegisteredItemlistTemp", sRegisteredItemlistTemp);
+                i1.putExtra("sShortlistedListsfromservertemp", sShortlistedListsfromservertemp);
+                i1.putExtra("splacedItemlistTemp", splacedItemlistTemp);
+                i1.putExtra("companyname", item.getCompanyname());
+                i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
+                i1.putExtra("registerednumber", item.getRegisterednumber());
+                i1.putExtra("placednumber", item.getPlacednumber());
+                i1.putExtra("lastdateofreg", item.getLastdateofreg());
+                startActivity(i1);
 
 
             }
@@ -935,7 +941,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }));
 
         disableNavigationViewScrollbars(navigationView);
-
         createnotificationrl = (RelativeLayout) findViewById(R.id.createnotificationrl);
         editnotificationrl = (RelativeLayout) findViewById(R.id.editnotificationrl);
 
@@ -1021,7 +1026,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
 
-
         resultView = (ImageView) findViewById(R.id.result_image);
         imagePicker = new ImagePicker(this);
         imagePicker.setImagePickerCallback(this);
@@ -1039,7 +1043,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 if (selectedMenuFlag == 1)
                     getNotifications();
                 else if (selectedMenuFlag == 2)
-                    getPlacements2();
+                    getPlacements();
 
 
             }
@@ -1168,19 +1172,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             new getToken().execute();
         }
     }
-    void setserverlisttoadapter(List<RecyclerItemHrPlacement> itemlist) {
 
-        itemList2.clear();
-        itemList2.addAll(itemlist);
-//        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
-//        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
-        mAdapter2.notifyDataSetChanged();
-
-
-    }
-
-    void getPlacements2() {
-        itemListPlacementnew.clear();
+    void getPlacements() {
+        Log.d(TAG, "Doing foreplay with sg");
         tswipe_refresh_layout.setRefreshing(true);
         previousTotalPlacement = 0;
         loadingPlacement = true;
@@ -1188,21 +1182,18 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         isFirstRunPlacement = true;
         isLastPageLoadedPlacement = false;
         lastPageFlagPlacement = 0;
-        new GetPlacementsReadStatus().execute();
+        GetPlacementsReadStatus();
     }
 
     void getNotifications() {
-
-        itemListNotificationNew.clear();
+        Log.d(TAG, "doing foreplay");
         previousTotalNotification = 0;
         loadingNotification = true;
         page_to_call_notification = 1;
         isFirstRunNotification = true;
         isLastPageLoadedNotification = false;
         lastPageFlagNotification = 0;
-//metadata read count and read status
-
-        new GetNotificationsReadStatus().execute();
+        GetNotificationsReadStatus();
 
 
 //        new Getplacementbyhr().execute();
@@ -1263,30 +1254,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         return super.onOptionsItemSelected(item);
     }
 
-    void addNotificationdatatoAdapter() {
-//        for(int i=0;i<10;i++)
-//        {
-//            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "yes",HRActivity.this);
-//            itemList.add(item);
-//        }
-//        for(int i=0;i<2;i++)
-//        {
-//            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "no",HRActivity.this);
-//            itemList.add(item);
-//        }
-//        mAdapter.notifyDataSetChanged();
-    }
-
-    void addPlacementdatatoAdapter() {
-//        for(int i=0;i<5;i++)
-//        {
-//            RecyclerItem item = new RecyclerItem(i,"Company "+i, "3.2","21/07/2016", "Trainee");
-//            itemList.add(item);
-//        }
-//        mAdapter.notifyDataSetChanged();
-    }
-
-    // our coding here
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
@@ -1419,16 +1386,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     }
 
-    void addTempPlacements() {
-
-        Log.d("tag", "addTempPlacements:Accessed ");
-        for (int i = 0; i < 10; i++) {
-            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
-            itemList2.add(item2);
-
-
-        }
-    }
 
     void setserverlisttoadapter2(ArrayList<RecyclerItemEdit> itemlist) {
 
@@ -1446,7 +1403,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         tswipe_refresh_layout.setRefreshing(false);
 
         Log.d(TAG, "movie collection After release  " + mAdapterNotificationEdit.getItemCount());
-
+        RefreshPlacementCount();
 
     }
 
@@ -1480,13 +1437,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     .appendQueryParameter("u", username)
                     .build();
             try {
-            Glide.with(ShouldAnimateProfile.HRActivity)
-                    .load(uri)
-                    .signature(new StringSignature(signature))
-                    .into(profile);
-            }
-            catch (Exception e){
-                Log.d("TAG", "onPostExecute: glide exception - "+e.getMessage());
+                Glide.with(ShouldAnimateProfile.HRActivity)
+                        .load(uri)
+                        .signature(new StringSignature(signature))
+                        .into(profile);
+            } catch (Exception e) {
+                Log.d("TAG", "onPostExecute: glide exception - " + e.getMessage());
             }
         }
     }
@@ -1702,65 +1658,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
     }
 
-    class Getplacementbyhr extends AsyncTask<String, String, String> {
-
-        private static final String TAG = "Getplacementbyhr";
-        ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
-
-        protected String doInBackground(String... param) {
-
-            username = MySharedPreferencesManager.getUsername(HRActivity.this);
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            json = jParser.makeHttpRequest(Z.url_GetPlacementsCreatedByHr, "GET", params);
-            try {
-
-                placemntscount = Integer.parseInt(json.getString("count"));
-                Log.d("itemlistfromserver", "doInBackground: " + placemntscount);
-
-                if (placemntscount != 0) {
-                    Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
-                    Log.d("json1", "jsonRegisteredAllLists " + json.getString("jsonRegisteredAllLists"));
-                    Log.d("json1", "jsonshortlistedallallLists" + json.getString("jsonshortlistedallallLists"));
-                    Log.d("json1", "jsonparamsplacedlistedallLists" + json.getString("jsonparamsplacedlistedallLists"));
-
-                    itemlistfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(json.getString("jsonparamsList"), digest1, digest2);
-                    Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.get(0).getRegisterednumber());
-
-
-                    registeredallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonRegisteredAllLists"), digest1, digest2);
-                    ShortlistedListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonshortlistedallallLists"), digest1, digest2);
-                    placedallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonparamsplacedlistedallLists"), digest1, digest2);
-                    Log.d("itemlistfromserver", "itemlistfromserver size: " + itemlistfromserver.size());
-                    Log.d("itemlistfromserver", "registeredallListsfromserver: " + registeredallListsfromserver.size());
-                    Log.d("itemlistfromserver", "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
-                    Log.d("itemlistfromserver", "placedallListsfromserver: " + placedallListsfromserver.size());
-
-                    Log.d("check", "----------------ci=ontentx of list--------------------------: " + registeredallListsfromserver.get(0).size());
-
-
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            tswipe_refresh_layout.setVisibility(View.VISIBLE);
-            tswipe_refresh_layout.setRefreshing(false);
-
-            setserverlisttoadapter(itemlistfromserver);
-
-        }
-
-
-    }
 
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
@@ -1796,49 +1693,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
     }
 
-    class GetPlacementsReadStatus extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-            username = MySharedPreferencesManager.getUsername(HRActivity.this);
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            Log.d("HRTag", "doInBackground: username" + username);
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-                json = jParser.makeHttpRequest(Z.GetPlacementsCreatedByHrMetadata, "GET", params);
-
-                placementpages = Integer.parseInt(json.getString("pages"));
-                called_pages_placement = new int[placementpages];
-                total_no_of_placements = Integer.parseInt(json.getString("count"));
-                unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            placementcountrl.setVisibility(View.VISIBLE);
-
-            placementcounttxt.setText(unreadcountPlacement + "");
-            if (unreadcountPlacement == 0) {
-                placementcountrl.setVisibility(View.GONE);
-            }
-
-
-            new Getplacementbyhr().execute();
-
-
-//            new GetPlacements2().execute();
-
-
-        }
-    }
 
     class GetPlacements2 extends AsyncTask<String, String, String> {
 
@@ -1858,10 +1712,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             try {
 
                 Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                placementListfromserver = (ArrayList<RecyclerItemPlacement>) fromString(json.getString("placementlistfromserver"), "I09jdG9wdXMxMkl0ZXMjJQ==", "I1BsYWNlMTJNZSMlJSopXg==");
+                placementListfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(json.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(HRActivity.this), MySharedPreferencesManager.getDigest2(HRActivity.this));
                 Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
                 Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-                Log.d("itemlistfromserver", "getNotification2=======================" + placementListfromserver.get(2).getDateofarrival());
 
 
             } catch (Exception e) {
@@ -2009,6 +1862,373 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
     }
 
+    private void GetNotificationsReadStatus() {
 
+//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
+        AndroidNetworking.post(Z.url_GetNotificationsHrMetadata)
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            notificationpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_notification = new int[notificationpages];
+                            total_no_of_notifications = Integer.parseInt(response.getString("count"));
+                            unreadcountNotification = Integer.parseInt(response.getString("unreadcount"));
+                            Log.d(TAG, "projects :" + notificationpages);
+                            Log.d(TAG, "total Movies:" + total_no_of_notifications);
+                            Log.d(TAG, "Upcoming Movies to release:" + unreadcountNotification);
+
+                            notificationcountrl.setVisibility(View.VISIBLE);
+                            notificationcounttxt.setText(unreadcountNotification + "");
+                            if (unreadcountNotification == 0) {
+                                notificationcountrl.setVisibility(View.GONE);
+                            }
+                            GetNotifications2();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+    }
+
+    private void GetNotifications2() {
+
+        Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post(Z.url_GetNotificationsHr)
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .addQueryParameter("p", page_to_call_notification + "")
+//                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object2 : " + response.toString());
+                        try {
+
+                            itemlistfromserver = (ArrayList<RecyclerItemEdit>) fromString(response.getString("jsonparamsList"), MySharedPreferencesManager.getDigest1(HRActivity.this), MySharedPreferencesManager.getDigest2(HRActivity.this));
+                            Log.d(TAG, " Movies from Hollywood" + itemlistfromserver.size());
+                            itemListNotificationNew.clear();
+                            setserverlisttoadapter2(itemlistfromserver);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+    }
+
+
+    private void RefreshPlacementCount() {
+        AndroidNetworking.post(Z.GetPlacementsCreatedByHrMetadata)
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.LOW)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            placementpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_placement = new int[placementpages];
+                            total_no_of_placements = Integer.parseInt(response.getString("count"));
+                            unreadcountPlacement = Integer.parseInt(response.getString("unreadcount"));
+                            Log.d(TAG, "with Ranveer projects :" + placementpages);
+                            Log.d(TAG, "with Ranveer total Movies:" + total_no_of_placements);
+                            Log.d(TAG, "with Ranveer Movies to release:" + unreadcountPlacement);
+
+                            placementcountrl.setVisibility(View.VISIBLE);
+                            placementcounttxt.setText(unreadcountPlacement + "");
+                            if (unreadcountPlacement == 0) {
+                                placementcountrl.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
+
+    private void GetPlacementsReadStatus() {
+
+        AndroidNetworking.post(Z.GetPlacementsCreatedByHrMetadata)
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            placementpages = Integer.parseInt(response.getString("pages"));
+                            called_pages_placement = new int[placementpages];
+                            total_no_of_placements = Integer.parseInt(response.getString("count"));
+                            unreadcountPlacement = Integer.parseInt(response.getString("unreadcount"));
+                            Log.d(TAG, "with Ranveer projects :" + placementpages);
+                            Log.d(TAG, "with Ranveer total Movies:" + total_no_of_placements);
+                            Log.d(TAG, "with Ranveer Movies to release:" + unreadcountPlacement);
+
+                            placementcountrl.setVisibility(View.VISIBLE);
+                            placementcounttxt.setText(unreadcountPlacement + "");
+                            if (unreadcountPlacement == 0) {
+                                placementcountrl.setVisibility(View.GONE);
+                            }
+                            Getplacementbyhr();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+    }
+
+    private void Getplacementbyhr() {
+        // TODO implement paging
+        Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
+        AndroidNetworking.post(Z.url_GetPlacementsCreatedByHr)
+                .setTag(this)
+                .addQueryParameter("u", username)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse object2 : " + response.toString());
+                        try {
+
+                            try {
+                                placemntscount = Integer.parseInt(response.getString("count"));
+                                Log.d(TAG, "with sg From hollywood" + placemntscount);
+
+
+                                if (placemntscount != 0) {
+//                                    Log.d(TAG, "jsonparamsList " + response.getString("jsonparamsList"));
+//                                    Log.d(TAG, "jsonRegisteredAllLists " + response.getString("jsonRegisteredAllLists"));
+//                                    Log.d(TAG, "jsonshortlistedallallLists" + response.getString("jsonshortlistedallallLists"));
+//                                    Log.d(TAG, "jsonparamsplacedlistedallLists" + response.getString("jsonparamsplacedlistedallLists"));
+
+                                    Log.d(TAG, "placementListfromserver  before count: " + placementListfromserver);
+
+                                    placementListfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(response.getString("jsonparamsList"), digest1, digest2);
+                                    Log.d(TAG, "placementListfromserver count: " + placementListfromserver);
+
+
+                                    registeredallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(response.getString("jsonRegisteredAllLists"), digest1, digest2);
+                                    ShortlistedListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(response.getString("jsonshortlistedallallLists"), digest1, digest2);
+                                    placedallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(response.getString("jsonparamsplacedlistedallLists"), digest1, digest2);
+                                    Log.d("itemlistfromserver", "itemlistfromserver size: " + itemlistfromserver.size());
+                                    Log.d("itemlistfromserver", "registeredallListsfromserver: " + registeredallListsfromserver.size());
+                                    Log.d("itemlistfromserver", "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
+                                    Log.d("itemlistfromserver", "placedallListsfromserver: " + placedallListsfromserver.size());
+
+                                    Log.d("check", "----------------ci=ontentx of list--------------------------: " + registeredallListsfromserver.get(0).size());
+
+
+                                }
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+
+                            }
+                            itemList.clear();
+                            setplacementListtoadapter(placementListfromserver);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            tswipe_refresh_layout.setRefreshing(false);
+                            Toast.makeText(HRActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+    }
+
+
+    void setplacementListtoadapter(ArrayList<RecyclerItemHrPlacement> itemlist) {
+
+        itemList.addAll(itemlist);
+        Log.d(TAG, "itemlist " + itemlist.size());
+        recyclerViewPlacemetsHr.getRecycledViewPool().clear();
+        mAdapter2.notifyDataSetChanged();
+
+        tswipe_refresh_layout.setVisibility(View.VISIBLE);
+        tswipe_refresh_layout.setRefreshing(false);
+
+        Log.d(TAG, "movie collection After release  " + mAdapterNotificationEdit.getItemCount());
+
+
+    }
 
 }

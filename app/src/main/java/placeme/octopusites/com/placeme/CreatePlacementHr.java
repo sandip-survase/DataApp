@@ -687,6 +687,7 @@ public class CreatePlacementHr extends AppCompatActivity {
             encforwhom = Encrypt(forwhom, MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 
             new save().execute();
+
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();

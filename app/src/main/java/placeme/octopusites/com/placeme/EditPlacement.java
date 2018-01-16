@@ -194,35 +194,8 @@ public class EditPlacement extends AppCompatActivity {
                     Intent i1 = new Intent(EditPlacement.this, EditPlacementMain.class);
                     i1.putExtra("flag", "fromeditactivity");
 
-//                    String st1=""+set1.getId();
-//
                     i1.putExtra("id", item.getId());
-//                    i1.putExtra("companyname",item.getCompanyname());
-//                    i1.putExtra("package",item.getCpackage());
-//                    i1.putExtra("post",item.getPost());
-//                    i1.putExtra("forwhichcourse",item.getForwhichcourse());
-//                    i1.putExtra("forwhichstream",item.getForwhichstream());
-//                    i1.putExtra("vacancies",item.getVacancies());
-//                    i1.putExtra("lastdateofregistration",item.getLastdateofregistration());
-//                    i1.putExtra("dateofarrival",item.getDateofarrival());
-//                    i1.putExtra("bond",item.getBond());
-//                    i1.putExtra("noofapti",item.getNoofapti());
-//                    i1.putExtra("nooftechtest",item.getNooftechtest());
-//                    i1.putExtra("noofgd",item.getNoofgd());
-//                    i1.putExtra("noofti",item.getNoofti());
-//                    i1.putExtra("noofhri",item.getNoofhri());
-//                    i1.putExtra("stdx",item.getStdx());
-//                    i1.putExtra("stdxiiordiploma",item.getStdxiiordiploma());
-//                    i1.putExtra("uploadtime",item.getUploadtime());
-//                    i1.putExtra("ugc",item.getUg());
-//                    i1.putExtra("pgc",item.getPg());
-//                    i1.putExtra("lastmodified",item.getLastmodified());
-//                    i1.putExtra("uploadedby",item.getUploadedby());
-////                    i1.putExtra("forwhome",item.getForwhom());
-//                    i1.putExtra("noofallowedliveatkt",item.getNoofallowedliveatkt());
-//                    i1.putExtra("noofalloweddeadatkt",item.getNoofalloweddeadatkt());
-//                    i1.putExtra("object", item);      //sending object
-
+//
 
                     set1.setId(item.getId());
                     set1.setCompanyname(item.getCompanyname());

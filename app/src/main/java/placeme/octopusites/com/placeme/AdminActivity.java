@@ -257,11 +257,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         //
 
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-                .connectTimeout(120, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS)
-                .writeTimeout(120, TimeUnit.SECONDS)
-                .build();
 
         try {
             OkHttpUtil.init(true);
@@ -1840,7 +1835,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         tswipe_refresh_layout.setVisibility(View.VISIBLE);
         tswipe_refresh_layout.setRefreshing(false);
         Log.d(TAG, "After release collection " + mAdapterNotificationEdit.getItemCount());
-
         RefreshPlacementCount();
 
     }
