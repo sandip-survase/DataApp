@@ -181,14 +181,22 @@
             android:layout_weight=".28"
             android:orientation="horizontal">
 
+
+            <ImageButton
+                android:id="@+id/addIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/add_icon_white"
+                android:layout_marginTop="10dp"
+                android:background="@color/sky_blue_color" />
             <android.support.design.widget.TextInputLayout
+                android:layout_toLeftOf="@+id/addIcon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput"
                 android:theme="@style/TextLabel"
                 android:maxLines="1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:hint="select Institute">
 
                 <TextView
