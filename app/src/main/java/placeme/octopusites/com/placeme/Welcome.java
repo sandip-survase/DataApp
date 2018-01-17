@@ -1123,7 +1123,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     class SaveDataUserCreatedThroughAdmin extends AsyncTask<String, String, Boolean> {
 
-        String result = null;
+        String result = null, ROLE;
 
         protected Boolean doInBackground(String... param) {
 
@@ -1150,6 +1150,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             if (json != null) {
                 try {
                     result = json.getString("info");
+                    if (result.equals("success")) {
+                        ROLE = json.getString("role");
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1164,7 +1167,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             if (notNull) {
                 if (result.equals("success")) {
-                    MySharedPreferencesManager.save(Welcome.this, "role", "student");
+
                     MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
                     CreateFirebaseUser(encUsersName, encPassword);
@@ -1174,12 +1177,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         e.printStackTrace();
                     }
 
-//                    new CreateFirebaseUser(encUsersName, encPassword).execute();
-
-                    startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-//                Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
-//                loginintent.putExtra("newUser", "yes");
-//                startActivity(loginintent);
+                    if (ROLE != null && ROLE.equals("student")) {
+                        startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
+                    } else if (ROLE != null && ROLE.equals("admin")) {
+                        startActivity(new Intent(Welcome.this, AdminActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
+                    } else
+                        Toast.makeText(Welcome.this, "role is not A/S", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1688,6 +1693,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     Log.d("TAG", "dead");
 
                     String throughAdmin = json.getString("throughAdmin");
+                    String subAdmin = json.getString("subadmin");
                     Log.d("TAG, ", "daddy");
 
 
@@ -1720,6 +1726,25 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             Log.d("TAG", "exp ex:" + e.getMessage());
                         }
 
+
+                    } else if (subAdmin != null && subAdmin.equals("yes")) {
+
+                        adminInstitute = json.getString("adminInst");
+                        adminfname = json.getString("adminfname");
+                        adminlname = json.getString("adminlname");
+                        try {
+
+                            adminInstitute = Z.Decrypt(adminInstitute, Welcome.this);
+                            adminfname = Z.Decrypt(adminfname, Welcome.this);
+                            adminlname = Z.Decrypt(adminlname, Welcome.this);
+
+                            Log.d("TAG", "doInBackground: " + "" + adminInstitute + "\n" + adminfname + "\n" + adminlname);
+
+                            return 7;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("TAG", "exp ex:" + e.getMessage());
+                        }
 
                     } else {
                         String role = json.getString("role");

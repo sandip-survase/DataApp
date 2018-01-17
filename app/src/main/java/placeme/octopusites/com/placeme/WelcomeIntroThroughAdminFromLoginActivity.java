@@ -64,6 +64,7 @@ public class WelcomeIntroThroughAdminFromLoginActivity extends AppCompatActivity
     private String filepath, filename, directory;
     private String encUsersName, encPassword;
     Button start;
+    String role;
     private String fname, lname, mobile;
     String adminInstitute, adminfname, adminlname;
 
@@ -99,6 +100,7 @@ public class WelcomeIntroThroughAdminFromLoginActivity extends AppCompatActivity
 
         encUsersName = MySharedPreferencesManager.getUsername(WelcomeIntroThroughAdminFromLoginActivity.this);
         encPassword = MySharedPreferencesManager.getPassword(WelcomeIntroThroughAdminFromLoginActivity.this);
+        role = MySharedPreferencesManager.getRole(WelcomeIntroThroughAdminFromLoginActivity.this);
 
 
         adminfname = getIntent().getStringExtra("fname");
@@ -226,7 +228,7 @@ public class WelcomeIntroThroughAdminFromLoginActivity extends AppCompatActivity
 
     class SaveDataUserCreatedThroughAdmin extends AsyncTask<String, String, Boolean> {
 
-        String result = null, encfname, enclname, encmobile;
+        String result = null, encfname, enclname, encmobile, ROLE;
 
         protected Boolean doInBackground(String... param) {
 
@@ -250,9 +252,13 @@ public class WelcomeIntroThroughAdminFromLoginActivity extends AppCompatActivity
             params.add(new BasicNameValuePair("l", enclname));           //2
             params.add(new BasicNameValuePair("m", encmobile));          //3
             JSONObject json = jParser.makeHttpRequest(Z.url_SaveStudentFnameLnameMobile, "GET", params);
+            Log.d("TAG", "url_SaveStudentFnameLnameMobile: json " + json);
             if (json != null) {
                 try {
                     result = json.getString("info");
+                    if (result.equals("success")) {
+                        ROLE = json.getString("role");
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -267,7 +273,7 @@ public class WelcomeIntroThroughAdminFromLoginActivity extends AppCompatActivity
 
             if (notNull) {
                 if (result.equals("success")) {
-                    MySharedPreferencesManager.save(WelcomeIntroThroughAdminFromLoginActivity.this, "role", "student");
+//                    MySharedPreferencesManager.save(WelcomeIntroThroughAdminFromLoginActivity.this, "role", "student");
                     MySharedPreferencesManager.save(WelcomeIntroThroughAdminFromLoginActivity.this, "nameKey", encUsersName);
 
                     CreateFirebaseUser(encUsersName, encPassword);
@@ -277,8 +283,14 @@ public class WelcomeIntroThroughAdminFromLoginActivity extends AppCompatActivity
                         e.printStackTrace();
                     }
 
-                    startActivity(new Intent(WelcomeIntroThroughAdminFromLoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                    finish();
+                    if (ROLE != null && ROLE.equals("student")) {
+                        startActivity(new Intent(WelcomeIntroThroughAdminFromLoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
+                    } else if (ROLE != null && ROLE.equals("admin")) {
+                        startActivity(new Intent(WelcomeIntroThroughAdminFromLoginActivity.this, AdminActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
+                    } else
+                        Toast.makeText(WelcomeIntroThroughAdminFromLoginActivity.this, "role is not A/S", Toast.LENGTH_SHORT).show();
 
                 }
             } else

@@ -121,11 +121,11 @@ public class LoginActivity extends AppCompatActivity {
 
         if (otp != null && otp.equals("yes")) {
 
-                startActivity(new Intent(getApplicationContext(), OTPActivity.class));
+            startActivity(new Intent(getApplicationContext(), OTPActivity.class));
 
         } else if (otp2 != null && otp2.equals("yes")) {
 
-                startActivity(new Intent(getApplicationContext(), OTP2Activity.class));
+            startActivity(new Intent(getApplicationContext(), OTP2Activity.class));
 
         } else {
 
@@ -136,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin(MySharedPreferencesManager.getUsername(this), MySharedPreferencesManager.getPassword(this));
 
         }
-
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +232,7 @@ public class LoginActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("u", mEmail));
                 params.add(new BasicNameValuePair("p", mPassword));
                 json = jParser.makeHttpRequest(Z.url_login, "GET", params);
+                Log.d("TAG", "loginActivity login task json : " + json);
                 String s = null;
                 s = json.getString("info");
                 Log.d("TAG", "loginActivity login task : " + s);
@@ -267,7 +267,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (s.equals("notactivated")) {
 
                     String throughAdmin = json.getString("throughAdmin");
+                    String subAdmin = json.getString("subadmin");
                     Log.d("TAG, ", "daddy");
+                    String role = json.getString("role");
+                    if (role != null)
+                        MySharedPreferencesManager.save(LoginActivity.this, "role", role);
 
                     if (throughAdmin != null && throughAdmin.equals("yes")) {
 
@@ -288,8 +292,27 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("TAG", "exp ex:" + e.getMessage());
                         }
 
+                    } else if (subAdmin != null && subAdmin.equals("yes")) {
+
+                        adminInstitute = json.getString("adminInst");
+                        adminfname = json.getString("adminfname");
+                        adminlname = json.getString("adminlname");
+                        try {
+
+                            adminInstitute = Z.Decrypt(adminInstitute, LoginActivity.this);
+                            adminfname = Z.Decrypt(adminfname, LoginActivity.this);
+                            adminlname = Z.Decrypt(adminlname, LoginActivity.this);
+
+                            Log.d("TAG", "doInBackground: " + "" + adminInstitute + "\n" + adminfname + "\n" + adminlname);
+
+                            return 7;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("TAG", "exp ex:" + e.getMessage());
+                        }
+
                     } else {
-                        String role = json.getString("role");
+                        role = json.getString("role");
                         Log.d("TAG", "dead");
                         MySharedPreferencesManager.save(LoginActivity.this, "role", role);
                         Log.d("TAG", "doInBackground: role : " + role);
