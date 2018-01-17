@@ -42,6 +42,7 @@ import placeme.octopusites.com.placeme.modal.AdminPersonal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AdminActivity.IsSubadmin;
 
 public class AdminPersonalTabFragment extends Fragment {
     Activity mActivity;
@@ -630,6 +631,14 @@ public class AdminPersonalTabFragment extends Fragment {
 
             }
         });
+
+
+        if(IsSubadmin)
+        {
+            inst.setFocusable(false);
+        }
+
+
         edittedFlag = 0;
 
 

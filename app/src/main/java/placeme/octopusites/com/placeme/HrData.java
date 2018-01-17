@@ -9,10 +9,56 @@ import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
  */
 
 public class HrData {
-    static String fname,lname,country,state,city,phone,designation;
-    static String email2,addressline1,addressline2,addressline3,mobile,mobile2;
+    static String fname, lname, country, state, city, phone, designation;
+    static String email2, addressline1, addressline2, addressline3, mobile, mobile2;
 
     static String skill1;
+    static String skill2;
+    static String skill3;
+    static String skill4;
+    static String skill5;
+    static String skill6;
+    static String skill7;
+    static String skill8;
+    static String skill9;
+    static String skill10;
+    static String skill11;
+    static String skill12;
+    static String skill13;
+    static String skill14;
+    static String skill15;
+    static String skill16;
+    static String skill17;
+    static String skill18;
+    static String skill19;
+    static String skill20;
+    static String sproficiency1;
+    static String sproficiency2;
+    static String sproficiency3;
+    static String sproficiency4;
+    static String sproficiency5;
+    static String sproficiency6;
+    static String sproficiency7;
+    static String sproficiency8;
+    static String sproficiency9;
+    static String sproficiency10;
+    static String sproficiency11;
+    static String sproficiency12;
+    static String sproficiency13;
+    static String sproficiency14;
+    static String sproficiency15;
+    static String sproficiency16;
+    static String sproficiency17;
+    static String sproficiency18;
+    static String sproficiency19;
+    static String sproficiency20;
+    static String CompanyName, CompanyEmail, CompanyWeb, Companyphone, CompanyAltPhone, CompanyCIIN, CompanyNature, Companyaddl1, Companyaddl2, Companyaddl3;
+
+
+    static String posts1 = "", posts2 = "", posts3 = "", posts4 = "", posts5 = "", posts6 = "", posts7 = "", posts8 = "", posts9 = "", posts10 = "";
+    static String inst1s1 = "", inst1s2 = "", inst1s3 = "", inst1s4 = "", inst1s5 = "", inst1s6 = "", inst1s7 = "", inst1s8 = "", inst1s9 = "", inst1s10 = "";
+    static String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
+
 
     public static String getFname() {
         return fname;
@@ -438,54 +484,13 @@ public class HrData {
         HrData.sproficiency20 = sproficiency20;
     }
 
-    static String skill2;
-    static String skill3;
-    static String skill4;
-    static String skill5;
-    static String skill6;
-    static String skill7;
-    static String skill8;
-    static String skill9;
-    static String skill10;
-    static String skill11;
-    static String skill12;
-    static String skill13;
-    static String skill14;
-    static String skill15;
-    static String skill16;
-    static String skill17;
-    static String skill18;
-    static String skill19;
-    static String skill20;
-    static String sproficiency1;
-    static String sproficiency2;
-    static String sproficiency3;
-    static String sproficiency4;
-    static String sproficiency5;
-    static String sproficiency6;
-    static String sproficiency7;
-    static String sproficiency8;
-    static String sproficiency9;
-    static String sproficiency10;
-    static String sproficiency11;
-    static String sproficiency12;
-    static String sproficiency13;
-    static String sproficiency14;
-    static String sproficiency15;
-    static String sproficiency16;
-    static String sproficiency17;
-    static String sproficiency18;
-    static String sproficiency19;
-    static String sproficiency20;
-    static  String CompanyName,CompanyEmail,CompanyWeb,Companyphone,CompanyAltPhone,CompanyCIIN,CompanyNature,Companyaddl1,Companyaddl2,Companyaddl3;
-
-
-    static String posts1 = "", posts2 = "", posts3 = "", posts4 = "", posts5 = "", posts6 = "", posts7 = "", posts8 = "", posts9 = "", posts10 = "";
-    static String inst1s1 = "", inst1s2 = "", inst1s3 = "", inst1s4 = "", inst1s5 = "", inst1s6 = "", inst1s7 = "", inst1s8 = "", inst1s9 = "", inst1s10 = "";
-    static String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
 
     public static String getCompanyName() {
         return CompanyName;
+    }
+
+    public static void setCompanyName(String companyName) {
+        CompanyName = companyName;
     }
 
     public static String getPosts1() {
@@ -614,7 +619,7 @@ public class HrData {
     }
 
     public static void setInst1s6(String inst1s6) {
-        Log.d(HRlog,"inst 6"+inst1s6);
+        Log.d(HRlog, "inst 6" + inst1s6);
         HrData.inst1s6 = inst1s6;
     }
 
@@ -810,10 +815,6 @@ public class HrData {
         HrData.todates10 = todates10;
     }
 
-    public static void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
-
     public static String getCompanyEmail() {
         return CompanyEmail;
     }
@@ -885,4 +886,158 @@ public class HrData {
     public static void setCompanyaddl3(String companyaddl3) {
         Companyaddl3 = companyaddl3;
     }
+
+    public static void setHrDataNull() {
+        fname = null;
+        lname = null;
+        country = null;
+        state = null;
+        city = null;
+        phone = null;
+        designation = null;
+
+        email2 = null;
+        addressline1 = null;
+        addressline2 = null;
+        addressline3 = null;
+        mobile = null;
+        mobile2 = null;
+
+
+        skill1 = null;
+
+
+        skill2 = null;
+
+        skill3 = null;
+
+        skill4 = null;
+
+        skill5 = null;
+
+        skill6 = null;
+
+        skill7 = null;
+
+        skill8 = null;
+
+        skill9 = null;
+
+        skill10 = null;
+
+        skill11 = null;
+
+        skill12 = null;
+
+        skill13 = null;
+
+        skill14 = null;
+
+        skill15 = null;
+
+        skill16 = null;
+
+        skill17 = null;
+
+        skill18 = null;
+
+        skill19 = null;
+
+        skill20 = null;
+
+        sproficiency1 = null;
+
+        sproficiency2 = null;
+
+        sproficiency3 = null;
+
+        sproficiency4 = null;
+
+        sproficiency5 = null;
+
+        sproficiency6 = null;
+
+        sproficiency7 = null;
+
+        sproficiency8 = null;
+
+        sproficiency9 = null;
+
+        sproficiency10 = null;
+
+        sproficiency11 = null;
+
+        sproficiency12 = null;
+
+        sproficiency13 = null;
+
+        sproficiency14 = null;
+
+        sproficiency15 = null;
+
+        sproficiency16 = null;
+
+        sproficiency17 = null;
+
+        sproficiency18 = null;
+
+        sproficiency19 = null;
+
+        sproficiency20 = null;
+
+        CompanyName = null;
+        CompanyEmail = null;
+        CompanyWeb = null;
+        Companyphone = null;
+        CompanyAltPhone = null;
+        CompanyCIIN = null;
+        CompanyNature = null;
+        Companyaddl1 = null;
+        Companyaddl2 = null;
+        Companyaddl3 = null;
+
+
+        posts1 = null;
+        posts2 = null;
+        posts3 = null;
+        posts4 = null;
+        posts5 = null;
+        posts6 = null;
+        posts7 = null;
+        posts8 = null;
+        posts9 = null;
+        posts10 = null;
+        inst1s1 = null;
+        inst1s2 = null;
+        inst1s3 = null;
+        inst1s4 = null;
+        inst1s5 = null;
+        inst1s6 = null;
+        inst1s7 = null;
+        inst1s8 = null;
+        inst1s9 = null;
+        inst1s10 = null;
+        fromdates1 = null;
+        todates1 = null;
+        fromdates2 = null;
+        todates2 = null;
+        fromdates3 = null;
+        todates3 = null;
+        fromdates4 = null;
+        todates4 = null;
+        fromdates5 = null;
+        todates5 = null;
+        fromdates6 = null;
+        todates6 = null;
+        fromdates7 = null;
+        todates7 = null;
+        fromdates8 = null;
+        todates8 = null;
+        fromdates9 = null;
+        todates9 = null;
+        fromdates10 = null;
+        todates10 = null;
+
+    }
+
 }

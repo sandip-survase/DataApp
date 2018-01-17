@@ -27,6 +27,7 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.AdminInstituteModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
+import static placeme.octopusites.com.placeme.AdminActivity.IsSubadmin;
 
 public class AdminInstituteTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
@@ -324,6 +325,13 @@ public class AdminInstituteTabFragment extends Fragment {
             public void afterTextChanged(Editable s) {
             }
         });
+
+
+        if(IsSubadmin)
+        {
+            iname.setFocusable(false);
+        }
+
 
         return rootView;
     }

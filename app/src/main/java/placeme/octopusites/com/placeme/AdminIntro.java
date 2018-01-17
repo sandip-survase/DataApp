@@ -37,6 +37,7 @@ import placeme.octopusites.com.placeme.modal.AdminIntroModal;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
+import static placeme.octopusites.com.placeme.AdminActivity.IsSubadmin;
 
 public class AdminIntro extends AppCompatActivity {
 
@@ -243,6 +244,10 @@ public class AdminIntro extends AppCompatActivity {
         });
 
 
+        if(IsSubadmin)
+        {
+            inst.setFocusable(false);
+        }
 
         edittedFlag=0;
 
@@ -441,10 +446,6 @@ public class AdminIntro extends AppCompatActivity {
 
 
     class SaveData extends AsyncTask<String, String, String> {
-
-
-
-
 
         protected String doInBackground(String... param) {
 

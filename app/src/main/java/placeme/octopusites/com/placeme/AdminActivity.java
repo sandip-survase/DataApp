@@ -165,6 +165,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     String unread_count[];
     int unreadMessageCount = 0;
     String sender_uid;
+    public  static boolean IsSubadmin;
+    public  static String  ParentAdmin="";
 
     ArrayList<RecyclerItemEdit> itemlistfromserver = new ArrayList<>();
     ArrayList<RecyclerItemPlacement> placementListfromserver = new ArrayList<>();
@@ -1332,6 +1334,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new GetUnreadMessagesCount().execute();
 
 
+
+
         Log.d(TAG, "onCreate: " + getIntent().getStringExtra("push"));
         if (getIntent().getStringExtra("push") != null) {
 //for clearing firebase service static fields
@@ -1351,7 +1355,42 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         }
 
+        new checkadmin().execute();
+
     }
+
+    class checkadmin extends AsyncTask<String, String, String> {
+
+        protected String doInBackground(String... param) {
+
+
+            String r=null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u",username));    //0
+            json = jParser.makeHttpRequest(Z.url_IssubAdmin, "GET", params);
+            try {
+                r = json.getString("info");
+
+                if(r.equals("yes"))
+                {
+                    IsSubadmin =true;
+                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+                    ParentAdmin = Z.Decrypt(json.getString("admin"),AdminActivity.this);
+
+                } else {
+                    IsSubadmin = false;
+                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+                }
+            }catch (Exception e){e.printStackTrace();}
+            return r;
+        }
+
+
+    }
+
+
+
+
 
     class CreateFirebaseUser extends AsyncTask<String, String, String> {
 

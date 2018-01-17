@@ -2082,9 +2082,9 @@
             android:id="@+id/ad_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addmoreskill"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_alignEnd="@+id/proficiencyspinner1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/proficiencyspinner1"
             ads:adSize="BANNER"
             ads:adUnitId="@string/banner_ad_unit_id" />
 
