@@ -48,6 +48,7 @@ public class Z {
     public static final String IP_local_Glassfish = "http://162.213.199.3/";
     public static final String IP_LOCAL_skysciQ = "http://104.237.4.236:26080/";
 //    public static final String I = "http://104.237.4.236:26080/";
+public static final String IP_8086 = "http://162.213.199.3:8086/";
 
 
 
@@ -201,7 +202,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String load_Admin_data = IP + "ProfileObjects/GetAdminData";
     public static final String url_SaveIntro = IP + "ProfileObjects/SaveIntro";
     public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
-//    public static final String url_getinstitute = IP_8086 + "ProfileObjects/GetInstitute";
+    public static final String url_getinstitute = IP_8086 + "ProfileObjects/GetInstitute";
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
 
