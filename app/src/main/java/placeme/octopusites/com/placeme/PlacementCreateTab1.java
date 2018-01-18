@@ -75,6 +75,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         CoursecInput=(TextInputLayout)rootView.findViewById(R.id.CoursecInput);
         streaminput=(TextInputLayout)rootView.findViewById(R.id.streaminput);
 
+
         companynameinput.setTypeface(Z.getLight(getActivity()));
         packageinput.setTypeface(Z.getLight(getActivity()));
         postinput.setTypeface(Z.getLight(getActivity()));
@@ -303,7 +304,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                 InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
-
+                CoursecInput.setError(null);
                 String toCompare = courses.getText().toString();
 
                 int index = 0;
@@ -339,6 +340,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         });
 
 
+
         selected.setTagsListener(new TagsEditText.TagsEditListener() {
             @Override
             public void onTagsChanged(Collection<String> collection) {
@@ -349,7 +351,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                 String temp="" ;
                 temp= selected.getText().toString();
                 Log.d("tag", "onTagsChanged: "+temp);
-
                 if(temp.equals("")){
                     selectedrl.setVisibility(View.GONE);
                 }
@@ -695,29 +696,38 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
         }else if(spost.length()<2){
             postinput.setError("Kindly enter valid post");
-            Erroflag=1;
-
-        } else if(svacancies.length()<1){
-            vacanciesinput.setError("Kindly enter number of vacancies");
+            Log.d("TAG", "This postinput block is executed");
             Erroflag=1;
 
         }
         else if(sselected.length()<1){
-            selected.setError("Kindly enter course and stream");
+            CoursecInput.setError("Kindly enter course and stream");
+            Log.d("TAG", "This course block is executed");
             Erroflag=1;
 
         }
+
+        else if(svacancies.length()<1){
+            vacanciesinput.setError("Kindly enter number of vacancies");
+            Log.d("TAG", "This svacancies block is executed");
+            Erroflag=1;
+
+        }
+
         else if(slastdateofrr.length()<1){
             ldrinput.setError("Kindly enter valid last date of registration");
+            Log.d("TAG", "This slastdateofrr block is executed");
             Erroflag=1;
 
         }else if(sdateofarrival.length()<1){
             dorinput.setError("Kindly enter valid date of arrival");
+            Log.d("TAG", "This sdateofarrival block is executed");
             Erroflag=1;
 
         }
         else if(sbond.length()<1){
             bondinput.setError("Kindly enter bond in months");
+            Log.d("TAG", "This sdateofarrival block is executed");
             Erroflag=1;
 
         }

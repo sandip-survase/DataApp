@@ -587,6 +587,23 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
         return false;
     }
 
+    public static boolean isSubAdmin(Context context) {
+        String isSubAdmin = MySharedPreferencesManager.getData(context, "IsSubadmin");
+        Log.d("TAG", "shared isSubAdmin: " + isSubAdmin);
+        if (isSubAdmin != null) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
     public static void NetworkConnectoin(Context context) {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(120, TimeUnit.SECONDS)

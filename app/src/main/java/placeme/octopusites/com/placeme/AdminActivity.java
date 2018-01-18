@@ -1384,11 +1384,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 if(r.equals("yes"))
                 {
                     IsSubadmin =true;
+                    MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","true");
                     Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                     ParentAdmin = Z.Decrypt(json.getString("admin"),AdminActivity.this);
 
                 } else {
                     IsSubadmin = false;
+                    MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","false");
+
                     Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                 }
             }catch (Exception e){e.printStackTrace();}
