@@ -70,6 +70,7 @@ public static final String IP_8086 = "http://162.213.199.3:8086/";
 
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
+    public static final String GetFLName = IP_local_Glassfish + "CreateNotificationTemp/GetFLname";
 // -------------------------------------------MainActivity(student)-----------------------------------------------
 public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";

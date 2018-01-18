@@ -48,7 +48,8 @@ public class NewsFeedWebView extends AppCompatActivity {
         wb.getSettings().setLoadWithOverviewMode(true);
         wb.getSettings().setUseWideViewPort(true);
         wb.addJavascriptInterface(new WebAppInterface(NewsFeedWebView.this),"sunny");
-        wb.loadUrl("https://placeme.co.in/privacy-policy.jsp");
+//        wb.loadUrl("https://placeme.co.in/privacy-policy.jsp");
+        wb.loadUrl(headerURL);
         wb.setWebViewClient(new MyWebViewClient() {
 
             @Override

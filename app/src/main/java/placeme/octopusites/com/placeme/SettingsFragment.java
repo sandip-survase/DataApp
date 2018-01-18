@@ -201,8 +201,12 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(getActivity(), NewsFeedWebView.class);
+                intent.putExtra("title", "Privacy Policy");
+                intent.putExtra("url", "https://placeme.co.in/privacy-policy.jsp");
+                startActivity(intent);
+
 //                startActivity(new Intent(getActivity(),PrivacyPolicy.class));
-                startActivity(new Intent(getActivity(), NewsFeedWebView.class));
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/privacy-policy.jsp"));
 //                startActivity(browserIntent);
             }
@@ -211,18 +215,28 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(getActivity(), NewsFeedWebView.class);
+                intent.putExtra("title", "Terms and Conditions");
+                intent.putExtra("url", "https://placeme.co.in/terms-of-use.jsp");
+                startActivity(intent);
+
 //                startActivity(new Intent(getActivity(),TermsConditions.class));
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/terms-of-use.jsp"));
-                startActivity(browserIntent);
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/terms-of-use.jsp"));
+//                startActivity(browserIntent);
             }
         });
         agreementselectionview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(getActivity(), NewsFeedWebView.class);
+                intent.putExtra("title", "User Agreement");
+                intent.putExtra("url", "https://placeme.co.in/terms-of-use.jsp");
+                startActivity(intent);
+
 //                startActivity(new Intent(getActivity(),UserAgreement.class));
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/terms-of-use.jsp"));
-                startActivity(browserIntent);
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/terms-of-use.jsp"));
+//                startActivity(browserIntent);
             }
         });
 
