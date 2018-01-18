@@ -7,12 +7,15 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,7 +71,7 @@ public class CreatePlacementHr extends AppCompatActivity {
     TextView createnotinotitxt;
     ImageView addIcon;
     View dummy6;
-
+    TextInputLayout batchesinput,yearsinput,instinput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +110,63 @@ public class CreatePlacementHr extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        batchesinput = (TextInputLayout)  findViewById(R.id.batchesinput);
+        yearsinput = (TextInputLayout)  findViewById(R.id.yearsinput);
+        instinput= (TextInputLayout)  findViewById(R.id.instinput);
+
+
+        batchesTags.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                batchesinput.setError(null);
+//                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        expTag.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                yearsinput.setError(null);
+//                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        instTag.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                instinput.setError(null);
+//                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.fruits)) {
@@ -439,7 +499,6 @@ public class CreatePlacementHr extends AppCompatActivity {
                     }
 
                 }
-                dummy6.requestFocus();
             }
 
 
@@ -613,20 +672,20 @@ public class CreatePlacementHr extends AppCompatActivity {
              sbatchesTags = batchesTags.getText().toString();
              sexptaTags = expTag.getText().toString();
             sinsttaTags = instTag.getText().toString();
+
             Log.d("gettingtabData", "sbatchesTags: "+sbatchesTags);
             Log.d("gettingtabData", "sexptaTags: "+sexptaTags);
             Log.d("gettingtabData", "sinsttaTags: "+sinsttaTags);
 
-
             if(sbatchesTags.length()<=2){
-                batchesTags.setError("enter passing Year ");
+                batchesinput.setError("enter passing Year ");
             }else if(sexptaTags.length()<=2){
 
-                expTag.setError("enter passing Year ");
+                yearsinput.setError("enter passing Year ");
             }
             else if(sinsttaTags.length()<=2){
 
-                instTag.setError("select institute name ");
+                instinput.setError("select institute name ");
             }
             else{
 
@@ -643,7 +702,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                 Boolean PlaceTab3_success = true;
 
                 PlaceTab1_success = PlaceTab1.Validate();
-
+                Log.d("TAG", "validate: "+PlaceTab1_success);
 
                 if (!PlaceTab1_success) {
                     viewPager.setCurrentItem(0);
@@ -796,8 +855,6 @@ public class CreatePlacementHr extends AppCompatActivity {
             }
             return r;
         }
-
-
 
 
         @Override

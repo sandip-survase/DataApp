@@ -1357,6 +1357,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         new checkadmin().execute();
 
+
     }
 
     class checkadmin extends AsyncTask<String, String, String> {
@@ -1370,6 +1371,15 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             json = jParser.makeHttpRequest(Z.url_IssubAdmin, "GET", params);
             try {
                 r = json.getString("info");
+
+               String ucodef = json.getString("ucodef");
+               if(ucodef.equals("found")){
+                   String ucode = json.getString("ucode");
+                   MySharedPreferencesManager.save(AdminActivity.this,"ucode",ucode);
+                   Log.d(TAG, "doInBackground: ucode - "+ucode);
+                   String temp  = MySharedPreferencesManager.getData(AdminActivity.this,"ucode");
+                   Log.d(TAG, "doInBackground: temp - "+temp);
+               }
 
                 if(r.equals("yes"))
                 {

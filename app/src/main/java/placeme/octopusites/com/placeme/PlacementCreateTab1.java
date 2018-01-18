@@ -74,6 +74,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         bondinput=(TextInputLayout)rootView.findViewById(R.id.bondinput);
         CoursecInput=(TextInputLayout)rootView.findViewById(R.id.CoursecInput);
         streaminput=(TextInputLayout)rootView.findViewById(R.id.streaminput);
+
         companynameinput.setTypeface(Z.getLight(getActivity()));
         packageinput.setTypeface(Z.getLight(getActivity()));
         postinput.setTypeface(Z.getLight(getActivity()));
@@ -689,7 +690,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
         } else if(scpackage.length()<1){
             packageinput.setError("Kindly enter valid package");
-            Log.d("TAG", "This block is executed");
+            Log.d("TAG", "This scpackage block is executed");
             Erroflag=1;
 
         }else if(spost.length()<2){
@@ -737,6 +738,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         companyname=(EditText)rootView.findViewById(R.id.companyname);
         companyname.setText("hello");
     }
+
     public void datasetters(RecyclerItemPlacement obj ){
 
         scompanyname=obj.getCompanyname();

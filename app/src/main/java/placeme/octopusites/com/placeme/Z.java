@@ -53,7 +53,7 @@ public static final String IP_8086 = "http://162.213.199.3:8086/";
 
 
     //********************************  final ************************************
-
+    public static final String IP_secured_sunny_8090 =  "http://162.213.199.3:8090/";
     public static final String IP_secured_sunny = "https://placeme.co.in/";
     public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE = "Fail to upload image!\nPlease try again";
@@ -132,7 +132,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
-    public static final String url_CreatePlacementsHr = IP_secured_sunny + "CreateNotificationTemp/CreatePlacementsHr";
+    public static final String url_CreatePlacementsHr = IP_8086 + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
     public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
