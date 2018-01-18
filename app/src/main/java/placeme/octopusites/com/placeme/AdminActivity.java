@@ -255,6 +255,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         String role = MySharedPreferencesManager.getRole(this);
+        new checkadmin().execute();
 
 
         //
@@ -1355,9 +1356,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         }
 
-        new checkadmin().execute();
-
-
     }
 
     class checkadmin extends AsyncTask<String, String, String> {
@@ -1368,17 +1366,25 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));    //0
+
+            try {
+                Log.d(TAG, "doInBackground: username "+Z.Decrypt(username,AdminActivity.this));
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
             json = jParser.makeHttpRequest(Z.url_IssubAdmin, "GET", params);
             try {
                 r = json.getString("info");
+                Log.d(TAG, "doInBackground: result - "+r);
+                Log.d(TAG, "doInBackground: json - "+json);
 
                String ucodef = json.getString("ucodef");
                if(ucodef.equals("found")){
                    String ucode = json.getString("ucode");
                    MySharedPreferencesManager.save(AdminActivity.this,"ucode",ucode);
-                   Log.d(TAG, "doInBackground: ucode - "+ucode);
                    String temp  = MySharedPreferencesManager.getData(AdminActivity.this,"ucode");
-                   Log.d(TAG, "doInBackground: temp - "+temp);
                }
 
                 if(r.equals("yes"))
@@ -1391,7 +1397,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 } else {
                     IsSubadmin = false;
                     MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","false");
-
                     Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                 }
             }catch (Exception e){e.printStackTrace();}
@@ -1400,9 +1405,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
     }
-
-
-
 
 
     class CreateFirebaseUser extends AsyncTask<String, String, String> {

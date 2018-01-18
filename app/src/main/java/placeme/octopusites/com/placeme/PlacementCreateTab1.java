@@ -315,8 +315,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                 }
                 toCompare = CourseListWithIds[index];
                 Log.d("TAG", "toCompare : " + toCompare);
-
-
                 tosettoStreamslist.clear();
 
                 setStreamAdapter(toCompare);

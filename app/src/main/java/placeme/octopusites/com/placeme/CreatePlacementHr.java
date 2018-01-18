@@ -671,7 +671,7 @@ public class CreatePlacementHr extends AppCompatActivity {
 
              sbatchesTags = batchesTags.getText().toString();
              sexptaTags = expTag.getText().toString();
-            sinsttaTags = instTag.getText().toString();
+             sinsttaTags = instTag.getText().toString();
 
             Log.d("gettingtabData", "sbatchesTags: "+sbatchesTags);
             Log.d("gettingtabData", "sexptaTags: "+sexptaTags);
@@ -690,6 +690,7 @@ public class CreatePlacementHr extends AppCompatActivity {
             else{
 
                 forwhom="PLACEME(ALL)";
+
                 Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                 PlacementCreateTab1 PlaceTab1 = (PlacementCreateTab1) adapter.getItem(0);
