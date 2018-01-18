@@ -39,6 +39,7 @@ public class NewsFeedWebView extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle(headerTitle);
         ab.setSubtitle(headerURL);
+
         ab.setDisplayHomeAsUpEnabled(true);
 
         wb = (WebView) findViewById(R.id.webView1);

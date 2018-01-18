@@ -514,6 +514,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
         mobileTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
 
+        fnameTextInputLayout.setError("test error");
+
         Z.slideinleft1(this, getProfilePictureMsg);
         Z.slideinleft2(this, adminInfo);
         Z.fade(this, welcometextviewcontext3);
@@ -913,12 +915,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                         if (fname.length() < 2) {
                             errorFlagThroughAdminIntro = true;
-                            fnameEditText.setError("Kindly provide your first name");
+                            fnameTextInputLayout.setError("Kindly provide your first name");
                         } else if (lname.length() < 2) {
-                            lnameEditText.setError("Kindly provide your last name");
+                            lnameTextInputLayout.setError("Kindly provide your last name");
                             errorFlagThroughAdminIntro = true;
                         } else if (mobile.length() != 10) {
-                            mobileEditText.setError("Kindly provide your correct mobile number");
+                            mobileTextInputLayout.setError("Kindly provide your correct mobile number");
                             errorFlagThroughAdminIntro = true;
                         }
 
