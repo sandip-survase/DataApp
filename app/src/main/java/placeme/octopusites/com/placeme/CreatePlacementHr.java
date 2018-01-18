@@ -33,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import mabbas007.tagsedittext.TagsEditText;
@@ -42,45 +43,46 @@ import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 
 public class CreatePlacementHr extends AppCompatActivity {
 
-    //ui work
-    private Toolbar toolbar;
-    private TagsEditText batchesTags,expTag,instTag;
     ArrayAdapter<String> dataAdapter;
     ArrayAdapter<String> dataAdapterexp;
     ArrayAdapter<String> dataAdapterinst;
     String[] Institute;
-
+    String[] InstituteCode;
     ArrayList<String> TagCreateList = new ArrayList<>();
     ArrayList<String> TagCreateList2 = new ArrayList<>();
     ArrayList<String> TagCreateList3 = new ArrayList<>();
     List<String> institutelist = new ArrayList<String>();
-
-    int Institutecount=0;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    List<String> institutecodelist = new ArrayList<String>();
+    int Institutecount = 0;
     ViewPagerAdapter adapter;
     int errorflag = 0;
-    String forwhom = "",encforwhom="";
+    String forwhom = "", encforwhom = "";
     String paramcompanyname = "", cpackage = "", post = "", selected = "", vacancies = "", lastdateofrr = "", dateofarrival = "", bond = "", apti = "", techtest = "",
             groupdisc = "", techinterview = "", Hrinterview = "", xcriteria = "", xiicriteria = "", ugcriteria = "", pgcriteria = "";
-
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    String encUsername = "",encRole="";
-    String  sbatchesTags="",sexptaTags="",sinsttaTags="";
+    String encUsername = "", encRole = "",plainusername="",username="";
+    String sbatchesTags = "", sexptaTags = "", sinsttaTags = "";
     TextView createnotinotitxt;
     ImageView addIcon;
     View dummy6;
-    TextInputLayout batchesinput,yearsinput,instinput;
+    TextInputLayout batchesinput, yearsinput, instinput;
+    //ui work
+    private Toolbar toolbar;
+    private TagsEditText batchesTags, expTag, instTag;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    HashMap hashMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_placement_hr);
 
 
-        createnotinotitxt=(TextView)findViewById(R.id.createnotinotitxt);
-        dummy6 = (View)findViewById(R.id.dummy6);
-        
+        createnotinotitxt = (TextView) findViewById(R.id.createnotinotitxt);
+        dummy6 = (View) findViewById(R.id.dummy6);
+
         createnotinotitxt.setTypeface(Z.getLight(this));
 //        ui work
         toolbar = (Toolbar) findViewById(R.id.placementtoolbar);
@@ -93,7 +95,7 @@ public class CreatePlacementHr extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        addIcon = (ImageView)findViewById(R.id.addIcon);
+        addIcon = (ImageView) findViewById(R.id.addIcon);
 
         batchesTags = (TagsEditText) findViewById(R.id.batchesTags);
         batchesTags.setFocusable(false);
@@ -110,10 +112,17 @@ public class CreatePlacementHr extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        batchesinput = (TextInputLayout)  findViewById(R.id.batchesinput);
-        yearsinput = (TextInputLayout)  findViewById(R.id.yearsinput);
-        instinput= (TextInputLayout)  findViewById(R.id.instinput);
+        batchesinput = (TextInputLayout) findViewById(R.id.batchesinput);
+        yearsinput = (TextInputLayout) findViewById(R.id.yearsinput);
+        instinput = (TextInputLayout) findViewById(R.id.instinput);
 
+        plainusername = MySharedPreferencesManager.getUsername(this);
+
+        try {
+            username = Z.Decrypt(plainusername,CreatePlacementHr.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         batchesTags.addTextChangedListener(new TextWatcher() {
             @Override
@@ -286,6 +295,8 @@ public class CreatePlacementHr extends AppCompatActivity {
                 List<String> newList = new ArrayList<String>(batchesTags.getTags());
                 TagCreateList.addAll(newList);
 
+
+
                 String temp = "";
                 temp = batchesTags.getText().toString();
                 Log.d("tag", "onTagsChanged: " + temp);
@@ -309,7 +320,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                 Log.d("TAG", "onClick: expTag");
                 expTag.setAdapter(dataAdapterexp);
                 expTag.setThreshold(1);
-                if (expTag.getText().toString().length()>1) {
+                if (expTag.getText().toString().length() > 1) {
                     //dont popullate
 //                    Toast.makeText(CreatePlacementHr.this, "Notification will be sent to All batches", Toast.LENGTH_SHORT).show();
                 } else {
@@ -414,7 +425,6 @@ public class CreatePlacementHr extends AppCompatActivity {
         });
 
 
-
         instTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -457,9 +467,8 @@ public class CreatePlacementHr extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-
                 String temp = institutelist.get(position);
-                Log.d("TAG", "onItemClick: insttag temp"+temp);
+                Log.d("TAG", "onItemClick: insttag temp" + temp);
 
                 temp = temp.trim();
 
@@ -470,6 +479,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                     TagCreateArray = TagCreateList3.toArray(TagCreateArray);
                     instTag.setText("");
                     instTag.setTags(TagCreateArray);
+
                 }
                 if (TagCreateList3.contains(temp)) ;
                 {
@@ -509,11 +519,19 @@ public class CreatePlacementHr extends AppCompatActivity {
             public void onTagsChanged(Collection<String> collection) {
                 TagCreateList3.clear();
                 List<String> newList = new ArrayList<String>(instTag.getTags());
+
                 TagCreateList3.addAll(newList);
 
+                for (int j = 0; j < newList.size(); j++) {
+                    Log.d("TAG", "onTagsChanged: arraylist - " + newList.get(j));
+
+                }
+
                 String temp = "";
+
                 temp = instTag.getText().toString();
                 Log.d("tag", "onTagsChanged: onItemClick" + temp);
+
                 if (temp.equals("")) {
                     instTag.dismissDropDown();
                 }
@@ -530,43 +548,6 @@ public class CreatePlacementHr extends AppCompatActivity {
         new GetInstitute().execute();
 
     }
-
-    class GetInstitute extends AsyncTask<String, String, String> {
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(Z.url_getinstitute, "GET", params);
-            try {
-                String s = json.getString("count");
-                Institutecount=Integer.parseInt(s);
-                Institute=new String[Institutecount];
-                for(int i=0;i<Institutecount;i++)
-                {
-
-                    Institute[i]=json.getString("institute"+i);
-                }
-
-            }catch (Exception e){e.printStackTrace();}
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            institutelist.clear();
-            institutelist.add("ALL");
-//            institutelist.add("- Select University -");
-            for(int i=0;i<Institutecount;i++)
-            {
-                institutelist.add(Institute[i]);
-            }
-            populateInstitute();
-        }
-    }
-
 
     void populateInstitute() {
         ArrayAdapter<String> dataAdapterinst = new ArrayAdapter<String>(this, R.layout.spinner_item_long, institutelist) {
@@ -602,7 +583,6 @@ public class CreatePlacementHr extends AppCompatActivity {
         instTag.setAdapter(dataAdapterinst);
     }
 
-
     private void setupViewPager(ViewPager viewPager) {
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -610,37 +590,6 @@ public class CreatePlacementHr extends AppCompatActivity {
         adapter.addFragment(new PlacementCreateTab2(), "Selection Process");
         adapter.addFragment(new PlacementCreateTab3(), "Selection Criteria");
         viewPager.setAdapter(adapter);
-    }
-
-
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -669,27 +618,48 @@ public class CreatePlacementHr extends AppCompatActivity {
     void validate() {
         try {
 
-             sbatchesTags = batchesTags.getText().toString();
-             sexptaTags = expTag.getText().toString();
-             sinsttaTags = instTag.getText().toString();
+            sbatchesTags = batchesTags.getText().toString();
+            sexptaTags = expTag.getText().toString();
+            sinsttaTags = instTag.getText().toString();
 
-            Log.d("gettingtabData", "sbatchesTags: "+sbatchesTags);
-            Log.d("gettingtabData", "sexptaTags: "+sexptaTags);
-            Log.d("gettingtabData", "sinsttaTags: "+sinsttaTags);
+//            newList
+            String tempforwhom="";
+            Log.d("TAG", "validate:  hashmap siza - " + hashMap.size());
+            Log.d("TAG", "validate:  hashmap size print - " + hashMap);
 
-            if(sbatchesTags.length()<=2){
+            if(TagCreateList3.get(0)!="ALL") {
+                for (int j = 0; j < TagCreateList3.size(); j++) {
+                    Log.d("TAG", "validate: TagCreateList3 - " + TagCreateList3.get(j));
+                    String temp = TagCreateList3.get(j);
+                    tempforwhom = tempforwhom + hashMap.get(temp) + ",";
+                    Log.d("TAG", "validate:  tempforwhom  - " + tempforwhom);
+                }
+                tempforwhom = tempforwhom + "(" + username + ",PLACEME)";
+                forwhom=tempforwhom;
+            }
+            else {
+                forwhom = "PLACEME(ALL),("+ username + ",PLACEME)";;
+            }
+
+            Log.d("TAG", "validate: TagCreateList3 tempforwhom - " +forwhom );
+
+
+
+            Log.d("gettingtabData", "sbatchesTags: " + sbatchesTags);
+            Log.d("gettingtabData", "sexptaTags: " + sexptaTags);
+            Log.d("gettingtabData", "sinsttaTags: " + sinsttaTags);
+
+            if (sbatchesTags.length() <= 2) {
                 batchesinput.setError("enter passing Year ");
-            }else if(sexptaTags.length()<=2){
+            } else if (sexptaTags.length() <= 2) {
 
                 yearsinput.setError("enter passing Year ");
-            }
-            else if(sinsttaTags.length()<=2){
+            } else if (sinsttaTags.length() <= 2) {
 
                 instinput.setError("select institute name ");
-            }
-            else{
+            } else {
 
-                forwhom="PLACEME(ALL)";
+//                forwhom = "PLACEME(ALL)";
 
                 Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
@@ -703,7 +673,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                 Boolean PlaceTab3_success = true;
 
                 PlaceTab1_success = PlaceTab1.Validate();
-                Log.d("TAG", "validate: "+PlaceTab1_success);
+                Log.d("TAG", "validate: " + PlaceTab1_success);
 
                 if (!PlaceTab1_success) {
                     viewPager.setCurrentItem(0);
@@ -736,7 +706,6 @@ public class CreatePlacementHr extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
 
     void encrypt() {
         try {
@@ -796,7 +765,7 @@ public class CreatePlacementHr extends AppCompatActivity {
             Log.d("gettingtabData", "pgcriteria: " + pgcriteria);
 
             encRole = Encrypt(MySharedPreferencesManager.getRole(this), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
-            encUsername =MySharedPreferencesManager.getUsername(this);
+            encUsername = MySharedPreferencesManager.getUsername(this);
 
             encforwhom = Encrypt(forwhom, MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 
@@ -810,13 +779,88 @@ public class CreatePlacementHr extends AppCompatActivity {
 
     }
 
+    class GetInstitute extends AsyncTask<String, String, String> {
+
+        protected String doInBackground(String... param) {
+            hashMap = new HashMap();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            json = jParser.makeHttpRequest(Z.url_getinstitute, "GET", params);
+            try {
+                String s = json.getString("count");
+                Institutecount = Integer.parseInt(s);
+                Institute = new String[Institutecount];
+                InstituteCode = new String[Institutecount];
+                for (int i = 0; i < Institutecount; i++) {
+                    Institute[i] = json.getString("institute" + i);
+                    InstituteCode[i] = json.getString("code" + i);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            institutelist.clear();
+            institutecodelist.clear();
+
+            institutelist.add("ALL");
+            institutecodelist.add("ALL");
+
+            for (int i = 0; i < Institutecount; i++) {
+                Log.d("TAG", "*"+Institute[i]+"#");
+                Log.d("TAG", "*"+InstituteCode[i]+"#");
+
+                hashMap.put(Institute[i].trim() ,InstituteCode[i]);
+
+                institutelist.add(Institute[i]);
+                institutecodelist.add(InstituteCode[i]);
+            }
+
+            populateInstitute();
+        }
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
     class save extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... param) {
-            String encinst="";
+            String encinst = "";
 
             try {
-                encinst = Z.Encrypt(sinsttaTags,CreatePlacementHr.this);
+                encinst = Z.Encrypt(sinsttaTags, CreatePlacementHr.this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -845,7 +889,7 @@ public class CreatePlacementHr extends AppCompatActivity {
             params.add(new BasicNameValuePair("s", pgcriteria));     //19
             params.add(new BasicNameValuePair("t", sbatchesTags));     //20
             params.add(new BasicNameValuePair("v", sexptaTags));     //21
-            params.add(new BasicNameValuePair("w",encinst));     //22
+            params.add(new BasicNameValuePair("w", encinst));     //22
 
             json = jParser.makeHttpRequest(Z.url_CreatePlacementsHr, "GET", params);
             try {

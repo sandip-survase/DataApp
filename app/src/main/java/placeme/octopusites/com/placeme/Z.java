@@ -203,7 +203,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String load_Admin_data = IP + "ProfileObjects/GetAdminData";
     public static final String url_SaveIntro = IP + "ProfileObjects/SaveIntro";
     public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
-    public static final String url_getinstitute = IP + "ProfileObjects/GetInstitute";
+    public static final String url_getinstitute = IP_8086 + "ProfileObjects/GetInstitute";
     public static final String url_IssubAdmin = IP + "AESTest/IsSubAdmin";
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------

@@ -257,10 +257,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         String role = MySharedPreferencesManager.getRole(this);
         new checkadmin().execute();
 
-
-        //
-
-
         try {
             OkHttpUtil.init(true);
         } catch (Exception e) {
@@ -1376,28 +1372,27 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
             json = jParser.makeHttpRequest(Z.url_IssubAdmin, "GET", params);
             try {
-                r = json.getString("info");
-                Log.d(TAG, "doInBackground: result - "+r);
-                Log.d(TAG, "doInBackground: json - "+json);
 
-               String ucodef = json.getString("ucodef");
+                r = json.getString("info");
+                String ucodef = json.getString("ucodef");
+//                Log.d(TAG, "doInBackground: json - "+json);
+
                if(ucodef.equals("found")){
                    String ucode = json.getString("ucode");
                    MySharedPreferencesManager.save(AdminActivity.this,"ucode",ucode);
-                   String temp  = MySharedPreferencesManager.getData(AdminActivity.this,"ucode");
                }
 
                 if(r.equals("yes"))
                 {
                     IsSubadmin =true;
                     MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","true");
-                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+//                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                     ParentAdmin = Z.Decrypt(json.getString("admin"),AdminActivity.this);
 
                 } else {
                     IsSubadmin = false;
                     MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","false");
-                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+//                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                 }
             }catch (Exception e){e.printStackTrace();}
             return r;
