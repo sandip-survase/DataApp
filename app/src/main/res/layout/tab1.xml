@@ -178,7 +178,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/box3section">
+            android:layout_above="@+id/box3section"
+            android:id="@+id/relativeLayout">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,27 +206,29 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/box3section">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeLayout">
 
             <TextView
+                android:id="@+id/bondtxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="4dp"
                 android:text="Bond In Months"
                 android:textColor="@color/sky_blue_color"
-                android:padding="4dp"
-                android:textSize="12dp"
-                android:id="@+id/bondtxt" />
+                android:textSize="12dp" />
 
             <TextView
+                android:id="@+id/companybondview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_color"
-                android:id="@+id/companybondview"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:textSize="16dp"
                 android:text="12"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -248,6 +251,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/dateofarivalBox"
             android:layout_above="@+id/box4section">
 
             <TextView
@@ -271,6 +275,34 @@
                 android:textStyle="bold"
                 android:text="30-Jan-2017" />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/uploadedbybox"
+            android:layout_below="@+id/dateofarivalBox">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uploaded By"
+                android:textColor="@color/sky_blue_color"
+                android:padding="4dp"
+                android:textSize="12dp"
+                android:id="@+id/uploadedbytxt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_color"
+                android:id="@+id/uploadedtxt"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:text="" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
 

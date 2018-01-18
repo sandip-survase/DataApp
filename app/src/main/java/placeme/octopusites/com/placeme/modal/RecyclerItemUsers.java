@@ -11,16 +11,11 @@ public class RecyclerItemUsers implements Serializable {
     int id;
     public  boolean isSelected=false;
 
-
-
-
     public RecyclerItemUsers(int id, String name, String email,boolean isSelected ) {
         this.name = name;
         this.email = email;
         this.id=id;
         this.isSelected=isSelected;
-
-
 
     }
 

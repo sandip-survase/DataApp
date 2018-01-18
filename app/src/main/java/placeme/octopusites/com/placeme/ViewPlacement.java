@@ -92,7 +92,6 @@ public class ViewPlacement extends AppCompatActivity {
 
 
         String uploadedby_enc = getIntent().getStringExtra("uploadedby");
-
         uploadedby = uploadedby_enc;
         registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
         registerbutton.setTypeface(Z.getBold(this));
@@ -681,7 +680,7 @@ public class ViewPlacement extends AppCompatActivity {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("id", id));
-                params.add(new BasicNameValuePair("u", username));
+                params.add(new BasicNameValuePair("u",username));
                 params.add(new BasicNameValuePair("f", fname));
                 params.add(new BasicNameValuePair("l", lname));
                 params.add(new BasicNameValuePair("lc", companyname));

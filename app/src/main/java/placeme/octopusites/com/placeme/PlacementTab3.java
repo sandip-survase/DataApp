@@ -1,10 +1,12 @@
 package placeme.octopusites.com.placeme;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ConnectionQuality;
+import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 
 
 public class PlacementTab3 extends Fragment {
@@ -22,12 +28,32 @@ public class PlacementTab3 extends Fragment {
     String studenttenthmarks, studentugmarks, studenttwelthordiplomamarks;
     ImageView tentheligibility, twelthordiplomaeligibility, ugeligibility;
     TextView aptitxt,diplomatxt,ugtxt;
+    private String TAG="Tab3";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.tab3, container, false);
-
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        OkHttpUtil.getClient();
+//        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(getActivity(), OkHttpUtil.getClient());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        AndroidNetworking.setBitmapDecodeOptions(options);
+        AndroidNetworking.enableLogging();
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+                Log.d(TAG, "onChange: currentConnectionQuality : " + currentConnectionQuality + " currentBandwidth : " + currentBandwidth);
+            }
+        });
         SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
+
         tenth = save.getStdx();
         twelthordiploma = save.getStdxiiordiploma();
         ug = save.getUg();

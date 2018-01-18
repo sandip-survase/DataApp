@@ -3,9 +3,6 @@ package placeme.octopusites.com.placeme.modal;
 
 import java.io.Serializable;
 
-/**
- * Created by Lincoln on 15/01/16.
- */
 public class RecyclerItemHrPlacement implements Serializable {
     private String companyname,lastmodifiedtime,registerednumber="",placednumber="",lastdateofreg;
     int id;

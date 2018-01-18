@@ -47,23 +47,28 @@ public class NewsFeedWebView extends AppCompatActivity {
         wb.getSettings().setJavaScriptEnabled(true);
         wb.getSettings().setLoadWithOverviewMode(true);
         wb.getSettings().setUseWideViewPort(true);
-        wb.setWebViewClient(new WebViewClient() {
+        wb.addJavascriptInterface(new WebAppInterface(NewsFeedWebView.this),"sunny");
+        wb.loadUrl("https://placeme.co.in/privacy-policy.jsp");
+        wb.setWebViewClient(new MyWebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                progDailog.show();
+                view.loadUrl(url);
+
                 webViewProgressBar.setVisibility(View.VISIBLE);
                 return true;
             }
 
             @Override
             public void onPageFinished(WebView view, final String url) {
+//                progDailog.dismiss();
                 webViewProgressBar.setVisibility(View.GONE);
             }
         });
-
-        wb.loadUrl("https://placeme.co.in/AESTest/GetDigest");
-
     }
+
+
 
 
     @Override

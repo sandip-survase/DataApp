@@ -202,9 +202,9 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
 
 //                startActivity(new Intent(getActivity(),PrivacyPolicy.class));
-//                startActivity(new Intent(getActivity(), NewsFeedWebView.class));
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/privacy-policy.jsp"));
-                startActivity(browserIntent);
+                startActivity(new Intent(getActivity(), NewsFeedWebView.class));
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://placeme.co.in/privacy-policy.jsp"));
+//                startActivity(browserIntent);
             }
         });
         termsselectionview.setOnClickListener(new View.OnClickListener() {

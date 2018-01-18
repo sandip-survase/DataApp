@@ -894,13 +894,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacemetsHr, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                    RecyclerItemHrPlacement item = placementListfromserver.get(position);
                 Log.d(TAG, "position: "+position);
-                RecyclerItemHrPlacement item = null;
                 Log.d(TAG, "registeredallListsfromserver: "+registeredallListsfromserver.size());
                 Log.d(TAG, "ShortlistedListsfromserver: "+ShortlistedListsfromserver.size());
                 Log.d(TAG, "placedallListsfromserver: "+placedallListsfromserver.size());
 
-//                    RecyclerItemHrPlacement item = itemListPlacementnew.get(position);
                 String sShortlistedListsfromservertemp = "", splacedItemlistTemp = "";
 
                 ArrayList<RecyclerItemUsers> RegisteredItemlistTemp = registeredallListsfromserver.get(position);
@@ -1040,9 +1039,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             public void onRefresh() {
 
 
-                if (selectedMenuFlag == 1)
+                if (notificationorplacementflag == 1)
                     getNotifications();
-                else if (selectedMenuFlag == 2)
+                else if (notificationorplacementflag == 2)
                     getPlacements();
 
 
@@ -2159,19 +2158,22 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                                    Log.d(TAG, "jsonshortlistedallallLists" + response.getString("jsonshortlistedallallLists"));
 //                                    Log.d(TAG, "jsonparamsplacedlistedallLists" + response.getString("jsonparamsplacedlistedallLists"));
 
-                                    Log.d(TAG, "placementListfromserver  before count: " + placementListfromserver);
+                                    Log.d(TAG, "placementListfromserver  before count: " + placementListfromserver.size());
 
                                     placementListfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(response.getString("jsonparamsList"), digest1, digest2);
-                                    Log.d(TAG, "placementListfromserver count: " + placementListfromserver);
-
-
+                                    Log.d(TAG, "placementListfromserver count: " + placementListfromserver.size());
                                     registeredallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(response.getString("jsonRegisteredAllLists"), digest1, digest2);
+                                    Log.d(TAG, "registeredallListsfromserver count: " + registeredallListsfromserver.size());
                                     ShortlistedListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(response.getString("jsonshortlistedallallLists"), digest1, digest2);
+                                    Log.d(TAG, "ShortlistedListsfromserver count: " + ShortlistedListsfromserver.size());
                                     placedallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(response.getString("jsonparamsplacedlistedallLists"), digest1, digest2);
-                                    Log.d("itemlistfromserver", "itemlistfromserver size: " + itemlistfromserver.size());
-                                    Log.d("itemlistfromserver", "registeredallListsfromserver: " + registeredallListsfromserver.size());
-                                    Log.d("itemlistfromserver", "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
-                                    Log.d("itemlistfromserver", "placedallListsfromserver: " + placedallListsfromserver.size());
+                                    Log.d(TAG, "placedallListsfromserver count: " + placedallListsfromserver.size());
+
+
+                                    Log.d(TAG, "placementListfromserver size: " + placementListfromserver.size());
+                                    Log.d(TAG, "registeredallListsfromserver: " + registeredallListsfromserver.size());
+                                    Log.d(TAG, "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
+                                    Log.d(TAG, "placedallListsfromserver: " + placedallListsfromserver.size());
 
                                     Log.d("check", "----------------ci=ontentx of list--------------------------: " + registeredallListsfromserver.get(0).size());
 
@@ -2180,6 +2182,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
                             } catch (Exception e) {
+                                Toast.makeText(HRActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "onResponse: "+e.getMessage());
                                 e.printStackTrace();
 
                             }
@@ -2219,7 +2223,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     void setplacementListtoadapter(ArrayList<RecyclerItemHrPlacement> itemlist) {
 
         itemList.addAll(itemlist);
-        Log.d(TAG, "itemlist " + itemlist.size());
+        Log.d(TAG, "placementListfromserver size in setplacementListtoadapter " + itemlist.size());
         recyclerViewPlacemetsHr.getRecycledViewPool().clear();
         mAdapter2.notifyDataSetChanged();
 

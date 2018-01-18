@@ -27,6 +27,7 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
     Context mContext;
     private ArrayList<RecyclerItemUsers> itemList;
     int flag;
+    String TAG="RecyclerItemUsersAdapter";
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, email;
@@ -63,13 +64,12 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        Log.d("TAG2", "flag: " + flag);
-
+        Log.d(TAG, "flag: " + flag);
         final RecyclerItemUsers item = itemList.get(position);
         try {
 
             holder.name.setText(item.getName());
-            holder.email.setText(Z.Decrypt(item.getEmail(), mContext));
+            holder.email.setText(item.getEmail());
             holder.name.setTypeface(Z.getBold(holder.name.getContext()));
             holder.email.setTypeface(Z.getLight(holder.email.getContext()));
 
