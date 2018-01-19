@@ -223,6 +223,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+//        try {
+//
+//            MySharedPreferencesManager.save(AdminActivity.this,"nameKey",Z.Encrypt("paragtiwari5@gmail.com",AdminActivity.this));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
         ShouldAnimateProfile.AdminActivity = AdminActivity.this;
         ShouldAnimateProfile.isInside = true;
         Z.CountOfUsersUnderAdmin = "0";
@@ -1386,13 +1394,13 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 {
                     IsSubadmin =true;
                     MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","true");
-//                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                     ParentAdmin = Z.Decrypt(json.getString("admin"),AdminActivity.this);
 
                 } else {
                     IsSubadmin = false;
                     MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","false");
-//                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
                 }
             }catch (Exception e){e.printStackTrace();}
             return r;

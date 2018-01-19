@@ -28,6 +28,7 @@ import java.util.List;
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.MyProfileFragment.instcode;
+import static placeme.octopusites.com.placeme.Z.isSubAdmin;
 
 public class CreateMultipleAdmin extends AppCompatActivity {
     TextInputEditText email;
@@ -95,7 +96,11 @@ public class CreateMultipleAdmin extends AppCompatActivity {
 
             case R.id.action_save:
                 if(Z.isAdminHrVerified(CreateMultipleAdmin.this)) {
-                    validate();
+                    if(!Z.isSubAdmin(CreateMultipleAdmin.this)) {
+                        validate();
+                    }
+                    else
+                        Toast.makeText(CreateMultipleAdmin.this, "You cannot create multiple TPO accounts", Toast.LENGTH_LONG).show();
                 }
                 else
                     Toast.makeText(CreateMultipleAdmin.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();

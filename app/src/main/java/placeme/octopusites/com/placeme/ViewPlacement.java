@@ -42,7 +42,6 @@ import placeme.octopusites.com.placeme.modal.Projects;
 import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.fromString;
-import static placeme.octopusites.com.placeme.MainActivity.photo;
 
 
 public class ViewPlacement extends AppCompatActivity {
@@ -53,7 +52,8 @@ public class ViewPlacement extends AppCompatActivity {
     String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1;
     String email2 = "", addressline1 = "", phone = "", lang1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "";
     String nameasten = "", mothername = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
-    String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
+    String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgsemoryearmarks;
+    String ugstream, ugcourse, pgcoursesem, pgstreamsem, pgcourseyear, pgstreamyear;
     Button registerbutton;
     ProgressBar progressBar;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
@@ -73,11 +73,8 @@ public class ViewPlacement extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_placement);
 
-
         username = MySharedPreferencesManager.getUsername(this);
-
         role = MySharedPreferencesManager.getRole(this);
-
         toolbar = (Toolbar) findViewById(R.id.placementtoolbar);
         setSupportActionBar(toolbar);
 
@@ -90,7 +87,6 @@ public class ViewPlacement extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
         String uploadedby_enc = getIntent().getStringExtra("uploadedby");
         uploadedby = uploadedby_enc;
         registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
@@ -101,8 +97,10 @@ public class ViewPlacement extends AppCompatActivity {
         companyname = getIntent().getStringExtra("companyname");
         cpackage = getIntent().getStringExtra("package");
         post = getIntent().getStringExtra("post");
+
         forwhichcourse = getIntent().getStringExtra("forwhichcourse");
         forwhichstream = getIntent().getStringExtra("forwhichstream");
+
         vacancies = getIntent().getStringExtra("vacancies");
         lastdateofregistration = getIntent().getStringExtra("lastdateofregistration");
         dateofarrival = getIntent().getStringExtra("dateofarrival");
@@ -152,36 +150,58 @@ public class ViewPlacement extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // download resume in database
+                studentmarks();
+
                 registerbutton.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                studentmarks();
-                validatedata();
+
+                if (forwhichcourse.contains(ugcourse)) {
+
+                    if (!ugstream.equals("")) {
+                        if (forwhichcourse.contains(ugstream)) {
+//                            Log.d("TAG", "oncreate you register succefully register");
+                            validatedata();
+                        } else {
+                            registerbutton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+//                            Log.d("TAG", "oncreate your stream is not different");
+                            Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the related notification for more details.", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+//                        Log.d("TAG", "oncreate your course not have stream succefully register");
+                        validatedata();
+                    }
+                } else {
+                    registerbutton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+//                    Log.d("TAG", "oncreate your course is diffrent not register");
+                    Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the related notification for more details.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
 //************
 
-        if(role.equals("alumni") ||role.equals("student") ){
+        if (role.equals("alumni") || role.equals("student")) {
 
-        String fnametocheck = s.getFname();
+            String fnametocheck = s.getFname();
 
-        if (fnametocheck == null) {
+            if (fnametocheck == null) {
 
-            GetStudentData getStudentData = new GetStudentData(ViewPlacement.this);
-            getStudentData.execute();
-            new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                GetStudentData getStudentData = new GetStudentData(ViewPlacement.this);
+                getStudentData.execute();
+                new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
+            } else {
+                studentmarks();
+                new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
+            }
         } else {
-            studentmarks();
-            new Getsingnature().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-
-        }
-        }else{
             LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
             registerbuttonlayout.setVisibility(View.GONE);
         }
-
 
 
 //        **********notification crash solution
@@ -235,6 +255,20 @@ public class ViewPlacement extends AppCompatActivity {
         studenttwelthordiplomamarks = s.getPercentage12();
         studentugmarks = s.getAggregateug();
 
+        studentpgsemoryearmarks= s.getAggregatepgsem();
+
+        ugcourse = s.getCourseug();
+        ugstream = s.getStreamug();
+        pgcoursesem = s.getCoursepgsem();
+        pgstreamsem = s.getStreampgsem();
+        pgcourseyear = s.getCoursepgyear();
+        pgstreamyear = s.getStreampgyear();
+
+        Log.d("TAG", "oncreate: selectedCourse  -" + ugcourse);
+        Log.d("TAG", "oncreate: selectedStream - " + ugstream);
+        Log.d("TAG", "oncreate: forwhichcourse  -" + forwhichcourse);
+        Log.d("TAG", "oncreate: forwhichstream - " + forwhichstream);
+
 
         if (fname != null && lname != null) {
 
@@ -271,6 +305,18 @@ public class ViewPlacement extends AppCompatActivity {
             } else
                 found_ug = 0;
         }
+
+        if (studentpgsemoryearmarks != null) {
+            if (!studentpgsemoryearmarks.equals("")) {
+//                found_pgsem = 1;
+            } else {
+//                found_pgsem = 0;
+                studentpgsemoryearmarks = s.getAggregatepgyear();
+//                found_pgyear = 1;
+
+            }
+        }
+
 
 
         if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
@@ -381,7 +427,7 @@ public class ViewPlacement extends AppCompatActivity {
             save.setStudentpgmarks("0.00");
 
         } else {
-            save.setStudentpgmarks(studentpgmarks);
+            save.setStudentpgmarks(studentpgsemoryearmarks);
             s12 = Float.parseFloat(studenttwelthordiplomamarks);
             if (s12 >= c12) {
                 twelthordiplomaflag = 1;
@@ -405,7 +451,7 @@ public class ViewPlacement extends AppCompatActivity {
     //*************************************************
     public void validatedata() {
 
-        Log.d("TAG", "validatedata: ShouldAnimateProfile.photo - "+ShouldAnimateProfile.photo);
+        Log.d("TAG", "validatedata: ShouldAnimateProfile.photo - " + ShouldAnimateProfile.photo);
         if (ShouldAnimateProfile.photo.equals("noupdate")) {
 
             registerbutton.setVisibility(View.VISIBLE);
@@ -415,11 +461,10 @@ public class ViewPlacement extends AppCompatActivity {
                     .setAction("OPEN", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(role.equals("student")) {
+                            if (role.equals("student")) {
                                 startActivity(new Intent(ViewPlacement.this, MainActivity.class).putExtra("status", 1));
                                 finish();
-                            }
-                            else {
+                            } else {
                                 startActivity(new Intent(ViewPlacement.this, AlumniActivity.class).putExtra("status", 1));
                                 finish();
                             }
@@ -680,7 +725,7 @@ public class ViewPlacement extends AppCompatActivity {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("id", id));
-                params.add(new BasicNameValuePair("u",username));
+                params.add(new BasicNameValuePair("u", username));
                 params.add(new BasicNameValuePair("f", fname));
                 params.add(new BasicNameValuePair("l", lname));
                 params.add(new BasicNameValuePair("lc", companyname));
@@ -754,8 +799,8 @@ public class ViewPlacement extends AppCompatActivity {
                 } else
                     Toast.makeText(ViewPlacement.this, "Not Register..!", Toast.LENGTH_SHORT).show();
 
-                registerbutton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
+//                registerbutton.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.GONE);
 
             } catch (Exception e) {
             }
@@ -782,10 +827,9 @@ public class ViewPlacement extends AppCompatActivity {
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-                if(role.equals("alumni")){
+                if (role.equals("alumni")) {
                     json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
-                }
-                else {
+                } else {
                     json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
                 }
 
@@ -983,8 +1027,8 @@ public class ViewPlacement extends AppCompatActivity {
             Log.d("TAG", "doInBackground: Getsingnature json " + json);
             try {
                 signature = json.getString("lastupdated");
-                ShouldAnimateProfile.photo =signature;
-                Log.d("TAG", "doInBackground: ShouldAnimateProfile.photo - "+ShouldAnimateProfile.photo);
+                ShouldAnimateProfile.photo = signature;
+                Log.d("TAG", "doInBackground: ShouldAnimateProfile.photo - " + ShouldAnimateProfile.photo);
             } catch (Exception ex) {
             }
             return signature;

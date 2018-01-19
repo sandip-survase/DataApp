@@ -1395,6 +1395,7 @@ public class MyProfileFragment extends Fragment {
                         universityug = obj2.selectedUniversity;
                         courseug = obj2.selectedCourse;
                         streamug = obj2.selectedStream;
+
                         studentData.setYearofpassingug(yearofpassingpgyear);
                         studentData.setCollegenameug(collegenameug);
                         studentData.setUniversityug(universityug);

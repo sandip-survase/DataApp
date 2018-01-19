@@ -91,6 +91,8 @@ import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 import placeme.octopusites.com.placeme.modal.MyProfileWeaknessesModal;
+import placeme.octopusites.com.placeme.modal.PgSem;
+import placeme.octopusites.com.placeme.modal.PgYear;
 import placeme.octopusites.com.placeme.modal.Projects;
 import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
 import placeme.octopusites.com.placeme.modal.RecyclerItemEdit;
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     int notificationcount = 0;
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     String proj1 = "", domain1 = "", team1 = "", duration1 = "", skill1 = "", strength1 = "", weak1 = "", lang1 = "", careerobj;
-    int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
+    int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0,found_pgsem=0,found_pgyear=0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
     StudentData studentData = new StudentData();
     int readstatuscountNotification = 0;
     RelativeLayout notificationcountrl;
@@ -1946,11 +1948,37 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
 
                         studentData.setAggregateug(obj2.aggregate);
+
+                        studentData.setCourseug(obj2.selectedCourse);
+                        studentData.setStreamug(obj2.selectedStream);
+
                         found_ug = 1;
+
+                        Log.d(TAG, "doInBackground: selectedCourse  -"+studentData.getCourseug());
+                        Log.d(TAG, "doInBackground: selectedStream - "+studentData.getStreamug());
                     }
 
+                    s = json.getString("pgsem");
+                    if (s.equals("found")) {
+                        Log.d("cricket", " VVS laxman  coming to bat");
+                        found_pgsem = 1;
+                        PgSem obj = (PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
 
-                    s = json.getString("projects");
+                        studentData.setAggregatepgsem(obj.getAggregatepgsem());
+                        studentData.setCoursepgsem(obj.getSelectedCoursepgsem());
+                        studentData.setStreampgsem(obj.getSelectedStreampgsem());
+
+                    }
+                    s = json.getString("pgyear");
+                    if (s.equals("found")) {
+                        Log.d("cricket", " VVS Sunil Gavskar  coming to bat");
+                        found_pgyear = 1;
+                        PgYear obj = (PgYear) fromString(json.getString("pgyeardata"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));
+                        studentData.setAggregatepgyear( obj.getAggregatepgyear());
+                        studentData.setCoursepgyear(obj.getSelectedCoursepgyear());
+                        studentData.setStreampgyear(obj.getSelectedStreampgyear());
+                    }
+                        s = json.getString("projects");
                     if (s.equals("found")) {
                         found_projects = 1;
                         ArrayList<Projects> projectsList = (ArrayList<Projects>) fromString(json.getString("projectsdata"), MySharedPreferencesManager.getDigest1(MainActivity.this), MySharedPreferencesManager.getDigest2(MainActivity.this));

@@ -86,6 +86,8 @@ import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 import placeme.octopusites.com.placeme.modal.MyProfileWeaknessesModal;
+import placeme.octopusites.com.placeme.modal.PgSem;
+import placeme.octopusites.com.placeme.modal.PgYear;
 import placeme.octopusites.com.placeme.modal.Projects;
 import placeme.octopusites.com.placeme.modal.RecyclerItemAdapter;
 import placeme.octopusites.com.placeme.modal.RecyclerItemAdapterPlacement;
@@ -134,7 +136,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     StudentData studentData = new StudentData();
     String nameasten = "", phone = "", addressline1 = "", addressline2 = "", addressline3 = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
-    int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
+    int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0,found_pgsem=0,found_pgyear=0, found_contact_details = 0, found_personal = 0, found_projects = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_skills = 0;
     //
     public static String photo = "noupdate";
 
@@ -1409,9 +1411,32 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         MyProfileUgModal obj2 = (MyProfileUgModal) fromString(ugdataobject, MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
 
                         studentData.setAggregateug(obj2.aggregate);
-
+                        studentData.setCourseug(obj2.selectedCourse);
+                        studentData.setStreamug(obj2.selectedStream);
                         found_ug = 1;
                     }
+
+                    s = json.getString("pgsem");
+                    if (s.equals("found")) {
+                        Log.d("cricket", " VVS laxman  coming to bat");
+                        found_pgsem = 1;
+                        PgSem obj = (PgSem) fromString(json.getString("pgsemdata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+
+                        studentData.setAggregatepgsem(obj.getAggregatepgsem());
+                        studentData.setCoursepgsem(obj.getSelectedCoursepgsem());
+                        studentData.setStreampgsem(obj.getSelectedStreampgsem());
+
+                    }
+                    s = json.getString("pgyear");
+                    if (s.equals("found")) {
+                        Log.d("cricket", " VVS Sunil Gavskar  coming to bat");
+                        found_pgyear = 1;
+                        PgYear obj = (PgYear) fromString(json.getString("pgyeardata"), MySharedPreferencesManager.getDigest1(AlumniActivity.this), MySharedPreferencesManager.getDigest2(AlumniActivity.this));
+                        studentData.setAggregatepgyear( obj.getAggregatepgyear());
+                        studentData.setCoursepgyear(obj.getSelectedCoursepgyear());
+                        studentData.setStreampgyear(obj.getSelectedStreampgyear());
+                    }
+
 
 
                     s = json.getString("projects");

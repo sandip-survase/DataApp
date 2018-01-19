@@ -623,28 +623,9 @@ public class CreatePlacementHr extends AppCompatActivity {
             sinsttaTags = instTag.getText().toString();
 
 //            newList
-            String tempforwhom="";
-            Log.d("TAG", "validate:  hashmap siza - " + hashMap.size());
-            Log.d("TAG", "validate:  hashmap size print - " + hashMap);
 
-            if(TagCreateList3.get(0)!="ALL") {
-                for (int j = 0; j < TagCreateList3.size(); j++) {
-                    Log.d("TAG", "validate: TagCreateList3 - " + TagCreateList3.get(j));
-                    String temp = TagCreateList3.get(j);
-                    tempforwhom = tempforwhom + hashMap.get(temp) + ",";
-                    Log.d("TAG", "validate:  tempforwhom  - " + tempforwhom);
-                }
-                tempforwhom = tempforwhom + "(" + username + ",PLACEME)";
-                forwhom=tempforwhom;
-            }
-            else {
-                forwhom = "PLACEME(ALL),("+ username + ",PLACEME)";;
-            }
 
             Log.d("TAG", "validate: TagCreateList3 tempforwhom - " +forwhom );
-
-
-
             Log.d("gettingtabData", "sbatchesTags: " + sbatchesTags);
             Log.d("gettingtabData", "sexptaTags: " + sexptaTags);
             Log.d("gettingtabData", "sinsttaTags: " + sinsttaTags);
@@ -660,6 +641,25 @@ public class CreatePlacementHr extends AppCompatActivity {
             } else {
 
 //                forwhom = "PLACEME(ALL)";
+
+
+                String tempforwhom="";
+                Log.d("TAG", "validate:  hashmap siza - " + hashMap.size());
+                Log.d("TAG", "validate:  hashmap size print - " + hashMap);
+
+                if(TagCreateList3.get(0)!="ALL") {
+                    for (int j = 0; j < TagCreateList3.size(); j++) {
+                        Log.d("TAG", "validate: TagCreateList3 - " + TagCreateList3.get(j));
+                        String temp = TagCreateList3.get(j);
+                        tempforwhom = tempforwhom + hashMap.get(temp) + ",";
+                        Log.d("TAG", "validate:  tempforwhom  - " + tempforwhom);
+                    }
+                    tempforwhom = tempforwhom + "(" + username + ",PLACEME)";
+                    forwhom=tempforwhom;
+                }
+                else {
+                    forwhom = "PLACEME(ALL),("+ username + ",PLACEME)";;
+                }
 
                 Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
