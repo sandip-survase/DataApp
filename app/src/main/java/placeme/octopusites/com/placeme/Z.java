@@ -131,7 +131,7 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_SavefileOnServer = IP_secured_sunny + "CreateNotificationTemp/SavefileOnServer";
 
     //    -------------------------------CreatePlacement -----------------------------------
-    public static final String url_CreatePlacements =   IP_secured_sunny + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements =   IP_local_Glassfish + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP_secured_sunny + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
