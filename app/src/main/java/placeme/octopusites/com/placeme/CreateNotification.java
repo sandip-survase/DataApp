@@ -656,7 +656,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
                     if (forstudflag == 1) {
                         //notification for Student
-                        forwhom = instname + "( " + Decrypt(encUsername, digest1, digest2) + " ,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                        forwhom =  MySharedPreferencesManager.getData(CreateNotification.this,"ucode") + "( " + Decrypt(encUsername, digest1, digest2) + " ,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                         if (forallumflag == 1) {
                             //for Stud + alumni
                             forwhom = forwhom + "," + sunny + ")";
@@ -671,7 +671,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
                         //notification not for Student
                         if (forallumflag == 1) {
                             //for ALLUMNI
-                            forwhom = instname + "( " + Decrypt(encUsername, digest1, digest2) + " ," + sunny + ")";
+                            forwhom =  MySharedPreferencesManager.getData(CreateNotification.this,"ucode") + "( " + Decrypt(encUsername, digest1, digest2) + " ," + sunny + ")";
                             Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                         } else {

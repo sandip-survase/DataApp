@@ -111,6 +111,7 @@ public class EditPlacement extends AppCompatActivity {
     SwipeRefreshLayout tswipe_refresh_layout;
     boolean newCreatedPlacements = false;
     private String TAG = "EditPlacemets";
+    String AdminType="";
 
 
     @Override
@@ -136,6 +137,13 @@ public class EditPlacement extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username = MySharedPreferencesManager.getUsername(this);
         String role = MySharedPreferencesManager.getRole(this);
+
+        if(Z.isSubAdmin(EditPlacement.this)){
+            AdminType="subadmin";
+        }else{
+            AdminType="admin";
+        }
+        Log.d(TAG, "AdminType: "+AdminType);
 
 //        try
 //        {
@@ -559,6 +567,7 @@ public class EditPlacement extends AppCompatActivity {
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_placement + "")
+                .addQueryParameter("t", AdminType)
                 .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
@@ -643,10 +652,14 @@ public class EditPlacement extends AppCompatActivity {
 
 
     private void GetPlacementsByAdminMetadata() {
+
+
+
         Log.d("TAG", "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
         AndroidNetworking.post(Z.url_GetPlacementSentByAdminByAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
+                .addQueryParameter("t", AdminType)
                 .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.signature.StringSignature;
 
 import java.text.Normalizer;
@@ -31,6 +32,7 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
     private String searchText;
     Context mContext;
     HashMap<String, String> encUser = new HashMap<String, String>();
+    String extractedusername=null;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -74,22 +76,44 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
         RecyclerItemPlacement item = itemList.get(position);
         try {
 
-            String value = encUser.get(item.getUploadedby());
+            Log.d("Tag", "contex: " + mContext);
+            Log.d("Tag", "uploadedby: " + item.getUploadedby());
+            Log.d("Tag", "getCompanyname: " + item.getCompanyname());
+
+            extractedusername = "" + item.getUploadedby();
+            if(extractedusername.contains("("))
+                extractedusername = extractedusername.substring(extractedusername.indexOf("(") + 1, extractedusername.indexOf(")"));
+
+            extractedusername = extractedusername.trim();
+            Log.d("Tag", "extractedusername after: " + extractedusername);
+
+
+
+            String value = encUser.get(extractedusername);
             if (value != null) {
             } else {
-                encUser.put(item.getUploadedby(), Z.Encrypt(item.getUploadedby(), mContext));
+                encUser.put(extractedusername, Z.Encrypt(extractedusername, mContext));
             }
+
+            Log.d("TAG", "encUser Size: -----------------   " + encUser.size());
+            Log.d("kun", "encUser: -----------------   " + encUser.get(extractedusername));
+
+
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImageThumbnail")
-                    .appendQueryParameter("u", encUser.get(item.getUploadedby()))
+                    .appendQueryParameter("u", encUser.get(extractedusername))
                     .build();
 
             Glide.with(mContext)
                     .load(uri)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .signature(new StringSignature(item.getSignature()))
                     .into(holder.uploadedbyprofile);
+
+
+            Log.d("Tag", "signature : " + item.getSignature());
 
 
             if (searchText != null) {
@@ -108,6 +132,7 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
             holder.cpackage.setTypeface(Z.getLight(holder.cpackage.getContext()));
             holder.post.setTypeface(Z.getLight(holder.post.getContext()));
 
+
             if (item.isIsread()) {
                 holder.companyname.setTextColor(Color.parseColor("#03353e"));
 
@@ -120,20 +145,24 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
 
 
             try {
-                Log.d("uploadedbysfdsdf", ": " + item.getUploadedby());
+                if(extractedusername!=null){
+                    char s1 = extractedusername.charAt(0);
 
-                Log.d("descrypttest", ": " + Z.Decrypt("9BQWBVslGra/4p5pzji+IwsZlNZqopirWZyfHPpAqbI=", mContext));
-                String s1 = item.getUploadedby();
-//            String s1Plain= Z.Decrypt(s1,mContext);
-                if (s1.equals("sandipsurvase1993@gmail.com")) {
-                    holder.logo.setVisibility(View.VISIBLE);
-                } else {
+
+                    if (s1=='C') {
+                        holder.logo.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.logo.setVisibility(View.INVISIBLE);
+                    }
+
+                }else{
                     holder.logo.setVisibility(View.INVISIBLE);
                 }
+
             } catch (Exception e) {
+                Log.d("uploadedbysfdsdf", e.getMessage());
                 e.printStackTrace();
             }
-
 
         } catch (Exception e) {
 

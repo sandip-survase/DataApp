@@ -109,6 +109,8 @@ public class EditNotification extends AppCompatActivity {
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
     private RecyclerItemEditNotificationAdapter mAdapterNotificationEdit;
     boolean newCreatedNotification = false;
+    String AdminType="";
+
 
 
     @Override
@@ -138,6 +140,13 @@ public class EditNotification extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if(Z.isSubAdmin(EditNotification.this)){
+            AdminType="subadmin";
+        }else{
+            AdminType="admin";
+        }
+        Log.d(TAG, "AdminType: "+AdminType);
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapterNotificationEdit = new RecyclerItemEditNotificationAdapter(itemListNotificationNew, EditNotification.this);
@@ -614,6 +623,7 @@ public class EditNotification extends AppCompatActivity {
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
+                .addQueryParameter("t", AdminType)
                 .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
@@ -736,6 +746,8 @@ public class EditNotification extends AppCompatActivity {
         AndroidNetworking.post(Z.url_GetNotificationsByAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
+                .addQueryParameter("t", AdminType)
+
                 .setPriority(Priority.LOW)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()

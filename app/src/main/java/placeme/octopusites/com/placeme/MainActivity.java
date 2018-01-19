@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             R.drawable.ebooks_icon,
             R.drawable.question_sets_icon,
     };
-    //initial setup
+    //initial setupmada
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
     //new
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
@@ -1243,6 +1243,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 i1.putExtra("noofallowedliveatkt", item.getNoofallowedliveatkt());
                 i1.putExtra("noofalloweddeadatkt", item.getNoofalloweddeadatkt());
                 startActivity(i1);
+                Log.d("putextra", " item.getUploadedby(): " +  item.getUploadedby());
+
             }
 
             @Override
@@ -1509,7 +1511,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         if (page_to_call_placement != placementpages) {
 
-            AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacements")
+            AndroidNetworking.post(Z.url_getplacements)
                     .setTag(this)
                     .addQueryParameter("u", username)
                     .addQueryParameter("p", page_to_call_placement + "")
@@ -1568,7 +1570,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             if (!isLastPageLoadedPlacement) {
                 lastPageFlagPlacement = 1;
 
-                AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacements")
+                AndroidNetworking.post(Z.url_getplacements)
                         .setTag(this)
                         .addQueryParameter("u", username)
                         .addQueryParameter("p", page_to_call_placement + "")
@@ -2876,7 +2878,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     private void RefreshPlacementCount() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetPlacementsMetaData")
+        AndroidNetworking.post(Z.url_getplacementsmetadata)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.LOW)
@@ -2937,7 +2939,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     private void  RefreshNotificationCount(){
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-        AndroidNetworking.post("https://placeme.co.in/CreateNotificationTemp/GetNotificationsMetaData")
+        AndroidNetworking.post(Z.url_getnotificationsmetadata)
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .setPriority(Priority.MEDIUM)

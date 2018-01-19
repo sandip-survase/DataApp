@@ -358,7 +358,7 @@ public class CreatePlacement extends AppCompatActivity {
                 } else {
                     if (forstudflag == 1) {
                         //notification for Student
-                        forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                        forwhom = MySharedPreferencesManager.getData(CreatePlacement.this,"ucode") + "(" + Decrypt(encUsername, digest1, digest2) + ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                         if (forallumflag == 1) {
                             //for Stud + alumni
                             forwhom = forwhom + "," + selectedBatchesForWhome + ")";
@@ -373,7 +373,7 @@ public class CreatePlacement extends AppCompatActivity {
                         //notification not for Student
                         if (forallumflag == 1) {
                             //for ALLUMNI
-                            forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + " ," + selectedBatchesForWhome + ")";
+                            forwhom = MySharedPreferencesManager.getData(CreatePlacement.this,"ucode") + "(" + Decrypt(encUsername, digest1, digest2) + " ," + selectedBatchesForWhome + ")";
                             Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                         } else {
@@ -562,6 +562,7 @@ public class CreatePlacement extends AppCompatActivity {
                     .setPositiveButton("Discard",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    setResult(299);
                                     CreatePlacement.super.onBackPressed();
                                 }
                             })
@@ -585,6 +586,7 @@ public class CreatePlacement extends AppCompatActivity {
 
             alertDialog.show();
         } else
+            setResult(299);
             CreatePlacement.super.onBackPressed();
     }
 
@@ -675,23 +677,7 @@ public class CreatePlacement extends AppCompatActivity {
             setResult(AdminActivity.ADMIN_CREATE_DATA_CHANGE_RESULT_CODE);
             Toast.makeText(CreatePlacement.this, result, Toast.LENGTH_SHORT).show();
             CreatePlacement.super.onBackPressed();
-//            CreatePlacement.super.onBackPressed();
 
-//            if(result.equals("success"))
-//            {
-//                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//
-//                Intent returnIntent = new Intent();
-//                returnIntent.putExtra("result", result);
-//                if(edittedFlag==1){
-//                    setResult(111);
-//                }
-//                CreateNotification.super.onBackPressed();
-//            }
-//            else {
-//                Toast.makeText(CreateNotification.this,result,Toast.LENGTH_SHORT).show();
-//
-//            }
         }
     }
 
