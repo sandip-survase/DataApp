@@ -66,6 +66,7 @@ import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
+import static placeme.octopusites.com.placeme.AdminActivity.IsSubadmin;
 
 public class AdminProfileFragment extends Fragment {
 
@@ -94,7 +95,7 @@ public class AdminProfileFragment extends Fragment {
     JSONObject json;
     String digest1, digest2;
     String username = "", resultofop;
-
+    String ParentAdmin;
     int found_lang = 0, found_AdminIntro = 0, found_institute = 0, found_box2 = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0;
     int found_contact_details = 0, found_personal = 0, found_exp = 0, found_admin_personal = 0;
     int intfromdat1 = 0, inttodate1 = 0, intfromdate2 = 0, inttodate2 = 0;
@@ -158,6 +159,9 @@ public class AdminProfileFragment extends Fragment {
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         username = MySharedPreferencesManager.getUsername(getActivity());
+
+//        ParentAdmin = MySharedPreferencesManager.getParent(getActivity());
+
         role = MySharedPreferencesManager.getRole(getActivity());
 
         hashMap = new HashMap<>();
@@ -406,12 +410,18 @@ public class AdminProfileFragment extends Fragment {
                 startActivityForResult(new Intent(getActivity(), AdminIntro.class), 0);
             }
         });
+
+
         eduedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(getActivity(), AdminInstituteDetails.class), 0);
+                    startActivityForResult(new Intent(getActivity(), AdminInstituteDetails.class), 0);
+
             }
         });
+
+
+
         accomplishmentsedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -471,6 +481,7 @@ public class AdminProfileFragment extends Fragment {
         try {
             byte[] usernameEncryptedBytes = SimpleBase64Encoder.decode(username);
             byte[] usernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, usernameEncryptedBytes);
+
             plainusername = new String(usernameDecryptedBytes);
             myprofilemail.setText(plainusername);
             contactemail.setText(plainusername);

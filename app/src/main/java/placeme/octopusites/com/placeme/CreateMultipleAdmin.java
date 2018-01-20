@@ -96,6 +96,7 @@ public class CreateMultipleAdmin extends AppCompatActivity {
 
             case R.id.action_save:
                 if(Z.isAdminHrVerified(CreateMultipleAdmin.this)) {
+
                     if(!Z.isSubAdmin(CreateMultipleAdmin.this)) {
                         validate();
                     }

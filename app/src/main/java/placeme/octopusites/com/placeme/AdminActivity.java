@@ -187,6 +187,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
+
+
     private RecyclerView recyclerViewNotification, recyclerViewPlacement;
 
     private ArrayList<RecyclerItemEdit> itemListNotificationNew = new ArrayList<>();
@@ -199,9 +201,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     Toolbar toolbar;
     RelativeLayout admincontrolsrl;
     TextView bluePanelTv;
-
-
-
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
         if (str == null || searchStr == null) return false;
@@ -1367,6 +1366,53 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
+    class checkadmin extends AsyncTask<String, String, String> {
+
+        protected String doInBackground(String... param) {
+
+
+            String r=null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u",username));    //0
+
+            try {
+                Log.d(TAG, "doInBackground: username "+Z.Decrypt(username,AdminActivity.this));
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
+            json = jParser.makeHttpRequest(Z.url_IssubAdmin, "GET", params);
+            try {
+
+                r = json.getString("info");
+                String ucodef = json.getString("ucodef");
+//                Log.d(TAG, "doInBackground: json - "+json);
+
+               if(ucodef.equals("found")){
+                   String ucode = json.getString("ucode");
+                   MySharedPreferencesManager.save(AdminActivity.this,"ucode",ucode);
+               }
+
+                if(r.equals("yes"))
+                {
+                    IsSubadmin =true;
+                    MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","true");
+                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+                    ParentAdmin = Z.Decrypt(json.getString("admin"),AdminActivity.this);
+                    MySharedPreferencesManager.save(AdminActivity.this,"ParentAdmin",ParentAdmin);
+
+                } else {
+                    IsSubadmin = false;
+                    MySharedPreferencesManager.save(AdminActivity.this,"IsSubadmin","false");
+                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
+                }
+            }catch (Exception e){e.printStackTrace();}
+            return r;
+        }
+
+
+    }
 
 
 
@@ -1504,6 +1550,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new ChangeReadStatusNotification().execute(id);
 
     }
+
 
     @Override
     public void onImagesChosen(List<ChosenImage> list) {
@@ -1775,6 +1822,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
+
     void filterPlacements(String text) {
         tempListPlacement = new ArrayList();
         for (RecyclerItemPlacement d : itemListPlacementnew) {
@@ -1830,10 +1878,24 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         new GetCountOfUsersUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+
+//        if (navMenuFlag == 2) {
+//
+//            getNotifications();
+//        } else if (navMenuFlag == 3) {
+//            getPlacements();
+//        }
+
+//    }
+
     public void setUserCount() {
         bluePanelTv.setText(Z.CountOfUsersUnderAdmin + Z.users_under_your_supervision);
         Log.d("TAG", "setUserCount: " + Z.CountOfUsersUnderAdmin);
     }
+
 
     void loginFirebase(final String username, String hash) {
 
@@ -1884,6 +1946,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 });
     }
 
+
+
+
+
+
     private void setplacementListtoadapter(ArrayList<RecyclerItemPlacement> itemList2) {
 
         itemListPlacementnew.addAll(itemList2);
@@ -1909,6 +1976,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             messagecountrl.setVisibility(View.GONE);
         }
     }
+
 
     private void GetNotificationsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
@@ -1981,18 +2049,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 });
     }
 
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-
-//        if (navMenuFlag == 2) {
-//
-//            getNotifications();
-//        } else if (navMenuFlag == 3) {
-//            getPlacements();
-//        }
-
-//    }
 
     private void GetNotifications2() {
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
@@ -2595,59 +2651,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-    class checkadmin extends AsyncTask<String, String, String> {
-
-        protected String doInBackground(String... param) {
-
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));    //0
-
-            try {
-                Log.d(TAG, "doInBackground: username " + Z.Decrypt(username, AdminActivity.this));
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
-
-            json = jParser.makeHttpRequest(Z.url_IssubAdmin, "GET", params);
-            try {
-
-                r = json.getString("info");
-                Log.d(TAG, "doInBackground: result - " + r);
-                Log.d(TAG, "doInBackground: json - " + json);
-
-                String ucodef = json.getString("ucodef");
-//                Log.d(TAG, "doInBackground: json - "+json);
-
-                if (ucodef.equals("found")) {
-                    String ucode = json.getString("ucode");
-                    MySharedPreferencesManager.save(AdminActivity.this, "ucode", ucode);
-                    String temp = MySharedPreferencesManager.getData(AdminActivity.this, "ucode");
-                }
-
-                if (r.equals("yes")) {
-                    IsSubadmin = true;
-                    MySharedPreferencesManager.save(AdminActivity.this, "IsSubadmin", "true");
-                    Log.d(TAG, "doInBackground: IsSubadmin - " + IsSubadmin);
-//                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
-                    ParentAdmin = Z.Decrypt(json.getString("admin"), AdminActivity.this);
-
-                } else {
-                    IsSubadmin = false;
-                    MySharedPreferencesManager.save(AdminActivity.this, "IsSubadmin", "false");
-                    Log.d(TAG, "doInBackground: IsSubadmin - " + IsSubadmin);
-//                    Log.d(TAG, "doInBackground: IsSubadmin - "+IsSubadmin);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-
-    }
 
     class CreateFirebaseUser extends AsyncTask<String, String, String> {
 

@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -333,9 +332,17 @@ public class AdminInstituteDetails extends AppCompatActivity {
             }
         });
 
-        if(IsSubadmin)
-        {
+        if (IsSubadmin) {
             iname.setFocusable(false);
+            iemail.setFocusable(false);
+            iweb.setFocusable(false);
+            iphone.setFocusable(false);
+            ialtphone.setFocusable(false);
+            uniname.setFocusable(false);
+            caddrline1.setFocusable(false);
+            caddrline2.setFocusable(false);
+            caddrline3.setFocusable(false);
+            ireg.setFocusable(false);
         }
 
     }
@@ -384,16 +391,14 @@ public class AdminInstituteDetails extends AppCompatActivity {
                                 instreginput.setError("Kindly enter valid registration number");
                                 errorflag6 = 1;
                             } else {
-                                if (instcaddrline1.length() < 2){
+                                if (instcaddrline1.length() < 2) {
                                     caddrline1input.setError("Kindly enter valid address");
                                     errorflag6 = 1;
-                                }
-                                else {
+                                } else {
                                     if (instcaddrline2.length() < 2) {
                                         caddrline2input.setError("Kindly enter valid address");
                                         errorflag6 = 1;
-                                    }
-                                    else {
+                                    } else {
                                         if (instcaddrline3.length() < 2) {
                                             caddrline3input.setError("Kindly enter valid address");
                                             errorflag6 = 1;
@@ -416,7 +421,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
                 /////******************object work*******************////////
                 //one field is to be stored in adminintro
                 try {
-                    obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg,instcaddrline1,instcaddrline2,instcaddrline3);
+                    obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg, instcaddrline1, instcaddrline2, instcaddrline3);
 //
                     digest1 = MySharedPreferencesManager.getDigest1(this);
                     digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -441,8 +446,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             case R.id.action_save:
                 if (edittedFlag == 1) {
                     validateandSave();
-                }
-                else {
+                } else {
                     onBackPressed();
                 }
                 break;

@@ -34,9 +34,9 @@ public class AdminInstituteTabFragment extends Fragment {
     //    Button save;
 //    ProgressBar saveprogress;
     public static final String Username = "nameKey";
-    EditText iname, iemail, iweb, iphone, ialtphone, uniname,caddrline1, caddrline2, caddrline3, ireg;
+    EditText iname, iemail, iweb, iphone, ialtphone, uniname, caddrline1, caddrline2, caddrline3, ireg;
     String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
-    TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,caddrline1input, caddrline2input, caddrline3input,instreginput;
+    TextInputLayout instnameinput, instemailinput, instwebinput, instphoneinput, instphoneainput, instuniversityinput, caddrline1input, caddrline2input, caddrline3input, instreginput;
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
     int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
     String digest1, digest2;
@@ -57,21 +57,21 @@ public class AdminInstituteTabFragment extends Fragment {
 
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
-        username=MySharedPreferencesManager.getUsername(getActivity());
-        String role=MySharedPreferencesManager.getRole(getActivity());
+        username = MySharedPreferencesManager.getUsername(getActivity());
+        String role = MySharedPreferencesManager.getRole(getActivity());
         encUsername = username;
 
-        instnameinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instemailinput=(TextInputLayout)rootView.findViewById(R.id.instemailinput);
-        instwebinput=(TextInputLayout)rootView.findViewById(R.id.instwebinput);
-        instphoneinput=(TextInputLayout)rootView.findViewById(R.id.instphoneinput);
-        instphoneainput=(TextInputLayout)rootView.findViewById(R.id.instphoneainput);
-        instuniversityinput=(TextInputLayout)rootView.findViewById(R.id.instuniversityinput);
-        instreginput=(TextInputLayout)rootView.findViewById(R.id.instreginput);
+        instnameinput = (TextInputLayout) rootView.findViewById(R.id.instnameinput);
+        instemailinput = (TextInputLayout) rootView.findViewById(R.id.instemailinput);
+        instwebinput = (TextInputLayout) rootView.findViewById(R.id.instwebinput);
+        instphoneinput = (TextInputLayout) rootView.findViewById(R.id.instphoneinput);
+        instphoneainput = (TextInputLayout) rootView.findViewById(R.id.instphoneainput);
+        instuniversityinput = (TextInputLayout) rootView.findViewById(R.id.instuniversityinput);
+        instreginput = (TextInputLayout) rootView.findViewById(R.id.instreginput);
 
-        caddrline1input = (TextInputLayout)rootView. findViewById(R.id.caddrline1input);
-        caddrline2input = (TextInputLayout)rootView. findViewById(R.id.caddrline2input);
-        caddrline3input = (TextInputLayout)rootView.findViewById(R.id.caddrline3input);
+        caddrline1input = (TextInputLayout) rootView.findViewById(R.id.caddrline1input);
+        caddrline2input = (TextInputLayout) rootView.findViewById(R.id.caddrline2input);
+        caddrline3input = (TextInputLayout) rootView.findViewById(R.id.caddrline3input);
 
         instnameinput.setTypeface(Z.getLight(getActivity()));
         instemailinput.setTypeface(Z.getLight(getActivity()));
@@ -92,11 +92,11 @@ public class AdminInstituteTabFragment extends Fragment {
         ialtphone = (EditText) rootView.findViewById(R.id.instphonea);
         uniname = (EditText) rootView.findViewById(R.id.instuniversity);
         ireg = (EditText) rootView.findViewById(R.id.instreg);
-        loctxt = (TextView)rootView.findViewById(R.id.loctxt);
+        loctxt = (TextView) rootView.findViewById(R.id.loctxt);
 
-        caddrline1 = (EditText)rootView. findViewById(R.id.caddrline1);
-        caddrline2 = (EditText)rootView. findViewById(R.id.caddrline2);
-        caddrline3 = (EditText)rootView. findViewById(R.id.caddrline3);
+        caddrline1 = (EditText) rootView.findViewById(R.id.caddrline1);
+        caddrline2 = (EditText) rootView.findViewById(R.id.caddrline2);
+        caddrline3 = (EditText) rootView.findViewById(R.id.caddrline3);
 
         iname.setTypeface(Z.getBold(getActivity()));
         iemail.setTypeface(Z.getBold(getActivity()));
@@ -327,9 +327,18 @@ public class AdminInstituteTabFragment extends Fragment {
         });
 
 
-        if(IsSubadmin)
-        {
+        if (IsSubadmin) {
             iname.setFocusable(false);
+            iemail.setFocusable(false);
+            iweb.setFocusable(false);
+            iphone.setFocusable(false);
+            ialtphone.setFocusable(false);
+            uniname.setFocusable(false);
+            caddrline1.setFocusable(false);
+            caddrline2.setFocusable(false);
+            caddrline3.setFocusable(false);
+            ireg.setFocusable(false);
+
         }
 
 
@@ -424,7 +433,7 @@ public class AdminInstituteTabFragment extends Fragment {
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
 
-                AdminInstituteModal obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname,instreg,instcaddrline1,instcaddrline2,instcaddrline3);
+                AdminInstituteModal obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg, instcaddrline1, instcaddrline2, instcaddrline3);
                 digest1 = MySharedPreferencesManager.getDigest1(getActivity());
                 digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
@@ -491,7 +500,7 @@ public class AdminInstituteTabFragment extends Fragment {
             json = jParser.makeHttpRequest(Z.url_SaveAdminInstituteData, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: r - "+r);
+                Log.d("TAG", "doInBackground: r - " + r);
 
             } catch (Exception e) {
                 e.printStackTrace();
