@@ -61,8 +61,8 @@ public static final String IP_8086 = "http://162.213.199.3:8086/";
     //======================================= login =====================================
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
-    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
     public static final String url_getdigest = IP + "AESTest/GetDigest";
+    public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
     public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
     //======================================= login =====================================
@@ -75,22 +75,21 @@ public static final String IP_8086 = "http://162.213.199.3:8086/";
 public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
-    public static final String url_changenotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
 
     public static final String url_getplacementsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsMetaData";
     public static final String url_getplacementsreadstatus = IP + "CreateNotificationTemp/GetReadStatusOfPlacements";
-    public static final String url_changeplacementsreadstatus = IP_secured_sunny + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
     public static final String url_getplacements = IP_secured_sunny + "CreateNotificationTemp/GetPlacements";
     //                           --------------------alumniActivity(alumni)----------------------------------------------
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
     public static final String url_GetReadStatusOfNotificationsAlumni = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
     public static final String url_GetNotificationsAlumni = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAlumni";
 
-    public static final String url_ChangeNotificationReadStatus = IP_secured_sunny + "CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static final String url_ChangeNotificationReadStatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
     public static final String url_GetPlacementsAlumniAlumniMetaData = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsAlumniMetaData";
     public static final String url_GetReadStatusOfPlacementsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
     public static final String url_GetPlacementsAlumni = IP + "CreateNotificationTemp/GetPlacementsAlumni";
-    public static final String url_ChangePlacementReadStatus = IP_secured_sunny + "CreateNotificationTemp/ChangePlacementReadStatus";
     //                                --------------------adminActivity-----------------
 //placement urls
     public static final String url_GetPlacementsAdminAdminMetaData = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsAdminMetaData";
@@ -116,38 +115,38 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String GetPlacementsCreatedByHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
     public static final String url_GetPlacementsCreatedByHr = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHr";
 
-    public static final String url_GetNotificationsHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHrMetadata";
-    public static final String url_GetNotificationsHr = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHr";
+    public static final String url_GetNotificationsHrMetadata = IP + "CreateNotificationTemp/GetNotificationsHrMetadata";
+    public static final String url_GetNotificationsHr = IP + "CreateNotificationTemp/GetNotificationsHr";
 
 
     //    -------------------------------EditPlacementHr -----------------------------------
-    public static final String url_GetPlacementSentByHr = IP_secured_sunny + "CreateNotificationTemp/GetPlacementSentByHr";
+    public static final String url_GetPlacementSentByHr = IP + "CreateNotificationTemp/GetPlacementSentByHr";
     //    -------------------------------EditPlacementMainHr -----------------------------------
-    public static final String url_ModifyPlacementHr = IP_secured_sunny + "CreateNotificationTemp/ModifyPlacementHr";
+    public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
-    public static final String url_UploadAttach1 = IP_local_Glassfish + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification =IP_secured_sunny + "CreateNotificationTemp/ModifyNotification";
-    public static final String url_GetForWhomeNotification = IP_secured_sunny + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
+    public static final String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
+    public static final String url_ModifyNotification =IP + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP_secured_sunny + "CreateNotificationTemp/SavefileOnServer";
 
     //    -------------------------------CreatePlacement -----------------------------------
-    public static final String url_CreatePlacements =   IP_local_Glassfish + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
-    public static final String url_CreatePlacementsHr = IP_secured_sunny + "CreateNotificationTemp/CreatePlacementsHr";
+    public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
-    public static final String url_CreateNotificationHrToEach = IP_secured_sunny + "CreateNotificationTemp/CreateNotificationHrToEach";
+    public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
-    public static final String url_GetForWhomePlacements = IP_secured_sunny + "CreateNotificationTemp/GetForWhomePlacements";
-    public static final String url_ModifyPlacement = IP_secured_sunny + "CreateNotificationTemp/ModifyPlacement";
+    public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
+    public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
 
 
     //    ---------------------------------------ViewPlacement -----------------------------------
-    public static final String url_RegisterForPlacement = IP_secured_sunny + "CreateNotificationTemp/RegisterForPlacementss";
+    public static final String url_RegisterForPlacement = IP + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_secured_sunny + "CreateNotificationTemp/GetStudentMarksInfo";
-    public static final String url_SaveResume = IP_secured_sunny + "GenerateResumeWithJODConverter3/SaveResume";
+    public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
     //----------------------------------------EditPlacementMain -----------------------------------
-    public static final String url_SaveShortListedUsers = IP_secured_sunny + "CreateNotificationTemp/SaveShortListedUsers";
-    public static final String url_SavePlacedUsers = IP_secured_sunny + "CreateNotificationTemp/SavePlacedUsers";
+    public static final String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
+    public static final String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
     public static final String url_SaveRegistereduserStatus = IP_secured_sunny + "CreateNotificationTemp/SaveRegistereduserStatus";
 
     public static final int USER_DATA_CHANGE_RESULT_CODE = 888;

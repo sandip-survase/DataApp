@@ -1693,43 +1693,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     }
 
 
-    class GetPlacements2 extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-            String r = null;
-
-
-            ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-
-
-            json = jParser.makeHttpRequest(Z.url_GetPlacementsAdmin, "GET", params);
-            try {
-
-                Log.d("json1", "placementlistfromserver " + json.getString("placementlistfromserver"));
-                placementListfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(json.getString("placementlistfromserver"), MySharedPreferencesManager.getDigest1(HRActivity.this), MySharedPreferencesManager.getDigest2(HRActivity.this));
-                Log.d("itemlistfromserver", "reg=======================" + placementListfromserver.size());
-                Log.d("itemlistfromserver", "getNotification1=======================" + placementListfromserver.get(0).getCompanyname());
-
-
-            } catch (Exception e) {
-            }
-
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-//            setserverlisttoadapter(placementListfromserver);
-
-        }
-    }
 
     class isVerified extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {

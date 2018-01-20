@@ -1292,7 +1292,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
 
         getNotifications();
-        new GetUnreadMessagesCount().execute();
+
 //        new UpdateFirebaseToken().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetStudentData().execute();
 
@@ -2827,7 +2827,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 .setTag(this)
                 .addQueryParameter("u", username)
                 .addQueryParameter("p", page_to_call_notification + "")
-
                 .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
@@ -2912,6 +2911,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
+                            new GetUnreadMessagesCount().execute();
 
                         } catch (JSONException e) {
                             e.printStackTrace();

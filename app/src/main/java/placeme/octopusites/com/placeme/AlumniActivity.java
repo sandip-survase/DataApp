@@ -2019,7 +2019,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(Z.url_ChangePlacementReadStatus, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_changeplacementsreadstatus, "GET", params);
             return r;
         }
 

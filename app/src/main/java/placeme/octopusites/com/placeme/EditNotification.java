@@ -695,50 +695,6 @@ public class EditNotification extends AppCompatActivity {
 
     }
 
-    class GetNotificationsByadminMetadata extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-
-            try {
-
-                json = jParser.makeHttpRequest(Z.url_GetNotificationsByAdminMetaData, "GET", params);
-
-                notificationpages = Integer.parseInt(json.getString("pages"));
-                called_pages_notification = new int[notificationpages];
-                total_no_of_notifications = Integer.parseInt(json.getString("count"));
-                unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-
-                Log.d("FinaltestN", "notificationpages: " + notificationpages);
-                Log.d("FinaltestN", "total_no_of_notifications: " + total_no_of_notifications);
-                Log.d("FinaltestN", "unreadcountNotification: " + unreadcountNotification);
-
-//
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-
-
-//                new GetplacementbyAdmin().execute();
-
-
-            } catch (Exception e) {
-                Toast.makeText(EditNotification.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-
-        }
-    }
 
 
     private void GetNotificationsByadminMetadata() {
