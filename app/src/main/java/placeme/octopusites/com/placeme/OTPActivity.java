@@ -265,16 +265,19 @@ public class OTPActivity extends AppCompatActivity {
                 MySharedPreferencesManager.save(OTPActivity.this, Z.PASSWORD_KEY, encpassword);
                 MySharedPreferencesManager.save(OTPActivity.this, "otp", "no");
 
+                Log.d("KUN", "onPostExecute: encUsername" + encUsername);
+                Log.d("KUN", "onPostExecute: encpassword" + encpassword);
+
                     String role = MySharedPreferencesManager.getRole(OTPActivity.this);
-                    String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
-                    String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
+//                    String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+//                    String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
 //                    Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
                     if (role.equals("student")) {
-                        CreateFirebaseUser(u, p);
+                        CreateFirebaseUser(encUsername, encpassword);
                         try {
-                            loginFirebase(Z.Decrypt(u, OTPActivity.this), Z.md5(Z.Decrypt(p, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
+                            loginFirebase(Z.Decrypt(encUsername, OTPActivity.this), Z.md5(Z.Decrypt(encpassword, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -284,9 +287,9 @@ public class OTPActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (role.equals("alumni")) {
-                        CreateFirebaseUser(u, p);
+                        CreateFirebaseUser(encUsername, encpassword);
                         try {
-                            loginFirebase(Z.Decrypt(u, OTPActivity.this), Z.md5(Z.Decrypt(p, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
+                            loginFirebase(Z.Decrypt(encUsername, OTPActivity.this), Z.md5(Z.Decrypt(encpassword, OTPActivity.this) + MySharedPreferencesManager.getDigest3(OTPActivity.this)));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
