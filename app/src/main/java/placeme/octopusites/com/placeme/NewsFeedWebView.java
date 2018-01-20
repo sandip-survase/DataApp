@@ -36,6 +36,9 @@ public class NewsFeedWebView extends AppCompatActivity {
         String headerURL = getIntent().getStringExtra("url");
         String headerTitle = getIntent().getStringExtra("title");
 
+//        String headerURL="https://placeme.co.in/privacy-policy.jsp";
+//        String headerTitle="Privacy Policy";
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle(headerTitle);
         ab.setSubtitle(headerURL);
@@ -51,7 +54,7 @@ public class NewsFeedWebView extends AppCompatActivity {
         wb.addJavascriptInterface(new WebAppInterface(NewsFeedWebView.this),"sunny");
 //        wb.loadUrl("https://placeme.co.in/privacy-policy.jsp");
         wb.loadUrl(headerURL);
-        wb.setWebViewClient(new MyWebViewClient() {
+        wb.setWebViewClient(new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
