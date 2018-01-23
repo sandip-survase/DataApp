@@ -17,9 +17,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,12 +36,12 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class AdminSingleUserViewDialog extends AppCompatActivity {
 
     int flag = 0;
-    CheckBox checkboxplaced, checkboxnotplaced, CheckBoxdebar, CheckBoxsnotdebar, checkboxstudent, checkboxalumni;
+    //    CheckBox checkboxplaced, checkboxnotplaced, CheckBoxdebar, CheckBoxsnotdebar, checkboxstudent, checkboxalumni;
     TextInputEditText email, companyname;
     TextInputLayout emailinput, companynameinput;
     String PLACED = "", DEBAR = "", ROLE = "";
     String username, strcompanyname, isactivated, encRole;
-    String encUsername, encCompanyname, encPlaced, encdebar, encadminUsername;
+    String encUsername, encCompanyname, encPlaced, encdebar, encadminUsername, encVerify;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     private byte[] demo1DecryptedBytes;
@@ -52,6 +52,13 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
     Boolean changeFlag = false;
     String digest1, digest2;
     TextView ass2txt, passpasstxt, placementstatus2txt, debarstatus2txt, rolestatus2txt;
+    RadioGroup radioGroupVerify, radioGroupPlaced, radioGroupDebar, radioGroupStudent_Alumni;
+    RadioButton radioButtonVerified, radioButtonNotVerified;
+    RadioButton radioButtonPlaced, radioButtonNotPlaced;
+    RadioButton radioButtonDebar, radioButtonNotDebar;
+    RadioButton radioButtonStudent, radioButtonAlumni;
+
+    String isVerify = "no";
 
 
     @Override
@@ -70,23 +77,23 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.while_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        checkboxplaced = (CheckBox) findViewById(R.id.checkboxplaced);
-        checkboxnotplaced = (CheckBox) findViewById(R.id.checkboxnotplaced);
-        CheckBoxdebar = (CheckBox) findViewById(R.id.CheckBoxdebar);
-        CheckBoxsnotdebar = (CheckBox) findViewById(R.id.CheckBoxsnotdebar);
-        checkboxstudent = (CheckBox) findViewById(R.id.checkboxstudent);
-        checkboxalumni = (CheckBox) findViewById(R.id.checkboxalumni);
-        trash2ImageView = (ImageView) findViewById(R.id.trash2);
+//        checkboxplaced = (CheckBox) findViewById(R.id.checkboxplaced);
+//        checkboxnotplaced = (CheckBox) findViewById(R.id.checkboxnotplaced);
+//        CheckBoxdebar = (CheckBox) findViewById(R.id.CheckBoxdebar);
+//        CheckBoxsnotdebar = (CheckBox) findViewById(R.id.CheckBoxsnotdebar);
+//        checkboxstudent = (CheckBox) findViewById(R.id.checkboxstudent);
+//        checkboxalumni = (CheckBox) findViewById(R.id.checkboxalumni);
+
         //default
 
-        checkboxplaced.setTypeface(Z.getBold(this));
-        checkboxnotplaced.setTypeface(Z.getBold(this));
-        CheckBoxdebar.setTypeface(Z.getBold(this));
-        CheckBoxsnotdebar.setTypeface(Z.getBold(this));
-        checkboxstudent.setTypeface(Z.getBold(this));
-        checkboxalumni.setTypeface(Z.getBold(this));
+//        checkboxplaced.setTypeface(Z.getBold(this));
+//        checkboxnotplaced.setTypeface(Z.getBold(this));
+//        CheckBoxdebar.setTypeface(Z.getBold(this));
+//        CheckBoxsnotdebar.setTypeface(Z.getBold(this));
+//        checkboxstudent.setTypeface(Z.getBold(this));
+//        checkboxalumni.setTypeface(Z.getBold(this));
 
-
+        trash2ImageView = (ImageView) findViewById(R.id.trash2);
         ass2txt = (TextView) findViewById(R.id.ass2txt);
         passpasstxt = (TextView) findViewById(R.id.passpasstxt);
         placementstatus2txt = (TextView) findViewById(R.id.placementstatus2txt);
@@ -110,35 +117,152 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
         email.setTypeface(Z.getBold(this));
         companyname.setTypeface(Z.getBold(this));
-
+        View trash2 = (View) findViewById(R.id.trash2selectionview);
         demoKeyBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest1(AdminSingleUserViewDialog.this));
         demoIVBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest2(AdminSingleUserViewDialog.this));
         sPadding = "ISO10126Padding";
         encadminUsername = MySharedPreferencesManager.getUsername(AdminSingleUserViewDialog.this);
 
+        radioGroupVerify = (RadioGroup) findViewById(R.id.radioGroupVerify);
+        radioGroupPlaced = (RadioGroup) findViewById(R.id.radioGroupPlaced);
+        radioGroupDebar = (RadioGroup) findViewById(R.id.radioGroupDebar);
+        radioGroupStudent_Alumni = (RadioGroup) findViewById(R.id.radioGroupStudent_Alumni);
+
+        radioButtonVerified = (RadioButton) findViewById(R.id.radioButtonVerified);
+        radioButtonNotVerified = (RadioButton) findViewById(R.id.radioButtonNotVerified);
+
+        radioButtonPlaced = (RadioButton) findViewById(R.id.radioButtonPlaced);
+        radioButtonNotPlaced = (RadioButton) findViewById(R.id.radioButtonNotPlaced);
+
+        radioButtonDebar = (RadioButton) findViewById(R.id.radioButtonDebar);
+        radioButtonNotDebar = (RadioButton) findViewById(R.id.radioButtonNotDebar);
+
+        radioButtonStudent = (RadioButton) findViewById(R.id.radioButtonStudent);
+        radioButtonAlumni = (RadioButton) findViewById(R.id.radioButtonAlumni);
+
+
         username = getIntent().getStringExtra("studentUsername");
         ROLE = getIntent().getStringExtra("role");
         Log.d("TAG", "onCreate: role got from back activity " + ROLE);
         isactivated = getIntent().getStringExtra("isactivated");
+        isVerify = getIntent().getStringExtra("isVerify");
+
+        PLACED = getIntent().getStringExtra("isPlaced");
+        DEBAR = getIntent().getStringExtra("isDebar");
+        String companyName = getIntent().getStringExtra("companyName");
         email.setText(username);
 
+        if (isVerify != null && isVerify.equals("yes"))
+            radioButtonVerified.setChecked(true);
+        else
+            radioButtonNotVerified.setChecked(true);
+
+        if (PLACED != null && PLACED.equals("yes")) {
+            radioButtonPlaced.setChecked(true);
+            if (companyName != null) {
+                companyname.setVisibility(View.VISIBLE);
+                companyname.setText(companyName);
+
+            }
+        } else {
+            radioButtonNotPlaced.setChecked(true);
+            companyname.setVisibility(View.GONE);
+        }
+
+        if (DEBAR != null && DEBAR.equals("yes"))
+            radioButtonDebar.setChecked(true);
+        else
+            radioButtonNotDebar.setChecked(true);
+
         if (ROLE.equals("student")) {
-            checkboxstudent.setChecked(true);
-            checkboxalumni.setChecked(false);
+            radioButtonStudent.setChecked(true);
         } else if (ROLE.equals("alumni")) {
-            checkboxalumni.setChecked(true);
-            checkboxstudent.setChecked(false);
+            radioButtonAlumni.setChecked(true);
         } else
-            checkboxstudent.setChecked(true);
-
-
-        View trash2 = (View) findViewById(R.id.trash2selectionview);
+            radioButtonStudent.setChecked(true);
 
         if (isactivated.equals("Activated")) {
             trash2.setVisibility(View.GONE);
             trash2ImageView.setVisibility(View.GONE);
             email.setFocusable(false);
         }
+
+        changeFlag = false;
+
+        try {
+            encUsername = Z.Encrypt(username, AdminSingleUserViewDialog.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        radioGroupVerify.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radioButtonVerified:
+                        isVerify = "yes";
+                        Log.d("KUN", "radioButtonVerified: " + isVerify);
+                        break;
+                    case R.id.radioButtonNotVerified:
+                        isVerify = "no";
+                        Log.d("KUN", "radioButtonNotVerified: " + isVerify);
+                        break;
+                }
+                changeFlag = true;
+            }
+        });
+
+        radioGroupPlaced.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radioButtonPlaced:
+                        companyname.setError(null);
+                        PLACED = "yes";
+                        companyname.setVisibility(View.VISIBLE);
+                        break;
+                    case R.id.radioButtonNotPlaced:
+                        companyname.setText("");
+                        PLACED = "no";
+                        companyname.setVisibility(View.GONE);
+                        break;
+                }
+                changeFlag = true;
+            }
+        });
+
+        radioGroupDebar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radioButtonDebar:
+                        DEBAR = "yes";
+                        Log.d("KUN", "radioButtonVerified: " + DEBAR);
+                        break;
+                    case R.id.radioButtonNotDebar:
+                        DEBAR = "no";
+                        Log.d("KUN", "radioButtonNotVerified: " + DEBAR);
+                        break;
+                }
+                changeFlag = true;
+            }
+        });
+
+        radioGroupStudent_Alumni.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radioButtonStudent:
+                        ROLE = "student";
+                        break;
+                    case R.id.radioButtonAlumni:
+                        ROLE = "alumni";
+                        break;
+                }
+                changeFlag = true;
+            }
+        });
+
 
         trash2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +277,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         new DeleteNonActiveUser().execute();
-                                        AdminSingleUserViewDialog.super.onBackPressed();
+
                                     }
                                 })
 
@@ -186,7 +310,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                companyname.setError(null);
+                companynameinput.setError(null);
             }
 
             @Override
@@ -195,98 +319,98 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             }
         });
 
-        checkboxplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checkboxnotplaced.setChecked(false);
-                    companyname.setError(null);
-                    PLACED = "yes";
-                    companyname.setVisibility(View.VISIBLE);
-                } else {
-                    checkboxnotplaced.setChecked(true);
-                    PLACED = "no";
-                }
-                changeFlag = true;
-            }
-        });
+//        checkboxplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    checkboxnotplaced.setChecked(false);
+//                    companyname.setError(null);
+//                    PLACED = "yes";
+//                    companyname.setVisibility(View.VISIBLE);
+//                } else {
+//                    checkboxnotplaced.setChecked(true);
+//                    PLACED = "no";
+//                }
+//                changeFlag = true;
+//            }
+//        });
+//
+//        checkboxnotplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//                companyname.setError(null);
+//                if (isChecked) {
+//                    checkboxplaced.setChecked(false);
+//                    companyname.setText("");
+//                    PLACED = "no";
+//                    companyname.setVisibility(View.GONE);
+//                } else {
+//                    checkboxplaced.setChecked(true);
+//                    PLACED = "yes";
+//                }
+//                changeFlag = true;
+//            }
+//        });
 
-        checkboxnotplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                companyname.setError(null);
-                if (isChecked) {
-                    checkboxplaced.setChecked(false);
-                    companyname.setText("");
-                    PLACED = "no";
-                    companyname.setVisibility(View.GONE);
-                } else {
-                    checkboxplaced.setChecked(true);
-                    PLACED = "yes";
-                }
-                changeFlag = true;
-            }
-        });
+//        CheckBoxdebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    CheckBoxsnotdebar.setChecked(false);
+//                    DEBAR = "yes";
+//                } else {
+//                    CheckBoxsnotdebar.setChecked(true);
+//                    DEBAR = "no";
+//                }
+//                changeFlag = true;
+//            }
+//        });
+//
+//        CheckBoxsnotdebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    CheckBoxdebar.setChecked(false);
+//                    DEBAR = "no";
+//                } else {
+//                    CheckBoxdebar.setChecked(true);
+//                    DEBAR = "yes";
+//                }
+//                changeFlag = true;
+//            }
+//        });
 
+//        checkboxstudent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    checkboxalumni.setChecked(false);
+//                    ROLE = "student";
+//                } else {
+//                    checkboxalumni.setChecked(true);
+//                    ROLE = "alumni";
+//                }
+//                changeFlag = true;
+//            }
+//        });
+//
+//        checkboxalumni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    checkboxstudent.setChecked(false);
+//                    ROLE = "alumni";
+//                } else {
+//                    checkboxstudent.setChecked(true);
+//                    ROLE = "student";
+//                }
+//                changeFlag = true;
+//            }
+//        });
 
-        CheckBoxdebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    CheckBoxsnotdebar.setChecked(false);
-                    DEBAR = "yes";
-                } else {
-                    CheckBoxsnotdebar.setChecked(true);
-                    DEBAR = "no";
-                }
-                changeFlag = true;
-            }
-        });
-
-        CheckBoxsnotdebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    CheckBoxdebar.setChecked(false);
-                    DEBAR = "no";
-                } else {
-                    CheckBoxdebar.setChecked(true);
-                    DEBAR = "yes";
-                }
-                changeFlag = true;
-            }
-        });
-
-        checkboxstudent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checkboxalumni.setChecked(false);
-                    ROLE = "student";
-                } else {
-                    checkboxalumni.setChecked(true);
-                    ROLE = "alumni";
-                }
-                changeFlag = true;
-            }
-        });
-
-        checkboxalumni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checkboxstudent.setChecked(false);
-                    ROLE = "alumni";
-                } else {
-                    checkboxstudent.setChecked(true);
-                    ROLE = "student";
-                }
-                changeFlag = true;
-            }
-        });
-
-        new GetRegisteredUsersUnderAdmin().execute();
+//        new GetRegisteredUsersUnderAdmin().execute();
 
         email.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -358,100 +482,95 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
     }
 
 
-    class GetRegisteredUsersUnderAdmin extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            try {
-
-                byte[] usernameBytes = username.getBytes("UTF-8");
-
-
-                byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", encUsername));
-                Log.d("TAG", "doInBackground: pass username " + username);
-
-                json = jParser.makeHttpRequest(Z.url_GetPlacedDebarInfo, "GET", params);
-
-                String info = json.getString("info");
-                Log.d("TAG", "doInBackground: GetRegisteredUsersUnderAdmin info " + info);
-                if (info.equals("success")) {
-
-                    String isplaced = json.getString("isplaced");
-                    strcompanyname = json.getString("companyname");
-                    String isdebar = json.getString("isdebar");
-
-                    Log.d("TAG", "doInBackground: isplaced " + isplaced);
-                    Log.d("TAG", "doInBackground: isdebar " + isdebar);
-
-                    if (!isplaced.equals("null")) {
-                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(isplaced);
-                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-                        isplaced = new String(demo1DecryptedBytes);
-                        PLACED = isplaced;
-
-                    }
-
-                    if (!strcompanyname.equals("null")) {
-                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(strcompanyname);
-                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-                        strcompanyname = new String(demo1DecryptedBytes);
-
-
-                    }
-
-                    if (!isdebar.equals("null")) {
-                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(isdebar);
-                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-                        isdebar = new String(demo1DecryptedBytes);
-                        DEBAR = isdebar;
-
-                    }
-
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.d("TAG", "doInBackground: exp " + e.getMessage());
-            }
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-//            Log.d("TAG", "onPostExecute: PLACED "+PLACED);
-//            Log.d("TAG", "onPostExecute: DEBAR "+DEBAR);
-//            Log.d("TAG", "onPostExecute: strcompanyname "+strcompanyname);
-            if (PLACED.equals("yes")) {
-                checkboxplaced.setChecked(true);
-                checkboxnotplaced.setChecked(false);
-            } else {
-                checkboxnotplaced.setChecked(true);
-                checkboxplaced.setChecked(false);
-            }
-
-            if (DEBAR.equals("yes")) {
-                CheckBoxdebar.setChecked(true);
-                CheckBoxsnotdebar.setChecked(false);
-            } else {
-                CheckBoxsnotdebar.setChecked(true);
-                CheckBoxdebar.setChecked(false);
-            }
-
-            if (strcompanyname != null && !strcompanyname.equals(""))
-                companyname.setText(strcompanyname);
-
-            changeFlag = false;
-        }
-
-    }
+//    class GetRegisteredUsersUnderAdmin extends AsyncTask<String, String, String> {
+//
+//
+//        protected String doInBackground(String... param) {
+//
+//
+//            try {
+//
+//                byte[] usernameBytes = username.getBytes("UTF-8");
+//
+//
+//                byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+//                encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+//
+//                List<NameValuePair> params = new ArrayList<NameValuePair>();
+//                params.add(new BasicNameValuePair("u", encUsername));
+//                Log.d("TAG", "doInBackground: pass username " + username);
+//
+//                json = jParser.makeHttpRequest(Z.url_GetPlacedDebarInfo, "GET", params);
+//
+//                String info = json.getString("info");
+//                Log.d("TAG", "doInBackground: GetRegisteredUsersUnderAdmin info " + info);
+//                if (info.equals("success")) {
+//
+//                    String isplaced = json.getString("isplaced");
+//                    strcompanyname = json.getString("companyname");
+//                    String isdebar = json.getString("isdebar");
+//
+//                    Log.d("TAG", "doInBackground: isplaced " + isplaced);
+//                    Log.d("TAG", "doInBackground: isdebar " + isdebar);
+//
+//                    if (!isplaced.equals("null")) {
+//                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(isplaced);
+//                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
+//                        isplaced = new String(demo1DecryptedBytes);
+//                        PLACED = isplaced;
+//
+//                    }
+//
+//                    if (!strcompanyname.equals("null")) {
+//                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(strcompanyname);
+//                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
+//                        strcompanyname = new String(demo1DecryptedBytes);
+//
+//
+//                    }
+//
+//                    if (!isdebar.equals("null")) {
+//                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(isdebar);
+//                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
+//                        isdebar = new String(demo1DecryptedBytes);
+//                        DEBAR = isdebar;
+//
+//                    }
+//
+//
+//                }
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Log.d("TAG", "doInBackground: exp " + e.getMessage());
+//            }
+//            return "";
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//
+////            Log.d("TAG", "onPostExecute: PLACED "+PLACED);
+////            Log.d("TAG", "onPostExecute: DEBAR "+DEBAR);
+////            Log.d("TAG", "onPostExecute: strcompanyname "+strcompanyname);
+//            if (PLACED.equals("yes"))
+//                radioButtonPlaced.setChecked(true);
+//            else
+//                radioButtonNotPlaced.setChecked(true);
+//
+//
+//            if (DEBAR.equals("yes"))
+//                radioButtonDebar.setChecked(true);
+//            else
+//                radioButtonNotDebar.setChecked(true);
+//
+//            if (strcompanyname != null && !strcompanyname.equals(""))
+//                companyname.setText(strcompanyname);
+//
+//            changeFlag = false;
+//        }
+//
+//    }
 
     void validateandSave() {
 
@@ -466,7 +585,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             email.setError("Incorrect Username");
             errorflag = 1;
         }
-        if (checkboxplaced.isChecked()) {
+        if (radioButtonPlaced.isChecked()) {
             if (strcompanyname.length() < 1) {
                 errorflag = 1;
                 companynameinput.setError("Kindly enter valid company name");
@@ -476,15 +595,15 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         if (errorflag == 0) {
             try {
 
-                byte[] usernameBytes = username.getBytes("UTF-8");
+//                byte[] usernameBytes = username.getBytes("UTF-8");
                 byte[] companynameBytes = strcompanyname.getBytes("UTF-8");
 
                 byte[] placedBytes = PLACED.getBytes("UTF-8");
                 byte[] debarBytes = DEBAR.getBytes("UTF-8");
 
 
-                byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+//                byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+//                encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
 
                 byte[] companynameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, companynameBytes);
                 encCompanyname = new String(SimpleBase64Encoder.encode(companynameEncryptedBytes));
@@ -497,6 +616,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
 
                 encRole = AES4all.Encrypt(ROLE, digest1, digest2);
+                encVerify = Z.Encrypt(isVerify, AdminSingleUserViewDialog.this);
 
                 new SaveData().execute();
 
@@ -519,6 +639,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             params.add(new BasicNameValuePair("c", encCompanyname));      //     2
             params.add(new BasicNameValuePair("d", encdebar));            //     3
             params.add(new BasicNameValuePair("r", encRole));            //     4
+            params.add(new BasicNameValuePair("v", encVerify));            //     5
 
             Log.d("TAG", "validateandSave: input role" + encRole);
 
@@ -556,7 +677,6 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
     class DeleteNonActiveUser extends AsyncTask<String, String, String> {
 
-
         protected String doInBackground(String... param) {
 
             String r = null;
@@ -566,9 +686,10 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             Log.d("TAG", "doInBackground: delete admin " + encadminUsername);
             Log.d("TAG", "doInBackground: delete admin " + encUsername);
             json = jParser.makeHttpRequest(Z.url_DeleteNonActiveUser, "GET", params);
+            Log.d("TAG", "DeleteNonActiveUser: json " + json);
+
             try {
                 r = json.getString("info");
-                Log.d("TAG", "DeleteNonActiveUser: json " + json);
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("TAG", "DeleteNonActiveUser: exp " + e.getMessage());
@@ -578,9 +699,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (result != null && result.equals("success"))
+            if (result != null && result.equals("success")) {
                 Toast.makeText(AdminSingleUserViewDialog.this, "Successfully deleted..!", Toast.LENGTH_SHORT).show();
-
+                setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
+                AdminSingleUserViewDialog.super.onBackPressed();
+            }
         }
     }
 

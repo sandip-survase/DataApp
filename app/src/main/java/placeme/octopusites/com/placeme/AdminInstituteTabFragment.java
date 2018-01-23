@@ -367,6 +367,17 @@ public class AdminInstituteTabFragment extends Fragment {
         instcaddrline2 = caddrline2.getText().toString();
         instcaddrline3 = caddrline3.getText().toString();
 
+        boolean flag = false;
+        if (!instemail.contains(".edu")) {
+            if (!instemail.contains(".org")) {
+                if (!instemail.contains(".ac.in")) {
+                    flag = true;
+                }
+            }
+        }
+
+
+
         if (instname.length() < 2) {
 
             instnameinput.setError("Kindly enter valid institute name");
@@ -374,8 +385,8 @@ public class AdminInstituteTabFragment extends Fragment {
 
         } else {
             instnameinput.setError(null);
-            if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
-                instemailinput.setError("Kindly enter valid email address (must contain .edu)");
+            if (!instemail.contains("@") || flag == true) {
+                instemailinput.setError("Incorrect professional email.(Must contain .edu, .org, .ac.in)");
                 errorflag1 = 1;
             } else {
                 instemailinput.setError(null);

@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -79,51 +80,100 @@
                 android:textSize="12dp"
                 android:paddingTop="5dp" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verify user"
+                android:layout_below="@+id/passpasstxt"
+                android:textColor="@color/dark_color"
+                android:textSize="12dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/verify" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupVerify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/verify"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/gendertxt"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonVerified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="Verified"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/radioButtonNotVerified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="true"
+                    android:text="Not Verified"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+            </RadioGroup>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/sky_blue_color"
-                android:layout_below="@+id/passpasstxt"
+                android:layout_below="@+id/radioGroupVerify"
                 android:layout_marginTop="5dp"
-                android:id="@+id/line11" />
+                android:id="@+id/line12" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placement Status"
-                android:layout_below="@+id/line11"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/radioGroupVerify"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp"
                 android:textColor="@color/dark_color"
                 android:id="@+id/placementstatus2txt" />
 
-            <CheckBox
-                android:id="@+id/checkboxplaced"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/radioGroupPlaced"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/placementstatus2txt"
-                android:text="Placed"
                 android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                android:layout_marginLeft="14dp" />
+                android:layout_toRightOf="@+id/gendertxt"
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkboxnotplaced"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/placementstatus2txt"
-                android:layout_toRightOf="@+id/checkboxplaced"
-                android:text="Not Placed"
-                android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp" />
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonPlaced"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="Placed"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/radioButtonNotPlaced"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="true"
+                    android:text="Not Placed"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+            </RadioGroup>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/checkboxnotplaced"
+                android:layout_below="@+id/radioGroupPlaced"
                 android:layout_marginTop="5dp"
                 android:id="@+id/companynameinput"
                 android:theme="@style/TextLabel">
@@ -159,34 +209,42 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/debarstatus2txt" />
 
-            <CheckBox
-                android:id="@+id/CheckBoxdebar"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/radioGroupDebar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/debarstatus2txt"
-                android:text="Debarred"
                 android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                android:layout_marginLeft="14dp" />
+                android:layout_toRightOf="@+id/gendertxt"
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/CheckBoxsnotdebar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/debarstatus2txt"
-                android:layout_toRightOf="@+id/CheckBoxdebar"
-                android:text="Not Debarred"
-                android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp" />
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonDebar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="Debarred"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/radioButtonNotDebar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="true"
+                    android:text="Not Debarred"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+            </RadioGroup>
+
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/sky_blue_color"
-                android:layout_below="@+id/CheckBoxsnotdebar"
+                android:layout_below="@+id/radioGroupDebar"
                 android:layout_marginTop="5dp"
                 android:id="@+id/line33" />
 
@@ -200,28 +258,35 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/rolestatus2txt" />
 
-            <CheckBox
-                android:id="@+id/checkboxstudent"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/radioGroupStudent_Alumni"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rolestatus2txt"
-                android:text="Student"
                 android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                android:layout_marginLeft="14dp" />
+                android:layout_toRightOf="@+id/gendertxt"
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkboxalumni"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rolestatus2txt"
-                android:layout_toRightOf="@+id/checkboxstudent"
-                android:text="Alumni"
-                android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="@color/dark_color"
-                android:layout_marginLeft="20dp" />
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="Student"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/radioButtonAlumni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="true"
+                    android:text="Alumni"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+            </RadioGroup>
 
 
         </RelativeLayout>

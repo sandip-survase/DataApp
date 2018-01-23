@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Select The filters"
+        android:layout_marginBottom="15dp"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/verifyststus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="5dp"
+        android:text="Verification Status"
+        android:textColor="@color/dark_color"
+        android:textSize="12dp" />
+
+    <CheckBox
+        android:id="@+id/checkboxVerify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verifyststus"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Verified"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkboxNotVerify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verifyststus"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
+        android:text="Not Verified"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+
+    <View
+        android:id="@+id/line222"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/checkboxNotVerify"
+        android:layout_marginTop="5dp"
+        android:background="@color/sky_blue_color" />
+
+
+    <TextView
+        android:id="@+id/Activatedststus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line222"
+        android:layout_marginTop="5dp"
+        android:text="Activation Status"
+        android:textColor="@color/dark_color"
+        android:textSize="12dp" />
+
+
+    <CheckBox
+        android:id="@+id/checkboxActivated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Activatedststus"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Activated"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkboxNotActivated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Activatedststus"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
+        android:text="Not Activated"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+
+    <View
+        android:id="@+id/line2222"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/checkboxNotActivated"
+        android:layout_marginTop="5dp"
+        android:background="@color/sky_blue_color" />
+
+
+    <TextView
+        android:id="@+id/placementstatus2txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line2222"
+        android:layout_marginTop="5dp"
+        android:text="Placement Status"
+        android:textColor="@color/dark_color"
+        android:textSize="12dp" />
+
+    <CheckBox
+        android:id="@+id/checkboxPlaced"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/placementstatus2txt"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Placed"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkboxNotPlaced"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/placementstatus2txt"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
+        android:text="Not Placed"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+
+    <View
+        android:id="@+id/line22"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/checkboxNotPlaced"
+        android:layout_marginTop="5dp"
+        android:background="@color/sky_blue_color" />
+
+    <TextView
+        android:id="@+id/debarstatus2txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line22"
+        android:layout_marginTop="5dp"
+        android:text="Debar Status"
+        android:textColor="@color/dark_color"
+        android:textSize="12dp" />
+
+    <CheckBox
+        android:id="@+id/CheckBoxDebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/debarstatus2txt"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Debarred"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+    <CheckBox
+        android:id="@+id/CheckBoxsNotDebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/debarstatus2txt"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
+        android:text="Not Debarred"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+    <View
+        android:id="@+id/line33"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/CheckBoxsNotDebar"
+        android:layout_marginTop="5dp"
+        android:background="@color/sky_blue_color" />
+
+    <TextView
+        android:id="@+id/rolestatus2txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line33"
+        android:layout_marginTop="5dp"
+        android:text="Role status"
+        android:textColor="@color/dark_color"
+        android:textSize="12dp" />
+
+    <CheckBox
+        android:id="@+id/checkboxStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rolestatus2txt"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Student"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkboxAlumni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rolestatus2txt"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
+        android:text="Alumni"
+        android:textColor="@color/dark_color"
+        android:theme="@style/MyCheckBox" />
+
+
+</RelativeLayout>

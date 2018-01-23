@@ -136,9 +136,20 @@ public class CreateMultipleAdmin extends AppCompatActivity {
         }
 
         Log.d("TAG", "doInBackground: encuserEmail "+userEmail);
-            if (userEmail != null && !userEmail.equals("")) {
 
-                if (userEmail.contains("@")  && userEmail.contains(".edu")) {
+        boolean flag = false;
+        if (!userEmail.contains(".edu")) {
+            if (!userEmail.contains(".org")) {
+                if (!userEmail.contains(".ac.in")) {
+                    flag = true;
+                }
+            }
+        }
+
+
+
+            if (userEmail != null && !userEmail.equals("")) {
+                if (userEmail.contains("@") && flag == false) {
 
                     try {
                         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -157,9 +168,9 @@ public class CreateMultipleAdmin extends AppCompatActivity {
                         Log.d("TAG", "baby:" + e.getMessage());
                     }
                 } else
-                    adduserinput.setError("Kindly enter valid email address (must contain .edu)");
+                    adduserinput.setError("Incorrect professional email.(Must contain .edu, .org, .ac.in)");
             } else
-                adduserinput.setError("Kindly enter valid email address (must contain .edu)");
+                adduserinput.setError("Incorrect professional email.(Must contain .edu, .org, .ac.in)");
     }
 
     class CreateAdmin extends AsyncTask<String, String, String> {
@@ -191,13 +202,9 @@ public class CreateMultipleAdmin extends AppCompatActivity {
             if (result.equals("success")) {
                 edittedFlag = 0;
                 Toast.makeText(CreateMultipleAdmin.this, "Admin successfully Created!", Toast.LENGTH_SHORT).show();
-                setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
-
             } else if (result.equals("userExist")) {
                 edittedFlag = 0;
                 Toast.makeText(CreateMultipleAdmin.this, "Admin already exist on Placeme", Toast.LENGTH_LONG).show();
-            } else if (result.equals("Missing domain")) {
-                Toast.makeText(CreateMultipleAdmin.this, "Kindly check email Address", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(CreateMultipleAdmin.this, "Fail to create user", Toast.LENGTH_SHORT).show();
             }

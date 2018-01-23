@@ -364,6 +364,15 @@ public class AdminInstituteDetails extends AppCompatActivity {
         instcaddrline2 = caddrline2.getText().toString();
         instcaddrline3 = caddrline3.getText().toString();
 
+        boolean flag = false;
+        if (!instemail.contains(".edu")) {
+            if (!instemail.contains(".org")) {
+                if (!instemail.contains(".ac.in")) {
+                    flag = true;
+                }
+            }
+        }
+
 
         if (instname.length() < 2) {
             instnameinput.setError("Kindly enter valid institute name");
@@ -371,8 +380,8 @@ public class AdminInstituteDetails extends AppCompatActivity {
             errorflag7 = 1;
 
         } else {
-            if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
-                instemailinput.setError("Kindly enter valid email address (must contain .edu)");
+            if (!instemail.contains("@") || flag == true) {
+                instemailinput.setError("Incorrect professional email.(Must contain .edu, .org, .ac.in)");
                 errorflag1 = 1;
             } else {
                 if (instweb.length() < 3 || !instweb.contains(".")) {

@@ -40,7 +40,7 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
             super(view);
             name = (TextView) view.findViewById(R.id.name);
             email = (TextView) view.findViewById(R.id.email);
-            role = (TextView) view.findViewById(R.id.role);
+            role = (TextView) view.findViewById(R.id.role);                // change role to isVerify
             isactivated = (TextView) view.findViewById(R.id.placed);      // changed place to isactivated
             uploadedbyprofile = (CircleImageView) view.findViewById(R.id.uploadedbyprofile);
             name.setTypeface(Z.getBold(name.getContext()));
@@ -98,11 +98,25 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
 
 
         holder.name.setText(item.getName());
-        holder.role.setText(item.getRole());
+
         if (item.getIsactivated().equals("Not Activated")) {
             holder.isactivated.setTextColor(Color.parseColor("#00bcd4"));
             holder.isactivated.setTypeface(Z.getBold(holder.isactivated.getContext()));
+        } else {
+            holder.isactivated.setTextColor(Color.parseColor("#03353e"));
         }
+
+
+        if (item.getVerifys().equals("no")) {
+            holder.role.setText("Not Verified");
+            holder.role.setTextColor(Color.parseColor("#00bcd4"));
+            holder.role.setTypeface(Z.getBold(holder.isactivated.getContext()));
+        } else {
+            holder.role.setText("Verified");
+            holder.role.setTextColor(Color.parseColor("#03353e"));
+        }
+
+
         holder.isactivated.setText(item.getIsactivated());
 
 

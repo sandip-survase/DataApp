@@ -1,10 +1,9 @@
 package placeme.octopusites.com.placeme.modal;
 
-/**
- * Created by sunny
- */
+
 public class RecyclerItemUsersAdmin {
-    private String name, email,role,isactivated,encemail,signatsure;
+    private String name, email, role, isactivated, encemail, signatsure;
+    String isplaceds, isDebars, companyNames, verifys;
 
 
     public String getSignatsure() {
@@ -15,15 +14,51 @@ public class RecyclerItemUsersAdmin {
         this.signatsure = signatsure;
     }
 
-    public RecyclerItemUsersAdmin(String encemail, String name, String email, String role, String isactivated, String signatsure) {
+    public RecyclerItemUsersAdmin(String encemail, String name, String email, String role, String isactivated, String signatsure, String isplaceds, String isDebars, String companyNames, String verifys) {
         this.name = name;
         this.email = email;
         this.role = role;
         this.isactivated = isactivated;
-        this.encemail=encemail;
-        this.signatsure=signatsure;
+        this.encemail = encemail;
+        this.signatsure = signatsure;
+        this.isplaceds = isplaceds;
+        this.isDebars = isDebars;
+        this.companyNames = companyNames;
+        this.verifys = verifys;
 
 
+    }
+
+    public String getIsplaceds() {
+        return isplaceds;
+    }
+
+    public void setIsplaceds(String isplaceds) {
+        this.isplaceds = isplaceds;
+    }
+
+    public String getIsDebars() {
+        return isDebars;
+    }
+
+    public void setIsDebars(String isDebars) {
+        this.isDebars = isDebars;
+    }
+
+    public String getCompanyNames() {
+        return companyNames;
+    }
+
+    public void setCompanyNames(String companyNames) {
+        this.companyNames = companyNames;
+    }
+
+    public String getVerifys() {
+        return verifys;
+    }
+
+    public void setVerifys(String verifys) {
+        this.verifys = verifys;
     }
 
     public String getIsactivated() {
