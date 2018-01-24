@@ -1877,7 +1877,7 @@ public class MyProfileUg extends AppCompatActivity {
 
                                                                                                         if(!aggregate.equals(""))
                                                                                                             aggg = Float.parseFloat(aggregate);
-                                                                                                        if (aggg<=0||aggg>=100) {
+                                                                                                        if (aggg <= 0 || aggg > 100) {
                                                                                                             errorflag1 = 1;
                                                                                                             uaggregateinput.setError("Kindly enter valid Aggregate");
                                                                                                         }

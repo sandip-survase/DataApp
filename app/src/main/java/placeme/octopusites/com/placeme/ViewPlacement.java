@@ -151,32 +151,37 @@ public class ViewPlacement extends AppCompatActivity {
             public void onClick(View view) {
                 // download resume in database
                 studentmarks();
-
                 registerbutton.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
-                if (forwhichcourse.contains(ugcourse)) {
-
-                    if (!ugstream.equals("")) {
-                        if (forwhichcourse.contains(ugstream)) {
+                if (Z.isStudentVerified(ViewPlacement.this)) {
+                    if (forwhichcourse.contains(ugcourse)) {
+                        if (!ugstream.equals("")) {
+                            if (forwhichcourse.contains(ugstream)) {
 //                            Log.d("TAG", "oncreate you register succefully register");
-                            validatedata();
-                        } else {
-                            registerbutton.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
+                                validatedata();
+                            } else {
+                                registerbutton.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
 //                            Log.d("TAG", "oncreate your stream is not different");
-                            Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the related notification for more details.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the relevant notification for more details.", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+//                        Log.d("TAG", "oncreate your course not have stream succefully register");
+                            validatedata();
                         }
                     } else {
-//                        Log.d("TAG", "oncreate your course not have stream succefully register");
-                        validatedata();
+                        registerbutton.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+//                    Log.d("TAG", "oncreate your course is diffrent not register");
+                        Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the relevant notification for more details.", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     registerbutton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
-//                    Log.d("TAG", "oncreate your course is diffrent not register");
-                    Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the related notification for more details.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ViewPlacement.this, "You are still not approved by your TPO.", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
@@ -317,8 +322,6 @@ public class ViewPlacement extends AppCompatActivity {
             }
         }
 
-
-
         if (dob != null && mobile != null && hobbies != null && addrline1c != null && addrline2c != null && addrline3c != null) {
             if (!dob.equals("") && !mobile.equals("") && !hobbies.equals("") && !addrline1c.equals("") && !addrline2c.equals("") && !addrline3c.equals("")) {
                 found_personal = 1;
@@ -392,7 +395,6 @@ public class ViewPlacement extends AppCompatActivity {
 
 
         }
-
         if (found_twelth == 0 && found_diploma == 0) {
 //                        please fill twelth or diploma information
             save.setStudenttwelthordiplomamarks("0.00");

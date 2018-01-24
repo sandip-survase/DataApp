@@ -1208,11 +1208,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     if (unreadcountPlacement == 0) {
                         placementcountrl.setVisibility(View.GONE);
                     }
-
                 }
 
                 mAdapterPlacement.notifyDataSetChanged();
-
                 changeReadStatusPlacement(item.getId());
 
                 crop_flag = 1;
@@ -1295,6 +1293,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 //        new UpdateFirebaseToken().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetStudentData().execute();
+
+        new isVerifyStudent().execute();
+
+
 
 
 //        changePass();
@@ -3094,6 +3096,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                                     e.printStackTrace();
                                 }
                             }
+
                             @Override
                             public void onError(ANError error) {
                                 if (error.getErrorCode() != 0) {
@@ -3113,7 +3116,36 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         }
 
-
     }
+
+    private class isVerifyStudent extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                json = jParser.makeHttpRequest(Z.url_StudentVerify, "GET", params);
+
+                String isverify = json.getString("info");
+                if (isverify.equals("yes")) {
+                    Log.d(TAG, "doInBackground: isverify - " + isverify);
+                    MySharedPreferencesManager.save(MainActivity.this, "studentverify", isverify);
+
+                } else {
+                    Log.d(TAG, "doInBackground: isverify - " + isverify);
+                    MySharedPreferencesManager.save(MainActivity.this, "studentverify", isverify);
+                }
+                String str = MySharedPreferencesManager.getData(MainActivity.this, "studentverify");
+                Log.d(TAG, "doInBackground: str - " + str);
+                Log.d(TAG, "doInBackground: Z.str - " + Z.isStudentVerified(MainActivity.this));
+            } catch (Exception e) {
+
+
+            }
+            return map;
+        }
+    }
+
 
 }

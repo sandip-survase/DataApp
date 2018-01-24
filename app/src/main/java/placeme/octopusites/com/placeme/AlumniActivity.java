@@ -1302,6 +1302,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         new GetAlumniData().execute();
+        new isVerifyStudent().execute();
 
         getNotifications();
         new GetUnreadMessagesCount().execute();
@@ -2936,5 +2937,35 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         }
 
     }
+
+    private class isVerifyStudent extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                json = jParser.makeHttpRequest(Z.url_StudentVerify, "GET", params);
+
+                String isverify = json.getString("info");
+                if (isverify.equals("yes")) {
+                    Log.d(TAG, "doInBackground: isverify - " + isverify);
+                    MySharedPreferencesManager.save(AlumniActivity.this, "studentverify", isverify);
+
+                } else {
+                    Log.d(TAG, "doInBackground: isverify - " + isverify);
+                    MySharedPreferencesManager.save(AlumniActivity.this, "studentverify", isverify);
+                }
+                String str = MySharedPreferencesManager.getData(AlumniActivity.this, "studentverify");
+                Log.d(TAG, "doInBackground: str - " + str);
+                Log.d(TAG, "doInBackground: Z.str - " + Z.isStudentVerified(AlumniActivity.this));
+            } catch (Exception e) {
+
+
+            }
+            return map;
+        }
+    }
+
 
 }

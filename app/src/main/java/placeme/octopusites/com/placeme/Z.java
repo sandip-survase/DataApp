@@ -250,6 +250,8 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_SaveAdminInstituteData = IP + "ProfileObjects/SaveAdminInstituteData";
     public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
 
+    public static final String url_StudentVerify = IP + "AESTest/IsStudentVerify";
+
     //   --------------------------------------------Experience---------------------------------
 
     //  --------------------------------------------Tabfragment---------------------------------
@@ -586,6 +588,24 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
         }
         return false;
     }
+
+    public static boolean isStudentVerified(Context context) {
+        String isVerify = MySharedPreferencesManager.getData(context, "studentverify");
+        Log.d("TAG", "shared isVerified: " + isVerify);
+        if (isVerify != null) {
+            try {
+                if (isVerify.equals("yes")) {
+                    Log.d("TAG", "shared isVerified: " + isVerify);
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+
 
     public static boolean isSubAdmin(Context context) {
         String isSubAdmin = MySharedPreferencesManager.getData(context, "IsSubadmin");
