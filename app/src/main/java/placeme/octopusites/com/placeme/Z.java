@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -19,6 +20,10 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -26,6 +31,8 @@ import java.io.OutputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -35,6 +42,8 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class Z {
+
+
     //**************************  advertisement **************************
 
     public static final String BANNER_UNIT_ID = "ca-app-pub-4561960316771699/4063759942";
@@ -734,6 +743,45 @@ public static final String url_getnotificationsmetadata = IP_local_Glassfish + "
 
         return array;
     }
+
+
+    public static class IsVerifyStudent extends AsyncTask<String, Void, Void> {
+        JSONParser jParser = new JSONParser();
+        Context context = null;
+        String username = null;
+
+        public IsVerifyStudent(Context context, String username) {
+            this.context = context;
+            this.username = username;
+        }
+
+        @Override
+        protected Void doInBackground(String... urls) {
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                JSONObject json = jParser.makeHttpRequest(Z.url_StudentVerify, "GET", params);
+
+                String isverify = json.getString("info");
+                if (isverify.equals("yes")) {
+                    Log.d("TAG", "doInBackground: isverify - " + isverify);
+                    MySharedPreferencesManager.save(context, "studentverify", isverify);
+
+                } else {
+                    Log.d("TAG", "doInBackground: isverify - " + isverify);
+                    MySharedPreferencesManager.save(context, "studentverify", isverify);
+                }
+                String str = MySharedPreferencesManager.getData(context, "studentverify");
+                Log.d("TAG", "doInBackground: str - " + str);
+                Log.d("TAG", "doInBackground: Z.str - " + Z.isStudentVerified(context));
+            } catch (Exception e) {
+
+
+            }
+            return null;
+        }
+    }
+
 
 
 }

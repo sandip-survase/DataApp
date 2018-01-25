@@ -1292,10 +1292,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         getNotifications();
 
 //        new UpdateFirebaseToken().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        new GetStudentData().execute();
+        new GetStudentData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-        new isVerifyStudent().execute();
 
+        new Z.IsVerifyStudent(MainActivity.this, username).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
 
@@ -3118,34 +3118,33 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
-    private class isVerifyStudent extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
-            try {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(Z.url_StudentVerify, "GET", params);
-
-                String isverify = json.getString("info");
-                if (isverify.equals("yes")) {
-                    Log.d(TAG, "doInBackground: isverify - " + isverify);
-                    MySharedPreferencesManager.save(MainActivity.this, "studentverify", isverify);
-
-                } else {
-                    Log.d(TAG, "doInBackground: isverify - " + isverify);
-                    MySharedPreferencesManager.save(MainActivity.this, "studentverify", isverify);
-                }
-                String str = MySharedPreferencesManager.getData(MainActivity.this, "studentverify");
-                Log.d(TAG, "doInBackground: str - " + str);
-                Log.d(TAG, "doInBackground: Z.str - " + Z.isStudentVerified(MainActivity.this));
-            } catch (Exception e) {
-
-
-            }
-            return map;
-        }
-    }
+//    private class isVerifyStudent extends AsyncTask<String, Void, Void> {
+//        @Override
+//        protected  Void doInBackground(String... urls) {
+//            try {
+//                List<NameValuePair> params = new ArrayList<NameValuePair>();
+//                params.add(new BasicNameValuePair("u", username));
+//                json = jParser.makeHttpRequest(Z.url_StudentVerify, "GET", params);
+//
+//                String isverify = json.getString("info");
+//                if (isverify.equals("yes")) {
+//                    Log.d(TAG, "doInBackground: isverify - " + isverify);
+//                    MySharedPreferencesManager.save(MainActivity.this, "studentverify", isverify);
+//
+//                } else {
+//                    Log.d(TAG, "doInBackground: isverify - " + isverify);
+//                    MySharedPreferencesManager.save(MainActivity.this, "studentverify", isverify);
+//                }
+//                String str = MySharedPreferencesManager.getData(MainActivity.this, "studentverify");
+//                Log.d(TAG, "doInBackground: str - " + str);
+//                Log.d(TAG, "doInBackground: Z.str - " + Z.isStudentVerified(MainActivity.this));
+//            } catch (Exception e) {
+//
+//
+//            }
+//            return null;
+//        }
+//    }
 
 
 }

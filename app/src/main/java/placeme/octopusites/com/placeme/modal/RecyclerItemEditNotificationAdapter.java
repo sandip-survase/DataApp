@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.MainActivity;
+import placeme.octopusites.com.placeme.MySharedPreferencesManager;
 import placeme.octopusites.com.placeme.R;
 import placeme.octopusites.com.placeme.Z;
 
@@ -38,7 +41,7 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
     HashMap<String, String> encUser = new HashMap<String, String>();
     private ArrayList<RecyclerItemEdit> itemList;
     private String searchText;
-    String extractedusername=null;
+    String extractedusername = null;
 
 
     public RecyclerItemEditNotificationAdapter(ArrayList<RecyclerItemEdit> itemList) {
@@ -99,9 +102,9 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
             Log.d("Tag", "getNotification: " + item.getNotification());
 
 
-             extractedusername = "" + item.getUploadedby();
-            if(extractedusername.contains("("))
-            extractedusername = extractedusername.substring(extractedusername.indexOf("(") + 1, extractedusername.indexOf(")"));
+            extractedusername = "" + item.getUploadedby();
+            if (extractedusername.contains("("))
+                extractedusername = extractedusername.substring(extractedusername.indexOf("(") + 1, extractedusername.indexOf(")"));
 
             extractedusername = extractedusername.trim();
             Log.d("Tag", "extractedusername after: " + extractedusername);
@@ -175,17 +178,17 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
 
 //             temporary work remove when uploader signature sending through object
             try {
-                if(extractedusername!=null){
-                char s1 = extractedusername.charAt(0);
+                if (extractedusername != null) {
+                    char s1 = extractedusername.charAt(0);
 
 
-                if (s1=='C') {
-                    holder.logo.setVisibility(View.VISIBLE);
+                    if (s1 == 'C') {
+                        holder.logo.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.logo.setVisibility(View.INVISIBLE);
+                    }
+
                 } else {
-                    holder.logo.setVisibility(View.INVISIBLE);
-                }
-
-                }else{
                     holder.logo.setVisibility(View.INVISIBLE);
                 }
 
@@ -194,9 +197,10 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
                 e.printStackTrace();
             }
 
+            checkVerify(holder.title.getContext(), item.getTitle());
 
         } catch (Exception e) {
-            Log.d("Tag", ""+e.getMessage());
+            Log.d("Tag", "" + e.getMessage());
             Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
@@ -229,5 +233,18 @@ public class RecyclerItemEditNotificationAdapter extends RecyclerView.Adapter<Re
         }
     }
 
+
+    private void checkVerify(Context context, String title) {
+
+        String username = MySharedPreferencesManager.getUsername(context);
+        if (title != null && title.equals("You are successfully verified !")) {
+            boolean shouldCallIsVerifyStudent = MySharedPreferencesManager.getBooleanData(context, "callVerifyKey");
+            if (!shouldCallIsVerifyStudent) {
+                Log.d("ATM", "checkVerify: call ------------ IsVerifyStudent ");
+                new Z.IsVerifyStudent(context, username).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                MySharedPreferencesManager.saveBoolean(context, "callVerifyKey", true);
+            }
+        }
+    }
 
 }

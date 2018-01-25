@@ -67,6 +67,14 @@ public class MySharedPreferencesManager {
 
     }
 
+    public static void saveBoolean(Context context, String key, boolean value) {
+
+        getSharedPreferences(context).edit().putBoolean(key, value).commit();
+    }
+
+    public static boolean getBooleanData(Context context, String key) {
+        return getSharedPreferences(context).getBoolean(key, false);
+    }
 
 
 }
