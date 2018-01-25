@@ -7,7 +7,7 @@
         android:color="@color/sky_blue_color" />
 
     <gradient
-        android:centerColor="@color/while_color"
-        android:startColor="@color/while_color"
-        android:endColor="@color/while_color" />
+        android:centerColor="@color/sky_blue_color"
+        android:startColor="@color/sky_blue_color"
+        android:endColor="@color/sky_blue_color" />
 </shape>

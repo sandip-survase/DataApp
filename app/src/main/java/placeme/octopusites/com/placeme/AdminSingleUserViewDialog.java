@@ -140,6 +140,15 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         radioButtonStudent = (RadioButton) findViewById(R.id.radioButtonStudent);
         radioButtonAlumni = (RadioButton) findViewById(R.id.radioButtonAlumni);
 
+        radioButtonVerified.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonNotVerified.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonPlaced.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonNotPlaced.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonDebar.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonNotDebar.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonStudent.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+        radioButtonAlumni.setTypeface(Z.getBold(AdminSingleUserViewDialog.this));
+
 
         username = getIntent().getStringExtra("studentUsername");
         ROLE = getIntent().getStringExtra("role");

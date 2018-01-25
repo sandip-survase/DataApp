@@ -2,6 +2,7 @@ package placeme.octopusites.com.placeme;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -25,7 +26,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -48,6 +51,7 @@ public class ShowUsers extends AppCompatActivity {
 
     int Verify = 0, NotVerify = 1, Activated = 2, NotActivated = 3, Placed = 4, NotPlaced = 5, Debar = 6, NotDebar = 7, Student = 8, Alumni = 9;
     boolean[] filter = {false, false, false, false, false, false, false, false, false, false};
+    boolean[] filterTemp = {false, false, false, false, false, false, false, false, false, false};
     TextView title;
     private MaterialSearchView searchView;
     private List<RecyclerItemUsersAdmin> itemList = new ArrayList<>();
@@ -66,6 +70,8 @@ public class ShowUsers extends AppCompatActivity {
     int searchFlag = 0;
     FloatingActionButton fab, fabFilter;
     SwipeRefreshLayout swipeRefreshLayout;
+    TextView filterCount;
+    RelativeLayout filterCountLayout;
 
     int i = 10;
 
@@ -94,7 +100,10 @@ public class ShowUsers extends AppCompatActivity {
         searchView.setCursorDrawable(R.drawable.custom_cursor);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fabFilter = (FloatingActionButton) findViewById(R.id.fabFilter);
+        filterCount = findViewById(R.id.filterCount);
+        filterCountLayout = findViewById(R.id.filterCountLayout);
 
+        filterCount.setTypeface(Z.getBold(ShowUsers.this));
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
@@ -495,21 +504,48 @@ public class ShowUsers extends AppCompatActivity {
         return (super.onOptionsItemSelected(item));
     }
 
+
     void addUsersdatatoAdapter(int count) {
         String role, username, fullname = "Name", active, strisactivated, encusername, strsignature;
         String isplaceds, isDebars, companyNames, verifys;
 
+        loadFilterFromShared();
+        setFilterCount();
         itemList.clear();
+
         for (int i = 0; i < count; i++) {
             boolean flag = false;
 
-            if (filter[0] == true && !isVerify(i)) {
+            if (filter[Verify] == true && !isVerify(i)) {
                 flag = true;
             }
-            if (filter[1] == true && !isNotVerify(i)) {
+            if (filter[NotVerify] == true && !isNotVerify(i)) {
                 flag = true;
             }
-
+            if (filter[Activated] == true && !isActivated(i)) {
+                flag = true;
+            }
+            if (filter[NotActivated] == true && !isNotActivated(i)) {
+                flag = true;
+            }
+            if (filter[Placed] == true && !isPlaced(i)) {
+                flag = true;
+            }
+            if (filter[NotPlaced] == true && !isNotPlaced(i)) {
+                flag = true;
+            }
+            if (filter[Debar] == true && !isDebar(i)) {
+                flag = true;
+            }
+            if (filter[Debar] == true && !isNotDebar(i)) {
+                flag = true;
+            }
+            if (filter[Student] == true && !isStudent(i)) {
+                flag = true;
+            }
+            if (filter[Alumni] == true && !isAlumni(i)) {
+                flag = true;
+            }
 
             if (flag == false) {
                 isplaceds = isplaced[i];
@@ -554,12 +590,15 @@ public class ShowUsers extends AppCompatActivity {
                 case RecyclerView.SCROLL_STATE_IDLE:
                     Animation fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
                     fab.startAnimation(fab_open);
+                    fabFilter.startAnimation(fab_open);
+                    setFilterCount();
                     break;
                 case RecyclerView.SCROLL_STATE_DRAGGING:
 
                     Animation fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
                     fab.startAnimation(fab_close);
-
+                    fabFilter.startAnimation(fab_close);
+                    filterCountLayout.setVisibility(View.GONE);
                     break;
                 case RecyclerView.SCROLL_STATE_SETTLING:
                     break;
@@ -594,28 +633,53 @@ public class ShowUsers extends AppCompatActivity {
         final CheckBox checkboxStudent = (CheckBox) dialogView.findViewById(R.id.checkboxStudent);
         final CheckBox checkboxAlumni = (CheckBox) dialogView.findViewById(R.id.checkboxAlumni);
 
+        TextView verifyststus = (TextView) dialogView.findViewById(R.id.verifyststus);
+        TextView Activatedststus = (TextView) dialogView.findViewById(R.id.Activatedststus);
+        TextView placementstatus2txt = (TextView) dialogView.findViewById(R.id.placementstatus2txt);
+        TextView debarstatus2txt = (TextView) dialogView.findViewById(R.id.debarstatus2txt);
+        TextView rolestatus2txt = (TextView) dialogView.findViewById(R.id.rolestatus2txt);
 
-        checkboxVerify.setChecked(filter[0]);
-        checkboxNotVerify.setChecked(filter[1]);
-        checkboxActivated.setChecked(filter[2]);
-        checkboxNotActivated.setChecked(filter[3]);
-        checkboxPlaced.setChecked(filter[4]);
-        checkboxNotPlaced.setChecked(filter[5]);
-        CheckBoxDebar.setChecked(filter[6]);
-        CheckBoxsNotDebar.setChecked(filter[7]);
-        checkboxStudent.setChecked(filter[8]);
-        checkboxAlumni.setChecked(filter[9]);
+        verifyststus.setTypeface(Z.getLight(ShowUsers.this));
+        Activatedststus.setTypeface(Z.getLight(ShowUsers.this));
+        placementstatus2txt.setTypeface(Z.getLight(ShowUsers.this));
+        debarstatus2txt.setTypeface(Z.getLight(ShowUsers.this));
+        rolestatus2txt.setTypeface(Z.getLight(ShowUsers.this));
+
+        checkboxVerify.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxNotVerify.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxActivated.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxNotActivated.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxPlaced.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxNotPlaced.setTypeface(Z.getBold(ShowUsers.this));
+        CheckBoxDebar.setTypeface(Z.getBold(ShowUsers.this));
+        CheckBoxsNotDebar.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxStudent.setTypeface(Z.getBold(ShowUsers.this));
+        checkboxAlumni.setTypeface(Z.getBold(ShowUsers.this));
+
+
+        copyMyArray(filterTemp, filter);
+
+        checkboxVerify.setChecked(filterTemp[0]);
+        checkboxNotVerify.setChecked(filterTemp[1]);
+        checkboxActivated.setChecked(filterTemp[2]);
+        checkboxNotActivated.setChecked(filterTemp[3]);
+        checkboxPlaced.setChecked(filterTemp[4]);
+        checkboxNotPlaced.setChecked(filterTemp[5]);
+        CheckBoxDebar.setChecked(filterTemp[6]);
+        CheckBoxsNotDebar.setChecked(filterTemp[7]);
+        checkboxStudent.setChecked(filterTemp[8]);
+        checkboxAlumni.setChecked(filterTemp[9]);
 
 
         checkboxVerify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[Verify] = true;
+                    filterTemp[Verify] = true;
                     checkboxNotVerify.setChecked(false);
-                    filter[NotVerify] = false;
+                    filterTemp[NotVerify] = false;
                 } else {
-                    filter[Verify] = false;
+                    filterTemp[Verify] = false;
                 }
             }
         });
@@ -624,107 +688,110 @@ public class ShowUsers extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[NotVerify] = true;
+                    filterTemp[NotVerify] = true;
                     checkboxVerify.setChecked(false);
-                    filter[Verify] = false;
+                    filterTemp[Verify] = false;
                 } else
-                    filter[NotVerify] = false;
+                    filterTemp[NotVerify] = false;
             }
         });
         checkboxActivated.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[Activated] = true;
+                    filterTemp[Activated] = true;
                     checkboxNotActivated.setChecked(false);
-                    filter[NotActivated] = false;
+                    filterTemp[NotActivated] = false;
                 } else
-                    filter[Activated] = false;
+                    filterTemp[Activated] = false;
             }
         });
         checkboxNotActivated.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[NotActivated] = true;
+                    filterTemp[NotActivated] = true;
                     checkboxActivated.setChecked(false);
-                    filter[Activated] = false;
+                    filterTemp[Activated] = false;
                 } else
-                    filter[NotActivated] = false;
+                    filterTemp[NotActivated] = false;
             }
         });
         checkboxPlaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[Placed] = true;
+                    filterTemp[Placed] = true;
                     checkboxNotPlaced.setChecked(false);
-                    filter[NotPlaced] = false;
+                    filterTemp[NotPlaced] = false;
                 } else
-                    filter[Placed] = false;
+                    filterTemp[Placed] = false;
             }
         });
         checkboxNotPlaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[NotPlaced] = true;
+                    filterTemp[NotPlaced] = true;
                     checkboxPlaced.setChecked(false);
-                    filter[Placed] = false;
+                    filterTemp[Placed] = false;
                 } else
-                    filter[NotPlaced] = false;
+                    filterTemp[NotPlaced] = false;
             }
         });
         CheckBoxDebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[Debar] = true;
+                    filterTemp[Debar] = true;
                     CheckBoxsNotDebar.setChecked(false);
-                    filter[NotDebar] = false;
+                    filterTemp[NotDebar] = false;
                 } else
-                    filter[Debar] = false;
+                    filterTemp[Debar] = false;
             }
         });
         CheckBoxsNotDebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[NotDebar] = true;
+                    filterTemp[NotDebar] = true;
                     CheckBoxDebar.setChecked(false);
-                    filter[Debar] = false;
+                    filterTemp[Debar] = false;
                 } else
-                    filter[NotDebar] = false;
+                    filterTemp[NotDebar] = false;
             }
         });
         checkboxStudent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[Student] = true;
+                    filterTemp[Student] = true;
                     checkboxAlumni.setChecked(false);
-                    filter[Alumni] = false;
+                    filterTemp[Alumni] = false;
                 } else
-                    filter[Student] = false;
+                    filterTemp[Student] = false;
             }
         });
         checkboxAlumni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filter[Alumni] = true;
+                    filterTemp[Alumni] = true;
                     checkboxStudent.setChecked(false);
-                    filter[Student] = false;
+                    filterTemp[Student] = false;
                 } else
-                    filter[Alumni] = false;
+                    filterTemp[Alumni] = false;
             }
         });
 
 
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                //do something with edt.getText().toString();
-                Log.d("KUN", "onClick: " + filter[0] + "  " + filter[1] + " " + filter[2] + "  " + filter[3] + "  " + filter[4] + "  " + filter[5] + "  " + filter[6] + "  " + filter[7] + "  " + filter[8] + "  " + filter[9]);
+                copyMyArray(filter, filterTemp);
+                saveFilterInShared();
+                setFilterCount();
+                addFilterUsersdatatoAdapter(count);
+                Log.d("KUN", "onClick: " + filterTemp[0] + "  " + filterTemp[1] + " " + filterTemp[2] + "  " + filterTemp[3] + "  " + filterTemp[4] + "  " + filterTemp[5] + "  " + filterTemp[6] + "  " + filterTemp[7] + "  " + filterTemp[8] + "  " + filterTemp[9]);
             }
         });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -732,10 +799,38 @@ public class ShowUsers extends AppCompatActivity {
                 //pass
             }
         });
-        AlertDialog b = dialogBuilder.create();
-        b.show();
-    }
+        final AlertDialog b = dialogBuilder.create();
+        b.setButton(AlertDialog.BUTTON_NEUTRAL, "Reset", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // do nothing
+            }
+        });
 
+        b.show();
+
+        b.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
+            //reset
+            @Override
+            public void onClick(View v) {
+                for (int j = 0; j < 10; j++) {
+                    filter[j] = false;
+                    filterTemp[j] = false;
+                }
+
+                checkboxVerify.setChecked(false);
+                checkboxNotVerify.setChecked(false);
+                checkboxActivated.setChecked(false);
+                checkboxNotActivated.setChecked(false);
+                checkboxPlaced.setChecked(false);
+                checkboxNotPlaced.setChecked(false);
+                CheckBoxDebar.setChecked(false);
+                CheckBoxsNotDebar.setChecked(false);
+                checkboxStudent.setChecked(false);
+                checkboxAlumni.setChecked(false);
+            }
+        });
+
+    }
 
     boolean isVerify(int i) {
         if (verify[i].equals("yes"))
@@ -747,5 +842,164 @@ public class ShowUsers extends AppCompatActivity {
         if (verify[i].equals("no"))
             return true;
         return false;
+    }
+
+    boolean isActivated(int i) {
+        if (isactivated[i].equals("yes"))
+            return true;
+        return false;
+    }
+
+    boolean isNotActivated(int i) {
+        if (isactivated[i].equals("no"))
+            return true;
+        return false;
+    }
+
+    boolean isPlaced(int i) {
+        if (isplaced[i].equals("yes"))
+            return true;
+        return false;
+    }
+
+    boolean isNotPlaced(int i) {
+        if (isplaced[i].equals("no"))
+            return true;
+        return false;
+    }
+
+    boolean isDebar(int i) {
+        if (isDebar[i].equals("yes"))
+            return true;
+        return false;
+    }
+
+    boolean isNotDebar(int i) {
+        if (isDebar[i].equals("no"))
+            return true;
+        return false;
+    }
+
+    boolean isStudent(int i) {
+        if (userType[i].equals("student"))
+            return true;
+        return false;
+    }
+
+    boolean isAlumni(int i) {
+        if (userType[i].equals("alumni"))
+            return true;
+        return false;
+    }
+
+    void copyMyArray(boolean a1[], boolean a2[]) {
+        for (int j = 0; j < 10; j++) {
+            a1[j] = a2[j];
+        }
+    }
+
+    private void saveFilterInShared() {
+        for (int j = 0; j < 10; j++) {
+            SharedPreferences prefs = getSharedPreferences("filter", 0);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("filter" + j, filter[j]);
+            editor.apply();
+        }
+    }
+
+    private void loadFilterFromShared() {
+        for (int j = 0; j < 10; j++) {
+            SharedPreferences prefs = getSharedPreferences("filter", 0);
+            filter[j] = prefs.getBoolean("filter" + j, false);
+        }
+    }
+
+    private void setFilterCount() {
+        int count = 0;
+        for (int j = 0; j < 10; j++) {
+            if (filter[j] == true)
+                count++;
+        }
+        if (count == 0)
+            filterCountLayout.setVisibility(View.GONE);
+        else {
+            filterCount.setText(count + "");
+            filterCountLayout.setVisibility(View.VISIBLE);
+        }
+        Log.d("121", "setFilterCount: ---------------  " + count);
+    }
+
+    void addFilterUsersdatatoAdapter(int count) {
+        String role, username, fullname = "Name", active, strisactivated, encusername, strsignature;
+        String isplaceds, isDebars, companyNames, verifys;
+
+        itemList.clear();
+
+        for (int i = 0; i < count; i++) {
+            boolean flag = false;
+
+            if (filter[Verify] == true && !isVerify(i)) {
+                flag = true;
+            }
+            if (filter[NotVerify] == true && !isNotVerify(i)) {
+                flag = true;
+            }
+            if (filter[Activated] == true && !isActivated(i)) {
+                flag = true;
+            }
+            if (filter[NotActivated] == true && !isNotActivated(i)) {
+                flag = true;
+            }
+            if (filter[Placed] == true && !isPlaced(i)) {
+                flag = true;
+            }
+            if (filter[NotPlaced] == true && !isNotPlaced(i)) {
+                flag = true;
+            }
+            if (filter[Debar] == true && !isDebar(i)) {
+                flag = true;
+            }
+            if (filter[Debar] == true && !isNotDebar(i)) {
+                flag = true;
+            }
+            if (filter[Student] == true && !isStudent(i)) {
+                flag = true;
+            }
+            if (filter[Alumni] == true && !isAlumni(i)) {
+                flag = true;
+            }
+
+            if (flag == false) {
+                isplaceds = isplaced[i];
+                isDebars = isDebar[i];
+                companyNames = companyName[i];
+                verifys = verify[i];
+
+
+                username = registerUsersName[i];
+                encusername = encUsersName[i];
+                role = userType[i];
+
+                active = isactivated[i];
+                strsignature = signature[i];
+
+                if (fnames[i] != null && lnames[i] != null) {
+                    if (!fnames[i].equals("") && !lnames[i].equals(""))
+                        fullname = fnames[i] + " " + lnames[i];
+                    else
+                        fullname = "Name";
+                }
+
+                if (active.equals("yes"))
+                    strisactivated = "Activated";
+                else
+                    strisactivated = "Not Activated";
+
+                RecyclerItemUsersAdmin item = new RecyclerItemUsersAdmin(encusername, fullname, username, role, strisactivated, strsignature, isplaceds, isDebars, companyNames, verifys);
+                itemList.add(item);
+            }
+        }
+
+        mAdapter.notifyDataSetChanged();
     }
 }

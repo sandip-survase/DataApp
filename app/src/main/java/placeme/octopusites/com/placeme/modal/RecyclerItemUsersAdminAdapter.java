@@ -114,6 +114,7 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
         } else {
             holder.role.setText("Verified");
             holder.role.setTextColor(Color.parseColor("#03353e"));
+            holder.role.setTypeface(Z.getLight(holder.isactivated.getContext()));
         }
 
 

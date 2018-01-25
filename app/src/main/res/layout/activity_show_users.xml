@@ -25,18 +25,21 @@
 
         <com.miguelcatalan.materialsearchview.MaterialSearchView
             android:id="@+id/search_view"
+            style="@style/MaterialSearchViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#282f35"
             android:hint="Search User"
-            android:textColorHint="#aaa"
-            style="@style/MaterialSearchViewStyle" />
+            android:textColor="#282f35"
+            android:textColorHint="#aaa" />
     </FrameLayout>
 
 
     <RelativeLayout
+        android:id="@+id/addfablayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/fab"
@@ -45,18 +48,47 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="16dp"
-            app:srcCompat="@drawable/add_icon_white"
-            app:backgroundTint="@color/dark_color" />
+            app:backgroundTint="@color/dark_color"
+            app:srcCompat="@drawable/add_icon_white" />
 
-        <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/fabFilter"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            app:fabSize="mini"
-            android:layout_above="@id/fab"
-            app:srcCompat="@drawable/add_icon_white"
-            app:backgroundTint="@color/dark_color" />
+            android:layout_above="@id/fab">
+
+            <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fabFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                app:backgroundTint="@color/dark_color"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/filter_icon" />
+
+            <RelativeLayout
+                android:id="@+id/filterCountLayout"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/profiletxt"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/bubble_blue"
+                android:elevation="6dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/filterCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="#fff"
+                    android:textSize="11dp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
     </RelativeLayout>
 </FrameLayout>

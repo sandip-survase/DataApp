@@ -514,8 +514,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
         mobileTextInputLayout = (TextInputLayout) WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
 
-        fnameTextInputLayout.setError("test error");
-
         Z.slideinleft1(this, getProfilePictureMsg);
         Z.slideinleft2(this, adminInfo);
         Z.fade(this, welcometextviewcontext3);
