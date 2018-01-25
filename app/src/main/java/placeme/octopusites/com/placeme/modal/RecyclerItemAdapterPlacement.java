@@ -50,45 +50,33 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
 
         }
     }
-
     public void updateList(List<RecyclerItemPlacement> list, String searchText) {
         itemList = list;
         this.searchText = searchText;
         notifyDataSetChanged();
     }
-
     public RecyclerItemAdapterPlacement(List<RecyclerItemPlacement> itemList, Context mContext) {
         this.itemList = itemList;
         this.mContext = mContext;
     }
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_list_row_placements, parent, false);
-
         return new MyViewHolder(itemView);
     }
-
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
         RecyclerItemPlacement item = itemList.get(position);
         try {
-
             Log.d("Tag", "contex: " + mContext);
             Log.d("Tag", "uploadedby: " + item.getUploadedby());
             Log.d("Tag", "getCompanyname: " + item.getCompanyname());
-
             extractedusername = "" + item.getUploadedby();
             if(extractedusername.contains("("))
                 extractedusername = extractedusername.substring(extractedusername.indexOf("(") + 1, extractedusername.indexOf(")"));
-
             extractedusername = extractedusername.trim();
             Log.d("Tag", "extractedusername after: " + extractedusername);
-
-
-
             String value = encUser.get(extractedusername);
             if (value != null) {
             } else {

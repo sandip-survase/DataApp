@@ -81,14 +81,14 @@ public static final String IP_8086 = "http://162.213.199.3:8086/";
     public static final String GetFLName = IP_secured_sunny + "CreateNotificationTemp/GetFLname";
 
     // -------------------------------------------MainActivity(student)-----------------------------------------------
-public static final String url_getnotificationsmetadata = IP_local_Glassfish + "CreateNotificationTemp/GetNotificationsMetaData";
-    public static final String url_getnotificationsreadstatus = IP_local_Glassfish + "CreateNotificationTemp/GetReadStatusOfNotifications";
-    public static final String url_getnotifications = IP_local_Glassfish + "CreateNotificationTemp/GetNotifications";
-    public static final String url_changenotificationsreadstatus = IP_local_Glassfish + "CreateNotificationTemp/ChangeNotificationReadStatus";
+public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
+    public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
+    public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
+    public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
 
-    public static final String url_getplacementsmetadata = IP_local_Glassfish + "CreateNotificationTemp/GetPlacementsMetaData";
-    public static final String url_changeplacementsreadstatus = IP_local_Glassfish + "CreateNotificationTemp/ChangePlacementReadStatus";
-    public static final String url_getplacements = IP_local_Glassfish + "CreateNotificationTemp/GetPlacements";
+    public static final String url_getplacementsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsMetaData";
+    public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
+    public static final String url_getplacements = IP_secured_sunny + "CreateNotificationTemp/GetPlacements";
     //                           --------------------alumniActivity(alumni)----------------------------------------------
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
     public static final String url_GetReadStatusOfNotificationsAlumni = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
@@ -120,11 +120,11 @@ public static final String url_getnotificationsmetadata = IP_local_Glassfish + "
     public static final String url_GetPlacementSentByAdmin = IP_secured_sunny + "CreateNotificationTemp/GetPlacementSentByAdmin";
     public static final String url_Delete_Placements = IP_secured_sunny + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
-    public static final String GetPlacementsCreatedByHrMetadata = IP_local_Glassfish + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
-    public static final String url_GetPlacementsCreatedByHr = IP_local_Glassfish + "CreateNotificationTemp/GetPlacementsCreatedByHr";
+    public static final String GetPlacementsCreatedByHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
+    public static final String url_GetPlacementsCreatedByHr = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHr";
 
-    public static final String url_GetNotificationsHrMetadata = IP_local_Glassfish + "CreateNotificationTemp/GetNotificationsHrMetadata";
-    public static final String url_GetNotificationsHr = IP_local_Glassfish + "CreateNotificationTemp/GetNotificationsHr";
+    public static final String url_GetNotificationsHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHrMetadata";
+    public static final String url_GetNotificationsHr = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHr";
 
 
     //    -------------------------------EditPlacementHr -----------------------------------
@@ -135,27 +135,27 @@ public static final String url_getnotificationsmetadata = IP_local_Glassfish + "
     public static final String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
     public static final String url_ModifyNotification =IP + "CreateNotificationTemp/ModifyNotification";
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
-    public static final String url_SavefileOnServer = IP_secured_sunny + "CreateNotificationTemp/SavefileOnServer";
+    public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
 
     //    -------------------------------CreatePlacement -----------------------------------
     public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
-    public static final String url_CreatePlacementsHr = IP_local_Glassfish + "CreateNotificationTemp/CreatePlacementsHr";
+    public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
     public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
     public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
-    public static final String url_ModifyPlacement = IP_local_Glassfish + "CreateNotificationTemp/ModifyPlacement";
+    public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
 
 
     //    ---------------------------------------ViewPlacement -----------------------------------
-    public static final String url_RegisterForPlacement = IP_local_Glassfish + "CreateNotificationTemp/RegisterForPlacementss";
+    public static final String url_RegisterForPlacement = IP + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_secured_sunny + "CreateNotificationTemp/GetStudentMarksInfo";
     public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
     //----------------------------------------EditPlacementMain -----------------------------------
-    public static final String url_SaveShortListedUsers = IP_local_Glassfish + "CreateNotificationTemp/SaveShortListedUsers";
-    public static final String url_SavePlacedUsers = IP_local_Glassfish + "CreateNotificationTemp/SavePlacedUsers";
-    public static final String url_SaveRegistereduserStatus = IP_local_Glassfish + "CreateNotificationTemp/SaveRegistereduserStatus";
+    public static final String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
+    public static final String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
+    public static final String url_SaveRegistereduserStatus = IP + "CreateNotificationTemp/SaveRegistereduserStatus";
 
     public static final int USER_DATA_CHANGE_RESULT_CODE = 888;
     public static final String USERNAME_KEY = "nameKey";

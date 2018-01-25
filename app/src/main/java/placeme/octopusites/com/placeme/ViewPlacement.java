@@ -1061,11 +1061,10 @@ public class ViewPlacement extends AppCompatActivity {
 
     }
     private void GetFLName() {
-//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
+        Log.d(TAG, "Uploader_FLname"+uploadedby);
         AndroidNetworking.post(Z.GetFLName)
                 .setTag(this)
                 .addQueryParameter("u", uploadedby)
-                .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(OkHttpUtil.getClient())
                 .getResponseOnlyFromNetwork()
                 .build()
@@ -1089,6 +1088,7 @@ public class ViewPlacement extends AppCompatActivity {
                                 Uploader_FLname = response.getString("flname");
                                 SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
                                 save.setUploadedby(Uploader_FLname);
+                                Log.d(TAG, "Uploader_FLname"+Uploader_FLname);
 
                             }
 
@@ -1109,9 +1109,13 @@ public class ViewPlacement extends AppCompatActivity {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Log.d(TAG, "Uploader_FLname"+Uploader_FLname);
+
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            Log.d(TAG, "Uploader_FLname"+Uploader_FLname);
+
                         }
                     }
                 });

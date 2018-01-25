@@ -1514,6 +1514,12 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             params.add(new BasicNameValuePair("nt", encNotiffication));       //4
             params.add(new BasicNameValuePair("fw", encforwhom));     //5
 
+            Log.d("Params", "encUsername0 : " + encUsername);
+            Log.d("Params", "encRole:" + encRole);
+            Log.d("Params", "encTitle:2 " + encTitle);
+            Log.d("Params", "encNotiffication: 3 " + encNotiffication);
+            Log.d("Params", "encforwhom: 4 " + encforwhom);
+
 
             if (filenameparam1.length() != 0 || filenameparam1 != "") {
                 params.add(new BasicNameValuePair("f1", encfilenameparam1));  //6
