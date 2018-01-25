@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
@@ -55,18 +54,16 @@ public class Z {
     public static final String IP = "http://162.213.199.3/";
     public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
     public static final String IP_local_Glassfish = "http://162.213.199.3:8090/";
-//    public static final String IP_secured_sunny = "http://104.237.4.236:26080/";
+    //    public static final String IP_secured_sunny = "http://104.237.4.236:26080/";
 //    public static final String I = "http://104.237.4.236:26080/";
-public static final String IP_8086 = "http://162.213.199.3:8086/";
-
+    public static final String IP_8086 = "http://162.213.199.3:8086/";
 
 
     //********************************  final ************************************
-    public static final String IP_secured_sunny_8090 =  "http://162.213.199.3:8090/";
+    public static final String IP_secured_sunny_8090 = "http://162.213.199.3:8090/";
     public static final String IP_secured_sunny = "https://placeme.co.in/";
     public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE = "Fail to upload image!\nPlease try again";
-    public static String CountOfUsersUnderAdmin = "0";
     //======================================= login =====================================
     public static final String url_Welcome = IP + "AESTest/Welcome";
     public static final String url_login = IP + "AESTest/Auth";
@@ -74,18 +71,15 @@ public static final String IP_8086 = "http://162.213.199.3:8086/";
     public static final String url_CheckInternet = IP + "AESTest/CheckInternet";
     public static final String url_SaveAndGenrateInstituteCode = IP + "AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = IP + "AESTest/SaveAndGenrateCompanyCode";
-    //======================================= login =====================================
-
     //-----------------------------------------sunny---------------------------------------------------------------
     public static final String url_IsPlacemeVerified = IP + "AESTest/IsPlacemeVerified";
+    //======================================= login =====================================
     public static final String GetFLName = IP_secured_sunny + "CreateNotificationTemp/GetFLname";
-
     // -------------------------------------------MainActivity(student)-----------------------------------------------
-public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
+    public static final String url_getnotificationsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsMetaData";
     public static final String url_getnotificationsreadstatus = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotifications";
     public static final String url_getnotifications = IP_secured_sunny + "CreateNotificationTemp/GetNotifications";
     public static final String url_changenotificationsreadstatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
-
     public static final String url_getplacementsmetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsMetaData";
     public static final String url_changeplacementsreadstatus = IP + "CreateNotificationTemp/ChangePlacementReadStatus";
     public static final String url_getplacements = IP_secured_sunny + "CreateNotificationTemp/GetPlacements";
@@ -93,7 +87,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_GetNotificationsAlumniAlumniMetaData = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAlumniMetaData";
     public static final String url_GetReadStatusOfNotificationsAlumni = IP_secured_sunny + "CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
     public static final String url_GetNotificationsAlumni = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsAlumni";
-
     public static final String url_ChangeNotificationReadStatus = IP + "CreateNotificationTemp/ChangeNotificationReadStatus";
     public static final String url_GetPlacementsAlumniAlumniMetaData = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsAlumniMetaData";
     public static final String url_GetReadStatusOfPlacementsAlumni = IP + "CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
@@ -122,23 +115,19 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     //    -------------------------------hractivity -----------------------------------
     public static final String GetPlacementsCreatedByHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
     public static final String url_GetPlacementsCreatedByHr = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHr";
-
     public static final String url_GetNotificationsHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHrMetadata";
     public static final String url_GetNotificationsHr = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHr";
-
-
     //    -------------------------------EditPlacementHr -----------------------------------
     public static final String url_GetPlacementSentByHr = IP + "CreateNotificationTemp/GetPlacementSentByHr";
     //    -------------------------------EditPlacementMainHr -----------------------------------
     public static final String url_ModifyPlacementHr = IP + "CreateNotificationTemp/ModifyPlacementHr";
     //    -------------------------------CreateNotification -----------------------------------
     public static final String url_UploadAttach1 = IP + "CreateNotificationTemp/UploadAttach1";
-    public static final String url_ModifyNotification =IP + "CreateNotificationTemp/ModifyNotification";
+    public static final String url_ModifyNotification = IP + "CreateNotificationTemp/ModifyNotification";
     public static final String url_GetForWhomeNotification = IP + "CreateNotificationTemp/GetForWhomeNotification";    //files variables
     public static final String url_SavefileOnServer = IP + "CreateNotificationTemp/SavefileOnServer";
-
     //    -------------------------------CreatePlacement -----------------------------------
-    public static final String url_CreatePlacements =   IP + "CreateNotificationTemp/CreatePlacements";
+    public static final String url_CreatePlacements = IP + "CreateNotificationTemp/CreatePlacements";
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
@@ -146,8 +135,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     //    -------------------------------EditPlacementMain -----------------------------------
     public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
     public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
-
-
     //    ---------------------------------------ViewPlacement -----------------------------------
     public static final String url_RegisterForPlacement = IP + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_secured_sunny + "CreateNotificationTemp/GetStudentMarksInfo";
@@ -156,20 +143,17 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_SaveShortListedUsers = IP + "CreateNotificationTemp/SaveShortListedUsers";
     public static final String url_SavePlacedUsers = IP + "CreateNotificationTemp/SavePlacedUsers";
     public static final String url_SaveRegistereduserStatus = IP + "CreateNotificationTemp/SaveRegistereduserStatus";
-
     public static final int USER_DATA_CHANGE_RESULT_CODE = 888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
     public static final String url_create_firebase = IP + "Firebase/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken = IP + "Firebase/UpdateFirebaseToken";
-    //    ----------------------------------/sunny---------------------------------------------------------------
-
     public static final String url_ChangeUsernameFireBase = IP_TOMCAT + "Firebase/ChangeUsername";
+    //    ----------------------------------/sunny---------------------------------------------------------------
     public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
     public static final String url_getmessagesreadstatus = IP + "Firebase/GetReadStatusOfMessages";
     public static final String url_changepass = IP + "Firebase/ChangePass";
-
     //#############################   Firebase   ######################################
     public static final String load_news = IP + "Firebase/GetNews";
     public static final String load_videos = IP + "Firebase/GetVideos";
@@ -181,20 +165,15 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
     public static final String url_ForgotPasswordChange = IP_TOMCAT + "Firebase/ForgotPasswordChange";
     public static final String url_GenrateCustomToken = IP_TOMCAT + "Firebase/GenrateCustomToken";
+    public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
 
     // Messages -----------------------------------------
-
-
-    public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
     public static final String url_editemail = IP + "AESTest/EditEmail";
-
     //**************************************   AESTest   *****************************************
     public static final String url_VerifyOTPEditEmail = IP + "AESTest/VerifyOTPEditEmail";
     public static final String url_CreatePass = IP + "AESTest/CreatePass";
     public static final String url_ForgotPassword = IP + "AESTest/ForgotPassword";
     public static final String url_SaveLogFile = IP + "ProfileObjects/SaveLogFile";
-
-
     public static final String url_resendotp = IP + "AESTest/ResendOTP";
     public static final String url_verifyotp = IP + "AESTest/VerifyOTP";
     public static final String url_GetMyResumeIds = IP + "AESTest/GetMyResumeIds";
@@ -213,23 +192,19 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_SaveHrIntro = IP + "ProfileObjects/SaveHrIntro";
     public static final String url_getinstitute = IP + "ProfileObjects/GetInstitute";
     public static final String url_IssubAdmin = IP + "AESTest/IsSubAdmin";
-
-//    -----------------------------------ProfileObjects--------------------------------------------
-
     //    --------------------------------------Load fragment data---------------------------------
     public static final String url_SaveAdminIntro = IP + "ProfileObjects/SaveAdminIntro";
+
+    //    -----------------------------------ProfileObjects--------------------------------------------
     public static final String url_saveprojects = IP + "ProfileObjects/SaveProjects";
     public static final String url_SaveTenth = IP + "ProfileObjects/SaveTenth";
     public static final String url_savedata_twelth = IP + "ProfileObjects/SaveTwelth";
-
     //    --------------------------------------Intro-------------------------------------
     public static final String url_savedata_diploma = IP + "ProfileObjects/SaveDiploma";
     public static final String url_savedata_ug = IP + "ProfileObjects/SaveUg";
     public static final String url_savedata_pg_sem = IP + "ProfileObjects/SavePgSem";
-
     //    --------------------------------------project-------------------------------------
     public static final String url_savedata_pg_year = IP + "ProfileObjects/SavePgYear";
-
     //    -----------------------------------Education details--------------------------
     public static final String url_savelanguages = IP + "ProfileObjects/SaveLanguages";
     public static final String url_savecertifications = IP + "ProfileObjects/SaveCertificates";
@@ -237,7 +212,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_saveskills = IP + "ProfileObjects/SaveSkills";
     public static final String url_savehonors = IP + "ProfileObjects/SaveHonors";
     public static final String url_savepatents = IP + "ProfileObjects/SavePatents";
-
     //    ----------------------------------------Accomplishments-----------------------------
     public static final String url_savepublications = IP + "ProfileObjects/SavePublications";
     public static final String url_savecareerobj = IP + "ProfileObjects/SaveCareerObj";
@@ -246,19 +220,17 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_savelocationpreferences = IP + "ProfileObjects/SaveLocationPreferences";
     public static final String url_SaveStdalmContact = IP + "ProfileObjects/SaveStdAlmContact";
     public static final String url_SaveAdminContact = IP + "ProfileObjects/SaveAdminContact";
-
     //    -----------------------------------------MyProfileCareerDetails---------------------------------
     public static final String url_SaveHrContact = IP + "ProfileObjects/SaveHrContact";
     public static final String url_SaveExperiences = IP + "ProfileObjects/SaveExperiences";
     public static final String savepersonalinfo = IP + "ProfileObjects/SavePersonalInfo";
     public static final String url_SaveAdminPersonal = IP + "ProfileObjects/SaveAdminPersonal";
-
     //    --------------------------------------------MyProfileContact---------------------------------
     public static final String url_SaveHrCompany = IP + "ProfileObjects/SaveHrCompany";
     public static final String url_SaveAdminInstituteData = IP + "ProfileObjects/SaveAdminInstituteData";
     public static final String url_getcourses = IP + "AESTest/GetDiplomaCourses";
-
     public static final String url_StudentVerify = IP + "AESTest/IsStudentVerify";
+    public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
 
     //   --------------------------------------------Experience---------------------------------
 
@@ -267,8 +239,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     //    ------------------------------------------Institute details---------------------------------
 
     //    ------------------------------------------Education details---------------------------------
-
-    public static final String load_last_updated = IP + "AESTest/GetLastUpdated";
     public static final String url_remove_profile = IP + "AESTest/RemoveImage";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
@@ -276,7 +246,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String remove_profile = IP + "AESTest/RemoveImage";
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";
     public static final String url_createSingleAdmin = IP + "AESTest/CreateSingleAdmin";
-
     public static final String url_createMultipleUser_admin = IP + "AESTest/CreateMultipleUser";
     public static final String url_delete_file = IP + "AESTest/DeleteFile";
     public static final String url_uploadSingleFile = IP + "AESTest/UploadSingleFile";
@@ -292,17 +261,16 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     public static final String url_ClearOTP = IP + "AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = IP + "AESTest/AddStudentUnderAdmin";
     public static final String url_GetCountOfUsersUnderAdmin = IP + "AESTest/GetCountOfUsersUnderAdmin";
-
     private static final String IP_100 = "http://192.168.100.100/";
     private static final String IP_10 = "http://192.168.100.10/";
     private static final String IP_20 = "http://192.168.100.20/";
     private static final String IP_30 = "http://192.168.100.30/";
+    public static String CountOfUsersUnderAdmin = "0";
 
 //    --------------------------------- function --------------------------------------------------------------
-
+public static String digest1 = null, digest2 = null;
     private static Typeface FA = null, Bold = null, Light = null, Italic = null, BoldItalic = null, Righteous = null;
     private static Animation fadeAnimation = null, fadeandmovedownAnimation = null, slideoutleft2Animation = null, fadeoutAnimation = null, slideinleft1Animation = null, slideinleft2Animation = null, scaledownAnimation = null, bottomupbox1Animation = null, bottomupbox2Animation = null, bottomupbox3Animation = null, bottomupbox4Animation = null;
-    public static String digest1 = null, digest2 = null;
 
     public static Typeface getFA(Context context) {
         if (FA != null)
@@ -614,7 +582,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
     }
 
 
-
     public static boolean isSubAdmin(Context context) {
         String isSubAdmin = MySharedPreferencesManager.getData(context, "IsSubadmin");
         Log.d("TAG", "shared isSubAdmin: " + isSubAdmin);
@@ -623,13 +590,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
         }
         return false;
     }
-
-
-
-
-
-
-
 
 
     public static void NetworkConnectoin(Context context) {
@@ -781,7 +741,6 @@ public static final String url_getnotificationsmetadata = IP_secured_sunny + "Cr
             return null;
         }
     }
-
 
 
 }
