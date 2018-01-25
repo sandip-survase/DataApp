@@ -6,12 +6,29 @@ import java.io.Serializable;
 /**
  * Created by sunny .
  */
+
 public class RecyclerItemUsers implements Serializable {
     private String name, email;
     int id;
     public  boolean isSelected=false;
 
-    public RecyclerItemUsers(int id, String name, String email,boolean isSelected ) {
+    public  boolean isregistered=false;
+    public  boolean isshortlisted=false;
+    public  boolean isPlaced=false;
+
+
+
+    public RecyclerItemUsers(String name, String email, int id, boolean isSelected, boolean isregistered, boolean isshortlisted, boolean isPlaced) {
+        this.name = name;
+        this.email = email;
+        this.id = id;
+        this.isSelected = isSelected;
+        this.isregistered = isregistered;
+        this.isshortlisted = isshortlisted;
+        this.isPlaced = isPlaced;
+    }
+
+    public RecyclerItemUsers(int id, String name, String email, boolean isSelected ) {
         this.name = name;
         this.email = email;
         this.id=id;
@@ -51,6 +68,29 @@ public class RecyclerItemUsers implements Serializable {
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public boolean isIsregistered() {
+        return isregistered;
+    }
+
+    public void setIsregistered(boolean isregistered) {
+        this.isregistered = isregistered;
+    }
+
+    public boolean isIsshortlisted() {
+        return isshortlisted;
+    }
+
+    public void setIsshortlisted(boolean isshortlisted) {
+        this.isshortlisted = isshortlisted;
+    }
+
+    public boolean isPlaced() {
+        return isPlaced;
+    }
+
+    public void setPlaced(boolean placed) {
+        isPlaced = placed;
     }
 
 

@@ -21,8 +21,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.AnalyticsListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -67,6 +74,9 @@ public class ViewPlacement extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private String TAG="ViewPlacement";
+    String Uploader_FLname = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +102,14 @@ public class ViewPlacement extends AppCompatActivity {
         registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
         registerbutton.setTypeface(Z.getBold(this));
         progressBar = (ProgressBar) findViewById(R.id.registerforplacementprogress);
+        GetFLName();
 
         id = getIntent().getStringExtra("id");
         companyname = getIntent().getStringExtra("companyname");
         cpackage = getIntent().getStringExtra("package");
         post = getIntent().getStringExtra("post");
-
         forwhichcourse = getIntent().getStringExtra("forwhichcourse");
         forwhichstream = getIntent().getStringExtra("forwhichstream");
-
         vacancies = getIntent().getStringExtra("vacancies");
         lastdateofregistration = getIntent().getStringExtra("lastdateofregistration");
         dateofarrival = getIntent().getStringExtra("dateofarrival");
@@ -125,7 +134,6 @@ public class ViewPlacement extends AppCompatActivity {
         save.setCompanyname(companyname);
         save.setPackage(cpackage);
         save.setPost(post);
-        save.setForwhichcourse(forwhichcourse);
         save.setForwhichstream(forwhichstream);
         save.setVacancies(vacancies);
         save.setLastdateofregistration(lastdateofregistration);
@@ -144,7 +152,20 @@ public class ViewPlacement extends AppCompatActivity {
         save.setNoofalloweddeadatkt(noofalloweddeadatkt);
         save.setUploadtime(uploadtime);
         save.setLastmodified(lastmodified);
-        save.setUploadedby(uploadedby);
+
+        Log.d(TAG, "forwhichcourse: "+forwhichcourse);
+        String CourcendStreams[] = forwhichcourse.split(",");
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < CourcendStreams.length; i++) {
+
+            sb.append((i+1)+". "+CourcendStreams[i]+"\n \n ");
+        }
+        Log.d(TAG, "sb.toString(): "+sb.toString());
+        save.setForwhichcourse(sb.toString());
+
+
+
+
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,6 +252,8 @@ public class ViewPlacement extends AppCompatActivity {
         adapter.addFragment(new PlacementTab1(), "Job Description");
         adapter.addFragment(new PlacementTab2(), "Selection Process");
         adapter.addFragment(new PlacementTab3(), "Selection Criteria");
+        adapter.addFragment(new PlacementTab4(), "Courses");
+
         viewPager.setAdapter(adapter);
     }
 
@@ -1037,5 +1060,62 @@ public class ViewPlacement extends AppCompatActivity {
         }
 
     }
+    private void GetFLName() {
+//        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
+        AndroidNetworking.post(Z.GetFLName)
+                .setTag(this)
+                .addQueryParameter("u", uploadedby)
+                .setPriority(Priority.MEDIUM)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                        try {
+                            if (response.getString("info").equals("success")){
+                                Uploader_FLname = response.getString("flname");
+                                SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
+                                save.setUploadedby(Uploader_FLname);
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
+
 }
 

@@ -51,6 +51,7 @@ import mabbas007.tagsedittext.TagsEditText;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class CreatePlacement extends AppCompatActivity {
 
@@ -387,6 +388,14 @@ public class CreatePlacement extends AppCompatActivity {
 
 
                     PlacementCreateTab1 PlaceTab1 = (PlacementCreateTab1) adapter.getItem(0);
+                    Log.d("gettingtabData", "size to send: "+PlaceTab1.TagCreateList.size());
+                    for (int i = 0; i < PlaceTab1.TagCreateList.size(); i++) {
+                        Log.d(TAG, "contains"+PlaceTab1.TagCreateList.get(i));
+                    }
+
+
+
+
                     PlacementCreateTab2 PlaceTab2 = (PlacementCreateTab2) adapter.getItem(1);
                     PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
                     viewPager.setOffscreenPageLimit(3);
@@ -478,12 +487,22 @@ public class CreatePlacement extends AppCompatActivity {
             paramcompanyname = PlaceTab1.companyname.getText().toString();
             cpackage = PlaceTab1.cpackage.getText().toString();
             post = PlaceTab1.post.getText().toString();
-            selected = PlaceTab1.selected.getText().toString();
+//            selected = PlaceTab1.selected.getText().toString();
+            StringBuilder sb=new StringBuilder("");
+            for (int i = 0; i <PlaceTab1.TagCreateList.size() ; i++) {
+               sb.append(PlaceTab1.TagCreateList.get(i)+",");
+                Log.d(TAG, "String Builder"+sb.toString());
+            }
+            selected=sb.toString();
+//            selected =OtoString(PlaceTab1.TagCreateList.size(),MySharedPreferencesManager.getDigest1(CreatePlacement.this),MySharedPreferencesManager.getDigest2(CreatePlacement.this));
+            Log.d(TAG, "size to send: "+PlaceTab1.TagCreateList.size());
+
             vacancies = PlaceTab1.vacancies.getText().toString();
             lastdateofrr = PlaceTab1.lastdateofrr.getText().toString();
             dateofarrival = PlaceTab1.dateofarrival.getText().toString();
             bond = PlaceTab1.bond.getText().toString();
             Log.d("gettingtabData", "encrypt: " + paramcompanyname);
+            Log.d("gettingtabData", "size to send: "+PlaceTab1.TagCreateList.size());
             Log.d("gettingtabData", "cpackage: " + cpackage);
             Log.d("gettingtabData", "post: " + post);
             Log.d("gettingtabData", "selected: " + selected);
@@ -526,6 +545,7 @@ public class CreatePlacement extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
+
                 validate();
                 break;
 

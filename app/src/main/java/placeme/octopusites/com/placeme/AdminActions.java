@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AdminActions extends AppCompatActivity implements View.OnClickListener{
 
@@ -105,9 +106,18 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
         createnotificationrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i1 = new Intent(AdminActions.this, CreateNotification.class);
-                i1.putExtra("flag", "fromAdminActivity");
-                startActivity(i1);
+
+                if (Z.isAdminHrVerified(AdminActions.this)) {
+                    Intent i1 = new Intent(AdminActions.this, CreateNotification.class);
+                    i1.putExtra("flag", "fromAdminActivity");
+                    startActivityForResult(i1, 99);
+
+//                        startActivityForResult(new Intent(getActivity(), MyProfileKnownLang.class).putExtra("username", username), 0);
+//                        for result
+                } else {
+                    Toast.makeText(AdminActions.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
         editnotificationrl.setOnClickListener(new View.OnClickListener() {
@@ -127,9 +137,15 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
             public void onClick(View view) {
                 PlacementEditData settag = new PlacementEditData();
 
-                String Tag = "adminActivity";
-                settag.setActivityFromtag(Tag);
-                startActivity(new Intent(AdminActions.this,CreatePlacement.class));
+                if (Z.isAdminHrVerified(AdminActions.this)) {
+                    String Tag = "adminActivity";
+                    settag.setActivityFromtag(Tag);
+
+                    startActivityForResult(new Intent(AdminActions.this, CreatePlacement.class), 99);
+
+                } else {
+                    Toast.makeText(AdminActions.this, "Your account is still not verified. Please wait while we are verifying your account as TPO & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
+                }
             }
         });
         editnotificationrl2.setOnClickListener(new View.OnClickListener() {

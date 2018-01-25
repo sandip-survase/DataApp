@@ -37,7 +37,6 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class UserSelection extends AppCompatActivity {
 
-    //serverside
 
     Boolean editregistered = false, editedshortlist = false, editedPlaced = false;
     String paramsList;
@@ -79,8 +78,17 @@ public class UserSelection extends AppCompatActivity {
     private ArrayList<RecyclerItemUsers> itemListPlaced = new ArrayList<>();
     private RecyclerItemUsersAdapter mAdapterplaced;
     //aRRAYLISTS TOSET
-    private ArrayList<RecyclerItemUsers> itemListShortlitedToset = new ArrayList<>();
     private ArrayList<RecyclerItemUsers> itemListPlacedToset = new ArrayList<>();
+
+
+    private ArrayList<RecyclerItemUsers> SelectedRegisterdListfromserver = new ArrayList<>();
+    private ArrayList<RecyclerItemUsers> SelectedShortlistedListfromserver = new ArrayList<>();
+    private ArrayList<RecyclerItemUsers> SelectedPlacedListfromserver = new ArrayList<>();
+
+    private ArrayList<RecyclerItemUsers> itemListShortlitedToset = new ArrayList<>();
+    private ArrayList<RecyclerItemUsers> CurrentSelectionShortlistedList = new ArrayList<>();
+    private ArrayList<RecyclerItemUsers> CurrentSelectionSelectedPlacedList = new ArrayList<>();
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -107,7 +115,9 @@ public class UserSelection extends AppCompatActivity {
                         fabminirl.setVisibility(View.GONE);
                         fabCountText.setText("");
                     }
-
+                    mAdapterRegisterd = new RecyclerItemUsersAdapter(registerdListfromserver, UserSelection.this, 1);
+                    recycler_view_Registered.setAdapter(mAdapterRegisterd);
+                    mAdapterRegisterd.notifyDataSetChanged();
 
                     return true;
 //                    }
@@ -128,7 +138,7 @@ public class UserSelection extends AppCompatActivity {
                         fabCountText.setText("");
                     }
 
-                    mAdapterShortlited = new RecyclerItemUsersAdapter(itemListShortlited, UserSelection.this, 2);
+                    mAdapterShortlited = new RecyclerItemUsersAdapter(ShortlistedListfromserver, UserSelection.this, 2);
                     recycler_view_ShortListed.setAdapter(mAdapterShortlited);
                     mAdapterShortlited.notifyDataSetChanged();
 
@@ -150,7 +160,7 @@ public class UserSelection extends AppCompatActivity {
                         fabCountText.setText("");
                     }
 
-                    mAdapterplaced = new RecyclerItemUsersAdapter(itemListPlaced, UserSelection.this, 3);
+                    mAdapterplaced = new RecyclerItemUsersAdapter(placedListfromserver, UserSelection.this, 3);
                     recycler_view_Placed.setAdapter(mAdapterplaced);
                     mAdapterplaced.notifyDataSetChanged();
 
@@ -186,10 +196,23 @@ public class UserSelection extends AppCompatActivity {
             registerdListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sRegisteredItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
             ShortlistedListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sShortlistedListsfromservertemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
             placedListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("splacedItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+            Log.d(TAG, "onCreate:registerdListfromserver size " + registerdListfromserver.size());
+            Log.d(TAG, "onCreate:ShortlistedListfromserver size " + ShortlistedListfromserver.size());
+            Log.d(TAG, "onCreate:placedListfromserver size " + placedListfromserver.size());
+
+            Log.d("checking", "============================================================");
 
             for (int k = 0; k < registerdListfromserver.size(); k++) {
-                Log.d("checking", "selected status:::" + k + ":::" + registerdListfromserver.get(k).isSelected());
+                Log.d("checking", "selected status of registerdListfromserver:" + k + ":::" + registerdListfromserver.get(k).isSelected());
             }
+            for (int k = 0; k < ShortlistedListfromserver.size(); k++) {
+                Log.d("checking", "selected status of ShortlistedListfromserver:" + k + ":::" + ShortlistedListfromserver.get(k).isSelected());
+            }
+            for (int k = 0; k < placedListfromserver.size(); k++) {
+                Log.d("checking", "selected status OF placedListfromserver:" + k + ":::" + placedListfromserver.get(k).isSelected());
+            }
+            Log.d("checking", "============================================================");
+
 
         } catch (Exception e) {
 
@@ -247,44 +270,29 @@ public class UserSelection extends AppCompatActivity {
         recycler_view_ShortListed.setVisibility(View.GONE);
         recycler_view_Placed.setVisibility(View.GONE);
 
-        //setting serverdata
-
-//        addUsersdatatoAdapter();
-//        itemListRegisterd.addAll(registerdListfromserver);
-//        mAdapterRegisterd = new RecyclerItemUsersAdapter(registerdListfromserver, UserSelection.this, 1);
-
-//        itemListShortlitedToset.addAll(registerdListfromserver);
-//        mAdapterRegisterd.notifyDataSetChanged();
-
-
-
-//        addShortlisedUserToAdapter();
-//        mAdapterShortlited.notifyDataSetChanged();
-//        addplacedUsersdatatoAdapter();
-//        itemListPlacedToset.addAll(placedListfromserver);
-//        mAdapterplaced.notifyDataSetChanged();
 
         Log.d(TAG, "============from server list sizes================: ");
         Log.d(TAG, "registerdListfromserver: " + registerdListfromserver.size());
         Log.d(TAG, "ShortlistedListfromserver: " + ShortlistedListfromserver.size());
         Log.d(TAG, "itemListplacedListfromserver: " + placedListfromserver.size());
-        Log.d(TAG, "=======================================: ");
+        Log.d(TAG, "===================================================: ");
 
         //getting Fabcount
         for (int k = 0; k < registerdListfromserver.size(); k++) {
             if (registerdListfromserver.get(k).isSelected()) {
-                itemListShortlitedToset.add(registerdListfromserver.get(k));
+                SelectedRegisterdListfromserver.add(registerdListfromserver.get(k));
                 RegisteredFabCount++;
             }
         }
         for (int j = 0; j < ShortlistedListfromserver.size(); j++) {
             if (ShortlistedListfromserver.get(j).isSelected()) {
-                itemListPlacedToset.add(ShortlistedListfromserver.get(j));
+                SelectedShortlistedListfromserver.add(ShortlistedListfromserver.get(j));
                 ShortlistedFabCount++;
             }
         }
         for (int l = 0; l < placedListfromserver.size(); l++) {
             if (placedListfromserver.get(l).isSelected()) {
+                SelectedPlacedListfromserver.add(placedListfromserver.get(l));
                 placedFabCount++;
             }
 
@@ -378,43 +386,52 @@ public class UserSelection extends AppCompatActivity {
 
     public void showCount(RecyclerItemUsers object) {
         editregistered = true;
+        editregistered = true;
 
         RecyclerItemUsers item2 = object;
-        if (item2.isSelected) {
+        if (object.isSelected) {
+            if (item2.isSelected) {
 
-            if (!itemListShortlitedToset.contains(item2)) {
-                itemListShortlitedToset.add(item2);
-                item2.setSelected(false);
-                Log.d(TAG, "in selected email:" + item2.getEmail() + " not Present ::added");
-                RegisteredFabCount++;
+                if (!itemListShortlitedToset.contains(item2)) {
+                    item2.setSelected(false);
+                    itemListShortlitedToset.add(item2);
+
+                    Log.d("contains", "::" + item2.getEmail() + "::added");
+                    Log.d(TAG, "in selected email:" + item2.getEmail() + " not Present ::added");
+                    RegisteredFabCount++;
+                } else {
+                    itemListShortlitedToset.remove(item2);
+                    RegisteredFabCount--;
+                    Log.d("contains", "::" + item2.getEmail() + "::removed");
+                    Log.d(TAG, "in selected email:" + item2.getEmail() + "Already Present::Removed");
+                }
             } else {
-                itemListShortlitedToset.remove(item2);
-                RegisteredFabCount--;
-                Log.d(TAG, "in selected email:" + item2.getEmail() + "Already Present::Removed");
+                if (!itemListShortlitedToset.contains(item2)) {
+                    itemListShortlitedToset.add(item2);
+                    item2.setSelected(false);
+                    Log.d("contains", "::" + item2.getEmail() + "added");
+                    Log.d(TAG, "email:" + item2.getEmail() + " not Present ::added");
+                    RegisteredFabCount++;
+                } else {
+                    itemListShortlitedToset.remove(item2);
+                    RegisteredFabCount--;
+                    Log.d("contains", "::" + item2.getEmail() + "removed");
+                    Log.d(TAG, "email:" + item2.getEmail() + "Already Present::Removed");
+                }
+
             }
-        } else {
-            if (!itemListShortlitedToset.contains(item2)) {
-                itemListShortlitedToset.add(item2);
-                item2.setSelected(false);
-                Log.d(TAG, "email:" + item2.getEmail() + " not Present ::added");
-                RegisteredFabCount++;
+
+            if (RegisteredFabCount != 0) {
+                fabminirl.setVisibility(View.VISIBLE);
+                fabCountText.setText("" + RegisteredFabCount);
             } else {
-                itemListShortlitedToset.remove(item2);
-                RegisteredFabCount--;
-                Log.d(TAG, "email:" + item2.getEmail() + "Already Present::Removed");
+                fabminirl.setVisibility(View.GONE);
+                fabCountText.setText("");
             }
+            Log.d("contains", "=====itemListShortlitedToset size===========: " + itemListShortlitedToset.size());
+            Log.d(TAG, "itemListShortlitedToset onchecked:" + itemListShortlitedToset.size());
 
         }
-
-        if (RegisteredFabCount != 0) {
-            fabminirl.setVisibility(View.VISIBLE);
-            fabCountText.setText("" + RegisteredFabCount);
-        } else {
-            fabminirl.setVisibility(View.GONE);
-            fabCountText.setText("");
-        }
-        Log.d(TAG, "itemListShortlitedToset onchecked:" + itemListShortlitedToset.size());
-
     }
 
     public void showCount2(RecyclerItemUsers object) {
@@ -453,7 +470,7 @@ public class UserSelection extends AppCompatActivity {
             fabminirl.setVisibility(View.GONE);
             fabCountText.setText("");
         }
-        Log.d("contains", "=====itemListShortlitedToset size===========: " + itemListPlacedToset.size());
+        Log.d("contains", "=====CurrentSelectionRegisterdList size===========: " + itemListPlacedToset.size());
 
 
     }
@@ -502,48 +519,51 @@ public class UserSelection extends AppCompatActivity {
     }
 
     public void shortlist() {
-
-        //from server
-
-
-        //from same activity
-        if (itemListShortlited.size() == 0) {
-            itemListShortlited.addAll(itemListShortlitedToset);
-
+//from same activity
+        Log.d(TAG, "==============shortlist===============");
+        Log.d(TAG, "ShortlistedListfromserver size:" + ShortlistedListfromserver.size());
+        Log.d(TAG, "itemListShortlitedToset size:" + itemListShortlitedToset.size());
+        if (ShortlistedListfromserver.size() == 0) {
+            ShortlistedListfromserver.addAll(itemListShortlitedToset);
         } else {
-
-
-            for (int j = 0; j < itemListShortlitedToset.size(); j++) {
-
-                if (itemListShortlited.contains(itemListShortlitedToset.get(j))) {
+            for (int j = 0; j < ShortlistedListfromserver.size(); j++) {
+                if (ShortlistedListfromserver.contains(itemListShortlitedToset.get(j))) {
                     //already
                     Log.d("contains", "already present: " + itemListShortlitedToset.get(j).getEmail());
                 } else {
                     Log.d("contains", "not present: " + itemListShortlitedToset.get(j).getEmail());
-                    itemListShortlited.add(itemListShortlitedToset.get(j));
-
-
+                    ShortlistedListfromserver.add(itemListShortlitedToset.get(j));
                 }
             }
-
         }
-        new SaveShortlisted().execute();
 
 
-        Log.d("itemlistsize", "========temp size ==============: " + itemListShortlitedToset.size());
-        Log.d("itemlistsize", "========final size=============: " + itemListShortlited.size());
 
-        for (int i = 0; i < itemListShortlitedToset.size(); i++) {
-            Log.d("itemlistsize", "======status temp==========: " + itemListShortlitedToset.get(i).isSelected());
 
+
+        //this ItemlistToSet  next tab(shortlisted);
+        Log.d(TAG, "ShortlistedListfromserver size:" + ShortlistedListfromserver.size());
+        for (int i = 0; i < ShortlistedListfromserver.size(); i++) {
+            Log.d(TAG, "ShortlistedListfromserver checkstatus : " + ShortlistedListfromserver.get(i).isSelected);
+            Log.d(TAG, "===============/shortlist==============");
         }
-        for (int i = 0; i < itemListShortlited.size(); i++) {
-            Log.d("itemlistsize", "======status final==========: " + itemListShortlited.get(i).isSelected());
 
+        Log.d(TAG, "==============setting status to back tab==============" );
+        for (int i = 0; i <registerdListfromserver.size() ; i++) {
+
+            for (int j = 0; j < itemListShortlitedToset.size(); j++) {
+                Log.d(TAG, "=========>"+i+"<=========" );
+
+                Log.d(TAG, "=========>"+registerdListfromserver.get(j).getEmail()+"="+itemListShortlitedToset.get(j).getEmail()+"<=========" );
+                if(registerdListfromserver.get(j).getEmail().equals(itemListShortlitedToset.get(j).getEmail())){
+                    registerdListfromserver.get(j).setSelected(true);
+                }
+            }
+            Log.d(TAG, "==================//setting status to back tab=========================" );
         }
+
+//        new SaveShortlisted().execute();
         navigation.setSelectedItemId(R.id.navigation_dashboard);
-
-
     }
 
     public void placeS() {
@@ -611,32 +631,6 @@ public class UserSelection extends AppCompatActivity {
         }
     }
 
-    public void fromserver() {
-        if (itemListShortlited.size() == 0) {
-
-
-            itemListShortlited.addAll(itemListShortlitedToset);
-
-        } else {
-
-
-            for (int j = 0; j < itemListShortlitedToset.size(); j++) {
-
-                if (itemListShortlited.contains(itemListShortlitedToset.get(j))) {
-                    //already
-                    Log.d("contains", "already present: " + itemListShortlitedToset.get(j).getEmail());
-                } else {
-                    Log.d("contains", "not present: " + itemListShortlitedToset.get(j).getEmail());
-                    itemListShortlited.add(itemListShortlitedToset.get(j));
-
-
-                }
-            }
-
-        }
-        new SaveShortlisted().execute();
-
-    }
 
     class SaveShortlisted extends AsyncTask<String, String, String> {
 
@@ -646,8 +640,9 @@ public class UserSelection extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
             try {
+                Log.d(TAG, "ShortlistedListfromserver: " + ShortlistedListfromserver.size());
 
-                String shortlistusersToSend = OtoString(itemListShortlitedToset, MySharedPreferencesManager.getDigest1(UserSelection.this), MySharedPreferencesManager.getDigest2(UserSelection.this));
+                String shortlistusersToSend = OtoString(ShortlistedListfromserver, MySharedPreferencesManager.getDigest1(UserSelection.this), MySharedPreferencesManager.getDigest2(UserSelection.this));
                 params.add(new BasicNameValuePair("u", CompanId));                    //0
                 params.add(new BasicNameValuePair("lobj", shortlistusersToSend));    //1
                 Log.d("TAG", "doInBackground: " + CompanId);
@@ -670,13 +665,12 @@ public class UserSelection extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            itemListShortlitedToset.clear();
+            ShortlistedListfromserver.clear();
             if (result.equals("success")) {
                 Toast.makeText(UserSelection.this, "Successfully Shortlisted", Toast.LENGTH_SHORT).show();
 
             } else {
-
-//                Toast.makeText(UserSelection.this, "ooops something went Wrong...!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserSelection.this, "ooops something went Wrong...!!", Toast.LENGTH_SHORT).show();
             }
         }
     }

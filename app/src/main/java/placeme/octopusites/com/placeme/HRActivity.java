@@ -2086,7 +2086,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     }
 
     private void Getplacementbyhr() {
-        // TODO implement paging
         Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
         AndroidNetworking.post(Z.url_GetPlacementsCreatedByHr)
                 .setTag(this)

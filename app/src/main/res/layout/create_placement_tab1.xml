@@ -219,7 +219,9 @@
                 TagsEditText:tagsPaddingRight="10dp"
 
                 />
+
             </android.support.design.widget.TextInputLayout>
+
 
 
 

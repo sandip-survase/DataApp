@@ -893,7 +893,7 @@ public class CreatePlacementHr extends AppCompatActivity {
 
             json = jParser.makeHttpRequest(Z.url_CreatePlacementsHr, "GET", params);
             try {
-                r = json.getString("info1");
+                r = json.getString("info");
 
             } catch (Exception e) {
                 e.printStackTrace();

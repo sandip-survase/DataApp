@@ -72,14 +72,12 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
             holder.email.setText(item.getEmail());
             holder.name.setTypeface(Z.getBold(holder.name.getContext()));
             holder.email.setTypeface(Z.getLight(holder.email.getContext()));
-
             Uri uri = new Uri.Builder()
                     .scheme("http")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImageThumbnail")
                     .appendQueryParameter("u", item.getEmail())
                     .build();
-
             Glide.with(mContext)
                     .load(uri)
                     .signature(new StringSignature(Z.Decrypt(item.getEmail(), mContext)))

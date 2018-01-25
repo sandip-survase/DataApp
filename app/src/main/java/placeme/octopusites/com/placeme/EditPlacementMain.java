@@ -591,7 +591,7 @@ public class EditPlacementMain extends AppCompatActivity {
 
                 if (forstudflag == 1) {
                     //notification for Student
-                    forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                    forwhom = MySharedPreferencesManager.getData(EditPlacementMain.this,"ucode") + "(" + Decrypt(encUsername, digest1, digest2) + ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                     if (forallumflag == 1) {
                         //for Stud + alumni
                         forwhom = forwhom + "," + selectedBatchesForWhome + ")";
@@ -606,7 +606,7 @@ public class EditPlacementMain extends AppCompatActivity {
                     //notification not for Student
                     if (forallumflag == 1) {
                         //for ALLUMNI
-                        forwhom = instname + "(" + Decrypt(encUsername, digest1, digest2) + " ," + selectedBatchesForWhome + ")";
+                        forwhom = MySharedPreferencesManager.getData(EditPlacementMain.this,"ucode") + "(" + Decrypt(encUsername, digest1, digest2) + " ," + selectedBatchesForWhome + ")";
                         Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
 
                     } else {

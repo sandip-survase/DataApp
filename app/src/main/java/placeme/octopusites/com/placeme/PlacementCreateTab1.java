@@ -37,43 +37,62 @@ import placeme.octopusites.com.placeme.modal.RecyclerItemPlacement;
 
 public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEditListener {
 
-    AutoCompleteTextView courses,streams;
+    public ArrayList<String> TagCreateList = new ArrayList<>();
+    AutoCompleteTextView courses, streams;
     TagsEditText selected;
-    ArrayList<String> listAll=new ArrayList<String>();
-    TextInputLayout companynameinput,packageinput,postinput,vacanciesinput,ldrinput,dorinput,bondinput,CoursecInput,streaminput;
+    ArrayList<String> listAll = new ArrayList<String>();
+    TextInputLayout companynameinput, packageinput, postinput, vacanciesinput, ldrinput, dorinput, bondinput, CoursecInput, streaminput;
+    ArrayList<String> tosettoStreamslist = new ArrayList<>();
+    ArrayList<String> tosettoCourseslist = new ArrayList<>();
+    String TAG = "PlacementCreateTab1";
 
-    ArrayList<String> tosettoStreamslist=new ArrayList<>();
-    ArrayList<String> tosettoCourseslist=new ArrayList<>();
-    ArrayList<String> TagCreateList=new ArrayList<>();
 
-    String[] CourseListWithIds,CourseList;
-    String[] StramsListWithIds,StramsList,tempStramsList;
+    String[] CourseListWithIds, CourseList;
+    String[] StramsListWithIds, StramsList, tempStramsList;
 
     //ui
-    EditText companyname,cpackage,post,vacancies,lastdateofrr,dateofarrival,bond;
-    String sid, scompanyname="",scpackage="",spost="",svacancies="",slastdateofrr="",sdateofarrival="",sbond="",sselected="";
+    EditText companyname, cpackage, post, vacancies, lastdateofrr, dateofarrival, bond;
+    String sid, scompanyname = "", scpackage = "", spost = "", svacancies = "", slastdateofrr = "", sdateofarrival = "", sbond = "", sselected = "";
 
     //flags
-    int datepicker1=0;
-    int Erroflag=0;
+    int datepicker1 = 0;
+    int Erroflag = 0;
     boolean edittedFlag = false;
 
-    RelativeLayout courseselector,Streamselector,selectedrl;
+    RelativeLayout courseselector, Streamselector, selectedrl;
     View rootView;
     InputMethodManager inputManager;
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            if (datepicker1 == 1) {
+                lastdateofrr.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1)
+                        + "/" + String.valueOf(year));
+            }
+            if (datepicker1 == 2) {
+                dateofarrival.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1)
+                        + "/" + String.valueOf(year));
+            }
+
+
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.create_placement_tab1, container, false);
 
-        companynameinput=(TextInputLayout)rootView.findViewById(R.id.companynameinput);
-        packageinput=(TextInputLayout)rootView.findViewById(R.id.packageinput);
-        postinput=(TextInputLayout)rootView.findViewById(R.id.postinput);
-        vacanciesinput=(TextInputLayout)rootView.findViewById(R.id.vacanciesinput);
-        ldrinput=(TextInputLayout)rootView.findViewById(R.id.ldrinput);
-        dorinput=(TextInputLayout)rootView.findViewById(R.id.dorinput);
-        bondinput=(TextInputLayout)rootView.findViewById(R.id.bondinput);
-        CoursecInput=(TextInputLayout)rootView.findViewById(R.id.CoursecInput);
-        streaminput=(TextInputLayout)rootView.findViewById(R.id.streaminput);
+        companynameinput = (TextInputLayout) rootView.findViewById(R.id.companynameinput);
+        packageinput = (TextInputLayout) rootView.findViewById(R.id.packageinput);
+        postinput = (TextInputLayout) rootView.findViewById(R.id.postinput);
+        vacanciesinput = (TextInputLayout) rootView.findViewById(R.id.vacanciesinput);
+        ldrinput = (TextInputLayout) rootView.findViewById(R.id.ldrinput);
+        dorinput = (TextInputLayout) rootView.findViewById(R.id.dorinput);
+        bondinput = (TextInputLayout) rootView.findViewById(R.id.bondinput);
+        CoursecInput = (TextInputLayout) rootView.findViewById(R.id.CoursecInput);
+        streaminput = (TextInputLayout) rootView.findViewById(R.id.streaminput);
 
 
         companynameinput.setTypeface(Z.getLight(getActivity()));
@@ -88,16 +107,17 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
         TextView choosetxt = (TextView) rootView.findViewById(R.id.choosetxt);
         choosetxt.setTypeface(Z.getBold(getActivity()));
-        inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
-        courseselector = (RelativeLayout)rootView.findViewById(R.id.courseselector);
-        Streamselector = (RelativeLayout)rootView.findViewById(R.id.Streamselector);
-        selectedrl     = (RelativeLayout)rootView.findViewById(R.id.selectedrl);
+        courseselector = (RelativeLayout) rootView.findViewById(R.id.courseselector);
+        Streamselector = (RelativeLayout) rootView.findViewById(R.id.Streamselector);
 
         courses = (AutoCompleteTextView) rootView.findViewById(R.id.courses);
         streams = (AutoCompleteTextView) rootView.findViewById(R.id.streams);
         selected = (TagsEditText) rootView.findViewById(R.id.selected);
+        selectedrl = (RelativeLayout) rootView.findViewById(R.id.selectedrl);
+
 
         //tags
         companyname = (EditText) rootView.findViewById(R.id.companyname);
@@ -248,7 +268,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         }
 
 
-
         StramsListWithIds = getResources().getStringArray(R.array.streams);
         StramsList = new String[StramsListWithIds.length];
         for (int i = 0; i < StramsListWithIds.length; i++) {
@@ -301,7 +320,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 CoursecInput.setError(null);
@@ -329,7 +348,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 CreateTags();
@@ -338,20 +357,23 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         });
 
 
-
+        selected.setTagsWithSpacesEnabled(true);
         selected.setTagsListener(new TagsEditText.TagsEditListener() {
             @Override
             public void onTagsChanged(Collection<String> collection) {
 
                 TagCreateList.clear();
                 List<String> newList = new ArrayList<String>(selected.getTags());
+                List<String> newList2 = new ArrayList<String>(selected.getTags());
                 TagCreateList.addAll(newList);
-                String temp="" ;
-                temp= selected.getText().toString();
-                Log.d("tag", "onTagsChanged: "+temp);
-                if(temp.equals("")){
+                String temp = "";
+                temp = selected.getText().toString();
+                Log.d("tag", "onTagsChanged: " + temp);
+                if (temp.equals("")) {
                     selectedrl.setVisibility(View.GONE);
                 }
+
+
             }
 
             @Override
@@ -359,7 +381,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
             }
         });
-
 
 
 //datepickers
@@ -392,7 +413,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         PlacementEditData getdata = new PlacementEditData();
 
         String activitytag = getdata.getActivityFromtag();
-        Log.d("activitytag", "onCreateView: "+activitytag);
+        Log.d("activitytag", "onCreateView: " + activitytag);
         if (activitytag.contains("EditPlacement")) {
             sid = getdata.getId();
             scompanyname = getdata.getCompanyname();
@@ -404,8 +425,8 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             sbond = getdata.getBond();
             sselected = getdata.getSelectedcourceforplacement();
 
-            if(scpackage.contains("LPA")){
-                scpackage=scpackage.replace("LPA","");
+            if (scpackage.contains("LPA")) {
+                scpackage = scpackage.replace("LPA", "");
             }
 
             if (scompanyname.length() > 0) {
@@ -445,10 +466,10 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             sbond = getdata.getBond();
             sselected = getdata.getSelectedcourceforplacement();
 
-            if(scpackage.contains("LPA")){
-                scpackage=scpackage.replace("LPA","");
+            if (scpackage.contains("LPA")) {
+                scpackage = scpackage.replace("LPA", "");
             }
- 
+
             if (scompanyname.length() > 0) {
                 companyname.setText(scompanyname);
             }
@@ -490,14 +511,14 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 
             String courseArray[] = a.split(",");
             int courseIndex = Integer.parseInt(courseArray[0]);
-            Log.d("TAG", "courseIndex: "+courseIndex);
+            Log.d("TAG", "courseIndex: " + courseIndex);
 
             int index = 0;
 
             for (int i = 0; i < StramsListWithIds.length; i++) {
-                if (StramsListWithIds[i].contains(""+courseIndex)) {
-                    String splitedStream[] =StramsListWithIds[i].split(",");
-                    if (splitedStream[0].equals(""+courseIndex)) {
+                if (StramsListWithIds[i].contains("" + courseIndex)) {
+                    String splitedStream[] = StramsListWithIds[i].split(",");
+                    if (splitedStream[0].equals("" + courseIndex)) {
                         tosettoStreamslist.add(splitedStream[1]);
                         splitedStream = null;
                     }
@@ -507,22 +528,20 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             if (tempStramsList != null && tempStramsList.length > 0) {
                 Streamselector.setVisibility(View.VISIBLE);
 
-                ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, tempStramsList)
-                {
+                ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, tempStramsList) {
 
                     @Override
                     public View getDropDownView(int position, View convertView,
                                                 ViewGroup parent) {
                         View view = super.getDropDownView(position, convertView, parent);
                         TextView tv = (TextView) view;
-                        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/abz.ttf");
+                        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/abz.ttf");
                         tv.setTypeface(custom_font3);
 
-                        if(position == 0){
+                        if (position == 0) {
                             // Set the hint text color gray
                             tv.setTextColor(Color.GRAY);
-                        }
-                        else {
+                        } else {
                             tv.setTextColor(Color.parseColor("#eeeeee"));
                         }
                         return view;
@@ -530,14 +549,12 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                 };
                 streams.setAdapter(dataAdapter2);
                 Streamselector.setVisibility(View.VISIBLE);
-
-            }else {
+            } else {
                 tosettoStreamslist.clear();
                 String sCources = courses.getText().toString();
                 TagCreateList.add(sCources);
                 String[] TagCreateArray = new String[TagCreateList.size()];
                 TagCreateArray = TagCreateList.toArray(TagCreateArray);
-
                 selectedrl.setVisibility(View.VISIBLE);
                 selected.setTags(TagCreateArray);
                 Streamselector.setVisibility(View.GONE);
@@ -548,30 +565,26 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         } catch (Exception e) {
         }
         return null;
-
     }
+
     String CreateTags() {
         String sCources = courses.getText().toString();
         String sStrams = streams.getText().toString();
-        String ToDisplay=  sCources+","+sStrams;
-
-
+        String ToDisplay = sCources + " " + sStrams;
         TagCreateList.clear();
         List<String> newList = new ArrayList<String>(selected.getTags());
         TagCreateList.addAll(newList);
         TagCreateList.add(ToDisplay);
 //        String[] TagCreateArray;
-
         String[] TagCreateArray = new String[TagCreateList.size()];
         TagCreateArray = TagCreateList.toArray(TagCreateArray);
-
-        Log.d("tags", "tags: "+ToDisplay);
         selectedrl.setVisibility(View.VISIBLE);
         selected.setTags(TagCreateArray);
         streams.setText("");
         return null;
 
     }
+
     private void showDatePicker() {
         DatePickerFragment date = new DatePickerFragment();
         /**
@@ -590,24 +603,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         date.setCallBack(ondate);
         date.show(getFragmentManager(), "Date Picker");
     }
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-            if(datepicker1==1){
-                lastdateofrr.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear+1)
-                        + "/" + String.valueOf(year));
-            }
-            if(datepicker1==2){
-                dateofarrival.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear+1)
-                        + "/" + String.valueOf(year));
-            }
-
-
-        }
-    };
-
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
@@ -653,146 +648,137 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
     public void onEditingFinished() {
 
     }
-    public Boolean SetFeilds(){
+
+    public Boolean SetFeilds() {
         companyname.setText("Hello");
         return true;
     }
-    public Boolean Validate(){
+
+    public Boolean Validate() {
 
 
-        scompanyname= companyname.getText().toString();
-        scpackage= cpackage.getText().toString();
-        spost= post.getText().toString();
-        svacancies= vacancies.getText().toString();
-        slastdateofrr= lastdateofrr.getText().toString();
-        sdateofarrival= dateofarrival.getText().toString();
-        sbond= bond.getText().toString();
-        sselected= selected.getText().toString();
-        Log.d("TAG", "scompanyname:"+scompanyname);
-        Log.d("TAG", "scpackage:"+scpackage);
-        Log.d("TAG", "spost:"+spost);
-        Log.d("TAG", "svacancies:"+svacancies);
-        Log.d("TAG", "slastdateofrr:"+slastdateofrr);
-        Log.d("TAG", "sdateofarrival:"+sdateofarrival);
-        Log.d("TAG", "sbond:"+sbond);
-        Log.d("TAG", "sselected:"+sselected);
+        scompanyname = companyname.getText().toString();
+        scpackage = cpackage.getText().toString();
+        spost = post.getText().toString();
+        svacancies = vacancies.getText().toString();
+        slastdateofrr = lastdateofrr.getText().toString();
+        sdateofarrival = dateofarrival.getText().toString();
+        sbond = bond.getText().toString();
+        sselected = selected.getText().toString();
+        Log.d("TAG", "scompanyname:" + scompanyname);
+        Log.d("TAG", "scpackage:" + scpackage);
+        Log.d("TAG", "spost:" + spost);
+        Log.d("TAG", "svacancies:" + svacancies);
+        Log.d("TAG", "slastdateofrr:" + slastdateofrr);
+        Log.d("TAG", "sdateofarrival:" + sdateofarrival);
+        Log.d("TAG", "sbond:" + sbond);
+        Log.d("TAG", "sselected:" + sselected);
 
 
+        Erroflag = 0;
 
-
-
-        Erroflag=0;
-
-        if(scompanyname.length()<2){
+        if (scompanyname.length() < 2) {
             companynameinput.setError("Kindly enter valid company name");
-            Erroflag=1;
+            Erroflag = 1;
 
-        } else if(scpackage.length()<1){
+        } else if (scpackage.length() < 1) {
             packageinput.setError("Kindly enter valid package");
             Log.d("TAG", "This scpackage block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
-        }else if(spost.length()<2){
+        } else if (spost.length() < 2) {
             postinput.setError("Kindly enter valid post");
             Log.d("TAG", "This postinput block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
-        }
-        else if(sselected.length()<1){
+        } else if (sselected.length() < 1) {
             CoursecInput.setError("Kindly enter course and stream");
             Log.d("TAG", "This course block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
-        }
-
-        else if(svacancies.length()<1){
+        } else if (svacancies.length() < 1) {
             vacanciesinput.setError("Kindly enter number of vacancies");
             Log.d("TAG", "This svacancies block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
-        }
-
-        else if(slastdateofrr.length()<1){
+        } else if (slastdateofrr.length() < 1) {
             ldrinput.setError("Kindly enter valid last date of registration");
             Log.d("TAG", "This slastdateofrr block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
-        }else if(sdateofarrival.length()<1){
+        } else if (sdateofarrival.length() < 1) {
             dorinput.setError("Kindly enter valid date of arrival");
             Log.d("TAG", "This sdateofarrival block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
-        }
-        else if(sbond.length()<1){
+        } else if (sbond.length() < 1) {
             bondinput.setError("Kindly enter bond in months");
             Log.d("TAG", "This sdateofarrival block is executed");
-            Erroflag=1;
+            Erroflag = 1;
 
         }
-        if (Erroflag == 0)
-        {
+        if (Erroflag == 0) {
             lastdateofrr.setError(null);
             dateofarrival.setError(null);
             return true;
 
-        }
-        else{
+        } else {
             return false;
 
         }
     }
-    public void datasettest1()
-    {
-        companyname=(EditText)rootView.findViewById(R.id.companyname);
+
+    public void datasettest1() {
+        companyname = (EditText) rootView.findViewById(R.id.companyname);
         companyname.setText("hello");
     }
 
-    public void datasetters(RecyclerItemPlacement obj ){
+    public void datasetters(RecyclerItemPlacement obj) {
 
-        scompanyname=obj.getCompanyname();
-        scpackage=obj.getCpackage();
+        scompanyname = obj.getCompanyname();
+        scpackage = obj.getCpackage();
 
-        spost=obj.getPost();
-        svacancies=obj.getVacancies();
-        slastdateofrr=obj.getLastdateofregistration();
-        sdateofarrival=obj.getDateofarrival();
-        sbond=obj.getBond();
-        sselected=obj.getForwhichcourse();
+        spost = obj.getPost();
+        svacancies = obj.getVacancies();
+        slastdateofrr = obj.getLastdateofregistration();
+        sdateofarrival = obj.getDateofarrival();
+        sbond = obj.getBond();
+        sselected = obj.getForwhichcourse();
 
-        Log.d("Tags", "datasetters: "+scompanyname);
-        Log.d("Tags", "datasetters: "+scpackage);
-        Log.d("Tags", "datasetters: "+spost);
-        Log.d("Tags", "datasetters: "+svacancies);
-        Log.d("Tags", "datasetters: "+slastdateofrr);
-        Log.d("Tags", "datasetters: "+sdateofarrival);
-        Log.d("Tags", "datasetters: "+sbond);
-        Log.d("Tags", "datasetters: "+sselected);
+        Log.d("Tags", "datasetters: " + scompanyname);
+        Log.d("Tags", "datasetters: " + scpackage);
+        Log.d("Tags", "datasetters: " + spost);
+        Log.d("Tags", "datasetters: " + svacancies);
+        Log.d("Tags", "datasetters: " + slastdateofrr);
+        Log.d("Tags", "datasetters: " + sdateofarrival);
+        Log.d("Tags", "datasetters: " + sbond);
+        Log.d("Tags", "datasetters: " + sselected);
 
-        if(scompanyname.length()>0){
+        if (scompanyname.length() > 0) {
             companyname.setText(scompanyname);
         }
-        if(scpackage.length()>0){
+        if (scpackage.length() > 0) {
             cpackage.setText(scpackage);
         }
-        if(spost.length()>0){
+        if (spost.length() > 0) {
             post.setText(spost);
         }
-        if(svacancies.length()>0){
+        if (svacancies.length() > 0) {
             vacancies.setText(svacancies);
         }
-        if(slastdateofrr.length()>0){
+        if (slastdateofrr.length() > 0) {
             lastdateofrr.setText(slastdateofrr);
         }
-        if(sdateofarrival.length()>0){
+        if (sdateofarrival.length() > 0) {
             dateofarrival.setText(sdateofarrival);
         }
-        if(sbond.length()>0){
+        if (sbond.length() > 0) {
             bond.setText(sbond);
         }
-        if(sselected.length()>0){
+        if (sselected.length() > 0) {
             selected.setText(sselected);
         }
-        Log.d("TAG", "datasetters: "+obj.getId());
+        Log.d("TAG", "datasetters: " + obj.getId());
 
 
     }

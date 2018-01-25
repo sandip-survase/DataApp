@@ -91,6 +91,7 @@ public class PlacementTab1 extends Fragment {
         bondview.setText(bond);
         dateofarrivalview.setText(dateofarrival);
         cpackageview.setText(cpackage);
+        uploadedtxt.setText(uploadedby);
 
         companynametxt.setTypeface(Z.getLight(getActivity()));
         posttxt.setTypeface(Z.getLight(getActivity()));
@@ -108,7 +109,8 @@ public class PlacementTab1 extends Fragment {
         bondview.setTypeface(Z.getBold(getActivity()));
         dateofarrivalview.setTypeface(Z.getBold(getActivity()));
         cpackageview.setTypeface(Z.getBold(getActivity()));
-        RefreshNotificationCount();
+
+//        GetFLName();
 
         return rootView;
     }
@@ -148,7 +150,7 @@ public class PlacementTab1 extends Fragment {
         return animation;
     }
 
-    private void RefreshNotificationCount() {
+    private void GetFLName() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
         AndroidNetworking.post(Z.GetFLName)
                 .setTag(this)
@@ -175,7 +177,7 @@ public class PlacementTab1 extends Fragment {
                         try {
                             if (response.getString("info").equals("success")){
                             Uploader_FLname = response.getString("flname");
-                                uploadedtxt.setText(Uploader_FLname);
+
 
                             }
 

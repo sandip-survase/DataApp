@@ -294,7 +294,8 @@
             android:name=".HRActivity"
             android:label="@string/title_activity_hr"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+         </activity>
         <activity
             android:name=".ShowRegisteredUsers"
             android:screenOrientation="portrait"

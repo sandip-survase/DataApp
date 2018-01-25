@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_license"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="placeme.octopusites.com.placeme.PlacementTab4">
+
+    <ScrollView
+        android:id="@+id/profilepreviewscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/mainheading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/sky_blue_color"
+            android:padding="4dp"
+            android:text="This Placement is available for"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/CoursesNdStrams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mainheading"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text=""
+            android:textColor="#282f35"
+            android:textSize="16dp"
+            android:textStyle="bold"
+
+            />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
