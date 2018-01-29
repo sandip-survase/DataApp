@@ -607,9 +607,11 @@ public class CreatePlacement extends AppCompatActivity {
             });
 
             alertDialog.show();
-        } else
+        } else{
+
             setResult(299);
             CreatePlacement.super.onBackPressed();
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

@@ -231,6 +231,8 @@ public class EditNotification extends AppCompatActivity {
                         i1.putExtra("uploadedby", item.getUploadedby());
                         i1.putExtra("uploadtime", item.getUploadtime());
                         i1.putExtra("lastmodified", item.getLastmodified());
+
+                        Log.d("Check2", "item.getUploadedby(): "+item.getUploadedby());
                         Log.d("Check2", "id: " + item.getId());
                         Log.d("Check2", "notiff: " + item.getNotification());
                         Log.d("Check2", "title: " + item.getTitle());
