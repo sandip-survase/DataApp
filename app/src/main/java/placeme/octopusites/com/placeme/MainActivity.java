@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             String hash = md5(data + MySharedPreferencesManager.getDigest3(MainActivity.this));
 
 //            new LoginFirebaseTask().execute(plainusername,hash);
-            loginFirebase(plainusername, hash);
+//            loginFirebase(plainusername, hash);
 
         } catch (Exception e) {
 //            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -2740,7 +2740,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Log.d("RTR", "signInWithCustomToken:success");
-                                    Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     if (user != null) {
                                         Log.d("RTR", "onComplete uid: " + user.getUid());
@@ -2748,7 +2748,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                                 } else {
                                     Log.w("RTR", "signInWithCustomToken:failure", task.getException());
-                                    Toast.makeText(MainActivity.this, "Fail logged in to Firebase", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(MainActivity.this, "Fail logged in to Firebase", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

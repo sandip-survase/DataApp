@@ -293,7 +293,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             String data = new String(demo2DecryptedBytes1);
             String hash = md5(data + MySharedPreferencesManager.getDigest3(this));
 
-            loginFirebase(plainusername, hash);
+//            loginFirebase(plainusername, hash);
 
 
         } catch (Exception e) {

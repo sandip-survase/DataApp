@@ -1010,7 +1010,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             String data = Z.Decrypt(pass, HRActivity.this);
             String hash = md5(data + MySharedPreferencesManager.getDigest3(HRActivity.this));
 
-            loginFirebase(plainusername, hash);
+//            loginFirebase(plainusername, hash);
 //            new LoginFirebaseTask().execute(plainusername, hash);
 
         } catch (Exception e) {

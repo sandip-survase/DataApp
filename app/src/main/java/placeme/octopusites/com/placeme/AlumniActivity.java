@@ -1251,7 +1251,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 //            new LoginFirebaseTask().execute(plainusername,hash);
 
-            loginFirebase(plainusername, hash);
+//            loginFirebase(plainusername, hash);
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();

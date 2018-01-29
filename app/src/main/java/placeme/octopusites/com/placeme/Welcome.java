@@ -118,7 +118,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     TextView rolewelcometextviewcontext2;
     TextView rolewelcometextviewcontext3;
     CardView studentrl;
-    CardView alumnirl;
+    //    CardView alumnirl;
     CardView tporl;
     CardView hrrl;
     ImageView cancel;
@@ -169,14 +169,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     void animateAllViews() {
         studentrl.setVisibility(View.VISIBLE);
-        alumnirl.setVisibility(View.VISIBLE);
+//        alumnirl.setVisibility(View.VISIBLE);
         tporl.setVisibility(View.VISIBLE);
         hrrl.setVisibility(View.VISIBLE);
         Z.slideinleft1(this, rolewelcometextviewcontext1);
         Z.slideinleft2(this, rolewelcometextviewcontext2);
         Z.fade(this, rolewelcometextviewcontext3);
         Z.scale1(this, studentrl);
-        Z.scale2(this, alumnirl);
+//        Z.scale2(this, alumnirl);
         Z.scale3(this, tporl);
         Z.scale4(this, hrrl);
     }
@@ -197,19 +197,19 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     }
 
-    void animateAlumniRl() {
-        Intent intent = new Intent(Welcome.this, AlumniRoleSelected.class);
-
-        EasyTransitionOptions options =
-                EasyTransitionOptions.makeTransitionOptions(
-                        Welcome.this,
-                        WelcomeRoleView.findViewById(R.id.iv_icon_alumni)
-
-                );
-
-        // start transition
-        EasyTransition.startActivityForResult(intent, 2222, options);
-    }
+//    void animateAlumniRl() {
+//        Intent intent = new Intent(Welcome.this, AlumniRoleSelected.class);
+//
+//        EasyTransitionOptions options =
+//                EasyTransitionOptions.makeTransitionOptions(
+//                        Welcome.this,
+//                        WelcomeRoleView.findViewById(R.id.iv_icon_alumni)
+//
+//                );
+//
+//        // start transition
+//        EasyTransition.startActivityForResult(intent, 2222, options);
+//    }
 
     void animateTPORl() {
         Intent intent = new Intent(Welcome.this, TPORoleSelected.class);
@@ -595,7 +595,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         rolewelcometextviewcontext2 = (TextView) WelcomeRoleView.findViewById(R.id.welcometextviewcontext2);
         rolewelcometextviewcontext3 = (TextView) WelcomeRoleView.findViewById(R.id.welcometextviewcontext3);
         TextView studentrole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_student);
-        TextView alumnirole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_alumni);
+//        TextView alumnirole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_alumni);
         TextView tporole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_tpo);
         TextView hrrole = (TextView) WelcomeRoleView.findViewById(R.id.tv_name_hr);
 
@@ -605,18 +605,18 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         rolewelcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
         rolewelcometextviewcontext3.setTypeface(Z.getLight(this));
         studentrole.setTypeface(Z.getBold(this));
-        alumnirole.setTypeface(Z.getBold(this));
+//        alumnirole.setTypeface(Z.getBold(this));
         tporole.setTypeface(Z.getBold(this));
         hrrole.setTypeface(Z.getBold(this));
 
 
         studentrl = (CardView) WelcomeRoleView.findViewById(R.id.studentrl);
-        alumnirl = (CardView) WelcomeRoleView.findViewById(R.id.alumnirl);
+//        alumnirl = (CardView) WelcomeRoleView.findViewById(R.id.alumnirl);
         tporl = (CardView) WelcomeRoleView.findViewById(R.id.tporl);
         hrrl = (CardView) WelcomeRoleView.findViewById(R.id.hrrl);
 
         final RelativeLayout student_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.student_rl);
-        RelativeLayout alumni_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.alumni_rl);
+//        RelativeLayout alumni_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.alumni_rl);
         RelativeLayout tpo_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.tpo_rl);
         RelativeLayout hr_rl = (RelativeLayout) WelcomeRoleView.findViewById(R.id.hr_rl);
 
@@ -630,11 +630,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.GONE);
-                alumnirl.setVisibility(View.VISIBLE);
+//                alumnirl.setVisibility(View.VISIBLE);
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                Z.scaledown(Welcome.this, alumnirl);
+//                Z.scaledown(Welcome.this, alumnirl);
                 Z.scaledown(Welcome.this, tporl);
                 Z.scaledown(Welcome.this, hrrl);
                 Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
@@ -644,29 +644,29 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             }
         });
 
-        alumni_rl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                SELECTED_ROLE = "alumni";
-
-                WelcomeRoleModal obj = new WelcomeRoleModal();
-                obj.setCode(null);
-
-                studentrl.setVisibility(View.VISIBLE);
-                alumnirl.setVisibility(View.GONE);
-                tporl.setVisibility(View.VISIBLE);
-                hrrl.setVisibility(View.VISIBLE);
-
-                Z.scaledown(Welcome.this, studentrl);
-                Z.scaledown(Welcome.this, tporl);
-                Z.scaledown(Welcome.this, hrrl);
-                Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
-                Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
-                animateAlumniRl();
-
-            }
-        });
+//        alumni_rl.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                SELECTED_ROLE = "alumni";
+//
+//                WelcomeRoleModal obj = new WelcomeRoleModal();
+//                obj.setCode(null);
+//
+//                studentrl.setVisibility(View.VISIBLE);
+//                alumnirl.setVisibility(View.GONE);
+//                tporl.setVisibility(View.VISIBLE);
+//                hrrl.setVisibility(View.VISIBLE);
+//
+//                Z.scaledown(Welcome.this, studentrl);
+//                Z.scaledown(Welcome.this, tporl);
+//                Z.scaledown(Welcome.this, hrrl);
+//                Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
+//                Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
+//                animateAlumniRl();
+//
+//            }
+//        });
         tpo_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -677,12 +677,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.VISIBLE);
-                alumnirl.setVisibility(View.VISIBLE);
+//                alumnirl.setVisibility(View.VISIBLE);
                 tporl.setVisibility(View.GONE);
                 hrrl.setVisibility(View.VISIBLE);
 
                 Z.scaledown(Welcome.this, studentrl);
-                Z.scaledown(Welcome.this, alumnirl);
+//                Z.scaledown(Welcome.this, alumnirl);
                 Z.scaledown(Welcome.this, hrrl);
                 Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
                 Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
@@ -700,12 +700,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 obj.setCode(null);
 
                 studentrl.setVisibility(View.VISIBLE);
-                alumnirl.setVisibility(View.VISIBLE);
+//                alumnirl.setVisibility(View.VISIBLE);
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.GONE);
 
                 Z.scaledown(Welcome.this, studentrl);
-                Z.scaledown(Welcome.this, alumnirl);
+//                Z.scaledown(Welcome.this, alumnirl);
                 Z.scaledown(Welcome.this, tporl);
                 Z.slideoutleft2(Welcome.this, rolewelcometextviewcontext2);
                 Z.fadeout(Welcome.this, rolewelcometextviewcontext3);
@@ -1683,12 +1683,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     EmailCred = mEmail;
                     returnCode = 4;
                     return 4;
-                } else if (s.equals("alumni")) {
-
-                    EmailCred = mEmail;
-                    returnCode = 5;
-                    return 5;
                 }
+//                else if (s.equals("alumni")) {
+//
+//                    EmailCred = mEmail;
+//                    returnCode = 5;
+//                    return 5;
+//                }
                 if (s.equals("notactivated")) {             // throughAdmin
                     Log.d("TAG", "dead");
 
@@ -1829,14 +1830,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
                             startActivity(new Intent(Welcome.this, HRActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
-                        } else if (success == 5) {
-                            new SaveSessionDetails().execute();
-                            MySharedPreferencesManager.save(Welcome.this, "role", "alumni");
-                            MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
-
-                            startActivity(new Intent(Welcome.this, AlumniActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                            finish();
                         }
+//                        else if (success == 5) {
+//                            new SaveSessionDetails().execute();
+//                            MySharedPreferencesManager.save(Welcome.this, "role", "alumni");
+//                            MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
+//
+//                            startActivity(new Intent(Welcome.this, AlumniActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+//                            finish();
+//                        }
                     }
                 }).start();
             }
