@@ -530,19 +530,19 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
-                        MessagesFragment fragment = new MessagesFragment();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction =
-                                getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.mainfragment, fragment);
-                        fragmentTransaction.commit();
 
-                        mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("");
+//                        MessagesFragment fragment = new MessagesFragment();
+//                        android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                                getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.replace(R.id.mainfragment, fragment);
+//                        fragmentTransaction.commit();
+
+                        Toast.makeText(AdminActivity.this, "We are still working on our messages section. We will notify you about the same in our new update. ", Toast.LENGTH_LONG).show();
                         toolbar_title.setText("Messages");
+                        mainfragment.setVisibility(View.INVISIBLE);
+                        getSupportActionBar().setTitle("");
                         tswipe_refresh_layout.setVisibility(View.GONE);
-
                         admincontrolsrl.setVisibility(View.GONE);
-
                     } else if (navMenuFlag == 5) {
                         crop_layout.setVisibility(View.GONE);
                         SettingsFragment fragment = new SettingsFragment();

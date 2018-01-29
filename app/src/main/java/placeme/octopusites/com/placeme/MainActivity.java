@@ -530,15 +530,17 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         params.setScrollFlags(0);
 
                         crop_layout.setVisibility(View.GONE);
-                        MessagesFragment fragment = new MessagesFragment();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction =
-                                getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.mainfragment, fragment);
-                        fragmentTransaction.commit();
 
-                        mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("");
+//                        MessagesFragment fragment = new MessagesFragment();
+//                        android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                                getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.replace(R.id.mainfragment, fragment);
+//                        fragmentTransaction.commit();
+
+                        Toast.makeText(MainActivity.this, "We are still working on our messages section. We will notify you about the same in our new update. ", Toast.LENGTH_LONG).show();
                         toolbar_title.setText("Messages");
+                        mainfragment.setVisibility(View.INVISIBLE);
+                        getSupportActionBar().setTitle("");
                         tswipe_refresh_layout.setVisibility(View.GONE);
                         mViewPager.setVisibility(View.GONE);
                         tabLayout.setVisibility(View.GONE);
