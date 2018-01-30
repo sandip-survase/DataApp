@@ -653,7 +653,6 @@ public static String digest1 = null, digest2 = null;
             try {
                 InputStream fileInputStream = context.getApplicationContext().getContentResolver().openInputStream(uri);
                 Log.d("TAG", "getFilePath:" + fileInputStream.available());
-                // TODO check file size then create file
 
                 if (fileInputStream.available() < 16777216) {
                     try {

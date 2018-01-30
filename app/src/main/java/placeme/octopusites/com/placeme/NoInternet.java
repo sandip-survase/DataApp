@@ -213,7 +213,7 @@ public class NoInternet extends AppCompatActivity {
                 }
             } else {
                 Toast.makeText(NoInternet.this, "No internet", Toast.LENGTH_SHORT).show();
-                //TODO handel multiple toast
+                //TODO handle multiple toast
             }
         }
     }

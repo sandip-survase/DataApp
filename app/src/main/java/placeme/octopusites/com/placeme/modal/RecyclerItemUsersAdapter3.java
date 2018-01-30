@@ -23,13 +23,13 @@ import placeme.octopusites.com.placeme.UserSelection;
 import placeme.octopusites.com.placeme.Z;
 
 
-public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemUsersAdapter.MyViewHolder> {
+public class RecyclerItemUsersAdapter3 extends RecyclerView.Adapter<RecyclerItemUsersAdapter3.MyViewHolder> {
     Context mContext;
     int flag;
     String TAG = "RecyclerItemUsersAdapter";
     private ArrayList<RecyclerItemUsers> itemList;
 
-    public RecyclerItemUsersAdapter(ArrayList<RecyclerItemUsers> itemList, Context mContext, int flag) {
+    public RecyclerItemUsersAdapter3(ArrayList<RecyclerItemUsers> itemList, Context mContext, int flag) {
         this.itemList = itemList;
         this.mContext = mContext;
         this.flag = flag;
@@ -47,9 +47,9 @@ public class RecyclerItemUsersAdapter extends RecyclerView.Adapter<RecyclerItemU
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final RecyclerItemUsers item = itemList.get(position);
         Log.d(TAG, "flag: " + flag);
-
-        if (item.isregistered) {
+        if (item.isPlaced) {
             try {
+
                 holder.name.setText(item.getName());
                 holder.email.setText(item.getEmail());
                 holder.name.setTypeface(Z.getBold(holder.name.getContext()));
