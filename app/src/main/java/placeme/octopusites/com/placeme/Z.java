@@ -45,9 +45,9 @@ public class Z {
 
     //**************************  advertisement **************************
 
-    public static final String BANNER_UNIT_ID = "ca-app-pub-4561960316771699/4063759942";
-    public static final String VIDEO_UNIT_ID = "ca-app-pub-4561960316771699/5264504434";
-    public static final String APP_ID = "ca-app-pub-4561960316771699~6596755648";
+//    public static final String BANNER_UNIT_ID = "ca-app-pub-4561960316771699/4063759942";
+//    public static final String VIDEO_UNIT_ID = "ca-app-pub-4561960316771699/5264504434";
+//    public static final String APP_ID = "ca-app-pub-4561960316771699~6596755648";
 
     //**************************  final **************************
     public static final String VPS_IP = "162.213.199.3";   // for authority

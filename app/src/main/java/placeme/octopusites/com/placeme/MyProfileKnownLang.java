@@ -72,10 +72,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_known_lang);
 
-        MobileAds.initialize(this, Z.APP_ID);
-        mAdView = findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, Z.APP_ID);
+//        mAdView = findViewById(R.id.ad_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Known Languages");

@@ -74,10 +74,10 @@ public class ProjectsProfileTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_edit_profile_projects, container, false);
 
-        MobileAds.initialize(getActivity(), Z.APP_ID);
-        mAdView = rootView.findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(getActivity(), Z.APP_ID);
+//        mAdView = rootView.findViewById(R.id.ad_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
         username = MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());

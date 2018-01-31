@@ -29,10 +29,10 @@ public class CareerobjProfileTabFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_edit_profile_careerdetails, container, false);
 
-        MobileAds.initialize(getActivity(), Z.APP_ID);
-        mAdView = rootView.findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(getActivity(), Z.APP_ID);
+//        mAdView = rootView.findViewById(R.id.ad_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 
         TextView careerobjtxt=(TextView)rootView.findViewById(R.id.careerobjtxt);

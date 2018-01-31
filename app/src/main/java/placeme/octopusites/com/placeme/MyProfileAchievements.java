@@ -70,10 +70,10 @@ public class MyProfileAchievements extends AppCompatActivity {
         ab.setTitle("Edit Honors and Awards Info");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        MobileAds.initialize(this, Z.APP_ID);
-        mAdView = findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, Z.APP_ID);
+//        mAdView = findViewById(R.id.ad_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);

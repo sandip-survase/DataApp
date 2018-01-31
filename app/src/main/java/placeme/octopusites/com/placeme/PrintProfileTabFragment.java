@@ -85,7 +85,7 @@ public class PrintProfileTabFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_printprofile, container, false);
 
-        MobileAds.initialize(getActivity(), Z.APP_ID);
+//        MobileAds.initialize(getActivity(), Z.APP_ID);
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
         mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
             @Override
@@ -735,7 +735,7 @@ public class PrintProfileTabFragment extends Fragment {
 
     private void loadRewardedVideoAd() {
         if (!mRewardedVideoAd.isLoaded()) {
-            mRewardedVideoAd.loadAd(Z.VIDEO_UNIT_ID, new AdRequest.Builder().build());
+//            mRewardedVideoAd.loadAd(Z.VIDEO_UNIT_ID, new AdRequest.Builder().build());
         }
     }
 

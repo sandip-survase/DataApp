@@ -151,14 +151,14 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/ad_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/citystaecountryinputlayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id" />
+        <!--<com.google.android.gms.ads.AdView-->
+        <!--android:id="@+id/ad_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/citystaecountryinputlayout"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--ads:adSize="BANNER"-->
+        <!--ads:adUnitId="@string/banner_ad_unit_id" />-->
     </RelativeLayout>
 </ScrollView>

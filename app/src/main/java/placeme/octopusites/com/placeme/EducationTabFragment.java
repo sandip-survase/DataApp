@@ -26,10 +26,10 @@ public class EducationTabFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_edit_profile_education, container, false);
 
-        MobileAds.initialize(getActivity(), Z.APP_ID);
-        mAdView = rootView.findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(getActivity(), Z.APP_ID);
+//        mAdView = rootView.findViewById(R.id.ad_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
         TextView tenthtxt=(TextView)rootView.findViewById(R.id.tenthtxt);
         TextView twelthtxt=(TextView)rootView.findViewById(R.id.twelthtxt);

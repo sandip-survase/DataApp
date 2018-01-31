@@ -100,10 +100,10 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_twelth_or_diploma);
 
-        MobileAds.initialize(this, Z.APP_ID);
-        mAdView = findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, Z.APP_ID);
+//        mAdView = findViewById(R.id.ad_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 //        ShouldAnimateProfile.MyProfileTwelthOrDiploma = MyProfileTwelthOrDiploma.this;
 
