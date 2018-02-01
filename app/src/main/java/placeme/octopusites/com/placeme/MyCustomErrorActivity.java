@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -54,12 +55,26 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_custom_error);
 
+        String info, sdkver = "SDK version :  ", framework = "framework :  ", osver = "os version :  ", user = "username : ";
+
         username = MySharedPreferencesManager.getUsername(this);
+        try {
+            sdkver = sdkver + android.os.Build.VERSION.SDK_INT;
+            framework = framework + Build.VERSION.INCREMENTAL;
+            osver = osver + Build.VERSION.RELEASE;
+            if (username != null)
+                user = user + Z.Decrypt(username, MyCustomErrorActivity.this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        info = user + "\n" + sdkver + "\n" + framework + "\n" + osver + "\n\n";
 
         error=getlogcat();
         String stack = CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
 
-        abd = stack+error ;
+        abd = info + stack + error;
         Log.d("TAG", "onCreate: username -"+username);
         Log.d("TAG", "onCreate: abd - "+abd);
         new SaveError().execute();

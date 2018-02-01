@@ -18,6 +18,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -98,6 +99,7 @@ public class SplashScreen extends AppCompatActivity {
 
         Log.d("TAG", "noti : " + BuildConfig.VERSION_NAME);
         ShouldAnimateProfile.isInside = false;
+
 
         try {
             new GetDigestEcho().execute().get(5, TimeUnit.SECONDS);

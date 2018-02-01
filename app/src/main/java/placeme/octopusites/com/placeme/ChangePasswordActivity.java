@@ -268,35 +268,42 @@ public class ChangePasswordActivity extends AppCompatActivity {
 //                    Log.d("kkk", "firebaseUsernameOld: pass "+firebaseUsername);
 //                    Log.d("kkk", "onPostExecute: pass old "+passOld);
 //                    Log.d("kkk", "onPostExecute: pass new "+data);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
-                final String hash = hashnew;
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    // firebase change password
+                    final String hash = hashnew;
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //                Log.d("TAG", "onPostExecute: firebaseUsernameOld "+firebaseUsername);
 //                Log.d("TAG", "onPostExecute: hashOld "+hashOld);
-                AuthCredential credential = EmailAuthProvider.getCredential(firebaseUsername, hashOld);
-                user.reauthenticate(credential)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    user.updatePassword(hash).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d("kkk", "FIFA updated");
-                                            } else {
-                                                Log.d("kkk", "Error FIFA not updated");
+                    AuthCredential credential = EmailAuthProvider.getCredential(firebaseUsername, hashOld);
+                    user.reauthenticate(credential)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        user.updatePassword(hash).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d("kkk", "FIFA updated");
+                                                } else {
+                                                    Log.d("kkk", "Error FIFA not updated");
+                                                }
                                             }
-                                        }
-                                    });
-                                } else {
-                                    Log.d("kkk", "Error auth failed");
+                                        });
+                                    } else {
+                                        Log.d("kkk", "Error auth failed");
+                                    }
                                 }
-                            }
-                        });
+                            });
+
+                    //
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("TAg", "fire log: " + e.getMessage());
+                }
+
+
 
                 MySharedPreferencesManager.save(ChangePasswordActivity.this,"passKey", encnewpass);
                 Toast.makeText(ChangePasswordActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();

@@ -202,6 +202,12 @@ public class EditEmail extends AppCompatActivity {
 
                 new ChangeEmailInFireBaseTask().execute();    // change in placemechats db email
 
+                MySharedPreferencesManager.save(EditEmail.this, Z.USERNAME_KEY, encnewemail);
+                primaryemail.setText(snewemail);
+                Toast.makeText(EditEmail.this, "Username successfully changed from " + plainusername + " to " + snewemail, Toast.LENGTH_SHORT).show();
+                otpflag = 0;
+                onBackPressed();
+
             } else if (result.equals("fail")) {
                 otpflag=0;
                 Toast.makeText(EditEmail.this, "Your entered OTP is incorrect. Kindly enter valid OTP.", Toast.LENGTH_SHORT).show();
@@ -244,11 +250,7 @@ public class EditEmail extends AppCompatActivity {
 
 //            if(result!=null && result.equals("success")){
 
-                MySharedPreferencesManager.save(EditEmail.this, Z.USERNAME_KEY,encnewemail);
-                primaryemail.setText(snewemail);
-                Toast.makeText(EditEmail.this, "Username successfully changed from "+plainusername+" to " +snewemail , Toast.LENGTH_SHORT).show();
-                otpflag=0;
-                onBackPressed();
+
 //            }
 
         }
