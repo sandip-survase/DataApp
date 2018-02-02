@@ -65,7 +65,7 @@ public class ViewPlacement extends AppCompatActivity {
     ProgressBar progressBar;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
     int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
-    int found_contact_details = 0, found_personal = 0, found_photo = 0;
+    int found_contact_details = 0, found_personal = 0, found_photo = 0,isEligible =0;
     String role;
     String fname = "", lname = "";
     String sPadding = "ISO10126Padding";
@@ -76,6 +76,7 @@ public class ViewPlacement extends AppCompatActivity {
     private ViewPager viewPager;
     private String TAG="ViewPlacement";
     String Uploader_FLname = "";
+    ViewPagerAdapter adapter;
 
 
     @Override
@@ -176,27 +177,7 @@ public class ViewPlacement extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 if (Z.isStudentVerified(ViewPlacement.this)) {
-                    if (forwhichcourse.contains(ugcourse)) {
-                        if (!ugstream.equals("")) {
-                            if (forwhichcourse.contains(ugstream)) {
-//                            Log.d("TAG", "oncreate you register succefully register");
-                                validatedata();
-                            } else {
-                                registerbutton.setVisibility(View.VISIBLE);
-                                progressBar.setVisibility(View.GONE);
-//                            Log.d("TAG", "oncreate your stream is not different");
-                                Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the relevant notification for more details.", Toast.LENGTH_LONG).show();
-                            }
-                        } else {
-//                        Log.d("TAG", "oncreate your course not have stream succefully register");
-                            validatedata();
-                        }
-                    } else {
-                        registerbutton.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.GONE);
-//                    Log.d("TAG", "oncreate your course is diffrent not register");
-                        Toast.makeText(ViewPlacement.this, "You cannot register for this placement. Please see the relevant notification for more details.", Toast.LENGTH_LONG).show();
-                    }
+                    validatedata();
                 } else {
                     registerbutton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
@@ -212,6 +193,8 @@ public class ViewPlacement extends AppCompatActivity {
 
             String fnametocheck = s.getFname();
 
+            LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
+            registerbuttonlayout.setVisibility(View.VISIBLE);
             if (fnametocheck == null) {
 
                 GetStudentData getStudentData = new GetStudentData(ViewPlacement.this);
@@ -248,7 +231,7 @@ public class ViewPlacement extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PlacementTab1(), "Job Description");
         adapter.addFragment(new PlacementTab2(), "Selection Process");
         adapter.addFragment(new PlacementTab3(), "Selection Criteria");
@@ -462,13 +445,14 @@ public class ViewPlacement extends AppCompatActivity {
 
         LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
         if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1) {
-            registerbuttonlayout.setVisibility(View.VISIBLE);
-            registerbutton.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
+//            registerbuttonlayout.setVisibility(View.VISIBLE);
+//            registerbutton.setVisibility(View.VISIBLE);
+//            progressBar.setVisibility(View.GONE);
 
+            isEligible=1;
 
         } else {
-            registerbuttonlayout.setVisibility(View.GONE);
+//            registerbuttonlayout.setVisibility(View.GONE);
 
         }
     }
@@ -477,6 +461,7 @@ public class ViewPlacement extends AppCompatActivity {
     public void validatedata() {
 
         Log.d("TAG", "validatedata: ShouldAnimateProfile.photo - " + ShouldAnimateProfile.photo);
+
         if (ShouldAnimateProfile.photo.equals("noupdate")) {
 
             registerbutton.setVisibility(View.VISIBLE);
@@ -555,6 +540,10 @@ public class ViewPlacement extends AppCompatActivity {
                     } else {
                         if (found_ug == 0) {
 //                        please fill ug information
+
+                            registerbutton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+
                             Snackbar.make(registerbutton.getRootView(), "Please fill Std. Ug details", Snackbar.LENGTH_LONG)
                                     .setAction("OPEN", new View.OnClickListener() {
                                         @Override
@@ -708,7 +697,44 @@ public class ViewPlacement extends AppCompatActivity {
         }
 
         if (found_photo == 1 && found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
-            new SaveResumedatabase().execute();
+
+            if(isEligible==1) {
+                if (forwhichcourse.contains(ugcourse)) {
+                    if (!ugstream.equals("")) {
+                        if (forwhichcourse.contains(ugstream)) {
+//                            Log.d("TAG", "oncreate you register succefully register");
+//                            validatedata();
+                            new SaveResumedatabase().execute();
+
+                        } else {
+                            registerbutton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+//                            Log.d("TAG", "oncreate your stream is not different");
+                            viewPager.setCurrentItem(3);
+                            Toast.makeText(ViewPlacement.this, "You cannot register for this placement !", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+//                        Log.d("TAG", "oncreate your course not have stream succefully register");
+//                        validatedata();
+                        new SaveResumedatabase().execute();
+
+                    }
+                } else {
+                    registerbutton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+//                    Log.d("TAG", "oncreate your course is diffrent not register");
+                    viewPager.setCurrentItem(3);
+                    Toast.makeText(ViewPlacement.this, "You cannot register for this placement !", Toast.LENGTH_LONG).show();
+                }
+
+            }
+            else {
+                viewPager.setCurrentItem(2);
+                registerbutton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(ViewPlacement.this, "You are not eligible for this placement !", Toast.LENGTH_SHORT).show();
+            }
+
 
         }
 
