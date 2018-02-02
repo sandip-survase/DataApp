@@ -294,8 +294,7 @@
             android:name=".HRActivity"
             android:label="@string/title_activity_hr"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-         </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ShowRegisteredUsers"
             android:screenOrientation="portrait"
@@ -432,14 +431,13 @@
             android:name=".EditPlacementMainHr"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".StayTunedActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".WelcomeIntroThroughAdminFromLoginActivity"
-            android:theme="@style/AppFullScreenTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppFullScreenTheme" />
 
         <meta-data
             android:name="com.sec.android.support.multiwindow"
@@ -460,7 +458,9 @@
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
             android:value="598.0dip" />
 
-
+        <activity
+            android:name=".UserSelection2"
+            android:label="@string/title_activity_user_selection2"></activity>
     </application>
 
 </manifest>

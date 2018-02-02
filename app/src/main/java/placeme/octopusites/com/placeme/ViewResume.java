@@ -44,10 +44,11 @@ public class ViewResume extends AppCompatActivity {
         checkboxshortlist = (CheckBox) findViewById(R.id.checkboxs);
 
 
-        username = getIntent().getStringExtra("username");
-        Log.d("accesed", "onCreate: " + username);
         try {
-            name = Z.Decrypt(username, ViewResume.this);
+        username = getIntent().getStringExtra("username");
+        username = Z.Encrypt(username,ViewResume.this);
+        Log.d("accesed", "onCreate: " + username);
+
         } catch (Exception e) {
             Log.d("TAG", "onCreate: " + e.getMessage());
         }
@@ -89,12 +90,14 @@ public class ViewResume extends AppCompatActivity {
 
     void DownloadPDF() {
 
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority(Z.VPS_IP)
-                .path("CreateNotificationTemp/PDFDownload2")
-                .appendQueryParameter("u", username)
-                .build();
+        try {
+        Uri uri = null;
+            uri = new Uri.Builder()
+                    .scheme("http")
+                    .authority(Z.VPS_IP)
+                    .path("CreateNotificationTemp/PDFDownload2")
+                    .appendQueryParameter("u", username )
+                    .build();
 
 
 //        ********
@@ -122,6 +125,9 @@ public class ViewResume extends AppCompatActivity {
 //        localDownloadManager.enqueue(localRequest);
 
         Toast.makeText(this, "Resume Downloaded !", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     class ViewPDF extends AsyncTask<String, String, String> {
@@ -131,7 +137,9 @@ public class ViewResume extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                input = new URL(Z.IP+"CreateNotificationTemp/PDFView?u="+username).openStream();
+                String username1 = Z.Decrypt(username,ViewResume.this);
+                 username1 = Z.Encrypt(username,ViewResume.this);
+                input = new URL(Z.IP+"CreateNotificationTemp/PDFView?u="+Z.Encrypt("kunal@student2.com",ViewResume.this)).openStream();
 
             } catch (Exception ex) {
                 Log.d("TAG", "exp: " + ex.getMessage());

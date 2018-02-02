@@ -231,6 +231,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
 
+        try {
+            MySharedPreferencesManager.save(AdminActivity.this,"nameKey",Z.Encrypt("paragtiwari5@gmail.com",AdminActivity.this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
 
         String encUsername = MySharedPreferencesManager.getUsername(this);

@@ -48,12 +48,12 @@
         android:theme="@style/MyCheckBox" />
 
     <ImageView
+        android:id="@+id/resumeSelectioview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/email"
         android:layout_alignTop="@+id/name"
         android:layout_toLeftOf="@+id/checkboxs"
-        android:id="@+id/resumeSelectioview"
         android:layout_marginRight="20dp" />
 
 </RelativeLayout>

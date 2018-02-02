@@ -183,13 +183,31 @@ public class UserSelection extends AppCompatActivity {
         Log.d(TAG, "CompanId " + CompanId);
 
 
+
+            for (int i = 0; i < 10 ; i++) {
+                RecyclerItemUsers obj =new RecyclerItemUsers(0+i,"Sunny"+i,"s@a.com"+i,false,false,false,true,false,false);
+                Log.d(TAG, "obj obj.getId() :"+obj.getId());
+                Log.d(TAG, "obj obj.getEmail() :"+obj.getEmail());
+                Log.d(TAG, "obj obj.getName() :"+obj.getName());
+                Log.d(TAG, "obj obj.isSelected :"+obj.isSelected);
+                Log.d(TAG, "obj email :"+obj.isSelected2);
+                Log.d(TAG, "obj email :"+obj.isSelected3);
+                Log.d(TAG, "obj email :"+obj.isregistered);
+                Log.d(TAG, "obj email :"+obj.isshortlisted);
+                Log.d(TAG, "obj email :"+obj.isPlaced);
+
+                MasterListfromserver.add(obj);
+            }
+            Log.d(TAG,""+ MasterListfromserver.size());
         try {
 
-            MasterListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sRegisteredItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+//            MasterListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sRegisteredItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 
 //            registerdListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sRegisteredItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 //            ShortlistedListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sShortlistedListsfromservertemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 //            placedListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("splacedItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+
+
 
 
         } catch (Exception e) {
@@ -224,7 +242,7 @@ public class UserSelection extends AppCompatActivity {
         Log.d(TAG, "===================================================: ");
 
         //1st recyclerView
-        mAdapterRegisterd = new RecyclerItemUsersAdapter(MasterListfromserver, UserSelection.this, 1);
+        mAdapterRegisterd = new RecyclerItemUsersAdapter(itemListRegisterd, UserSelection.this, 1);
         recycler_view_Registered.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recycler_view_Registered.setLayoutManager(mLayoutManager);
@@ -233,7 +251,7 @@ public class UserSelection extends AppCompatActivity {
         recycler_view_Registered.setAdapter(mAdapterRegisterd);
 
         //2nd recyclerView
-        mAdapterShortlited = new RecyclerItemUsersAdapter2(MasterListfromserver, UserSelection.this, 2);
+        mAdapterShortlited = new RecyclerItemUsersAdapter2(itemListShortlited, UserSelection.this, 2);
         recycler_view_ShortListed.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(UserSelection.this);
         recycler_view_ShortListed.setLayoutManager(mLayoutManager2);
@@ -242,7 +260,7 @@ public class UserSelection extends AppCompatActivity {
         recycler_view_ShortListed.setAdapter(mAdapterShortlited);
 
         //3rd recyclerView
-        mAdapterplaced = new RecyclerItemUsersAdapter3(MasterListfromserver, UserSelection.this, 3);
+        mAdapterplaced = new RecyclerItemUsersAdapter3(itemListPlaced, UserSelection.this, 3);
         recycler_view_Placed.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager3 = new LinearLayoutManager(UserSelection.this);
         recycler_view_Placed.setLayoutManager(mLayoutManager3);
@@ -313,21 +331,14 @@ public class UserSelection extends AppCompatActivity {
         i1.putExtra("username", username);
         startActivity(i1);
 
-
 //        Toast.makeText(this, "after", Toast.LENGTH_SHORT).show();
-
-
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         getMenuInflater().inflate(R.menu.admin_edit, menu);
         return super.onCreateOptionsMenu(menu);
-
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -343,8 +354,6 @@ public class UserSelection extends AppCompatActivity {
                 onBackPressed();
                 return (true);
         }
-
-
         return (super.onOptionsItemSelected(item));
     }
 
@@ -368,9 +377,7 @@ public class UserSelection extends AppCompatActivity {
                     MasterListfromserver.get(i).setPlaced(true);
                 }
             }
-
         }
-
         navigation.setSelectedItemId(R.id.navigation_notifications);
     }
 

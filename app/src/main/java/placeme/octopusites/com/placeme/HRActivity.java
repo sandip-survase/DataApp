@@ -912,7 +912,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
                 Log.d("TAG", "position  " + position);
-                Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+                Intent i1 = new Intent(HRActivity.this, UserSelection2.class);
                 i1.putExtra("id", item.getId());
                 Log.d("Tag", "id: " + item.getId());
                 i1.putExtra("sRegisteredItemlistTemp", sRegisteredItemlistTemp);
@@ -1580,7 +1580,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     }
 
     private void Getplacementbyhr() {
-        Log.d(TAG, "getCurrentConnectionQuality : " + AndroidNetworking.getCurrentConnectionQuality() + " currentBandwidth : " + AndroidNetworking.getCurrentBandwidth());
         AndroidNetworking.post(Z.url_GetPlacementsCreatedByHr)
                 .setTag(this)
                 .addQueryParameter("u", username)

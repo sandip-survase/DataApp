@@ -61,18 +61,18 @@ public class CreatePlacementHr extends AppCompatActivity {
             groupdisc = "", techinterview = "", Hrinterview = "", xcriteria = "", xiicriteria = "", ugcriteria = "", pgcriteria = "";
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    String encUsername = "", encRole = "",plainusername="",username="";
+    String encUsername = "", encRole = "", plainusername = "", username = "";
     String sbatchesTags = "", sexptaTags = "", sinsttaTags = "";
     TextView createnotinotitxt;
     ImageView addIcon;
     View dummy6;
     TextInputLayout batchesinput, yearsinput, instinput;
+    HashMap hashMap;
     //ui work
     private Toolbar toolbar;
     private TagsEditText batchesTags, expTag, instTag;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    HashMap hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +119,7 @@ public class CreatePlacementHr extends AppCompatActivity {
         plainusername = MySharedPreferencesManager.getUsername(this);
 
         try {
-            username = Z.Decrypt(plainusername,CreatePlacementHr.this);
+            username = Z.Decrypt(plainusername, CreatePlacementHr.this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -294,7 +294,6 @@ public class CreatePlacementHr extends AppCompatActivity {
                 TagCreateList.clear();
                 List<String> newList = new ArrayList<String>(batchesTags.getTags());
                 TagCreateList.addAll(newList);
-
 
 
                 String temp = "";
@@ -584,14 +583,12 @@ public class CreatePlacementHr extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PlacementCreateTab1(), "Job Description");
         adapter.addFragment(new PlacementCreateTab2(), "Selection Process");
         adapter.addFragment(new PlacementCreateTab3(), "Selection Criteria");
         viewPager.setAdapter(adapter);
     }
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
@@ -625,7 +622,7 @@ public class CreatePlacementHr extends AppCompatActivity {
 //            newList
 
 
-            Log.d("TAG", "validate: TagCreateList3 tempforwhom - " +forwhom );
+            Log.d("TAG", "validate: TagCreateList3 tempforwhom - " + forwhom);
             Log.d("gettingtabData", "sbatchesTags: " + sbatchesTags);
             Log.d("gettingtabData", "sexptaTags: " + sexptaTags);
             Log.d("gettingtabData", "sinsttaTags: " + sinsttaTags);
@@ -639,35 +636,31 @@ public class CreatePlacementHr extends AppCompatActivity {
 
                 instinput.setError("select institute name ");
             } else {
-
 //                forwhom = "PLACEME(ALL)";
 
-
-                String tempforwhom="";
+                String tempforwhom = "";
                 Log.d("TAG", "validate:  hashmap siza - " + hashMap.size());
                 Log.d("TAG", "validate:  hashmap size print - " + hashMap);
 
-                if(TagCreateList3.get(0)!="ALL") {
+                if (TagCreateList3.get(0) != "ALL") {
                     for (int j = 0; j < TagCreateList3.size(); j++) {
                         Log.d("TAG", "validate: TagCreateList3 - " + TagCreateList3.get(j));
                         String temp = TagCreateList3.get(j);
                         tempforwhom = tempforwhom + hashMap.get(temp) + ",";
                         Log.d("TAG", "validate:  tempforwhom  - " + tempforwhom);
                     }
-                    tempforwhom = tempforwhom + "(" + username + ",PLACEME)";
-                    forwhom=tempforwhom;
-                }
-                else {
-                    forwhom = "PLACEME(ALL),("+ username + ",PLACEME)";;
+                    tempforwhom = tempforwhom + "(" + username + " )";
+                    forwhom = tempforwhom;
+                } else {
+                    forwhom = "( PLACEME " + username + ")";
                 }
 
                 Log.d("forwhomeStringAppend", "onCreate: " + forwhom);
-
                 PlacementCreateTab1 PlaceTab1 = (PlacementCreateTab1) adapter.getItem(0);
                 PlacementCreateTab2 PlaceTab2 = (PlacementCreateTab2) adapter.getItem(1);
                 PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
-                viewPager.setOffscreenPageLimit(3);
 
+                viewPager.setOffscreenPageLimit(3);
                 Boolean PlaceTab1_success = true;
                 Boolean PlaceTab2_success = true;
                 Boolean PlaceTab3_success = true;
@@ -691,8 +684,7 @@ public class CreatePlacementHr extends AppCompatActivity {
                             viewPager.setCurrentItem(3);
                             PlaceTab3.validate();
                         } else {
-
-                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Tab1 & Tab2 & tab3 OK", Toast.LENGTH_SHORT).show();
                             //call ENCRYPT ND SAVE save method
                             encrypt();
                         }
@@ -812,10 +804,10 @@ public class CreatePlacementHr extends AppCompatActivity {
             institutecodelist.add("ALL");
 
             for (int i = 0; i < Institutecount; i++) {
-                Log.d("TAG", "*"+Institute[i]+"#");
-                Log.d("TAG", "*"+InstituteCode[i]+"#");
+                Log.d("TAG", "*" + Institute[i] + "#");
+                Log.d("TAG", "*" + InstituteCode[i] + "#");
 
-                hashMap.put(Institute[i].trim() ,InstituteCode[i]);
+                hashMap.put(Institute[i].trim(), InstituteCode[i]);
 
                 institutelist.add(Institute[i]);
                 institutecodelist.add(InstituteCode[i]);
