@@ -1419,6 +1419,15 @@
         <!--android:layout_marginTop="20dp"-->
         <!--ads:adSize="BANNER"-->
         <!--ads:adUnitId="@string/banner_ad_unit_id" />-->
+        <com.appnext.banners.BannerView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/banner"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/addmoreproject"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:bannerSize="BANNER"
+            ads:placementId="2d14aba2-5254-4a93-98f7-20689782f3e8" />
 
     </RelativeLayout>
 </ScrollView>

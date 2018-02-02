@@ -34,6 +34,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -93,9 +96,11 @@ public class MyProfilePg extends AppCompatActivity {
     String courseYear = null, streamYear = null, universityYear = null;
 
     private AdView mAdView;
+    BannerView bannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_pg);
 
 //        MobileAds.initialize(this, Z.APP_ID);
@@ -108,6 +113,9 @@ public class MyProfilePg extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username = MySharedPreferencesManager.getUsername(this);
         role = MySharedPreferencesManager.getRole(this);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
@@ -3096,6 +3104,7 @@ public class MyProfilePg extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

@@ -22,6 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -56,15 +59,21 @@ public class MyProfileStrengths extends AppCompatActivity {
     String sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10,encobj="";
     String encstrength1,encstrength2,encstrength3,encstrength4,encstrength5,encstrength6,encstrength7,encstrength8,encstrength9,encstrength10;
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_strengths);
 
 //        MobileAds.initialize(this, Z.APP_ID);
 //        mAdView = findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -1621,6 +1630,7 @@ public class MyProfileStrengths extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

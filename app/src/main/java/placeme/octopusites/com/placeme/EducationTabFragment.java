@@ -11,6 +11,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -21,15 +24,20 @@ public class EducationTabFragment extends Fragment {
     View tenth,twelth,ug,pg;
     String username;
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        Appnext.init(getActivity());
         View rootView = inflater.inflate(R.layout.fragment_edit_profile_education, container, false);
 
 //        MobileAds.initialize(getActivity(), Z.APP_ID);
 //        mAdView = rootView.findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = rootView.findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         TextView tenthtxt=(TextView)rootView.findViewById(R.id.tenthtxt);
         TextView twelthtxt=(TextView)rootView.findViewById(R.id.twelthtxt);
@@ -137,6 +145,7 @@ public class EducationTabFragment extends Fragment {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 

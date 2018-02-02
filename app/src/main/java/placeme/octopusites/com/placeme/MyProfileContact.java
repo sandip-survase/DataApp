@@ -19,6 +19,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -54,15 +57,21 @@ public class MyProfileContact extends AppCompatActivity {
 
     TextInputLayout fnameTextInputLayout, lnameTextInputLayout,emai2input,addressline2input,addressline1input,addressline3input,phoneinput,mobileinput,mobile2input;
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_contact);
 
 //        MobileAds.initialize(this, Z.APP_ID);
 //        mAdView = findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -618,6 +627,7 @@ public class MyProfileContact extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

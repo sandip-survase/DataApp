@@ -32,6 +32,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -80,9 +83,12 @@ public class MyProfileUg extends AppCompatActivity {
 
     int  checkstream = 0;
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_ug);
 
 
@@ -90,6 +96,9 @@ public class MyProfileUg extends AppCompatActivity {
 //        mAdView = findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
 //        ShouldAnimateProfile.MyProfileUg = MyProfileUg.this;
 
@@ -2156,6 +2165,7 @@ public class MyProfileUg extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

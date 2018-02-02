@@ -25,6 +25,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -67,15 +70,21 @@ public class MyProfileKnownLang extends AppCompatActivity {
     private int langEdittedFlog=0;
     ArrayList<KnownLangs> knownLangsList=new ArrayList<>();
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_known_lang);
 
 //        MobileAds.initialize(this, Z.APP_ID);
 //        mAdView = findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Known Languages");
@@ -2568,6 +2577,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

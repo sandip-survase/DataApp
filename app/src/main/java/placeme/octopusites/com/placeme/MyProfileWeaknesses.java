@@ -22,6 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -55,14 +58,20 @@ public class MyProfileWeaknesses extends AppCompatActivity {
     String sweak1, sweak2, sweak3, sweak4, sweak5, sweak6, sweak7, sweak8, sweak9, sweak10,encobj="";
     String encweak1, encweak2, encweak3, encweak4, encweak5, encweak6, encweak7, encweak8, encweak9, encweak10;
     private AdView mAdView;
+    BannerView bannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_weaknesses);
 //        MobileAds.initialize(this, Z.APP_ID);
 //        mAdView = findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
+
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);
@@ -1598,6 +1607,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

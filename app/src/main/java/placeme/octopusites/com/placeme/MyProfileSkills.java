@@ -29,6 +29,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -71,9 +74,11 @@ public class MyProfileSkills extends AppCompatActivity {
 
     ArrayList<Skills> skillsList=new ArrayList<>();
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Appnext.init(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_skills);
 
@@ -81,6 +86,9 @@ public class MyProfileSkills extends AppCompatActivity {
 //        mAdView = findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Skills");
@@ -7309,6 +7317,7 @@ public class MyProfileSkills extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

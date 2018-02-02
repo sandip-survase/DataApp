@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -17,9 +20,11 @@ public class MyProfileCareerDetails extends AppCompatActivity {
     View careerobjbutton,strengthbutton,weakbutton,locbutton;
     String username;
     private AdView mAdView;
+    BannerView bannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_career_details);
 
 //        MobileAds.initialize(this, Z.APP_ID);
@@ -27,6 +32,8 @@ public class MyProfileCareerDetails extends AppCompatActivity {
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
 
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Career Details");
@@ -125,6 +132,7 @@ public class MyProfileCareerDetails extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

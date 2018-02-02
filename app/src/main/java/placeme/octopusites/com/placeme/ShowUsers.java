@@ -398,6 +398,7 @@ public class ShowUsers extends AppCompatActivity {
                         Log.d("KUN", ": isDebar " + isDebar[i]);
                         Log.d("KUN", ": companyName " + companyName[i]);
                         Log.d("KUN", ": isplaced " + isplaced[i]);
+                        Log.d("KUN", ": verify " + verify[i]);
                         Log.d("KUN", "----------------------------------------------------- ");
 
 

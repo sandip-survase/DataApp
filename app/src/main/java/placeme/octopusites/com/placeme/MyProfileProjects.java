@@ -23,6 +23,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -57,9 +60,11 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
     ArrayList<Projects> projectsList=new ArrayList<>();
     private AdView mAdView;
+    BannerView bannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_projects);
 
 //        MobileAds.initialize(this, Z.APP_ID);
@@ -71,6 +76,9 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);
         role=MySharedPreferencesManager.getRole(this);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Projects Info");
@@ -3577,6 +3585,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

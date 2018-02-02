@@ -74,6 +74,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.leolin.shortcutbadger.ShortcutBadger;
 import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
 import okhttp3.OkHttpClient;
@@ -91,7 +92,7 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
-
+    int badgeCount = 0;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE = 111;
@@ -447,6 +448,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                     new GetUnreadMessagesCount().execute();
                     RefreshNotificationCount();
                     RefreshPlacementCount();
+                    setBadgeCount();
                     MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     if (fragment != null)
                         fragment.addMessages();
@@ -1341,6 +1343,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         }
 
+        setBadgeCount();
     }
 
     void filterNotifications(String text) {
@@ -1721,7 +1724,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    private void GetNotificationsReadStatus() {
+    private int GetNotificationsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
         AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
                 .setTag(this)
@@ -1758,9 +1761,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                             notificationcountrl.setVisibility(View.VISIBLE);
                             notificationcounttxt.setText(unreadcountNotification + "");
+
                             if (unreadcountNotification == 0) {
                                 notificationcountrl.setVisibility(View.GONE);
                             }
+
                             GetNotifications2();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1790,6 +1795,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         }
                     }
                 });
+
+        return unreadcountNotification;
     }
 
     private void GetNotifications2() {
@@ -1851,7 +1858,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 });
     }
 
-    private void GetPlacementsReadStatus() {
+    private int GetPlacementsReadStatus() {
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
@@ -1887,6 +1894,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
+                            badgeCount = badgeCount + unreadcountPlacement;
+                            ShortcutBadger.applyCount(AdminActivity.this, badgeCount);
                             GetPlacements2();
 
                         } catch (JSONException e) {
@@ -1917,6 +1926,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         }
                     }
                 });
+
+        return unreadcountPlacement;
     }
 
     private void GetPlacements2() {
@@ -2215,12 +2226,14 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d(TAG, "with Ranveer projects :" + placementpages);
                             Log.d(TAG, "with Ranveer total Movies:" + total_no_of_placements);
                             Log.d(TAG, "with Ranveer Movies to release:" + unreadcountPlacement);
-
                             placementcountrl.setVisibility(View.VISIBLE);
                             placementcounttxt.setText(unreadcountPlacement + "");
+                            setBadgeCount();
+
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -3079,6 +3092,13 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         protected void onPostExecute(String result) {
             new getToken().execute();
         }
+    }
+
+
+    public void setBadgeCount() {
+
+        int badgerCount = unreadcountNotification + unreadcountPlacement;
+        ShortcutBadger.applyCount(this, badgerCount);
     }
 
 

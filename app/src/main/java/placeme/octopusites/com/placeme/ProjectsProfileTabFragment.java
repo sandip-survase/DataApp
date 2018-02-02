@@ -23,6 +23,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -70,14 +73,20 @@ public class ProjectsProfileTabFragment extends Fragment {
     private int projectscount = 0;
     private int projectscount2 = 0;
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_edit_profile_projects, container, false);
+        Appnext.init(getActivity());
 
 //        MobileAds.initialize(getActivity(), Z.APP_ID);
 //        mAdView = rootView.findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        bannerView = rootView.findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         username = MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
@@ -3425,6 +3434,7 @@ public class ProjectsProfileTabFragment extends Fragment {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }

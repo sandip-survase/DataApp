@@ -12,6 +12,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -24,16 +27,21 @@ public class CareerobjProfileTabFragment extends Fragment {
     View careerobjbutton,strengthbutton,weakbutton,locbutton;
     String username;
     private AdView mAdView;
+    BannerView bannerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_edit_profile_careerdetails, container, false);
 
+        Appnext.init(getActivity());
 //        MobileAds.initialize(getActivity(), Z.APP_ID);
 //        mAdView = rootView.findViewById(R.id.ad_view);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
 
+        bannerView = rootView.findViewById(R.id.banner);
+        bannerView.loadAd(new BannerAdRequest());
 
         TextView careerobjtxt=(TextView)rootView.findViewById(R.id.careerobjtxt);
         TextView strengthtxt=(TextView)rootView.findViewById(R.id.strengthtxt);
@@ -136,6 +144,7 @@ public class CareerobjProfileTabFragment extends Fragment {
         if (mAdView != null) {
             mAdView.destroy();
         }
+        bannerView.destroy();
         super.onDestroy();
     }
 }
