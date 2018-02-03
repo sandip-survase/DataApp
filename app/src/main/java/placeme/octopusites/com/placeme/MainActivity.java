@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -80,6 +79,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.leolin.shortcutbadger.ShortcutBadger;
 import me.shaohui.advancedluban.Luban;
 import me.shaohui.advancedluban.OnCompressListener;
 import okhttp3.OkHttpClient;
@@ -1900,6 +1900,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
+                            setBadgeCount();
                             GetPlacements2();
 
                         } catch (JSONException e) {
@@ -2138,6 +2139,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
+                            setBadgeCount();
                             new GetUnreadMessagesCount().execute();
 
                         } catch (JSONException e) {
@@ -3139,5 +3141,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //        }
 //    }
 
+    public void setBadgeCount() {
+
+        int badgerCount = unreadcountNotification + unreadcountPlacement;
+        ShortcutBadger.applyCount(this, badgerCount);
+    }
 
 }

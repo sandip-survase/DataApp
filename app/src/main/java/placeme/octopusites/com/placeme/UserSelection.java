@@ -281,10 +281,7 @@ public class UserSelection extends AppCompatActivity {
                     for (int k = 0; k < itemListShortlitedToset.size(); k++) {
                         listString.append(itemListShortlitedToset.get(k).getEmail() + ",");
                     }
-                    Intent i1 = new Intent(UserSelection.this, CreateNotificationHR.class);
-                    i1.putExtra("selection", "registerd");
-                    i1.putExtra("emailids", "" + listString);
-                    startActivity(i1);
+
 
                     Log.d("Tag", "listString" + listString);
 //                    Toast.makeText(UserSelection.this, "Send notification to:-" + listString + "-:user", Toast.LENGTH_SHORT).show();

@@ -143,15 +143,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                         }
 
-
                     }
                     intent.putExtra("push", "Recieved");
                     intent.putExtra("receiver", receiver);
-                    intent.putExtra("uploadedby", sender);
+                    intent.putExtra("uploadedby", senderdec);
                     intent.putExtra("id", ids);
                     intent.putExtra("title", title);
                     intent.putExtra("notification", notification);
-                    intent.putExtra("uploadtime", uploadtime);
+                    intent.putExtra("uploadtime", uploadtime );
                     intent.putExtra("lastmodified", lastmodified);
                     intent.putExtra("file1", file1);
                     intent.putExtra("file2", file2);

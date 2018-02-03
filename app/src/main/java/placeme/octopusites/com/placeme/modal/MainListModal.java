@@ -1,7 +1,9 @@
 package placeme.octopusites.com.placeme.modal;
 
 
-public class MainListModal {
+import java.io.Serializable;
+
+public class MainListModal implements Serializable {
     private String name=null, email=null;
     private boolean isShortListed=false,isPlaced=false;
 

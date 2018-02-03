@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import cat.ereza.customactivityoncrash.config.CaocConfig;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -104,7 +105,9 @@ public class SplashScreen extends AppCompatActivity {
         ShouldAnimateProfile.isInside = false;
 
 
+
         try {
+
             new GetDigestEcho().execute().get(5, TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();

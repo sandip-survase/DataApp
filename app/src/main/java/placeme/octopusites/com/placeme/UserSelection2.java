@@ -36,6 +36,9 @@ import placeme.octopusites.com.placeme.modal.SubListAdapter2;
 import placeme.octopusites.com.placeme.modal.SubListAdapter3;
 import placeme.octopusites.com.placeme.modal.SubListModal;
 
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
+
 public class UserSelection2 extends AppCompatActivity {
 
     public boolean Usereditedflag = false;
@@ -170,18 +173,17 @@ public class UserSelection2 extends AppCompatActivity {
 
         recycler_view_Registered.setVisibility(View.VISIBLE);
 
-        for (int i = 0; i < 5; i++) {
-            MainListModal obj = new MainListModal("Raju" + i, "abc@abc.com" + i, false, false);
-            MainList.add(obj);
+        try {
+            MainList = (ArrayList<MainListModal>) fromString(getIntent().getStringExtra("sRegisteredItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+//            registerdListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sRegisteredItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+//            ShortlistedListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("sShortlistedListsfromservertemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+//            placedListfromserver = (ArrayList<RecyclerItemUsers>) fromString(getIntent().getStringExtra("splacedItemlistTemp"), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
+
+  } catch (Exception e) {
+//
+            Toast.makeText(this, "here" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.d("", "e.getMessage(): " + e.getMessage());
         }
-
-        MainListModal obj = new MainListModal("kunal 2", "kunal@student3.com" , false, false);
-        MainList.add(obj);
-         obj = new MainListModal("kunal 3", "kunal@student2.com" , false, false);
-        MainList.add(obj);
-
-        MainList.get(3).setShortListed(true);
-        MainList.get(3).setPlaced(true);
 
         buildListsAsPerMainList();
 
@@ -195,16 +197,18 @@ public class UserSelection2 extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedTab == 1) {
 
+                if (selectedTab == 1) {
                     StringBuilder sb = new StringBuilder("");
                     for (int i = 0; i < subList1.size(); i++) {
                         if (subList1.get(i).isSelected())
                             sb.append(subList1.get(i).getEmail() + ",");
-
                     }
-
                     Toast.makeText(UserSelection2.this, "send Notification to selected Registered users: " + sb.toString(), Toast.LENGTH_SHORT).show();
+                    Intent i1 = new Intent(UserSelection2.this, CreateNotificationHR.class);
+                    i1.putExtra("selection", "registered");
+                    i1.putExtra("forwhom", "" + sb.toString());
+                    startActivity(i1);
 
                 } else if (selectedTab == 2) {
 
@@ -214,13 +218,21 @@ public class UserSelection2 extends AppCompatActivity {
                             sb.append(subList2.get(i).getEmail() + ",");
                     }
                     Toast.makeText(UserSelection2.this, "send Notification to selected Shortlisted users" + sb.toString(), Toast.LENGTH_SHORT).show();
+                    Intent i1 = new Intent(UserSelection2.this, CreateNotificationHR.class);
+                    i1.putExtra("selection", "shortlisted");
+                    i1.putExtra("forwhom", "" + sb.toString());
+                    startActivity(i1);
                 } else if (selectedTab == 3) {
 
                     StringBuilder sb = new StringBuilder("");
                     for (int i = 0; i < subList3.size(); i++) {
                         sb.append(subList3.get(i).getEmail() + ",");
                     }
-                    Toast.makeText(UserSelection2.this, "send Notification toAll Placed users"+ sb.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSelection2.this, "send Notification to All Placed users"+ sb.toString(), Toast.LENGTH_SHORT).show();
+                    Intent i1 = new Intent(UserSelection2.this, CreateNotificationHR.class);
+                    i1.putExtra("selection", "placed");
+                    i1.putExtra("forwhom", "" + sb.toString());
+                    startActivity(i1);
                 }
             }
         });
@@ -460,7 +472,19 @@ public class UserSelection2 extends AppCompatActivity {
         }
         buildListsAsPerMainList();
 //savecall
-//        UpdatePlacementStudentList();
+        String ObjectString="";
+        try {
+            Log.d(TAG, "updateMainListFromTab1: "+MainList.size());
+
+            ObjectString= OtoString(MainList,MySharedPreferencesManager.getDigest1(this),MySharedPreferencesManager.getDigest2(this));
+
+            Log.d(TAG, "ObjectString: "+ObjectString);
+        } catch (Exception e) {
+            Log.d(TAG, "Error: "+e.getMessage());
+            e.printStackTrace();
+        }
+
+        UpdatePlacementStudentList( ObjectString);
 
 
             }
@@ -475,8 +499,21 @@ public class UserSelection2 extends AppCompatActivity {
             }
 
         }
-
         buildListsAsPerMainList();
+        String ObjectString="";
+        try {
+            Log.d(TAG, "updateMainListFromTab1: "+MainList.size());
+
+            ObjectString= OtoString(MainList,MySharedPreferencesManager.getDigest1(this),MySharedPreferencesManager.getDigest2(this));
+
+            Log.d(TAG, "ObjectString: "+ObjectString);
+        } catch (Exception e) {
+            Log.d(TAG, "Error: "+e.getMessage());
+            e.printStackTrace();
+        }
+        UpdatePlacementStudentList( ObjectString);
+
+
         //savecall
 
 
@@ -489,52 +526,52 @@ public class UserSelection2 extends AppCompatActivity {
 
     }
 
-//    private void UpdatePlacementStudentList() {
-////        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
-//        AndroidNetworking.post(Z.UpdatePlacementStudentList)
-//                .setTag(this)
-//                .addQueryParameter("cid", CompanId)
-//                .setPriority(Priority.MEDIUM)
-//                .setOkHttpClient(OkHttpUtil.getClient())
-//                .getResponseOnlyFromNetwork()
-//                .build()
-//                .setAnalyticsListener(new AnalyticsListener() {
-//                    @Override
-//                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-//                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-//                        Log.d(TAG, " bytesSent : " + bytesSent);
-//                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-//                        Log.d(TAG, " isFromCache : " + isFromCache);
-//                    }
-//                })
-//                .getAsJSONObject(new JSONObjectRequestListener() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//
-//
-//                        Log.d(TAG, "onResponse object : " + response.toString());
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(ANError error) {
-//                        if (error.getErrorCode() != 0) {
-//                            // received ANError from server
-//                            // error.getErrorCode() - the ANError code from server
-//                            // error.getErrorBody() - the ANError body from server
-//                            // error.getErrorDetail() - just a ANError detail
-//                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-//                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-//                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-//
-//                        } else {
-//                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-//                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-//
-//                        }
-//                    }
-//                });
-//    }
+    private void UpdatePlacementStudentList(String ObjectString ) {
+        AndroidNetworking.post("http://162.213.199.3:8090/CreateNotificationTemp/UpdatePlacementStudentList")
+                .setTag(this)
+                .addQueryParameter("cid", CompanId)
+                .addQueryParameter("StrObj",ObjectString)
+                .setPriority(Priority.HIGH)
+                .setOkHttpClient(OkHttpUtil.getClient())
+                .getResponseOnlyFromNetwork()
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() != 0) {
+                            // received ANError from server
+                            // error.getErrorCode() - the ANError code from server
+                            // error.getErrorBody() - the ANError body from server
+                            // error.getErrorDetail() - just a ANError detail
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        }
+                    }
+                });
+    }
 
 }

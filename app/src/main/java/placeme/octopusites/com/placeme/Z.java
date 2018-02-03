@@ -58,7 +58,6 @@ public class Z {
 //    public static final String I = "http://104.237.4.236:26080/";
     public static final String IP_8086 = "http://162.213.199.3:8086/";
 
-
     //********************************  final ************************************
     public static final String IP_secured_sunny_8090 = "http://162.213.199.3:8090/";
     public static final String IP_secured_sunny = "https://placeme.co.in/";
@@ -114,7 +113,7 @@ public class Z {
     public static final String url_Delete_Placements = IP_secured_sunny + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
     public static final String GetPlacementsCreatedByHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
-    public static final String url_GetPlacementsCreatedByHr = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHr";
+    public static final String url_GetPlacementsCreatedByHr = IP_local_Glassfish + "CreateNotificationTemp/GetPlacementHr";
     public static final String url_GetNotificationsHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHrMetadata";
     public static final String url_GetNotificationsHr = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHr";
     //    -------------------------------EditPlacementHr -----------------------------------
@@ -131,12 +130,12 @@ public class Z {
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
-    public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToEach";
+    public static final String url_CreateNotificationHrToEach = IP_local_Glassfish + "CreateNotificationTemp/CreateNotificationHrToEach";
     //    -------------------------------EditPlacementMain -----------------------------------
     public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
     public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
     //    ---------------------------------------ViewPlacement -----------------------------------
-    public static final String url_RegisterForPlacement = IP + "CreateNotificationTemp/RegisterForPlacementss";
+    public static final String url_RegisterForPlacement = IP_local_Glassfish + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_secured_sunny + "CreateNotificationTemp/GetStudentMarksInfo";
     public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
     //----------------------------------------EditPlacementMain -----------------------------------

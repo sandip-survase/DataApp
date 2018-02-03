@@ -231,14 +231,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
+        //
 
-        try {
-            MySharedPreferencesManager.save(AdminActivity.this,"nameKey",Z.Encrypt("paragtiwari5@gmail.com",AdminActivity.this));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
+
         admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
-
         String encUsername = MySharedPreferencesManager.getUsername(this);
         //sss
         imagePicker = new ImagePicker(this);
@@ -246,11 +244,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         imagePicker.shouldGenerateMetadata(false); // Default is true
         imagePicker.shouldGenerateThumbnails(false); // Default is true
 
-
         crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
         resultView = (ImageView) findViewById(R.id.result_image);
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-
 
         username = MySharedPreferencesManager.getUsername(this);
         Log.d(TAG, "usetname onCreate: " + username);
@@ -1734,7 +1730,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
-    private int GetNotificationsReadStatus() {
+    private void GetNotificationsReadStatus() {
 //        AndroidNetworking.get(Z.url_GetNotificationsAdminAdminMetaData)
         AndroidNetworking.post(Z.url_GetNotificationsAdminAdminMetaData)
                 .setTag(this)
@@ -1771,11 +1767,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
                             notificationcountrl.setVisibility(View.VISIBLE);
                             notificationcounttxt.setText(unreadcountNotification + "");
-
                             if (unreadcountNotification == 0) {
                                 notificationcountrl.setVisibility(View.GONE);
                             }
-
                             GetNotifications2();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1805,8 +1799,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         }
                     }
                 });
-
-        return unreadcountNotification;
     }
 
     private void GetNotifications2() {
@@ -1868,7 +1860,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 });
     }
 
-    private int GetPlacementsReadStatus() {
+    private void GetPlacementsReadStatus() {
         AndroidNetworking.post(Z.url_GetPlacementsAdminAdminMetaData)
                 .setTag(this)
                 .addQueryParameter("u", username)
@@ -1904,8 +1896,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
-                            badgeCount = badgeCount + unreadcountPlacement;
-                            ShortcutBadger.applyCount(AdminActivity.this, badgeCount);
                             GetPlacements2();
 
                         } catch (JSONException e) {
@@ -1936,8 +1926,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                         }
                     }
                 });
-
-        return unreadcountPlacement;
     }
 
     private void GetPlacements2() {
@@ -2236,6 +2224,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             Log.d(TAG, "with Ranveer projects :" + placementpages);
                             Log.d(TAG, "with Ranveer total Movies:" + total_no_of_placements);
                             Log.d(TAG, "with Ranveer Movies to release:" + unreadcountPlacement);
+
                             placementcountrl.setVisibility(View.VISIBLE);
                             placementcounttxt.setText(unreadcountPlacement + "");
                             setBadgeCount();
@@ -2243,7 +2232,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                             if (unreadcountPlacement == 0) {
                                 placementcountrl.setVisibility(View.GONE);
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
