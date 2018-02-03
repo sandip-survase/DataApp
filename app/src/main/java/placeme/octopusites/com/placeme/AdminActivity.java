@@ -1320,7 +1320,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         });
 
 
-        new UpdateFirebaseToken().execute();
+//        new UpdateFirebaseToken().execute();
         new GetUnreadMessagesCount().execute();
 
 
@@ -1344,6 +1344,16 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
         setBadgeCount();
+
+        String token = MySharedPreferencesManager.getData(AdminActivity.this, "firebaseToken");
+        try {
+            if (token != null) {
+                token = Z.Encrypt(token, AdminActivity.this);
+                new Z.UpdateFirebaseToken(AdminActivity.this, username, token).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            }
+        } catch (Exception e) {
+        }
+
     }
 
     void filterNotifications(String text) {
@@ -3090,7 +3100,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         @Override
         protected void onPostExecute(String result) {
-            new getToken().execute();
+//            new getToken().execute();
         }
     }
 

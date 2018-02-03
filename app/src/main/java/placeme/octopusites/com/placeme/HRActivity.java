@@ -1048,6 +1048,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         tswipe_refresh_layout.setRefreshing(true);
         getNotifications();
 
+        String token = MySharedPreferencesManager.getData(HRActivity.this, "firebaseToken");
+        try {
+            if (token != null) {
+                token = Z.Encrypt(token, HRActivity.this);
+                new Z.UpdateFirebaseToken(HRActivity.this, username, token).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            }
+        } catch (Exception e) {
+        }
 
     }
 

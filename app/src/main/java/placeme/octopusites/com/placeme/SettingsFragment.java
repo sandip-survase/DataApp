@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -16,6 +17,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.io.IOException;
 
 public class SettingsFragment extends Fragment {
 
@@ -122,6 +127,21 @@ public class SettingsFragment extends Fragment {
         signoutselectionview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            FirebaseInstanceId.getInstance().deleteInstanceId();
+                            Log.d("zzz", "clear InstanceId successfully");
+                            FirebaseInstanceId.getInstance().getToken();  // trigger refereshtok
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.d("zzz", "InstanceId exp : " + e.getMessage());
+
+                        }
+                    }
+                }).start();
+
 
                 // removing all vlaues from sharedpreferences
                 SharedPreferences.Editor editor = sharedpreferences.edit();

@@ -1250,8 +1250,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             String hash = md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
 
 //            new LoginFirebaseTask().execute(plainusername,hash);
-
 //            loginFirebase(plainusername, hash);
+
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1308,10 +1308,19 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         new GetUnreadMessagesCount().execute();
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            MySharedPreferencesManager.save(AlumniActivity.this, "uid", user.getUid());
-            new CreateFirebaseUser(username, pass, user.getUid()).execute();
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user != null) {
+//            MySharedPreferencesManager.save(AlumniActivity.this, "uid", user.getUid());
+//            new CreateFirebaseUser(username, pass, user.getUid()).execute();
+//        }
+
+        String token = MySharedPreferencesManager.getData(AlumniActivity.this, "firebaseToken");
+        try {
+            if (token != null) {
+                token = Z.Encrypt(token, AlumniActivity.this);
+                new Z.UpdateFirebaseToken(AlumniActivity.this, username, token).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            }
+        } catch (Exception e) {
         }
     }
 

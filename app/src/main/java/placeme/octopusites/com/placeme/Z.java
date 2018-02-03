@@ -148,7 +148,7 @@ public class Z {
     public static final String PASSWORD_KEY = "passKey";
     public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
     public static final String url_create_firebase = IP + "Firebase/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken = IP + "Firebase/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken = IP + "AESTest/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase = IP_TOMCAT + "Firebase/ChangeUsername";
     //    ----------------------------------/sunny---------------------------------------------------------------
     public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
@@ -164,7 +164,7 @@ public class Z {
     public static final String url_GetLastPushedMessage = IP + "Firebase/GetLastPushedMessage";
     public static final String url_ChangeMessageReadStatus = IP + "Firebase/ChangeMessageReadStatus";
     public static final String url_ForgotPasswordChange = IP_TOMCAT + "Firebase/ForgotPasswordChange";
-    public static final String url_GenrateCustomToken = IP_TOMCAT + "Firebase/GenrateCustomToken";
+    public static final String url_GenrateCustomToken = IP_8086 + "Firebase/GenrateCustomToken";
     public static final String load_resume_ids = IP + "AESTest/GetResumeIds";
 
     // Messages -----------------------------------------
@@ -736,6 +736,35 @@ public static String digest1 = null, digest2 = null;
             } catch (Exception e) {
 
 
+            }
+            return null;
+        }
+    }
+
+
+    public static class UpdateFirebaseToken extends AsyncTask<String, Void, Void> {
+        JSONParser jParser = new JSONParser();
+        Context context = null;
+        String username = null;
+        String token = null;
+
+        public UpdateFirebaseToken(Context context, String encUsername, String encToken) {
+            this.context = context;
+            this.username = encUsername;
+            this.token = encToken;
+
+        }
+
+        @Override
+        protected Void doInBackground(String... urls) {
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                params.add(new BasicNameValuePair("t", token));
+                JSONObject json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
+                Log.d("zzz", "UpdateFirebaseToken: " + json);
+            } catch (Exception e) {
+                Log.d("zzz", "doInBackground: exp :" + e.getMessage());
             }
             return null;
         }

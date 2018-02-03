@@ -58,6 +58,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -74,6 +75,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -240,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         ShouldAnimateProfile.MainActivity = MainActivity.this;
         ShouldAnimateProfile.isInside = true;
 
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(MainActivity.this));
@@ -399,6 +403,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 //            new LoginFirebaseTask().execute(plainusername,hash);
 //            loginFirebase(plainusername, hash);
+//            new getToken().execute();
+
 
         } catch (Exception e) {
 //            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1290,11 +1296,18 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         getNotifications();
 
-//        new UpdateFirebaseToken().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetStudentData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-
+        String token = MySharedPreferencesManager.getData(MainActivity.this, "firebaseToken");
+        try {
+            if (token != null) {
+                token = Z.Encrypt(token, MainActivity.this);
+                new Z.UpdateFirebaseToken(MainActivity.this, username, token).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            }
+        } catch (Exception e) {
+        }
         new Z.IsVerifyStudent(MainActivity.this, username).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
 
 
 //        changePass();
@@ -2359,7 +2372,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         @Override
         protected void onPostExecute(String result) {
-            new getToken().execute();
+//            new getToken().execute();
         }
     }
 
@@ -3079,7 +3092,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Log.d("RTR", "signInWithCustomToken:success");
-//                                    Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     if (user != null) {
                                         Log.d("RTR", "onComplete uid: " + user.getUid());
@@ -3087,7 +3100,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                                 } else {
                                     Log.w("RTR", "signInWithCustomToken:failure", task.getException());
-//                                    Toast.makeText(MainActivity.this, "Fail logged in to Firebase", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Fail logged in to Firebase", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
