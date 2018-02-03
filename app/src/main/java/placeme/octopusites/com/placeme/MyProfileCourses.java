@@ -67,7 +67,7 @@ public class MyProfileCourses extends AppCompatActivity {
     ;
     int d = 0;
     StudentData s = new StudentData();
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     ArrayList<Courses> coursesList = new ArrayList<>();
     private AdView mAdView;
@@ -86,7 +86,9 @@ public class MyProfileCourses extends AppCompatActivity {
 
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -4690,6 +4692,7 @@ public class MyProfileCourses extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 

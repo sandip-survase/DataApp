@@ -72,7 +72,7 @@ public class MyProfileTenth extends AppCompatActivity {
     String oldBoard = "";
     StudentData s = new StudentData();
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,9 @@ public class MyProfileTenth extends AppCompatActivity {
         role = MySharedPreferencesManager.getRole(this);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
 
         ActionBar ab = getSupportActionBar();
@@ -695,6 +697,7 @@ public class MyProfileTenth extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 

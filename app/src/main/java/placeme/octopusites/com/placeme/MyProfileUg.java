@@ -83,7 +83,7 @@ public class MyProfileUg extends AppCompatActivity {
 
     int  checkstream = 0;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,9 @@ public class MyProfileUg extends AppCompatActivity {
 //        mAdView.loadAd(adRequest);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
 //        ShouldAnimateProfile.MyProfileUg = MyProfileUg.this;
 
@@ -2166,6 +2168,7 @@ public class MyProfileUg extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

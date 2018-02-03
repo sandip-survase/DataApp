@@ -59,7 +59,7 @@ public class MyProfileStrengths extends AppCompatActivity {
     String sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10,encobj="";
     String encstrength1,encstrength2,encstrength3,encstrength4,encstrength5,encstrength6,encstrength7,encstrength8,encstrength9,encstrength10;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,9 @@ public class MyProfileStrengths extends AppCompatActivity {
 //        mAdView.loadAd(adRequest);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -1631,6 +1633,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

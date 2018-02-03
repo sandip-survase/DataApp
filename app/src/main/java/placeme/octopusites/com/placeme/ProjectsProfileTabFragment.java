@@ -73,7 +73,7 @@ public class ProjectsProfileTabFragment extends Fragment {
     private int projectscount = 0;
     private int projectscount2 = 0;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,7 +86,9 @@ public class ProjectsProfileTabFragment extends Fragment {
 //        mAdView.loadAd(adRequest);
 
         bannerView = rootView.findViewById(R.id.banner);
+        bannerView2 = rootView.findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         username = MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
@@ -3435,6 +3437,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

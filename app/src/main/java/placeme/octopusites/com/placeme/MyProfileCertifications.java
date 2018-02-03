@@ -75,7 +75,7 @@ public class MyProfileCertifications extends AppCompatActivity {
     ;
     int d = 0;
     StudentData s = new StudentData();
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
 
     ArrayList<Certificates> certificatesList = new ArrayList<>();
@@ -92,7 +92,9 @@ public class MyProfileCertifications extends AppCompatActivity {
 //        mAdView.loadAd(adRequest);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
@@ -5898,6 +5900,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 

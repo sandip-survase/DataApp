@@ -58,7 +58,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
     String sweak1, sweak2, sweak3, sweak4, sweak5, sweak6, sweak7, sweak8, sweak9, sweak10,encobj="";
     String encweak1, encweak2, encweak3, encweak4, encweak5, encweak6, encweak7, encweak8, encweak9, encweak10;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
 //        mAdView.loadAd(adRequest);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -1608,6 +1610,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

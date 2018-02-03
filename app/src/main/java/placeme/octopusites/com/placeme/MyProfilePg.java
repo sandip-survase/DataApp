@@ -96,7 +96,7 @@ public class MyProfilePg extends AppCompatActivity {
     String courseYear = null, streamYear = null, universityYear = null;
 
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +115,9 @@ public class MyProfilePg extends AppCompatActivity {
         role = MySharedPreferencesManager.getRole(this);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
@@ -3105,6 +3107,7 @@ public class MyProfilePg extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

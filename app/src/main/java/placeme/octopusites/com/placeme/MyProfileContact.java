@@ -57,7 +57,7 @@ public class MyProfileContact extends AppCompatActivity {
 
     TextInputLayout fnameTextInputLayout, lnameTextInputLayout,emai2input,addressline2input,addressline1input,addressline3input,phoneinput,mobileinput,mobile2input;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,10 @@ public class MyProfileContact extends AppCompatActivity {
 //        mAdView.loadAd(adRequest);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
+
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -628,6 +631,7 @@ public class MyProfileContact extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

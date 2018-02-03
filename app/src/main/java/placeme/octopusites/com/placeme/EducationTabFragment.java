@@ -24,7 +24,7 @@ public class EducationTabFragment extends Fragment {
     View tenth,twelth,ug,pg;
     String username;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +37,9 @@ public class EducationTabFragment extends Fragment {
 //        mAdView.loadAd(adRequest);
 
         bannerView = rootView.findViewById(R.id.banner);
+        bannerView2 = rootView.findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         TextView tenthtxt=(TextView)rootView.findViewById(R.id.tenthtxt);
         TextView twelthtxt=(TextView)rootView.findViewById(R.id.twelthtxt);
@@ -146,6 +148,7 @@ public class EducationTabFragment extends Fragment {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 

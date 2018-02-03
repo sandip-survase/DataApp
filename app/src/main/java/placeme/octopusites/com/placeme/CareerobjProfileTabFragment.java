@@ -27,7 +27,7 @@ public class CareerobjProfileTabFragment extends Fragment {
     View careerobjbutton,strengthbutton,weakbutton,locbutton;
     String username;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +41,9 @@ public class CareerobjProfileTabFragment extends Fragment {
 //        mAdView.loadAd(adRequest);
 
         bannerView = rootView.findViewById(R.id.banner);
+        bannerView2 = rootView.findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         TextView careerobjtxt=(TextView)rootView.findViewById(R.id.careerobjtxt);
         TextView strengthtxt=(TextView)rootView.findViewById(R.id.strengthtxt);
@@ -145,6 +147,7 @@ public class CareerobjProfileTabFragment extends Fragment {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

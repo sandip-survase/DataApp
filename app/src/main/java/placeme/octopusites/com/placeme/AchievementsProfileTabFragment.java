@@ -25,7 +25,7 @@ public class AchievementsProfileTabFragment extends Fragment {
 
     View knownlang,certifications,courses,skills,honors,patents,publications;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Appnext.init(getActivity());
@@ -37,7 +37,9 @@ public class AchievementsProfileTabFragment extends Fragment {
 //        mAdView.loadAd(adRequest);
 
         bannerView = rootView.findViewById(R.id.banner);
+        bannerView2 = rootView.findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         TextView knownlangtxt=(TextView)rootView.findViewById(R.id.knownlangtxt);
         TextView certitxt=(TextView)rootView.findViewById(R.id.certitxt);
@@ -196,6 +198,7 @@ public class AchievementsProfileTabFragment extends Fragment {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

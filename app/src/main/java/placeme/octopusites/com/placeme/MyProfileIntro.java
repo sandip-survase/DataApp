@@ -65,7 +65,7 @@ public class MyProfileIntro extends AppCompatActivity {
     StudentData s = new StudentData();
 
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +73,9 @@ public class MyProfileIntro extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile_intro);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
 //        MobileAds.initialize(this, Z.APP_ID);
 //        mAdView = findViewById(R.id.ad_view);
@@ -477,6 +479,7 @@ public class MyProfileIntro extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }

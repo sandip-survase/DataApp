@@ -158,6 +158,16 @@
             ads:bannerSize="BANNER"
             ads:placementId="2d14aba2-5254-4a93-98f7-20689782f3e8" />
 
+        <com.appnext.banners.BannerView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/banner2"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/banner"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:bannerSize="BANNER"
+            ads:placementId="ec30cae5-3357-48a5-bb6c-32d76b804c4a" />
+
         <View
             android:id="@+id/dummy_view_for_shadow"
             android:layout_width="match_parent"

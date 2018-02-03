@@ -30,6 +30,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appnext.base.Appnext;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -78,60 +79,62 @@ public class PrintProfileTabFragment extends Fragment {
     int found_contact_details=0,found_personal=0;
     int downloadClickFlag = 0;
     int selectedResumeTemplate=0;
-    private RewardedVideoAd mRewardedVideoAd;
-    boolean isRewarded = false;
+
+    //    private RewardedVideoAd mRewardedVideoAd;
+//    boolean isRewarded = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_printprofile, container, false);
 
 //        MobileAds.initialize(getActivity(), Z.APP_ID);
-        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
-        mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
-            @Override
-            public void onRewardedVideoAdLoaded() {
-
-            }
-
-            @Override
-            public void onRewardedVideoAdOpened() {
-
-            }
-
-            @Override
-            public void onRewardedVideoStarted() {
-
-            }
-
-            @Override
-            public void onRewardedVideoAdClosed() {
-                if (!isRewarded)
-                    Toast.makeText(getActivity(), "Please watch the complete video to download your resume.", Toast.LENGTH_SHORT).show();
-                downloadresume.setVisibility(View.VISIBLE);
-                resumeprogress.setVisibility(View.GONE);
-                loadRewardedVideoAd();
-            }
-
-            @Override
-            public void onRewarded(RewardItem rewardItem) {
-                if (downloadClickFlag == 1)
-                    startDownload();
-                isRewarded = true;
-            }
-
-            @Override
-            public void onRewardedVideoAdLeftApplication() {
-
-
-            }
-
-            @Override
-            public void onRewardedVideoAdFailedToLoad(int i) {
-
-
-            }
-        });
-        loadRewardedVideoAd();
+        Appnext.init(getActivity());
+//        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
+//        mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+//            @Override
+//            public void onRewardedVideoAdLoaded() {
+//
+//            }
+//
+//            @Override
+//            public void onRewardedVideoAdOpened() {
+//
+//            }
+//
+//            @Override
+//            public void onRewardedVideoStarted() {
+//
+//            }
+//
+//            @Override
+//            public void onRewardedVideoAdClosed() {
+//                if (!isRewarded)
+//                    Toast.makeText(getActivity(), "Please watch the complete video to download your resume.", Toast.LENGTH_SHORT).show();
+//                downloadresume.setVisibility(View.VISIBLE);
+//                resumeprogress.setVisibility(View.GONE);
+//                loadRewardedVideoAd();
+//            }
+//
+//            @Override
+//            public void onRewarded(RewardItem rewardItem) {
+//                if (downloadClickFlag == 1)
+//                    startDownload();
+//                isRewarded = true;
+//            }
+//
+//            @Override
+//            public void onRewardedVideoAdLeftApplication() {
+//
+//
+//            }
+//
+//            @Override
+//            public void onRewardedVideoAdFailedToLoad(int i) {
+//
+//
+//            }
+//        });
+//        loadRewardedVideoAd();
         getmore=(TextView)rootView.findViewById(R.id.getmore);
         selectformattxt=(TextView)rootView.findViewById(R.id.selectformattxt);
 
@@ -670,14 +673,14 @@ public class PrintProfileTabFragment extends Fragment {
 
         if (found_photo == 1 && found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
 
-            downloadClickFlag = 1;
-            if (mRewardedVideoAd.isLoaded()) {
-                downloadresume.setVisibility(View.GONE);
-                resumeprogress.setVisibility(View.VISIBLE);
-                mRewardedVideoAd.show();
-            } else
-                Toast.makeText(getActivity(), "Please wait while we prepare your resume...", Toast.LENGTH_SHORT).show();
-
+//            downloadClickFlag = 1;
+//            if (mRewardedVideoAd.isLoaded()) {
+//                downloadresume.setVisibility(View.GONE);
+//                resumeprogress.setVisibility(View.VISIBLE);
+//                mRewardedVideoAd.show();
+//            } else
+//                Toast.makeText(getActivity(), "Please wait while we prepare your resume...", Toast.LENGTH_SHORT).show();
+            startDownload();
         }
     }
 
@@ -715,16 +718,16 @@ public class PrintProfileTabFragment extends Fragment {
         Toast.makeText(getContext(), "Downloading Started..", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        mRewardedVideoAd.pause(getActivity());
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        mRewardedVideoAd.pause(getActivity());
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
-        mRewardedVideoAd.resume(getActivity());
+//        mRewardedVideoAd.resume(getActivity());
         IsNewTemplateDownloaded obj = new IsNewTemplateDownloaded();
         if (obj.getIsDownloaded()) {
 //            Toast.makeText(getActivity(), "refreshed", Toast.LENGTH_SHORT).show();
@@ -733,10 +736,10 @@ public class PrintProfileTabFragment extends Fragment {
         }
     }
 
-    private void loadRewardedVideoAd() {
-        if (!mRewardedVideoAd.isLoaded()) {
-//            mRewardedVideoAd.loadAd(Z.VIDEO_UNIT_ID, new AdRequest.Builder().build());
-        }
-    }
+//    private void loadRewardedVideoAd() {
+//        if (!mRewardedVideoAd.isLoaded()) {
+////            mRewardedVideoAd.loadAd(Z.VIDEO_UNIT_ID, new AdRequest.Builder().build());
+//        }
+//    }
 
 }

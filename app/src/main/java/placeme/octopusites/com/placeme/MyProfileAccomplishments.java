@@ -9,14 +9,27 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.appnext.banners.BannerAdRequest;
+import com.appnext.banners.BannerView;
+import com.appnext.base.Appnext;
+import com.google.android.gms.ads.AdView;
+
 public class MyProfileAccomplishments extends AppCompatActivity {
 
     View knownlang,certifications,courses,skills,honors,patents,publications;
     String username;
+    private AdView mAdView;
+    BannerView bannerView, bannerView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Appnext.init(this);
         setContentView(R.layout.activity_my_profile_accomplishments);
+
+        bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
+        bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Accomplishments");
@@ -124,14 +137,38 @@ public class MyProfileAccomplishments extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode==AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE)
-        {
+        if(resultCode==AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE) {
             setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
         }
-        if(resultCode==MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE)
-        {
+        if(resultCode==MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE) {
             setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
         }
 
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        bannerView.destroy();
+        bannerView2.destroy();
+        super.onDestroy();
     }
 }

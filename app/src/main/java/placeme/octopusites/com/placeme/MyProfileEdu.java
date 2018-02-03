@@ -19,7 +19,7 @@ public class MyProfileEdu extends AppCompatActivity {
 
     View tenth,twelth,ug,pg;
     private AdView mAdView;
-    BannerView bannerView;
+    BannerView bannerView, bannerView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,9 @@ public class MyProfileEdu extends AppCompatActivity {
 //        mAdView.loadAd(adRequest);
 
         bannerView = findViewById(R.id.banner);
+        bannerView2 = findViewById(R.id.banner2);
         bannerView.loadAd(new BannerAdRequest());
+        bannerView2.loadAd(new BannerAdRequest());
 
         TextView tenthtxt=(TextView)findViewById(R.id.tenthtxt);
         TextView twelthtxt=(TextView)findViewById(R.id.twelthtxt);
@@ -136,6 +138,7 @@ public class MyProfileEdu extends AppCompatActivity {
             mAdView.destroy();
         }
         bannerView.destroy();
+        bannerView2.destroy();
         super.onDestroy();
     }
 }
