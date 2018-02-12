@@ -113,7 +113,7 @@ public class Z {
     public static final String url_Delete_Placements = IP_secured_sunny + "CreateNotificationTemp/DeletePlacement";
     //    -------------------------------hractivity -----------------------------------
     public static final String GetPlacementsCreatedByHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetPlacementsCreatedByHrMetadata";
-    public static final String url_GetPlacementsCreatedByHr = IP_local_Glassfish + "CreateNotificationTemp/GetPlacementHr";
+    public static final String url_GetPlacementsCreatedByHr = IP_secured_sunny + "CreateNotificationTemp/GetPlacementHr";
     public static final String url_GetNotificationsHrMetadata = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHrMetadata";
     public static final String url_GetNotificationsHr = IP_secured_sunny + "CreateNotificationTemp/GetNotificationsHr";
     //    -------------------------------EditPlacementHr -----------------------------------
@@ -130,12 +130,12 @@ public class Z {
     //    -------------------------------CreatePlacementHr -----------------------------------
     public static final String url_CreatePlacementsHr = IP + "CreateNotificationTemp/CreatePlacementsHr";
     //    -------------------------------CreateNotificationHR -----------------------------------
-    public static final String url_CreateNotificationHrToEach = IP_local_Glassfish + "CreateNotificationTemp/CreateNotificationHrToEach";
+    public static final String url_CreateNotificationHrToEach = IP + "CreateNotificationTemp/CreateNotificationHrToPerticularUser";
     //    -------------------------------EditPlacementMain -----------------------------------
     public static final String url_GetForWhomePlacements = IP + "CreateNotificationTemp/GetForWhomePlacements";
     public static final String url_ModifyPlacement = IP + "CreateNotificationTemp/ModifyPlacement";
     //    ---------------------------------------ViewPlacement -----------------------------------
-    public static final String url_RegisterForPlacement = IP_local_Glassfish + "CreateNotificationTemp/RegisterForPlacementss";
+    public static final String url_RegisterForPlacement = IP + "CreateNotificationTemp/RegisterForPlacementss";
     public static final String url_GetStudentMarksInfo = IP_secured_sunny + "CreateNotificationTemp/GetStudentMarksInfo";
     public static final String url_SaveResume = IP + "GenerateResumeWithJODConverter3/SaveResume";
     //----------------------------------------EditPlacementMain -----------------------------------
@@ -149,7 +149,16 @@ public class Z {
     public static final String url_create_firebase = IP + "Firebase/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken = IP + "AESTest/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase = IP_TOMCAT + "Firebase/ChangeUsername";
+    //---------------------------------hr and userSelection-----------------------------------------
+    public static final String url_UpdatePlacementStudentList = IP + "CreateNotificationTemp/UpdatePlacementStudentList";
+
+
+
+
+
     //    ----------------------------------/sunny---------------------------------------------------------------
+
+
     public static final String url_get_chatrooms = IP + "Firebase/GetChatRooms";
     public static final String url_getmessagesreadstatus = IP + "Firebase/GetReadStatusOfMessages";
     public static final String url_changepass = IP + "Firebase/ChangePass";

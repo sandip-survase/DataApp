@@ -32,28 +32,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public static final String MyPREFERENCES = "MyPrefs";
     private static final String TAG = "MyFirebaseMsgService";
-    static int count = 0;  // notification id ...increase this count when new type of notifiation arrives
     public static int countfornotiff = 0;
-    static int countforplace = 0;
-    static int countformessagesenders = 0;
-    static String stro = "", stro2 = "";
     public static String notiffbigtext = "", notiffbigtext2 = "";
-    String chatBigText = null;
-    String chatSubText = null;
-
     public static ArrayList<String> companynameslist = new ArrayList<>();
     public static ArrayList<String> packagelists = new ArrayList<>();
     public static ArrayList<String> postlists = new ArrayList<>();
     public static ArrayList<String> ldrlists = new ArrayList<>();
     public static ArrayList<String> vacantlist = new ArrayList<>();
-    static ArrayList<String> messages = new ArrayList<>();
-    static ArrayList<String> messageSenders = new ArrayList<>();
-
-
     public static ArrayList<String> notificationtitlelist = new ArrayList<>();
     public static ArrayList<String> notificationcontentlist = new ArrayList<>();
-
-
+    static int count = 0;  // notification id ...increase this count when new type of notifiation arrives
+    static int countforplace = 0;
+    static int countformessagesenders = 0;
+    static String stro = "", stro2 = "";
+    static ArrayList<String> messages = new ArrayList<>();
+    static ArrayList<String> messageSenders = new ArrayList<>();
+    String chatBigText = null;
+    String chatSubText = null;
     SharedPreferences sharedpreferences;
     String role, pref1, pref2, pref3, pref4, pref5;
 
@@ -150,7 +145,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent.putExtra("id", ids);
                     intent.putExtra("title", title);
                     intent.putExtra("notification", notification);
-                    intent.putExtra("uploadtime", uploadtime );
+                    intent.putExtra("uploadtime", uploadtime);
                     intent.putExtra("lastmodified", lastmodified);
                     intent.putExtra("file1", file1);
                     intent.putExtra("file2", file2);
@@ -227,7 +222,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
 
                     String sender = data.getString("sender");
-//                    String ids = data.getString("ids");
+                    String ids = data.getString("ids");
                     String Companyname = data.getString("Companyname");
                     String cpackage = data.getString("package");
                     String post = data.getString("post");
@@ -239,6 +234,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     String bond = data.getString("bond");
                     String noofapti = data.getString("noofapti");
                     String noofgd = data.getString("noofgd");
+                    String noofti = data.getString("noofti");
                     String noofhri = data.getString("noofhri");
                     String nooftechtest = data.getString("nooftechtest");
                     String stdx = data.getString("stdx");
@@ -249,32 +245,47 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     String uploadedby = data.getString("uploadedby");
                     String passingyear = data.getString("passingyear");
                     String experience = data.getString("experience");
+                    String noofallowedliveatkt = data.getString("noofallowedliveatkt");
 
                     String senderdec = AES4all.Decrypt(sender, MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
-                    Intent intent = new Intent(this, ViewPlacement.class);
+                    Intent i1 = new Intent(this, ViewPlacement.class);
 
-//                    intent.putExtra("fname", name1.get(0));
-//                    intent.putExtra("lname", name1.get(1));
-//                    intent.putExtra("uploadedby", name1.get(2));
-//                    intent.putExtra("signature", name1.get(3));
-//                    intent.putExtra("sender", receiver);
-//                    intent.putExtra("receiver", sender);
-//                    intent.putExtra("sender_uid", receiver_uid);
-//                    intent.putExtra("receiver_uid", sender_uid);
+                    i1.putExtra("id", ids);
+                    i1.putExtra("companyname", Companyname);
+                    i1.putExtra("package", cpackage);
+                    i1.putExtra("post", post);
+                    i1.putExtra("forwhichcourse", forwhichcourse);
+                    i1.putExtra("forwhichstream", forwhichcourse);
+                    i1.putExtra("vacancies", vacancies);
+                    i1.putExtra("lastdateofregistration", lastdateofregistration);
+                    i1.putExtra("dateofarrival", dateofarrival);
+                    i1.putExtra("bond", bond);
+                    i1.putExtra("noofapti", noofapti);
+                    i1.putExtra("nooftechtest", nooftechtest);
+                    i1.putExtra("noofgd", noofgd);
+                    i1.putExtra("noofti", noofti);
+                    i1.putExtra("noofhri", noofhri);
+                    i1.putExtra("stdx", stdx);
+                    i1.putExtra("stdxiiordiploma", stdxiiordiploma);
+                    i1.putExtra("ug", ug);
+                    i1.putExtra("pg", pg);
+                    i1.putExtra("uploadtime", lastmodified);
+                    i1.putExtra("lastmodified", lastmodified);
+                    i1.putExtra("uploadedby", uploadedby);
+                    i1.putExtra("noofallowedliveatkt", noofallowedliveatkt);
+                    i1.putExtra("noofalloweddeadatkt", noofallowedliveatkt);
+
 //                    ArrayList<String> companynameslist = new ArrayList<>();
 //                    ArrayList<String> packagelists = new ArrayList<>();
 //                    ArrayList<String> postlists = new ArrayList<>();
 //                    ArrayList<String>  ldrlists = new ArrayList<>();
-
                     count = 2;
-
 //                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     if (countforplace == 0) {
                         stro =
                                 post + " (" + cpackage + " LPA)" +
                                         "\nVacancies: " + vacancies +
                                         "\nDate of Arrival: " + dateofarrival;
-
                         companynameslist.add(Companyname);
                         packagelists.add(cpackage);
                         postlists.add(post);
@@ -282,17 +293,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         vacantlist.add(vacancies);
                         lastdateofregistration = "Last Date Of reg. " + lastdateofregistration;
 
-
                     } else {
                         companynameslist.add(Companyname);
                         packagelists.add(cpackage);
                         postlists.add(post);
                         ldrlists.add(lastdateofregistration);
                         vacantlist.add(vacancies);
-
-
                         stro2 += "" + Companyname + " (" + cpackage + " LPA) \n";
-
                         lastdateofregistration = "+" + countforplace + "\tPlacements From PLACEME.";
                         Companyname = "PLACEMENTS";
 
@@ -301,11 +308,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         Companyname = null;
 
                     }
-
                     countforplace++;
-
                     Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i1, PendingIntent.FLAG_UPDATE_CURRENT);
                     NotificationCompat.Builder builder =
                             new NotificationCompat.Builder(this)
                                     .setLargeIcon(icon)

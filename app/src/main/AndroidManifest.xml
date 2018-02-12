@@ -311,7 +311,7 @@
         <activity
             android:name=".ViewResume"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dialog" />
+            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".AdminActions"
             android:screenOrientation="portrait" />
@@ -461,7 +461,10 @@
 
         <activity
             android:name=".UserSelection2"
-            android:label="@string/title_activity_user_selection2"></activity>
+            android:label="@string/title_activity_user_selection2"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     </application>
 
 </manifest>

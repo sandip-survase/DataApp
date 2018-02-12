@@ -641,7 +641,7 @@ public class PrintProfileTabFragment extends Fragment {
                                                     if (found_personal == 0) {
                                                         downloadresume.setVisibility(View.VISIBLE);
                                                         resumeprogress.setVisibility(View.GONE);
-                                                        Snackbar.make(downloadresume.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
+                                                        Snackbar.make(downloadresume.getRootView(), "Please fill Personal details ", Snackbar.LENGTH_LONG)
                                                                 .setAction("OPEN", new View.OnClickListener() {
                                                                     @Override
                                                                     public void onClick(View view) {

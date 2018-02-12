@@ -93,7 +93,7 @@ public class CreateNotificationHR extends AppCompatActivity {
     private String boundary;
     private PrintWriter writer;
     private String TAG = "CreateNotificationHR";
-    private String encRole="";
+    private String encRole = "";
 
 
     @Override
@@ -1301,7 +1301,7 @@ public class CreateNotificationHR extends AppCompatActivity {
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsername));    //0
-            params.add(new BasicNameValuePair("r",encRole ));   //1
+            params.add(new BasicNameValuePair("r", encRole));   //1
             params.add(new BasicNameValuePair("f", encTitle));       //2
             params.add(new BasicNameValuePair("l", encNotiffication));   //3
             params.add(new BasicNameValuePair("c", encforwhom));     //4
@@ -1367,7 +1367,7 @@ public class CreateNotificationHR extends AppCompatActivity {
             json = jParser.makeHttpRequest(Z.url_CreateNotificationHrToEach, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d(TAG, "doInBackground: Response "+r);
+                Log.d(TAG, "doInBackground: Response " + r);
 
             } catch (Exception e) {
                 Log.d("crash============", "" + e.getMessage());
@@ -1379,23 +1379,19 @@ public class CreateNotificationHR extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(CreateNotificationHR.this, result, Toast.LENGTH_SHORT).show();
-            CreateNotificationHR.super.onBackPressed();
-//            if(result.equals("success"))
-//            {
-//                Toast.makeText(CreateNotification.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//
-////                Intent returnIntent = new Intent();
-////                returnIntent.putExtra("result", result);
-////                if(edittedFlag==1){
-////                    setResult(111);
-////                }
-//                CreateNotification.super.onBackPressed();
-//            }
-//            else {
-//                Toast.makeText(CreateNotification.this,result,Toast.LENGTH_SHORT).show();
-//
-//            }
+            if (result.equals("success")) {
+                Toast.makeText(CreateNotificationHR.this, "Notification  Sent Successfully!", Toast.LENGTH_SHORT).show();
+
+//                Intent returnIntent = new Intent();
+//                returnIntent.putExtra("result", result);
+//                if(edittedFlag==1){
+//                    setResult(111);
+//                }
+                CreateNotificationHR.super.onBackPressed();
+            } else {
+                Toast.makeText(CreateNotificationHR.this, result, Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
 

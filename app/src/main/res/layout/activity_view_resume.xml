@@ -3,55 +3,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="placeme.octopusites.com.placeme.ViewResume">
+    tools:context="placeme.octopusites.com.placeme.ViewResume"
+    >
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/close"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        />
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/headerbar">
-
-        <LinearLayout
-            android:gravity="end"
-            android:id="@+id/header"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:background="@color/dark_color"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-
-            >
-
-            <ImageView
-                android:id="@+id/download"
-                android:layout_weight="1"
-                android:src="@drawable/download_white"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-
-                />
-
-            <CheckBox
-                android:id="@+id/checkboxs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:theme="@style/MyCheckBox2"
-                android:layout_gravity="center_vertical"
-
-                />
-        </LinearLayout>
-
-    </RelativeLayout>
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
     <com.github.barteksc.pdfviewer.PDFView
-        android:layout_below="@id/headerbar"
         android:id="@+id/pdfView"
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:layout_above="@+id/headerbar"
 
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/dark_color"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:id="@+id/headerbar">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl1"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:id="@+id/download"
+                android:src="@drawable/download_white"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:id="@+id/downloadtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/download"
+                android:text="Download"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/while_color"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl2"
+            android:layout_weight="1"
+            >
+            <CheckBox
+                android:id="@+id/checkboxs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/MyCheckBox2"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:id="@+id/chechtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkboxs"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/while_color"
+                android:text="Shortlist"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl3"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:id="@+id/sendNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/notification_icon"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sendNotification"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/while_color"
+                android:text="Notify"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    </RelativeLayout>
+
 </RelativeLayout>
 

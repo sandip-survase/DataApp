@@ -15,7 +15,11 @@
         android:textSize="16dp"
         android:text="company name"
         android:textColor="@color/dark_color"
-        android:id="@+id/companyname" />
+        android:singleLine="true"
+        android:id="@+id/companyname"
+        android:layout_toLeftOf="@+id/registerednumber"
+        android:layout_alignParentLeft="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"

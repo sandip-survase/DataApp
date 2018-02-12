@@ -22,6 +22,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.IOException;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 public class SettingsFragment extends Fragment {
 
     View changepassselectionview, pushselectionview, emailselectionview, proselectionview, lastloginselectionview, reportselectionview, rateusselectionview;
@@ -134,6 +136,7 @@ public class SettingsFragment extends Fragment {
                             FirebaseInstanceId.getInstance().deleteInstanceId();
                             Log.d("zzz", "clear InstanceId successfully");
                             FirebaseInstanceId.getInstance().getToken();  // trigger refereshtok
+
                         } catch (IOException e) {
                             e.printStackTrace();
                             Log.d("zzz", "InstanceId exp : " + e.getMessage());
@@ -159,6 +162,9 @@ public class SettingsFragment extends Fragment {
 
                 HrData hrData=new HrData();
                 hrData.setHrDataNull();
+
+                //clear badge
+                ShortcutBadger.removeCount(getActivity());
 
                 ShouldAnimateProfile.isInside = false;
                 Intent intent = new Intent(getActivity(), LoginActivity.class);

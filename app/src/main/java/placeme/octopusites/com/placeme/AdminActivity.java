@@ -235,7 +235,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
 
-
         admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
         String encUsername = MySharedPreferencesManager.getUsername(this);
         //sss

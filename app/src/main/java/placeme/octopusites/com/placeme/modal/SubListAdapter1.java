@@ -33,7 +33,6 @@ public class SubListAdapter1 extends RecyclerView.Adapter<SubListAdapter1.MyView
     String extractedusername = null;
     private ArrayList<SubListModal> subList1;
 
-
     public SubListAdapter1(ArrayList<SubListModal> subList1, Context mContext) {
         this.subList1 = subList1;
         this.mContext = mContext;
@@ -89,7 +88,7 @@ public class SubListAdapter1 extends RecyclerView.Adapter<SubListAdapter1.MyView
             holder.resumeSelectioview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((UserSelection2) mContext).showResume(item.getEmail());
+                    ((UserSelection2) mContext).showResume(item.getEmail(),"one",item.isSelected());
 
                 }
             });
@@ -106,7 +105,7 @@ public class SubListAdapter1 extends RecyclerView.Adapter<SubListAdapter1.MyView
                 ((UserSelection2) mContext).Usereditedflag = true;
 
                 if ((((UserSelection2) mContext)).wasShortlistedInMainList(item.getEmail())) {
-                    Toast.makeText(mContext, "Cannot change status", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "You cannot change the status of already shortlisted candidates.", Toast.LENGTH_LONG).show();
                     holder.checkboxs.setChecked(true);
                 } else {
                     if (item.isSelected()) {

@@ -665,7 +665,7 @@ public class ViewPlacement extends AppCompatActivity {
 //                        please fill personal information
                                                         registerbutton.setVisibility(View.VISIBLE);
                                                         progressBar.setVisibility(View.GONE);
-                                                        Snackbar.make(registerbutton.getRootView(), "Please fill Personal details details", Snackbar.LENGTH_LONG)
+                                                        Snackbar.make(registerbutton.getRootView(), "Please fill Personal details ", Snackbar.LENGTH_LONG)
                                                                 .setAction("OPEN", new View.OnClickListener() {
                                                                     @Override
                                                                     public void onClick(View view) {
