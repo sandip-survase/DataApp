@@ -299,7 +299,7 @@ public class ViewNotification extends AppCompatActivity {
     void downloadAttachment(String id,String filename)
     {
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("CreateNotificationTemp/DownloadAttachmentFiles")
                 .appendQueryParameter("u", username)

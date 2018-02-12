@@ -120,7 +120,7 @@ public class MessageActivity extends AppCompatActivity {
         name.setText(fname+" "+lname);
 
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", encusername)

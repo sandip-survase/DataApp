@@ -297,10 +297,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ShowRegisteredUsers"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".CreateNotificationHR"
             android:screenOrientation="portrait"
             android:theme="@style/MyFormTheme" />
@@ -330,9 +326,6 @@
             android:name=".HrCompanyDetails"
             android:screenOrientation="portrait"
             android:theme="@style/MyFormTheme" />
-        <activity
-            android:name=".HrCreatedPlacements"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".AlumniActivity"
             android:label="@string/title_activity_alumni"
@@ -375,10 +368,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".NoInternet"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".UserSelection"
-            android:label="@string/title_activity_user_selection"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NewsFeedWebView"

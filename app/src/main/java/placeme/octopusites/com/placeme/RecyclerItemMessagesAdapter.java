@@ -74,7 +74,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
         RecyclerItemMessages item = itemList.get(position);
 
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", item.getUploadedby())

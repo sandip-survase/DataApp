@@ -2151,7 +2151,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     private void downloadImage() {
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", encUsersName)

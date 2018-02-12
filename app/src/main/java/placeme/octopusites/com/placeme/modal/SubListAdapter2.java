@@ -69,7 +69,7 @@ public class SubListAdapter2 extends RecyclerView.Adapter<SubListAdapter2.MyView
         Log.d("kun", "encUser: -----------------   " + encUser.get(extractedusername));
 
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", encUser.get(extractedusername))

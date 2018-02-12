@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,6 +26,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -99,7 +102,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     FrameLayout mainfragment;
     //  our coding here
     Handler handler = new Handler();
-    RelativeLayout createnotificationrl, editnotificationrl;
     int notificationplacementflag = 0;
     int navMenuFlag = 0, oldNavMenuFlag = 0;
     int selectedMenuFlag = 1;
@@ -113,7 +115,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     String filepath = "", filename = "";
     String directory;
     List<String> response;
-    RelativeLayout admincontrolsrl;
     ArrayList<ArrayList<MainListModal>> registeredallListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> placedallListsfromserver = new ArrayList<>();
@@ -123,7 +124,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     int placemntscount;
     Toolbar toolbar;
     SwipeRefreshLayout tswipe_refresh_layout;
-    TextView createnotificationtxt, editnotificationtxt;
     boolean isFirstRunPlacement = true, isLastPageLoadedPlacement = false;
     int lastPageFlagPlacement = 0;
     int placementpages = 0;
@@ -166,7 +166,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     private boolean loadingNotification = true; // True if we are still waiting for the last set of data to load.
     private int page_to_call_notification = 1;
     private String pass;
-
+    private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -177,13 +177,16 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         ShouldAnimateProfile.HRActivity = HRActivity.this;
 
         ShouldAnimateProfile.isInside = true;
-
+        fab=findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setTypeface(Z.getRighteous(HRActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
+
+        Animation fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        Animation fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
 
         try {
             OkHttpUtil.init(true);
@@ -204,8 +207,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
 
-        admincontrolsrl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
-        admincontrolsrl.setVisibility(View.GONE);
+
 
         username = MySharedPreferencesManager.getUsername(this);
         pass = MySharedPreferencesManager.getPassword(HRActivity.this);
@@ -222,10 +224,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
 
-        createnotificationtxt = (TextView) findViewById(R.id.createnotificationtxt);
-        editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
-        createnotificationtxt.setTypeface(Z.getBold(this));
-        editnotificationtxt.setTypeface(Z.getBold(this));
+
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -255,7 +254,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                admincontrolsrl.setVisibility(View.GONE);
+
                 final Drawable upArrow = getResources().getDrawable(R.drawable.backarrow);
                 upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 searchView.setBackIcon(upArrow);
@@ -263,8 +262,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
             @Override
             public void onSearchViewClosed() {
-                if (navMenuFlag == 3)
-                    admincontrolsrl.setVisibility(View.VISIBLE);
+
+
             }
         });
 
@@ -287,22 +286,22 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("My Profile");
 
+                        fab.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
 
-                        admincontrolsrl.setVisibility(View.GONE);
+
 
                     } else if (navMenuFlag == 2) {
                         notificationorplacementflag = 1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Notifications");
-                        createnotificationtxt.setText("Create Notification");
-                        editnotificationtxt.setText("Edit Notification");
                         mainfragment.setVisibility(View.GONE);
+                        fab.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
-                        admincontrolsrl.setVisibility(View.GONE);
+
                         getNotifications();
                     } else if (navMenuFlag == 3) {
                         notificationorplacementflag = 2;
@@ -310,14 +309,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Placements");
                         mainfragment.setVisibility(View.GONE);
-                        createnotificationtxt.setText("Create Placements");
-                        editnotificationtxt.setText("Edit Placements");
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
-                        RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
-                        rl.setVisibility(View.VISIBLE);
-                        admincontrolsrl.setVisibility(View.VISIBLE);
+                        fab.setVisibility(View.VISIBLE);
+
                         getPlacements();
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
@@ -333,7 +329,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.INVISIBLE);
                         getSupportActionBar().setTitle("");
                         tswipe_refresh_layout.setVisibility(View.GONE);
-                        admincontrolsrl.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
+                        fab.setVisibility(View.GONE);
+
+
                     } else if (navMenuFlag == 5) {
                         crop_layout.setVisibility(View.GONE);
                         SettingsFragment fragment = new SettingsFragment();
@@ -344,8 +344,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.VISIBLE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Settings");
-//                        tswipe_refresh_layout.setVisibility(View.GONE);
-                        admincontrolsrl.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
+                        fab.setVisibility(View.GONE);
+
                     } else if (navMenuFlag == 6) {
                         crop_layout.setVisibility(View.GONE);
                         NoDataAvailableFragment fragment = new NoDataAvailableFragment();
@@ -356,8 +358,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.VISIBLE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Blog");
+                        fab.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
-                        admincontrolsrl.setVisibility(View.GONE);
+
                     } else if (navMenuFlag == 7) {
                         crop_layout.setVisibility(View.GONE);
                         AboutFragment fragment = new AboutFragment();
@@ -368,8 +373,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.VISIBLE);
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("About");
+                        fab.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
-                        admincontrolsrl.setVisibility(View.GONE);
+
                     }
                 }
 
@@ -523,8 +531,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 drawer.closeDrawer(GravityCompat.START);
 
 
-                RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
-                rl.setVisibility(View.VISIBLE);
+
 //                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //                fab.setVisibility(View.VISIBLE);
 
@@ -581,7 +588,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 drawer.closeDrawer(GravityCompat.START);
 
                 mainfragment.setVisibility(View.GONE);
-                admincontrolsrl.setVisibility(View.VISIBLE);
+
 //                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //                fab.setVisibility(View.VISIBLE);
 
@@ -931,72 +938,23 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }));
 
         disableNavigationViewScrollbars(navigationView);
-        createnotificationrl = (RelativeLayout) findViewById(R.id.createnotificationrl);
-        editnotificationrl = (RelativeLayout) findViewById(R.id.editnotificationrl);
 
-        createnotificationrl.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (notificationorplacementflag == 1) {
-
-                    if (Z.isAdminHrVerified(HRActivity.this)) {
-                        //CreateNotification
-                        Intent i1 = new Intent(HRActivity.this, CreateNotificationHR.class);
-                        i1.putExtra("flag", "HrActivity");
-                        startActivity(i1);
-                    } else {
-                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
-                    }
-
-
-                } else if (notificationorplacementflag == 2) {
-                    if (Z.isAdminHrVerified(HRActivity.this)) {
-                        //CreatePlacement
-                        String Tag = "HrActivity";
-                        PlacementEditData settag = new PlacementEditData();
-                        settag.setActivityFromtag(Tag);
-                        startActivity(new Intent(HRActivity.this, CreatePlacementHr.class));
-                    } else {
-                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
-                    }
-
-
+            public void onClick(View v) {
+                if (Z.isAdminHrVerified(HRActivity.this)) {
+                    //CreatePlacement
+                    String Tag = "HrActivity";
+                    PlacementEditData settag = new PlacementEditData();
+                    settag.setActivityFromtag(Tag);
+                    startActivity(new Intent(HRActivity.this, CreatePlacementHr.class));
+                } else {
+                    Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        editnotificationrl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (notificationorplacementflag == 1) {
 
-                    if (Z.isAdminHrVerified(HRActivity.this)) {
-                        //EditNotification
-                        String Tag = "HrActivity";
-                        PlacementEditData settag = new PlacementEditData();
-                        settag.setActivityFromtag(Tag);
-                        startActivity(new Intent(HRActivity.this, EditNotification.class));
-                    } else {
-                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
-                    }
-
-
-                } else if (notificationorplacementflag == 2) {
-                    if (Z.isAdminHrVerified(HRActivity.this)) {
-                        //EditPlacement
-                        String Tag = "HrActivityEdit";
-                        PlacementEditData settag = new PlacementEditData();
-                        settag.setActivityFromtag(Tag);
-                        startActivity(new Intent(HRActivity.this, EditPlacementHr.class));
-                    } else {
-                        Toast.makeText(HRActivity.this, "Your account is still not verified. Please wait while we are verifying your account as HR & you will get a notification after successful Verification ", Toast.LENGTH_LONG).show();
-                    }
-
-
-                }
-
-            }
-        });
 
         try {
 
@@ -1947,7 +1905,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         private Bitmap downloadImage(String url) {
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)

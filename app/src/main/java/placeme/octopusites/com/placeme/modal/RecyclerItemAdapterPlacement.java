@@ -88,7 +88,7 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
 
 
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImageThumbnail")
                     .appendQueryParameter("u", encUser.get(extractedusername))

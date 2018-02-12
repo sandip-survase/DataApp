@@ -188,7 +188,7 @@ public class ViewResume extends AppCompatActivity {
         try {
             Uri uri = null;
             uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("CreateNotificationTemp/PDFDownload2")
                     .appendQueryParameter("u", username)

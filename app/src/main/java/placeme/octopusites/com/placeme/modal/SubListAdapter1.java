@@ -20,7 +20,6 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import placeme.octopusites.com.placeme.R;
-import placeme.octopusites.com.placeme.UserSelection;
 import placeme.octopusites.com.placeme.UserSelection2;
 import placeme.octopusites.com.placeme.Z;
 
@@ -68,7 +67,7 @@ public class SubListAdapter1 extends RecyclerView.Adapter<SubListAdapter1.MyView
             Log.d("kun", "encUser: -----------------   " + encUser.get(extractedusername));
 
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImageThumbnail")
                     .appendQueryParameter("u", encUser.get(extractedusername))

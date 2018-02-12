@@ -50,16 +50,16 @@ public class Z {
 //    public static final String APP_ID = "ca-app-pub-4561960316771699~6596755648";
 
     //**************************  final **************************
-    public static final String VPS_IP = "162.213.199.3";   // for authority
-    public static final String IP = "http://162.213.199.3/";
-    public static final String IP_TOMCAT = "http://162.213.199.3:8080/";
-    public static final String IP_local_Glassfish = "http://162.213.199.3:8090/";
+    public static final String VPS_IP = "placeme.co.in";   // for authority
+    public static final String IP = "https://placeme.co.in/";
+    public static final String IP_TOMCAT = "http://placeme.co.in:8080/";
+    public static final String IP_local_Glassfish = "http://placeme.co.in:8090/";
     //    public static final String IP_secured_sunny = "http://104.237.4.236:26080/";
 //    public static final String I = "http://104.237.4.236:26080/";
-    public static final String IP_8086 = "http://162.213.199.3:8086/";
+    public static final String IP_8086 = "http://placeme.co.in:8086/";
 
     //********************************  final ************************************
-    public static final String IP_secured_sunny_8090 = "http://162.213.199.3:8090/";
+    public static final String IP_secured_sunny_8090 = "http://placeme.co.in:8090/";
     public static final String IP_secured_sunny = "https://placeme.co.in/";
     public static final String FAIL_TO_PROCESS = "Fail to process your request!\nPlease try again";
     public static final String FAIL_TO_UPLOAD_IMAGE = "Fail to upload image!\nPlease try again";

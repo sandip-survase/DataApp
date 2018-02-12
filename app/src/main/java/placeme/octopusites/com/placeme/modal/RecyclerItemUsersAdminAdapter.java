@@ -76,7 +76,7 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
         RecyclerItemUsersAdmin item = itemList.get(position);
 
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", item.getEncemail())

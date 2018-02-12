@@ -79,7 +79,7 @@ public class ViewProfileImage extends AppCompatActivity {
             Log.d("TAG", "downloadImage signature : " + signature);
             Log.d("TAG", "downloadImage: GetImage username " + username);
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)

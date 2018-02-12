@@ -2608,7 +2608,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             Log.d("TAG", "downloadImage signature : " + signature);
             Log.d("TAG", "downloadImage: GetImage username " + username);
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
@@ -2702,7 +2702,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         private Bitmap downloadImage(String url) {
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)

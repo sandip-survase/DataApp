@@ -687,7 +687,7 @@ public class PrintProfileTabFragment extends Fragment {
     void startDownload() {
 
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("GenerateResumeWithJODConverter3/DownloadResume")
                 .appendQueryParameter("username", username)

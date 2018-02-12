@@ -375,7 +375,7 @@ public class MessagesFragment extends Fragment {
     private Bitmap downloadImage(String uname) {
 
         Uri uri = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", uname)

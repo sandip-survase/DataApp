@@ -27,86 +27,23 @@
 
     </FrameLayout>
 
+    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/dark_color"
+        app:srcCompat="@drawable/add_icon_white" />
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/admincontrolsrl"
-            android:background="@drawable/boxborder"
-            android:elevation="2dp">
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/section"
-                android:background="@color/sky_blue_color" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_toLeftOf="@+id/section"
-                android:id="@+id/createnotificationrl">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/add_icon"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/addnotification"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/addnotification"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Create Notification"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:textColor="@color/dark_color"
-                    android:id="@+id/createnotificationtxt" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@+id/section"
-                android:id="@+id/editnotificationrl">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/edit_notification_icon"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/editnotification"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/editnotification"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Edit Notification"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:textColor="@color/dark_color"
-                    android:id="@+id/editnotificationtxt" />
-            </RelativeLayout>
-
-        </RelativeLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/admincontrolsrl"
             >
 
             <RelativeLayout

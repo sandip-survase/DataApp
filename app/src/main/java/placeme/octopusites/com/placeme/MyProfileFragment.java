@@ -2786,7 +2786,7 @@ public class MyProfileFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             Uri uri = new Uri.Builder()
-                    .scheme("http")
+                    .scheme("https")
                     .authority(Z.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
